@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Find Sherpas
 
-## Getting Started
+Agency website for **Find Sherpas** — on-site search optimization (UX audits, relevance tuning, and search analytics design).
 
-First, run the development server:
+Built with **Next.js (App Router)**, **Tailwind CSS**, and **shadcn/ui**. Deployable to **Vercel**.
+
+## Local development
+
+1) Install dependencies
+
+```bash
+npm install
+```
+
+2) Configure environment
+
+```bash
+cp .env.example .env.local
+```
+
+3) Run dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content (MDX)
+- Blog posts: `content/blog/*.mdx`
+- Case studies: `content/case-studies/*.mdx`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stripe (Checkout)
+- API route: `app/api/stripe/checkout/route.ts`
+- Success page: `app/stripe/success`
+- Cancel page: `app/stripe/cancel`
 
-## Learn More
+Set these env vars (see `.env.example`): `STRIPE_SECRET_KEY` + tier `STRIPE_PRICE_*`.
 
-To learn more about Next.js, take a look at the following resources:
+## Contact form
+- API route: `app/api/contact/route.ts`
+- UI: `components/site/contact-form.tsx`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Uses Resend if `RESEND_API_KEY` is set; otherwise it logs submissions in dev.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy (Vercel)
+- Push to GitHub
+- Import repo in Vercel
+- Add env vars from `.env.example` to Vercel Project Settings
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
