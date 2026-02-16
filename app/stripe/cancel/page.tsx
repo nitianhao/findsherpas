@@ -35,7 +35,7 @@ export default async function StripeCancelPage({
               <Link href="/pricing">Back to pricing</Link>
             </Button>
             <Button asChild variant="outline">
-              <a href="mailto:hello@findsherpas.com?subject=Find%20Sherpas%20audit%20-%20question">
+              <a href="mailto:michal.pekarcik@gmail.com?subject=Find%20Sherpas%20audit%20-%20question">
                 Contact
               </a>
             </Button>

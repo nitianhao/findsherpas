@@ -139,10 +139,10 @@ export function SiteFooter() {
           </div>
           <div className="mt-3 text-xs text-muted-foreground">
             <a
-              href="mailto:hello@findsherpas.com"
+              href="mailto:michal.pekarcik@gmail.com"
               className="transition-colors hover:text-foreground"
             >
-              hello@findsherpas.com
+              michal.pekarcik@gmail.com
             </a>
           </div>
         </div>

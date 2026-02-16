@@ -48,12 +48,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid email" }, { status: 400 });
   }
 
-  const toEmail = process.env.CONTACT_TO_EMAIL ?? "hello@findsherpas.com";
+  const toEmail = process.env.CONTACT_TO_EMAIL ?? "michal.pekarcik@gmail.com";
 
   // If Resend is not configured yet, fall back to logging.
   const resendKey = process.env.RESEND_API_KEY;
-  if (!resendKey) {
-    console.log("Contact form submission (no RESEND_API_KEY configured)", {
+  if (!resendKey || resendKey === "re_...") {
+    console.log("Contact form submission (no valid RESEND_API_KEY configured)", {
       name,
       email,
       company,
@@ -75,14 +75,27 @@ export async function POST(req: Request) {
     message,
   ].join("\n");
 
-  await resend.emails.send({
-    from: process.env.CONTACT_FROM_EMAIL ?? "Find Sherpas <onboarding@resend.dev>",
-    to: [toEmail],
-    replyTo: email,
-    subject,
-    text,
-  });
+  try {
+    const { data, error } = await resend.emails.send({
+      from: process.env.CONTACT_FROM_EMAIL ?? "Find Sherpas <onboarding@resend.dev>",
+      to: [toEmail],
+      replyTo: email,
+      subject,
+      text,
+    });
 
-  return NextResponse.json({ ok: true, delivery: "email" });
+    if (error) {
+      console.error("Resend error:", error);
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ ok: true, delivery: "email", id: data?.id });
+  } catch (err: any) {
+    console.error("Unexpected error sending email:", err);
+    return NextResponse.json(
+      { error: "Failed to send email. Please try again later." },
+      { status: 500 },
+    );
+  }
 }
 

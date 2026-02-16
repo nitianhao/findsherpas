@@ -137,8 +137,8 @@ export function ContactForm() {
 
       <div className="text-xs text-muted-foreground">
         Prefer email? Write to{" "}
-        <a className="underline" href="mailto:hello@findsherpas.com">
-          hello@findsherpas.com
+        <a className="underline" href="mailto:michal.pekarcik@gmail.com">
+          michal.pekarcik@gmail.com
         </a>
         .
       </div>

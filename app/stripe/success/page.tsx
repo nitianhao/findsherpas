@@ -41,7 +41,7 @@ export default async function StripeSuccessPage({
               <Link href="/">Back to home</Link>
             </Button>
             <Button asChild variant="outline">
-              <a href="mailto:hello@findsherpas.com?subject=Find%20Sherpas%20audit%20-%20next%20steps">
+              <a href="mailto:michal.pekarcik@gmail.com?subject=Find%20Sherpas%20audit%20-%20next%20steps">
                 Email me
               </a>
             </Button>
