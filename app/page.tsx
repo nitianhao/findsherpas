@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Check, TrendingUp, SearchX, DollarSign, Target, CornerDownLeft, SlidersHorizontal, BarChart3 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -28,97 +29,143 @@ export default async function Home() {
   return (
     <div>
       {/* ============================================================
-          HERO — white background
+          HERO — Gradient background + Visuals
           ============================================================ */}
-      <section className="py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto max-w-[1120px]">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-start">
+      <section className="relative overflow-hidden bg-gradient-to-b from-teal-50/50 via-white to-white pb-16 pt-16 sm:pb-20 sm:pt-24 lg:pb-24 lg:pt-32">
+        {/* Decorative blobs */}
+        <div className="pointer-events-none absolute -right-[120px] -top-24 h-[360px] w-[360px] rounded-full bg-teal-400/10 blur-3xl sm:bg-teal-400/15" />
+        <div className="pointer-events-none absolute -bottom-24 -left-[120px] h-[320px] w-[320px] rounded-full bg-slate-400/10 blur-3xl" />
+
+        <div className="container relative mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
             {/* Left column: Copy + CTAs */}
-            <div>
-              <h1 className="text-balance text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.25rem]">
-                Search users convert more. Make product discovery a revenue lever.
+            <div className="max-w-2xl">
+              <h1 className="text-balance text-4xl font-semibold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.5rem]">
+                Search users convert more. <br className="hidden lg:block" />
+                Make product discovery a{" "}
+                <span className="text-teal-600">revenue lever</span>.
               </h1>
-              <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
+              <p className="mt-6 text-lg leading-relaxed text-slate-600 sm:text-xl">
                 Vendor-agnostic on-site search optimization focused on conversion + revenue impact.
               </p>
 
-              <ul className="mt-8 space-y-4 text-base text-foreground sm:text-lg">
+              <ul className="mt-8 space-y-4">
                 <li className="flex items-start gap-3">
-                  <svg className="mt-1 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  Audit search UX, relevance, and analytics end-to-end
+                  <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                    <Check className="h-4 w-4" />
+                  </div>
+                  <span className="text-base font-medium text-slate-700 sm:text-lg">
+                    Audit search UX, relevance, and analytics end-to-end
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <svg className="mt-1 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  Prioritized roadmap tied to revenue + effort
+                  <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                    <Check className="h-4 w-4" />
+                  </div>
+                  <span className="text-base font-medium text-slate-700 sm:text-lg">
+                    Prioritized roadmap tied to revenue + effort
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <svg className="mt-1 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  Experimentation-ready recommendations (A/B testable)
+                  <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                    <Check className="h-4 w-4" />
+                  </div>
+                  <span className="text-base font-medium text-slate-700 sm:text-lg">
+                    Experimentation-ready recommendations (A/B testable)
+                  </span>
                 </li>
               </ul>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
-                <Button asChild size="lg" className="w-full sm:w-auto">
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
+                <Button asChild size="lg" className="h-12 w-full bg-teal-600 text-base font-semibold shadow-sm hover:bg-teal-700 sm:w-auto px-8">
                   <a href="#contact">Book a call</a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+                <Button asChild variant="outline" size="lg" className="h-12 w-full border-slate-200 text-base font-medium text-slate-700 shadow-sm hover:bg-slate-50 hover:text-slate-900 sm:w-auto px-8">
                   <Link href="/pricing">Get a search audit</Link>
                 </Button>
               </div>
+              <p className="mt-3 text-sm font-medium text-slate-500">
+                30 min intro. No prep needed.
+              </p>
             </div>
 
-            {/* Right column: Proof card */}
-            <div className="lg:pt-8">
-              <div className="rounded-xl border border-border/50 bg-background p-6 shadow-sm sm:p-8">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            {/* Right column: Search System Visual */}
+            <div className="relative mt-4 lg:mt-0">
+              <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-xl shadow-slate-200/50 backdrop-blur-sm sm:p-8">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-500">
                   Typical outcomes
                 </h3>
-                <div className="mt-6 space-y-5">
-                  <div>
-                    <div className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+
+                {/* Flow Diagram */}
+                <div className="mt-6 flex items-center justify-between gap-2 text-xs font-medium text-slate-600 sm:text-sm">
+                  <div className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 shadow-sm">
+                    Query
+                  </div>
+                  <div className="h-px flex-1 bg-slate-200" />
+                  <div className="flex items-center gap-1.5 rounded-full border border-teal-100 bg-teal-50 px-3 py-1.5 text-teal-700 shadow-sm">
+                    Relevance
+                  </div>
+                  <div className="h-px flex-1 bg-slate-200" />
+                  <div className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 shadow-sm">
+                    Product Found
+                  </div>
+                </div>
+
+                {/* Metrics Grid */}
+                <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                  <div className="group rounded-xl border border-slate-100 bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
+                    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                      <TrendingUp className="h-5 w-5" />
+                    </div>
+                    <div className="text-2xl font-bold text-slate-900 sm:text-3xl">
                       +25%
                     </div>
-                    <div className="mt-1 text-sm text-muted-foreground">
-                      search CVR
+                    <div className="text-sm font-medium text-slate-500">
+                      Search CVR
                     </div>
                   </div>
-                  <div>
-                    <div className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+
+                  <div className="group rounded-xl border border-slate-100 bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
+                    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-slate-600">
+                      <SearchX className="h-5 w-5" />
+                    </div>
+                    <div className="text-2xl font-bold text-slate-900 sm:text-3xl">
                       -40%
                     </div>
-                    <div className="mt-1 text-sm text-muted-foreground">
-                      no-result queries
+                    <div className="text-sm font-medium text-slate-500">
+                      No-result queries
                     </div>
                   </div>
-                  <div>
-                    <div className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+
+                  <div className="group col-span-full rounded-xl border border-slate-100 bg-white p-4 shadow-sm transition-shadow hover:shadow-md sm:col-span-1">
+                    <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                      <DollarSign className="h-5 w-5" />
+                    </div>
+                    <div className="text-2xl font-bold text-slate-900 sm:text-3xl">
                       +18%
                     </div>
-                    <div className="mt-1 text-sm text-muted-foreground">
-                      revenue from search
+                    <div className="text-sm font-medium text-slate-500">
+                      Revenue from search
                     </div>
                   </div>
                 </div>
               </div>
+
+              {/* Decorative element behind card */}
+              <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-tr from-teal-100/50 to-slate-100/50 blur-xl" />
             </div>
           </div>
 
-          {/* Trust strip */}
-          <div className="mt-16 sm:mt-20">
-            <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          {/* Trust strip - Visual Chips */}
+          <div className="mt-16 border-t border-slate-100 pt-10 sm:mt-24">
+            <p className="text-center text-xs font-semibold uppercase tracking-widest text-slate-400">
               Trusted by teams at
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
               {companies.map((c) => (
                 <div
                   key={c}
-                  className="rounded-lg border border-border/50 bg-background px-4 py-2 text-sm text-muted-foreground"
+                  className="rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-medium text-slate-600 shadow-sm backdrop-blur-sm transition-colors hover:border-slate-300 hover:bg-white"
                 >
                   {c}
                 </div>
@@ -129,67 +176,102 @@ export default async function Home() {
       </section>
 
       {/* ============================================================
-          WHY SEARCH QUIETLY LOSES REVENUE — white background
+          WHY SEARCH QUIETLY LOSES REVENUE — Visual Cards
           ============================================================ */}
       <section className="py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto max-w-[1120px]">
+        <div className="mx-auto max-w-[1120px] rounded-3xl bg-slate-50/50 px-4 py-12 sm:px-6 sm:py-16 lg:px-12 lg:py-20">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            {/* Left: Problem statement */}
+            {/* Left: Problem statement with Icon Bullets */}
             <div>
-              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                Why internal search quietly loses revenue
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                Why internal search <br className="hidden lg:block" />
+                quietly loses revenue
               </h2>
-              <ul className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-                <li className="flex items-start gap-3">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground" />
-                  Results miss intent even when relevant products exist
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground" />
-                  Search is split across teams with no single owner
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground" />
-                  Measured by usage, not conversion or revenue impact
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground" />
-                  Relevance tuning happens once, then stalls as catalog evolves
-                </li>
-              </ul>
+              <div className="mt-8 space-y-6">
+                <div className="flex gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm ring-1 ring-slate-200">
+                    <Target className="h-5 w-5 text-slate-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-slate-900">Relevance & ranking issues</h3>
+                    <p className="mt-1 text-slate-600">Results miss intent even when relevant products exist in the catalog.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm ring-1 ring-slate-200">
+                    <CornerDownLeft className="h-5 w-5 text-slate-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-slate-900">Zero-results & dead ends</h3>
+                    <p className="mt-1 text-slate-600">Searchers hit empty pages with no recovery path or suggestions.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm ring-1 ring-slate-200">
+                    <SlidersHorizontal className="h-5 w-5 text-slate-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-slate-900">Poor query understanding</h3>
+                    <p className="mt-1 text-slate-600">Synonyms, typos, and attribute filtering fail to work as expected.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm ring-1 ring-slate-200">
+                    <BarChart3 className="h-5 w-5 text-slate-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-slate-900">Measured by usage, not impact</h3>
+                    <p className="mt-1 text-slate-600">Analytics track queries but miss revenue attribution and friction.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Right: What we fix card */}
-            <div>
-              <div className="rounded-xl border border-border/50 bg-primary/[0.02] p-6 sm:p-8">
-                <h3 className="text-xl font-semibold tracking-tight">
-                  What we fix
-                </h3>
-                <ul className="mt-6 space-y-4 text-base text-muted-foreground">
-                  <li className="flex items-start gap-3">
-                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
-                      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
-                      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
-                    </svg>
-                    <span>Relevance & ranking issues</span>
+            {/* Right: Before / After Card */}
+            <div className="flex flex-col gap-0 rounded-2xl bg-white shadow-xl shadow-slate-200/40 ring-1 ring-slate-200 lg:self-start">
+              {/* Before Panel */}
+              <div className="border-b border-slate-100 p-6 sm:p-8">
+                <div className="flex items-center gap-3">
+                  <div className="h-6 w-1 rounded-full bg-rose-500" />
+                  <h3 className="text-lg font-semibold text-slate-900">Search feels broken</h3>
+                </div>
+                <ul className="mt-4 space-y-3">
+                  <li className="flex items-center gap-2.5 text-slate-600">
+                    <div className="h-1.5 w-1.5 rounded-full bg-rose-400" />
+                    Zero results for top terms
                   </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
-                      <path d="M4 6h16M4 12h12M4 18h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                    <span>Poor query understanding (synonyms, typos, facets)</span>
+                  <li className="flex items-center gap-2.5 text-slate-600">
+                    <div className="h-1.5 w-1.5 rounded-full bg-rose-400" />
+                    Irrelevant ranking pushes inventory down
                   </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
-                      <path d="M12 3v11M12 18h.01M4.9 19h14.2c1 0 1.6-1.1 1-2l-7.1-12.2a1.2 1.2 0 00-2 0L3.9 17c-.6.9 0 2 1 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span>Zero-results + dead ends</span>
+                  <li className="flex items-center gap-2.5 text-slate-600">
+                    <div className="h-1.5 w-1.5 rounded-full bg-rose-400" />
+                    Dead ends drive exits
                   </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
-                      <path d="M4 19h16M7 15v4M12 10v9M17 7v12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                    <span>Merchandising conflicts (promo vs intent)</span>
+                </ul>
+              </div>
+
+              {/* After Panel */}
+              <div className="rounded-b-2xl bg-teal-50/30 p-6 sm:p-8">
+                <div className="flex items-center gap-3">
+                  <div className="h-6 w-1 rounded-full bg-teal-500" />
+                  <h3 className="text-lg font-semibold text-teal-900">Search drives revenue</h3>
+                </div>
+                <ul className="mt-4 space-y-3">
+                  <li className="flex items-center gap-2.5 text-slate-700">
+                    <Check className="h-4 w-4 text-teal-600" />
+                    Higher CVR from better ranking
+                  </li>
+                  <li className="flex items-center gap-2.5 text-slate-700">
+                    <Check className="h-4 w-4 text-teal-600" />
+                    Fewer exits with smart fallbacks
+                  </li>
+                  <li className="flex items-center gap-2.5 text-slate-700">
+                    <Check className="h-4 w-4 text-teal-600" />
+                    Better product discovery flow
                   </li>
                 </ul>
               </div>
