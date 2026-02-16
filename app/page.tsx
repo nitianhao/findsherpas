@@ -30,172 +30,172 @@ export default async function Home() {
       {/* ============================================================
           HERO — white background
           ============================================================ */}
-      <section className="pb-10 sm:pb-16 lg:pb-24">
-        <div className="relative grid gap-8 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-8">
-            <p className="text-sm font-medium text-muted-foreground">
-              On-site search optimization
-            </p>
-            <h1 className="mt-2 text-balance text-3xl font-semibold leading-[1.15] tracking-tight sm:mt-3 sm:text-4xl sm:leading-[1.08] lg:text-5xl">
-              Search users convert more.{" "}
-              <span className="bg-gradient-to-r from-[oklch(0.62_0.14_200)] to-[oklch(0.62_0.14_220)] bg-clip-text text-transparent">
-                Make product discovery
-              </span>{" "}
-              a revenue lever.
-            </h1>
-            <p className="mt-3 max-w-2xl text-pretty text-[15px] leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg">
-              This is not SEO. This is about how users find products once they
-              are already on your site.
-            </p>
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[1120px]">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-start">
+            {/* Left column: Copy + CTAs */}
+            <div>
+              <h1 className="text-balance text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.25rem]">
+                Search users convert more. Make product discovery a revenue lever.
+              </h1>
+              <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
+                Vendor-agnostic on-site search optimization focused on conversion + revenue impact.
+              </p>
 
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground sm:mt-6 sm:space-y-2.5 sm:text-base">
-              <li className="flex items-start gap-3">
-                <span className="mt-[0.45rem] h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                Higher conversion from better product discovery in internal search.
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-[0.45rem] h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                Fewer sessions where relevant products exist but results miss intent.
-              </li>
-            </ul>
+              <ul className="mt-8 space-y-4 text-base text-foreground sm:text-lg">
+                <li className="flex items-start gap-3">
+                  <svg className="mt-1 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Audit search UX, relevance, and analytics end-to-end
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="mt-1 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Prioritized roadmap tied to revenue + effort
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="mt-1 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Experimentation-ready recommendations (A/B testable)
+                </li>
+              </ul>
 
-            <div className="mt-5 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3 sm:items-center">
-              <Button asChild size="lg" className="w-full sm:w-auto">
-                <a href="#contact">Book a call</a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                <Link href="/pricing">Get an audit</Link>
-              </Button>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
+                <Button asChild size="lg" className="w-full sm:w-auto">
+                  <a href="#contact">Book a call</a>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+                  <Link href="/pricing">Get a search audit</Link>
+                </Button>
+              </div>
             </div>
-            <p className="mt-3 text-xs text-muted-foreground sm:text-sm">
-              Vendor-agnostic. Designed for Heads of Product and Growth.
-            </p>
+
+            {/* Right column: Proof card */}
+            <div className="lg:pt-8">
+              <div className="rounded-xl border border-border/50 bg-background p-6 shadow-sm sm:p-8">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                  Typical outcomes
+                </h3>
+                <div className="mt-6 space-y-5">
+                  <div>
+                    <div className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                      +25%
+                    </div>
+                    <div className="mt-1 text-sm text-muted-foreground">
+                      search CVR
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                      -40%
+                    </div>
+                    <div className="mt-1 text-sm text-muted-foreground">
+                      no-result queries
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                      +18%
+                    </div>
+                    <div className="mt-1 text-sm text-muted-foreground">
+                      revenue from search
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="relative hidden min-h-[180px] lg:col-span-4 lg:block" aria-hidden>
-            <svg
-              className="absolute -right-16 top-1/2 h-[250px] w-[360px] -translate-y-1/2 text-primary/[0.12]"
-              viewBox="0 0 360 280"
-              fill="none"
-            >
-              <defs>
-                <pattern
-                  id="hero-search-grid-right"
-                  width="22"
-                  height="22"
-                  patternUnits="userSpaceOnUse"
+          {/* Trust strip */}
+          <div className="mt-16 sm:mt-20">
+            <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              Trusted by teams at
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+              {companies.map((c) => (
+                <div
+                  key={c}
+                  className="rounded-lg border border-border/50 bg-background px-4 py-2 text-sm text-muted-foreground"
                 >
-                  <path d="M22 0H0V22" stroke="currentColor" strokeWidth="1.5" />
-                </pattern>
-              </defs>
-              <rect x="8" y="8" width="344" height="264" fill="url(#hero-search-grid-right)" />
-
-              <path
-                d="M42 192C88 166 132 171 176 150C218 131 262 132 304 114"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-              <circle cx="304" cy="114" r="16" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M315 125L329 139" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-
-              <circle cx="70" cy="212" r="3" fill="currentColor" />
-              <circle cx="118" cy="186" r="3" fill="currentColor" />
-              <circle cx="166" cy="170" r="3" fill="currentColor" />
-              <circle cx="215" cy="150" r="3" fill="currentColor" />
-            </svg>
+                  {c}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ============================================================
-          WHY SEARCH UNDERPERFORMS — tinted background
+          WHY SEARCH QUIETLY LOSES REVENUE — white background
           ============================================================ */}
-      <section className="-mx-4 bg-primary/[0.04] px-4 py-10 sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-8 lg:px-8 lg:py-24">
-        <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-          Why internal search underperforms in most e-commerce
-        </h2>
-        <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
-          Internal search is often under-owned and under-measured against
-          business outcomes. The result is rarely one big failure, but small
-          gaps that compound over time.
-        </p>
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[1120px]">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            {/* Left: Problem statement */}
+            <div>
+              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+                Why internal search quietly loses revenue
+              </h2>
+              <ul className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                <li className="flex items-start gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground" />
+                  Results miss intent even when relevant products exist
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground" />
+                  Search is split across teams with no single owner
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground" />
+                  Measured by usage, not conversion or revenue impact
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground" />
+                  Relevance tuning happens once, then stalls as catalog evolves
+                </li>
+              </ul>
+            </div>
 
-        <div className="mt-6 grid gap-3 sm:mt-8 sm:gap-4 lg:mt-10 lg:grid-cols-2 lg:gap-8">
-          <article className="rounded-lg bg-background p-3.5 sm:rounded-xl sm:p-5">
-            <div className="flex items-center gap-2">
-              <svg className="h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
-                <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M12 4V7M12 17V20M4 12H7M17 12H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full border border-border/50 px-1.5 text-[11px] font-medium tracking-wide text-muted-foreground">
-                01
-              </span>
-              <h3 className="text-sm font-semibold text-foreground sm:text-base">Results miss intent</h3>
+            {/* Right: What we fix card */}
+            <div>
+              <div className="rounded-xl border border-border/50 bg-primary/[0.02] p-6 sm:p-8">
+                <h3 className="text-xl font-semibold tracking-tight">
+                  What we fix
+                </h3>
+                <ul className="mt-6 space-y-4 text-base text-muted-foreground">
+                  <li className="flex items-start gap-3">
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
+                      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
+                      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
+                    </svg>
+                    <span>Relevance & ranking issues</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
+                      <path d="M4 6h16M4 12h12M4 18h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                    <span>Poor query understanding (synonyms, typos, facets)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
+                      <path d="M12 3v11M12 18h.01M4.9 19h14.2c1 0 1.6-1.1 1-2l-7.1-12.2a1.2 1.2 0 00-2 0L3.9 17c-.6.9 0 2 1 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span>Zero-results + dead ends</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
+                      <path d="M4 19h16M7 15v4M12 10v9M17 7v12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                    <span>Merchandising conflicts (promo vs intent)</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <p className="mt-1.5 text-sm text-muted-foreground sm:mt-2">
-              Relevant products exist, but matching misses meaning.
-              Ordering and query interpretation miss what shoppers actually mean.
-            </p>
-          </article>
-          <article className="rounded-lg bg-background p-3.5 sm:rounded-xl sm:p-5">
-            <div className="flex items-center gap-2">
-              <svg className="h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path
-                  d="M9.5 7.5L7 5a3 3 0 00-4 4l2.5 2.5M14.5 16.5L17 19a3 3 0 004-4l-2.5-2.5M8 16l8-8"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full border border-border/50 px-1.5 text-[11px] font-medium tracking-wide text-muted-foreground">
-                02
-              </span>
-              <h3 className="text-sm font-semibold text-foreground sm:text-base">Search is owned by no one</h3>
-            </div>
-            <p className="mt-1.5 text-sm text-muted-foreground sm:mt-2">
-              The journey is split across teams.
-              Separate ownership makes cross-functional gaps hard to see.
-            </p>
-          </article>
-          <article className="rounded-lg bg-background p-3.5 sm:rounded-xl sm:p-5">
-            <div className="flex items-center gap-2">
-              <svg className="h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path d="M4 19h16M7 15v4M12 11v8M17 7v12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full border border-border/50 px-1.5 text-[11px] font-medium tracking-wide text-muted-foreground">
-                03
-              </span>
-              <h3 className="text-sm font-semibold text-foreground sm:text-base">Measured by usage, not impact</h3>
-            </div>
-            <p className="mt-1.5 text-sm text-muted-foreground sm:mt-2">
-              Activity is tracked, outcomes are not.
-              Usage is visible, but conversion and revenue contribution are not.
-            </p>
-          </article>
-          <article className="rounded-lg bg-background p-3.5 sm:rounded-xl sm:p-5">
-            <div className="flex items-center gap-2">
-              <svg className="h-5 w-5 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path d="M20 12a8 8 0 10-2.3 5.7M20 12v-4M20 12h-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full border border-border/50 px-1.5 text-[11px] font-medium tracking-wide text-muted-foreground">
-                04
-              </span>
-              <h3 className="text-sm font-semibold text-foreground sm:text-base">Relevance is never revisited</h3>
-            </div>
-            <p className="mt-1.5 text-sm text-muted-foreground sm:mt-2">
-              Tuning happens once, then stalls.
-              Catalog and intent evolve, but relevance is rarely re-evaluated.
-            </p>
-          </article>
+          </div>
         </div>
-
-        <p className="mt-6 text-sm text-muted-foreground sm:mt-8">
-          These are common patterns, and they are exactly the signals we
-          evaluate in an audit.
-        </p>
       </section>
 
       {/* ============================================================

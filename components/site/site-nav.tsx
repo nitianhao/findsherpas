@@ -28,9 +28,9 @@ export function SiteNav() {
   const isServicesActive = pathname.startsWith("/services");
   const isApproachActive = pathname === "/approach";
   const isPricingActive = pathname === "/pricing";
-  const isInsightsActive =
-    pathname.startsWith("/blog") || pathname.startsWith("/insights");
-  const isAboutActive = pathname === "/about";
+  const isCaseStudiesActive = pathname.startsWith("/case-studies");
+  const isArticlesActive = pathname.startsWith("/blog") || pathname.startsWith("/insights");
+  const isFAQActive = pathname === "/faq";
 
   /* ------------------------------------------------------------------ */
   /*  Desktop dropdown – hover / focus / keyboard                        */
@@ -153,8 +153,8 @@ export function SiteNav() {
                       href={item.href}
                       role="menuitem"
                       className={`block rounded-lg px-4 py-3 text-sm transition-colors ${pathname === item.href
-                          ? "bg-primary/[0.08] font-medium text-foreground"
-                          : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                        ? "bg-primary/[0.08] font-medium text-foreground"
+                        : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                         }`}
                       onClick={() => setDropdownOpen(false)}
                     >
@@ -179,13 +179,16 @@ export function SiteNav() {
               Approach
             </Link>
             <Link href="/pricing" className={navLink(isPricingActive)}>
-              Pricing &amp; Scope
+              Pricing
             </Link>
-            <Link href="/blog" className={navLink(isInsightsActive)}>
-              Insights
+            <Link href="/case-studies" className={navLink(isCaseStudiesActive)}>
+              Case Studies
             </Link>
-            <Link href="/about" className={navLink(isAboutActive)}>
-              About
+            <Link href="/blog" className={navLink(isArticlesActive)}>
+              Articles
+            </Link>
+            <Link href="#faq" className={navLink(isFAQActive)}>
+              FAQ
             </Link>
           </nav>
 
@@ -294,8 +297,8 @@ export function SiteNav() {
                 <button
                   type="button"
                   className={`flex w-full items-center justify-between rounded-lg px-3 py-3 text-left text-base transition-colors ${isServicesActive
-                      ? "font-medium text-foreground"
-                      : "text-muted-foreground"
+                    ? "font-medium text-foreground"
+                    : "text-muted-foreground"
                     }`}
                   onClick={() => setMobileServicesOpen((v) => !v)}
                   aria-expanded={mobileServicesOpen}
@@ -324,8 +327,8 @@ export function SiteNav() {
                         key={item.href}
                         href={item.href}
                         className={`block rounded-md px-3 py-2.5 text-sm transition-colors ${pathname === item.href
-                            ? "font-medium text-foreground"
-                            : "text-muted-foreground hover:text-foreground"
+                          ? "font-medium text-foreground"
+                          : "text-muted-foreground hover:text-foreground"
                           }`}
                         onClick={() => setMobileOpen(false)}
                       >
@@ -346,8 +349,8 @@ export function SiteNav() {
               <Link
                 href="/approach"
                 className={`block rounded-lg px-3 py-3 text-base transition-colors ${isApproachActive
-                    ? "font-medium text-foreground"
-                    : "text-muted-foreground"
+                  ? "font-medium text-foreground"
+                  : "text-muted-foreground"
                   }`}
                 onClick={() => setMobileOpen(false)}
               >
@@ -356,32 +359,42 @@ export function SiteNav() {
               <Link
                 href="/pricing"
                 className={`block rounded-lg px-3 py-3 text-base transition-colors ${isPricingActive
-                    ? "font-medium text-foreground"
-                    : "text-muted-foreground"
+                  ? "font-medium text-foreground"
+                  : "text-muted-foreground"
                   }`}
                 onClick={() => setMobileOpen(false)}
               >
-                Pricing &amp; Scope
+                Pricing
               </Link>
               <Link
                 href="/blog"
-                className={`block rounded-lg px-3 py-3 text-base transition-colors ${isInsightsActive
-                    ? "font-medium text-foreground"
-                    : "text-muted-foreground"
+                className={`block rounded-lg px-3 py-3 text-base transition-colors ${isArticlesActive
+                  ? "font-medium text-foreground"
+                  : "text-muted-foreground"
                   }`}
                 onClick={() => setMobileOpen(false)}
               >
-                Insights
+                Articles
               </Link>
               <Link
-                href="/about"
-                className={`block rounded-lg px-3 py-3 text-base transition-colors ${isAboutActive
-                    ? "font-medium text-foreground"
-                    : "text-muted-foreground"
+                href="/case-studies"
+                className={`block rounded-lg px-3 py-3 text-base transition-colors ${isCaseStudiesActive
+                  ? "font-medium text-foreground"
+                  : "text-muted-foreground"
                   }`}
                 onClick={() => setMobileOpen(false)}
               >
-                About
+                Case Studies
+              </Link>
+              <Link
+                href="#faq"
+                className={`block rounded-lg px-3 py-3 text-base transition-colors ${isFAQActive
+                  ? "font-medium text-foreground"
+                  : "text-muted-foreground"
+                  }`}
+                onClick={() => setMobileOpen(false)}
+              >
+                FAQ
               </Link>
             </div>
           </nav>
