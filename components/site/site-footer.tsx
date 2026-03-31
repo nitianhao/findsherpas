@@ -17,10 +17,10 @@ export function SiteFooter() {
             </p>
           </div>
 
-          {/* Services */}
+          {/* What we do */}
           <div>
             <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              Services
+              What we do
             </div>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
@@ -58,7 +58,7 @@ export function SiteFooter() {
             <ul className="mt-3 space-y-2 text-sm">
               <li>
                 <Link
-                  href="/approach"
+                  href="/#what-we-do"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Approach
