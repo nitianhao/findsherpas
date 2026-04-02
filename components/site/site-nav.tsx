@@ -7,7 +7,8 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { href: "/#what-we-do", label: "What we do" },
-  { href: "/blog", label: "Insights" },
+  { href: "/frameworks/search-failure-modes", label: "Failure modes" },
+  { href: "/frameworks/query-interpretation", label: "Query interpretation" },
   { href: "/search-check", label: "Search check" },
   { href: "/about", label: "About" },
   { href: "/book-a-call", label: "Contact" },
@@ -20,6 +21,9 @@ export function SiteNav() {
   const isActive = useCallback(
     (href: string) => {
       if (href === "/#what-we-do") return pathname === "/" || pathname.startsWith("/services");
+      if (href === "/frameworks/search-failure-modes") return pathname === "/frameworks/search-failure-modes";
+      if (href === "/frameworks/query-interpretation") return pathname === "/frameworks/query-interpretation";
+      if (href === "/notes") return pathname.startsWith("/notes");
       if (href === "/blog")
         return pathname.startsWith("/blog") || pathname.startsWith("/insights");
       if (href === "/search-check") return pathname === "/search-check";
@@ -84,7 +88,7 @@ export function SiteNav() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-10 md:flex" aria-label="Main">
+          <nav className="hidden items-center gap-7 md:flex" aria-label="Main">
             {navItems.map((item) => (
               <Link
                 key={item.href}

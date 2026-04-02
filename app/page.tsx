@@ -253,160 +253,128 @@ export default async function Home() {
           ============================================================ */}
       <section className="-mx-4 bg-primary/[0.04] px-4 py-12 sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-8 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-[1120px]">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            How we audit search
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
+            Diagnostic methodology
+          </p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+            How we diagnose search
           </h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            We examine real queries, real results, and the ranking logic behind them —
-            then turn the findings into a prioritized improvement roadmap.
+          <p className="mt-3 max-w-xl text-muted-foreground">
+            A structured process applied to every search system we evaluate.
           </p>
 
-          {(() => {
-            const auditSteps = [
+          {/* Desktop: 5 cards in a row */}
+          <div className="mt-10 hidden lg:grid lg:grid-cols-5 lg:gap-3">
+            {[
               {
                 number: "01",
-                title: "Query patterns",
-                description:
-                  "How people actually search — high-volume queries, high-intent queries, edge cases, and failure patterns.",
+                title: "Real queries",
+                desc: "Analyze actual user queries — high-volume, high-intent, long-tail, and failure patterns.",
               },
               {
                 number: "02",
-                title: "Result relevance",
-                description:
-                  "Whether search results match intent, surface the right products, and avoid silent dead ends.",
+                title: "Query interpretation",
+                desc: "How the system reads the input. Tokenization, synonyms, compound handling, attribute mapping.",
               },
               {
                 number: "03",
-                title: "Ranking behavior",
-                description:
-                  "Boosting, ranking rules, attribute weighting, and other logic that shapes result ordering.",
+                title: "Result quality",
+                desc: "Whether results match intent. Position accuracy, dead ends, coverage gaps.",
               },
               {
                 number: "04",
-                title: "Evaluation framework",
-                description:
-                  "How search quality is measured, where validation is missing, and what should be tested systematically.",
+                title: "Ranking logic",
+                desc: "Boosting rules, attribute weights, merchandising overrides, and their cumulative effect.",
               },
               {
                 number: "05",
                 title: "Improvement roadmap",
-                description:
-                  "Findings translated into a clear, prioritized plan teams can implement internally.",
+                desc: "Prioritized, actionable changes your team can implement. No dependency on us.",
               },
-            ];
-            return (
-              <>
-                {/* Desktop: horizontal 5-step flow */}
-                <div className="relative mt-10 hidden lg:grid lg:grid-cols-5 lg:gap-0">
-                  {/* Timeline connector */}
-                  <div className="absolute left-[20px] right-[20px] top-[19px] h-px bg-border" aria-hidden />
-                  {auditSteps.map((step) => (
-                    <div key={step.number} className="relative flex flex-col">
-                      <div className="relative z-10 pr-6">
-                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-background text-sm font-bold tabular-nums text-foreground/70 ring-1 ring-border">
-                          {step.number}
-                        </span>
-                        <h3 className="mt-4 text-sm font-bold tracking-tight">{step.title}</h3>
-                        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                          {step.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Desktop: loop indicator */}
-                <div className="mt-6 hidden items-center gap-2.5 lg:flex" aria-hidden>
-                  <svg width="20" height="16" viewBox="0 0 20 16" fill="none" className="text-muted-foreground/40">
-                    <path d="M16 12H4a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path d="M14 5l3-3-3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span className="text-xs text-muted-foreground/50">Continuous evaluation</span>
-                </div>
-
-                {/* Mobile / Tablet: vertical stacked */}
-                <div className="mt-8 space-y-0 lg:hidden">
-                  {auditSteps.map((step, i) => (
-                    <div
-                      key={step.number}
-                      className={`flex gap-4 py-5 ${i > 0 ? "border-t border-border/50" : ""}`}
-                    >
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-background text-xs font-bold tabular-nums text-foreground/70 ring-1 ring-border">
-                        {step.number}
-                      </span>
-                      <div>
-                        <h3 className="text-sm font-bold tracking-tight">{step.title}</h3>
-                        <p className="mt-1 text-sm text-muted-foreground">
-                          {step.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                  {/* Mobile: loop indicator */}
-                  <div className="flex items-center gap-2.5 border-t border-border/50 pt-5">
-                    <svg width="18" height="14" viewBox="0 0 20 16" fill="none" className="text-muted-foreground/40">
-                      <path d="M16 12H4a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                      <path d="M14 5l3-3-3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            ].map((step, i) => (
+              <div key={step.number} className="relative flex flex-col">
+                {/* Connector arrow between cards */}
+                {i > 0 && (
+                  <div className="absolute -left-[10px] top-[22px] text-border" aria-hidden>
+                    <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+                      <path d="M1 1l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    <span className="text-xs text-muted-foreground/50">Continuous evaluation</span>
                   </div>
+                )}
+                <div className="rounded-lg border border-border/50 bg-background p-4">
+                  <span className="text-[11px] font-bold tabular-nums text-primary/60">
+                    {step.number}
+                  </span>
+                  <h3 className="mt-1.5 text-sm font-bold tracking-tight">
+                    {step.title}
+                  </h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                    {step.desc}
+                  </p>
                 </div>
-
-                {/* Supporting line */}
-                <p className="mt-6 text-xs text-muted-foreground/60">
-                  Search systems improve through continuous evaluation and iteration.
-                </p>
-              </>
-            );
-          })()}
-          {/* Credibility strip */}
-          <div className="mt-16 grid gap-8 border-t border-border/30 pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
-            <div>
-              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">
-                Large catalogs
-              </p>
-              <p className="mt-1.5 text-sm font-semibold text-foreground">
-                10k&ndash;10M+ searchable products
-              </p>
-            </div>
-            <div>
-              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">
-                Complex ranking systems
-              </p>
-              <p className="mt-1.5 text-sm font-semibold text-foreground">
-                Boosting rules, attribute weighting, query rewriting
-              </p>
-            </div>
-            <div>
-              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">
-                Multiple search platforms
-              </p>
-              <p className="mt-1.5 text-sm font-semibold text-foreground">
-                Algolia, Elasticsearch, OpenSearch, Typesense
-              </p>
-            </div>
-            <div>
-              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">
-                Multilingual search
-              </p>
-              <p className="mt-1.5 text-sm font-semibold text-foreground">
-                European ecommerce environments
-              </p>
-            </div>
+              </div>
+            ))}
           </div>
+
+          {/* Mobile / Tablet: vertical cards */}
+          <div className="mt-8 space-y-3 lg:hidden">
+            {[
+              {
+                number: "01",
+                title: "Real queries",
+                desc: "Analyze actual user queries — high-volume, high-intent, long-tail, and failure patterns.",
+              },
+              {
+                number: "02",
+                title: "Query interpretation",
+                desc: "How the system reads the input. Tokenization, synonyms, compound handling, attribute mapping.",
+              },
+              {
+                number: "03",
+                title: "Result quality",
+                desc: "Whether results match intent. Position accuracy, dead ends, coverage gaps.",
+              },
+              {
+                number: "04",
+                title: "Ranking logic",
+                desc: "Boosting rules, attribute weights, merchandising overrides, and their cumulative effect.",
+              },
+              {
+                number: "05",
+                title: "Improvement roadmap",
+                desc: "Prioritized, actionable changes your team can implement. No dependency on us.",
+              },
+            ].map((step) => (
+              <div key={step.number} className="flex gap-4 rounded-lg border border-border/50 bg-background p-4">
+                <span className="text-[11px] font-bold tabular-nums text-primary/60">
+                  {step.number}
+                </span>
+                <div>
+                  <h3 className="text-sm font-bold tracking-tight">{step.title}</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-6 text-xs text-muted-foreground/50">
+            Each step informs the next. The process repeats as the system evolves.
+          </p>
         </div>
       </section>
 
       {/* ============================================================
-          5. SEARCH THINKING
+          5. SEARCH FRAMEWORKS
           ============================================================ */}
       <section className="-mx-4 bg-primary/[0.02] px-4 py-12 sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-8 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-[1120px]">
           <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            Search thinking
+            Search frameworks
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            Ideas and frameworks for understanding how internal search systems behave.
+            Conceptual tools we use to analyze how search systems behave, where they fail, and how relevance should be evaluated.
           </p>
 
           <div className="mt-10 grid gap-10 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-border/30">
@@ -415,20 +383,17 @@ export default async function Home() {
                 Framework 01
               </p>
               <h3 className="mt-3 text-base font-bold tracking-tight sm:text-lg">
-                Evaluating search relevance
+                Relevance evaluation
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Search quality cannot be judged by analytics alone.
+                A structured method for measuring whether search results match user intent — beyond click-through rates and conversion proxies.
               </p>
-              <p className="mt-3 text-xs font-medium text-muted-foreground/70">Key signals:</p>
+              <p className="mt-3 text-xs font-medium text-muted-foreground/70">Inputs:</p>
               <ul className="mt-1 space-y-0.5 text-sm text-muted-foreground">
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Structured query test sets</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Human relevance judging</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Result comparison across ranking changes</li>
+                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Representative query test sets</li>
+                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Human relevance judgments</li>
+                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Before/after result comparison</li>
               </ul>
-              <p className="mt-4 text-xs text-muted-foreground/60">
-                Focus: test sets, query judging, result comparison
-              </p>
             </div>
 
             <div className="border-t border-border/40 pt-6 sm:border-t-0 sm:px-8 lg:px-10">
@@ -436,21 +401,20 @@ export default async function Home() {
                 Framework 02
               </p>
               <h3 className="mt-3 text-base font-bold tracking-tight sm:text-lg">
-                Query taxonomy
+                <Link href="/frameworks/query-interpretation" className="hover:text-primary hover:underline">
+                  Query taxonomy
+                </Link>
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Different query types behave differently in search systems.
+                A classification system for query types. Each type has different failure modes and requires different ranking logic.
               </p>
-              <p className="mt-3 text-xs font-medium text-muted-foreground/70">Key types:</p>
+              <p className="mt-3 text-xs font-medium text-muted-foreground/70">Types:</p>
               <ul className="mt-1 space-y-0.5 text-sm text-muted-foreground">
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Navigational queries</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Attribute queries</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Exploratory searches</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Long-tail discovery</li>
+                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Navigational (exact product)</li>
+                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Attribute (color, size, material)</li>
+                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Exploratory (broad category)</li>
+                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Long-tail (rare or compound)</li>
               </ul>
-              <p className="mt-4 text-xs text-muted-foreground/60">
-                Focus: navigational, attribute, exploratory, long-tail
-              </p>
             </div>
 
             <div className="border-t border-border/40 pt-6 sm:border-t-0 sm:pl-8 lg:pl-10">
@@ -458,21 +422,29 @@ export default async function Home() {
                 Framework 03
               </p>
               <h3 className="mt-3 text-base font-bold tracking-tight sm:text-lg">
-                Ranking failure modes
+                <Link href="/frameworks/search-failure-modes" className="hover:text-primary hover:underline">
+                  Ranking failure modes
+                </Link>
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Certain patterns consistently cause relevance breakdowns.
+                A diagnostic checklist for identifying why result ordering breaks down. Used to trace ranking problems to their configuration root cause.
               </p>
-              <p className="mt-3 text-xs font-medium text-muted-foreground/70">Common failure modes:</p>
+              <p className="mt-3 text-xs font-medium text-muted-foreground/70">Common modes:</p>
               <ul className="mt-1 space-y-0.5 text-sm text-muted-foreground">
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Boosting distortions</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Synonym gaps</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Category bias in results</li>
+                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Boosting rule distortions</li>
+                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Synonym and tokenization gaps</li>
+                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Category or attribute bias</li>
               </ul>
-              <p className="mt-4 text-xs text-muted-foreground/60">
-                Focus: boosting distortions, synonym gaps, category bias
-              </p>
             </div>
+          </div>
+
+          <div className="mt-8">
+            <Link
+              href="/frameworks/search-failure-modes"
+              className="text-sm font-medium text-primary hover:underline"
+            >
+              Read the full failure modes framework &rarr;
+            </Link>
           </div>
         </div>
       </section>
@@ -530,60 +502,81 @@ export default async function Home() {
       </section>
 
       {/* ============================================================
-          5. HOW WE WORK
+          SEARCH ENVIRONMENTS
+          ============================================================ */}
+      <section className="-mx-4 border-t border-border/30 bg-primary/[0.04] px-4 py-10 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-14">
+        <div className="mx-auto max-w-[1120px]">
+          <h2 className="text-base font-semibold tracking-tight">
+            Search environments we&apos;ve worked in
+          </h2>
+          <div className="mt-6 grid gap-x-12 gap-y-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div>
+              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Catalog scale</p>
+              <p className="mt-1 text-sm text-foreground">10k&ndash;10M+ products</p>
+            </div>
+            <div>
+              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Query volume</p>
+              <p className="mt-1 text-sm text-foreground">High-traffic ecommerce</p>
+            </div>
+            <div>
+              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Ranking complexity</p>
+              <p className="mt-1 text-sm text-foreground">Boosting, weighting, rewriting</p>
+            </div>
+            <div>
+              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Platforms</p>
+              <p className="mt-1 text-sm text-foreground">Algolia, Elasticsearch, OpenSearch, Typesense</p>
+            </div>
+            <div>
+              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Languages</p>
+              <p className="mt-1 text-sm text-foreground">Multilingual European markets</p>
+            </div>
+          </div>
+          <p className="mt-6 text-xs text-muted-foreground/50">
+            Also Doofinder, Luigi&apos;s Box, Coveo, Bloomreach, and other platforms. The diagnostic methodology applies regardless of vendor.
+          </p>
+        </div>
+      </section>
+
+      {/* ============================================================
+          WHAT TEAMS RECEIVE
           ============================================================ */}
       <section className="py-12 sm:py-16 lg:py-20">
-        <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-          How we work with teams
-        </h2>
-        <p className="mt-3 max-w-2xl text-muted-foreground">
-          A focused process — we do the diagnostic work, your team ships the changes.
-        </p>
-
-        <div className="mt-8 grid gap-0 sm:mt-10">
-          {[
-            {
-              number: "01",
-              title: "Search audit",
-              description:
-                "We evaluate search quality across real queries — relevance, ranking, query handling, and UX.",
-            },
-            {
-              number: "02",
-              title: "Diagnosis",
-              description:
-                "We identify where ranking, query understanding, and configuration fail — and why.",
-            },
-            {
-              number: "03",
-              title: "Improvement roadmap",
-              description:
-                "We design concrete, prioritized changes tailored to your search stack and team capacity.",
-            },
-            {
-              number: "04",
-              title: "Implementation support",
-              description:
-                "We help your team or vendor ship and validate improvements. No ongoing dependency required.",
-            },
-          ].map((step, i) => (
-            <div
-              key={step.number}
-              className={`flex gap-4 py-6 sm:gap-6 ${
-                i > 0 ? "border-t border-border/50" : ""
-              }`}
-            >
-              <span className="text-sm font-semibold text-muted-foreground/50 tabular-nums">
-                {step.number}
-              </span>
-              <div>
-                <h3 className="text-base font-semibold">{step.title}</h3>
-                <p className="mt-1 max-w-lg text-sm text-muted-foreground">
-                  {step.description}
-                </p>
+        <div className="mx-auto max-w-[1120px]">
+          <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+            What the diagnostic produces
+          </h2>
+          <p className="mt-3 max-w-xl text-sm text-muted-foreground">
+            A clear picture of where search is failing and a prioritized plan for what to fix.
+          </p>
+          <div className="mt-8 space-y-4 sm:max-w-xl">
+            {[
+              {
+                label: "Diagnosis",
+                detail: "A clear account of where and how search is failing — broken down by query understanding, ranking behavior, coverage, and evaluation gaps.",
+              },
+              {
+                label: "Query analysis",
+                detail: "Examples of problematic query patterns drawn from real traffic: misinterpreted compound queries, attribute failures, silent zero-result cases.",
+              },
+              {
+                label: "Ranking observations",
+                detail: "An assessment of how ranking logic behaves across query types — where configuration is working and where it is distorting results.",
+              },
+              {
+                label: "Evaluation perspective",
+                detail: "An honest view of what is and is not being measured, and what a minimal structured evaluation process would look like for the system.",
+              },
+              {
+                label: "Improvement roadmap",
+                detail: "A prioritized list of changes — ordered by impact and feasibility — that your team or vendor can act on directly.",
+              },
+            ].map((item, i, arr) => (
+              <div key={item.label} className={`flex gap-4 pb-4 ${i < arr.length - 1 ? "border-b border-border/40" : ""}`}>
+                <p className="w-40 shrink-0 text-sm font-semibold text-foreground">{item.label}</p>
+                <p className="text-sm text-muted-foreground">{item.detail}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
@@ -592,19 +585,21 @@ export default async function Home() {
           ============================================================ */}
       <section className="-mx-4 bg-primary/[0.02] px-4 py-12 sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-8 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-[1120px]">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            What a search problem can look like
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
+            Example diagnosis
+          </p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+            Ranking failure investigation
           </h2>
           <p className="mt-3 max-w-2xl text-foreground/70">
-            A simple example of the kinds of relevance issues that remain
-            invisible until search is examined closely.
+            A simplified version of the diagnostic process used during a search audit. The query, the observed result behavior, and the likely root causes.
           </p>
 
           <div className="mx-auto mt-10 flex max-w-xl flex-col items-stretch">
             {/* Step 1: Query */}
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-                Step 1 &mdash; Query
+                Query
               </p>
               <p className="mt-3 font-mono text-lg font-bold tracking-tight text-foreground">
                 black running shoes
@@ -616,14 +611,13 @@ export default async function Home() {
               <svg width="16" height="28" viewBox="0 0 16 28" fill="none"><path d="M8 0v20m0 0-4-4m4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </div>
 
-            {/* Step 2: Observed ranking behavior */}
+            {/* Step 2: Observed behavior */}
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-                Step 2 &mdash; Observed ranking behavior
+                Observed result behavior
               </p>
               <p className="mt-3 text-sm leading-relaxed text-foreground/80">
-                Bestselling products appear below weak matches, while less
-                relevant products surface too high.
+                Top-selling SKUs ranked below weak text matches. Position 1&ndash;3 occupied by low-conversion products with partial keyword overlap.
               </p>
             </div>
 
@@ -632,22 +626,48 @@ export default async function Home() {
               <svg width="16" height="28" viewBox="0 0 16 28" fill="none"><path d="M8 0v20m0 0-4-4m4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </div>
 
-            {/* Step 3: Likely causes */}
+            {/* Step 3: Root causes */}
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-                Step 3 &mdash; Likely causes
+                Identified root causes
               </p>
               <ul className="mt-3 space-y-1.5 text-sm text-foreground/80">
-                <li className="flex items-baseline gap-2"><span className="text-foreground/30">&bull;</span>Boosting rules overpowering relevance</li>
-                <li className="flex items-baseline gap-2"><span className="text-foreground/30">&bull;</span>Attribute weighting misaligned with query intent</li>
-                <li className="flex items-baseline gap-2"><span className="text-foreground/30">&bull;</span>Ranking behavior not evaluated systematically</li>
+                <li className="flex items-baseline gap-2"><span className="text-foreground/30">&bull;</span>Boosting rule on &ldquo;new arrivals&rdquo; overriding textual relevance score</li>
+                <li className="flex items-baseline gap-2"><span className="text-foreground/30">&bull;</span>Color attribute not indexed as a filterable field</li>
+                <li className="flex items-baseline gap-2"><span className="text-foreground/30">&bull;</span>No ranking validation against a representative query set</li>
               </ul>
             </div>
           </div>
 
           <p className="mt-10 border-t border-border/40 pt-6 text-sm text-muted-foreground">
-            The exact query changes. The pattern does not.
+            Different query. Same diagnostic structure.
           </p>
+        </div>
+      </section>
+
+      {/* ============================================================
+          RECURRING AUDIT FINDINGS
+          ============================================================ */}
+      <section className="py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-[1120px]">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
+            From real audits
+          </p>
+          <h2 className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
+            Failures we find repeatedly
+          </h2>
+          <p className="mt-2 max-w-xl text-sm text-muted-foreground">
+            Specific patterns that appear across search systems, regardless of vendor or catalog size.
+          </p>
+          <ul className="mt-6 grid gap-x-12 gap-y-2 text-sm text-foreground/80 sm:grid-cols-2 lg:max-w-3xl">
+            <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Merchandising rules overriding textual relevance</li>
+            <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Synonym lists masking deeper indexing gaps</li>
+            <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Attribute queries parsed as free-text search</li>
+            <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Compound queries returning partial or empty results</li>
+            <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Zero-result queries with no fallback or redirect</li>
+            <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Ranking configuration drifting without evaluation</li>
+            <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Boosting rules conflicting across product categories</li>
+          </ul>
         </div>
       </section>
 
@@ -655,25 +675,22 @@ export default async function Home() {
           CLOSING CTA
           ============================================================ */}
       <section className="py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-xl text-center">
           <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            Let&apos;s talk about your search system
+            If search feels hard to evaluate, that&apos;s usually a signal
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            If your team is unsure whether your internal search is performing as
-            well as it should, we can take a look.
+          <p className="mt-5 text-muted-foreground">
+            Results look acceptable. Confidence is low. Something feels off but
+            there&apos;s no clear evidence yet.
           </p>
           <p className="mt-3 text-sm text-muted-foreground/70">
-            Search systems often appear to work — but deeper inspection
-            frequently reveals ranking issues, query interpretation problems, or
-            evaluation gaps.
+            That&apos;s exactly the kind of system we diagnose. We examine real
+            queries, ranking behavior, and evaluation gaps — then give your team
+            a clear picture of what&apos;s happening and what to fix first.
           </p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
-            <Button asChild size="lg" className="h-12 w-full text-base font-semibold sm:w-auto px-8">
-              <Link href="/book-a-call">Start a conversation</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="h-12 w-full text-base font-medium sm:w-auto px-8">
-              <Link href="/#what-we-do">Learn about our approach</Link>
+          <div className="mt-10">
+            <Button asChild size="lg" className="h-12 px-8 text-base font-semibold">
+              <Link href="/book-a-call">Get in touch</Link>
             </Button>
           </div>
         </div>
