@@ -111,58 +111,50 @@ export default async function Home() {
           3. WHAT FIND SHERPAS DOES
           ============================================================ */}
       <section id="what-we-do" className="py-12 sm:py-16 lg:py-20">
-        <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-          Search problems we fix
-        </h2>
-        <p className="mt-3 max-w-2xl text-muted-foreground">
-          Common patterns that appear when internal search is examined closely.
-        </p>
+        <div className="mx-auto max-w-[1120px]">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
+            Diagnostic patterns
+          </p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+            What we find when we look closely
+          </h2>
+          <p className="mt-3 max-w-xl text-muted-foreground">
+            These patterns appear in most ecommerce search systems. They&apos;re rarely visible in dashboards.
+          </p>
 
-        <div className="mt-8 grid gap-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-xl border border-border/50 p-6">
-            <h3 className="text-base font-bold tracking-tight sm:text-lg">Important queries return the wrong products</h3>
-            <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Bestselling items buried deep</li>
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Long-tail queries matching weak results</li>
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Merchandising overriding relevance</li>
-            </ul>
+          <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2">
+            <div className="rounded-xl border border-border/50 p-6">
+              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Relevance</p>
+              <h3 className="mt-2 text-base font-bold tracking-tight">Results look right. They&apos;re not.</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Top queries return plausible products, but bestsellers are buried and weak matches surface first. The search appears functional — the ranking is wrong.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border/50 p-6">
+              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Query interpretation</p>
+              <h3 className="mt-2 text-base font-bold tracking-tight">Queries break without anyone noticing</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Synonyms missing. Compound queries split wrong. Attribute searches like &ldquo;red dress size 38&rdquo; treated as free text. No alerts, no fallback.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border/50 p-6">
+              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Ranking</p>
+              <h3 className="mt-2 text-base font-bold tracking-tight">Ranking rules nobody owns</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Boosting rules layered over months. Conflicting weights across categories. Result order changes and no one evaluates the impact.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border/50 p-6">
+              <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Zero results</p>
+              <h3 className="mt-2 text-base font-bold tracking-tight">Silent dead ends</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Queries return nothing — no redirect, no suggestion, no signal. Users leave. It happens most on long-tail and misspelled queries.
+              </p>
+            </div>
           </div>
-
-          <div className="rounded-xl border border-border/50 p-6">
-            <h3 className="text-base font-bold tracking-tight sm:text-lg">Query interpretation breaks</h3>
-            <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Missing synonyms</li>
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Compound queries misunderstood</li>
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Attribute queries interpreted incorrectly</li>
-            </ul>
-          </div>
-
-          <div className="rounded-xl border border-border/50 p-6">
-            <h3 className="text-base font-bold tracking-tight sm:text-lg">Ranking logic drifts over time</h3>
-            <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Boosting rules distorting order</li>
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Category bias appearing in results</li>
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Ranking behavior inconsistent across queries</li>
-            </ul>
-          </div>
-
-          <div className="rounded-xl border border-border/50 p-6">
-            <h3 className="text-base font-bold tracking-tight sm:text-lg">Search quality is not measured</h3>
-            <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>No representative query test set</li>
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>No structured evaluation</li>
-              <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Changes shipped without validation</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-6">
-          <Link
-            href="/#what-we-do"
-            className="text-sm font-medium text-primary hover:underline"
-          >
-            How we work with teams &rarr;
-          </Link>
         </div>
       </section>
 

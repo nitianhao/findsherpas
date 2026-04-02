@@ -71,7 +71,7 @@ export function SiteNav() {
           >
             <div className="relative size-9 shrink-0 overflow-hidden rounded-xl border bg-card shadow-sm">
               <Image
-                src="/favicon.ico"
+                src="/icon.svg"
                 alt=""
                 width={36}
                 height={36}
@@ -148,7 +148,7 @@ export function SiteNav() {
             >
               <div className="relative size-8 shrink-0 overflow-hidden rounded-lg border bg-card">
                 <Image
-                  src="/favicon.ico"
+                  src="/icon.svg"
                   alt=""
                   width={32}
                   height={32}
