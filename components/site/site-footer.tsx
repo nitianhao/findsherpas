@@ -17,34 +17,42 @@ export function SiteFooter() {
             </p>
           </div>
 
-          {/* What we do */}
+          {/* Explore */}
           <div>
             <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              What we do
+              Explore
             </div>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
                 <Link
-                  href="/services/search-ux-audit"
+                  href="/frameworks/search-failure-modes"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Search UX Audit
+                  Failure modes
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services/search-relevance-audit"
+                  href="/frameworks/query-interpretation"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Search Relevance Audit
+                  Query interpretation
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services/search-analytics-audit"
+                  href="/search-check"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  Search Analytics Audit
+                  Search check
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  About
                 </Link>
               </li>
             </ul>
@@ -66,7 +74,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href="/notes"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Insights
@@ -74,46 +82,20 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/about"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/examples"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Examples
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* CTA */}
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              Get started
-            </div>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/pricing"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Pricing &amp; Scope
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/#contact"
+                  href="/book-a-call"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Contact
                 </Link>
               </li>
             </ul>
+          </div>
+
+          {/* Get started */}
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              Get started
+            </div>
             <div className="mt-4">
               <Button asChild size="sm">
                 <Link href="/book-a-call">Book a call</Link>

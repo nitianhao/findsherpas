@@ -21,20 +21,22 @@ export const metadata: Metadata = {
     template: "%s | Find Sherpas",
   },
   description:
-    "On-site search optimization: UX audits, relevance tuning, and search analytics design for faster discovery and higher conversion.",
+    "Internal search audits for ecommerce teams: diagnose ranking, query interpretation, relevance, and search UX issues across your on-site search experience.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://findsherpas.com"),
   openGraph: {
     type: "website",
     title: "Find Sherpas",
     description:
-      "On-site search optimization: UX audits, relevance tuning, and search analytics design.",
+      "Internal search audits for ecommerce teams: diagnose ranking, query interpretation, relevance, and search UX issues.",
     siteName: "Find Sherpas",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Find Sherpas",
     description:
-      "On-site search optimization: UX audits, relevance tuning, and search analytics design.",
+      "Internal search audits for ecommerce teams: diagnose ranking, query interpretation, relevance, and search UX issues.",
+    images: ["/og-image.png"],
   },
   icons: {
     icon: [

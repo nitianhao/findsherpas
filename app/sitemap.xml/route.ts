@@ -19,7 +19,14 @@ export async function GET() {
     getCaseStudySlugs(),
   ]);
 
-  const staticUrls = ["/", "/services", "/pricing", "/about", "/blog", "/case-studies"];
+  const staticUrls = [
+    "/",
+    "/about",
+    "/frameworks/search-failure-modes",
+    "/frameworks/query-interpretation",
+    "/search-check",
+    "/book-a-call",
+  ];
   const dynamicUrls = [
     ...blogSlugs.map((s) => `/blog/${s}`),
     ...caseStudySlugs.map((s) => `/case-studies/${s}`),

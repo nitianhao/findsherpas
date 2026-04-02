@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { href: "/#what-we-do", label: "What we do" },
+  { href: "/#what-we-do", label: "Search audits" },
   { href: "/frameworks/search-failure-modes", label: "Failure modes" },
   { href: "/frameworks/query-interpretation", label: "Query interpretation" },
   { href: "/search-check", label: "Search check" },
