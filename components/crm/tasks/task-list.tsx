@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { EmailTask } from "@/lib/crm/queries/tasks";
 import type { Reminder } from "@/lib/crm/types";
-import { resolveTemplate, buildVars } from "@/lib/crm/email";
+import { resolveTemplate, buildVars } from "@/lib/crm/template";
 import { Button } from "@/components/crm/ui/button";
 import { Badge } from "@/components/crm/ui/badge";
 import { Card } from "@/components/crm/ui/card";
