@@ -44,6 +44,9 @@ const COMPANY_FIELDS: { value: string; label: string }[] = [
   { value: 'social_facebook', label: 'Facebook' },
   { value: 'notes', label: 'Notes' },
   { value: 'status', label: 'Status' },
+  { value: 'report_url', label: 'Report URL' },
+  { value: 'country', label: 'Country' },
+  { value: 'language', label: 'Language' },
 ];
 
 type Step = 1 | 2 | 3 | 4;

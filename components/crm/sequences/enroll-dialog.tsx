@@ -30,6 +30,7 @@ export function EnrollDialog({ sequenceId }: EnrollDialogProps) {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [search, setSearch] = useState("");
+  const [sendHour, setSendHour] = useState(9);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -84,6 +85,7 @@ export function EnrollDialog({ sequenceId }: EnrollDialogProps) {
         body: JSON.stringify({
           contact_ids: Array.from(selectedIds),
           sequence_id: sequenceId,
+          send_hour: sendHour,
         }),
       });
 
@@ -166,11 +168,21 @@ export function EnrollDialog({ sequenceId }: EnrollDialogProps) {
             )}
           </ScrollArea>
 
-          {selectedIds.size > 0 && (
-            <p className="text-xs text-muted-foreground">
-              {selectedIds.size} contact(s) selected
-            </p>
-          )}
+          <div className="flex items-center gap-3">
+            <label className="text-xs text-muted-foreground whitespace-nowrap">Preferred send time:</label>
+            <select
+              value={sendHour}
+              onChange={e => setSendHour(Number(e.target.value))}
+              className="flex h-8 rounded-md border border-input bg-transparent px-2 text-xs"
+            >
+              {Array.from({ length: 15 }, (_, i) => i + 6).map(h => (
+                <option key={h} value={h}>{h < 12 ? `${h}:00 AM` : h === 12 ? '12:00 PM' : `${h - 12}:00 PM`}</option>
+              ))}
+            </select>
+            {selectedIds.size > 0 && (
+              <span className="text-xs text-muted-foreground">{selectedIds.size} selected</span>
+            )}
+          </div>
         </div>
 
         <DialogFooter>

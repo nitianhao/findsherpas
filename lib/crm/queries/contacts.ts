@@ -1,5 +1,5 @@
 import { adminDb, id } from '@/lib/crm/instant-db';
-import type { Contact, ContactStatus } from '@/lib/crm/types';
+import type { Contact, ContactStatus, ActivityItem } from '@/lib/crm/types';
 
 function now() {
   return new Date().toISOString();
@@ -7,6 +7,10 @@ function now() {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapContact(c: any): Contact {
+  let customFields: Record<string, string> | null = null;
+  if (c.custom_fields) {
+    try { customFields = JSON.parse(c.custom_fields as string); } catch { /* ignore */ }
+  }
   return {
     id: c.id as string,
     company_id: c.company?.id ?? '',
@@ -17,6 +21,7 @@ function mapContact(c: any): Contact {
     linkedin_url: c.linkedin_url ?? null,
     status: (c.status as ContactStatus) ?? 'active',
     notes: c.notes ?? null,
+    custom_fields: customFields,
     created_at: c.created_at ?? now(),
     updated_at: c.updated_at ?? now(),
     company_name: c.company?.name ?? undefined,
@@ -109,6 +114,11 @@ export async function updateContact(contactId: string, data: Record<string, unkn
   for (const [k, v] of Object.entries(data)) {
     if (allowedFields.includes(k) && v !== undefined) attrs[k] = v;
   }
+
+  // Serialize custom_fields as JSON
+  if (data.custom_fields !== undefined) {
+    attrs.custom_fields = data.custom_fields ? JSON.stringify(data.custom_fields) : null;
+  }
   txns.push(adminDb.tx.contacts[contactId].update(attrs));
 
   if (data.company_id && typeof data.company_id === 'string') {
@@ -130,4 +140,61 @@ export async function deleteContact(contactId: string): Promise<void> {
 export async function getContactCount(): Promise<number> {
   const data = await adminDb.query({ contacts: { $: { fields: ['id'] } } });
   return (data.contacts as unknown[]).length;
+}
+
+export async function getContactActivity(contactId: string): Promise<ActivityItem[]> {
+  const [enrollmentData, commentData, reminderData] = await Promise.all([
+    adminDb.query({
+      enrollments: {
+        $: { where: { 'contact.id': contactId } },
+        events: { step: {} },
+        sequence: {},
+      },
+    }),
+    adminDb.query({
+      comments: { $: { where: { 'contact.id': contactId } } },
+    }),
+    adminDb.query({
+      reminders: { $: { where: { 'contact.id': contactId } } },
+    }),
+  ]);
+
+  const items: ActivityItem[] = [];
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  for (const enrollment of enrollmentData.enrollments as any[]) {
+    const seqName: string = enrollment.sequence?.name ?? 'Sequence';
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    for (const ev of (enrollment.events ?? []) as any[]) {
+      const stepOrder: number = ev.step?.step_order ?? 0;
+      const prefix = `${seqName} — Step ${stepOrder}`;
+      if (ev.sent_at) {
+        items.push({ type: 'email_sent', date: ev.sent_at as string, description: `${prefix} sent` });
+      }
+      if (ev.opened_at) {
+        items.push({ type: 'email_opened', date: ev.opened_at as string, description: `${prefix} opened` });
+      }
+      if (ev.clicked_at) {
+        items.push({ type: 'email_clicked', date: ev.clicked_at as string, description: `${prefix} link clicked` });
+      }
+      if (ev.replied_at) {
+        items.push({ type: 'email_replied', date: ev.replied_at as string, description: `${prefix} — replied` });
+      }
+      if (ev.status === 'bounced' && ev.sent_at) {
+        items.push({ type: 'email_bounced', date: ev.sent_at as string, description: `${prefix} bounced` });
+      }
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  for (const c of commentData.comments as any[]) {
+    items.push({ type: 'comment', date: c.created_at as string, description: c.body as string });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  for (const r of reminderData.reminders as any[]) {
+    items.push({ type: 'reminder', date: r.due_date as string, description: r.title as string });
+  }
+
+  return items.sort((a, b) => b.date.localeCompare(a.date));
 }

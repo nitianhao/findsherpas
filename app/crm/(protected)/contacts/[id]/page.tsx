@@ -1,4 +1,5 @@
-import { getContactById } from "@/lib/crm/queries/contacts";
+import { getContactById, getContactActivity } from "@/lib/crm/queries/contacts";
+import { getCommentsByContactId } from "@/lib/crm/queries/comments";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { buttonVariants } from "@/components/crm/ui/button";
@@ -7,6 +8,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/crm/ui/ca
 import { Pencil, ArrowLeft, ExternalLink, Mail, Phone } from "lucide-react";
 import { DeleteContactButton } from "@/components/crm/contacts/delete-contact-button";
 import { ContactSequenceStatus } from "@/components/crm/contacts/contact-sequence-status";
+import { ContactComments } from "@/components/crm/contacts/contact-comments";
+import { ContactActivity } from "@/components/crm/contacts/contact-activity";
+import { Activity } from "lucide-react";
 
 export default async function ContactDetailPage({
   params,
@@ -14,7 +18,11 @@ export default async function ContactDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const contact = await getContactById(id);
+  const [contact, comments, activity] = await Promise.all([
+    getContactById(id),
+    getCommentsByContactId(id),
+    getContactActivity(id),
+  ]);
   if (!contact) notFound();
 
   return (
@@ -115,6 +123,20 @@ export default async function ContactDetailPage({
       )}
 
       <ContactSequenceStatus contactId={contact.id} />
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-sm font-medium flex items-center gap-2">
+            <Activity className="h-4 w-4" />
+            Activity
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ContactActivity items={activity} />
+        </CardContent>
+      </Card>
+
+      <ContactComments contactId={contact.id} initialComments={comments} />
     </div>
   );
 }

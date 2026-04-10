@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const parsed = enrollContactSchema.parse(body);
-    const enrollments = await enrollContacts(parsed.contact_ids, parsed.sequence_id);
+    const enrollments = await enrollContacts(parsed.contact_ids, parsed.sequence_id, parsed.send_hour);
     return NextResponse.json(enrollments, { status: 201 });
   } catch (error) {
     if (error instanceof Error && error.name === 'ZodError') {

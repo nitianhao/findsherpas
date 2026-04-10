@@ -28,6 +28,7 @@ export function SequenceForm({ sequence }: SequenceFormProps) {
       name: sequence?.name || "",
       description: sequence?.description || "",
       is_active: sequence?.is_active ?? 1,
+      from_email: sequence?.from_email || "",
     },
   });
 
@@ -70,6 +71,18 @@ export function SequenceForm({ sequence }: SequenceFormProps) {
             placeholder="What is this sequence for?"
             rows={3}
           />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="from_email">From Email <span className="text-muted-foreground font-normal">(optional — overrides default sender)</span></Label>
+          <Input
+            id="from_email"
+            type="email"
+            {...form.register("from_email")}
+            placeholder={`Leave blank to use ${process.env.NEXT_PUBLIC_DEFAULT_FROM ?? "default sender"}`}
+          />
+          {form.formState.errors.from_email && (
+            <p className="text-sm text-destructive">{form.formState.errors.from_email.message}</p>
+          )}
         </div>
       </div>
 

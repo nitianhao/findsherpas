@@ -4,7 +4,7 @@ import { ContactTable } from "@/components/crm/contacts/contact-table";
 import { ContactFilters } from "@/components/crm/contacts/contact-filters";
 import { ExportButton } from "@/components/crm/shared/export-button";
 import { getContacts } from "@/lib/crm/queries/contacts";
-import { Plus } from "lucide-react";
+import { Plus, Upload } from "lucide-react";
 import { ContactStatus } from "@/lib/crm/types";
 import { Suspense } from "react";
 
@@ -29,6 +29,10 @@ export default async function ContactsPage({
         </div>
         <div className="flex items-center gap-2">
           <ExportButton type="contacts" />
+          <Link href="/crm/contacts/import" className={buttonVariants({ variant: "outline" })}>
+            <Upload className="mr-2 h-4 w-4" />
+            Import CSV
+          </Link>
           <Link href="/crm/contacts/new" className={buttonVariants()}>
             <Plus className="mr-2 h-4 w-4" />
             Add Contact

@@ -1,13 +1,15 @@
-import { getSequenceById, getStepsBySequenceId } from "@/lib/crm/queries/sequences";
+import { getSequenceById, getStepsBySequenceId, getSequencePerformance } from "@/lib/crm/queries/sequences";
 import { getEnrollmentsBySequenceId } from "@/lib/crm/queries/enrollments";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { buttonVariants } from "@/components/crm/ui/button";
 import { Badge } from "@/components/crm/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/crm/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/crm/ui/tabs";
 import { StepEditor } from "@/components/crm/sequences/step-editor";
 import { EnrollmentTable } from "@/components/crm/sequences/enrollment-table";
 import { EnrollDialog } from "@/components/crm/sequences/enroll-dialog";
+import { SequencePerformance } from "@/components/crm/sequences/sequence-performance";
 import { Pencil, ArrowLeft, Users } from "lucide-react";
 
 export default async function SequenceDetailPage({
@@ -16,11 +18,13 @@ export default async function SequenceDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const sequence = await getSequenceById(id);
+  const [sequence, steps, enrollments, performance] = await Promise.all([
+    getSequenceById(id),
+    getStepsBySequenceId(id),
+    getEnrollmentsBySequenceId(id),
+    getSequencePerformance(id),
+  ]);
   if (!sequence) notFound();
-
-  const steps = await getStepsBySequenceId(sequence.id);
-  const enrollments = await getEnrollmentsBySequenceId(sequence.id);
 
   return (
     <div className="space-y-6">
@@ -41,6 +45,9 @@ export default async function SequenceDetailPage({
           </div>
           {sequence.description && (
             <p className="text-sm text-muted-foreground mt-1">{sequence.description}</p>
+          )}
+          {sequence.from_email && (
+            <p className="text-xs text-muted-foreground mt-0.5">Sending from: {sequence.from_email}</p>
           )}
         </div>
         <div className="flex gap-2">
@@ -84,22 +91,35 @@ export default async function SequenceDetailPage({
         </Card>
       </div>
 
-      <StepEditor sequenceId={sequence.id} initialSteps={steps} />
+      <Tabs defaultValue="steps">
+        <TabsList>
+          <TabsTrigger value="steps">Steps</TabsTrigger>
+          <TabsTrigger value="performance">Performance</TabsTrigger>
+          <TabsTrigger value="contacts">Contacts ({enrollments.length})</TabsTrigger>
+        </TabsList>
 
-      <div>
-        <h2 className="text-lg font-semibold mb-3">Enrolled Contacts</h2>
-        {enrollments.length > 0 ? (
-          <EnrollmentTable enrollments={enrollments} />
-        ) : (
-          <Card>
-            <CardContent className="py-8 text-center">
-              <p className="text-sm text-muted-foreground">
-                No contacts enrolled yet. Click &quot;Enroll Contacts&quot; to get started.
-              </p>
-            </CardContent>
-          </Card>
-        )}
-      </div>
+        <TabsContent value="steps" className="mt-4">
+          <StepEditor sequenceId={sequence.id} initialSteps={steps} />
+        </TabsContent>
+
+        <TabsContent value="performance" className="mt-4">
+          <SequencePerformance steps={performance} />
+        </TabsContent>
+
+        <TabsContent value="contacts" className="mt-4">
+          {enrollments.length > 0 ? (
+            <EnrollmentTable enrollments={enrollments} />
+          ) : (
+            <Card>
+              <CardContent className="py-8 text-center">
+                <p className="text-sm text-muted-foreground">
+                  No contacts enrolled yet. Click &quot;Enroll Contacts&quot; to get started.
+                </p>
+              </CardContent>
+            </Card>
+          )}
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

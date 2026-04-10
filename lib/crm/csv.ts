@@ -31,6 +31,9 @@ export function suggestMapping(csvHeaders: string[]): Record<string, string> {
     social_facebook: ['facebook', 'facebook url', 'fb'],
     notes: ['notes', 'comments', 'description', 'memo'],
     status: ['status', 'stage', 'pipeline stage'],
+    report_url: ['report', 'report url', 'report_url', 'audit url', 'audit'],
+    country: ['country', 'country name', 'location'],
+    language: ['language', 'lang', 'locale'],
   };
 
   const mapping: Record<string, string> = {};

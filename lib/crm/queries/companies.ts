@@ -31,6 +31,11 @@ function mapCompany(c: Record<string, unknown> & { tags?: Array<Record<string, u
     tech_stack_notes: (c.tech_stack_notes as string | null) ?? null,
     notes: (c.notes as string | null) ?? null,
     status: (c.status as CompanyStatus) ?? 'prospect',
+    report_url: (c.report_url as string | null) ?? null,
+    country: (c.country as string | null) ?? null,
+    language: (c.language as string | null) ?? null,
+    pdf_url: (c.pdf_url as string | null) ?? null,
+    pdf_name: (c.pdf_name as string | null) ?? null,
     created_at: (c.created_at as string) ?? now(),
     updated_at: (c.updated_at as string) ?? now(),
     tags: (c.tags ?? []).map(mapTag),
@@ -95,6 +100,9 @@ interface CompanyCreateData {
   notes?: string | null;
   status?: CompanyStatus;
   tag_ids?: string[];
+  report_url?: string | null;
+  country?: string | null;
+  language?: string | null;
 }
 
 export async function createCompany(data: CompanyCreateData): Promise<Company> {
@@ -118,6 +126,9 @@ export async function createCompany(data: CompanyCreateData): Promise<Company> {
       tech_stack_notes: fields.tech_stack_notes ?? null,
       notes: fields.notes ?? null,
       status: fields.status ?? 'prospect',
+      report_url: fields.report_url ?? null,
+      country: fields.country ?? null,
+      language: fields.language ?? null,
       created_at: ts,
       updated_at: ts,
     }),
@@ -147,6 +158,9 @@ interface CompanyUpdateData {
   notes?: string | null;
   status?: CompanyStatus;
   tag_ids?: string[];
+  report_url?: string | null;
+  country?: string | null;
+  language?: string | null;
 }
 
 export async function updateCompany(companyId: string, data: CompanyUpdateData): Promise<Company> {

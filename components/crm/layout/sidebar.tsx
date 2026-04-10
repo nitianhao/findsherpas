@@ -8,7 +8,9 @@ import {
   Building2,
   Users,
   Mail,
+  TrendingUp,
   CalendarCheck,
+  FlaskConical,
   Settings,
   LogOut,
 } from "lucide-react";
@@ -20,6 +22,8 @@ const navigation = [
   { name: "Companies", href: "/crm/companies", icon: Building2 },
   { name: "Contacts", href: "/crm/contacts", icon: Users },
   { name: "Sequences", href: "/crm/sequences", icon: Mail },
+  { name: "Pipeline", href: "/crm/pipeline", icon: TrendingUp },
+  { name: "Experiments", href: "/crm/experiments", icon: FlaskConical },
   { name: "Today's Tasks", href: "/crm/tasks", icon: CalendarCheck },
   { name: "Settings", href: "/crm/settings", icon: Settings },
 ];

@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/crm/ui/ca
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/crm/ui/tabs";
 import { Pencil, ExternalLink, ArrowLeft, Plus, Mail } from "lucide-react";
 import { DeleteCompanyButton } from "@/components/crm/companies/delete-company-button";
+import { CompanyPDF } from "@/components/crm/companies/company-pdf";
 
 export default async function CompanyDetailPage({
   params,
@@ -138,6 +139,12 @@ export default async function CompanyDetailPage({
               </CardContent>
             </Card>
           )}
+
+          <CompanyPDF
+            companyId={company.id}
+            initialPdfUrl={company.pdf_url}
+            initialPdfName={company.pdf_name}
+          />
 
           {(company.tech_stack_notes || company.notes) && (
             <Card>

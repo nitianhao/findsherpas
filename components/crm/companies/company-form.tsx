@@ -40,6 +40,9 @@ export function CompanyForm({ company }: CompanyFormProps) {
       tech_stack_notes: company?.tech_stack_notes || "",
       notes: company?.notes || "",
       status: company?.status || "prospect",
+      report_url: company?.report_url || "",
+      country: company?.country || "",
+      language: company?.language || "",
     },
   });
 
@@ -103,6 +106,25 @@ export function CompanyForm({ company }: CompanyFormProps) {
               </SelectContent>
             </Select>
           </div>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="country">Country</Label>
+            <Input id="country" {...form.register("country")} placeholder="e.g. United Kingdom" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="language">Language</Label>
+            <Input id="language" {...form.register("language")} placeholder="e.g. English" />
+          </div>
+        </div>
+      </div>
+
+      {/* Report */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-medium">Report</h3>
+        <div className="space-y-2">
+          <Label htmlFor="report_url">Report URL</Label>
+          <Input id="report_url" {...form.register("report_url")} placeholder="https://..." />
         </div>
       </div>
 

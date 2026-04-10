@@ -4,8 +4,19 @@ function now() {
   return new Date().toISOString();
 }
 
-export async function markEventSent(eventId: string): Promise<void> {
-  await adminDb.transact(adminDb.tx.events[eventId].update({ status: 'sent', sent_at: now() }));
+export async function getEventByResendId(resendEmailId: string): Promise<string | null> {
+  const data = await adminDb.query({
+    events: { $: { where: { resend_email_id: resendEmailId } } },
+  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ev = (data.events as any[])[0];
+  return ev ? (ev.id as string) : null;
+}
+
+export async function markEventSent(eventId: string, resendEmailId?: string): Promise<void> {
+  const attrs: Record<string, unknown> = { status: 'sent', sent_at: now() };
+  if (resendEmailId) attrs.resend_email_id = resendEmailId;
+  await adminDb.transact(adminDb.tx.events[eventId].update(attrs));
 
   // Look up the enrollment to advance current_step and check completion
   const evData = await adminDb.query({
@@ -52,7 +63,7 @@ export async function markEventReplied(eventId: string): Promise<void> {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const txns: any[] = [
-    adminDb.tx.enrollments[enrollmentId].update({ status: 'replied', completed_at: ts }),
+    adminDb.tx.enrollments[enrollmentId].update({ status: 'replied', completed_at: ts, deal_stage: 'replied' }),
     ...pendingEvents.map((e: { id: string }) => adminDb.tx.events[e.id].update({ status: 'skipped' })),
   ];
 
@@ -96,4 +107,26 @@ export async function markEventBounced(eventId: string): Promise<void> {
 
 export async function markEventSkipped(eventId: string): Promise<void> {
   await adminDb.transact(adminDb.tx.events[eventId].update({ status: 'skipped' }));
+}
+
+export async function markEventOpened(eventId: string): Promise<void> {
+  const data = await adminDb.query({ events: { $: { where: { id: eventId } } } });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ev = (data.events as any[])[0];
+  if (!ev) return;
+  const currentCount = (ev.open_count as number | undefined) ?? 0;
+  const attrs: Record<string, unknown> = { open_count: currentCount + 1 };
+  if (!ev.opened_at) attrs.opened_at = now();
+  await adminDb.transact(adminDb.tx.events[eventId].update(attrs));
+}
+
+export async function markEventClicked(eventId: string): Promise<void> {
+  const data = await adminDb.query({ events: { $: { where: { id: eventId } } } });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ev = (data.events as any[])[0];
+  if (!ev) return;
+  const currentCount = (ev.click_count as number | undefined) ?? 0;
+  const attrs: Record<string, unknown> = { click_count: currentCount + 1 };
+  if (!ev.clicked_at) attrs.clicked_at = now();
+  await adminDb.transact(adminDb.tx.events[eventId].update(attrs));
 }

@@ -17,6 +17,8 @@ function mapEnrollment(e: any): ContactSequence {
     started_at: e.started_at ?? now(),
     paused_at: e.paused_at ?? null,
     completed_at: e.completed_at ?? null,
+    deal_stage: e.deal_stage ?? null,
+    send_hour: e.send_hour ?? null,
     contact_name: e.contact?.name ?? undefined,
     contact_email: e.contact?.email ?? undefined,
     company_name: e.contact?.company?.name ?? undefined,
@@ -38,10 +40,14 @@ function mapEvent(ev: any): ContactSequenceEvent {
     step_order: ev.step?.step_order ?? undefined,
     subject_template: ev.step?.subject_template ?? undefined,
     body_template: ev.step?.body_template ?? undefined,
+    open_count: ev.open_count ?? null,
+    click_count: ev.click_count ?? null,
+    opened_at: ev.opened_at ?? null,
+    clicked_at: ev.clicked_at ?? null,
   };
 }
 
-export async function enrollContact(contactId: string, sequenceId: string): Promise<ContactSequence> {
+export async function enrollContact(contactId: string, sequenceId: string, sendHour?: number): Promise<ContactSequence> {
   // Get all steps for the sequence, ordered by step_order
   const stepsData = await adminDb.query({
     sequenceSteps: {
@@ -55,13 +61,11 @@ export async function enrollContact(contactId: string, sequenceId: string): Prom
 
   const enrollmentId = id();
   const ts = now();
+  const enrollmentAttrs: Record<string, unknown> = { current_step: 1, status: 'active', started_at: ts };
+  if (sendHour !== undefined) enrollmentAttrs.send_hour = sendHour;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const txns: any[] = [
-    adminDb.tx.enrollments[enrollmentId].update({
-      current_step: 1,
-      status: 'active',
-      started_at: ts,
-    }),
+    adminDb.tx.enrollments[enrollmentId].update(enrollmentAttrs),
     adminDb.tx.enrollments[enrollmentId].link({ contact: contactId }),
     adminDb.tx.enrollments[enrollmentId].link({ sequence: sequenceId }),
   ];
@@ -85,10 +89,10 @@ export async function enrollContact(contactId: string, sequenceId: string): Prom
   return getEnrollmentById(enrollmentId) as Promise<ContactSequence>;
 }
 
-export async function enrollContacts(contactIds: string[], sequenceId: string): Promise<ContactSequence[]> {
+export async function enrollContacts(contactIds: string[], sequenceId: string, sendHour?: number): Promise<ContactSequence[]> {
   const results = [];
   for (const contactId of contactIds) {
-    results.push(await enrollContact(contactId, sequenceId));
+    results.push(await enrollContact(contactId, sequenceId, sendHour));
   }
   return results;
 }

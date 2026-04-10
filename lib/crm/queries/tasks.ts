@@ -13,6 +13,7 @@ export interface EmailTask {
   subject_template: string | null;
   body_template: string | null;
   scheduled_date: string;
+  send_hour: number | null;
   is_overdue: boolean;
 }
 
@@ -48,9 +49,14 @@ export async function getTodaysEmailTasks(): Promise<EmailTask[]> {
       subject_template: ev.step?.subject_template ?? null,
       body_template: ev.step?.body_template ?? null,
       scheduled_date: ev.scheduled_date as string,
+      send_hour: (ev.enrollment?.send_hour as number | undefined) ?? null,
       is_overdue: (ev.scheduled_date as string) < today,
     }))
-    .sort((a, b) => a.scheduled_date.localeCompare(b.scheduled_date) || a.company_name.localeCompare(b.company_name));
+    .sort((a, b) =>
+      a.scheduled_date.localeCompare(b.scheduled_date) ||
+      (a.send_hour ?? 9) - (b.send_hour ?? 9) ||
+      a.company_name.localeCompare(b.company_name)
+    );
 
   return tasks;
 }

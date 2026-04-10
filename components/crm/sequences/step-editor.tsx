@@ -203,6 +203,9 @@ export function StepEditor({ sequenceId, initialSteps }: StepEditorProps) {
                     placeholder="Email body template..."
                     rows={4}
                   />
+                  <p className="text-xs text-muted-foreground">
+                    Variables: <code>{"{{first_name}}"}</code>, <code>{"{{last_name}}"}</code>, <code>{"{{full_name}}"}</code>, <code>{"{{company_name}}"}</code>, <code>{"{{email}}"}</code>, <code>{"{{unsubscribe_url}}"}</code>, plus any custom fields
+                  </p>
                 </div>
               </CardContent>
             </Card>

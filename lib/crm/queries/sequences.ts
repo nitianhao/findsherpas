@@ -12,6 +12,7 @@ function mapSequence(s: any): Sequence {
     name: s.name ?? '',
     description: s.description ?? null,
     is_active: s.is_active ?? 1,
+    from_email: s.from_email ?? null,
     created_at: s.created_at ?? now(),
     updated_at: s.updated_at ?? now(),
     steps_count: (s.steps ?? []).length,
@@ -72,7 +73,7 @@ export async function createSequence(data: {
 export async function updateSequence(sequenceId: string, data: Record<string, unknown>): Promise<Sequence> {
   const attrs: Record<string, unknown> = { updated_at: now() };
   for (const [k, v] of Object.entries(data)) {
-    if (['name', 'description', 'is_active'].includes(k) && v !== undefined) attrs[k] = v;
+    if (['name', 'description', 'is_active', 'from_email'].includes(k) && v !== undefined) attrs[k] = v;
   }
   await adminDb.transact(adminDb.tx.sequences[sequenceId].update(attrs));
   return getSequenceById(sequenceId) as Promise<Sequence>;
@@ -89,6 +90,58 @@ export async function getStepsBySequenceId(sequenceId: string): Promise<Sequence
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (data.sequenceSteps as any[]).map(mapStep)
     .sort((a, b) => a.step_order - b.step_order);
+}
+
+export interface StepPerformance {
+  step_order: number;
+  subject_template: string | null;
+  sent: number;
+  opened: number;
+  clicked: number;
+  replied: number;
+  open_rate: number;
+  click_rate: number;
+  reply_rate: number;
+}
+
+export async function getSequencePerformance(sequenceId: string): Promise<StepPerformance[]> {
+  const data = await adminDb.query({
+    events: {
+      $: { where: { 'enrollment.sequence.id': sequenceId } },
+      step: {},
+    },
+  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const events = data.events as any[];
+
+  const byStep = new Map<number, { subject: string | null; sent: number; opened: number; clicked: number; replied: number }>();
+
+  for (const ev of events) {
+    const order: number = ev.step?.step_order ?? 0;
+    if (!byStep.has(order)) {
+      byStep.set(order, { subject: ev.step?.subject_template ?? null, sent: 0, opened: 0, clicked: 0, replied: 0 });
+    }
+    const s = byStep.get(order)!;
+    const status: string = ev.status ?? '';
+    if (status === 'sent' || status === 'replied') s.sent++;
+    if (status === 'replied') s.replied++;
+    if ((ev.open_count as number | undefined) ?? 0 > 0) s.opened++;
+    if ((ev.click_count as number | undefined) ?? 0 > 0) s.clicked++;
+  }
+
+  return Array.from(byStep.entries())
+    .sort(([a], [b]) => a - b)
+    .map(([step_order, s]) => ({
+      step_order,
+      subject_template: s.subject,
+      sent: s.sent,
+      opened: s.opened,
+      clicked: s.clicked,
+      replied: s.replied,
+      open_rate: s.sent > 0 ? Math.round((s.opened / s.sent) * 100) : 0,
+      click_rate: s.sent > 0 ? Math.round((s.clicked / s.sent) * 100) : 0,
+      reply_rate: s.sent > 0 ? Math.round((s.replied / s.sent) * 100) : 0,
+    }));
 }
 
 export async function saveSteps(

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createHmac } from 'node:crypto';
 
-const PUBLIC_PATHS = ['/crm/login', '/api/crm/auth'];
+const PUBLIC_PATHS = ['/crm/login', '/crm/unsubscribe', '/api/crm/auth', '/api/crm/webhooks/resend', '/api/crm/unsubscribe'];
 
 function computeHmac(secret: string): string {
   return createHmac('sha256', secret).update('crm-session').digest('hex');

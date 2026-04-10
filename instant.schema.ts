@@ -17,6 +17,11 @@ const _schema = i.schema({
       tech_stack_notes: i.any().optional(),
       notes: i.any().optional(),
       status: i.string().indexed(),
+      report_url: i.string().optional(),
+      country: i.string().optional(),
+      language: i.string().optional(),
+      pdf_url: i.string().optional(),
+      pdf_name: i.string().optional(),
       created_at: i.string(),
       updated_at: i.string(),
     }),
@@ -28,6 +33,7 @@ const _schema = i.schema({
       linkedin_url: i.any().optional(),
       status: i.string().indexed(),
       notes: i.any().optional(),
+      custom_fields: i.string().optional(),
       created_at: i.string(),
       updated_at: i.string(),
     }),
@@ -40,6 +46,7 @@ const _schema = i.schema({
       name: i.string().indexed(),
       description: i.any().optional(),
       is_active: i.number().indexed(),
+      from_email: i.string().optional(),
       created_at: i.string(),
       updated_at: i.string(),
     }),
@@ -56,6 +63,10 @@ const _schema = i.schema({
       started_at: i.string(),
       paused_at: i.any().optional(),
       completed_at: i.any().optional(),
+      experiment_id: i.string().optional(),
+      ab_variant: i.string().optional(),
+      deal_stage: i.string().optional(),
+      send_hour: i.number().optional(),
     }),
     events: i.entity({
       status: i.string().indexed(),
@@ -63,6 +74,25 @@ const _schema = i.schema({
       sent_at: i.any().optional(),
       replied_at: i.any().optional(),
       notes: i.any().optional(),
+      resend_email_id: i.string().optional(),
+      open_count: i.number().optional(),
+      click_count: i.number().optional(),
+      opened_at: i.string().optional(),
+      clicked_at: i.string().optional(),
+    }),
+    comments: i.entity({
+      body: i.string(),
+      created_at: i.string(),
+    }),
+    experiments: i.entity({
+      name: i.string().indexed(),
+      status: i.string().indexed(),
+      created_at: i.string(),
+      updated_at: i.string(),
+    }),
+    experimentVariants: i.entity({
+      label: i.string(),
+      created_at: i.string(),
     }),
     reminders: i.entity({
       title: i.string(),
@@ -108,6 +138,18 @@ const _schema = i.schema({
     reminderContact: {
       forward: { on: 'reminders', has: 'one', label: 'contact' },
       reverse: { on: 'contacts', has: 'many', label: 'reminders' },
+    },
+    commentContact: {
+      forward: { on: 'comments', has: 'one', label: 'contact' },
+      reverse: { on: 'contacts', has: 'many', label: 'comments' },
+    },
+    variantExperiment: {
+      forward: { on: 'experimentVariants', has: 'one', label: 'experiment' },
+      reverse: { on: 'experiments', has: 'many', label: 'variants' },
+    },
+    variantSequence: {
+      forward: { on: 'experimentVariants', has: 'one', label: 'sequence' },
+      reverse: { on: 'sequences', has: 'many', label: 'variants' },
     },
   },
 });

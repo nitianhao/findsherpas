@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
+import { Plus, Trash2 } from "lucide-react";
 
 type FormData = z.input<typeof contactCreateSchema>;
 
@@ -27,6 +28,9 @@ export function ContactForm({ contact, defaultCompanyId }: ContactFormProps) {
   const isEditing = !!contact;
   const [companies, setCompanies] = useState<Company[]>([]);
   const [customRole, setCustomRole] = useState(false);
+  const [customFields, setCustomFields] = useState<{ key: string; value: string }[]>(
+    Object.entries(contact?.custom_fields ?? {}).map(([key, value]) => ({ key, value }))
+  );
 
   const form = useForm<FormData>({
     resolver: zodResolver(contactCreateSchema),
@@ -61,10 +65,15 @@ export function ContactForm({ contact, defaultCompanyId }: ContactFormProps) {
     const url = isEditing ? `/api/crm/contacts/${contact.id}` : "/api/crm/contacts";
     const method = isEditing ? "PUT" : "POST";
 
+    // Build custom_fields object from key-value pairs
+    const custom_fields = customFields.length > 0
+      ? Object.fromEntries(customFields.filter(f => f.key.trim()).map(f => [f.key.trim(), f.value]))
+      : null;
+
     const res = await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ ...data, custom_fields }),
     });
 
     if (res.ok) {
@@ -203,6 +212,38 @@ export function ContactForm({ contact, defaultCompanyId }: ContactFormProps) {
         <div className="space-y-2">
           <Textarea {...form.register("notes")} placeholder="Any notes about this contact..." rows={4} />
         </div>
+      </div>
+
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-lg font-medium">Personalization Fields</h3>
+            <p className="text-xs text-muted-foreground mt-0.5">Use <code className="bg-muted px-1 rounded">{"{{key}}"}</code> in email templates to insert these values.</p>
+          </div>
+          <Button type="button" variant="outline" size="sm" onClick={() => setCustomFields(prev => [...prev, { key: "", value: "" }])}>
+            <Plus className="h-3.5 w-3.5 mr-1" />
+            Add Field
+          </Button>
+        </div>
+        {customFields.map((field, i) => (
+          <div key={i} className="flex gap-2 items-center">
+            <Input
+              placeholder="field_name"
+              value={field.key}
+              onChange={e => setCustomFields(prev => prev.map((f, j) => j === i ? { ...f, key: e.target.value } : f))}
+              className="w-40 font-mono text-sm"
+            />
+            <Input
+              placeholder="value"
+              value={field.value}
+              onChange={e => setCustomFields(prev => prev.map((f, j) => j === i ? { ...f, value: e.target.value } : f))}
+              className="flex-1"
+            />
+            <Button type="button" variant="ghost" size="icon-sm" onClick={() => setCustomFields(prev => prev.filter((_, j) => j !== i))}>
+              <Trash2 className="h-3.5 w-3.5 text-muted-foreground" />
+            </Button>
+          </div>
+        ))}
       </div>
 
       <div className="flex gap-4">

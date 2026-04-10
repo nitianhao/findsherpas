@@ -14,6 +14,11 @@ export interface Company {
   search_solution: string | null;
   notes: string | null;
   status: CompanyStatus;
+  report_url: string | null;
+  country: string | null;
+  language: string | null;
+  pdf_url: string | null;
+  pdf_name: string | null;
   created_at: string;
   updated_at: string;
   tags?: Tag[];
@@ -31,6 +36,7 @@ export interface Contact {
   linkedin_url: string | null;
   status: ContactStatus;
   notes: string | null;
+  custom_fields: Record<string, string> | null;
   created_at: string;
   updated_at: string;
   company_name?: string;
@@ -50,6 +56,7 @@ export interface Sequence {
   name: string;
   description: string | null;
   is_active: number;
+  from_email: string | null;
   created_at: string;
   updated_at: string;
   steps_count?: number;
@@ -75,6 +82,8 @@ export interface ContactSequence {
   started_at: string;
   paused_at: string | null;
   completed_at: string | null;
+  deal_stage: string | null;
+  send_hour: number | null;
   contact_name?: string;
   contact_email?: string;
   company_name?: string;
@@ -92,6 +101,10 @@ export interface ContactSequenceEvent {
   sent_at: string | null;
   replied_at: string | null;
   notes: string | null;
+  open_count: number;
+  click_count: number;
+  opened_at: string | null;
+  clicked_at: string | null;
   step_order?: number;
   subject_template?: string | null;
   body_template?: string | null;
@@ -110,6 +123,32 @@ export interface Reminder {
   created_at: string;
   company_name?: string;
   contact_name?: string;
+}
+
+export interface Comment {
+  id: string;
+  contact_id: string;
+  body: string;
+  created_at: string;
+}
+
+export interface ExperimentVariant {
+  id: string;
+  label: 'A' | 'B';
+  sequence_id: string;
+  sequence_name: string;
+  enrolled: number;
+  sent: number;
+  replied: number;
+}
+
+export interface Experiment {
+  id: string;
+  name: string;
+  status: 'active' | 'ended';
+  created_at: string;
+  updated_at: string;
+  variants: ExperimentVariant[];
 }
 
 export interface DashboardStats {
@@ -134,8 +173,15 @@ export interface TodayTask {
   sequence_name?: string;
   event_id?: string;
   scheduled_date: string;
+  send_hour?: number | null;
   is_overdue: boolean;
   title?: string;
   description?: string;
   reminder_id?: string;
+}
+
+export interface ActivityItem {
+  type: 'email_sent' | 'email_opened' | 'email_clicked' | 'email_replied' | 'email_bounced' | 'email_skipped' | 'comment' | 'reminder';
+  date: string;
+  description: string;
 }
