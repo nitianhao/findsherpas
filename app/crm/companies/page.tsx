@@ -30,11 +30,11 @@ export default async function CompaniesPage({
         </div>
         <div className="flex items-center gap-2">
           <ExportButton type="companies" />
-          <Link href="/companies/import" className={buttonVariants({ variant: "outline" })}>
+          <Link href="/crm/companies/import" className={buttonVariants({ variant: "outline" })}>
             <Upload className="mr-2 h-4 w-4" />
             Import CSV
           </Link>
-          <Link href="/companies/new" className={buttonVariants()}>
+          <Link href="/crm/companies/new" className={buttonVariants()}>
             <Plus className="mr-2 h-4 w-4" />
             Add Company
           </Link>

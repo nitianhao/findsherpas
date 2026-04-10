@@ -20,7 +20,7 @@ export function ContactFilters() {
         params.delete(key);
       }
       params.delete("offset");
-      router.push(`/contacts?${params.toString()}`);
+      router.push(`/crm/contacts?${params.toString()}`);
     },
     [router, searchParams]
   );

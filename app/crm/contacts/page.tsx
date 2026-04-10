@@ -29,7 +29,7 @@ export default async function ContactsPage({
         </div>
         <div className="flex items-center gap-2">
           <ExportButton type="contacts" />
-          <Link href="/contacts/new" className={buttonVariants()}>
+          <Link href="/crm/contacts/new" className={buttonVariants()}>
             <Plus className="mr-2 h-4 w-4" />
             Add Contact
           </Link>

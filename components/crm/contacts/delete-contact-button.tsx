@@ -14,7 +14,7 @@ export function DeleteContactButton({ contactId }: { contactId: string }) {
     const res = await fetch(`/api/crm/contacts/${contactId}`, { method: "DELETE" });
     if (res.ok) {
       toast.success("Contact deleted");
-      router.push("/contacts");
+      router.push("/crm/contacts");
       router.refresh();
     } else {
       toast.error("Failed to delete contact");

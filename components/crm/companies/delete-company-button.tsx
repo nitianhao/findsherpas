@@ -14,7 +14,7 @@ export function DeleteCompanyButton({ companyId }: { companyId: string }) {
     const res = await fetch(`/api/crm/companies/${companyId}`, { method: "DELETE" });
     if (res.ok) {
       toast.success("Company deleted");
-      router.push("/companies");
+      router.push("/crm/companies");
       router.refresh();
     } else {
       toast.error("Failed to delete company");

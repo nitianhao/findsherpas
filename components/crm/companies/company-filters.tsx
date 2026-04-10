@@ -20,7 +20,7 @@ export function CompanyFilters() {
         params.delete(key);
       }
       params.delete("offset");
-      router.push(`/companies?${params.toString()}`);
+      router.push(`/crm/companies?${params.toString()}`);
     },
     [router, searchParams]
   );

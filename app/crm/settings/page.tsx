@@ -10,8 +10,7 @@ import { Upload, Database } from "lucide-react";
 
 export default async function SettingsPage() {
   const tags = await getTags();
-  const companyCount = getCompanyCount();
-  const contactCount = getContactCount();
+  const [companyCount, contactCount] = await Promise.all([getCompanyCount(), getContactCount()]);
 
   return (
     <div className="space-y-8 max-w-3xl">
@@ -37,7 +36,7 @@ export default async function SettingsPage() {
             <ExportButton type="companies" />
             <ExportButton type="contacts" />
             <Link
-              href="/companies/import"
+              href="/crm/companies/import"
               className={buttonVariants({ variant: "outline" })}
             >
               <Upload className="mr-2 h-4 w-4" />

@@ -16,7 +16,7 @@ export default async function SequencesPage() {
             {sequences.length} sequence{sequences.length !== 1 ? "s" : ""} total
           </p>
         </div>
-        <Link href="/sequences/new" className={buttonVariants()}>
+        <Link href="/crm/sequences/new" className={buttonVariants()}>
           <Plus className="mr-2 h-4 w-4" />
           Create Sequence
         </Link>
