@@ -10,8 +10,10 @@ import {
   Mail,
   CalendarCheck,
   Settings,
+  LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const navigation = [
   { name: "Dashboard", href: "/crm/dashboard", icon: LayoutDashboard },
@@ -24,6 +26,12 @@ const navigation = [
 
 export function CrmSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  async function handleLogout() {
+    await fetch("/api/crm/auth", { method: "DELETE" });
+    router.push("/crm/login");
+  }
 
   return (
     <aside className="fixed inset-y-0 left-0 z-50 w-64 border-r border-border/50 bg-background">
@@ -53,9 +61,18 @@ export function CrmSidebar() {
           );
         })}
       </nav>
-      <div className="absolute bottom-0 left-0 right-0 border-t border-border/50 p-4">
-        <p className="text-[11px] text-muted-foreground">findsherpas.com</p>
-        <p className="text-[11px] text-muted-foreground/60">Search audit & consultancy</p>
+      <div className="absolute bottom-0 left-0 right-0 border-t border-border/50 p-4 space-y-3">
+        <div>
+          <p className="text-[11px] text-muted-foreground">findsherpas.com</p>
+          <p className="text-[11px] text-muted-foreground/60">Search audit & consultancy</p>
+        </div>
+        <button
+          onClick={handleLogout}
+          className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-[13px] font-medium text-muted-foreground hover:bg-accent/60 hover:text-foreground transition-colors"
+        >
+          <LogOut className="h-4 w-4" />
+          Sign out
+        </button>
       </div>
     </aside>
   );
