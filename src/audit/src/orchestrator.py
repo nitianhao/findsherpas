@@ -22,6 +22,7 @@ from src.report_generator import (
     build_capability_scores,
     generate_report,
 )
+from src.html_renderer import save_html_report
 from src.sales_materials_generator import generate_sales_materials
 from src.scorer import score_results
 
@@ -195,12 +196,20 @@ def run_audit(
 
     md_file = out_path / f"{slug}_report.md"
     json_file = out_path / f"{slug}_data.json"
+    html_file = out_path / f"{slug}_report.html"
 
     md_file.write_text(report.deep_dive_narrative, encoding="utf-8")
     json_file.write_text(report.model_dump_json(indent=2), encoding="utf-8")
 
     print(f"\n  Saved: {md_file}")
     print(f"  Saved: {json_file}")
+
+    # ── HTML report (PDF-ready, styled via master_report.html template) ────
+    try:
+        save_html_report(report, html_file)
+        print(f"  Saved: {html_file}")
+    except Exception as e:
+        print(f"  [WARN] HTML report generation failed: {e}")
 
     # ── Sales materials (exec summary, brief, cold email) ──────────────────
     generate_sales_materials(report, out_path, slug)
