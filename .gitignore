@@ -50,3 +50,5 @@ data/
 # Synthetic Search audit outputs
 src/audit/reports/
 src/audit/.env
+src/audit/.venv/
+src/audit/src/__pycache__/
