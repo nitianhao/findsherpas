@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
         await markEventBounced(eventId);
       } else if (type === 'email.opened') {
         await markEventOpened(eventId);
-      } else if (type === 'email.link_clicked') {
+      } else if (type === 'email.link_clicked' || type === 'email.clicked') {
         await markEventClicked(eventId);
       }
     }
