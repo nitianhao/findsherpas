@@ -49,6 +49,17 @@ export async function POST(
       try { customFields = JSON.parse(contact.custom_fields as string); } catch { /* ignore */ }
     }
 
+    // Pull audit vars from the company record
+    const auditKeys = [
+      'score', 'cap_count', 'top3rate', 'outside3rate',
+      'worst_query', 'worst_pos', 'wrong_product',
+    ] as const;
+    const auditVars: Record<string, string> = {};
+    for (const k of auditKeys) {
+      const v = company?.[`audit_${k}`];
+      if (typeof v === 'string' && v.length > 0) auditVars[k] = v;
+    }
+
     const task: EmailTask & { custom_fields?: Record<string, string> | null } = {
       event_id: eventId,
       contact_name: contact.name ?? '',
@@ -63,6 +74,7 @@ export async function POST(
       scheduled_date: ev.scheduled_date ?? '',
       is_overdue: false,
       send_hour: null,
+      audit_vars: Object.keys(auditVars).length > 0 ? auditVars : null,
       custom_fields: customFields,
     };
 
@@ -114,6 +126,14 @@ export async function GET(
     };
 
     const vars = buildVars(task);
+    const auditKeys = [
+      'score', 'cap_count', 'top3rate', 'outside3rate',
+      'worst_query', 'worst_pos', 'wrong_product',
+    ] as const;
+    for (const k of auditKeys) {
+      const v = company?.[`audit_${k}`];
+      if (typeof v === 'string' && v.length > 0) vars[k] = v;
+    }
     if (customFields) Object.assign(vars, customFields);
 
     const subject = ev.step?.subject_template

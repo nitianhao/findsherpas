@@ -19,6 +19,14 @@ export interface Company {
   language: string | null;
   pdf_url: string | null;
   pdf_name: string | null;
+  audit_score: string | null;
+  audit_cap_count: string | null;
+  audit_top3rate: string | null;
+  audit_outside3rate: string | null;
+  audit_worst_query: string | null;
+  audit_worst_pos: string | null;
+  audit_wrong_product: string | null;
+  audit_run_at: string | null;
   created_at: string;
   updated_at: string;
   contacts_count?: number;

@@ -37,6 +37,14 @@ function mapCompany(c: Record<string, unknown> & { tags?: Array<Record<string, u
     language: (c.language as string | null) ?? null,
     pdf_url: (c.pdf_url as string | null) ?? null,
     pdf_name: (c.pdf_name as string | null) ?? null,
+    audit_score: (c.audit_score as string | null) ?? null,
+    audit_cap_count: (c.audit_cap_count as string | null) ?? null,
+    audit_top3rate: (c.audit_top3rate as string | null) ?? null,
+    audit_outside3rate: (c.audit_outside3rate as string | null) ?? null,
+    audit_worst_query: (c.audit_worst_query as string | null) ?? null,
+    audit_worst_pos: (c.audit_worst_pos as string | null) ?? null,
+    audit_wrong_product: (c.audit_wrong_product as string | null) ?? null,
+    audit_run_at: (c.audit_run_at as string | null) ?? null,
     created_at: (c.created_at as string) ?? now(),
     updated_at: (c.updated_at as string) ?? now(),
     contacts_count: (c.contacts ?? []).length,
@@ -164,6 +172,14 @@ interface CompanyUpdateData {
   report_url?: string | null;
   country?: string | null;
   language?: string | null;
+  audit_score?: string | null;
+  audit_cap_count?: string | null;
+  audit_top3rate?: string | null;
+  audit_outside3rate?: string | null;
+  audit_worst_query?: string | null;
+  audit_worst_pos?: string | null;
+  audit_wrong_product?: string | null;
+  audit_run_at?: string | null;
 }
 
 export async function updateCompany(companyId: string, data: CompanyUpdateData): Promise<Company> {

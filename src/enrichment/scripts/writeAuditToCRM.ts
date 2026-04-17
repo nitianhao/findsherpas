@@ -1,27 +1,32 @@
 /**
  * writeAuditToCRM.ts
  *
- * Reads a Synthetic Search _data.json audit report and writes the 6 key
- * personalization variables to the matching CRM contact's custom_fields.
+ * Reads a Synthetic Search _data.json audit report and writes the key
+ * personalization variables to the matching CRM company record.
+ *
+ * Audit variables live at the COMPANY level (one audit per company, shared
+ * across all contacts at that company) and are merged into email templates
+ * via lib/crm/template.ts at send time.
  *
  * Usage:
  *   npx tsx src/enrichment/scripts/writeAuditToCRM.ts \
- *     --contact-id <instantdb-contact-id> \
+ *     --company-id <instantdb-company-id> \
  *     --report <path/to/_data.json>
  *
- * Or to dry-run (print extracted vars without writing to CRM):
+ * Dry-run (print extracted vars without writing):
  *   npx tsx src/enrichment/scripts/writeAuditToCRM.ts \
  *     --report <path/to/_data.json> \
  *     --dry-run
  *
- * Variables written to custom_fields:
- *   score         — number of capabilities passing (e.g. "2")          → used as {{score}} in emails
- *   cap_count     — number of CRITICAL capability failures               → {{cap_count}}
- *   outside3rate  — % of queries where best result is NOT in top 3      → {{outside3rate}}
- *   top3rate      — % of queries where best result IS in top 3          → {{top3rate}}
- *   worst_query   — query string with the highest displacement           → {{worst_query}}
- *   worst_pos     — 1-indexed position of best result for worst query   → {{worst_pos}}
- *   wrong_product — title of result at position #1 for worst query      → {{wrong_product}}
+ * Fields written to the company:
+ *   audit_score         — number of capabilities passing (e.g. "2")   → {{score}}
+ *   audit_cap_count     — number of CRITICAL capability failures       → {{cap_count}}
+ *   audit_outside3rate  — % of queries where best result is NOT top 3  → {{outside3rate}}
+ *   audit_top3rate      — % of queries where best result IS top 3      → {{top3rate}}
+ *   audit_worst_query   — query string with the highest displacement   → {{worst_query}}
+ *   audit_worst_pos     — 1-indexed pos of best result for worst query → {{worst_pos}}
+ *   audit_wrong_product — title of result at position #1 for that q    → {{wrong_product}}
+ *   audit_run_at        — ISO timestamp of when this write happened
  */
 
 import * as fs from 'fs';
@@ -49,7 +54,7 @@ interface Judgment {
   test_query: { category: string; query: string; rationale: string };
   results: ScoredResult[];
   failure_mode: string;
-  severity: string;         // e.g. "Critical — ...", "Moderate — ...", "Pass"
+  severity: string;
   evidence: string;
   recommended_fix: string;
   displacement: number;
@@ -58,7 +63,7 @@ interface Judgment {
 
 interface CapabilityScore {
   capability: string;
-  severity: string;         // same format as judgment severity
+  severity: string;
   summary: string;
   judgments: Judgment[];
 }
@@ -71,57 +76,48 @@ interface AuditReport {
 }
 
 // ---------------------------------------------------------------------------
-// Extraction logic
+// Extraction
 // ---------------------------------------------------------------------------
 
 interface AuditVars {
-  score: string;        // "2" (capabilities passing out of 6)
-  cap_count: string;    // "3" (critical capability failures)
-  outside3rate: string; // "62" (% as integer string, no % sign)
-  top3rate: string;     // "38"
-  worst_query: string;  // "waterproof jacket"
-  worst_pos: string;    // "15"
-  wrong_product: string; // "Adidas Performance ULTRABOOST 5"
+  score: string;
+  cap_count: string;
+  outside3rate: string;
+  top3rate: string;
+  worst_query: string;
+  worst_pos: string;
+  wrong_product: string;
 }
 
 function extractVars(report: AuditReport): AuditVars {
   const capabilities = report.capability_scores;
 
-  // score: capabilities where severity starts with "Pass" (case-insensitive)
   const passing = capabilities.filter(c =>
     c.severity.toLowerCase().startsWith('pass')
   ).length;
 
-  // cap_count: capabilities where severity starts with "Critical"
   const critical = capabilities.filter(c =>
     c.severity.toLowerCase().startsWith('critical')
   ).length;
 
-  // Flatten all judgments across all capabilities
   const allJudgments: Judgment[] = capabilities.flatMap(c => c.judgments);
-
   if (allJudgments.length === 0) {
     throw new Error('No judgments found in report — is this a complete audit?');
   }
 
-  // outside3rate / top3rate: displacement > 2 means best result is NOT in top 3
   const outsideTop3 = allJudgments.filter(j => j.displacement > 2).length;
   const outside3rate = Math.round((outsideTop3 / allJudgments.length) * 100);
   const top3rate = 100 - outside3rate;
 
-  // worst_query: judgment with highest displacement that has actual results
-  // (some queries produce zero results — skip those for wrong_product extraction)
   const withResults = allJudgments.filter(j => j.results.length > 0);
   const pool = withResults.length > 0 ? withResults : allJudgments;
-  const worst = pool.reduce((a, b) =>
-    b.displacement > a.displacement ? b : a
+  const worst = pool.reduce((a, b) => (b.displacement > a.displacement ? b : a));
+
+  const worstPos = worst.displacement + 1;
+
+  const sortedByOriginal = [...worst.results].sort(
+    (a, b) => a.original_rank - b.original_rank
   );
-
-  const worstPos = worst.displacement + 1; // displacement is 0-indexed from position 1
-
-  // wrong_product: title of result at position #1 in the original SERP for worst query
-  // Results are stored by relevance order so we pick the one with lowest original_rank
-  const sortedByOriginal = [...worst.results].sort((a, b) => a.original_rank - b.original_rank);
   const wrongProduct = sortedByOriginal[0]?.title ?? 'n/a';
 
   return {
@@ -146,17 +142,19 @@ function parseArgs() {
     return i !== -1 ? args[i + 1] : undefined;
   };
   return {
-    contactId: get('--contact-id'),
+    companyId: get('--company-id'),
     reportPath: get('--report'),
     dryRun: args.includes('--dry-run'),
   };
 }
 
 async function main() {
-  const { contactId, reportPath, dryRun } = parseArgs();
+  const { companyId, reportPath, dryRun } = parseArgs();
 
   if (!reportPath) {
-    console.error('Usage: npx tsx writeAuditToCRM.ts --report <path> [--contact-id <id>] [--dry-run]');
+    console.error(
+      'Usage: npx tsx writeAuditToCRM.ts --report <path> [--company-id <id>] [--dry-run]'
+    );
     process.exit(1);
   }
 
@@ -178,8 +176,10 @@ async function main() {
   console.log(`  {{worst_pos}}     = #${vars.worst_pos}`);
   console.log(`  {{wrong_product}} = "${vars.wrong_product}"`);
 
-  if (dryRun || !contactId) {
-    if (!contactId) console.log('\n--contact-id not provided. Use --dry-run to suppress this message.');
+  if (dryRun || !companyId) {
+    if (!companyId) {
+      console.log('\n--company-id not provided. Use --dry-run to suppress this message.');
+    }
     console.log('\nDry run — nothing written to CRM.');
     return;
   }
@@ -189,26 +189,30 @@ async function main() {
     adminToken: process.env.INSTANT_APP_ADMIN_TOKEN!,
   });
 
-  // Read existing custom_fields first so we don't overwrite unrelated keys
-  const data = await db.query({ contacts: { $: { where: { id: contactId } } } });
+  const data = await db.query({ companies: { $: { where: { id: companyId } } } });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const contact = (data.contacts as any[])[0];
-  if (!contact) {
-    console.error(`Contact not found: ${contactId}`);
+  const company = (data.companies as any[])[0];
+  if (!company) {
+    console.error(`Company not found: ${companyId}`);
     process.exit(1);
   }
 
-  const existing = (contact.custom_fields as Record<string, string> | null) ?? {};
-  const merged = { ...existing, ...vars };
-
+  const now = new Date().toISOString();
   await db.transact(
-    db.tx.contacts[contactId].update({
-      custom_fields: merged,
-      updated_at: new Date().toISOString(),
+    db.tx.companies[companyId].update({
+      audit_score: vars.score,
+      audit_cap_count: vars.cap_count,
+      audit_top3rate: vars.top3rate,
+      audit_outside3rate: vars.outside3rate,
+      audit_worst_query: vars.worst_query,
+      audit_worst_pos: vars.worst_pos,
+      audit_wrong_product: vars.wrong_product,
+      audit_run_at: now,
+      updated_at: now,
     })
   );
 
-  console.log(`\nWritten to contact: ${contact.name ?? contactId}`);
+  console.log(`\nWritten to company: ${company.name ?? companyId}`);
 }
 
 main().catch(err => {

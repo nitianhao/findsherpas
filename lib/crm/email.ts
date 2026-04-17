@@ -29,6 +29,7 @@ export async function sendCrmEmail(task: EmailTask & { custom_fields?: Record<st
   if (!task.contact_email) throw new Error('Contact has no email address');
 
   const vars = buildVars(task);
+  if (task.audit_vars) Object.assign(vars, task.audit_vars);
   if (task.custom_fields) Object.assign(vars, task.custom_fields);
 
   if (process.env.UNSUBSCRIBE_SECRET && task.contact_id) {

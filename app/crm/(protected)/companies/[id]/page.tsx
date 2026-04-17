@@ -176,6 +176,37 @@ export default async function CompanyDetailPage({
             </Card>
           )}
 
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-sm font-medium">
+                Search Audit Variables
+                {company.audit_run_at && (
+                  <span className="ml-2 text-xs font-normal text-muted-foreground">
+                    (last run {new Date(company.audit_run_at).toLocaleString()})
+                  </span>
+                )}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+              {[
+                { key: "score", label: "{{score}}", value: company.audit_score, suffix: " / 6 capabilities passing" },
+                { key: "cap_count", label: "{{cap_count}}", value: company.audit_cap_count, suffix: " critical failures" },
+                { key: "top3rate", label: "{{top3rate}}", value: company.audit_top3rate, suffix: "%" },
+                { key: "outside3rate", label: "{{outside3rate}}", value: company.audit_outside3rate, suffix: "%" },
+                { key: "worst_query", label: "{{worst_query}}", value: company.audit_worst_query, suffix: "" },
+                { key: "worst_pos", label: "{{worst_pos}}", value: company.audit_worst_pos ? `#${company.audit_worst_pos}` : null, suffix: "" },
+                { key: "wrong_product", label: "{{wrong_product}}", value: company.audit_wrong_product, suffix: "", wide: true },
+              ].map((v) => (
+                <div key={v.key} className={v.wide ? "col-span-2 flex justify-between gap-4" : "flex justify-between gap-4"}>
+                  <span className="font-mono text-xs text-muted-foreground">{v.label}</span>
+                  <span className={v.value ? "text-right" : "text-right italic text-muted-foreground"}>
+                    {v.value ? `${v.value}${v.suffix}` : "not set"}
+                  </span>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
           <CompanyPDF
             companyId={company.id}
             initialPdfUrl={company.pdf_url}
