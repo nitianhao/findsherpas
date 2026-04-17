@@ -46,6 +46,7 @@ export async function sendCrmEmail(task: EmailTask & { custom_fields?: Record<st
   const sendOpts: Parameters<typeof resend.emails.send>[0] = {
     from,
     to: task.contact_email,
+    replyTo: 'michal@findsherpas.com',
     subject,
     text: body,
   };
