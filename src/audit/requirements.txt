@@ -1,0 +1,11 @@
+anthropic
+beautifulsoup4
+jinja2
+pydantic
+python-docx
+python-dotenv
+requests
+voyageai
+# Optional: uncomment for JS-rendered page support
+# playwright
+# playwright-stealth  # Enhanced anti-detection for Playwright (recommended with playwright)

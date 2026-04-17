@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Audit Report: {{ site_name }}</title>
+<style>
+/* ============================================================
+   FIND SHERPAS — Prism Audit Report
+   Tokens extracted from findsherpas.com compiled CSS
+   ============================================================ */
+
+:root {
+  /* Core palette — exact findsherpas.com values */
+  --primary: #009ba3;
+  --primary-fg: #fafafa;
+  --bg: #ffffff;
+  --fg: #0a0a0a;
+  --muted: #737373;
+  --border: #e5e5e5;
+  --accent: #dcf8fa;
+  --secondary: #f5f5f5;
+  --destructive: #e40014;
+  --radius: 0.75rem;
+
+  /* Severity — using site's semantic + Tailwind scale */
+  --sev-critical: #e40014;
+  --sev-moderate: #dd7400;
+  --sev-minor: #009767;
+  --sev-pass: #009ba3;
+
+  /* Severity pastel backgrounds — site's Tailwind 50-level */
+  --sev-critical-bg: #fef2f2;
+  --sev-moderate-bg: #fffbeb;
+  --sev-minor-bg: #ecfdf5;
+  --sev-pass-bg: #dcf8fa;
+
+  /* Chart palette — exact site values */
+  --chart-1: #f05100;
+  --chart-2: #009588;
+  --chart-3: #104e64;
+  --chart-4: #fcbb00;
+  --chart-5: #f99c00;
+
+  /* Surfaces & elevation */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 2px 6px rgba(0,0,0,0.06);
+  --surface-raised: #ffffff;
+  --surface-sunken: #fafafa;
+
+  /* Primary at low opacity — for subtle section tints (matches site usage) */
+  --tint-subtle: rgba(0, 155, 163, 0.03);
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--fg);
+  background: var(--surface-sunken);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Layout ---- */
+.page-wrapper {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+section {
+  padding: 44px 44px;
+  background: var(--bg);
+}
+
+/* Alternate surface sections */
+section.surface-alt {
+  background: var(--bg);
+}
+
+/* Light separator between sections — only at structural boundaries */
+section + section {
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Stronger border before major new sections (page-break points) */
+section.section-break-before {
+  border-top: 1px solid var(--border);
+}
+
+h1, h2, h3, h4 {
+  color: var(--fg);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: 2.125rem; }
+h2 { font-size: 1.375rem; margin-bottom: 18px; }
+h3 { font-size: 1.125rem; margin-bottom: 12px; }
+h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+
+p {
+  margin-bottom: 14px;
+  max-width: 66ch;
+}
+
+strong { font-weight: 600; }
+
+/* ---- Cover ---- */
+.cover {
+  background: var(--bg);
+  color: var(--fg);
+  padding: 64px 44px 52px;
+  text-align: left;
+  min-height: 38vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-bottom: 1px solid var(--border);
+}
+
+.cover-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 44px;
+}
+
+.cover-logo svg {
+  width: 28px;
+  height: 28px;
+}
+
+.cover-logo span {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+.cover h1 {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.cover .cover-site-name {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.cover-meta {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.cover-meta .prism-badge {
+  display: inline-block;
+  background: var(--secondary);
+  color: var(--muted);
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-left: 8px;
+}
+
+/* ---- Section label ---- */
+.section-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* ---- Stat cards ---- */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.stat-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  box-shadow: var(--shadow-sm);
+  border-top: 2px solid var(--border);
+  position: relative;
+}
+
+.stat-card:has(.stat-value.bad) { border-top-color: var(--sev-critical); }
+.stat-card:has(.stat-value.warn) { border-top-color: var(--sev-moderate); }
+.stat-card:has(.stat-value.good) { border-top-color: var(--sev-pass); }
+
+.stat-card .stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--fg);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.stat-card .stat-value.bad { color: var(--sev-critical); }
+.stat-card .stat-value.warn { color: var(--sev-moderate); }
+.stat-card .stat-value.good { color: var(--sev-pass); }
+
+.stat-card .stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+/* ---- Scorecard table ---- */
+.scorecard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.scorecard-table th {
+  text-align: left;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 10px 18px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.scorecard-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  vertical-align: middle;
+}
+
+.scorecard-table tr:last-child td {
+  border-bottom: none;
+}
+
+.severity-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 7px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.severity-dot.critical { background: var(--sev-critical); }
+.severity-dot.moderate { background: var(--sev-moderate); }
+.severity-dot.minor { background: var(--sev-minor); }
+.severity-dot.pass { background: var(--sev-pass); }
+
+.severity-label {
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+}
+
+.severity-label.critical { color: var(--sev-critical); }
+.severity-label.moderate { color: var(--sev-moderate); }
+.severity-label.minor { color: var(--sev-minor); }
+.severity-label.pass { color: var(--sev-pass); }
+
+.scorecard-capability {
+  font-weight: 600;
+  color: var(--fg);
+  font-size: 0.9rem;
+}
+
+.scorecard-summary {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+/* ---- Stats summary ---- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.stats-grid > div {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.stats-grid > div > h4 {
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+  color: var(--fg);
+}
+
+.stats-mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.stats-mini-table th {
+  text-align: left;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-mini-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.stats-mini-table tr:last-child td {
+  border-bottom: none;
+}
+
+.metric-list {
+  list-style: none;
+  margin: 28px 0 8px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px 20px;
+}
+
+.metric-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.metric-list li:last-child {
+  border-bottom: none;
+}
+
+.metric-list .metric-val {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+  font-feature-settings: "tnum";
+}
+
+/* ---- Deep dives ---- */
+.capability-section {
+  margin-bottom: 48px;
+}
+
+.capability-section:last-child {
+  margin-bottom: 0;
+}
+
+.capability-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 0 0 12px;
+  background: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.capability-section h3 .severity-dot {
+  margin-right: 4px;
+}
+
+.capability-intro {
+  color: var(--muted);
+  margin-bottom: 24px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.query-example {
+  margin-bottom: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.query-header {
+  background: var(--bg);
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.query-header .query-text {
+  font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+.query-header .query-category {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.query-header .query-category .severity-label {
+  font-size: 0.7rem;
+}
+
+.query-body {
+  padding: 22px;
+}
+
+.query-body .narrative {
+  font-size: 0.875rem;
+  margin-bottom: 22px;
+  color: var(--fg);
+  line-height: 1.65;
+  max-width: 64ch;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.comparison-col h4 {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  padding-bottom: 0;
+}
+
+.comparison-col.actual h4 { color: var(--muted); }
+.comparison-col.ideal h4 { color: var(--muted); }
+
+.comparison-col.actual {
+  background: var(--bg);
+  border-radius: 0;
+  padding: 18px 20px;
+  border: none;
+}
+
+.comparison-col.ideal {
+  background: var(--bg);
+  border-radius: 0;
+  padding: 18px 20px;
+  border: none;
+}
+
+.comparison-col ol {
+  list-style: none;
+  counter-reset: item;
+  font-size: 0.8125rem;
+}
+
+.comparison-col ol li {
+  counter-increment: item;
+  padding: 4px 0;
+  line-height: 1.5;
+}
+
+.comparison-col ol li::before {
+  content: counter(item) ".";
+  font-weight: 600;
+  font-size: 0.75rem;
+  margin-right: 5px;
+  font-feature-settings: "tnum";
+}
+
+.comparison-col.actual ol li::before { color: var(--muted); }
+.comparison-col.ideal ol li::before { color: var(--muted); }
+
+.displacement-note {
+  font-size: 0.8125rem;
+  color: var(--fg);
+  margin-top: 18px;
+  padding: 10px 14px;
+  font-weight: 500;
+  font-style: normal;
+  background: var(--sev-critical-bg);
+  border-left: 2px solid var(--sev-critical);
+  border-radius: 0 4px 4px 0;
+  line-height: 1.5;
+}
+
+/* ---- What's Working ---- */
+.whats-working-list {
+  list-style: none;
+}
+
+.whats-working-list li {
+  padding: 14px 20px 14px 36px;
+  margin-bottom: 0;
+  background: var(--bg);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-radius: 0;
+  font-size: 0.875rem;
+  position: relative;
+  line-height: 1.65;
+}
+
+.whats-working-list li:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.whats-working-list li:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.whats-working-list li::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 21px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sev-pass);
+}
+
+/* ---- Roadmap ---- */
+.roadmap-item {
+  display: flex;
+  gap: 18px;
+  padding: 20px 22px;
+  margin-bottom: 10px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  align-items: flex-start;
+}
+
+.roadmap-item:last-child {
+  margin-bottom: 0;
+}
+
+.roadmap-number {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.roadmap-content {
+  flex: 1;
+}
+
+.roadmap-content h4 {
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.roadmap-content p {
+  font-size: 0.84rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+.badge.impact-critical { background: var(--sev-critical-bg); color: var(--sev-critical); }
+.badge.impact-high { background: var(--sev-moderate-bg); color: var(--sev-moderate); }
+.badge.impact-moderate { background: var(--secondary); color: var(--muted); }
+.badge.effort-quick { background: var(--sev-minor-bg); color: var(--sev-minor); }
+.badge.effort-medium { background: var(--sev-moderate-bg); color: var(--sev-moderate); }
+.badge.effort-major { background: var(--sev-critical-bg); color: var(--sev-critical); }
+
+/* ---- Benchmarks ---- */
+.benchmark-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.benchmark-table th {
+  text-align: left;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 10px 18px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.benchmark-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  font-size: 0.875rem;
+}
+
+.benchmark-table tr:last-child td {
+  border-bottom: none;
+}
+
+.benchmark-table .your-score {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  font-feature-settings: "tnum";
+}
+
+.benchmark-table .your-score.below {
+  color: var(--sev-critical);
+}
+
+.benchmark-table .your-score.meets {
+  color: var(--sev-minor);
+}
+
+.benchmark-table .target {
+  color: var(--muted);
+  font-weight: 600;
+  font-feature-settings: "tnum";
+}
+
+.benchmark-table .source {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.callout {
+  background: var(--surface-raised);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin: 28px 0;
+}
+
+.callout p {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  line-height: 1.65;
+}
+
+.callout p:last-child {
+  margin-bottom: 0;
+}
+
+.callout strong {
+  color: var(--fg);
+  font-weight: 700;
+}
+
+/* ---- Methodology ---- */
+.pipeline-steps {
+  list-style: none;
+  counter-reset: step;
+  position: relative;
+  padding-left: 0;
+}
+
+/* Vertical connector line */
+.pipeline-steps::before {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 28px;
+  bottom: 28px;
+  width: 1px;
+  background: var(--border);
+}
+
+.pipeline-step {
+  counter-increment: step;
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+  align-items: flex-start;
+  position: relative;
+}
+
+.pipeline-step:last-child {
+  padding-bottom: 0;
+}
+
+.pipeline-step:first-child {
+  padding-top: 0;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 3px var(--bg);
+}
+
+.step-content {
+  padding-top: 2px;
+}
+
+.step-content h4 {
+  margin-bottom: 3px;
+  font-size: 0.9rem;
+}
+
+.step-content p {
+  font-size: 0.84rem;
+  color: var(--muted);
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* ---- Appendix table ---- */
+.appendix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  margin: 20px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.appendix-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.appendix-table th {
+  text-align: left;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 9px 14px;
+  background: var(--bg);
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.appendix-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  vertical-align: middle;
+  color: var(--fg);
+}
+
+.appendix-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.appendix-table .query-col {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+/* Severity column in appendix */
+.appendix-table td:nth-child(4) {
+  font-weight: 600;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+/* Best position column */
+.appendix-table td:nth-child(5) {
+  font-weight: 600;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-feature-settings: "tnum";
+}
+
+/* Row number column */
+.appendix-table td:nth-child(1) {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-feature-settings: "tnum";
+}
+
+/* Category column */
+.appendix-table td:nth-child(3) {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+/* Failure mode column */
+.appendix-table td:nth-child(6) {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+/* ---- CTA ---- */
+.cta-section {
+  text-align: left;
+  padding: 48px 44px;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.cta-section h2 {
+  margin-bottom: 10px;
+  color: var(--fg);
+  font-size: 1.125rem;
+}
+
+.cta-section p {
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0 0 20px;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--fg);
+  color: var(--primary-fg);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 10px 26px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+/* Footer branding after CTA */
+.report-footer {
+  text-align: left;
+  padding: 24px 44px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* ---- Scorecard result line ---- */
+.scorecard-result {
+  background: var(--surface-raised);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 18px 24px;
+  margin-top: 24px;
+  font-weight: 600;
+  text-align: left;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 720px) {
+  section {
+    padding: 32px 24px;
+  }
+
+  .cover {
+    padding: 44px 24px 36px;
+    min-height: 32vh;
+  }
+
+  .cover .cover-site-name {
+    font-size: 1.5rem;
+  }
+
+  .stat-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .stat-card .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .comparison-col {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-col:last-child {
+    border-bottom: none;
+  }
+
+  .scorecard-table th:nth-child(3),
+  .scorecard-table td:nth-child(3) {
+    display: none;
+  }
+
+  h2 { font-size: 1.25rem; }
+
+  .cta-section,
+  .report-footer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .pipeline-steps::before {
+    left: 13px;
+  }
+
+  .query-body {
+    padding: 18px;
+  }
+
+  .query-header {
+    padding: 14px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 24px 18px;
+  }
+
+  .cover {
+    padding: 32px 18px 28px;
+  }
+
+  .cover .cover-site-name {
+    font-size: 1.35rem;
+  }
+
+  .stat-row {
+    grid-template-columns: 1fr;
+  }
+
+  .roadmap-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .roadmap-number {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+  }
+
+  .appendix-table {
+    font-size: 0.72rem;
+  }
+
+  .appendix-table td,
+  .appendix-table th {
+    padding: 7px 8px;
+  }
+
+  .cta-section {
+    padding: 32px 18px;
+  }
+
+  .whats-working-list li {
+    padding-left: 30px;
+  }
+
+  .whats-working-list li::before {
+    left: 12px;
+  }
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  @page {
+    size: A4;
+    margin: 18mm 15mm 22mm 15mm;
+  }
+
+  body {
+    font-size: 10.5pt;
+    line-height: 1.5;
+    background: #ffffff;
+  }
+
+  .page-wrapper {
+    max-width: none;
+    padding: 0;
+  }
+
+  section {
+    padding: 28px 0;
+    background: #ffffff;
+    border-top: none;
+  }
+
+  /* ---- Cover: full-page title ---- */
+  .cover {
+    page-break-after: always;
+    min-height: 100vh;
+    margin: -18mm -15mm 0 -15mm;
+    padding: 60px 40px 60px 40px;
+    width: calc(100% + 30mm);
+    background: #ffffff;
+    border-bottom: none;
+  }
+
+  .cover .cover-site-name {
+    font-size: 2rem;
+  }
+
+  /* ---- Page breaks ---- */
+  .section-break-before { page-break-before: always; }
+
+  /* Keep these together */
+  .query-example,
+  .roadmap-item,
+  .stat-row,
+  .stat-card,
+  .scorecard-table tr,
+  .benchmark-table tr,
+  .pipeline-step,
+  .whats-working-list li,
+  .callout,
+  .displacement-note { page-break-inside: avoid; }
+
+  /* Don't orphan headings */
+  h2, h3, h4 { page-break-after: avoid; }
+  .section-label { page-break-after: avoid; }
+  .capability-section h3 { page-break-after: avoid; }
+
+  /* ---- Flatten visual effects for paper ---- */
+  .cta-button { display: none; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* Remove all shadows */
+  .query-example,
+  .callout,
+  .roadmap-item,
+  .stats-grid > div,
+  .metric-list,
+  .scorecard-table,
+  .benchmark-table,
+  .appendix-table,
+  .stat-card,
+  .step-number {
+    box-shadow: none !important;
+  }
+
+  /* ---- Stat cards ---- */
+  .stat-row { gap: 8px; }
+  .stat-card { padding: 10px 12px; }
+  .stat-card .stat-value { font-size: 1.15rem; }
+
+  /* ---- Deep-dive components ---- */
+  .comparison {
+    gap: 1px;
+    background: #e5e5e5;
+  }
+  .comparison-col {
+    padding: 12px 14px;
+    background: #ffffff;
+  }
+  .query-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .query-body {
+    padding: 16px;
+  }
+  .displacement-note {
+    background: #fef2f2;
+    border-left-color: #e40014;
+  }
+  .capability-section h3 {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  /* ---- Tables ---- */
+  .scorecard-table td,
+  .benchmark-table td,
+  .stats-mini-table td {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .scorecard-table th,
+  .benchmark-table th,
+  .stats-mini-table th {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  /* ---- Appendix ---- */
+  .appendix-table thead { position: static; }
+  .appendix-table th {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .appendix-table td {
+    border-bottom: 1px solid #ebebeb;
+  }
+
+  /* ---- Metric list ---- */
+  .metric-list li {
+    border-bottom-color: #e5e5e5;
+  }
+
+  /* ---- Roadmap ---- */
+  .roadmap-item {
+    padding: 14px 16px;
+  }
+  .roadmap-number {
+    box-shadow: none;
+  }
+
+  /* ---- What's Working ---- */
+  .whats-working-list li {
+    border-bottom-color: #e5e5e5;
+  }
+  .whats-working-list li:first-child {
+    border-top-color: #e5e5e5;
+  }
+
+  /* ---- Methodology ---- */
+  .pipeline-steps::before {
+    background: #e5e5e5;
+  }
+  .step-number {
+    box-shadow: 0 0 0 3px #ffffff;
+    background: #ffffff;
+    border-color: #e5e5e5;
+  }
+
+  /* ---- Callout / scorecard result ---- */
+  .callout {
+    background: #ffffff;
+    border-color: #e5e5e5;
+    border-left-color: #009ba3;
+  }
+  .scorecard-result {
+    background: #ffffff;
+    border-color: #e5e5e5;
+    border-left-color: #009ba3;
+  }
+
+  /* ---- CTA + footer ---- */
+  .cta-section {
+    background: #ffffff;
+    padding: 28px 0;
+  }
+  .report-footer {
+    background: #ffffff;
+    border-top: 1px solid #ebebeb;
+    padding: 14px 0;
+  }
+
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ================ COVER ================ -->
+  <div class="cover">
+    <div class="cover-logo">
+      {{ logo_svg }}
+      <span>Find Sherpas</span>
+    </div>
+    <h1>Search Audit Report</h1>
+    <div class="cover-site-name">{{ site_name }}</div>
+    <div class="cover-meta">
+      {{ date }} <span class="prism-badge">Powered by {{ pipeline_name }}</span>
+    </div>
+  </div>
+
+  <!-- ================ EXECUTIVE SUMMARY ================ -->
+  <section>
+    <div class="section-label">Executive Summary</div>
+    <h2>{{ site_name }}'s search performed well on {{ stats.pass_count }} of {{ stats.total_capabilities }} capabilities.</h2>
+
+    <p>We tested {{ stats.total_queries }} realistic customer queries across {{ stats.total_capabilities }} core search capabilities.
+    {% if stats.pass_count == 0 %}No capability passed all tests.{% endif %}</p>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-value bad">{{ stats.pass_count }}/{{ stats.total_capabilities }}</div>
+        <div class="stat-label">Capabilities passed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value {% if stats.avg_best_position_num > 3 %}bad{% elif stats.avg_best_position_num > 2 %}warn{% else %}good{% endif %}">#{{ stats.avg_best_position }}</div>
+        <div class="stat-label">Avg. best result position</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value {% if stats.pct_top3_irrelevant_num > 30 %}bad{% elif stats.pct_top3_irrelevant_num > 15 %}warn{% else %}good{% endif %}">{{ stats.pct_top3_irrelevant }}%</div>
+        <div class="stat-label">Best result outside top 3</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value {% if stats.pct_top1_irrelevant_num > 20 %}bad{% elif stats.pct_top1_irrelevant_num > 10 %}warn{% else %}good{% endif %}">{{ stats.pct_top1_irrelevant }}%</div>
+        <div class="stat-label">Irrelevant #1 result</div>
+      </div>
+    </div>
+
+    <p style="color: var(--muted); font-size: 0.9rem;">
+      The most severe example: a customer searching <strong>"{{ stats.worst_query }}"</strong>
+      had to scroll to position #{{ stats.worst_displacement }} to find the best matching result.
+    </p>
+  </section>
+
+  <!-- ================ SCORECARD ================ -->
+  <section>
+    <div class="section-label">Capability Scorecard</div>
+    <h2>Capabilities tested: {{ capability_scores|length }}</h2>
+
+    <table class="scorecard-table">
+      <thead>
+        <tr>
+          <th style="width: 100px;">Status</th>
+          <th>Capability</th>
+          <th>Summary</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cs in capability_scores %}
+        <tr>
+          <td>
+            <span class="severity-dot {{ cs.severity_class }}"></span>
+            <span class="severity-label {{ cs.severity_class }}">{{ cs.severity_short }}</span>
+          </td>
+          <td class="scorecard-capability">{{ cs.capability_name }}</td>
+          <td class="scorecard-summary">{{ cs.summary }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="scorecard-result">
+      Your search performed well on {{ stats.pass_count }} of {{ stats.total_capabilities }} capabilities.
+    </div>
+  </section>
+
+  <!-- ================ TEST RESULTS SUMMARY ================ -->
+  <section class="surface-alt">
+    <div class="section-label">{{ pipeline_name }} Test Results</div>
+    <h2>{{ stats.total_queries }} queries tested</h2>
+
+    <div class="stats-grid">
+      <div>
+        <h4>Severity Distribution</h4>
+        <table class="stats-mini-table">
+          <thead><tr><th>Severity</th><th style="text-align:right">Queries</th></tr></thead>
+          <tbody>
+            <tr><td><span class="severity-dot critical"></span> Critical</td><td style="text-align:right"><strong>{{ stats.critical_count }}</strong></td></tr>
+            <tr><td><span class="severity-dot moderate"></span> Moderate</td><td style="text-align:right"><strong>{{ stats.moderate_count }}</strong></td></tr>
+            <tr><td><span class="severity-dot minor"></span> Minor</td><td style="text-align:right"><strong>{{ stats.minor_count }}</strong></td></tr>
+            <tr><td><span class="severity-dot pass"></span> Pass</td><td style="text-align:right"><strong>{{ stats.pass_count_queries }}</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Failure Mode Breakdown</h4>
+        <table class="stats-mini-table">
+          <thead><tr><th>Failure Mode</th><th style="text-align:right">Queries</th></tr></thead>
+          <tbody>
+            {% for fm in failure_modes %}
+            <tr><td>{{ fm.name }}</td><td style="text-align:right"><strong>{{ fm.count }}</strong></td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <ul class="metric-list">
+      <li><span class="metric-val">#{{ stats.avg_best_position }}</span> average best result position</li>
+      <li><span class="metric-val">{{ stats.pct_retrieval_ok }}%</span> of queries: retrieval OK but ranking failed ({{ stats.retrieval_ok_count }} of {{ stats.total_queries }})</li>
+      <li><span class="metric-val">{{ stats.pct_top3_irrelevant }}%</span> of queries had their best result outside the top 3</li>
+      <li><span class="metric-val">{{ stats.pct_top1_irrelevant }}%</span> of queries showed an irrelevant result in the top position</li>
+    </ul>
+  </section>
+
+  <!-- ================ DEEP DIVES ================ -->
+  <section class="section-break-before">
+    <div class="section-label">Detailed Analysis</div>
+    {% for cap in deep_dives %}
+    <div class="capability-section">
+      <h3>
+        <span class="severity-dot {{ cap.severity_class }}"></span>
+        {{ cap.capability_name }}
+      </h3>
+
+      {% for query in cap.queries %}
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"{{ query.query }}"</div>
+          <div class="query-category">{{ query.category }} &middot;
+            <span class="severity-label {{ query.severity_class }}">{{ query.severity_short }}</span>
+            &middot; Best result at position #{{ query.best_position }}
+          </div>
+        </div>
+        <div class="query-body">
+          {% if query.evidence %}
+          <p class="narrative">{{ query.evidence }}</p>
+          {% endif %}
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                {% for r in query.actual_top %}
+                <li>{{ r.title }}{% if r.price %} <span style="color: var(--muted);">({{ r.price }})</span>{% endif %}</li>
+                {% endfor %}
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                {% for r in query.ideal_top %}
+                <li>{{ r.title }}{% if r.price %} <span style="color: var(--muted);">({{ r.price }})</span>{% endif %}</li>
+                {% endfor %}
+              </ol>
+            </div>
+          </div>
+          {% if query.displacement > 2 %}
+          <p class="displacement-note">Best match was buried at position #{{ query.best_position }}.</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </section>
+
+  <!-- ================ WHAT'S WORKING ================ -->
+  <section class="surface-alt">
+    <div class="section-label">Positive Findings</div>
+    <h2>What's Working</h2>
+    <ul class="whats-working-list">
+      {% for item in whats_working %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <!-- ================ ROADMAP ================ -->
+  <section class="section-break-before">
+    <div class="section-label">Recommendations</div>
+    <h2>Prioritized Roadmap</h2>
+
+    {% for item in roadmap_items %}
+    <div class="roadmap-item">
+      <div class="roadmap-number">{{ loop.index }}</div>
+      <div class="roadmap-content">
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.description }}</p>
+        <div>
+          {% if item.impact %}
+          <span class="badge impact-{{ item.impact_class }}">{{ item.impact }}</span>
+          {% endif %}
+          {% if item.effort %}
+          <span class="badge effort-{{ item.effort_class }}">{{ item.effort }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+
+  <!-- ================ BENCHMARKS ================ -->
+  <section class="section-break-before">
+    <div class="section-label">Industry Context</div>
+    <h2>How You Compare</h2>
+
+    <table class="benchmark-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Your Score</th>
+          <th>Industry Target</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for b in benchmarks %}
+        <tr>
+          <td>{{ b.metric }}</td>
+          <td class="your-score {{ b.score_class }}">{{ b.your_score }}</td>
+          <td class="target">{{ b.target }}</td>
+          <td class="source">{{ b.source }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p><strong>70% of ecommerce sites cannot handle typos</strong> in their site search (Baymard Institute). Sites that do handle them gain a significant edge.</p>
+      <p><strong>~30% of ecommerce visitors use site search</strong>, but they generate a disproportionate share of revenue &mdash; search users convert at <strong>1.8&ndash;3x the rate</strong> of browse-only visitors (Econsultancy, Algolia).</p>
+      <p><strong>31% of site searches end at a dead end</strong> &mdash; irrelevant results or zero results &mdash; across the average ecommerce site (Baymard Institute).</p>
+      <p>The top 3 results capture <strong>~55&ndash;60% of all clicks</strong>. Results below position 3 are seen by a rapidly shrinking share of customers.</p>
+    </div>
+  </section>
+
+  <!-- ================ METHODOLOGY ================ -->
+  <section class="surface-alt">
+    <div class="section-label">How We Did It</div>
+    <h2>The {{ pipeline_name }} Audit Pipeline</h2>
+
+    <p style="color: var(--muted); margin-bottom: 24px;">
+      This audit was conducted using our {{ pipeline_name }} pipeline &mdash; a seven-phase automated search quality assessment.
+      {{ stats.total_queries }} test queries were generated across {{ stats.num_categories }} query categories, grouped into {{ stats.total_capabilities }} core capabilities.
+    </p>
+
+    <ol class="pipeline-steps">
+      {% for step in methodology_steps %}
+      <li class="pipeline-step">
+        <div class="step-number">{{ loop.index }}</div>
+        <div class="step-content">
+          <h4>{{ step.title }}</h4>
+          <p>{{ step.description }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <!-- ================ APPENDIX ================ -->
+  <section class="section-break-before">
+    <div class="section-label">Full Data</div>
+    <h2>Appendix: Complete Test Results</h2>
+    <p style="color: var(--muted); margin-bottom: 16px;">All {{ appendix|length }} queries tested by the {{ pipeline_name }} audit pipeline.</p>
+
+    <table class="appendix-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Query</th>
+          <th>Category</th>
+          <th>Severity</th>
+          <th>Best Position</th>
+          <th>Failure Mode</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for q in appendix %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td class="query-col">{{ q.query }}</td>
+          <td>{{ q.category }}</td>
+          <td><span class="severity-dot {{ q.severity_class }}"></span> {{ q.severity_short }}</td>
+          <td>#{{ q.best_position }}</td>
+          <td>{{ q.failure_mode }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================ CTA ================ -->
+  <section class="cta-section">
+    <h2>Next Steps</h2>
+    <p>We'd welcome the opportunity to walk you through these findings in detail and discuss a remediation plan tailored to your team's priorities and timeline.</p>
+    <p style="font-size: 0.875rem; color: var(--muted);">The issues identified in this audit are fixable &mdash; most ecommerce search platforms support the capabilities tested here, and the roadmap above is ordered by impact to help you prioritize.</p>
+    <a href="#" class="cta-button">Schedule a 30-Minute Walkthrough</a>
+  </section>
+
+  <div class="report-footer">
+    {{ pipeline_name }} Audit Report &middot; {{ site_name }} &middot; {{ date }} &middot; Find Sherpas
+  </div>
+
+</div>
+
+</body>
+</html>

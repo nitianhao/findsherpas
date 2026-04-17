@@ -46,3 +46,7 @@ data/
 .cache/
 *.xlsx
 *.csv
+
+# Synthetic Search audit outputs
+src/audit/reports/
+src/audit/.env
