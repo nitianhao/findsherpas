@@ -11,13 +11,14 @@ import { Suspense } from "react";
 export default async function CompaniesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ search?: string; status?: string; platform?: string; tag_id?: string }>;
+  searchParams: Promise<{ search?: string; status?: string; platform?: string; search_solution?: string; tag_id?: string }>;
 }) {
   const params = await searchParams;
   const { companies, total } = await getCompanies({
     search: params.search,
     status: params.status as CompanyStatus | undefined,
     platform: params.platform,
+    search_solution: params.search_solution,
     tag_id: params.tag_id ? params.tag_id : undefined,
   });
 

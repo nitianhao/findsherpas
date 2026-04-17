@@ -1,0 +1,2618 @@
+[
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 2,
+    "companyName": "Tuckernuck",
+    "websiteUrl": "https://www.tuckernuck.com",
+    "region": "US",
+    "country": "",
+    "homepageFinalUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+    "discoveredPages": [
+      {
+        "url": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "httpStatus": 200,
+        "title": "Tuckernuck | Women’s Clothing, Dresses, Shoes & Home",
+        "discoveredFrom": "entry",
+        "sameDomain": true
+      },
+      {
+        "url": "https://tnuck.com/pages/about-us",
+        "pageType": "ABOUT",
+        "httpStatus": 200,
+        "title": "About Us",
+        "discoveredFrom": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "sameDomain": true
+      },
+      {
+        "url": "https://tnuck.com/pages/contact-us",
+        "pageType": "CONTACT",
+        "httpStatus": 429,
+        "title": "Verifying your connection...",
+        "discoveredFrom": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "sameDomain": true
+      },
+      {
+        "url": "https://tnuck.com/pages/open-positions",
+        "pageType": "CAREERS",
+        "httpStatus": 429,
+        "title": "Verifying your connection...",
+        "discoveredFrom": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "sameDomain": true
+      },
+      {
+        "url": "https://tnuck.com/policies/privacy-policy",
+        "pageType": "LEGAL",
+        "httpStatus": 429,
+        "title": "Verifying your connection...",
+        "discoveredFrom": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "sameDomain": true
+      },
+      {
+        "url": "https://tnuck.com/",
+        "pageType": "OTHER",
+        "httpStatus": 429,
+        "title": "Verifying your connection...",
+        "discoveredFrom": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "sameDomain": true
+      }
+    ],
+    "personCandidates": [
+      {
+        "fullName": "On Repeat",
+        "normalizedName": "on repeat",
+        "titleText": "Latest and greatestSee what just dropped (and won’t last long).shop NEW ARRIVALS",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Latest and greatestOn RepeatSee what just dropped (and won’t last long).shop NEW ARRIVALS",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Multi Naia Bracelet",
+        "normalizedName": "multi naia bracelet",
+        "titleText": "EliouCZK 4,250",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "EliouMulti Naia BraceletCZK 4,250",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Giardinonaran Paloma Dress",
+        "normalizedName": "giardinonaran paloma dress",
+        "titleText": "Cala de la CruzCZK 14,800",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Cala de la CruzGiardinonaran Paloma DressCZK 14,800",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Just Dropped",
+        "normalizedName": "just dropped",
+        "titleText": "New arrivals, every day.Shop New Arrivals",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Just DroppedNew arrivals, every day.Shop New Arrivals",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Customer Faves",
+        "normalizedName": "customer faves",
+        "titleText": "the standoutsEasy, polished, and proven—see what the hype is all about.Shop best sellers",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "the standoutsCustomer FavesEasy, polished, and proven—see what the hype is all about.Shop best sellers",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Hyacinth House",
+        "normalizedName": "hyacinth house",
+        "titleText": "Pale Blue Embroidered Ginkgo Leaf Sallie Midi DressCZK 5,050",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Hyacinth HousePale Blue Embroidered Ginkgo Leaf Sallie Midi DressCZK 5,050",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Creme May Mini Dress",
+        "normalizedName": "creme may mini dress",
+        "titleText": "SaylorCZK 8,050",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "SaylorCreme May Mini DressCZK 8,050",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "English Factory",
+        "normalizedName": "english factory",
+        "titleText": "Cream & Blue Floral Pearl Trim Persephone Maxi DressCZK 5,300",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "English FactoryCream & Blue Floral Pearl Trim Persephone Maxi DressCZK 5,300",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Tuckernuck Accessories",
+        "normalizedName": "tuckernuck accessories",
+        "titleText": "Cognac and Raffia Lock ClutchCZK 4,200",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Tuckernuck AccessoriesCognac and Raffia Lock ClutchCZK 4,200",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Fringe Forward",
+        "normalizedName": "fringe forward",
+        "titleText": "shop shoes",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Fringe Forward\n                  \n                \n                \n                \n                  \n                    shop shoes",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Tuckernuck Editorials",
+        "normalizedName": "tuckernuck editorials",
+        "titleText": "GET INSPIRED",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Tuckernuck Editorials\n    \n  \n  \n    GET INSPIRED\n  \n  \n    \n      \n        \n          \n          \n            \n            \n            \n              \n                \n\n  \n    \n  \n\n\n\n                Style\n              \n            \n          \n            \n            \n            \n              \n",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "The Spring Home Collection",
+        "normalizedName": "the spring home collection",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "The Spring Home Collection",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Tour Our Georgetown Flagship",
+        "normalizedName": "tour our georgetown flagship",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Tour Our Georgetown Flagship",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Buenos Aires Travel Guide",
+        "normalizedName": "buenos aires travel guide",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Buenos Aires Travel Guide",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "The Spring Stylebook",
+        "normalizedName": "the spring stylebook",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "The Spring Stylebook",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Dominican Republic Packing List",
+        "normalizedName": "dominican republic packing list",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Dominican Republic Packing List",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Mountain Getaway Packing List",
+        "normalizedName": "mountain getaway packing list",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Mountain Getaway Packing List",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "The Winter Americana Capsule",
+        "normalizedName": "the winter americana capsule",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "The Winter Americana Capsule",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Stowe Packing List",
+        "normalizedName": "stowe packing list",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Stowe Packing List",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Gifting Options",
+        "normalizedName": "gifting options",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Gifting OptionsEnter your gift message here.0/250Gift Wrapping(+):Gift wrap includes a branded gift box, a black ribbon, and a gift paper of your choice. Note: Pricing will not show on packing slips for gifts.Signature MarbleTartanMod GeoCypress ToileFresh BudsScarlet ToileHoliday Party Animals",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Shopping Bag",
+        "normalizedName": "shopping bag",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Shopping Bag",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Order Summary",
+        "normalizedName": "order summary",
+        "titleText": "Subtotal",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Order Summary\n    \n      \n        \n          Subtotal \n          $XXX\n        \n        \n          Taxes \n          Calculated at checkout\n        \n        \n          Checkout",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Tnuck Sport",
+        "normalizedName": "tnuck sport",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/pages/about-us",
+        "pageType": "ABOUT",
+        "evidenceText": "Tnuck Sport\n                \n              \n              \n                \n                  Tnuck Sport blends functional fabrics with play-all-day designs. From morning coffee to marathon miles, these everyday pieces are meant for an on-the-go lifestyle.",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Tnuck Beach",
+        "normalizedName": "tnuck beach",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://tnuck.com/pages/about-us",
+        "pageType": "ABOUT",
+        "evidenceText": "Tnuck Beach\n                \n              \n              \n                \n                  Tnuck Beach features elevated caftans that feel easy and effortless— just like your favorite vacation days that turn into nights.",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      }
+    ],
+    "emailCandidates": [],
+    "linkedinCandidates": [],
+    "notes": [],
+    "errors": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 3,
+    "companyName": "Johnny Was",
+    "websiteUrl": "https://www.johnnywas.com",
+    "region": "US",
+    "country": "",
+    "homepageFinalUrl": "https://www.johnnywas.com/",
+    "discoveredPages": [
+      {
+        "url": "https://www.johnnywas.com/",
+        "pageType": "HOMEPAGE",
+        "httpStatus": 200,
+        "title": "Johnny Was | Boho Chic Clothing & Vintage-Inspired Style",
+        "discoveredFrom": "entry",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.johnnywas.com/careers.html",
+        "pageType": "CAREERS",
+        "httpStatus": 200,
+        "title": "My Johnny Was",
+        "discoveredFrom": "https://www.johnnywas.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.johnnywas.com/contact",
+        "pageType": "CONTACT",
+        "httpStatus": 200,
+        "title": "Contact Us | Johnny Was",
+        "discoveredFrom": "https://www.johnnywas.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.johnnywas.com/privacy-policy.html",
+        "pageType": "LEGAL",
+        "httpStatus": 200,
+        "title": "My Johnny Was",
+        "discoveredFrom": "https://www.johnnywas.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.johnnywas.com/logout",
+        "pageType": "OTHER",
+        "httpStatus": 200,
+        "title": "Johnny Was | Boho Chic Clothing & Vintage-Inspired Style",
+        "discoveredFrom": "https://www.johnnywas.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.johnnywas.com/new-arrivals",
+        "pageType": "OTHER",
+        "httpStatus": 200,
+        "title": "New Arrivals - Boho Women's Clothing | Johnny Was",
+        "discoveredFrom": "https://www.johnnywas.com/",
+        "sameDomain": true
+      }
+    ],
+    "personCandidates": [
+      {
+        "fullName": "The Elevated Layer",
+        "normalizedName": "the elevated layer",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "The Elevated Layer\n                \n\n                \n                \n            \n            \n                \n                    Our most-wanted piece for a reason. From a slip dress to jeans and a tee, our kimonos add an instant polish that’s as elegant as it is effortless.",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Intricately Crafted",
+        "normalizedName": "intricately crafted",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Intricately Crafted\n                \n\n                \n                \n            \n            \n                \n                    Our signature embroidery brings artisan-levelcraft to every piece, with details you notice up close and remember long after.",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Privacy Preference Center",
+        "normalizedName": "privacy preference center",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/careers.html",
+        "pageType": "CAREERS",
+        "evidenceText": "Privacy Preference CenterWhen you visit any website, it may store or retrieve information on your browser, mostly in the form of cookies. This information might be about you, your preferences or your device and is mostly used to make the site work as you expect it to. The information does not usuall",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Manage Consent Preferences",
+        "normalizedName": "manage consent preferences",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/careers.html",
+        "pageType": "CAREERS",
+        "evidenceText": "Manage Consent PreferencesStrictly Necessary CookiesAlways ActiveThese cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy prefer",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Strictly Necessary Cookies",
+        "normalizedName": "strictly necessary cookies",
+        "titleText": "Always Active",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/careers.html",
+        "pageType": "CAREERS",
+        "evidenceText": "Strictly Necessary CookiesAlways Active",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Functional Cookies",
+        "normalizedName": "functional cookies",
+        "titleText": "Functional Cookies",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/careers.html",
+        "pageType": "CAREERS",
+        "evidenceText": "Functional Cookies  Functional Cookies",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Performance Cookies",
+        "normalizedName": "performance cookies",
+        "titleText": "Performance Cookies",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/careers.html",
+        "pageType": "CAREERS",
+        "evidenceText": "Performance Cookies  Performance Cookies",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Targeting Cookies",
+        "normalizedName": "targeting cookies",
+        "titleText": "Targeting Cookies",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/careers.html",
+        "pageType": "CAREERS",
+        "evidenceText": "Targeting Cookies  Targeting Cookies",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Social Media Cookies",
+        "normalizedName": "social media cookies",
+        "titleText": "Social Media Cookies",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/careers.html",
+        "pageType": "CAREERS",
+        "evidenceText": "Social Media Cookies  Social Media Cookies",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Cookie List",
+        "normalizedName": "cookie list",
+        "titleText": "Back Button",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/careers.html",
+        "pageType": "CAREERS",
+        "evidenceText": "Back ButtonCookie List",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Customer Service",
+        "normalizedName": "customer service",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/contact",
+        "pageType": "CONTACT",
+        "evidenceText": "Customer Service",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Privacy Policy",
+        "normalizedName": "privacy policy",
+        "titleText": "LAST UPDATED: January 1, 2026",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/privacy-policy.html",
+        "pageType": "LEGAL",
+        "evidenceText": "Privacy Policy\n        LAST UPDATED: January 1, 2026\n        This Privacy Policy (\"Policy\") explains how Johnny Was LLC (\"Johnny Was,\" \"we,\" or \"us\") collects, uses, and discloses personal information about you. This Policy applies to information we collect when you access or use our website and oth",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "New Arrivals",
+        "normalizedName": "new arrivals",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/new-arrivals",
+        "pageType": "OTHER",
+        "evidenceText": "New Arrivals",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Notify Me",
+        "normalizedName": "notify me",
+        "titleText": "Close Shop the set menu",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.johnnywas.com/new-arrivals",
+        "pageType": "OTHER",
+        "evidenceText": "Notify Me\n                \n                    \n\nClose Shop the set menu\nCross mark icon to Close Shop the set menu",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      }
+    ],
+    "emailCandidates": [
+      {
+        "email": "info@johnnywas.com",
+        "domain": "johnnywas.com",
+        "localPart": "info",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://www.johnnywas.com/privacy-policy.html",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      }
+    ],
+    "linkedinCandidates": [],
+    "notes": [],
+    "errors": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 11,
+    "companyName": "Draper James",
+    "websiteUrl": "https://www.draperjames.com",
+    "region": "US",
+    "country": "",
+    "homepageFinalUrl": "https://draperjames.com/",
+    "discoveredPages": [
+      {
+        "url": "https://draperjames.com/",
+        "pageType": "HOMEPAGE",
+        "httpStatus": 200,
+        "title": "Draper James | Southern-Inspired Style",
+        "discoveredFrom": "entry",
+        "sameDomain": true
+      },
+      {
+        "url": "https://draperjames.com/pages/contact-us",
+        "pageType": "CONTACT",
+        "httpStatus": 200,
+        "title": "Contact Us | Customer Care | Draper James",
+        "discoveredFrom": "https://draperjames.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://draperjames.com/pages/about-draper-james",
+        "pageType": "ABOUT",
+        "httpStatus": 200,
+        "title": "About Draper James – Our Southern Story",
+        "discoveredFrom": "https://draperjames.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://draperjames.com/pages/careers",
+        "pageType": "CAREERS",
+        "httpStatus": 200,
+        "title": "Careers | Join Our Team | Draper James",
+        "discoveredFrom": "https://draperjames.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://draperjames.com/pages/privacy",
+        "pageType": "LEGAL",
+        "httpStatus": 200,
+        "title": "Privacy Policy | Your Information | Draper James",
+        "discoveredFrom": "https://draperjames.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://draperjames.com/pages/gdpr-compliance",
+        "pageType": "LEGAL",
+        "httpStatus": 200,
+        "title": "GDPR Compliance – Draper James",
+        "discoveredFrom": "https://draperjames.com/",
+        "sameDomain": true
+      }
+    ],
+    "personCandidates": [
+      {
+        "fullName": "Draper James",
+        "normalizedName": "draper james",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://draperjames.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Draper James",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "New Arrivals",
+        "normalizedName": "new arrivals",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://draperjames.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "New Arrivals",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Contact Us",
+        "normalizedName": "contact us",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://draperjames.com/pages/contact-us",
+        "pageType": "CONTACT",
+        "evidenceText": "Contact Us",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Our Story",
+        "normalizedName": "our story",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://draperjames.com/pages/about-draper-james",
+        "pageType": "ABOUT",
+        "evidenceText": "Our StoryI founded Draper James in 2015 for women (like me!) who wanted clothes that were special, not precious, easy to put together and always polished.",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Our Roots",
+        "normalizedName": "our roots",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://draperjames.com/pages/about-draper-james",
+        "pageType": "ABOUT",
+        "evidenceText": "Our RootsOur name pays tribute to Reese’s grandparents, Dorothea Draper and William James Witherspoon, two of her biggest influences. The importance of family, friends and enjoying the big and small pleasures of life remain at our core.",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Our Stores",
+        "normalizedName": "our stores",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://draperjames.com/pages/about-draper-james",
+        "pageType": "ABOUT",
+        "evidenceText": "Our StoresOur brick-and-mortar presence includes our Nashville flagship, a tribute to Reese’s hometown, our newest store in The Woodlands, Texas, and a location at Nashville International Airport — for the Draper James woman on the go.",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Delivering Results",
+        "normalizedName": "delivering results",
+        "titleText": "Draper James - Assistant Store Manager - Nashville, TN",
+        "matchedRoleHints": [
+          "CEO"
+        ],
+        "pageUrl": "https://draperjames.com/pages/careers",
+        "pageType": "CAREERS",
+        "evidenceText": "Draper James - Assistant Store Manager - Nashville, TN\nDraper James is looking for an Assistant Store Manager for our Nashville Flagship Store. Candidates should have an undergraduate degree (business or fashion discipline a plus) and 2 to 5 years of retail experience in a luxury or service-driven e",
+        "confidenceSignals": [
+          "heading-element",
+          "has-role-hint"
+        ]
+      },
+      {
+        "fullName": "Personnel Management",
+        "normalizedName": "personnel management",
+        "titleText": "Draper James - Assistant Store Manager - Nashville, TN",
+        "matchedRoleHints": [
+          "CEO"
+        ],
+        "pageUrl": "https://draperjames.com/pages/careers",
+        "pageType": "CAREERS",
+        "evidenceText": "Draper James - Assistant Store Manager - Nashville, TN\nDraper James is looking for an Assistant Store Manager for our Nashville Flagship Store. Candidates should have an undergraduate degree (business or fashion discipline a plus) and 2 to 5 years of retail experience in a luxury or service-driven e",
+        "confidenceSignals": [
+          "heading-element",
+          "has-role-hint"
+        ]
+      },
+      {
+        "fullName": "Sales Generation",
+        "normalizedName": "sales generation",
+        "titleText": "Draper James - Part-Time Sales Associate - Nashville, TN",
+        "matchedRoleHints": [],
+        "pageUrl": "https://draperjames.com/pages/careers",
+        "pageType": "CAREERS",
+        "evidenceText": "Draper James - Part-Time Sales Associate - Nashville, TN\nDraper James is hiring a Part-Time Sales Associate for our Nashville location. Candidates should be sales-driven, goal-oriented, and passionate about the client experience, with at least 1+ years of sales experience, preferably in a luxury or ",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Customer Experience",
+        "normalizedName": "customer experience",
+        "titleText": "Draper James - Part-Time Sales Associate - Nashville, TN",
+        "matchedRoleHints": [],
+        "pageUrl": "https://draperjames.com/pages/careers",
+        "pageType": "CAREERS",
+        "evidenceText": "Draper James - Part-Time Sales Associate - Nashville, TN\nDraper James is hiring a Part-Time Sales Associate for our Nashville location. Candidates should be sales-driven, goal-oriented, and passionate about the client experience, with at least 1+ years of sales experience, preferably in a luxury or ",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Privacy Policy",
+        "normalizedName": "privacy policy",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://draperjames.com/pages/privacy",
+        "pageType": "LEGAL",
+        "evidenceText": "Privacy Policy",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Data Rectification",
+        "normalizedName": "data rectification",
+        "titleText": "You can use the link below to update your account data if it is not accurate.",
+        "matchedRoleHints": [],
+        "pageUrl": "https://draperjames.com/pages/gdpr-compliance",
+        "pageType": "LEGAL",
+        "evidenceText": "The app used for assuring the GDPR/LGPD/CCPA-CPRA/VCDPA/APPI/PIPEDA compliance of this site, collects your IP and the email address in order to process the data. For more check  Privacy Policy & Terms of Service\n    \n\n    Data Rectification\n    You can use the link below to update your account data ",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Data Portability",
+        "normalizedName": "data portability",
+        "titleText": "Data Rectification",
+        "matchedRoleHints": [],
+        "pageUrl": "https://draperjames.com/pages/gdpr-compliance",
+        "pageType": "LEGAL",
+        "evidenceText": "The app used for assuring the GDPR/LGPD/CCPA-CPRA/VCDPA/APPI/PIPEDA compliance of this site, collects your IP and the email address in order to process the data. For more check  Privacy Policy & Terms of Service\n    \n\n    Data Rectification\n    You can use the link below to update your account data ",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      }
+    ],
+    "emailCandidates": [
+      {
+        "email": "customercare@draperjames.com",
+        "domain": "draperjames.com",
+        "localPart": "customercare",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://draperjames.com/pages/contact-us",
+        "pageType": "CONTACT",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "lstansberry@draperjames.com",
+        "domain": "draperjames.com",
+        "localPart": "lstansberry",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://draperjames.com/pages/careers",
+        "pageType": "CAREERS",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "aedmisson@draperjames.com",
+        "domain": "draperjames.com",
+        "localPart": "aedmisson",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://draperjames.com/pages/careers",
+        "pageType": "CAREERS",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      }
+    ],
+    "linkedinCandidates": [],
+    "notes": [],
+    "errors": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 12,
+    "companyName": "Veronica Beard",
+    "websiteUrl": "https://www.veronicabeard.com",
+    "region": "US",
+    "country": "",
+    "homepageFinalUrl": "https://veronicabeard.com/",
+    "discoveredPages": [
+      {
+        "url": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "httpStatus": 200,
+        "title": "Veronica Beard® Official Site – Luxury Women’s Fashion",
+        "discoveredFrom": "entry",
+        "sameDomain": true
+      },
+      {
+        "url": "https://veronicabeard.com/pages/contact-us-2",
+        "pageType": "CONTACT",
+        "httpStatus": 200,
+        "title": "Contact Us | Veronica Beard",
+        "discoveredFrom": "https://veronicabeard.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://veronicabeard.com/pages/careers",
+        "pageType": "CAREERS",
+        "httpStatus": 200,
+        "title": "Career Opportunities | Veronica Beard",
+        "discoveredFrom": "https://veronicabeard.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://veronicabeard.com/pages/contact",
+        "pageType": "CONTACT",
+        "httpStatus": 200,
+        "title": "Contact Us | Veronica Beard",
+        "discoveredFrom": "https://veronicabeard.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://veronicabeard.com/pages/policy",
+        "pageType": "LEGAL",
+        "httpStatus": 200,
+        "title": "Privacy Policy | Veronica Beard",
+        "discoveredFrom": "https://veronicabeard.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://veronicabeard.com/collections/new",
+        "pageType": "OTHER",
+        "httpStatus": 200,
+        "title": "New In Designer Women's Clothing | Veronica Beard",
+        "discoveredFrom": "https://veronicabeard.com/",
+        "sameDomain": true
+      }
+    ],
+    "personCandidates": [
+      {
+        "fullName": "Veronica Beard",
+        "normalizedName": "veronica beard",
+        "titleText": "New Arrivals",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Veronica Beard\n    \n\n    \n\n    \n    \n      \n        \n          \n      \n        \n          \n              \n\n\n    \n      \n\n\n\n\n  \n    \n      \n\n\n\n\n      \n  \n  \n\n\n    \n    \n      \n        \n          \n        \n        \n          \n  \n  \n\n\n        \n      \n      \n        \n\n                \n\n                 ",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Trending Now",
+        "normalizedName": "trending now",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Trending Now",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Recently Viewed",
+        "normalizedName": "recently viewed",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Recently Viewed",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "See Other Available Items",
+        "normalizedName": "see other available items",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "See Other Available Items",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "What To Wear Now",
+        "normalizedName": "what to wear now",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "What To Wear Now",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Fresh Spring Denim",
+        "normalizedName": "fresh spring denim",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Fresh Spring Denim",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Eyelet Everything",
+        "normalizedName": "eyelet everything",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Eyelet Everything",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Hello Sandal Season",
+        "normalizedName": "hello sandal season",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Hello Sandal Season",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Shop New Arrivals",
+        "normalizedName": "shop new arrivals",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Shop New Arrivals",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Spring Forward",
+        "normalizedName": "spring forward",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Spring Forward",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Now Trending",
+        "normalizedName": "now trending",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Now Trending",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Dopamine Dressing",
+        "normalizedName": "dopamine dressing",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Dopamine Dressing",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Privacy Preference Center",
+        "normalizedName": "privacy preference center",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Privacy Preference CenterWhen you visit any website, it may store or retrieve information on your browser, mostly in the form of cookies. This information might be about you, your preferences, or your device, and is mostly used to make the site work as you expect. The information does not usually id",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Manage Consent Preferences",
+        "normalizedName": "manage consent preferences",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Manage Consent PreferencesStrictly Necessary CookiesAlways ActiveThese cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy prefer",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Strictly Necessary Cookies",
+        "normalizedName": "strictly necessary cookies",
+        "titleText": "Always Active",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Strictly Necessary CookiesAlways Active",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Performance Cookies",
+        "normalizedName": "performance cookies",
+        "titleText": "Performance Cookies",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Performance Cookies  Performance Cookies",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Functional Cookies",
+        "normalizedName": "functional cookies",
+        "titleText": "Functional Cookies",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Functional Cookies  Functional Cookies",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Targeting Cookies",
+        "normalizedName": "targeting cookies",
+        "titleText": "Targeting Cookies",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Targeting Cookies  Targeting Cookies",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Cookie List",
+        "normalizedName": "cookie list",
+        "titleText": "Back Button",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Back ButtonCookie List",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Contact Us",
+        "normalizedName": "contact us",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/pages/contact-us-2",
+        "pageType": "CONTACT",
+        "evidenceText": "Contact Us",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Privacy Policy",
+        "normalizedName": "privacy policy",
+        "titleText": "Privacy Policy",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/pages/policy",
+        "pageType": "LEGAL",
+        "evidenceText": "Privacy Policy\n  \n    \n\n\n\n\n\n\n  \n    Privacy Policy\n  \n\n\n\n\n\n\n\n\n\n\n  \nEffective Date: September 7, 2021\n\nPLEASE READ THIS PRIVACY POLICY CAREFULLY BEFORE USING THE SITE. YOUR USE OF ANY PART OF THE SITE CONSTITUTES YOUR ACCEPTANCE OF AND AGREEMENT TO THIS POLICY.\nPipes and Shaw LLC dba Veronica Beard (",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "New Arrivals",
+        "normalizedName": "new arrivals",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/collections/new",
+        "pageType": "OTHER",
+        "evidenceText": "New Arrivals",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Vonette Tank Top",
+        "normalizedName": "vonette tank top",
+        "titleText": "Add to favorites",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/collections/new",
+        "pageType": "OTHER",
+        "evidenceText": "Vonette Tank Top\n          \n        \n        \n    \n      Add to favorites\n\n\n\n    \n      Remove from favorites",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Clayton Gingham Dickey Jacket",
+        "normalizedName": "clayton gingham dickey jacket",
+        "titleText": "Add to favorites",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/collections/new",
+        "pageType": "OTHER",
+        "evidenceText": "Clayton Gingham Dickey Jacket\n          \n        \n        \n    \n      Add to favorites\n\n\n\n    \n      Remove from favorites",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Oseanna Eyelet Camisole",
+        "normalizedName": "oseanna eyelet camisole",
+        "titleText": "Add to favorites",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/collections/new",
+        "pageType": "OTHER",
+        "evidenceText": "Oseanna Eyelet Camisole\n          \n        \n        \n    \n      Add to favorites\n\n\n\n    \n      Remove from favorites",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Resin Drop Hoop Earring",
+        "normalizedName": "resin drop hoop earring",
+        "titleText": "Add to favorites",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/collections/new",
+        "pageType": "OTHER",
+        "evidenceText": "Resin Drop Hoop Earring\n          \n        \n        \n    \n      Add to favorites\n\n\n\n    \n      Remove from favorites",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Clea Wedge Sandal",
+        "normalizedName": "clea wedge sandal",
+        "titleText": "Add to favorites",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/collections/new",
+        "pageType": "OTHER",
+        "evidenceText": "Clea Wedge Sandal\n          \n        \n        \n    \n      Add to favorites\n\n\n\n    \n      Remove from favorites",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Woven Anchor Bag",
+        "normalizedName": "woven anchor bag",
+        "titleText": "Add to favorites",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/collections/new",
+        "pageType": "OTHER",
+        "evidenceText": "Woven Anchor Bag\n          \n        \n        \n    \n      Add to favorites\n\n\n\n    \n      Remove from favorites",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Collection Details",
+        "normalizedName": "collection details",
+        "titleText": "Read more",
+        "matchedRoleHints": [],
+        "pageUrl": "https://veronicabeard.com/collections/new",
+        "pageType": "OTHER",
+        "evidenceText": "Collection Details\n        \n      \n\n      \n        \n          \n            \n              Explore the latest new women’s clothing at Veronica Beard with our curated new arrivals collection. Crafted with versatility in mind, these new designer clothing pieces balance elegance and modernity, designed ",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      }
+    ],
+    "emailCandidates": [
+      {
+        "email": "customerservice@veronicabeard.com",
+        "domain": "veronicabeard.com",
+        "localPart": "customerservice",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "careers@veronicabeard.com",
+        "domain": "veronicabeard.com",
+        "localPart": "careers",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://veronicabeard.com/pages/careers",
+        "pageType": "CAREERS",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      }
+    ],
+    "linkedinCandidates": [
+      {
+        "url": "https://www.linkedin.com/company/veronica-beard",
+        "sourceType": "COMPANY_PAGE",
+        "pageUrl": "https://veronicabeard.com/",
+        "pageType": "HOMEPAGE"
+      },
+      {
+        "url": "https://www.linkedin.com/jobs/view/4337953668",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://veronicabeard.com/pages/careers",
+        "pageType": "CAREERS"
+      },
+      {
+        "url": "https://www.linkedin.com/jobs/view/4349037668",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://veronicabeard.com/pages/careers",
+        "pageType": "CAREERS"
+      },
+      {
+        "url": "https://www.linkedin.com/jobs/view/4351620295",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://veronicabeard.com/pages/careers",
+        "pageType": "CAREERS"
+      },
+      {
+        "url": "https://www.linkedin.com/jobs/view/4307284132",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://veronicabeard.com/pages/careers",
+        "pageType": "CAREERS"
+      },
+      {
+        "url": "https://www.linkedin.com/jobs/view/4310251801",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://veronicabeard.com/pages/careers",
+        "pageType": "CAREERS"
+      },
+      {
+        "url": "https://www.linkedin.com/jobs/view/4254372537",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://veronicabeard.com/pages/careers",
+        "pageType": "CAREERS"
+      },
+      {
+        "url": "https://www.linkedin.com/jobs/view/4316702347",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://veronicabeard.com/pages/careers",
+        "pageType": "CAREERS"
+      },
+      {
+        "url": "https://www.linkedin.com/jobs/view/4212057450",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://veronicabeard.com/pages/careers",
+        "pageType": "CAREERS"
+      },
+      {
+        "url": "https://www.linkedin.com/jobs/view/4340245906",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://veronicabeard.com/pages/careers",
+        "pageType": "CAREERS"
+      }
+    ],
+    "notes": [],
+    "errors": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 13,
+    "companyName": "Amanda Uprichard",
+    "websiteUrl": "https://www.amandauprichard.com",
+    "region": "US",
+    "country": "",
+    "homepageFinalUrl": "https://amandauprichard.com/",
+    "discoveredPages": [
+      {
+        "url": "https://amandauprichard.com/",
+        "pageType": "HOMEPAGE",
+        "httpStatus": 200,
+        "title": "Amanda Uprichard | Contemporary Women's Fashion Brand",
+        "discoveredFrom": "entry",
+        "sameDomain": true
+      },
+      {
+        "url": "https://amandauprichard.com/pages/about-1",
+        "pageType": "ABOUT",
+        "httpStatus": 200,
+        "title": "Our Story – Amanda Uprichard",
+        "discoveredFrom": "https://amandauprichard.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://amandauprichard.com/pages/contact-1",
+        "pageType": "CONTACT",
+        "httpStatus": 200,
+        "title": "CONTACT US – Amanda Uprichard",
+        "discoveredFrom": "https://amandauprichard.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://amandauprichard.com/pages/careers-at-au",
+        "pageType": "CAREERS",
+        "httpStatus": 200,
+        "title": "Careers – Amanda Uprichard",
+        "discoveredFrom": "https://amandauprichard.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://amandauprichard.com/pages/terms-of-service",
+        "pageType": "LEGAL",
+        "httpStatus": 200,
+        "title": "TERMS & POLICY – Amanda Uprichard",
+        "discoveredFrom": "https://amandauprichard.com/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://amandauprichard.com/cart",
+        "pageType": "OTHER",
+        "httpStatus": 200,
+        "title": "Your Shopping Cart – Amanda Uprichard",
+        "discoveredFrom": "https://amandauprichard.com/",
+        "sameDomain": true
+      }
+    ],
+    "personCandidates": [
+      {
+        "fullName": "Client Service",
+        "normalizedName": "client service",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://amandauprichard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Client Service",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Customer Care",
+        "normalizedName": "customer care",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://amandauprichard.com/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Customer Care",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      }
+    ],
+    "emailCandidates": [
+      {
+        "email": "service@amandauprichard.com",
+        "domain": "amandauprichard.com",
+        "localPart": "service",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://amandauprichard.com/",
+        "pageType": "HOMEPAGE",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "service@amandauprichard.comview",
+        "domain": "amandauprichard.comview",
+        "localPart": "service",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://amandauprichard.com/pages/contact-1",
+        "pageType": "CONTACT",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "info@amandauprichard.com",
+        "domain": "amandauprichard.com",
+        "localPart": "info",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://amandauprichard.com/pages/contact-1",
+        "pageType": "CONTACT",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "wholesale@amandauprichard.com",
+        "domain": "amandauprichard.com",
+        "localPart": "wholesale",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://amandauprichard.com/pages/contact-1",
+        "pageType": "CONTACT",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "hr@amandauprichard.com",
+        "domain": "amandauprichard.com",
+        "localPart": "hr",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://amandauprichard.com/pages/careers-at-au",
+        "pageType": "CAREERS",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      }
+    ],
+    "linkedinCandidates": [
+      {
+        "url": "https://www.linkedin.com/company/amanda-uprichard/jobs",
+        "sourceType": "COMPANY_PAGE",
+        "pageUrl": "https://amandauprichard.com/pages/careers-at-au",
+        "pageType": "CAREERS"
+      }
+    ],
+    "notes": [],
+    "errors": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 1,
+    "companyName": "Manufactum",
+    "websiteUrl": "https://www.manufactum.de",
+    "region": "EU",
+    "country": "",
+    "homepageFinalUrl": "https://www.manufactum.de/",
+    "discoveredPages": [
+      {
+        "url": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "httpStatus": 200,
+        "title": "Manufactum. Das Warenhaus der guten Dinge",
+        "discoveredFrom": "entry",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.manufactum.de/kontakt-c199446",
+        "pageType": "CONTACT",
+        "httpStatus": 200,
+        "title": "Manufactum Kundenservice und Kontaktmöglichkeiten",
+        "discoveredFrom": "https://www.manufactum.de/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.manufactum.de/japanische-gartenschere-handgeschmiedet-a216165",
+        "pageType": "ABOUT",
+        "httpStatus": 200,
+        "title": "Japanische Gartenschere handgeschmiedet | Manufactum",
+        "discoveredFrom": "https://www.manufactum.de/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.manufactum.de/pressekontakt-c199458",
+        "pageType": "CONTACT",
+        "httpStatus": 200,
+        "title": "Manufactum Pressekontakt",
+        "discoveredFrom": "https://www.manufactum.de/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.manufactum.de/impressum-c199455",
+        "pageType": "LEGAL",
+        "httpStatus": 200,
+        "title": "Manufactum Impressum",
+        "discoveredFrom": "https://www.manufactum.de/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.manufactum.de/datenschutz-c199450",
+        "pageType": "LEGAL",
+        "httpStatus": 200,
+        "title": "Manufactum Datenschutz",
+        "discoveredFrom": "https://www.manufactum.de/",
+        "sameDomain": true
+      }
+    ],
+    "personCandidates": [
+      {
+        "fullName": "Unsere Besten",
+        "normalizedName": "unsere besten",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Unsere Besten",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Mode von Lanius",
+        "normalizedName": "mode von lanius",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Mode von Lanius",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Beliebte Kategorien",
+        "normalizedName": "beliebte kategorien",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Beliebte Kategorien",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Aktuelle Themen",
+        "normalizedName": "aktuelle themen",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Aktuelle Themen",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Manufactum Rezepte",
+        "normalizedName": "manufactum rezepte",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Manufactum Rezepte",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Manufactum Journal",
+        "normalizedName": "manufactum journal",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Manufactum Journal",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Manufactum Warenhäuser",
+        "normalizedName": "manufactum warenhäuser",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Manufactum Warenhäuser",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Manufactum Veranstaltungen",
+        "normalizedName": "manufactum veranstaltungen",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Manufactum Veranstaltungen",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Über Manufactum",
+        "normalizedName": "über manufactum",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Über ManufactumLanglebigUnsere Produkte profitieren von handwerklicher Fertigung, durchdachter Funktionalität und langer Lebensdauer. Wir achten darauf, dass Einzelteile ausgetauscht und Mechaniken repariert werden können.BewusstNachhaltigkeit steht im Fokus unserer Produktauswahl. Wir setzen auf na",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Ihr Land",
+        "normalizedName": "ihr land",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Ihr LandDeutschlandBelgien (Französisch)Belgien (Niederländisch)Dänemark (Dänisch)Dänemark (Englisch)International (Deutsch)International (Englisch)Luxemburg (Deutsch)Luxemburg (Französisch)NiederlandeSchweiz (Deutsch)Schweiz (Französisch)Österreich",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Customer Service",
+        "normalizedName": "customer service",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/kontakt-c199446",
+        "pageType": "CONTACT",
+        "evidenceText": "Customer Service",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Allgemeine Informationen",
+        "normalizedName": "allgemeine informationen",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/japanische-gartenschere-handgeschmiedet-a216165",
+        "pageType": "ABOUT",
+        "evidenceText": "Allgemeine InformationenHandgeschmiedet in JapanWas für japanische Messer gilt, ist auch japanischen Scheren eigen: Sie sind überaus scharf. Dieses Modell verfügt über geschmiedete Klingen aus Kohlenstoffstahl und ist zudem – wie Sie den eingestanzten Schriftzeichen unschwer entnehmen können – von H",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Das Gartenjahr",
+        "normalizedName": "das gartenjahr",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.manufactum.de/japanische-gartenschere-handgeschmiedet-a216165",
+        "pageType": "ABOUT",
+        "evidenceText": "Das GartenjahrEgal ob großer Garten oder kleiner Balkon – Antworten auf alle Fragen der Gartenarbeit finden Sie im Manufactum Gartenjahr. Nach Gartentyp und Jahreslauf gegliedert werden alle wichtigen Arbeiten leicht verständlich und Schritt für Schritt beschrieben.Zum Gartenjahr",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      }
+    ],
+    "emailCandidates": [
+      {
+        "email": "info@manufactum.de",
+        "domain": "manufactum.de",
+        "localPart": "info",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "info@manufactum.dekontaktm",
+        "domain": "manufactum.dekontaktm",
+        "localPart": "info",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "berlin@manufactum.de",
+        "domain": "manufactum.de",
+        "localPart": "berlin",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.manufactum.de/",
+        "pageType": "HOMEPAGE",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "presse@manufactum.de",
+        "domain": "manufactum.de",
+        "localPart": "presse",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://www.manufactum.de/kontakt-c199446",
+        "pageType": "CONTACT",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "e-mailinfo@manufactum.de",
+        "domain": "manufactum.de",
+        "localPart": "e-mailinfo",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.manufactum.de/kontakt-c199446",
+        "pageType": "CONTACT",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "u003einfo@manufactum.de",
+        "domain": "manufactum.de",
+        "localPart": "u003einfo",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.manufactum.de/kontakt-c199446",
+        "pageType": "CONTACT",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "u003epresse@manufactum.de",
+        "domain": "manufactum.de",
+        "localPart": "u003epresse",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.manufactum.de/kontakt-c199446",
+        "pageType": "CONTACT",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "produktanfragen@manufactum.de",
+        "domain": "manufactum.de",
+        "localPart": "produktanfragen",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://www.manufactum.de/japanische-gartenschere-handgeschmiedet-a216165",
+        "pageType": "ABOUT",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "info@manufactum.dedas",
+        "domain": "manufactum.dedas",
+        "localPart": "info",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.manufactum.de/japanische-gartenschere-handgeschmiedet-a216165",
+        "pageType": "ABOUT",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "behling@buse.de",
+        "domain": "buse.de",
+        "localPart": "behling",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://www.manufactum.de/impressum-c199455",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "behoerdenkontakt@manufactum.de",
+        "domain": "manufactum.de",
+        "localPart": "behoerdenkontakt",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://www.manufactum.de/impressum-c199455",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "produktsicherheit@manufactum.de",
+        "domain": "manufactum.de",
+        "localPart": "produktsicherheit",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://www.manufactum.de/impressum-c199455",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "behling@buse.detelefon",
+        "domain": "buse.detelefon",
+        "localPart": "behling",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.manufactum.de/impressum-c199455",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "u003ebehling@buse.de",
+        "domain": "buse.de",
+        "localPart": "u003ebehling",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.manufactum.de/impressum-c199455",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "u003ebehoerdenkontakt@manufactum.de",
+        "domain": "manufactum.de",
+        "localPart": "u003ebehoerdenkontakt",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.manufactum.de/impressum-c199455",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "u003eproduktsicherheit@manufactum.de",
+        "domain": "manufactum.de",
+        "localPart": "u003eproduktsicherheit",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.manufactum.de/impressum-c199455",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      }
+    ],
+    "linkedinCandidates": [],
+    "notes": [],
+    "errors": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 2,
+    "companyName": "Hessnatur",
+    "websiteUrl": "https://www.hessnatur.de",
+    "region": "EU",
+    "country": "",
+    "homepageFinalUrl": "https://www.hessnatur.com/de",
+    "discoveredPages": [
+      {
+        "url": "https://www.hessnatur.com/de",
+        "pageType": "HOMEPAGE",
+        "httpStatus": 200,
+        "title": "Naturmode - Biomode - Faire Mode",
+        "discoveredFrom": "entry",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.hessnatur.com/en-DE",
+        "pageType": "OTHER",
+        "httpStatus": 200,
+        "title": "Natural fashion - organic fashion - fair fashion",
+        "discoveredFrom": "https://www.hessnatur.com/de",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.hessnatur.com/de/jubilaeum",
+        "pageType": "OTHER",
+        "httpStatus": 200,
+        "title": "50 Jahre hessnatur",
+        "discoveredFrom": "https://www.hessnatur.com/de",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.hessnatur.com/de/secondhand",
+        "pageType": "OTHER",
+        "httpStatus": 200,
+        "title": "Secondhand Mode von hessnatur",
+        "discoveredFrom": "https://www.hessnatur.com/de",
+        "sameDomain": true
+      }
+    ],
+    "personCandidates": [],
+    "emailCandidates": [
+      {
+        "email": "kundenservice@hess-natur.de",
+        "domain": "hess-natur.de",
+        "localPart": "kundenservice",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.hessnatur.com/de",
+        "pageType": "HOMEPAGE",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "dialog@hess-natur.de",
+        "domain": "hess-natur.de",
+        "localPart": "dialog",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.hessnatur.com/de",
+        "pageType": "HOMEPAGE",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "name@domain.de",
+        "domain": "domain.de",
+        "localPart": "name",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.hessnatur.com/de",
+        "pageType": "HOMEPAGE",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      }
+    ],
+    "linkedinCandidates": [],
+    "notes": [],
+    "errors": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 4,
+    "companyName": "Parfumdreams",
+    "websiteUrl": "https://www.parfumdreams.de",
+    "region": "EU",
+    "country": "",
+    "homepageFinalUrl": "https://www.parfumdreams.de/",
+    "discoveredPages": [
+      {
+        "url": "https://www.parfumdreams.de/",
+        "pageType": "HOMEPAGE",
+        "httpStatus": 200,
+        "title": "Parfum und Kosmetik aus deiner Online-Parfumerie ❤️ | parfumdreams",
+        "discoveredFrom": "entry",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.parfumdreams.de/Kontakt",
+        "pageType": "CONTACT",
+        "httpStatus": 200,
+        "title": "Anfrage einreichen – parfumdreams",
+        "discoveredFrom": "https://www.parfumdreams.de/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.parfumdreams.de/Impressum",
+        "pageType": "LEGAL",
+        "httpStatus": 200,
+        "title": "Impressum Parfumdreams | parfumdreams",
+        "discoveredFrom": "https://www.parfumdreams.de/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.parfumdreams.de/Hilfe/Themen",
+        "pageType": "CONTACT",
+        "httpStatus": 200,
+        "title": "parfumdreams",
+        "discoveredFrom": "https://www.parfumdreams.de/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.parfumdreams.de/Karriere/Jobs",
+        "pageType": "CAREERS",
+        "httpStatus": 200,
+        "title": "Finde Deinen Traumjob bei parfumdreams!",
+        "discoveredFrom": "https://www.parfumdreams.de/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.parfumdreams.de/Datenschutz",
+        "pageType": "LEGAL",
+        "httpStatus": 200,
+        "title": "Datenschutz neu | parfumdreams",
+        "discoveredFrom": "https://www.parfumdreams.de/",
+        "sameDomain": true
+      }
+    ],
+    "personCandidates": [
+      {
+        "fullName": "Beliebte Kategorien",
+        "normalizedName": "beliebte kategorien",
+        "titleText": "Dein Geschenk:",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.parfumdreams.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Dein Geschenk:\n                        Zu deiner iT Cosmetics Bestellung ab 49,00 € schenken wir dir eine 4 ml iT Cosmetics Your Skin But Better CC+ Cream!\n                    \n            \n            \n            \n            \n            \n            PreviousNextView slide 1View slide 2View slide",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Unsere Neuheiten",
+        "normalizedName": "unsere neuheiten",
+        "titleText": "Dein Geschenk:",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.parfumdreams.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Dein Geschenk:\n                        Zu deiner iT Cosmetics Bestellung ab 49,00 € schenken wir dir eine 4 ml iT Cosmetics Your Skin But Better CC+ Cream!\n                    \n            \n            \n            \n            \n            \n            PreviousNextView slide 1View slide 2View slide",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Unsere Bestseller",
+        "normalizedName": "unsere bestseller",
+        "titleText": "Dein Geschenk:",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.parfumdreams.de/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Dein Geschenk:\n                        Zu deiner iT Cosmetics Bestellung ab 49,00 € schenken wir dir eine 4 ml iT Cosmetics Your Skin But Better CC+ Cream!\n                    \n            \n            \n            \n            \n            \n            PreviousNextView slide 1View slide 2View slide",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Allgemeine Kontaktaufnahme",
+        "normalizedName": "allgemeine kontaktaufnahme",
+        "titleText": "Anschrift",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.parfumdreams.de/Impressum",
+        "pageType": "LEGAL",
+        "evidenceText": "Anschrift\nParfümerie Akzente GmbH\nFerdinand-Braun-Str. 28/3\n74074 Heilbronn\nDeutschland\n\nGeschäftsführung\nNina Pütz & Björn Heidenreich\n\nKontakt und Service\nTel: 0800 - 1 750 780 1 KOSTENLOS (aus dem dt. Festnetz)\nFax: 0800 - 1 750 780 2 KOSTENLOS (aus dem dt. Festnetz)\nServicezeiten: Mo. - Fr. von ",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      }
+    ],
+    "emailCandidates": [
+      {
+        "email": "info@parfumdreams.de",
+        "domain": "parfumdreams.de",
+        "localPart": "info",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.parfumdreams.de/Impressum",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "service@parfumdreams.de",
+        "domain": "parfumdreams.de",
+        "localPart": "service",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.parfumdreams.de/Datenschutz",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "datenschutz@prescreen.io",
+        "domain": "prescreen.io",
+        "localPart": "datenschutz",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.parfumdreams.de/Datenschutz",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "datenschutz@parfumdreams.de",
+        "domain": "parfumdreams.de",
+        "localPart": "datenschutz",
+        "sourceType": "VISIBLE_TEXT",
+        "pageUrl": "https://www.parfumdreams.de/Datenschutz",
+        "pageType": "LEGAL",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      }
+    ],
+    "linkedinCandidates": [
+      {
+        "url": "https://de.linkedin.com/company/parfumdreams",
+        "sourceType": "COMPANY_PAGE",
+        "pageUrl": "https://www.parfumdreams.de/",
+        "pageType": "HOMEPAGE"
+      },
+      {
+        "url": "https://www.linkedin.com/psettings/guest-controls/retargeting-opt-out",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://www.parfumdreams.de/Datenschutz",
+        "pageType": "LEGAL"
+      },
+      {
+        "url": "https://www.linkedin.com/legal/l/dpa",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://www.parfumdreams.de/Datenschutz",
+        "pageType": "LEGAL"
+      },
+      {
+        "url": "https://www.linkedin.com/legal/l/eu-sccs",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://www.parfumdreams.de/Datenschutz",
+        "pageType": "LEGAL"
+      },
+      {
+        "url": "https://www.linkedin.com/legal/privacy-policy",
+        "sourceType": "UNKNOWN",
+        "pageUrl": "https://www.parfumdreams.de/Datenschutz",
+        "pageType": "LEGAL"
+      }
+    ],
+    "notes": [],
+    "errors": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 10,
+    "companyName": "Planet Sports",
+    "websiteUrl": "https://www.planetsports.de",
+    "region": "EU",
+    "country": "",
+    "homepageFinalUrl": "",
+    "discoveredPages": [],
+    "personCandidates": [],
+    "emailCandidates": [],
+    "linkedinCandidates": [],
+    "notes": [],
+    "errors": [
+      "Homepage failed: page.goto: net::ERR_CONNECTION_REFUSED at https://www.planetsports.de/\nCall log:\n  - navigating to \"https://www.planetsports.de/\", waiting until \"domcontentloaded\"\n"
+    ]
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 11,
+    "companyName": "Blue Tomato",
+    "websiteUrl": "https://www.blue-tomato.com",
+    "region": "EU",
+    "country": "",
+    "homepageFinalUrl": "https://www.blue-tomato.com/de-DE/",
+    "discoveredPages": [
+      {
+        "url": "https://www.blue-tomato.com/de-DE/",
+        "pageType": "HOMEPAGE",
+        "httpStatus": 200,
+        "title": "Blue Tomato - dein Boardsport & Lifestyle Experte seit 1988",
+        "discoveredFrom": "entry",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "httpStatus": 200,
+        "title": "Team | Blue Tomato",
+        "discoveredFrom": "https://www.blue-tomato.com/de-DE/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.blue-tomato.com/de-DE/snowboard",
+        "pageType": "LEADERSHIP",
+        "httpStatus": 200,
+        "title": "Snowboard Shop | Dein Snowboard-Laden seit 1988",
+        "discoveredFrom": "https://www.blue-tomato.com/de-DE/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.blue-tomato.com/de-DE/snowboardschule",
+        "pageType": "LEADERSHIP",
+        "httpStatus": 200,
+        "title": "Blue Tomato Snowboardschule | Obertauern Österreich | Blue Tomato",
+        "discoveredFrom": "https://www.blue-tomato.com/de-DE/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.blue-tomato.com/de-DE/team",
+        "pageType": "TEAM",
+        "httpStatus": 200,
+        "title": "Team | Blue Tomato",
+        "discoveredFrom": "https://www.blue-tomato.com/de-DE/",
+        "sameDomain": true
+      },
+      {
+        "url": "https://www.blue-tomato.com/de-DE/page/snowboard-finder",
+        "pageType": "LEADERSHIP",
+        "httpStatus": 200,
+        "title": "Snowboard Größen Rechner - Dein Snowboard Finder | Blue Tomato",
+        "discoveredFrom": "https://www.blue-tomato.com/de-DE/",
+        "sameDomain": true
+      }
+    ],
+    "personCandidates": [
+      {
+        "fullName": "Top Marken",
+        "normalizedName": "top marken",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/de-DE/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Top Markenadidas SkateboardingGlobeHockey SkateboardsSour SolutionCarhartt WIP1080BurtonAny Means NecessaryEmpyreadidas OriginalsPassengerGot BagGramicciBlue TomatoNike ACGStanleyColumbiaA.LABNinth HallPatagonia",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Top Kategorien",
+        "normalizedName": "top kategorien",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/de-DE/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Top KategorienHoodiesSneakersSkateboardSockenT-ShirtsÜbergangsjackenSkateboard CompletesSnowboard-HosenJeansSnowboardsSkatehelmeHemdenStoffhosenSnowboard-JackenCapsSnowboard-BootsSkateschuheBeaniesLongsleevesSurfboardsRucksäckeUmhängetaschenTrinkflaschenNeoprenanzüge",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Die Blue Tomato Community",
+        "normalizedName": "die blue tomato community",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/de-DE/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "BLUE TOMATO DEUTSCHLAND – YOUR MOMENT OF WOW Willkommen im Blue Tomato Shop Deutschland. Wir unterstützen dich dabei, deine Leidenschaft zu leben und so unvergessliche Erinnerungen zu schaffen. Erlebe einzigartige Momente, drücke dich aus und wachse durch neue Erfahrungen. Wir lieben und leben alles",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Blue Tomato",
+        "normalizedName": "blue tomato",
+        "titleText": "Über uns     Shops     Jobs     Teamrider     Blue World     Presse     Zumiez",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/de-DE/",
+        "pageType": "HOMEPAGE",
+        "evidenceText": "Blue Tomato     Über uns     Shops     Jobs     Teamrider     Blue World     Presse     Zumiez",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Teamrider Snowboard",
+        "normalizedName": "teamrider snowboard",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Teamrider Snowboard   Anna Gasser  Snowboard      Fridtjof \"Fridge\" Tischendorf  Snowboard      Victor de Le Rue  Snowboard     Alle Rider anzeigen",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Anna Gasser",
+        "normalizedName": "anna gasser",
+        "titleText": "Snowboard",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Anna Gasser  Snowboard",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Victor de Le Rue",
+        "normalizedName": "victor de le rue",
+        "titleText": "Snowboard",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Victor de Le Rue  Snowboard",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Teamrider Freeski",
+        "normalizedName": "teamrider freeski",
+        "titleText": "Henrik Harlaut  Freeski      Matěj Švancer  Freeski      Josh Absenger  Freeski     Alle Rider anzeigen",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Teamrider Freeski   Henrik Harlaut  Freeski      Matěj Švancer  Freeski      Josh Absenger  Freeski     Alle Rider anzeigen",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Henrik Harlaut",
+        "normalizedName": "henrik harlaut",
+        "titleText": "Freeski",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Henrik Harlaut  Freeski",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Josh Absenger",
+        "normalizedName": "josh absenger",
+        "titleText": "Freeski",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Josh Absenger  Freeski",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Teamrider Skate",
+        "normalizedName": "teamrider skate",
+        "titleText": "Marco Kada  Skate      Levi Löffelberger  Skate      Alisa Fessl  Skate     Alle Rider anzeigen",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Teamrider Skate   Marco Kada  Skate      Levi Löffelberger  Skate      Alisa Fessl  Skate     Alle Rider anzeigen",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Marco Kada",
+        "normalizedName": "marco kada",
+        "titleText": "Skate",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Marco Kada  Skate",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Levi Löffelberger",
+        "normalizedName": "levi löffelberger",
+        "titleText": "Skate",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Levi Löffelberger  Skate",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Alisa Fessl",
+        "normalizedName": "alisa fessl",
+        "titleText": "Skate",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Alisa Fessl  Skate",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Teamrider Surf",
+        "normalizedName": "teamrider surf",
+        "titleText": "Patrick Derfler  Surf      Lisa Veith-Gruber  Snowboard, Surf, Skate     Alle Rider anzeigen",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Teamrider Surf   Patrick Derfler  Surf      Lisa Veith-Gruber  Snowboard, Surf, Skate     Alle Rider anzeigen",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Patrick Derfler",
+        "normalizedName": "patrick derfler",
+        "titleText": "Surf",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/team",
+        "pageType": "TEAM",
+        "evidenceText": "Patrick Derfler  Surf",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Snowboard Shop",
+        "normalizedName": "snowboard shop",
+        "titleText": "SnowwearSnowboardsProtektorenSplitboards",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/de-DE/snowboard",
+        "pageType": "LEADERSHIP",
+        "evidenceText": "Snowboard ShopSnowwearSnowboardsProtektorenSplitboards",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Beliebte Kategorien",
+        "normalizedName": "beliebte kategorien",
+        "titleText": "Alle zeigen",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/de-DE/snowboard",
+        "pageType": "LEADERSHIP",
+        "evidenceText": "Beliebte KategorienAlle zeigen",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Blue Tomato Snowboardschule",
+        "normalizedName": "blue tomato snowboardschule",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/de-DE/snowboardschule",
+        "pageType": "LEADERSHIP",
+        "evidenceText": "Blue Tomato Snowboardschule",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Unsere Snowboardschule",
+        "normalizedName": "unsere snowboardschule",
+        "titleText": "←                                                   → document.addEventListener('DOMContentLoaded', function() {",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/de-DE/snowboardschule",
+        "pageType": "LEADERSHIP",
+        "evidenceText": "Unsere Snowboardschule ←                                                   → document.addEventListener('DOMContentLoaded', function() {\n            if(typeof window.contenthub !== \"undefined\" && typeof window.contenthub.slider !== \"undefined\") {\n              window.contenthub.slider.init(document.g",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Shop Obertauern",
+        "normalizedName": "shop obertauern",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/de-DE/snowboardschule",
+        "pageType": "LEADERSHIP",
+        "evidenceText": "Shop Obertauern Egal ob Snowboards, Boots, Bindungen, Snowwear, Streetwear, Brillen, Handschuhe oder funktionelle Bekleidung. Im Blue Tomato Shop Obertauern findest du alles, was du für eine perfekte Zeit am Berg benötigst.",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Blue Tomato Shops",
+        "normalizedName": "blue tomato shops",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/de-DE/snowboardschule",
+        "pageType": "LEADERSHIP",
+        "evidenceText": "Blue Tomato Shops  Mehr als 40x in Österreich, Deutschland, Schweiz und den Niederlanden  Shop Obertauern / Schützpassage am Pass Hol' dir die neuesten Trends Deinen Style direkt im Spiegel checken Beste Auswahl und kompetente Beratung Gratis Lieferung der Online Produkte in deinen Shop Profitiere v",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      },
+      {
+        "fullName": "Snowboard Finder",
+        "normalizedName": "snowboard finder",
+        "titleText": "",
+        "matchedRoleHints": [],
+        "pageUrl": "https://www.blue-tomato.com/de-DE/page/snowboard-finder",
+        "pageType": "LEADERSHIP",
+        "evidenceText": "Snowboard FinderWir helfen dir das passende Snowboard zu finden. Wir stimmen nicht nur deine Größe, sondern auch dein Level und deinen Style auf die ideale Länge für dich ab. Entdecke deinen neuen Ride mit unserem Snowboard Finder.",
+        "confidenceSignals": [
+          "heading-element"
+        ]
+      }
+    ],
+    "emailCandidates": [
+      {
+        "email": "info@blue-tomato.com",
+        "domain": "blue-tomato.com",
+        "localPart": "info",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://www.blue-tomato.com/de-DE/",
+        "pageType": "HOMEPAGE",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "snowboardschule.obertauern@blue-tomato.com",
+        "domain": "blue-tomato.com",
+        "localPart": "snowboardschule.obertauern",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://www.blue-tomato.com/de-DE/snowboardschule",
+        "pageType": "LEADERSHIP",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "snowboardschule@blue-tomato.com",
+        "domain": "blue-tomato.com",
+        "localPart": "snowboardschule",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://www.blue-tomato.com/de-DE/snowboardschule",
+        "pageType": "LEADERSHIP",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "info@obertauern.com",
+        "domain": "obertauern.com",
+        "localPart": "info",
+        "sourceType": "MAILTO",
+        "pageUrl": "https://www.blue-tomato.com/de-DE/snowboardschule",
+        "pageType": "LEADERSHIP",
+        "confidenceSignals": [
+          "mailto-link",
+          "likely-work-domain"
+        ]
+      },
+      {
+        "email": "info@skikoch.at",
+        "domain": "skikoch.at",
+        "localPart": "info",
+        "sourceType": "OBFUSCATED_TEXT",
+        "pageUrl": "https://www.blue-tomato.com/de-DE/snowboardschule",
+        "pageType": "LEADERSHIP",
+        "confidenceSignals": [
+          "likely-work-domain"
+        ]
+      }
+    ],
+    "linkedinCandidates": [],
+    "notes": [],
+    "errors": []
+  }
+]

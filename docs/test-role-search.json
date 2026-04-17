@@ -1,0 +1,3128 @@
+[
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 2,
+    "companyName": "Tuckernuck",
+    "websiteUrl": "https://www.tuckernuck.com",
+    "role": "CEO",
+    "region": "US",
+    "queryPlan": {
+      "companyName": "Tuckernuck",
+      "websiteUrl": "https://www.tuckernuck.com",
+      "domain": "tuckernuck.com",
+      "role": "CEO",
+      "region": "US",
+      "country": "United States",
+      "queries": [
+        "\"Tuckernuck\" CEO LinkedIn",
+        "site:linkedin.com/in \"Tuckernuck\" CEO",
+        "\"Tuckernuck\" CEO",
+        "site:linkedin.com/in \"Tuckernuck\" tuckernuck.com",
+        "\"Tuckernuck\" founder LinkedIn"
+      ]
+    },
+    "rawSearchResults": [],
+    "parsedCandidates": [],
+    "rankedCandidates": [],
+    "errors": [
+      "Query \"\"Tuckernuck\" CEO LinkedIn\": Google CAPTCHA -- rate limited"
+    ]
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 1,
+    "companyName": "Manufactum",
+    "websiteUrl": "https://www.manufactum.de",
+    "role": "CEO",
+    "region": "EU",
+    "queryPlan": {
+      "companyName": "Manufactum",
+      "websiteUrl": "https://www.manufactum.de",
+      "domain": "manufactum.de",
+      "role": "CEO",
+      "region": "EU",
+      "country": "Germany",
+      "queries": [
+        "\"Manufactum\" CEO LinkedIn",
+        "site:linkedin.com/in \"Manufactum\" CEO",
+        "\"Manufactum\" CEO",
+        "site:linkedin.com/in \"Manufactum\" manufactum.de",
+        "\"Manufactum\" founder LinkedIn",
+        "\"Manufactum\" CEO Germany LinkedIn"
+      ]
+    },
+    "rawSearchResults": [
+      {
+        "query": "\"Manufactum\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Dario Rendulic - CEO at Manufactum",
+        "snippet": "LinkedIn · Dario Rendulic50+ followers",
+        "url": "https://hr.linkedin.com/in/dario-rendulic-29951816",
+        "displayUrl": "https://hr.linkedin.com/in/dario-rendulic-29951816",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Manufactum\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "3 \"Dario Rendulić\" profiles",
+        "snippet": "LinkedInhttps://hr.linkedin.com › Dario › Rendulić › hr-0-Croatia",
+        "url": "https://hr.linkedin.com/pub/dir/Dario/Renduli%C4%87/hr-0-Croatia",
+        "displayUrl": "https://hr.linkedin.com/pub/dir/Dario/Renduli%C4%87/hr-0-Croatia",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Manufactum\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "500+ \"Rendulic\" profiles",
+        "snippet": "LinkedInhttps://www.linkedin.com › pub › dir › Rendulic",
+        "url": "https://www.linkedin.com/pub/dir/+/Rendulic",
+        "displayUrl": "https://www.linkedin.com/pub/dir/+/Rendulic",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Manufactum\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Marcel de Vries – Manufactum Gruppe",
+        "snippet": "LinkedIn · Marcel de Vries1.8K+ followers",
+        "url": "https://de.linkedin.com/in/marcel-de-vries-muc",
+        "displayUrl": "https://de.linkedin.com/in/marcel-de-vries-muc",
+        "rank": 4,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Manufactum\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Sergio Bucher | 31 comments",
+        "snippet": "LinkedIn · Sergio Bucher310+ reactions  ·  7 months ago",
+        "url": "https://www.linkedin.com/posts/sergio-bucher-86b86511_leadership-sustainability-quality-activity-7368289025968861186-GePN",
+        "displayUrl": "https://www.linkedin.com/posts/sergio-bucher-86b86511_leadership-sustainability-quality-activity-7368289025968861186-GePN",
+        "rank": 5,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Manufactum\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Alexander Peters – Managing Director Manufactum Gruppe",
+        "snippet": "LinkedIn · Alexander Peters600+ followers",
+        "url": "https://de.linkedin.com/in/alex-peters-hh",
+        "displayUrl": "https://de.linkedin.com/in/alex-peters-hh",
+        "rank": 6,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Manufactum\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "PORFIDIO ❌ MANUFACTUM interior design stores | Martin Grassl",
+        "snippet": "LinkedInhttps://www.linkedin.com › posts › martin-grassl-3a2479...",
+        "url": "https://www.linkedin.com/posts/martin-grassl-3a247911_porfidio-manufactum-interior-design-stores-activity-7239813683839688704-GVtY",
+        "displayUrl": "https://www.linkedin.com/posts/martin-grassl-3a247911_porfidio-manufactum-interior-design-stores-activity-7239813683839688704-GVtY",
+        "rank": 7,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Manufactum\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Manufactum Gruppe is a special brand of the Otto Group ...",
+        "snippet": "LinkedIn · Marcus Ackermann20+ reactions  ·  7 months ago",
+        "url": "https://www.linkedin.com/posts/ottogroup_scaling-successful-business-models-manufactum-activity-7368286566332387330-Z5BU",
+        "displayUrl": "https://www.linkedin.com/posts/ottogroup_scaling-successful-business-models-manufactum-activity-7368286566332387330-Z5BU",
+        "rank": 8,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Manufactum\" CEO",
+        "engine": "GOOGLE",
+        "title": "Dario Rendulic - CEO at Manufactum",
+        "snippet": "LinkedIn · Dario Rendulic50+ followers",
+        "url": "https://hr.linkedin.com/in/dario-rendulic-29951816",
+        "displayUrl": "https://hr.linkedin.com/in/dario-rendulic-29951816",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Manufactum\" CEO",
+        "engine": "GOOGLE",
+        "title": "Marcel de Vries – Manufactum Gruppe",
+        "snippet": "LinkedIn · Marcel de Vries1.8K+ followers",
+        "url": "https://de.linkedin.com/in/marcel-de-vries-muc",
+        "displayUrl": "https://de.linkedin.com/in/marcel-de-vries-muc",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Manufactum\" CEO",
+        "engine": "GOOGLE",
+        "title": "Neela Montgomery - Global Public and Private Markets ...",
+        "snippet": "LinkedIn · Neela Montgomery8.5K+ followers",
+        "url": "https://www.linkedin.com/in/neelamontgomery",
+        "displayUrl": "https://www.linkedin.com/in/neelamontgomery",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Manufactum\" CEO",
+        "engine": "GOOGLE",
+        "title": "Alexander Peters – Managing Director Manufactum Gruppe",
+        "snippet": "LinkedIn · Alexander Peters600+ followers",
+        "url": "https://de.linkedin.com/in/alex-peters-hh",
+        "displayUrl": "https://de.linkedin.com/in/alex-peters-hh",
+        "rank": 4,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Manufactum\" CEO",
+        "engine": "GOOGLE",
+        "title": "Kai Steffan – Vorsitzender der Geschäftsführung ...",
+        "snippet": "LinkedIn · Kai Steffan1K+ followers",
+        "url": "https://de.linkedin.com/in/kai-steffan-81175b6b",
+        "displayUrl": "https://de.linkedin.com/in/kai-steffan-81175b6b",
+        "rank": 5,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Manufactum\" CEO",
+        "engine": "GOOGLE",
+        "title": "Tim Enderle",
+        "snippet": "LinkedInhttps://de.linkedin.com › tim-enderle-540101346",
+        "url": "https://de.linkedin.com/in/tim-enderle-540101346",
+        "displayUrl": "https://de.linkedin.com/in/tim-enderle-540101346",
+        "rank": 6,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Manufactum\" CEO",
+        "engine": "GOOGLE",
+        "title": "Viviane Schmidt-Mocsnik – Manufactum Gruppe",
+        "snippet": "LinkedIn · Viviane Schmidt-Mocsnik170+ followers",
+        "url": "https://de.linkedin.com/in/viviane-schmidt-mocsnik-3713a21a0",
+        "displayUrl": "https://de.linkedin.com/in/viviane-schmidt-mocsnik-3713a21a0",
+        "rank": 7,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Manufactum\" CEO",
+        "engine": "GOOGLE",
+        "title": "Martin Erdmann - Unabhängiger Berater",
+        "snippet": "LinkedInhttps://www.linkedin.com › ...",
+        "url": "https://www.linkedin.com/in/martin-erdmann-20603125a/?originalSubdomain=de",
+        "displayUrl": "https://www.linkedin.com/in/martin-erdmann-20603125a/?originalSubdomain=de",
+        "rank": 8,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      }
+    ],
+    "parsedCandidates": [
+      {
+        "fullName": "Dario Rendulic",
+        "normalizedName": "dario rendulic",
+        "role": "CEO",
+        "inferredCompany": "Manufactum",
+        "sourceUrl": "https://hr.linkedin.com/in/dario-rendulic-29951816",
+        "sourceTitle": "Dario Rendulic - CEO at Manufactum",
+        "sourceSnippet": "LinkedIn · Dario Rendulic50+ followers",
+        "linkedinUrl": "https://hr.linkedin.com/in/dario-rendulic-29951816",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name",
+          "role-evidence"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Marcel de Vries",
+        "normalizedName": "marcel de vries",
+        "role": "CEO",
+        "inferredCompany": "Manufactum",
+        "sourceUrl": "https://de.linkedin.com/in/marcel-de-vries-muc",
+        "sourceTitle": "Marcel de Vries – Manufactum Gruppe",
+        "sourceSnippet": "LinkedIn · Marcel de Vries1.8K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/marcel-de-vries-muc",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Sergio Bucher",
+        "normalizedName": "sergio bucher",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/posts/sergio-bucher-86b86511_leadership-sustainability-quality-activity-7368289025968861186-GePN",
+        "sourceTitle": "Sergio Bucher | 31 comments",
+        "sourceSnippet": "LinkedIn · Sergio Bucher310+ reactions  ·  7 months ago",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Alexander Peters",
+        "normalizedName": "alexander peters",
+        "role": "CEO",
+        "inferredCompany": "Manufactum",
+        "sourceUrl": "https://de.linkedin.com/in/alex-peters-hh",
+        "sourceTitle": "Alexander Peters – Managing Director Manufactum Gruppe",
+        "sourceSnippet": "LinkedIn · Alexander Peters600+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/alex-peters-hh",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name",
+          "role-evidence"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Martin Grassl",
+        "normalizedName": "martin grassl",
+        "role": "CEO",
+        "inferredCompany": "Manufactum",
+        "sourceUrl": "https://www.linkedin.com/posts/martin-grassl-3a247911_porfidio-manufactum-interior-design-stores-activity-7239813683839688704-GVtY",
+        "sourceTitle": "PORFIDIO ❌ MANUFACTUM interior design stores | Martin Grassl",
+        "sourceSnippet": "LinkedInhttps://www.linkedin.com › posts › martin-grassl-3a2479...",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Neela Montgomery",
+        "normalizedName": "neela montgomery",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/neelamontgomery",
+        "sourceTitle": "Neela Montgomery - Global Public and Private Markets ...",
+        "sourceSnippet": "LinkedIn · Neela Montgomery8.5K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/neelamontgomery",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Kai Steffan",
+        "normalizedName": "kai steffan",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/kai-steffan-81175b6b",
+        "sourceTitle": "Kai Steffan – Vorsitzender der Geschäftsführung ...",
+        "sourceSnippet": "LinkedIn · Kai Steffan1K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/kai-steffan-81175b6b",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Tim Enderle",
+        "normalizedName": "tim enderle",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/tim-enderle-540101346",
+        "sourceTitle": "Tim Enderle",
+        "sourceSnippet": "LinkedInhttps://de.linkedin.com › tim-enderle-540101346",
+        "linkedinUrl": "https://de.linkedin.com/in/tim-enderle-540101346",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Viviane Schmidt",
+        "normalizedName": "viviane schmidt",
+        "role": "CEO",
+        "inferredCompany": "Manufactum",
+        "sourceUrl": "https://de.linkedin.com/in/viviane-schmidt-mocsnik-3713a21a0",
+        "sourceTitle": "Viviane Schmidt-Mocsnik – Manufactum Gruppe",
+        "sourceSnippet": "LinkedIn · Viviane Schmidt-Mocsnik170+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/viviane-schmidt-mocsnik-3713a21a0",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Martin Erdmann",
+        "normalizedName": "martin erdmann",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/martin-erdmann-20603125a/?originalSubdomain=de",
+        "sourceTitle": "Martin Erdmann - Unabhängiger Berater",
+        "sourceSnippet": "LinkedInhttps://www.linkedin.com › ...",
+        "linkedinUrl": "https://www.linkedin.com/in/martin-erdmann-20603125a/",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      }
+    ],
+    "rankedCandidates": [
+      {
+        "fullName": "Dario Rendulic",
+        "normalizedName": "dario rendulic",
+        "role": "CEO",
+        "inferredCompany": "Manufactum",
+        "sourceUrl": "https://hr.linkedin.com/in/dario-rendulic-29951816",
+        "sourceTitle": "Dario Rendulic - CEO at Manufactum",
+        "sourceSnippet": "LinkedIn · Dario Rendulic50+ followers",
+        "linkedinUrl": "https://hr.linkedin.com/in/dario-rendulic-29951816",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name",
+          "role-evidence"
+        ],
+        "confidenceScore": 105,
+        "rankScore": 105,
+        "rankReasons": [
+          "+40 linkedin-person-profile",
+          "+25 company-name-match",
+          "+20 domain-token-match",
+          "+20 role-keyword-match"
+        ]
+      },
+      {
+        "fullName": "Alexander Peters",
+        "normalizedName": "alexander peters",
+        "role": "CEO",
+        "inferredCompany": "Manufactum",
+        "sourceUrl": "https://de.linkedin.com/in/alex-peters-hh",
+        "sourceTitle": "Alexander Peters – Managing Director Manufactum Gruppe",
+        "sourceSnippet": "LinkedIn · Alexander Peters600+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/alex-peters-hh",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name",
+          "role-evidence"
+        ],
+        "confidenceScore": 105,
+        "rankScore": 105,
+        "rankReasons": [
+          "+40 linkedin-person-profile",
+          "+25 company-name-match",
+          "+20 domain-token-match",
+          "+20 role-keyword-match"
+        ]
+      },
+      {
+        "fullName": "Marcel de Vries",
+        "normalizedName": "marcel de vries",
+        "role": "CEO",
+        "inferredCompany": "Manufactum",
+        "sourceUrl": "https://de.linkedin.com/in/marcel-de-vries-muc",
+        "sourceTitle": "Marcel de Vries – Manufactum Gruppe",
+        "sourceSnippet": "LinkedIn · Marcel de Vries1.8K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/marcel-de-vries-muc",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 85,
+        "rankScore": 85,
+        "rankReasons": [
+          "+40 linkedin-person-profile",
+          "+25 company-name-match",
+          "+20 domain-token-match"
+        ]
+      },
+      {
+        "fullName": "Viviane Schmidt",
+        "normalizedName": "viviane schmidt",
+        "role": "CEO",
+        "inferredCompany": "Manufactum",
+        "sourceUrl": "https://de.linkedin.com/in/viviane-schmidt-mocsnik-3713a21a0",
+        "sourceTitle": "Viviane Schmidt-Mocsnik – Manufactum Gruppe",
+        "sourceSnippet": "LinkedIn · Viviane Schmidt-Mocsnik170+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/viviane-schmidt-mocsnik-3713a21a0",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 85,
+        "rankScore": 85,
+        "rankReasons": [
+          "+40 linkedin-person-profile",
+          "+25 company-name-match",
+          "+20 domain-token-match"
+        ]
+      },
+      {
+        "fullName": "Martin Grassl",
+        "normalizedName": "martin grassl",
+        "role": "CEO",
+        "inferredCompany": "Manufactum",
+        "sourceUrl": "https://www.linkedin.com/posts/martin-grassl-3a247911_porfidio-manufactum-interior-design-stores-activity-7239813683839688704-GVtY",
+        "sourceTitle": "PORFIDIO ❌ MANUFACTUM interior design stores | Martin Grassl",
+        "sourceSnippet": "LinkedInhttps://www.linkedin.com › posts › martin-grassl-3a2479...",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 45,
+        "rankScore": 45,
+        "rankReasons": [
+          "+25 company-name-match",
+          "+20 domain-token-match"
+        ]
+      },
+      {
+        "fullName": "Neela Montgomery",
+        "normalizedName": "neela montgomery",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/neelamontgomery",
+        "sourceTitle": "Neela Montgomery - Global Public and Private Markets ...",
+        "sourceSnippet": "LinkedIn · Neela Montgomery8.5K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/neelamontgomery",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Kai Steffan",
+        "normalizedName": "kai steffan",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/kai-steffan-81175b6b",
+        "sourceTitle": "Kai Steffan – Vorsitzender der Geschäftsführung ...",
+        "sourceSnippet": "LinkedIn · Kai Steffan1K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/kai-steffan-81175b6b",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Tim Enderle",
+        "normalizedName": "tim enderle",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/tim-enderle-540101346",
+        "sourceTitle": "Tim Enderle",
+        "sourceSnippet": "LinkedInhttps://de.linkedin.com › tim-enderle-540101346",
+        "linkedinUrl": "https://de.linkedin.com/in/tim-enderle-540101346",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Martin Erdmann",
+        "normalizedName": "martin erdmann",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/martin-erdmann-20603125a/?originalSubdomain=de",
+        "sourceTitle": "Martin Erdmann - Unabhängiger Berater",
+        "sourceSnippet": "LinkedInhttps://www.linkedin.com › ...",
+        "linkedinUrl": "https://www.linkedin.com/in/martin-erdmann-20603125a/",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Sergio Bucher",
+        "normalizedName": "sergio bucher",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/posts/sergio-bucher-86b86511_leadership-sustainability-quality-activity-7368289025968861186-GePN",
+        "sourceTitle": "Sergio Bucher | 31 comments",
+        "sourceSnippet": "LinkedIn · Sergio Bucher310+ reactions  ·  7 months ago",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 0,
+        "rankScore": 0,
+        "rankReasons": []
+      }
+    ],
+    "errors": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 59,
+    "companyName": "M.Gemi",
+    "websiteUrl": "https://www.mgemi.com",
+    "role": "CEO",
+    "region": "US",
+    "queryPlan": {
+      "companyName": "M.Gemi",
+      "websiteUrl": "https://www.mgemi.com",
+      "domain": "mgemi.com",
+      "role": "CEO",
+      "region": "US",
+      "country": "United States",
+      "queries": [
+        "\"M.Gemi\" CEO LinkedIn",
+        "site:linkedin.com/in \"M.Gemi\" CEO",
+        "\"M.Gemi\" CEO",
+        "site:linkedin.com/in \"M.Gemi\" mgemi.com",
+        "\"M.Gemi\" founder LinkedIn"
+      ]
+    },
+    "rawSearchResults": [
+      {
+        "query": "\"M.Gemi\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Cheryl Kaplan - CEO at M.Gemi",
+        "snippet": "LinkedIn · Cheryl Kaplan3.9K+ followers",
+        "url": "https://www.linkedin.com/in/cherylwkaplan",
+        "displayUrl": "https://www.linkedin.com/in/cherylwkaplan",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"M.Gemi\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Cheryl Kaplan's Post",
+        "snippet": "LinkedIn · Cheryl Kaplan270+ reactions  ·  3 years ago",
+        "url": "https://www.linkedin.com/posts/cherylwkaplan_i-am-so-fortunate-to-work-with-an-incredible-activity-7022244557023006721-7Qvo",
+        "displayUrl": "https://www.linkedin.com/posts/cherylwkaplan_i-am-so-fortunate-to-work-with-an-incredible-activity-7022244557023006721-7Qvo",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"M.Gemi\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "M.Gemi",
+        "snippet": "4.2K+ followers",
+        "url": "https://www.linkedin.com/company/m-gemi",
+        "displayUrl": "https://www.linkedin.com/company/m-gemi",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "COMPANY_PAGE",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"M.Gemi\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "50+ \"Cheryl Kaplan\" profiles",
+        "snippet": "LinkedInhttps://www.linkedin.com › Kaplan › us-0-United-States",
+        "url": "https://www.linkedin.com/pub/dir/Cheryl/Kaplan/us-0-United-States",
+        "displayUrl": "https://www.linkedin.com/pub/dir/Cheryl/Kaplan/us-0-United-States",
+        "rank": 4,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"M.Gemi\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "M.Gemi's Post",
+        "snippet": "LinkedIn · M.Gemi40+ reactions  ·  1 year ago",
+        "url": "https://www.linkedin.com/posts/m-gemi_a-note-from-our-founder-on-international-activity-7304138864883912722-wF5L",
+        "displayUrl": "https://www.linkedin.com/posts/m-gemi_a-note-from-our-founder-on-international-activity-7304138864883912722-wF5L",
+        "rank": 5,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"M.Gemi\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "M.Gemi CEO, Founder, Key Executive Team, Board of Directors ...",
+        "snippet": "CB Insightshttps://www.cbinsights.com › company › rcw › people",
+        "url": "https://www.cbinsights.com/company/rcw/people",
+        "displayUrl": "https://www.cbinsights.com/company/rcw/people",
+        "rank": 6,
+        "isLinkedin": false,
+        "linkedinType": null,
+        "evidenceSignals": []
+      },
+      {
+        "query": "\"M.Gemi\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "LAUNCH",
+        "snippet": "1.8K+ followers",
+        "url": "https://www.linkedin.com/company/launch-",
+        "displayUrl": "https://www.linkedin.com/company/launch-",
+        "rank": 7,
+        "isLinkedin": true,
+        "linkedinType": "COMPANY_PAGE",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"M.Gemi\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "M.Gemi Receives $16M in Funding, Plans Boston Store",
+        "snippet": "WWDhttps://wwd.com › Footwear News › Shoe Industry News",
+        "url": "https://wwd.com/footwear-news/shoe-industry-news/m-gemi-gains-16-million-series-c-funding-eg-1238717617/",
+        "displayUrl": "https://wwd.com/footwear-news/shoe-industry-news/m-gemi-gains-16-million-series-c-funding-eg-1238717617/",
+        "rank": 8,
+        "isLinkedin": false,
+        "linkedinType": null,
+        "evidenceSignals": []
+      },
+      {
+        "query": "site:linkedin.com/in \"M.Gemi\" CEO",
+        "engine": "GOOGLE",
+        "title": "Cheryl Kaplan - CEO at M.Gemi",
+        "snippet": "LinkedIn · Cheryl Kaplan3.9K+ followers",
+        "url": "https://www.linkedin.com/in/cherylwkaplan",
+        "displayUrl": "https://www.linkedin.com/in/cherylwkaplan",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"M.Gemi\" CEO",
+        "engine": "GOOGLE",
+        "title": "Maria Gangemi - Founder, Chief Merchant at M.Gemi",
+        "snippet": "LinkedIn · Maria Gangemi2K+ followers",
+        "url": "https://www.linkedin.com/in/maria-gangemi-5a140717",
+        "displayUrl": "https://www.linkedin.com/in/maria-gangemi-5a140717",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"M.Gemi\" CEO",
+        "engine": "GOOGLE",
+        "title": "William Chu - Product Leader at the intersection of UX | Data",
+        "snippet": "LinkedIn · William Chu990+ followers",
+        "url": "https://www.linkedin.com/in/william-chu-a443244",
+        "displayUrl": "https://www.linkedin.com/in/william-chu-a443244",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"M.Gemi\" CEO",
+        "engine": "GOOGLE",
+        "title": "Rachel Horowitz - COO at Flare",
+        "snippet": "LinkedIn · Rachel Horowitz3.4K+ followers",
+        "url": "https://www.linkedin.com/in/rachel-horowitz-155a8a34",
+        "displayUrl": "https://www.linkedin.com/in/rachel-horowitz-155a8a34",
+        "rank": 4,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"M.Gemi\" CEO",
+        "engine": "GOOGLE",
+        "title": "Carolina Martin - CUENTA ROBADA!ashion is not ...",
+        "snippet": "LinkedIn · Carolina Martin1.4K+ followers",
+        "url": "https://www.linkedin.com/in/carolina-martin-",
+        "displayUrl": "https://www.linkedin.com/in/carolina-martin-",
+        "rank": 5,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"M.Gemi\" CEO",
+        "engine": "GOOGLE",
+        "title": "Eve Morocco - M.Gemi",
+        "snippet": "LinkedIn · Eve Morocco630+ followers",
+        "url": "https://www.linkedin.com/in/eve-morocco-a6731b73",
+        "displayUrl": "https://www.linkedin.com/in/eve-morocco-a6731b73",
+        "rank": 6,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"M.Gemi\" CEO",
+        "engine": "GOOGLE",
+        "title": "Lisa Lundy - Brand Voice Expert, Strategist & Editorial ...",
+        "snippet": "LinkedIn · Lisa Lundy1.8K+ followers",
+        "url": "https://www.linkedin.com/in/lisa-lundy-898a2510",
+        "displayUrl": "https://www.linkedin.com/in/lisa-lundy-898a2510",
+        "rank": 7,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"M.Gemi\" CEO",
+        "engine": "GOOGLE",
+        "title": "Katie Iles - Chief Commercial Officer at Nuts.com",
+        "snippet": "LinkedIn · Katie Iles1.9K+ followers",
+        "url": "https://www.linkedin.com/in/katieneufeld",
+        "displayUrl": "https://www.linkedin.com/in/katieneufeld",
+        "rank": 8,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      }
+    ],
+    "parsedCandidates": [
+      {
+        "fullName": "Cheryl Kaplan",
+        "normalizedName": "cheryl kaplan",
+        "role": "CEO",
+        "inferredCompany": "M.Gemi",
+        "sourceUrl": "https://www.linkedin.com/in/cherylwkaplan",
+        "sourceTitle": "Cheryl Kaplan - CEO at M.Gemi",
+        "sourceSnippet": "LinkedIn · Cheryl Kaplan3.9K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/cherylwkaplan",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name",
+          "role-evidence"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Maria Gangemi",
+        "normalizedName": "maria gangemi",
+        "role": "CEO",
+        "inferredCompany": "M.Gemi",
+        "sourceUrl": "https://www.linkedin.com/in/maria-gangemi-5a140717",
+        "sourceTitle": "Maria Gangemi - Founder, Chief Merchant at M.Gemi",
+        "sourceSnippet": "LinkedIn · Maria Gangemi2K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/maria-gangemi-5a140717",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name",
+          "role-evidence"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "William Chu",
+        "normalizedName": "william chu",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/william-chu-a443244",
+        "sourceTitle": "William Chu - Product Leader at the intersection of UX | Data",
+        "sourceSnippet": "LinkedIn · William Chu990+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/william-chu-a443244",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Rachel Horowitz",
+        "normalizedName": "rachel horowitz",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/rachel-horowitz-155a8a34",
+        "sourceTitle": "Rachel Horowitz - COO at Flare",
+        "sourceSnippet": "LinkedIn · Rachel Horowitz3.4K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/rachel-horowitz-155a8a34",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Carolina Martin",
+        "normalizedName": "carolina martin",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/carolina-martin-",
+        "sourceTitle": "Carolina Martin - CUENTA ROBADA!ashion is not ...",
+        "sourceSnippet": "LinkedIn · Carolina Martin1.4K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/carolina-martin-",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Eve Morocco",
+        "normalizedName": "eve morocco",
+        "role": "CEO",
+        "inferredCompany": "M.Gemi",
+        "sourceUrl": "https://www.linkedin.com/in/eve-morocco-a6731b73",
+        "sourceTitle": "Eve Morocco - M.Gemi",
+        "sourceSnippet": "LinkedIn · Eve Morocco630+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/eve-morocco-a6731b73",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Lisa Lundy",
+        "normalizedName": "lisa lundy",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/lisa-lundy-898a2510",
+        "sourceTitle": "Lisa Lundy - Brand Voice Expert, Strategist & Editorial ...",
+        "sourceSnippet": "LinkedIn · Lisa Lundy1.8K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/lisa-lundy-898a2510",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Katie Iles",
+        "normalizedName": "katie iles",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/katieneufeld",
+        "sourceTitle": "Katie Iles - Chief Commercial Officer at Nuts.com",
+        "sourceSnippet": "LinkedIn · Katie Iles1.9K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/katieneufeld",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      }
+    ],
+    "rankedCandidates": [
+      {
+        "fullName": "Cheryl Kaplan",
+        "normalizedName": "cheryl kaplan",
+        "role": "CEO",
+        "inferredCompany": "M.Gemi",
+        "sourceUrl": "https://www.linkedin.com/in/cherylwkaplan",
+        "sourceTitle": "Cheryl Kaplan - CEO at M.Gemi",
+        "sourceSnippet": "LinkedIn · Cheryl Kaplan3.9K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/cherylwkaplan",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name",
+          "role-evidence"
+        ],
+        "confidenceScore": 85,
+        "rankScore": 85,
+        "rankReasons": [
+          "+40 linkedin-person-profile",
+          "+25 company-name-match",
+          "+20 role-keyword-match"
+        ]
+      },
+      {
+        "fullName": "Maria Gangemi",
+        "normalizedName": "maria gangemi",
+        "role": "CEO",
+        "inferredCompany": "M.Gemi",
+        "sourceUrl": "https://www.linkedin.com/in/maria-gangemi-5a140717",
+        "sourceTitle": "Maria Gangemi - Founder, Chief Merchant at M.Gemi",
+        "sourceSnippet": "LinkedIn · Maria Gangemi2K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/maria-gangemi-5a140717",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name",
+          "role-evidence"
+        ],
+        "confidenceScore": 85,
+        "rankScore": 85,
+        "rankReasons": [
+          "+40 linkedin-person-profile",
+          "+25 company-name-match",
+          "+20 role-keyword-match"
+        ]
+      },
+      {
+        "fullName": "Eve Morocco",
+        "normalizedName": "eve morocco",
+        "role": "CEO",
+        "inferredCompany": "M.Gemi",
+        "sourceUrl": "https://www.linkedin.com/in/eve-morocco-a6731b73",
+        "sourceTitle": "Eve Morocco - M.Gemi",
+        "sourceSnippet": "LinkedIn · Eve Morocco630+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/eve-morocco-a6731b73",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 65,
+        "rankScore": 65,
+        "rankReasons": [
+          "+40 linkedin-person-profile",
+          "+25 company-name-match"
+        ]
+      },
+      {
+        "fullName": "William Chu",
+        "normalizedName": "william chu",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/william-chu-a443244",
+        "sourceTitle": "William Chu - Product Leader at the intersection of UX | Data",
+        "sourceSnippet": "LinkedIn · William Chu990+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/william-chu-a443244",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Rachel Horowitz",
+        "normalizedName": "rachel horowitz",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/rachel-horowitz-155a8a34",
+        "sourceTitle": "Rachel Horowitz - COO at Flare",
+        "sourceSnippet": "LinkedIn · Rachel Horowitz3.4K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/rachel-horowitz-155a8a34",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Carolina Martin",
+        "normalizedName": "carolina martin",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/carolina-martin-",
+        "sourceTitle": "Carolina Martin - CUENTA ROBADA!ashion is not ...",
+        "sourceSnippet": "LinkedIn · Carolina Martin1.4K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/carolina-martin-",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Lisa Lundy",
+        "normalizedName": "lisa lundy",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/lisa-lundy-898a2510",
+        "sourceTitle": "Lisa Lundy - Brand Voice Expert, Strategist & Editorial ...",
+        "sourceSnippet": "LinkedIn · Lisa Lundy1.8K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/lisa-lundy-898a2510",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Katie Iles",
+        "normalizedName": "katie iles",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/katieneufeld",
+        "sourceTitle": "Katie Iles - Chief Commercial Officer at Nuts.com",
+        "sourceSnippet": "LinkedIn · Katie Iles1.9K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/katieneufeld",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 6,
+    "companyName": "Bergzeit",
+    "websiteUrl": "https://www.bergzeit.de",
+    "role": "CEO",
+    "region": "EU",
+    "queryPlan": {
+      "companyName": "Bergzeit",
+      "websiteUrl": "https://www.bergzeit.de",
+      "domain": "bergzeit.de",
+      "role": "CEO",
+      "region": "EU",
+      "country": "Germany",
+      "queries": [
+        "\"Bergzeit\" CEO LinkedIn",
+        "site:linkedin.com/in \"Bergzeit\" CEO",
+        "\"Bergzeit\" CEO",
+        "site:linkedin.com/in \"Bergzeit\" bergzeit.de",
+        "\"Bergzeit\" founder LinkedIn",
+        "\"Bergzeit\" CEO Germany LinkedIn"
+      ]
+    },
+    "rawSearchResults": [
+      {
+        "query": "\"Bergzeit\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Martin Stolzenberger – Bergzeit",
+        "snippet": "LinkedIn · Martin Stolzenberger3.4K+ followers",
+        "url": "https://de.linkedin.com/in/martin-stolzenberger-78423a127",
+        "displayUrl": "https://de.linkedin.com/in/martin-stolzenberger-78423a127",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Bergzeit\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "2 \"Martin Stolzenberger\" profiles",
+        "snippet": "LinkedInhttps://www.linkedin.com › pub › dir › Stolzenberger",
+        "url": "https://www.linkedin.com/pub/dir/Martin/Stolzenberger?trk=public_profile_samename_see_all",
+        "displayUrl": "https://www.linkedin.com/pub/dir/Martin/Stolzenberger?trk=public_profile_samename_see_all",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Bergzeit\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "60+ \"Marty Stolz\" profiles",
+        "snippet": "LinkedInhttps://www.linkedin.com › pub › dir · Translate this page",
+        "url": "https://www.linkedin.com/pub/dir/Marty/Stolz",
+        "displayUrl": "https://www.linkedin.com/pub/dir/Marty/Stolz",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Bergzeit\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Christian Schneidermeier's Post",
+        "snippet": "LinkedIn · European Outdoor Group (EOG)80+ reactions  ·  1 year ago",
+        "url": "https://www.linkedin.com/posts/christian-schneidermeier-739855280_thanks-martin-for-this-interesting-meeting-activity-7306012811527135232-x46-",
+        "displayUrl": "https://www.linkedin.com/posts/christian-schneidermeier-739855280_thanks-martin-for-this-interesting-meeting-activity-7306012811527135232-x46-",
+        "rank": 4,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Bergzeit\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Made in Green #28: Martin Stolzenberger (CEO Bergzeit)",
+        "snippet": "LinkedIn · Bergzeit60+ reactions  ·  1 year ago",
+        "url": "https://de.linkedin.com/posts/bergzeit_made-in-green-28-martin-stolzenberger-activity-7290307744207720449-LLf0",
+        "displayUrl": "https://de.linkedin.com/posts/bergzeit_made-in-green-28-martin-stolzenberger-activity-7290307744207720449-LLf0",
+        "rank": 5,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Bergzeit\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Beitrag von Martin Stolzenberger",
+        "snippet": "LinkedIn · Martin Stolzenberger60+ reactions  ·  2 years ago",
+        "url": "https://www.linkedin.com/posts/martin-stolzenberger-78423a127_vielen-dank-tobias-kufner-f%C3%BCr-die-einladung-activity-7094603563644919808-ebzU?trk=public_profile_like_view",
+        "displayUrl": "https://www.linkedin.com/posts/martin-stolzenberger-78423a127_vielen-dank-tobias-kufner-f%C3%BCr-die-einladung-activity-7094603563644919808-ebzU?trk=public_profile_like_view",
+        "rank": 6,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Bergzeit\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "#gtm #gtm #cx #ai #leadership #salesandpepper",
+        "snippet": "LinkedIn · Dominic Klingberg10+ reactions  ·  1 month ago",
+        "url": "https://www.linkedin.com/posts/dominicklingberg_gtm-cx-ai-activity-7434477716315340800-qGFK",
+        "displayUrl": "https://www.linkedin.com/posts/dominicklingberg_gtm-cx-ai-activity-7434477716315340800-qGFK",
+        "rank": 7,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Bergzeit\" CEO LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Bergzeit appoints Teresa Schuster as co-CEO",
+        "snippet": "Outdoor Industry Compasshttps://www.oicompass.com › 116032.article",
+        "url": "https://www.oicompass.com/executive-changes/bergzeit-appoints-teresa-schuster-as-co-ceo/116032.article",
+        "displayUrl": "https://www.oicompass.com/executive-changes/bergzeit-appoints-teresa-schuster-as-co-ceo/116032.article",
+        "rank": 8,
+        "isLinkedin": false,
+        "linkedinType": null,
+        "evidenceSignals": []
+      },
+      {
+        "query": "site:linkedin.com/in \"Bergzeit\" CEO",
+        "engine": "GOOGLE",
+        "title": "Martin Stolzenberger – Bergzeit",
+        "snippet": "LinkedIn · Martin Stolzenberger3.4K+ followers",
+        "url": "https://de.linkedin.com/in/martin-stolzenberger-78423a127",
+        "displayUrl": "https://de.linkedin.com/in/martin-stolzenberger-78423a127",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Bergzeit\" CEO",
+        "engine": "GOOGLE",
+        "title": "Andreas Rey – Bergzeit",
+        "snippet": "LinkedIn · Andreas Rey1.1K+ followers",
+        "url": "https://de.linkedin.com/in/andreas-rey-593626137",
+        "displayUrl": "https://de.linkedin.com/in/andreas-rey-593626137",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Bergzeit\" CEO",
+        "engine": "GOOGLE",
+        "title": "Markus Grindel – Spread Group",
+        "snippet": "LinkedIn · Markus Grindel1.1K+ followers",
+        "url": "https://de.linkedin.com/in/mgrindel",
+        "displayUrl": "https://de.linkedin.com/in/mgrindel",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Bergzeit\" CEO",
+        "engine": "GOOGLE",
+        "title": "Paul Galama - Country Manager Benelux bij Bergzeit",
+        "snippet": "LinkedIn · Paul Galama800+ followers",
+        "url": "https://de.linkedin.com/in/paul-galama/en",
+        "displayUrl": "https://de.linkedin.com/in/paul-galama/en",
+        "rank": 4,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Bergzeit\" CEO",
+        "engine": "GOOGLE",
+        "title": "Pascal Beij – Unzer",
+        "snippet": "LinkedIn · Pascal Beij3.1K+ followers",
+        "url": "https://de.linkedin.com/in/pascalbeij",
+        "displayUrl": "https://de.linkedin.com/in/pascalbeij",
+        "rank": 5,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Bergzeit\" CEO",
+        "engine": "GOOGLE",
+        "title": "Sven Z.",
+        "snippet": "1 follower",
+        "url": "https://de.linkedin.com/in/sven-z-167a3b73",
+        "displayUrl": "https://de.linkedin.com/in/sven-z-167a3b73",
+        "rank": 6,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Bergzeit\" CEO",
+        "engine": "GOOGLE",
+        "title": "Monika Fuchs – Lenzing Group",
+        "snippet": "LinkedInhttps://at.linkedin.com › ...",
+        "url": "https://at.linkedin.com/in/monika-fuchs-b1783a265",
+        "displayUrl": "https://at.linkedin.com/in/monika-fuchs-b1783a265",
+        "rank": 7,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Bergzeit\" CEO",
+        "engine": "GOOGLE",
+        "title": "Evi Vandenzavel – NATURANA International",
+        "snippet": "LinkedIn · Evi Vandenzavel860+ followers",
+        "url": "https://de.linkedin.com/in/evi-vandenzavel-2b886b6",
+        "displayUrl": "https://de.linkedin.com/in/evi-vandenzavel-2b886b6",
+        "rank": 8,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      }
+    ],
+    "parsedCandidates": [
+      {
+        "fullName": "Martin Stolzenberger",
+        "normalizedName": "martin stolzenberger",
+        "role": "CEO",
+        "inferredCompany": "Bergzeit",
+        "sourceUrl": "https://de.linkedin.com/in/martin-stolzenberger-78423a127",
+        "sourceTitle": "Martin Stolzenberger – Bergzeit",
+        "sourceSnippet": "LinkedIn · Martin Stolzenberger3.4K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/martin-stolzenberger-78423a127",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Beitrag von Martin Stolzenberger",
+        "normalizedName": "beitrag von martin stolzenberger",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/posts/martin-stolzenberger-78423a127_vielen-dank-tobias-kufner-f%C3%BCr-die-einladung-activity-7094603563644919808-ebzU?trk=public_profile_like_view",
+        "sourceTitle": "Beitrag von Martin Stolzenberger",
+        "sourceSnippet": "LinkedIn · Martin Stolzenberger60+ reactions  ·  2 years ago",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Andreas Rey",
+        "normalizedName": "andreas rey",
+        "role": "CEO",
+        "inferredCompany": "Bergzeit",
+        "sourceUrl": "https://de.linkedin.com/in/andreas-rey-593626137",
+        "sourceTitle": "Andreas Rey – Bergzeit",
+        "sourceSnippet": "LinkedIn · Andreas Rey1.1K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/andreas-rey-593626137",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Markus Grindel",
+        "normalizedName": "markus grindel",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/mgrindel",
+        "sourceTitle": "Markus Grindel – Spread Group",
+        "sourceSnippet": "LinkedIn · Markus Grindel1.1K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/mgrindel",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Paul Galama",
+        "normalizedName": "paul galama",
+        "role": "CEO",
+        "inferredCompany": "Bergzeit",
+        "sourceUrl": "https://de.linkedin.com/in/paul-galama/en",
+        "sourceTitle": "Paul Galama - Country Manager Benelux bij Bergzeit",
+        "sourceSnippet": "LinkedIn · Paul Galama800+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/paul-galama/en",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Pascal Beij",
+        "normalizedName": "pascal beij",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/pascalbeij",
+        "sourceTitle": "Pascal Beij – Unzer",
+        "sourceSnippet": "LinkedIn · Pascal Beij3.1K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/pascalbeij",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Monika Fuchs",
+        "normalizedName": "monika fuchs",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://at.linkedin.com/in/monika-fuchs-b1783a265",
+        "sourceTitle": "Monika Fuchs – Lenzing Group",
+        "sourceSnippet": "LinkedInhttps://at.linkedin.com › ...",
+        "linkedinUrl": "https://at.linkedin.com/in/monika-fuchs-b1783a265",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Evi Vandenzavel",
+        "normalizedName": "evi vandenzavel",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/evi-vandenzavel-2b886b6",
+        "sourceTitle": "Evi Vandenzavel – NATURANA International",
+        "sourceSnippet": "LinkedIn · Evi Vandenzavel860+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/evi-vandenzavel-2b886b6",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      }
+    ],
+    "rankedCandidates": [
+      {
+        "fullName": "Martin Stolzenberger",
+        "normalizedName": "martin stolzenberger",
+        "role": "CEO",
+        "inferredCompany": "Bergzeit",
+        "sourceUrl": "https://de.linkedin.com/in/martin-stolzenberger-78423a127",
+        "sourceTitle": "Martin Stolzenberger – Bergzeit",
+        "sourceSnippet": "LinkedIn · Martin Stolzenberger3.4K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/martin-stolzenberger-78423a127",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 85,
+        "rankScore": 85,
+        "rankReasons": [
+          "+40 linkedin-person-profile",
+          "+25 company-name-match",
+          "+20 domain-token-match"
+        ]
+      },
+      {
+        "fullName": "Andreas Rey",
+        "normalizedName": "andreas rey",
+        "role": "CEO",
+        "inferredCompany": "Bergzeit",
+        "sourceUrl": "https://de.linkedin.com/in/andreas-rey-593626137",
+        "sourceTitle": "Andreas Rey – Bergzeit",
+        "sourceSnippet": "LinkedIn · Andreas Rey1.1K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/andreas-rey-593626137",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 85,
+        "rankScore": 85,
+        "rankReasons": [
+          "+40 linkedin-person-profile",
+          "+25 company-name-match",
+          "+20 domain-token-match"
+        ]
+      },
+      {
+        "fullName": "Paul Galama",
+        "normalizedName": "paul galama",
+        "role": "CEO",
+        "inferredCompany": "Bergzeit",
+        "sourceUrl": "https://de.linkedin.com/in/paul-galama/en",
+        "sourceTitle": "Paul Galama - Country Manager Benelux bij Bergzeit",
+        "sourceSnippet": "LinkedIn · Paul Galama800+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/paul-galama/en",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 85,
+        "rankScore": 85,
+        "rankReasons": [
+          "+40 linkedin-person-profile",
+          "+25 company-name-match",
+          "+20 domain-token-match"
+        ]
+      },
+      {
+        "fullName": "Markus Grindel",
+        "normalizedName": "markus grindel",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/mgrindel",
+        "sourceTitle": "Markus Grindel – Spread Group",
+        "sourceSnippet": "LinkedIn · Markus Grindel1.1K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/mgrindel",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Pascal Beij",
+        "normalizedName": "pascal beij",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/pascalbeij",
+        "sourceTitle": "Pascal Beij – Unzer",
+        "sourceSnippet": "LinkedIn · Pascal Beij3.1K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/pascalbeij",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Monika Fuchs",
+        "normalizedName": "monika fuchs",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://at.linkedin.com/in/monika-fuchs-b1783a265",
+        "sourceTitle": "Monika Fuchs – Lenzing Group",
+        "sourceSnippet": "LinkedInhttps://at.linkedin.com › ...",
+        "linkedinUrl": "https://at.linkedin.com/in/monika-fuchs-b1783a265",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Evi Vandenzavel",
+        "normalizedName": "evi vandenzavel",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/evi-vandenzavel-2b886b6",
+        "sourceTitle": "Evi Vandenzavel – NATURANA International",
+        "sourceSnippet": "LinkedIn · Evi Vandenzavel860+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/evi-vandenzavel-2b886b6",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Beitrag von Martin Stolzenberger",
+        "normalizedName": "beitrag von martin stolzenberger",
+        "role": "CEO",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/posts/martin-stolzenberger-78423a127_vielen-dank-tobias-kufner-f%C3%BCr-die-einladung-activity-7094603563644919808-ebzU?trk=public_profile_like_view",
+        "sourceTitle": "Beitrag von Martin Stolzenberger",
+        "sourceSnippet": "LinkedIn · Martin Stolzenberger60+ reactions  ·  2 years ago",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 0,
+        "rankScore": 0,
+        "rankReasons": []
+      }
+    ],
+    "errors": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 1,
+    "companyName": "Reformation",
+    "websiteUrl": "https://www.thereformation.com",
+    "role": "HEAD_OF_ECOMMERCE",
+    "region": "US",
+    "queryPlan": {
+      "companyName": "Reformation",
+      "websiteUrl": "https://www.thereformation.com",
+      "domain": "thereformation.com",
+      "role": "HEAD_OF_ECOMMERCE",
+      "region": "US",
+      "country": "United States",
+      "queries": [
+        "\"Reformation\" \"Head of Ecommerce\" LinkedIn",
+        "site:linkedin.com/in \"Reformation\" \"Head of Ecommerce\"",
+        "\"Reformation\" \"Head of Ecommerce\"",
+        "site:linkedin.com/in \"Reformation\" thereformation.com",
+        "\"Reformation\" \"Head of E-commerce\" LinkedIn"
+      ]
+    },
+    "rawSearchResults": [
+      {
+        "query": "\"Reformation\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Mike Papadakis - COO @ VIIA | Consulting, Advising, ...",
+        "snippet": "LinkedIn · Mike Papadakis7K+ followers",
+        "url": "https://www.linkedin.com/in/mikepapadakis",
+        "displayUrl": "https://www.linkedin.com/in/mikepapadakis",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Reformation\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Beyond Yoga - VP of Ecommerce",
+        "snippet": "LinkedInhttps://www.linkedin.com › jobs › view › beyond-yoga-...",
+        "url": "https://www.linkedin.com/jobs/view/beyond-yoga-vp-of-ecommerce-at-beyond-yoga-4390478899",
+        "displayUrl": "https://www.linkedin.com/jobs/view/beyond-yoga-vp-of-ecommerce-at-beyond-yoga-4390478899",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Reformation\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "1000+ \"Jessica Valencia\" profiles",
+        "snippet": "LinkedInhttps://www.linkedin.com › pub › dir › Jessica+ › Valencia",
+        "url": "https://www.linkedin.com/pub/dir/Jessica+/Valencia",
+        "displayUrl": "https://www.linkedin.com/pub/dir/Jessica+/Valencia",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Reformation\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "registry business manager – luxury retail",
+        "snippet": "LinkedInhttps://www.linkedin.com › jobs › view",
+        "url": "https://www.linkedin.com/jobs/view/registry-business-manager-%E2%80%93-luxury-retail-at-current-home-4389361269",
+        "displayUrl": "https://www.linkedin.com/jobs/view/registry-business-manager-%E2%80%93-luxury-retail-at-current-home-4389361269",
+        "rank": 4,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Reformation\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Jackson James hiring Director of Ecommerce in Beverly ...",
+        "snippet": "LinkedInhttps://www.linkedin.com › jobs › view › director-of-eco...",
+        "url": "https://www.linkedin.com/jobs/view/director-of-ecommerce-at-jackson-james-4395338533",
+        "displayUrl": "https://www.linkedin.com/jobs/view/director-of-ecommerce-at-jackson-james-4395338533",
+        "rank": 5,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Reformation\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "2026 Speakers",
+        "snippet": "Shoptalk Luxehttps://luxe.shoptalk.com › speaker-list",
+        "url": "https://luxe.shoptalk.com/speaker-list",
+        "displayUrl": "https://luxe.shoptalk.com/speaker-list",
+        "rank": 6,
+        "isLinkedin": false,
+        "linkedinType": null,
+        "evidenceSignals": []
+      },
+      {
+        "query": "\"Reformation\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Manifest 2026 Speakers",
+        "snippet": "Manifest Vegashttps://manife.st › speakers",
+        "url": "https://manife.st/speakers/",
+        "displayUrl": "https://manife.st/speakers/",
+        "rank": 7,
+        "isLinkedin": false,
+        "linkedinType": null,
+        "evidenceSignals": []
+      },
+      {
+        "query": "\"Reformation\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "terry-duffy-named-to-tabbforum-40-top-innovators-in- ...",
+        "snippet": "CME Grouphttps://www.cmegroup.com › media-room › filesPDF",
+        "url": "https://www.cmegroup.com/media-room/featured-content/files/terry-duffy-named-to-tabbforum-40-top-innovators-in-financial-markets.pdf",
+        "displayUrl": "https://www.cmegroup.com/media-room/featured-content/files/terry-duffy-named-to-tabbforum-40-top-innovators-in-financial-markets.pdf",
+        "rank": 8,
+        "isLinkedin": false,
+        "linkedinType": null,
+        "evidenceSignals": []
+      },
+      {
+        "query": "site:linkedin.com/in \"Reformation\" \"Head of Ecommerce\"",
+        "engine": "GOOGLE",
+        "title": "Mike Papadakis - COO @ VIIA | Consulting, Advising, ...",
+        "snippet": "LinkedIn · Mike Papadakis7K+ followers",
+        "url": "https://www.linkedin.com/in/mikepapadakis",
+        "displayUrl": "https://www.linkedin.com/in/mikepapadakis",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Reformation\" \"Head of Ecommerce\"",
+        "engine": "GOOGLE",
+        "title": "Siddharth Bhatt - Digital Marketing Specialist",
+        "snippet": "LinkedIn · Siddharth Bhatt3.7K+ followers",
+        "url": "https://in.linkedin.com/in/siddharth-bhatt-",
+        "displayUrl": "https://in.linkedin.com/in/siddharth-bhatt-",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Reformation\" \"Head of Ecommerce\"",
+        "engine": "GOOGLE",
+        "title": "Ruchi Sharma - OnePlus",
+        "snippet": "LinkedIn · Ruchi Sharma1.3K+ followers",
+        "url": "https://in.linkedin.com/in/ruchi-sharma-14960412",
+        "displayUrl": "https://in.linkedin.com/in/ruchi-sharma-14960412",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      }
+    ],
+    "parsedCandidates": [
+      {
+        "fullName": "Mike Papadakis",
+        "normalizedName": "mike papadakis",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/mikepapadakis",
+        "sourceTitle": "Mike Papadakis - COO @ VIIA | Consulting, Advising, ...",
+        "sourceSnippet": "LinkedIn · Mike Papadakis7K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/mikepapadakis",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Beyond Yoga",
+        "normalizedName": "beyond yoga",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/jobs/view/beyond-yoga-vp-of-ecommerce-at-beyond-yoga-4390478899",
+        "sourceTitle": "Beyond Yoga - VP of Ecommerce",
+        "sourceSnippet": "LinkedInhttps://www.linkedin.com › jobs › view › beyond-yoga-...",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Siddharth Bhatt",
+        "normalizedName": "siddharth bhatt",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://in.linkedin.com/in/siddharth-bhatt-",
+        "sourceTitle": "Siddharth Bhatt - Digital Marketing Specialist",
+        "sourceSnippet": "LinkedIn · Siddharth Bhatt3.7K+ followers",
+        "linkedinUrl": "https://in.linkedin.com/in/siddharth-bhatt-",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Ruchi Sharma",
+        "normalizedName": "ruchi sharma",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://in.linkedin.com/in/ruchi-sharma-14960412",
+        "sourceTitle": "Ruchi Sharma - OnePlus",
+        "sourceSnippet": "LinkedIn · Ruchi Sharma1.3K+ followers",
+        "linkedinUrl": "https://in.linkedin.com/in/ruchi-sharma-14960412",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      }
+    ],
+    "rankedCandidates": [
+      {
+        "fullName": "Mike Papadakis",
+        "normalizedName": "mike papadakis",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/mikepapadakis",
+        "sourceTitle": "Mike Papadakis - COO @ VIIA | Consulting, Advising, ...",
+        "sourceSnippet": "LinkedIn · Mike Papadakis7K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/mikepapadakis",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Siddharth Bhatt",
+        "normalizedName": "siddharth bhatt",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://in.linkedin.com/in/siddharth-bhatt-",
+        "sourceTitle": "Siddharth Bhatt - Digital Marketing Specialist",
+        "sourceSnippet": "LinkedIn · Siddharth Bhatt3.7K+ followers",
+        "linkedinUrl": "https://in.linkedin.com/in/siddharth-bhatt-",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Ruchi Sharma",
+        "normalizedName": "ruchi sharma",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://in.linkedin.com/in/ruchi-sharma-14960412",
+        "sourceTitle": "Ruchi Sharma - OnePlus",
+        "sourceSnippet": "LinkedIn · Ruchi Sharma1.3K+ followers",
+        "linkedinUrl": "https://in.linkedin.com/in/ruchi-sharma-14960412",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Beyond Yoga",
+        "normalizedName": "beyond yoga",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/jobs/view/beyond-yoga-vp-of-ecommerce-at-beyond-yoga-4390478899",
+        "sourceTitle": "Beyond Yoga - VP of Ecommerce",
+        "sourceSnippet": "LinkedInhttps://www.linkedin.com › jobs › view › beyond-yoga-...",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 0,
+        "rankScore": 0,
+        "rankReasons": []
+      }
+    ],
+    "errors": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 2,
+    "companyName": "Hessnatur",
+    "websiteUrl": "https://www.hessnatur.de",
+    "role": "HEAD_OF_ECOMMERCE",
+    "region": "EU",
+    "queryPlan": {
+      "companyName": "Hessnatur",
+      "websiteUrl": "https://www.hessnatur.de",
+      "domain": "hessnatur.de",
+      "role": "HEAD_OF_ECOMMERCE",
+      "region": "EU",
+      "country": "Germany",
+      "queries": [
+        "\"Hessnatur\" \"Head of Ecommerce\" LinkedIn",
+        "site:linkedin.com/in \"Hessnatur\" \"Head of Ecommerce\"",
+        "\"Hessnatur\" \"Head of Ecommerce\"",
+        "site:linkedin.com/in \"Hessnatur\" hessnatur.de",
+        "\"Hessnatur\" \"Head of E-commerce\" LinkedIn",
+        "\"Hessnatur\" \"Head of Ecommerce\" Germany LinkedIn"
+      ]
+    },
+    "rawSearchResults": [
+      {
+        "query": "\"Hessnatur\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "babymarkt.de GmbH",
+        "snippet": "3.5K+ followers",
+        "url": "https://www.linkedin.com/company/babymarktdegmbh",
+        "displayUrl": "https://www.linkedin.com/company/babymarktdegmbh",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "COMPANY_PAGE",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Hessnatur\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "ECONDA Analytics",
+        "snippet": "LinkedInhttps://www.linkedin.com › products · Translate this page",
+        "url": "https://www.linkedin.com/products/econda-gmbh-econda-analytics/",
+        "displayUrl": "https://www.linkedin.com/products/econda-gmbh-econda-analytics/",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Hessnatur\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Beitrag von Guenter Lichtner",
+        "snippet": "LinkedIn · Guenter Lichtner110+ reactions  ·  3 years ago",
+        "url": "https://www.linkedin.com/posts/guenter-lichtner-bb2434125_g%C3%BCnter-lichtner-ist-vice-president-finance-activity-6960985964735299584-WAlK?trk=public_profile_like_view",
+        "displayUrl": "https://www.linkedin.com/posts/guenter-lichtner-bb2434125_g%C3%BCnter-lichtner-ist-vice-president-finance-activity-6960985964735299584-WAlK?trk=public_profile_like_view",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Hessnatur\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Tranquillo GmbH",
+        "snippet": "50+ followers",
+        "url": "https://de.linkedin.com/company/tranquillo-gmbh",
+        "displayUrl": "https://de.linkedin.com/company/tranquillo-gmbh",
+        "rank": 4,
+        "isLinkedin": true,
+        "linkedinType": "COMPANY_PAGE",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      }
+    ],
+    "parsedCandidates": [
+      {
+        "fullName": "Beitrag von Guenter Lichtner",
+        "normalizedName": "beitrag von guenter lichtner",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/posts/guenter-lichtner-bb2434125_g%C3%BCnter-lichtner-ist-vice-president-finance-activity-6960985964735299584-WAlK?trk=public_profile_like_view",
+        "sourceTitle": "Beitrag von Guenter Lichtner",
+        "sourceSnippet": "LinkedIn · Guenter Lichtner110+ reactions  ·  3 years ago",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 0
+      }
+    ],
+    "rankedCandidates": [
+      {
+        "fullName": "Beitrag von Guenter Lichtner",
+        "normalizedName": "beitrag von guenter lichtner",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/posts/guenter-lichtner-bb2434125_g%C3%BCnter-lichtner-ist-vice-president-finance-activity-6960985964735299584-WAlK?trk=public_profile_like_view",
+        "sourceTitle": "Beitrag von Guenter Lichtner",
+        "sourceSnippet": "LinkedIn · Guenter Lichtner110+ reactions  ·  3 years ago",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 0,
+        "rankScore": 0,
+        "rankReasons": []
+      }
+    ],
+    "errors": [
+      "Query \"site:linkedin.com/in \"Hessnatur\" \"Head of Ecommerce\"\": Google CAPTCHA -- rate limited"
+    ]
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 56,
+    "companyName": "Tecovas",
+    "websiteUrl": "https://www.tecovas.com",
+    "role": "HEAD_OF_ECOMMERCE",
+    "region": "US",
+    "queryPlan": {
+      "companyName": "Tecovas",
+      "websiteUrl": "https://www.tecovas.com",
+      "domain": "tecovas.com",
+      "role": "HEAD_OF_ECOMMERCE",
+      "region": "US",
+      "country": "United States",
+      "queries": [
+        "\"Tecovas\" \"Head of Ecommerce\" LinkedIn",
+        "site:linkedin.com/in \"Tecovas\" \"Head of Ecommerce\"",
+        "\"Tecovas\" \"Head of Ecommerce\"",
+        "site:linkedin.com/in \"Tecovas\" tecovas.com",
+        "\"Tecovas\" \"Head of E-commerce\" LinkedIn"
+      ]
+    },
+    "rawSearchResults": [
+      {
+        "query": "\"Tecovas\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Mark Bracey Sherman - Head of Ecommerce Strategy and ...",
+        "snippet": "LinkedIn · Mark Bracey Sherman1.4K+ followers",
+        "url": "https://www.linkedin.com/in/markbraceysherman",
+        "displayUrl": "https://www.linkedin.com/in/markbraceysherman",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Tecovas\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Regional Head of E-Commerce",
+        "snippet": "LinkedInhttps://www.linkedin.com › jobs › view › regional-head-...",
+        "url": "https://www.linkedin.com/jobs/view/regional-head-of-e-commerce-at-allianz-trade-in-north-america-4386953845",
+        "displayUrl": "https://www.linkedin.com/jobs/view/regional-head-of-e-commerce-at-allianz-trade-in-north-america-4386953845",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Tecovas\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Tom Mucklow-Norell's Post",
+        "snippet": "LinkedIn · Tom Mucklow-Norell180+ reactions  ·  3 years ago",
+        "url": "https://www.linkedin.com/posts/tommucklow_pumped-to-announce-that-superco-have-become-activity-6973946547659010048-27vJ",
+        "displayUrl": "https://www.linkedin.com/posts/tommucklow_pumped-to-announce-that-superco-have-become-activity-6973946547659010048-27vJ",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Tecovas\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Howler Brothers ⚡️",
+        "snippet": "11.5K+ followers",
+        "url": "https://www.linkedin.com/company/howlerbros",
+        "displayUrl": "https://www.linkedin.com/company/howlerbros",
+        "rank": 4,
+        "isLinkedin": true,
+        "linkedinType": "COMPANY_PAGE",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Tecovas\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Head of E-Commerce & Digital Strategy",
+        "snippet": "LinkedInhttps://www.linkedin.com › jobs › view › head-of-e-com...",
+        "url": "https://www.linkedin.com/jobs/view/head-of-e-commerce-digital-strategy-at-leviev-diamonds-4368126728",
+        "displayUrl": "https://www.linkedin.com/jobs/view/head-of-e-commerce-digital-strategy-at-leviev-diamonds-4368126728",
+        "rank": 5,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Tecovas\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Code3 hiring Head of Commerce in United States",
+        "snippet": "LinkedInhttps://www.linkedin.com › jobs › view › head-of-comm...",
+        "url": "https://www.linkedin.com/jobs/view/head-of-commerce-at-code3-4380822128",
+        "displayUrl": "https://www.linkedin.com/jobs/view/head-of-commerce-at-code3-4380822128",
+        "rank": 6,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Tecovas\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Retail Summits (@retailsummits)",
+        "snippet": "Instagram · retailsummits1.7K+ followers",
+        "url": "https://www.instagram.com/retailsummits/",
+        "displayUrl": "https://www.instagram.com/retailsummits/",
+        "rank": 7,
+        "isLinkedin": false,
+        "linkedinType": null,
+        "evidenceSignals": []
+      },
+      {
+        "query": "\"Tecovas\" \"Head of Ecommerce\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "CONSUELA",
+        "snippet": "2.8K+ followers",
+        "url": "https://www.linkedin.com/company/consuela-inc.",
+        "displayUrl": "https://www.linkedin.com/company/consuela-inc.",
+        "rank": 8,
+        "isLinkedin": true,
+        "linkedinType": "COMPANY_PAGE",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "site:linkedin.com/in \"Tecovas\" \"Head of Ecommerce\"",
+        "engine": "GOOGLE",
+        "title": "Mark Bracey Sherman - Head of Ecommerce Strategy and ...",
+        "snippet": "LinkedIn · Mark Bracey Sherman1.4K+ followers",
+        "url": "https://www.linkedin.com/in/markbraceysherman",
+        "displayUrl": "https://www.linkedin.com/in/markbraceysherman",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      }
+    ],
+    "parsedCandidates": [
+      {
+        "fullName": "Mark Bracey Sherman",
+        "normalizedName": "mark bracey sherman",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/markbraceysherman",
+        "sourceTitle": "Mark Bracey Sherman - Head of Ecommerce Strategy and ...",
+        "sourceSnippet": "LinkedIn · Mark Bracey Sherman1.4K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/markbraceysherman",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name",
+          "role-evidence"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Tom Mucklow",
+        "normalizedName": "tom mucklow",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/posts/tommucklow_pumped-to-announce-that-superco-have-become-activity-6973946547659010048-27vJ",
+        "sourceTitle": "Tom Mucklow-Norell's Post",
+        "sourceSnippet": "LinkedIn · Tom Mucklow-Norell180+ reactions  ·  3 years ago",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 0
+      }
+    ],
+    "rankedCandidates": [
+      {
+        "fullName": "Mark Bracey Sherman",
+        "normalizedName": "mark bracey sherman",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/markbraceysherman",
+        "sourceTitle": "Mark Bracey Sherman - Head of Ecommerce Strategy and ...",
+        "sourceSnippet": "LinkedIn · Mark Bracey Sherman1.4K+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/markbraceysherman",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name",
+          "role-evidence"
+        ],
+        "confidenceScore": 60,
+        "rankScore": 60,
+        "rankReasons": [
+          "+40 linkedin-person-profile",
+          "+20 role-keyword-match"
+        ]
+      },
+      {
+        "fullName": "Tom Mucklow",
+        "normalizedName": "tom mucklow",
+        "role": "HEAD_OF_ECOMMERCE",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/posts/tommucklow_pumped-to-announce-that-superco-have-become-activity-6973946547659010048-27vJ",
+        "sourceTitle": "Tom Mucklow-Norell's Post",
+        "sourceSnippet": "LinkedIn · Tom Mucklow-Norell180+ reactions  ·  3 years ago",
+        "linkedinUrl": "",
+        "evidenceSignals": [
+          "linkedin-url",
+          "title-name"
+        ],
+        "confidenceScore": 0,
+        "rankScore": 0,
+        "rankReasons": []
+      }
+    ],
+    "errors": [
+      "Query \"\"Tecovas\" \"Head of Ecommerce\"\": Google CAPTCHA -- rate limited"
+    ]
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 3,
+    "companyName": "Johnny Was",
+    "websiteUrl": "https://www.johnnywas.com",
+    "role": "HEAD_OF_PRODUCT",
+    "region": "US",
+    "queryPlan": {
+      "companyName": "Johnny Was",
+      "websiteUrl": "https://www.johnnywas.com",
+      "domain": "johnnywas.com",
+      "role": "HEAD_OF_PRODUCT",
+      "region": "US",
+      "country": "United States",
+      "queries": [
+        "\"Johnny Was\" \"Head of Product\" LinkedIn",
+        "site:linkedin.com/in \"Johnny Was\" \"Head of Product\"",
+        "\"Johnny Was\" \"Head of Product\"",
+        "site:linkedin.com/in \"Johnny Was\" johnnywas.com",
+        "\"Johnny Was\" \"VP Product\" LinkedIn"
+      ]
+    },
+    "rawSearchResults": [
+      {
+        "query": "\"Johnny Was\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Gia Huante - Special Projects and Collaborations",
+        "snippet": "LinkedIn · Gia Huante860+ followers",
+        "url": "https://www.linkedin.com/in/gia-huante-445b14177",
+        "displayUrl": "https://www.linkedin.com/in/gia-huante-445b14177",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Johnny Was\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Johnny Altobello, Jr. - Owner at the Stone Gallery",
+        "snippet": "LinkedIn · Johnny Altobello, Jr.230+ followers",
+        "url": "https://www.linkedin.com/in/johnny-altobello-jr-874a842b",
+        "displayUrl": "https://www.linkedin.com/in/johnny-altobello-jr-874a842b",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Johnny Was\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Margot Davies - Brand Manager, bond-eye",
+        "snippet": "LinkedIn · Margot Davies270+ followers",
+        "url": "https://au.linkedin.com/in/margot-davies-a141354a",
+        "displayUrl": "https://au.linkedin.com/in/margot-davies-a141354a",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Johnny Was\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Darkroom at eTail Palm Springs: AI, Performance ...",
+        "snippet": "LinkedIn · Darkroom20+ reactions  ·  1 month ago",
+        "url": "https://www.linkedin.com/posts/darkroomagency_darkroom-will-be-at-etail-palm-springs-activity-7429898023482097664-c7iX",
+        "displayUrl": "https://www.linkedin.com/posts/darkroomagency_darkroom-will-be-at-etail-palm-springs-activity-7429898023482097664-c7iX",
+        "rank": 4,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Johnny Was\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "600+ \"Caroline Wood\" profiles",
+        "snippet": "LinkedInhttps://www.linkedin.com › Wood › us-0-United-States",
+        "url": "https://www.linkedin.com/pub/dir/Caroline/Wood/us-0-United-States",
+        "displayUrl": "https://www.linkedin.com/pub/dir/Caroline/Wood/us-0-United-States",
+        "rank": 5,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Johnny Was\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Home Page - Shoptalk",
+        "snippet": "Shoptalkhttps://spring.shoptalk.com › ...",
+        "url": "https://spring.shoptalk.com/home",
+        "displayUrl": "https://spring.shoptalk.com/home",
+        "rank": 6,
+        "isLinkedin": false,
+        "linkedinType": null,
+        "evidenceSignals": []
+      },
+      {
+        "query": "\"Johnny Was\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "50+ \"Yeom\" profiles",
+        "snippet": "LinkedInhttps://www.linkedin.com › pub › dir › Yeom › us-49-L...",
+        "url": "https://www.linkedin.com/pub/dir/+/Yeom/us-49-Los-Angeles-Metropolitan-Area",
+        "displayUrl": "https://www.linkedin.com/pub/dir/+/Yeom/us-49-Los-Angeles-Metropolitan-Area",
+        "rank": 7,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Johnny Was\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Autonomous delivery robots in Sweden: it can only be this ...",
+        "snippet": "Retail Technology Innovation Hubhttps://retailtechinnovationhub.com › home › autonomo...",
+        "url": "https://retailtechinnovationhub.com/home/2025/3/21/autonomous-delivery-robots-in-sweden-it-can-only-be-this-weeks-biggest-retail-technology-stories",
+        "displayUrl": "https://retailtechinnovationhub.com/home/2025/3/21/autonomous-delivery-robots-in-sweden-it-can-only-be-this-weeks-biggest-retail-technology-stories",
+        "rank": 8,
+        "isLinkedin": false,
+        "linkedinType": null,
+        "evidenceSignals": []
+      }
+    ],
+    "parsedCandidates": [
+      {
+        "fullName": "Gia Huante",
+        "normalizedName": "gia huante",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/gia-huante-445b14177",
+        "sourceTitle": "Gia Huante - Special Projects and Collaborations",
+        "sourceSnippet": "LinkedIn · Gia Huante860+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/gia-huante-445b14177",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Johnny Altobello",
+        "normalizedName": "johnny altobello",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/johnny-altobello-jr-874a842b",
+        "sourceTitle": "Johnny Altobello, Jr. - Owner at the Stone Gallery",
+        "sourceSnippet": "LinkedIn · Johnny Altobello, Jr.230+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/johnny-altobello-jr-874a842b",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Margot Davies",
+        "normalizedName": "margot davies",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://au.linkedin.com/in/margot-davies-a141354a",
+        "sourceTitle": "Margot Davies - Brand Manager, bond-eye",
+        "sourceSnippet": "LinkedIn · Margot Davies270+ followers",
+        "linkedinUrl": "https://au.linkedin.com/in/margot-davies-a141354a",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      }
+    ],
+    "rankedCandidates": [
+      {
+        "fullName": "Gia Huante",
+        "normalizedName": "gia huante",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/gia-huante-445b14177",
+        "sourceTitle": "Gia Huante - Special Projects and Collaborations",
+        "sourceSnippet": "LinkedIn · Gia Huante860+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/gia-huante-445b14177",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Johnny Altobello",
+        "normalizedName": "johnny altobello",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://www.linkedin.com/in/johnny-altobello-jr-874a842b",
+        "sourceTitle": "Johnny Altobello, Jr. - Owner at the Stone Gallery",
+        "sourceSnippet": "LinkedIn · Johnny Altobello, Jr.230+ followers",
+        "linkedinUrl": "https://www.linkedin.com/in/johnny-altobello-jr-874a842b",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Margot Davies",
+        "normalizedName": "margot davies",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://au.linkedin.com/in/margot-davies-a141354a",
+        "sourceTitle": "Margot Davies - Brand Manager, bond-eye",
+        "sourceSnippet": "LinkedIn · Margot Davies270+ followers",
+        "linkedinUrl": "https://au.linkedin.com/in/margot-davies-a141354a",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      }
+    ],
+    "errors": [
+      "Query \"site:linkedin.com/in \"Johnny Was\" \"Head of Product\"\": Google CAPTCHA -- rate limited"
+    ]
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 3,
+    "companyName": "Flaconi",
+    "websiteUrl": "https://www.flaconi.de",
+    "role": "HEAD_OF_PRODUCT",
+    "region": "EU",
+    "queryPlan": {
+      "companyName": "Flaconi",
+      "websiteUrl": "https://www.flaconi.de",
+      "domain": "flaconi.de",
+      "role": "HEAD_OF_PRODUCT",
+      "region": "EU",
+      "country": "Germany",
+      "queries": [
+        "\"Flaconi\" \"Head of Product\" LinkedIn",
+        "site:linkedin.com/in \"Flaconi\" \"Head of Product\"",
+        "\"Flaconi\" \"Head of Product\"",
+        "site:linkedin.com/in \"Flaconi\" flaconi.de",
+        "\"Flaconi\" \"VP Product\" LinkedIn",
+        "\"Flaconi\" \"Head of Product\" Germany LinkedIn"
+      ]
+    },
+    "rawSearchResults": [
+      {
+        "query": "\"Flaconi\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Katharina Frei – Product Team Lead | User-Centric ...",
+        "snippet": "LinkedIn · Katharina Frei520+ followers",
+        "url": "https://de.linkedin.com/in/katharinafrei",
+        "displayUrl": "https://de.linkedin.com/in/katharinafrei",
+        "rank": 1,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Flaconi\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Aliona Danilenko – Lead Expert Project/Product Manager",
+        "snippet": "LinkedIn · Aliona Danilenko1.4K+ followers",
+        "url": "https://de.linkedin.com/in/aliona-danilenko-9b224873",
+        "displayUrl": "https://de.linkedin.com/in/aliona-danilenko-9b224873",
+        "rank": 2,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Flaconi\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Marian Temmen - Transformative Supply Chain & ...",
+        "snippet": "LinkedIn · Marian Temmen27.6K+ followers",
+        "url": "https://nl.linkedin.com/in/marian-temmen",
+        "displayUrl": "https://nl.linkedin.com/in/marian-temmen",
+        "rank": 3,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Flaconi\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Mirela Mus' Post",
+        "snippet": "LinkedIn · Mirela Mus480+ reactions  ·  2 years ago",
+        "url": "https://www.linkedin.com/posts/mirelamus_productleadership-cpo-vpproduct-activity-7127956178797498368-vDSJ?trk=public_profile_like_view",
+        "displayUrl": "https://www.linkedin.com/posts/mirelamus_productleadership-cpo-vpproduct-activity-7127956178797498368-vDSJ?trk=public_profile_like_view",
+        "rank": 4,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      },
+      {
+        "query": "\"Flaconi\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Ramona Zäh – Product Manager",
+        "snippet": "LinkedIn · Ramona Zäh220+ followers",
+        "url": "https://de.linkedin.com/in/ramonauhsemann",
+        "displayUrl": "https://de.linkedin.com/in/ramonauhsemann",
+        "rank": 5,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Flaconi\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Tarek Sadi – building a strategy team that never sleeps.",
+        "snippet": "LinkedIn · Tarek Sadi3K+ followers",
+        "url": "https://de.linkedin.com/in/saditarek",
+        "displayUrl": "https://de.linkedin.com/in/saditarek",
+        "rank": 6,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Flaconi\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Aliona Danilenko 🇺🇦 – flaconi",
+        "snippet": "LinkedIn · Aliona Danilenko1.4K+ followers",
+        "url": "https://de.linkedin.com/in/aliona-danilenko-9b224873/ru",
+        "displayUrl": "https://de.linkedin.com/in/aliona-danilenko-9b224873/ru",
+        "rank": 7,
+        "isLinkedin": true,
+        "linkedinType": "PERSON_PROFILE",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person"
+        ]
+      },
+      {
+        "query": "\"Flaconi\" \"Head of Product\" LinkedIn",
+        "engine": "GOOGLE",
+        "title": "Gravel AI launches tool for beauty industry review analysis",
+        "snippet": "LinkedIn · Karen Ho60+ reactions  ·  1 year ago",
+        "url": "https://www.linkedin.com/posts/karen-ho-a236097_gravel-ai-launched-a-new-tool-again-activity-7305250184848916480-i3OR",
+        "displayUrl": "https://www.linkedin.com/posts/karen-ho-a236097_gravel-ai-launched-a-new-tool-again-activity-7305250184848916480-i3OR",
+        "rank": 8,
+        "isLinkedin": true,
+        "linkedinType": "OTHER",
+        "evidenceSignals": [
+          "linkedin-url"
+        ]
+      }
+    ],
+    "parsedCandidates": [
+      {
+        "fullName": "Katharina Frei",
+        "normalizedName": "katharina frei",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/katharinafrei",
+        "sourceTitle": "Katharina Frei – Product Team Lead | User-Centric ...",
+        "sourceSnippet": "LinkedIn · Katharina Frei520+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/katharinafrei",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Aliona Danilenko",
+        "normalizedName": "aliona danilenko",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/aliona-danilenko-9b224873",
+        "sourceTitle": "Aliona Danilenko – Lead Expert Project/Product Manager",
+        "sourceSnippet": "LinkedIn · Aliona Danilenko1.4K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/aliona-danilenko-9b224873",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Marian Temmen",
+        "normalizedName": "marian temmen",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://nl.linkedin.com/in/marian-temmen",
+        "sourceTitle": "Marian Temmen - Transformative Supply Chain & ...",
+        "sourceSnippet": "LinkedIn · Marian Temmen27.6K+ followers",
+        "linkedinUrl": "https://nl.linkedin.com/in/marian-temmen",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Ramona Zäh",
+        "normalizedName": "ramona zäh",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/ramonauhsemann",
+        "sourceTitle": "Ramona Zäh – Product Manager",
+        "sourceSnippet": "LinkedIn · Ramona Zäh220+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/ramonauhsemann",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      },
+      {
+        "fullName": "Tarek Sadi",
+        "normalizedName": "tarek sadi",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/saditarek",
+        "sourceTitle": "Tarek Sadi – building a strategy team that never sleeps.",
+        "sourceSnippet": "LinkedIn · Tarek Sadi3K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/saditarek",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 0
+      }
+    ],
+    "rankedCandidates": [
+      {
+        "fullName": "Katharina Frei",
+        "normalizedName": "katharina frei",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/katharinafrei",
+        "sourceTitle": "Katharina Frei – Product Team Lead | User-Centric ...",
+        "sourceSnippet": "LinkedIn · Katharina Frei520+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/katharinafrei",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Aliona Danilenko",
+        "normalizedName": "aliona danilenko",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/aliona-danilenko-9b224873",
+        "sourceTitle": "Aliona Danilenko – Lead Expert Project/Product Manager",
+        "sourceSnippet": "LinkedIn · Aliona Danilenko1.4K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/aliona-danilenko-9b224873",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Marian Temmen",
+        "normalizedName": "marian temmen",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://nl.linkedin.com/in/marian-temmen",
+        "sourceTitle": "Marian Temmen - Transformative Supply Chain & ...",
+        "sourceSnippet": "LinkedIn · Marian Temmen27.6K+ followers",
+        "linkedinUrl": "https://nl.linkedin.com/in/marian-temmen",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Ramona Zäh",
+        "normalizedName": "ramona zäh",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/ramonauhsemann",
+        "sourceTitle": "Ramona Zäh – Product Manager",
+        "sourceSnippet": "LinkedIn · Ramona Zäh220+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/ramonauhsemann",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      },
+      {
+        "fullName": "Tarek Sadi",
+        "normalizedName": "tarek sadi",
+        "role": "HEAD_OF_PRODUCT",
+        "inferredCompany": "",
+        "sourceUrl": "https://de.linkedin.com/in/saditarek",
+        "sourceTitle": "Tarek Sadi – building a strategy team that never sleeps.",
+        "sourceSnippet": "LinkedIn · Tarek Sadi3K+ followers",
+        "linkedinUrl": "https://de.linkedin.com/in/saditarek",
+        "evidenceSignals": [
+          "linkedin-url",
+          "linkedin-person",
+          "linkedin-profile-name"
+        ],
+        "confidenceScore": 40,
+        "rankScore": 40,
+        "rankReasons": [
+          "+40 linkedin-person-profile"
+        ]
+      }
+    ],
+    "errors": [
+      "Query \"site:linkedin.com/in \"Flaconi\" \"Head of Product\"\": Google CAPTCHA -- rate limited"
+    ]
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 57,
+    "companyName": "Thursday Boot Co",
+    "websiteUrl": "https://www.thursdayboots.com",
+    "role": "HEAD_OF_PRODUCT",
+    "region": "US",
+    "queryPlan": {
+      "companyName": "Thursday Boot Co",
+      "websiteUrl": "https://www.thursdayboots.com",
+      "domain": "thursdayboots.com",
+      "role": "HEAD_OF_PRODUCT",
+      "region": "US",
+      "country": "United States",
+      "queries": [
+        "\"Thursday Boot Co\" \"Head of Product\" LinkedIn",
+        "site:linkedin.com/in \"Thursday Boot Co\" \"Head of Product\"",
+        "\"Thursday Boot Co\" \"Head of Product\"",
+        "site:linkedin.com/in \"Thursday Boot Co\" thursdayboots.com",
+        "\"Thursday Boot Co\" \"VP Product\" LinkedIn"
+      ]
+    },
+    "rawSearchResults": [],
+    "parsedCandidates": [],
+    "rankedCandidates": [],
+    "errors": [
+      "Query \"\"Thursday Boot Co\" \"Head of Product\" LinkedIn\": Google CAPTCHA -- rate limited"
+    ]
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 4,
+    "companyName": "Faherty Brand",
+    "websiteUrl": "https://www.faherty.com",
+    "role": "HEAD_OF_GROWTH",
+    "region": "US",
+    "queryPlan": {
+      "companyName": "Faherty Brand",
+      "websiteUrl": "https://www.faherty.com",
+      "domain": "faherty.com",
+      "role": "HEAD_OF_GROWTH",
+      "region": "US",
+      "country": "United States",
+      "queries": [
+        "\"Faherty Brand\" \"Head of Growth\" LinkedIn",
+        "site:linkedin.com/in \"Faherty Brand\" \"Head of Growth\"",
+        "\"Faherty Brand\" \"Head of Growth\"",
+        "site:linkedin.com/in \"Faherty Brand\" faherty.com",
+        "\"Faherty Brand\" CMO LinkedIn"
+      ]
+    },
+    "rawSearchResults": [],
+    "parsedCandidates": [],
+    "rankedCandidates": [],
+    "errors": [
+      "Query \"\"Faherty Brand\" \"Head of Growth\" LinkedIn\": Google CAPTCHA -- rate limited"
+    ]
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 4,
+    "companyName": "Parfumdreams",
+    "websiteUrl": "https://www.parfumdreams.de",
+    "role": "HEAD_OF_GROWTH",
+    "region": "EU",
+    "queryPlan": {
+      "companyName": "Parfumdreams",
+      "websiteUrl": "https://www.parfumdreams.de",
+      "domain": "parfumdreams.de",
+      "role": "HEAD_OF_GROWTH",
+      "region": "EU",
+      "country": "Germany",
+      "queries": [
+        "\"Parfumdreams\" \"Head of Growth\" LinkedIn",
+        "site:linkedin.com/in \"Parfumdreams\" \"Head of Growth\"",
+        "\"Parfumdreams\" \"Head of Growth\"",
+        "site:linkedin.com/in \"Parfumdreams\" parfumdreams.de",
+        "\"Parfumdreams\" CMO LinkedIn",
+        "\"Parfumdreams\" \"Head of Growth\" Germany LinkedIn"
+      ]
+    },
+    "rawSearchResults": [],
+    "parsedCandidates": [],
+    "rankedCandidates": [],
+    "errors": [
+      "Query \"\"Parfumdreams\" \"Head of Growth\" LinkedIn\": Google CAPTCHA -- rate limited"
+    ]
+  }
+]

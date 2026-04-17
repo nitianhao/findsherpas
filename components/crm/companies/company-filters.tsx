@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/crm/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/crm/ui/select";
-import { COMPANY_STATUSES, PLATFORMS } from "@/lib/crm/constants";
+import { COMPANY_STATUSES, PLATFORMS, SEARCH_SOLUTIONS } from "@/lib/crm/constants";
 import { useCallback, useEffect, useState } from "react";
 
 export function CompanyFilters() {
@@ -65,6 +65,20 @@ export function CompanyFilters() {
           <SelectItem value="all">All platforms</SelectItem>
           {PLATFORMS.map((p) => (
             <SelectItem key={p} value={p}>{p}</SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <Select
+        value={searchParams.get("search_solution") || "all"}
+        onValueChange={(value) => updateParams("search_solution", value ?? "all")}
+      >
+        <SelectTrigger className="w-[200px]">
+          <SelectValue placeholder="All search solutions" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="all">All search solutions</SelectItem>
+          {SEARCH_SOLUTIONS.map((s) => (
+            <SelectItem key={s} value={s}>{s}</SelectItem>
           ))}
         </SelectContent>
       </Select>

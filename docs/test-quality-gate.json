@@ -1,0 +1,888 @@
+[
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 2,
+    "companyName": "Tuckernuck",
+    "role": "CEO",
+    "overallStatus": "ELIGIBLE",
+    "plausibility": {
+      "personName": "Jocelyn Gailliot",
+      "companyName": "Tuckernuck",
+      "role": "CEO",
+      "status": "PLAUSIBLE",
+      "score": 130,
+      "positiveSignals": [
+        "matches standard person name pattern",
+        "2 name tokens — typical",
+        "has LinkedIn person profile URL",
+        "LinkedIn slug contains name tokens",
+        "role resolution is STRONG"
+      ],
+      "negativeSignals": [],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "CEO_NAME",
+        "status": "ELIGIBLE",
+        "value": "Jocelyn Gailliot",
+        "reason": "Person is plausible and role resolution is STRONG"
+      },
+      {
+        "field": "CEO_LINKEDIN",
+        "status": "ELIGIBLE",
+        "value": "https://www.linkedin.com/in/jocelyn-gailliot-44135b4/",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_STRONG role"
+      },
+      {
+        "field": "CEO_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Inferred email with WEAK confidence — not reliable enough"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 1,
+    "companyName": "Manufactum",
+    "role": "CEO",
+    "overallStatus": "ELIGIBLE",
+    "plausibility": {
+      "personName": "Dario Rendulic",
+      "companyName": "Manufactum",
+      "role": "CEO",
+      "status": "PLAUSIBLE",
+      "score": 130,
+      "positiveSignals": [
+        "matches standard person name pattern",
+        "2 name tokens — typical",
+        "has LinkedIn person profile URL",
+        "LinkedIn slug contains name tokens",
+        "role resolution is STRONG"
+      ],
+      "negativeSignals": [],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "CEO_NAME",
+        "status": "ELIGIBLE",
+        "value": "Dario Rendulic",
+        "reason": "Person is plausible and role resolution is STRONG"
+      },
+      {
+        "field": "CEO_LINKEDIN",
+        "status": "ELIGIBLE",
+        "value": "https://www.linkedin.com/in/dario-rendulic-29951816/",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_STRONG role"
+      },
+      {
+        "field": "CEO_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Inferred email with WEAK confidence — not reliable enough"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 59,
+    "companyName": "M.Gemi",
+    "role": "CEO",
+    "overallStatus": "ELIGIBLE",
+    "plausibility": {
+      "personName": "Cheryl Kaplan",
+      "companyName": "M.Gemi",
+      "role": "CEO",
+      "status": "PLAUSIBLE",
+      "score": 130,
+      "positiveSignals": [
+        "matches standard person name pattern",
+        "2 name tokens — typical",
+        "has LinkedIn person profile URL",
+        "LinkedIn slug contains name tokens",
+        "role resolution is STRONG"
+      ],
+      "negativeSignals": [],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "CEO_NAME",
+        "status": "ELIGIBLE",
+        "value": "Cheryl Kaplan",
+        "reason": "Person is plausible and role resolution is STRONG"
+      },
+      {
+        "field": "CEO_LINKEDIN",
+        "status": "ELIGIBLE",
+        "value": "https://www.linkedin.com/in/cherylwkaplan/",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_STRONG role"
+      },
+      {
+        "field": "CEO_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Inferred email with WEAK confidence — not reliable enough"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 6,
+    "companyName": "Bergzeit",
+    "role": "CEO",
+    "overallStatus": "ELIGIBLE",
+    "plausibility": {
+      "personName": "Stawros Koutis",
+      "companyName": "Bergzeit",
+      "role": "CEO",
+      "status": "PLAUSIBLE",
+      "score": 130,
+      "positiveSignals": [
+        "matches standard person name pattern",
+        "2 name tokens — typical",
+        "has LinkedIn person profile URL",
+        "LinkedIn slug contains name tokens",
+        "role resolution is STRONG"
+      ],
+      "negativeSignals": [],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "CEO_NAME",
+        "status": "ELIGIBLE",
+        "value": "Stawros Koutis",
+        "reason": "Person is plausible and role resolution is STRONG"
+      },
+      {
+        "field": "CEO_LINKEDIN",
+        "status": "ELIGIBLE",
+        "value": "https://www.linkedin.com/in/stawros-koutis-735a2a227/",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_STRONG role"
+      },
+      {
+        "field": "CEO_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Inferred email with WEAK confidence — not reliable enough"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 4,
+    "companyName": "Faherty Brand",
+    "role": "CEO",
+    "overallStatus": "REVIEW",
+    "plausibility": {
+      "personName": "Faherty Brand",
+      "companyName": "Faherty Brand",
+      "role": "CEO",
+      "status": "SUSPICIOUS",
+      "score": 30,
+      "positiveSignals": [
+        "matches standard person name pattern",
+        "2 name tokens — typical",
+        "has LinkedIn person profile URL",
+        "LinkedIn slug contains name tokens",
+        "role resolution is STRONG"
+      ],
+      "negativeSignals": [
+        "company suffix: matches \\b(brand|brands|group|holding|holdings|company|enterprises)\\b",
+        "toxic token: \"brand\"",
+        "name overlaps company name \"Faherty Brand\" — likely company/brand, not person"
+      ],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "CEO_NAME",
+        "status": "REVIEW",
+        "value": "Faherty Brand",
+        "reason": "Person \"Faherty Brand\" is suspicious (score: 30): company suffix: matches \\b(brand|brands|group|holding|holdings|company|enterprises)\\b, toxic token: \"brand\", name overlaps company name \"Faherty Brand\" — likely company/brand, not person"
+      },
+      {
+        "field": "CEO_LINKEDIN",
+        "status": "REVIEW",
+        "value": "https://www.linkedin.com/in/mike-faherty-5a5aab45/",
+        "reason": "Person is suspicious — LinkedIn URL needs review"
+      },
+      {
+        "field": "CEO_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Inferred email for suspicious person — too risky"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 5,
+    "companyName": "Rebelle",
+    "role": "CEO",
+    "overallStatus": "ELIGIBLE",
+    "plausibility": {
+      "personName": "Tanisha Colon",
+      "companyName": "Rebelle",
+      "role": "CEO",
+      "status": "PLAUSIBLE",
+      "score": 130,
+      "positiveSignals": [
+        "matches standard person name pattern",
+        "2 name tokens — typical",
+        "has LinkedIn person profile URL",
+        "LinkedIn slug contains name tokens",
+        "role resolution is STRONG"
+      ],
+      "negativeSignals": [],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "CEO_NAME",
+        "status": "ELIGIBLE",
+        "value": "Tanisha Colon",
+        "reason": "Person is plausible and role resolution is STRONG"
+      },
+      {
+        "field": "CEO_LINKEDIN",
+        "status": "ELIGIBLE",
+        "value": "https://www.linkedin.com/in/tanishacolonbibb",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_STRONG role"
+      },
+      {
+        "field": "CEO_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Inferred email with WEAK confidence — not reliable enough"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 1,
+    "companyName": "Reformation",
+    "role": "CEO",
+    "overallStatus": "BLOCKED",
+    "plausibility": {
+      "personName": "",
+      "companyName": "Reformation",
+      "role": "CEO",
+      "status": "IMPLAUSIBLE",
+      "score": 0,
+      "positiveSignals": [],
+      "negativeSignals": [
+        "empty name"
+      ],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "CEO_NAME",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved candidate"
+      },
+      {
+        "field": "CEO_LINKEDIN",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No LinkedIn URL"
+      },
+      {
+        "field": "CEO_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved email"
+      }
+    ],
+    "notes": [
+      "No writable fields"
+    ]
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 3,
+    "companyName": "Flaconi",
+    "role": "CEO",
+    "overallStatus": "BLOCKED",
+    "plausibility": {
+      "personName": "",
+      "companyName": "Flaconi",
+      "role": "CEO",
+      "status": "IMPLAUSIBLE",
+      "score": 0,
+      "positiveSignals": [],
+      "negativeSignals": [
+        "empty name"
+      ],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "CEO_NAME",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved candidate"
+      },
+      {
+        "field": "CEO_LINKEDIN",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No LinkedIn URL"
+      },
+      {
+        "field": "CEO_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved email"
+      }
+    ],
+    "notes": [
+      "No writable fields"
+    ]
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 3,
+    "companyName": "Johnny Was",
+    "role": "HEAD_OF_ECOMMERCE",
+    "overallStatus": "BLOCKED",
+    "plausibility": {
+      "personName": "",
+      "companyName": "Johnny Was",
+      "role": "HEAD_OF_ECOMMERCE",
+      "status": "IMPLAUSIBLE",
+      "score": 0,
+      "positiveSignals": [],
+      "negativeSignals": [
+        "empty name"
+      ],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_ECOMMERCE_NAME",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved candidate"
+      },
+      {
+        "field": "HEAD_OF_ECOMMERCE_LINKEDIN",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No LinkedIn URL"
+      },
+      {
+        "field": "HEAD_OF_ECOMMERCE_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved email"
+      }
+    ],
+    "notes": [
+      "No writable fields"
+    ]
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 2,
+    "companyName": "Hessnatur",
+    "role": "HEAD_OF_ECOMMERCE",
+    "overallStatus": "BLOCKED",
+    "plausibility": {
+      "personName": "Preisgekrönter Onlineshop",
+      "companyName": "Hessnatur",
+      "role": "HEAD_OF_ECOMMERCE",
+      "status": "IMPLAUSIBLE",
+      "score": -15,
+      "positiveSignals": [
+        "matches standard person name pattern",
+        "2 name tokens — typical"
+      ],
+      "negativeSignals": [
+        "ecommerce word: matches \\b(onlineshop|webshop|online shop|web shop)\\b",
+        "toxic token: \"preisgekroenter\"",
+        "toxic token: \"onlineshop\""
+      ],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_ECOMMERCE_NAME",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Person \"Preisgekrönter Onlineshop\" failed plausibility check (score: -15)"
+      },
+      {
+        "field": "HEAD_OF_ECOMMERCE_LINKEDIN",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No LinkedIn URL"
+      },
+      {
+        "field": "HEAD_OF_ECOMMERCE_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Person failed plausibility — email not trustworthy"
+      }
+    ],
+    "notes": [
+      "No writable fields"
+    ]
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 56,
+    "companyName": "Tecovas",
+    "role": "HEAD_OF_ECOMMERCE",
+    "overallStatus": "ELIGIBLE",
+    "plausibility": {
+      "personName": "Kirstin Grimm Smith",
+      "companyName": "Tecovas",
+      "role": "HEAD_OF_ECOMMERCE",
+      "status": "PLAUSIBLE",
+      "score": 125,
+      "positiveSignals": [
+        "matches standard person name pattern",
+        "3 name tokens — typical",
+        "has LinkedIn person profile URL",
+        "LinkedIn slug contains name tokens",
+        "role resolution is PROBABLE"
+      ],
+      "negativeSignals": [],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_ECOMMERCE_NAME",
+        "status": "ELIGIBLE",
+        "value": "Kirstin Grimm Smith",
+        "reason": "Person is plausible and role resolution is PROBABLE"
+      },
+      {
+        "field": "HEAD_OF_ECOMMERCE_LINKEDIN",
+        "status": "ELIGIBLE",
+        "value": "https://www.linkedin.com/in/kirstin-grimm-smith-90967114/",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_PROBABLE role"
+      },
+      {
+        "field": "HEAD_OF_ECOMMERCE_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Inferred email with WEAK confidence — not reliable enough"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 7,
+    "companyName": "Bikester",
+    "role": "HEAD_OF_ECOMMERCE",
+    "overallStatus": "ELIGIBLE",
+    "plausibility": {
+      "personName": "Alan Goldsmith",
+      "companyName": "Bikester",
+      "role": "HEAD_OF_ECOMMERCE",
+      "status": "PLAUSIBLE",
+      "score": 125,
+      "positiveSignals": [
+        "matches standard person name pattern",
+        "2 name tokens — typical",
+        "has LinkedIn person profile URL",
+        "LinkedIn slug contains name tokens",
+        "role resolution is PROBABLE"
+      ],
+      "negativeSignals": [],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_ECOMMERCE_NAME",
+        "status": "ELIGIBLE",
+        "value": "Alan Goldsmith",
+        "reason": "Person is plausible and role resolution is PROBABLE"
+      },
+      {
+        "field": "HEAD_OF_ECOMMERCE_LINKEDIN",
+        "status": "ELIGIBLE",
+        "value": "https://www.linkedin.com/in/alan-goldsmith-4b02696/",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_PROBABLE role"
+      },
+      {
+        "field": "HEAD_OF_ECOMMERCE_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Inferred email with WEAK confidence — not reliable enough"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 5,
+    "companyName": "Marine Layer",
+    "role": "HEAD_OF_ECOMMERCE",
+    "overallStatus": "BLOCKED",
+    "plausibility": {
+      "personName": "",
+      "companyName": "Marine Layer",
+      "role": "HEAD_OF_ECOMMERCE",
+      "status": "IMPLAUSIBLE",
+      "score": 0,
+      "positiveSignals": [],
+      "negativeSignals": [
+        "empty name"
+      ],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_ECOMMERCE_NAME",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved candidate"
+      },
+      {
+        "field": "HEAD_OF_ECOMMERCE_LINKEDIN",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No LinkedIn URL"
+      },
+      {
+        "field": "HEAD_OF_ECOMMERCE_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved email"
+      }
+    ],
+    "notes": [
+      "No writable fields"
+    ]
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 6,
+    "companyName": "Summersalt",
+    "role": "HEAD_OF_PRODUCT",
+    "overallStatus": "BLOCKED",
+    "plausibility": {
+      "personName": "",
+      "companyName": "Summersalt",
+      "role": "HEAD_OF_PRODUCT",
+      "status": "IMPLAUSIBLE",
+      "score": 0,
+      "positiveSignals": [],
+      "negativeSignals": [
+        "empty name"
+      ],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_PRODUCT_NAME",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved candidate"
+      },
+      {
+        "field": "HEAD_OF_PRODUCT_LINKEDIN",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No LinkedIn URL"
+      },
+      {
+        "field": "HEAD_OF_PRODUCT_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved email"
+      }
+    ],
+    "notes": [
+      "No writable fields"
+    ]
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 4,
+    "companyName": "Parfumdreams",
+    "role": "HEAD_OF_PRODUCT",
+    "overallStatus": "BLOCKED",
+    "plausibility": {
+      "personName": "",
+      "companyName": "Parfumdreams",
+      "role": "HEAD_OF_PRODUCT",
+      "status": "IMPLAUSIBLE",
+      "score": 0,
+      "positiveSignals": [],
+      "negativeSignals": [
+        "empty name"
+      ],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_PRODUCT_NAME",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved candidate"
+      },
+      {
+        "field": "HEAD_OF_PRODUCT_LINKEDIN",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No LinkedIn URL"
+      },
+      {
+        "field": "HEAD_OF_PRODUCT_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved email"
+      }
+    ],
+    "notes": [
+      "No writable fields"
+    ]
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 57,
+    "companyName": "Thursday Boot Co",
+    "role": "HEAD_OF_PRODUCT",
+    "overallStatus": "REVIEW",
+    "plausibility": {
+      "personName": "Cheryl Keim",
+      "companyName": "Thursday Boot Co",
+      "role": "HEAD_OF_PRODUCT",
+      "status": "PLAUSIBLE",
+      "score": 85,
+      "positiveSignals": [
+        "matches standard person name pattern",
+        "2 name tokens — typical"
+      ],
+      "negativeSignals": [],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_PRODUCT_NAME",
+        "status": "REVIEW",
+        "value": "Cheryl Keim",
+        "reason": "Role resolution is UNRESOLVED_WEAK — needs manual review"
+      },
+      {
+        "field": "HEAD_OF_PRODUCT_LINKEDIN",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No LinkedIn URL"
+      },
+      {
+        "field": "HEAD_OF_PRODUCT_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Inferred email with WEAK confidence — not reliable enough"
+      }
+    ],
+    "notes": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 8,
+    "companyName": "Fahrrad.de",
+    "role": "HEAD_OF_PRODUCT",
+    "overallStatus": "BLOCKED",
+    "plausibility": {
+      "personName": "",
+      "companyName": "Fahrrad.de",
+      "role": "HEAD_OF_PRODUCT",
+      "status": "IMPLAUSIBLE",
+      "score": 0,
+      "positiveSignals": [],
+      "negativeSignals": [
+        "empty name"
+      ],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_PRODUCT_NAME",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved candidate"
+      },
+      {
+        "field": "HEAD_OF_PRODUCT_LINKEDIN",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No LinkedIn URL"
+      },
+      {
+        "field": "HEAD_OF_PRODUCT_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved email"
+      }
+    ],
+    "notes": [
+      "No writable fields"
+    ]
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 7,
+    "companyName": "Cuyana",
+    "role": "HEAD_OF_GROWTH",
+    "overallStatus": "BLOCKED",
+    "plausibility": {
+      "personName": "",
+      "companyName": "Cuyana",
+      "role": "HEAD_OF_GROWTH",
+      "status": "IMPLAUSIBLE",
+      "score": 0,
+      "positiveSignals": [],
+      "negativeSignals": [
+        "empty name"
+      ],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_GROWTH_NAME",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved candidate"
+      },
+      {
+        "field": "HEAD_OF_GROWTH_LINKEDIN",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No LinkedIn URL"
+      },
+      {
+        "field": "HEAD_OF_GROWTH_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved email"
+      }
+    ],
+    "notes": [
+      "No writable fields"
+    ]
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 10,
+    "companyName": "Planet Sports",
+    "role": "HEAD_OF_GROWTH",
+    "overallStatus": "BLOCKED",
+    "plausibility": {
+      "personName": "",
+      "companyName": "Planet Sports",
+      "role": "HEAD_OF_GROWTH",
+      "status": "IMPLAUSIBLE",
+      "score": 0,
+      "positiveSignals": [],
+      "negativeSignals": [
+        "empty name"
+      ],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_GROWTH_NAME",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved candidate"
+      },
+      {
+        "field": "HEAD_OF_GROWTH_LINKEDIN",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No LinkedIn URL"
+      },
+      {
+        "field": "HEAD_OF_GROWTH_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "No resolved email"
+      }
+    ],
+    "notes": [
+      "No writable fields"
+    ]
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 58,
+    "companyName": "Nisolo",
+    "role": "HEAD_OF_GROWTH",
+    "overallStatus": "ELIGIBLE",
+    "plausibility": {
+      "personName": "Chris Rose",
+      "companyName": "Nisolo",
+      "role": "HEAD_OF_GROWTH",
+      "status": "PLAUSIBLE",
+      "score": 125,
+      "positiveSignals": [
+        "matches standard person name pattern",
+        "2 name tokens — typical",
+        "has LinkedIn person profile URL",
+        "LinkedIn slug contains name tokens",
+        "role resolution is PROBABLE"
+      ],
+      "negativeSignals": [],
+      "notes": []
+    },
+    "fields": [
+      {
+        "field": "HEAD_OF_GROWTH_NAME",
+        "status": "ELIGIBLE",
+        "value": "Chris Rose",
+        "reason": "Person is plausible and role resolution is PROBABLE"
+      },
+      {
+        "field": "HEAD_OF_GROWTH_LINKEDIN",
+        "status": "ELIGIBLE",
+        "value": "https://www.linkedin.com/in/chrisrose00/",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_PROBABLE role"
+      },
+      {
+        "field": "HEAD_OF_GROWTH_EMAIL",
+        "status": "BLOCKED",
+        "value": null,
+        "reason": "Inferred email with WEAK confidence — not reliable enough"
+      }
+    ],
+    "notes": []
+  }
+]

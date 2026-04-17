@@ -5,6 +5,7 @@ interface CompanyFilters {
   search?: string;
   status?: CompanyStatus;
   platform?: string;
+  search_solution?: string;
   tag_id?: string;
   limit?: number;
   offset?: number;
@@ -14,7 +15,7 @@ function now() {
   return new Date().toISOString();
 }
 
-function mapCompany(c: Record<string, unknown> & { tags?: Array<Record<string, unknown>> }): Company {
+function mapCompany(c: Record<string, unknown> & { tags?: Array<Record<string, unknown>>; contacts?: Array<unknown> }): Company {
   return {
     id: c.id as string,
     name: (c.name as string) ?? '',
@@ -38,6 +39,7 @@ function mapCompany(c: Record<string, unknown> & { tags?: Array<Record<string, u
     pdf_name: (c.pdf_name as string | null) ?? null,
     created_at: (c.created_at as string) ?? now(),
     updated_at: (c.updated_at as string) ?? now(),
+    contacts_count: (c.contacts ?? []).length,
     tags: (c.tags ?? []).map(mapTag),
   };
 }
@@ -52,9 +54,9 @@ function mapTag(t: Record<string, unknown>): Tag {
 }
 
 export async function getCompanies(filters: CompanyFilters = {}): Promise<{ companies: Company[]; total: number }> {
-  const { search, status, platform, tag_id, limit = 50, offset = 0 } = filters;
+  const { search, status, platform, search_solution, tag_id, limit = 50, offset = 0 } = filters;
 
-  const data = await adminDb.query({ companies: { tags: {} } });
+  const data = await adminDb.query({ companies: { tags: {}, contacts: {} } });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let results = (data.companies as any[]).map(mapCompany);
 
@@ -67,6 +69,7 @@ export async function getCompanies(filters: CompanyFilters = {}): Promise<{ comp
   }
   if (status) results = results.filter(c => c.status === status);
   if (platform) results = results.filter(c => c.platform === platform);
+  if (search_solution) results = results.filter(c => c.search_solution === search_solution);
   if (tag_id) results = results.filter(c => c.tags?.some((t: Tag) => t.id === tag_id));
 
   results.sort((a, b) => b.updated_at.localeCompare(a.updated_at));

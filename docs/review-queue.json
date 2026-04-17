@@ -1,0 +1,964 @@
+{
+  "summary": {
+    "totalItems": 18,
+    "byBucket": {
+      "EMAIL_INFERRED_WEAK": 9,
+      "EXISTING_CELL_BLOCKED_NEW_VALUE": 1,
+      "SEARCH_GOOD_LINKEDIN_BUT_ROLE_UNCLEAR": 4,
+      "EMAIL_UNRESOLVED_BUT_DOMAIN_KNOWN": 1,
+      "ROLE_WEAK_WITH_CANDIDATE": 3
+    },
+    "byPriority": {
+      "HIGH": 11,
+      "MEDIUM": 7
+    },
+    "byRole": {
+      "CEO": 6,
+      "HEAD_OF_PRODUCT": 2,
+      "HEAD_OF_ECOMMERCE": 5,
+      "HEAD_OF_GROWTH": 5
+    },
+    "byWorkbook": {
+      "US_Ecommerce_Prospects_SiteSearch.xlsx": 9,
+      "EU_Ecommerce_Prospects_SiteSearch.xlsx": 9
+    }
+  },
+  "items": [
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "US Ecommerce Prospects",
+      "rowIndex": 2,
+      "region": "US",
+      "companyName": "Tuckernuck",
+      "websiteUrl": "https://www.tuckernuck.com",
+      "country": "United States",
+      "role": "CEO",
+      "bucket": "EMAIL_INFERRED_WEAK",
+      "priority": "HIGH",
+      "currentWorkbookValues": {
+        "existingName": "Jocelyn Gailliot",
+        "existingLinkedin": "https://www.linkedin.com/in/jocelyn-gailliot-44135b4/",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Jocelyn Gailliot",
+        "candidateLinkedin": "https://www.linkedin.com/in/jocelyn-gailliot-44135b4/",
+        "candidateEmail": "jocelyn.gailliot@tuckernuck.com"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_STRONG",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 160,
+        "emailScore": 35,
+        "plausibilityScore": 130
+      },
+      "evidenceSummary": [
+        "Generated: jocelyn.gailliot@tuckernuck.com (pattern: FIRST_LAST)",
+        "+20 person resolved STRONG",
+        "-15 no email evidence at all on domain"
+      ],
+      "blockerSummary": [],
+      "suggestedHumanAction": "Use Hunter.io or manual search to verify jocelyn.gailliot@tuckernuck.com on tuckernuck.com",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/in/jocelyn-gailliot-44135b4/",
+          "https://www.linkedin.com/company/tuckernuck/",
+          "https://www.linkedin.com/in/mollyhogwoodmagner",
+          "https://www.uschamber.com/co/events/small-business-day/tuckernuck-growth",
+          "https://tnuck.com/pages/jocelyn-gailliot"
+        ],
+        "topWebsitePages": [
+          "https://tnuck.com/?utm_source=Tuckernuck.com&utm_medium=Tuckernuck.com&utm_campaign=Tuckernuck.com",
+          "https://tnuck.com/pages/about-us",
+          "https://tnuck.com/pages/contact-us"
+        ]
+      }
+    },
+    {
+      "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "EU Ecommerce Prospects",
+      "rowIndex": 1,
+      "region": "EU",
+      "companyName": "Manufactum",
+      "websiteUrl": "https://www.manufactum.de",
+      "country": "Germany",
+      "role": "CEO",
+      "bucket": "EMAIL_INFERRED_WEAK",
+      "priority": "HIGH",
+      "currentWorkbookValues": {
+        "existingName": "Dario Rendulic",
+        "existingLinkedin": "https://www.linkedin.com/in/dario-rendulic-29951816/",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Dario Rendulic",
+        "candidateLinkedin": "https://www.linkedin.com/in/dario-rendulic-29951816/",
+        "candidateEmail": "dario.rendulic@manufactum.de"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_STRONG",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 155,
+        "emailScore": 55,
+        "plausibilityScore": 130
+      },
+      "evidenceSummary": [
+        "Domain manufactum.de: 7 emails found, 2 person-specific",
+        "Inferred pattern: UNKNOWN (confidence: 30)",
+        "person-specific emails found but pattern unclear",
+        "Generated: dario.rendulic@manufactum.de (pattern: FIRST_LAST)",
+        "+20 person resolved STRONG",
+        "Pattern: UNKNOWN (30)"
+      ],
+      "blockerSummary": [],
+      "suggestedHumanAction": "Use Hunter.io or manual search to verify dario.rendulic@manufactum.de on manufactum.de",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/in/dario-rendulic-29951816/",
+          "https://en.wikipedia.org/wiki/Manufactum",
+          "https://www.xing.com/profile/MaxF_Heimann",
+          "https://www.linkedin.com/in/j%C3%B6rg-kanabei-a8711361/",
+          "https://www.linkedin.com/company/manufactum"
+        ],
+        "topWebsitePages": [
+          "https://www.manufactum.de/",
+          "https://www.manufactum.de/kontakt-c199446",
+          "https://www.manufactum.de/japanische-gartenschere-handgeschmiedet-a216165"
+        ]
+      }
+    },
+    {
+      "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "EU Ecommerce Prospects",
+      "rowIndex": 5,
+      "region": "EU",
+      "companyName": "Rebelle",
+      "websiteUrl": "https://www.rebelle.com",
+      "country": "Germany",
+      "role": "CEO",
+      "bucket": "EMAIL_INFERRED_WEAK",
+      "priority": "HIGH",
+      "currentWorkbookValues": {
+        "existingName": "Max Schönemann",
+        "existingLinkedin": "https://www.linkedin.com/in/tanishacolonbibb",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Tanisha Colon",
+        "candidateLinkedin": "https://www.linkedin.com/in/tanishacolonbibb",
+        "candidateEmail": "tanisha.colon@rebelle.com"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_STRONG",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 140,
+        "emailScore": 35,
+        "plausibilityScore": 130
+      },
+      "evidenceSummary": [
+        "Generated: tanisha.colon@rebelle.com (pattern: FIRST_LAST)",
+        "+20 person resolved STRONG",
+        "-15 no email evidence at all on domain"
+      ],
+      "blockerSummary": [],
+      "suggestedHumanAction": "Use Hunter.io or manual search to verify tanisha.colon@rebelle.com on rebelle.com",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/company/rebellecommunications",
+          "https://www.linkedin.com/company/rebelle",
+          "https://www.linkedin.com/in/tanishacolonbibb",
+          "https://www.linkedin.com/in/laurakfink",
+          "https://tracxn.com/d/companies/rebelle/__xPhq8easimdQ3hpZz4cVUN1ZlsB00QE9732oXCra104"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "EU Ecommerce Prospects",
+      "rowIndex": 6,
+      "region": "EU",
+      "companyName": "Bergzeit",
+      "websiteUrl": "https://www.bergzeit.de",
+      "country": "Germany",
+      "role": "CEO",
+      "bucket": "EMAIL_INFERRED_WEAK",
+      "priority": "HIGH",
+      "currentWorkbookValues": {
+        "existingName": "Stawros Koutis",
+        "existingLinkedin": "https://www.linkedin.com/in/stawros-koutis-735a2a227/",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Stawros Koutis",
+        "candidateLinkedin": "https://www.linkedin.com/in/stawros-koutis-735a2a227/",
+        "candidateEmail": "stawros.koutis@bergzeit.de"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_STRONG",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 140,
+        "emailScore": 35,
+        "plausibilityScore": 130
+      },
+      "evidenceSummary": [
+        "Generated: stawros.koutis@bergzeit.de (pattern: FIRST_LAST)",
+        "+20 person resolved STRONG",
+        "-15 no email evidence at all on domain"
+      ],
+      "blockerSummary": [],
+      "suggestedHumanAction": "Use Hunter.io or manual search to verify stawros.koutis@bergzeit.de on bergzeit.de",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://de.linkedin.com/in/martin-stolzenberger-78423a127",
+          "https://www.linkedin.com/company/bergzeit/",
+          "https://www.linkedin.com/company/bergzeit-gmbh",
+          "https://www.linkedin.com/in/elisabeth-forte-b9a946130/",
+          "https://leadiq.com/c/bergzeit/5a1d7e3824000024005814fc"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "EU Ecommerce Prospects",
+      "rowIndex": 3,
+      "region": "EU",
+      "companyName": "Flaconi",
+      "websiteUrl": "https://www.flaconi.de",
+      "country": "Germany",
+      "role": "HEAD_OF_PRODUCT",
+      "bucket": "EMAIL_INFERRED_WEAK",
+      "priority": "HIGH",
+      "currentWorkbookValues": {
+        "existingName": "Mohamed Sarwat",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Mohamed Sarwat",
+        "candidateLinkedin": "https://www.linkedin.com/in/mohamed-sarwat-27a565131/",
+        "candidateEmail": "mohamed.sarwat@flaconi.de"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_STRONG",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 115,
+        "emailScore": 35,
+        "plausibilityScore": 130
+      },
+      "evidenceSummary": [
+        "Generated: mohamed.sarwat@flaconi.de (pattern: FIRST_LAST)",
+        "+20 person resolved STRONG",
+        "-15 no email evidence at all on domain"
+      ],
+      "blockerSummary": [],
+      "suggestedHumanAction": "Use Hunter.io or manual search to verify mohamed.sarwat@flaconi.de on flaconi.de",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/in/marie-mikolinski-3a9536162/",
+          "https://www.linkedin.com/in/mohamed-sarwat-27a565131/",
+          "https://www.linkedin.com/in/marie-mikolinski-3a9536162/"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "US Ecommerce Prospects",
+      "rowIndex": 59,
+      "region": "US",
+      "companyName": "M.Gemi",
+      "websiteUrl": "https://www.mgemi.com",
+      "country": "United States",
+      "role": "CEO",
+      "bucket": "EMAIL_INFERRED_WEAK",
+      "priority": "HIGH",
+      "currentWorkbookValues": {
+        "existingName": "Cheryl Kaplan",
+        "existingLinkedin": "https://www.linkedin.com/in/cherylwkaplan/",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Cheryl Kaplan",
+        "candidateLinkedin": "https://www.linkedin.com/in/cherylwkaplan/",
+        "candidateEmail": "cheryl.kaplan@mgemi.com"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_STRONG",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 105,
+        "emailScore": 35,
+        "plausibilityScore": 130
+      },
+      "evidenceSummary": [
+        "Generated: cheryl.kaplan@mgemi.com (pattern: FIRST_LAST)",
+        "+20 person resolved STRONG",
+        "-15 no email evidence at all on domain"
+      ],
+      "blockerSummary": [],
+      "suggestedHumanAction": "Use Hunter.io or manual search to verify cheryl.kaplan@mgemi.com on mgemi.com",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/in/cherylwkaplan/",
+          "https://www.linkedin.com/company/m-gemi",
+          "https://www.linkedin.com/in/maria-gangemi-5a140717/",
+          "https://mgemi.com/pages/about-us",
+          "https://www.retaildive.com/news/30-minutes-with-mgemis-co-founder/541079/"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "EU Ecommerce Prospects",
+      "rowIndex": 5,
+      "region": "EU",
+      "companyName": "Rebelle",
+      "websiteUrl": "https://www.rebelle.com",
+      "country": "Germany",
+      "role": "CEO",
+      "bucket": "EXISTING_CELL_BLOCKED_NEW_VALUE",
+      "priority": "HIGH",
+      "currentWorkbookValues": {
+        "existingName": "Max Schönemann",
+        "existingLinkedin": "https://www.linkedin.com/in/tanishacolonbibb",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Tanisha Colon",
+        "candidateLinkedin": "https://www.linkedin.com/in/tanishacolonbibb",
+        "candidateEmail": "tanisha.colon@rebelle.com"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_STRONG",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 140,
+        "emailScore": 35,
+        "plausibilityScore": 130
+      },
+      "evidenceSummary": [
+        "Column: CEO / MD Name",
+        "Existing: \"Max Schönemann\"",
+        "New candidate: \"Tanisha Colon\"",
+        "explicit-role-evidence-in-search"
+      ],
+      "blockerSummary": [
+        "Cell already has value \"Max Schönemann\" — overwrite disabled"
+      ],
+      "suggestedHumanAction": "Verify if existing workbook value \"Max Schönemann\" should be replaced with \"Tanisha Colon\"",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/company/rebellecommunications",
+          "https://www.linkedin.com/company/rebelle",
+          "https://www.linkedin.com/in/tanishacolonbibb",
+          "https://www.linkedin.com/in/laurakfink",
+          "https://tracxn.com/d/companies/rebelle/__xPhq8easimdQ3hpZz4cVUN1ZlsB00QE9732oXCra104"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "US Ecommerce Prospects",
+      "rowIndex": 56,
+      "region": "US",
+      "companyName": "Tecovas",
+      "websiteUrl": "https://www.tecovas.com",
+      "country": "United States",
+      "role": "HEAD_OF_ECOMMERCE",
+      "bucket": "SEARCH_GOOD_LINKEDIN_BUT_ROLE_UNCLEAR",
+      "priority": "HIGH",
+      "currentWorkbookValues": {
+        "existingName": "Kirstin Grimm Smith",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Kirstin Grimm Smith",
+        "candidateLinkedin": "https://www.linkedin.com/in/kirstin-grimm-smith-90967114/",
+        "candidateEmail": "kirstin.smith@tecovas.com"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_PROBABLE",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 80,
+        "emailScore": 25,
+        "plausibilityScore": 125
+      },
+      "evidenceSummary": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "blockerSummary": [
+        "Explicit role evidence was insufficient"
+      ],
+      "suggestedHumanAction": "Check candidate LinkedIn profile to verify current role at this company",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/in/katherineebeavers/",
+          "https://leadiq.com/c/tecovas/5a1dac6d2300005c00a1af87/employee-directory?page=4",
+          "https://contactout.com/katherine-b-63850",
+          "https://www.signalhire.com/companies/tecovas/employees",
+          "https://www.linkedin.com/company/tecovas"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "US Ecommerce Prospects",
+      "rowIndex": 58,
+      "region": "US",
+      "companyName": "Nisolo",
+      "websiteUrl": "https://www.nisolo.com",
+      "country": "United States",
+      "role": "HEAD_OF_GROWTH",
+      "bucket": "SEARCH_GOOD_LINKEDIN_BUT_ROLE_UNCLEAR",
+      "priority": "HIGH",
+      "currentWorkbookValues": {
+        "existingName": "Chris Rose",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Chris Rose",
+        "candidateLinkedin": "https://www.linkedin.com/in/chrisrose00/",
+        "candidateEmail": "chris.rose@nisolo.com"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_PROBABLE",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 65,
+        "emailScore": 25,
+        "plausibilityScore": 125
+      },
+      "evidenceSummary": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "blockerSummary": [
+        "Explicit role evidence was insufficient"
+      ],
+      "suggestedHumanAction": "Check candidate LinkedIn profile to verify current role at this company",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/company/nisolo",
+          "https://www.linkedin.com/in/chrisrose00/",
+          "https://www.linkedin.com/jobs/view/director-of-e-commerce-at-nisolo-3585533790",
+          "https://www.linkedin.com/posts/nisolo_open-roles-at-nisolo-linkedin-activity-6884887141801881600-Mfss?trk=public_profile_like_view",
+          "https://www.bloomberg.com/profile/company/1286478D:US"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "EU Ecommerce Prospects",
+      "rowIndex": 4,
+      "region": "EU",
+      "companyName": "Parfumdreams",
+      "websiteUrl": "https://www.parfumdreams.de",
+      "country": "Germany",
+      "role": "HEAD_OF_GROWTH",
+      "bucket": "SEARCH_GOOD_LINKEDIN_BUT_ROLE_UNCLEAR",
+      "priority": "HIGH",
+      "currentWorkbookValues": {
+        "existingName": "Jessica Haag",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Jessica Haag",
+        "candidateLinkedin": "https://www.linkedin.com/in/haagj/",
+        "candidateEmail": null
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_PROBABLE",
+        "emailStatus": "UNRESOLVED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 65,
+        "emailScore": -15,
+        "plausibilityScore": 125
+      },
+      "evidenceSummary": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "blockerSummary": [
+        "Explicit role evidence was insufficient"
+      ],
+      "suggestedHumanAction": "Check candidate LinkedIn profile to verify current role at this company",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/posts/steven-mattwig-89602911_yesterday-i-had-the-opportunity-to-present-activity-7186756439284076544-4cqu",
+          "https://www.linkedin.com/in/haagj/",
+          "https://www.cbinsights.com/company/parfumdreams",
+          "https://tracxn.com/d/companies/parfumdreams/__lYvAhm62D2dIfv498Ub2acvqUoJ_rRUcT0FuNF_If2o",
+          "https://www.linkedin.com/in/carola-wilke-572b081a5/"
+        ],
+        "topWebsitePages": [
+          "https://www.parfumdreams.de/",
+          "https://www.parfumdreams.de/Kontakt",
+          "https://www.parfumdreams.de/Impressum"
+        ]
+      }
+    },
+    {
+      "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "EU Ecommerce Prospects",
+      "rowIndex": 7,
+      "region": "EU",
+      "companyName": "Bikester",
+      "websiteUrl": "https://www.bikester.de",
+      "country": "Germany",
+      "role": "HEAD_OF_ECOMMERCE",
+      "bucket": "SEARCH_GOOD_LINKEDIN_BUT_ROLE_UNCLEAR",
+      "priority": "HIGH",
+      "currentWorkbookValues": {
+        "existingName": "Alan Goldsmith",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Alan Goldsmith",
+        "candidateLinkedin": "https://www.linkedin.com/in/alan-goldsmith-4b02696/",
+        "candidateEmail": "alan.goldsmith@bikester.de"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_PROBABLE",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 65,
+        "emailScore": 25,
+        "plausibilityScore": 125
+      },
+      "evidenceSummary": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "blockerSummary": [
+        "Explicit role evidence was insufficient"
+      ],
+      "suggestedHumanAction": "Check candidate LinkedIn profile to verify current role at this company",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/company/internetstores/",
+          "https://www.linkedin.com/company/bikester",
+          "https://www.linkedin.com/in/alan-goldsmith-4b02696/",
+          "https://www.linkedin.com/in/j%C3%B6rg-schaible-917b51223/",
+          "https://www.linkedin.com/in/alxberger/"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "US Ecommerce Prospects",
+      "rowIndex": 56,
+      "region": "US",
+      "companyName": "Tecovas",
+      "websiteUrl": "https://www.tecovas.com",
+      "country": "United States",
+      "role": "HEAD_OF_ECOMMERCE",
+      "bucket": "EMAIL_INFERRED_WEAK",
+      "priority": "MEDIUM",
+      "currentWorkbookValues": {
+        "existingName": "Kirstin Grimm Smith",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Kirstin Grimm Smith",
+        "candidateLinkedin": "https://www.linkedin.com/in/kirstin-grimm-smith-90967114/",
+        "candidateEmail": "kirstin.smith@tecovas.com"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_PROBABLE",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 80,
+        "emailScore": 25,
+        "plausibilityScore": 125
+      },
+      "evidenceSummary": [
+        "Generated: kirstin.smith@tecovas.com (pattern: FIRST_LAST)",
+        "+10 person resolved PROBABLE",
+        "-15 no email evidence at all on domain"
+      ],
+      "blockerSummary": [],
+      "suggestedHumanAction": "Use Hunter.io or manual search to verify kirstin.smith@tecovas.com on tecovas.com",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/in/katherineebeavers/",
+          "https://leadiq.com/c/tecovas/5a1dac6d2300005c00a1af87/employee-directory?page=4",
+          "https://contactout.com/katherine-b-63850",
+          "https://www.signalhire.com/companies/tecovas/employees",
+          "https://www.linkedin.com/company/tecovas"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "US Ecommerce Prospects",
+      "rowIndex": 58,
+      "region": "US",
+      "companyName": "Nisolo",
+      "websiteUrl": "https://www.nisolo.com",
+      "country": "United States",
+      "role": "HEAD_OF_GROWTH",
+      "bucket": "EMAIL_INFERRED_WEAK",
+      "priority": "MEDIUM",
+      "currentWorkbookValues": {
+        "existingName": "Chris Rose",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Chris Rose",
+        "candidateLinkedin": "https://www.linkedin.com/in/chrisrose00/",
+        "candidateEmail": "chris.rose@nisolo.com"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_PROBABLE",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 65,
+        "emailScore": 25,
+        "plausibilityScore": 125
+      },
+      "evidenceSummary": [
+        "Generated: chris.rose@nisolo.com (pattern: FIRST_LAST)",
+        "+10 person resolved PROBABLE",
+        "-15 no email evidence at all on domain"
+      ],
+      "blockerSummary": [],
+      "suggestedHumanAction": "Use Hunter.io or manual search to verify chris.rose@nisolo.com on nisolo.com",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/company/nisolo",
+          "https://www.linkedin.com/in/chrisrose00/",
+          "https://www.linkedin.com/jobs/view/director-of-e-commerce-at-nisolo-3585533790",
+          "https://www.linkedin.com/posts/nisolo_open-roles-at-nisolo-linkedin-activity-6884887141801881600-Mfss?trk=public_profile_like_view",
+          "https://www.bloomberg.com/profile/company/1286478D:US"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "EU Ecommerce Prospects",
+      "rowIndex": 7,
+      "region": "EU",
+      "companyName": "Bikester",
+      "websiteUrl": "https://www.bikester.de",
+      "country": "Germany",
+      "role": "HEAD_OF_ECOMMERCE",
+      "bucket": "EMAIL_INFERRED_WEAK",
+      "priority": "MEDIUM",
+      "currentWorkbookValues": {
+        "existingName": "Alan Goldsmith",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Alan Goldsmith",
+        "candidateLinkedin": "https://www.linkedin.com/in/alan-goldsmith-4b02696/",
+        "candidateEmail": "alan.goldsmith@bikester.de"
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_PROBABLE",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 65,
+        "emailScore": 25,
+        "plausibilityScore": 125
+      },
+      "evidenceSummary": [
+        "Generated: alan.goldsmith@bikester.de (pattern: FIRST_LAST)",
+        "+10 person resolved PROBABLE",
+        "-15 no email evidence at all on domain"
+      ],
+      "blockerSummary": [],
+      "suggestedHumanAction": "Use Hunter.io or manual search to verify alan.goldsmith@bikester.de on bikester.de",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/company/internetstores/",
+          "https://www.linkedin.com/company/bikester",
+          "https://www.linkedin.com/in/alan-goldsmith-4b02696/",
+          "https://www.linkedin.com/in/j%C3%B6rg-schaible-917b51223/",
+          "https://www.linkedin.com/in/alxberger/"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "EU Ecommerce Prospects",
+      "rowIndex": 4,
+      "region": "EU",
+      "companyName": "Parfumdreams",
+      "websiteUrl": "https://www.parfumdreams.de",
+      "country": "Germany",
+      "role": "HEAD_OF_GROWTH",
+      "bucket": "EMAIL_UNRESOLVED_BUT_DOMAIN_KNOWN",
+      "priority": "MEDIUM",
+      "currentWorkbookValues": {
+        "existingName": "Jessica Haag",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Jessica Haag",
+        "candidateLinkedin": "https://www.linkedin.com/in/haagj/",
+        "candidateEmail": null
+      },
+      "statusSummary": {
+        "roleStatus": "RESOLVED_PROBABLE",
+        "emailStatus": "UNRESOLVED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "ELIGIBLE"
+      },
+      "scores": {
+        "roleScore": 65,
+        "emailScore": -15,
+        "plausibilityScore": 125
+      },
+      "evidenceSummary": [
+        "Domain parfumdreams.de has 3 email(s) found",
+        "Confidence too low to assign email"
+      ],
+      "blockerSummary": [
+        "Confidence too low to assign email"
+      ],
+      "suggestedHumanAction": "Search company/team page manually for email pattern on parfumdreams.de",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/posts/steven-mattwig-89602911_yesterday-i-had-the-opportunity-to-present-activity-7186756439284076544-4cqu",
+          "https://www.linkedin.com/in/haagj/",
+          "https://www.cbinsights.com/company/parfumdreams",
+          "https://tracxn.com/d/companies/parfumdreams/__lYvAhm62D2dIfv498Ub2acvqUoJ_rRUcT0FuNF_If2o",
+          "https://www.linkedin.com/in/carola-wilke-572b081a5/"
+        ],
+        "topWebsitePages": [
+          "https://www.parfumdreams.de/",
+          "https://www.parfumdreams.de/Kontakt",
+          "https://www.parfumdreams.de/Impressum"
+        ]
+      }
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "US Ecommerce Prospects",
+      "rowIndex": 1,
+      "region": "US",
+      "companyName": "Reformation",
+      "websiteUrl": "https://www.thereformation.com",
+      "country": "United States",
+      "role": "HEAD_OF_ECOMMERCE",
+      "bucket": "ROLE_WEAK_WITH_CANDIDATE",
+      "priority": "MEDIUM",
+      "currentWorkbookValues": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Yael Aflalo",
+        "candidateLinkedin": "https://www.linkedin.com/in/yael-aflalo",
+        "candidateEmail": "yael.aflalo@thereformation.com"
+      },
+      "statusSummary": {
+        "roleStatus": "UNRESOLVED_WEAK",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "REVIEW"
+      },
+      "scores": {
+        "roleScore": 60,
+        "emailScore": 15,
+        "plausibilityScore": 120
+      },
+      "evidenceSummary": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "blockerSummary": [
+        "Role score 60 below threshold"
+      ],
+      "suggestedHumanAction": "Check candidate LinkedIn manually and confirm role",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://craft.co/reformation/executives",
+          "https://www.linkedin.com/company/reformation",
+          "https://www.linkedin.com/pulse/optimizing-fashion-e-commerce-reformations-success-klaviyo-thakur-rdkgf",
+          "https://www.linkedin.com/in/yael-aflalo",
+          "https://www.linkedin.com/in/stacey-kaplow-17a2b91a/"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "US Ecommerce Prospects",
+      "rowIndex": 5,
+      "region": "US",
+      "companyName": "Marine Layer",
+      "websiteUrl": "https://www.marinelayer.com",
+      "country": "United States",
+      "role": "HEAD_OF_GROWTH",
+      "bucket": "ROLE_WEAK_WITH_CANDIDATE",
+      "priority": "MEDIUM",
+      "currentWorkbookValues": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Renee Lopes Halvorsen",
+        "candidateLinkedin": "https://www.linkedin.com/in/renee-lopes-halvorsen-7599503/",
+        "candidateEmail": "renee.halvorsen@marinelayer.com"
+      },
+      "statusSummary": {
+        "roleStatus": "UNRESOLVED_WEAK",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "REVIEW"
+      },
+      "scores": {
+        "roleScore": 60,
+        "emailScore": 15,
+        "plausibilityScore": 120
+      },
+      "evidenceSummary": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "blockerSummary": [
+        "Role score 60 below threshold"
+      ],
+      "suggestedHumanAction": "Check candidate LinkedIn manually and confirm role",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://www.linkedin.com/in/renee-lopes-halvorsen-7599503/",
+          "https://www.linkedin.com/in/michaelnatenshon/",
+          "https://www.linkedin.com/company/marine-layer",
+          "https://www.linkedin.com/in/adam-lynch-7746624/",
+          "https://www.linkedin.com/in/rosalind-volckmann-4a19a813/"
+        ],
+        "topWebsitePages": []
+      }
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "sheetName": "US Ecommerce Prospects",
+      "rowIndex": 57,
+      "region": "US",
+      "companyName": "Thursday Boot Co",
+      "websiteUrl": "https://www.thursdayboots.com",
+      "country": "United States",
+      "role": "HEAD_OF_PRODUCT",
+      "bucket": "ROLE_WEAK_WITH_CANDIDATE",
+      "priority": "MEDIUM",
+      "currentWorkbookValues": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "candidateValues": {
+        "candidateName": "Cheryl Keim",
+        "candidateLinkedin": "",
+        "candidateEmail": "cheryl.keim@thursdayboots.com"
+      },
+      "statusSummary": {
+        "roleStatus": "UNRESOLVED_WEAK",
+        "emailStatus": "RESOLVED_INFERRED",
+        "plausibilityStatus": "PLAUSIBLE",
+        "writebackEligibility": "REVIEW"
+      },
+      "scores": {
+        "roleScore": 30,
+        "emailScore": 15,
+        "plausibilityScore": 85
+      },
+      "evidenceSummary": [
+        "explicit-role-evidence-in-search",
+        "-15 weak name parse, no LinkedIn URL"
+      ],
+      "blockerSummary": [
+        "Role score 30 below threshold"
+      ],
+      "suggestedHumanAction": "Search company team page or LinkedIn for this person",
+      "rawReferences": {
+        "topSearchQueries": [],
+        "topSearchUrls": [
+          "https://theorg.com/org/thursday-boot/org-chart/cheryl-keim"
+        ],
+        "topWebsitePages": []
+      }
+    }
+  ]
+}

@@ -174,6 +174,15 @@ export async function resumeEnrollment(enrollmentId: string): Promise<void> {
   await adminDb.transact(txns);
 }
 
+export async function getEnrollmentCountByCompanyId(companyId: string): Promise<number> {
+  const data = await adminDb.query({
+    enrollments: {
+      $: { where: { 'contact.company.id': companyId } },
+    },
+  });
+  return (data.enrollments as unknown[]).length;
+}
+
 export async function getEventsByEnrollmentId(enrollmentId: string): Promise<ContactSequenceEvent[]> {
   const data = await adminDb.query({
     events: {

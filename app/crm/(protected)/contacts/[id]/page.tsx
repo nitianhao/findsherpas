@@ -122,6 +122,22 @@ export default async function ContactDetailPage({
         </Card>
       )}
 
+      {contact.custom_fields && Object.keys(contact.custom_fields).length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm font-medium">Personalization Fields</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2 text-sm">
+            {Object.entries(contact.custom_fields).map(([key, value]) => (
+              <div key={key} className="flex justify-between">
+                <span className="text-muted-foreground font-mono">{`{{${key}}}`}</span>
+                <span>{value}</span>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
+
       <ContactSequenceStatus contactId={contact.id} />
 
       <Card>

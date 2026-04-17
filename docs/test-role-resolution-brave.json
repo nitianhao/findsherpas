@@ -1,0 +1,1160 @@
+[
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 2,
+    "region": "US",
+    "companyName": "Tuckernuck",
+    "websiteUrl": "https://www.tuckernuck.com",
+    "country": "United States",
+    "role": "CEO",
+    "status": "RESOLVED_STRONG",
+    "chosenCandidate": {
+      "fullName": "Jocelyn Gailliot",
+      "normalizedName": "jocelyn gailliot",
+      "role": "CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/jocelyn-gailliot-44135b4/",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "+20 appears in 4 search results",
+        "explicit-role-evidence-in-search"
+      ],
+      "confidenceScore": 160,
+      "confidenceLabel": "STRONG",
+      "supportingSearchCandidatesCount": 4,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "September Rinnier Votta",
+        "normalizedName": "september rinnier votta",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/september-rinnier-votta-16698a12/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 140,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Danielle Novak",
+        "normalizedName": "danielle novak",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/danielle-novak-36377458/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 120,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Meg Rupp",
+        "normalizedName": "meg rupp",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/meg-rupp-1525588/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 120,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 24,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 16,
+      "parsedSearchCandidateCount": 10,
+      "rankedSearchCandidateCount": 10
+    }
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 1,
+    "region": "EU",
+    "companyName": "Manufactum",
+    "websiteUrl": "https://www.manufactum.de",
+    "country": "Germany",
+    "role": "CEO",
+    "status": "RESOLVED_STRONG",
+    "chosenCandidate": {
+      "fullName": "Dario Rendulic",
+      "normalizedName": "dario rendulic",
+      "role": "CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/dario-rendulic-29951816/",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "explicit-role-evidence-in-search"
+      ],
+      "confidenceScore": 155,
+      "confidenceLabel": "STRONG",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "Maren Burrichter",
+        "normalizedName": "maren burrichter",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/maren-burrichter-730148203/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 120,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Katja Schikora",
+        "normalizedName": "katja schikora",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/katja-schikora-547589bb/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 115,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Ines Holz",
+        "normalizedName": "ines holz",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/ines-holz-b5413239/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 115,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 13,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 16,
+      "parsedSearchCandidateCount": 10,
+      "rankedSearchCandidateCount": 10
+    }
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 59,
+    "region": "US",
+    "companyName": "M.Gemi",
+    "websiteUrl": "https://www.mgemi.com",
+    "country": "United States",
+    "role": "CEO",
+    "status": "RESOLVED_STRONG",
+    "chosenCandidate": {
+      "fullName": "Cheryl Kaplan",
+      "normalizedName": "cheryl kaplan",
+      "role": "CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/cherylwkaplan/",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "+20 appears in 2 search results",
+        "explicit-role-evidence-in-search"
+      ],
+      "confidenceScore": 105,
+      "confidenceLabel": "STRONG",
+      "supportingSearchCandidatesCount": 2,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "Maria Gangemi",
+        "normalizedName": "maria gangemi",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/maria-gangemi-5a140717/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 85,
+        "confidenceLabel": "PROBABLE",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Elisa Grifoni",
+        "normalizedName": "elisa grifoni",
+        "role": "CEO",
+        "linkedinUrl": "https://it.linkedin.com/in/elisa-grifoni-246089131",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [],
+        "confidenceScore": 80,
+        "confidenceLabel": "PROBABLE",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Bailey Heldmar",
+        "normalizedName": "bailey heldmar",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/baileyheldmar/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [],
+        "confidenceScore": 65,
+        "confidenceLabel": "PROBABLE",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 16,
+      "parsedSearchCandidateCount": 9,
+      "rankedSearchCandidateCount": 9
+    }
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 6,
+    "region": "EU",
+    "companyName": "Bergzeit",
+    "websiteUrl": "https://www.bergzeit.de",
+    "country": "Germany",
+    "role": "CEO",
+    "status": "RESOLVED_STRONG",
+    "chosenCandidate": {
+      "fullName": "Stawros Koutis",
+      "normalizedName": "stawros koutis",
+      "role": "CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/stawros-koutis-735a2a227/",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "explicit-role-evidence-in-search"
+      ],
+      "confidenceScore": 140,
+      "confidenceLabel": "STRONG",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "Martin Stolzenberger",
+        "normalizedName": "martin stolzenberger",
+        "role": "CEO",
+        "linkedinUrl": "https://de.linkedin.com/in/martin-stolzenberger-78423a127",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 130,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Jean Philippe Laaser",
+        "normalizedName": "jean philippe laaser",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/jean-philippe-laaser-321046151/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 120,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Andreas Rey",
+        "normalizedName": "andreas rey",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/andreas-rey-593626137/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 120,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 16,
+      "parsedSearchCandidateCount": 11,
+      "rankedSearchCandidateCount": 11
+    }
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 4,
+    "region": "US",
+    "companyName": "Faherty Brand",
+    "websiteUrl": "https://www.faherty.com",
+    "country": "United States",
+    "role": "CEO",
+    "status": "RESOLVED_STRONG",
+    "chosenCandidate": {
+      "fullName": "Faherty Brand",
+      "normalizedName": "faherty brand",
+      "role": "CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/mike-faherty-5a5aab45/",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "+20 appears in 3 search results",
+        "explicit-role-evidence-in-search"
+      ],
+      "confidenceScore": 125,
+      "confidenceLabel": "STRONG",
+      "supportingSearchCandidatesCount": 3,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "Alex Faherty",
+        "normalizedName": "alex faherty",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/alex-faherty-59575526/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 120,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Steve Jantz",
+        "normalizedName": "steve jantz",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/steve-jantz/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 120,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Jeff Mach",
+        "normalizedName": "jeff mach",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/jeffmach/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 115,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 16,
+      "parsedSearchCandidateCount": 11,
+      "rankedSearchCandidateCount": 11
+    }
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 5,
+    "region": "EU",
+    "companyName": "Rebelle",
+    "websiteUrl": "https://www.rebelle.com",
+    "country": "Germany",
+    "role": "CEO",
+    "status": "RESOLVED_STRONG",
+    "chosenCandidate": {
+      "fullName": "Tanisha Colon",
+      "normalizedName": "tanisha colon",
+      "role": "CEO",
+      "linkedinUrl": "https://www.linkedin.com/in/tanishacolonbibb",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "explicit-role-evidence-in-search"
+      ],
+      "confidenceScore": 140,
+      "confidenceLabel": "STRONG",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "Charlotte Darragon",
+        "normalizedName": "charlotte darragon",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/charlottedarragon/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 140,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Laura Fink",
+        "normalizedName": "laura fink",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/laurakfink",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "+20 appears in 2 search results",
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 125,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 2,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Antoine Sicotte",
+        "normalizedName": "antoine sicotte",
+        "role": "CEO",
+        "linkedinUrl": "https://www.linkedin.com/in/antoine-sicotte-452006284/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search"
+        ],
+        "confidenceScore": 120,
+        "confidenceLabel": "STRONG",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 16,
+      "parsedSearchCandidateCount": 11,
+      "rankedSearchCandidateCount": 11
+    }
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 1,
+    "region": "US",
+    "companyName": "Reformation",
+    "websiteUrl": "https://www.thereformation.com",
+    "country": "United States",
+    "role": "HEAD_OF_ECOMMERCE",
+    "status": "UNRESOLVED_WEAK",
+    "chosenCandidate": {
+      "fullName": "Yael Aflalo",
+      "normalizedName": "yael aflalo",
+      "role": "HEAD_OF_ECOMMERCE",
+      "linkedinUrl": "https://www.linkedin.com/in/yael-aflalo",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "confidenceScore": 60,
+      "confidenceLabel": "WEAK",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "The Reformation",
+        "normalizedName": "the reformation",
+        "role": "HEAD_OF_ECOMMERCE",
+        "linkedinUrl": "https://www.linkedin.com/in/the-reformation-21075658/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 60,
+        "confidenceLabel": "WEAK",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Stacey Kaplow",
+        "normalizedName": "stacey kaplow",
+        "role": "HEAD_OF_ECOMMERCE",
+        "linkedinUrl": "https://www.linkedin.com/in/stacey-kaplow-17a2b91a/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 45,
+        "confidenceLabel": "WEAK",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Frederick Clark",
+        "normalizedName": "frederick clark",
+        "role": "HEAD_OF_ECOMMERCE",
+        "linkedinUrl": "https://www.linkedin.com/in/frederickclark/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 45,
+        "confidenceLabel": "WEAK",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 9,
+      "parsedSearchCandidateCount": 4,
+      "rankedSearchCandidateCount": 4
+    }
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 2,
+    "region": "EU",
+    "companyName": "Hessnatur",
+    "websiteUrl": "https://www.hessnatur.de",
+    "country": "Germany",
+    "role": "HEAD_OF_ECOMMERCE",
+    "status": "UNRESOLVED_WEAK",
+    "chosenCandidate": {
+      "fullName": "Preisgekrönter Onlineshop",
+      "normalizedName": "preisgekrönter onlineshop",
+      "role": "HEAD_OF_ECOMMERCE",
+      "linkedinUrl": "",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "-15 weak name parse, no LinkedIn URL",
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "confidenceScore": 10,
+      "confidenceLabel": "WEAK",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 8,
+      "parsedSearchCandidateCount": 1,
+      "rankedSearchCandidateCount": 1
+    }
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 56,
+    "region": "US",
+    "companyName": "Tecovas",
+    "websiteUrl": "https://www.tecovas.com",
+    "country": "United States",
+    "role": "HEAD_OF_ECOMMERCE",
+    "status": "RESOLVED_PROBABLE",
+    "chosenCandidate": {
+      "fullName": "Kirstin Grimm Smith",
+      "normalizedName": "kirstin grimm smith",
+      "role": "HEAD_OF_ECOMMERCE",
+      "linkedinUrl": "https://www.linkedin.com/in/kirstin-grimm-smith-90967114/",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "confidenceScore": 80,
+      "confidenceLabel": "PROBABLE",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "Paul Hedrick",
+        "normalizedName": "paul hedrick",
+        "role": "HEAD_OF_ECOMMERCE",
+        "linkedinUrl": "https://www.linkedin.com/in/paulhedrick",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 65,
+        "confidenceLabel": "PROBABLE",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Krista Dalton",
+        "normalizedName": "krista dalton",
+        "role": "HEAD_OF_ECOMMERCE",
+        "linkedinUrl": "https://www.linkedin.com/in/krista-dalton-35a13036/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 65,
+        "confidenceLabel": "PROBABLE",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "James Mann",
+        "normalizedName": "james mann",
+        "role": "HEAD_OF_ECOMMERCE",
+        "linkedinUrl": "https://www.linkedin.com/in/jamesmann1/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 65,
+        "confidenceLabel": "PROBABLE",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 12,
+      "parsedSearchCandidateCount": 5,
+      "rankedSearchCandidateCount": 5
+    }
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 7,
+    "region": "EU",
+    "companyName": "Bikester",
+    "websiteUrl": "https://www.bikester.de",
+    "country": "Germany",
+    "role": "HEAD_OF_ECOMMERCE",
+    "status": "RESOLVED_PROBABLE",
+    "chosenCandidate": {
+      "fullName": "Alan Goldsmith",
+      "normalizedName": "alan goldsmith",
+      "role": "HEAD_OF_ECOMMERCE",
+      "linkedinUrl": "https://www.linkedin.com/in/alan-goldsmith-4b02696/",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "confidenceScore": 65,
+      "confidenceLabel": "PROBABLE",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "Jörg Schaible",
+        "normalizedName": "jörg schaible",
+        "role": "HEAD_OF_ECOMMERCE",
+        "linkedinUrl": "https://www.linkedin.com/in/j%C3%B6rg-schaible-917b51223/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 65,
+        "confidenceLabel": "PROBABLE",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Alex Berger",
+        "normalizedName": "alex berger",
+        "role": "HEAD_OF_ECOMMERCE",
+        "linkedinUrl": "https://www.linkedin.com/in/alxberger/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 65,
+        "confidenceLabel": "PROBABLE",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Bikester Global",
+        "normalizedName": "bikester global",
+        "role": "HEAD_OF_ECOMMERCE",
+        "linkedinUrl": "",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-15 weak name parse, no LinkedIn URL",
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 10,
+        "confidenceLabel": "WEAK",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 8,
+      "parsedSearchCandidateCount": 4,
+      "rankedSearchCandidateCount": 4
+    }
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 3,
+    "region": "US",
+    "companyName": "Johnny Was",
+    "websiteUrl": "https://www.johnnywas.com",
+    "country": "United States",
+    "role": "HEAD_OF_PRODUCT",
+    "status": "UNRESOLVED_NONE",
+    "chosenCandidate": null,
+    "alternateCandidates": [],
+    "blockingIssues": [],
+    "notes": [
+      "No viable candidates from any source"
+    ],
+    "rawSummary": {
+      "websitePersonCandidates": 14,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 0,
+      "parsedSearchCandidateCount": 0,
+      "rankedSearchCandidateCount": 0
+    }
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 3,
+    "region": "EU",
+    "companyName": "Flaconi",
+    "websiteUrl": "https://www.flaconi.de",
+    "country": "Germany",
+    "role": "HEAD_OF_PRODUCT",
+    "status": "RESOLVED_STRONG",
+    "chosenCandidate": {
+      "fullName": "Mohamed Sarwat",
+      "normalizedName": "mohamed sarwat",
+      "role": "HEAD_OF_PRODUCT",
+      "linkedinUrl": "https://www.linkedin.com/in/mohamed-sarwat-27a565131/",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "explicit-role-evidence-in-search"
+      ],
+      "confidenceScore": 115,
+      "confidenceLabel": "STRONG",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "Marie Mikolinski",
+        "normalizedName": "marie mikolinski",
+        "role": "HEAD_OF_PRODUCT",
+        "linkedinUrl": "https://www.linkedin.com/in/marie-mikolinski-3a9536162/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 75,
+        "confidenceLabel": "PROBABLE",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 3,
+      "parsedSearchCandidateCount": 2,
+      "rankedSearchCandidateCount": 2
+    }
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 57,
+    "region": "US",
+    "companyName": "Thursday Boot Co",
+    "websiteUrl": "https://www.thursdayboots.com",
+    "country": "United States",
+    "role": "HEAD_OF_PRODUCT",
+    "status": "UNRESOLVED_WEAK",
+    "chosenCandidate": {
+      "fullName": "Cheryl Keim",
+      "normalizedName": "cheryl keim",
+      "role": "HEAD_OF_PRODUCT",
+      "linkedinUrl": "",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "explicit-role-evidence-in-search",
+        "-15 weak name parse, no LinkedIn URL"
+      ],
+      "confidenceScore": 30,
+      "confidenceLabel": "WEAK",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 1,
+      "parsedSearchCandidateCount": 1,
+      "rankedSearchCandidateCount": 1
+    }
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 5,
+    "region": "US",
+    "companyName": "Marine Layer",
+    "websiteUrl": "https://www.marinelayer.com",
+    "country": "United States",
+    "role": "HEAD_OF_GROWTH",
+    "status": "UNRESOLVED_WEAK",
+    "chosenCandidate": {
+      "fullName": "Renee Lopes Halvorsen",
+      "normalizedName": "renee lopes halvorsen",
+      "role": "HEAD_OF_GROWTH",
+      "linkedinUrl": "https://www.linkedin.com/in/renee-lopes-halvorsen-7599503/",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "confidenceScore": 60,
+      "confidenceLabel": "WEAK",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "Adam Lynch",
+        "normalizedName": "adam lynch",
+        "role": "HEAD_OF_GROWTH",
+        "linkedinUrl": "https://www.linkedin.com/in/adam-lynch-7746624/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 60,
+        "confidenceLabel": "WEAK",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Steffany Strain",
+        "normalizedName": "steffany strain",
+        "role": "HEAD_OF_GROWTH",
+        "linkedinUrl": "https://www.linkedin.com/in/steffany-strain-18815241",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 60,
+        "confidenceLabel": "WEAK",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Back Brand",
+        "normalizedName": "back brand",
+        "role": "HEAD_OF_GROWTH",
+        "linkedinUrl": "",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "explicit-role-evidence-in-search",
+          "-15 weak name parse, no LinkedIn URL"
+        ],
+        "confidenceScore": 50,
+        "confidenceLabel": "WEAK",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 8,
+      "parsedSearchCandidateCount": 8,
+      "rankedSearchCandidateCount": 8
+    }
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 4,
+    "region": "EU",
+    "companyName": "Parfumdreams",
+    "websiteUrl": "https://www.parfumdreams.de",
+    "country": "Germany",
+    "role": "HEAD_OF_GROWTH",
+    "status": "RESOLVED_PROBABLE",
+    "chosenCandidate": {
+      "fullName": "Jessica Haag",
+      "normalizedName": "jessica haag",
+      "role": "HEAD_OF_GROWTH",
+      "linkedinUrl": "https://www.linkedin.com/in/haagj/",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "confidenceScore": 65,
+      "confidenceLabel": "PROBABLE",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "Carola Wilke",
+        "normalizedName": "carola wilke",
+        "role": "HEAD_OF_GROWTH",
+        "linkedinUrl": "https://www.linkedin.com/in/carola-wilke-572b081a5/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 65,
+        "confidenceLabel": "PROBABLE",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Nina Kristin Pütz",
+        "normalizedName": "nina kristin pütz",
+        "role": "HEAD_OF_GROWTH",
+        "linkedinUrl": "https://de.linkedin.com/in/nina-p%C3%BCtz/en",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 65,
+        "confidenceLabel": "PROBABLE",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 4,
+      "websiteLinkedinCandidates": 5,
+      "searchResultCount": 8,
+      "parsedSearchCandidateCount": 3,
+      "rankedSearchCandidateCount": 3
+    }
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 58,
+    "region": "US",
+    "companyName": "Nisolo",
+    "websiteUrl": "https://www.nisolo.com",
+    "country": "United States",
+    "role": "HEAD_OF_GROWTH",
+    "status": "RESOLVED_PROBABLE",
+    "chosenCandidate": {
+      "fullName": "Chris Rose",
+      "normalizedName": "chris rose",
+      "role": "HEAD_OF_GROWTH",
+      "linkedinUrl": "https://www.linkedin.com/in/chrisrose00/",
+      "sourceKinds": [
+        "SEARCH"
+      ],
+      "evidence": [
+        "-20 no explicit role evidence for non-CEO role"
+      ],
+      "confidenceScore": 65,
+      "confidenceLabel": "PROBABLE",
+      "supportingSearchCandidatesCount": 1,
+      "supportingWebsiteCandidatesCount": 0
+    },
+    "alternateCandidates": [
+      {
+        "fullName": "Becky Hansen",
+        "normalizedName": "becky hansen",
+        "role": "HEAD_OF_GROWTH",
+        "linkedinUrl": "https://www.linkedin.com/in/becky-hansen-5866959/",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": 35,
+        "confidenceLabel": "WEAK",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      },
+      {
+        "fullName": "Bloomberg Markets",
+        "normalizedName": "bloomberg markets",
+        "role": "HEAD_OF_GROWTH",
+        "linkedinUrl": "",
+        "sourceKinds": [
+          "SEARCH"
+        ],
+        "evidence": [
+          "-15 weak name parse, no LinkedIn URL",
+          "-25 likely article/post mention, not actual profile",
+          "-20 no explicit role evidence for non-CEO role"
+        ],
+        "confidenceScore": -35,
+        "confidenceLabel": "WEAK",
+        "supportingSearchCandidatesCount": 1,
+        "supportingWebsiteCandidatesCount": 0
+      }
+    ],
+    "blockingIssues": [],
+    "notes": [],
+    "rawSummary": {
+      "websitePersonCandidates": 0,
+      "websiteLinkedinCandidates": 0,
+      "searchResultCount": 9,
+      "parsedSearchCandidateCount": 3,
+      "rankedSearchCandidateCount": 3
+    }
+  }
+]

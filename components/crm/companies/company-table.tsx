@@ -27,6 +27,11 @@ const columns: ColumnDef<Company>[] = [
     ),
   },
   {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => <StatusBadge status={row.getValue("status")} />,
+  },
+  {
     accessorKey: "website",
     header: "Website",
     cell: ({ row }) => {
@@ -51,9 +56,17 @@ const columns: ColumnDef<Company>[] = [
     cell: ({ row }) => row.getValue("search_solution") || <span className="text-muted-foreground">-</span>,
   },
   {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => <StatusBadge status={row.getValue("status")} />,
+    accessorKey: "country",
+    header: "Country",
+    cell: ({ row }) => row.getValue("country") || <span className="text-muted-foreground">-</span>,
+  },
+  {
+    accessorKey: "contacts_count",
+    header: "Contacts",
+    cell: ({ row }) => {
+      const count = row.getValue("contacts_count") as number;
+      return count > 0 ? count : <span className="text-muted-foreground">0</span>;
+    },
   },
   {
     id: "tags",

@@ -1,0 +1,549 @@
+{
+  "generated": "2026-04-10T18:52:54.432Z",
+  "summary": {
+    "totalRows": 877,
+    "totalPlannedRowTasks": 877,
+    "totalReadyRoleTasks": 3508,
+    "readyByWorkbook": {
+      "US_Ecommerce_Prospects_SiteSearch.xlsx": 2000,
+      "EU_Ecommerce_Prospects_SiteSearch.xlsx": 1508
+    },
+    "readyByRole": {
+      "CEO": 877,
+      "HEAD_OF_PRODUCT": 877,
+      "HEAD_OF_ECOMMERCE": 877,
+      "HEAD_OF_GROWTH": 877
+    },
+    "skipComplete": 0,
+    "skipNoWebsite": 0,
+    "skipNoCompanyName": 0
+  },
+  "top25": [
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 2,
+      "companyName": "Tuckernuck",
+      "websiteUrl": "https://www.tuckernuck.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 3,
+      "companyName": "Johnny Was",
+      "websiteUrl": "https://www.johnnywas.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 11,
+      "companyName": "Draper James",
+      "websiteUrl": "https://www.draperjames.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 12,
+      "companyName": "Veronica Beard",
+      "websiteUrl": "https://www.veronicabeard.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 13,
+      "companyName": "Amanda Uprichard",
+      "websiteUrl": "https://www.amandauprichard.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 14,
+      "companyName": "L'Agence",
+      "websiteUrl": "https://www.lagence.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 15,
+      "companyName": "Soft Surroundings",
+      "websiteUrl": "https://www.softsurroundings.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 16,
+      "companyName": "Woman Within",
+      "websiteUrl": "https://www.womanwithin.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 17,
+      "companyName": "Roaman's",
+      "websiteUrl": "https://www.roamans.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 18,
+      "companyName": "ELOQUII",
+      "websiteUrl": "https://www.eloquii.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 21,
+      "companyName": "Velvet by Graham & Spencer",
+      "websiteUrl": "https://www.shopvelvet.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 22,
+      "companyName": "Pendleton Woolen Mills",
+      "websiteUrl": "https://www.pendleton-usa.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 23,
+      "companyName": "Woolrich",
+      "websiteUrl": "https://www.woolrich.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 25,
+      "companyName": "Rebecca Taylor",
+      "websiteUrl": "https://www.rebeccataylor.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 26,
+      "companyName": "Anthropologie online",
+      "websiteUrl": "https://www.anthropologie.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 27,
+      "companyName": "Bonobos",
+      "websiteUrl": "https://www.bonobos.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 29,
+      "companyName": "Mizzen+Main",
+      "websiteUrl": "https://www.mizzenandmain.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 30,
+      "companyName": "Buck Mason",
+      "websiteUrl": "https://www.buckmason.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 36,
+      "companyName": "Public Rec",
+      "websiteUrl": "https://www.publicrec.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 38,
+      "companyName": "Filson",
+      "websiteUrl": "https://www.filson.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 41,
+      "companyName": "Free Fly Apparel",
+      "websiteUrl": "https://www.freefly.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 44,
+      "companyName": "prAna",
+      "websiteUrl": "https://www.prana.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 45,
+      "companyName": "Toad&Co",
+      "websiteUrl": "https://www.toadandco.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 46,
+      "companyName": "Vince",
+      "websiteUrl": "https://www.vince.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    },
+    {
+      "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+      "rowIndex": 47,
+      "companyName": "Frye",
+      "websiteUrl": "https://www.thefryecompany.com",
+      "region": "US",
+      "country": "United States",
+      "role": "CEO",
+      "missingFields": [
+        "CEO_NAME",
+        "CEO_LINKEDIN",
+        "CEO_EMAIL"
+      ],
+      "existingSignals": {
+        "existingName": "",
+        "existingLinkedin": "",
+        "existingEmail": ""
+      },
+      "priorityScore": 144,
+      "status": "READY"
+    }
+  ],
+  "allReadyTaskCount": 3508
+}

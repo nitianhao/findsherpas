@@ -21,6 +21,7 @@ export interface Company {
   pdf_name: string | null;
   created_at: string;
   updated_at: string;
+  contacts_count?: number;
   tags?: Tag[];
 }
 

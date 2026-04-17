@@ -37,6 +37,7 @@ export function CompanyForm({ company }: CompanyFormProps) {
       social_linkedin: company?.social_linkedin || "",
       social_twitter: company?.social_twitter || "",
       social_facebook: company?.social_facebook || "",
+      social_other: company?.social_other || "",
       tech_stack_notes: company?.tech_stack_notes || "",
       notes: company?.notes || "",
       status: company?.status || "prospect",
@@ -204,7 +205,7 @@ export function CompanyForm({ company }: CompanyFormProps) {
       {/* Social Links */}
       <div className="space-y-4">
         <h3 className="text-lg font-medium">Social Links</h3>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label>LinkedIn</Label>
             <Input {...form.register("social_linkedin")} placeholder="LinkedIn URL" />
@@ -216,6 +217,10 @@ export function CompanyForm({ company }: CompanyFormProps) {
           <div className="space-y-2">
             <Label>Facebook</Label>
             <Input {...form.register("social_facebook")} placeholder="Facebook URL" />
+          </div>
+          <div className="space-y-2">
+            <Label>Other</Label>
+            <Input {...form.register("social_other")} placeholder="Other social URL" />
           </div>
         </div>
       </div>

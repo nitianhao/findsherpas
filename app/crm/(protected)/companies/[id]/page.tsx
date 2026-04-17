@@ -1,5 +1,6 @@
 import { getCompanyById } from "@/lib/crm/queries/companies";
 import { getContactsByCompanyId } from "@/lib/crm/queries/contacts";
+import { getEnrollmentCountByCompanyId } from "@/lib/crm/queries/enrollments";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { buttonVariants } from "@/components/crm/ui/button";
@@ -20,7 +21,10 @@ export default async function CompanyDetailPage({
   const company = await getCompanyById(id);
   if (!company) notFound();
 
-  const contacts = await getContactsByCompanyId(company.id);
+  const [contacts, enrollmentCount] = await Promise.all([
+    getContactsByCompanyId(company.id),
+    getEnrollmentCountByCompanyId(company.id),
+  ]);
 
   return (
     <div className="space-y-6">
@@ -67,8 +71,12 @@ export default async function CompanyDetailPage({
       <Tabs defaultValue="info">
         <TabsList>
           <TabsTrigger value="info">Info</TabsTrigger>
-          <TabsTrigger value="contacts">Contacts</TabsTrigger>
-          <TabsTrigger value="sequences">Sequences</TabsTrigger>
+          <TabsTrigger value="contacts">
+            Contacts <span className="ml-1.5 rounded-full bg-muted px-1.5 py-0.5 text-xs font-medium">{contacts.length}</span>
+          </TabsTrigger>
+          <TabsTrigger value="sequences">
+            Sequences <span className="ml-1.5 rounded-full bg-muted px-1.5 py-0.5 text-xs font-medium">{enrollmentCount}</span>
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="info" className="space-y-4 mt-4">
@@ -105,11 +113,32 @@ export default async function CompanyDetailPage({
                   <span className="text-muted-foreground">Revenue</span>
                   <span>{company.revenue_estimate || "-"}</span>
                 </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Country</span>
+                  <span>{company.country || "-"}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Language</span>
+                  <span>{company.language || "-"}</span>
+                </div>
+                {company.report_url && (
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Report</span>
+                    <a
+                      href={company.report_url.startsWith("http") ? company.report_url : `https://${company.report_url}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-blue-600 hover:underline"
+                    >
+                      View <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
 
-          {(company.social_linkedin || company.social_twitter || company.social_facebook) && (
+          {(company.social_linkedin || company.social_twitter || company.social_facebook || company.social_other) && (
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm font-medium">Social Links</CardTitle>
@@ -133,6 +162,13 @@ export default async function CompanyDetailPage({
                   <div>
                     <a href={company.social_facebook} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                       Facebook
+                    </a>
+                  </div>
+                )}
+                {company.social_other && (
+                  <div>
+                    <a href={company.social_other} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                      Other
                     </a>
                   </div>
                 )}

@@ -1,0 +1,1100 @@
+[
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 2,
+    "companyName": "Tuckernuck",
+    "websiteUrl": "https://www.tuckernuck.com",
+    "role": "CEO",
+    "personName": "Jocelyn Gailliot",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "jocelyn.gailliot@tuckernuck.com",
+    "alternateEmails": [
+      {
+        "email": "jocelyngailliot@tuckernuck.com",
+        "domain": "tuckernuck.com",
+        "patternType": "FIRSTLAST",
+        "personName": "Jocelyn Gailliot",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "jocelyn@tuckernuck.com",
+        "domain": "tuckernuck.com",
+        "patternType": "FIRST",
+        "personName": "Jocelyn Gailliot",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "j.gailliot@tuckernuck.com",
+        "domain": "tuckernuck.com",
+        "patternType": "F.DOT.LAST",
+        "personName": "Jocelyn Gailliot",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "jgailliot@tuckernuck.com",
+        "domain": "tuckernuck.com",
+        "patternType": "F_LAST",
+        "personName": "Jocelyn Gailliot",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: jocelyn.gailliot@tuckernuck.com (pattern: FIRST_LAST)",
+      "+20 person resolved STRONG",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 35,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 1,
+    "companyName": "Manufactum",
+    "websiteUrl": "https://www.manufactum.de",
+    "role": "CEO",
+    "personName": "Dario Rendulic",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "dario.rendulic@manufactum.de",
+    "alternateEmails": [
+      {
+        "email": "dariorendulic@manufactum.de",
+        "domain": "manufactum.de",
+        "patternType": "FIRSTLAST",
+        "personName": "Dario Rendulic",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 20,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "dario@manufactum.de",
+        "domain": "manufactum.de",
+        "patternType": "FIRST",
+        "personName": "Dario Rendulic",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 20,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "d.rendulic@manufactum.de",
+        "domain": "manufactum.de",
+        "patternType": "F.DOT.LAST",
+        "personName": "Dario Rendulic",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 20,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "drendulic@manufactum.de",
+        "domain": "manufactum.de",
+        "patternType": "F_LAST",
+        "personName": "Dario Rendulic",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 20,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": {
+      "domain": "manufactum.de",
+      "patternType": "UNKNOWN",
+      "confidenceScore": 30,
+      "evidenceEmails": [
+        "info@manufactum.de",
+        "berlin@manufactum.de",
+        "presse@manufactum.de"
+      ],
+      "notes": [
+        "person-specific emails found but pattern unclear"
+      ]
+    },
+    "evidence": [
+      "Domain manufactum.de: 7 emails found, 2 person-specific",
+      "Inferred pattern: UNKNOWN (confidence: 30)",
+      "person-specific emails found but pattern unclear",
+      "Generated: dario.rendulic@manufactum.de (pattern: FIRST_LAST)",
+      "+20 person resolved STRONG",
+      "+15 2 person-specific emails support pattern"
+    ],
+    "confidenceScore": 55,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 59,
+    "companyName": "M.Gemi",
+    "websiteUrl": "https://www.mgemi.com",
+    "role": "CEO",
+    "personName": "Cheryl Kaplan",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "cheryl.kaplan@mgemi.com",
+    "alternateEmails": [
+      {
+        "email": "cherylkaplan@mgemi.com",
+        "domain": "mgemi.com",
+        "patternType": "FIRSTLAST",
+        "personName": "Cheryl Kaplan",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "cheryl@mgemi.com",
+        "domain": "mgemi.com",
+        "patternType": "FIRST",
+        "personName": "Cheryl Kaplan",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "c.kaplan@mgemi.com",
+        "domain": "mgemi.com",
+        "patternType": "F.DOT.LAST",
+        "personName": "Cheryl Kaplan",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "ckaplan@mgemi.com",
+        "domain": "mgemi.com",
+        "patternType": "F_LAST",
+        "personName": "Cheryl Kaplan",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: cheryl.kaplan@mgemi.com (pattern: FIRST_LAST)",
+      "+20 person resolved STRONG",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 35,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 6,
+    "companyName": "Bergzeit",
+    "websiteUrl": "https://www.bergzeit.de",
+    "role": "CEO",
+    "personName": "Stawros Koutis",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "stawros.koutis@bergzeit.de",
+    "alternateEmails": [
+      {
+        "email": "stawroskoutis@bergzeit.de",
+        "domain": "bergzeit.de",
+        "patternType": "FIRSTLAST",
+        "personName": "Stawros Koutis",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "stawros@bergzeit.de",
+        "domain": "bergzeit.de",
+        "patternType": "FIRST",
+        "personName": "Stawros Koutis",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "s.koutis@bergzeit.de",
+        "domain": "bergzeit.de",
+        "patternType": "F.DOT.LAST",
+        "personName": "Stawros Koutis",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "skoutis@bergzeit.de",
+        "domain": "bergzeit.de",
+        "patternType": "F_LAST",
+        "personName": "Stawros Koutis",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: stawros.koutis@bergzeit.de (pattern: FIRST_LAST)",
+      "+20 person resolved STRONG",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 35,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 4,
+    "companyName": "Faherty Brand",
+    "websiteUrl": "https://www.faherty.com",
+    "role": "CEO",
+    "personName": "Faherty Brand",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "faherty.brand@faherty.com",
+    "alternateEmails": [
+      {
+        "email": "fahertybrand@faherty.com",
+        "domain": "faherty.com",
+        "patternType": "FIRSTLAST",
+        "personName": "Faherty Brand",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "faherty@faherty.com",
+        "domain": "faherty.com",
+        "patternType": "FIRST",
+        "personName": "Faherty Brand",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "f.brand@faherty.com",
+        "domain": "faherty.com",
+        "patternType": "F.DOT.LAST",
+        "personName": "Faherty Brand",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "fbrand@faherty.com",
+        "domain": "faherty.com",
+        "patternType": "F_LAST",
+        "personName": "Faherty Brand",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: faherty.brand@faherty.com (pattern: FIRST_LAST)",
+      "+20 person resolved STRONG",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 35,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 5,
+    "companyName": "Rebelle",
+    "websiteUrl": "https://www.rebelle.com",
+    "role": "CEO",
+    "personName": "Tanisha Colon",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "tanisha.colon@rebelle.com",
+    "alternateEmails": [
+      {
+        "email": "tanishacolon@rebelle.com",
+        "domain": "rebelle.com",
+        "patternType": "FIRSTLAST",
+        "personName": "Tanisha Colon",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "tanisha@rebelle.com",
+        "domain": "rebelle.com",
+        "patternType": "FIRST",
+        "personName": "Tanisha Colon",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "t.colon@rebelle.com",
+        "domain": "rebelle.com",
+        "patternType": "F.DOT.LAST",
+        "personName": "Tanisha Colon",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "tcolon@rebelle.com",
+        "domain": "rebelle.com",
+        "patternType": "F_LAST",
+        "personName": "Tanisha Colon",
+        "role": "CEO",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: tanisha.colon@rebelle.com (pattern: FIRST_LAST)",
+      "+20 person resolved STRONG",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 35,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 1,
+    "companyName": "Reformation",
+    "websiteUrl": "https://www.thereformation.com",
+    "role": "HEAD_OF_ECOMMERCE",
+    "personName": "Yael Aflalo",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "yael.aflalo@thereformation.com",
+    "alternateEmails": [
+      {
+        "email": "yaelaflalo@thereformation.com",
+        "domain": "thereformation.com",
+        "patternType": "FIRSTLAST",
+        "personName": "Yael Aflalo",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "yael@thereformation.com",
+        "domain": "thereformation.com",
+        "patternType": "FIRST",
+        "personName": "Yael Aflalo",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "y.aflalo@thereformation.com",
+        "domain": "thereformation.com",
+        "patternType": "F.DOT.LAST",
+        "personName": "Yael Aflalo",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "yaflalo@thereformation.com",
+        "domain": "thereformation.com",
+        "patternType": "F_LAST",
+        "personName": "Yael Aflalo",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: yael.aflalo@thereformation.com (pattern: FIRST_LAST)",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 15,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 2,
+    "companyName": "Hessnatur",
+    "websiteUrl": "https://www.hessnatur.de",
+    "role": "HEAD_OF_ECOMMERCE",
+    "personName": "Preisgekrönter Onlineshop",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "preisgekroenter.onlineshop@hessnatur.de",
+    "alternateEmails": [
+      {
+        "email": "preisgekroenteronlineshop@hessnatur.de",
+        "domain": "hessnatur.de",
+        "patternType": "FIRSTLAST",
+        "personName": "Preisgekrönter Onlineshop",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "preisgekroenter@hessnatur.de",
+        "domain": "hessnatur.de",
+        "patternType": "FIRST",
+        "personName": "Preisgekrönter Onlineshop",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "p.onlineshop@hessnatur.de",
+        "domain": "hessnatur.de",
+        "patternType": "F.DOT.LAST",
+        "personName": "Preisgekrönter Onlineshop",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "ponlineshop@hessnatur.de",
+        "domain": "hessnatur.de",
+        "patternType": "F_LAST",
+        "personName": "Preisgekrönter Onlineshop",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: preisgekroenter.onlineshop@hessnatur.de (pattern: FIRST_LAST)",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 15,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 56,
+    "companyName": "Tecovas",
+    "websiteUrl": "https://www.tecovas.com",
+    "role": "HEAD_OF_ECOMMERCE",
+    "personName": "Kirstin Grimm Smith",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "kirstin.smith@tecovas.com",
+    "alternateEmails": [
+      {
+        "email": "kirstinsmith@tecovas.com",
+        "domain": "tecovas.com",
+        "patternType": "FIRSTLAST",
+        "personName": "Kirstin Grimm Smith",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "kirstin@tecovas.com",
+        "domain": "tecovas.com",
+        "patternType": "FIRST",
+        "personName": "Kirstin Grimm Smith",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "k.smith@tecovas.com",
+        "domain": "tecovas.com",
+        "patternType": "F.DOT.LAST",
+        "personName": "Kirstin Grimm Smith",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "ksmith@tecovas.com",
+        "domain": "tecovas.com",
+        "patternType": "F_LAST",
+        "personName": "Kirstin Grimm Smith",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: kirstin.smith@tecovas.com (pattern: FIRST_LAST)",
+      "+10 person resolved PROBABLE",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 25,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 7,
+    "companyName": "Bikester",
+    "websiteUrl": "https://www.bikester.de",
+    "role": "HEAD_OF_ECOMMERCE",
+    "personName": "Alan Goldsmith",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "alan.goldsmith@bikester.de",
+    "alternateEmails": [
+      {
+        "email": "alangoldsmith@bikester.de",
+        "domain": "bikester.de",
+        "patternType": "FIRSTLAST",
+        "personName": "Alan Goldsmith",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "alan@bikester.de",
+        "domain": "bikester.de",
+        "patternType": "FIRST",
+        "personName": "Alan Goldsmith",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "a.goldsmith@bikester.de",
+        "domain": "bikester.de",
+        "patternType": "F.DOT.LAST",
+        "personName": "Alan Goldsmith",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "agoldsmith@bikester.de",
+        "domain": "bikester.de",
+        "patternType": "F_LAST",
+        "personName": "Alan Goldsmith",
+        "role": "HEAD_OF_ECOMMERCE",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: alan.goldsmith@bikester.de (pattern: FIRST_LAST)",
+      "+10 person resolved PROBABLE",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 25,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 3,
+    "companyName": "Johnny Was",
+    "websiteUrl": "https://www.johnnywas.com",
+    "role": "HEAD_OF_PRODUCT",
+    "personName": "",
+    "status": "UNRESOLVED",
+    "chosenEmail": null,
+    "alternateEmails": [],
+    "inferredPattern": null,
+    "evidence": [],
+    "confidenceScore": 0,
+    "confidenceLabel": null,
+    "blockingIssues": [
+      "No resolved person for this role"
+    ]
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 3,
+    "companyName": "Flaconi",
+    "websiteUrl": "https://www.flaconi.de",
+    "role": "HEAD_OF_PRODUCT",
+    "personName": "Mohamed Sarwat",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "mohamed.sarwat@flaconi.de",
+    "alternateEmails": [
+      {
+        "email": "mohamedsarwat@flaconi.de",
+        "domain": "flaconi.de",
+        "patternType": "FIRSTLAST",
+        "personName": "Mohamed Sarwat",
+        "role": "HEAD_OF_PRODUCT",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "mohamed@flaconi.de",
+        "domain": "flaconi.de",
+        "patternType": "FIRST",
+        "personName": "Mohamed Sarwat",
+        "role": "HEAD_OF_PRODUCT",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "m.sarwat@flaconi.de",
+        "domain": "flaconi.de",
+        "patternType": "F.DOT.LAST",
+        "personName": "Mohamed Sarwat",
+        "role": "HEAD_OF_PRODUCT",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "msarwat@flaconi.de",
+        "domain": "flaconi.de",
+        "patternType": "F_LAST",
+        "personName": "Mohamed Sarwat",
+        "role": "HEAD_OF_PRODUCT",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: mohamed.sarwat@flaconi.de (pattern: FIRST_LAST)",
+      "+20 person resolved STRONG",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 35,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 57,
+    "companyName": "Thursday Boot Co",
+    "websiteUrl": "https://www.thursdayboots.com",
+    "role": "HEAD_OF_PRODUCT",
+    "personName": "Cheryl Keim",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "cheryl.keim@thursdayboots.com",
+    "alternateEmails": [
+      {
+        "email": "cherylkeim@thursdayboots.com",
+        "domain": "thursdayboots.com",
+        "patternType": "FIRSTLAST",
+        "personName": "Cheryl Keim",
+        "role": "HEAD_OF_PRODUCT",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "cheryl@thursdayboots.com",
+        "domain": "thursdayboots.com",
+        "patternType": "FIRST",
+        "personName": "Cheryl Keim",
+        "role": "HEAD_OF_PRODUCT",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "c.keim@thursdayboots.com",
+        "domain": "thursdayboots.com",
+        "patternType": "F.DOT.LAST",
+        "personName": "Cheryl Keim",
+        "role": "HEAD_OF_PRODUCT",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "ckeim@thursdayboots.com",
+        "domain": "thursdayboots.com",
+        "patternType": "F_LAST",
+        "personName": "Cheryl Keim",
+        "role": "HEAD_OF_PRODUCT",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: cheryl.keim@thursdayboots.com (pattern: FIRST_LAST)",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 15,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 5,
+    "companyName": "Marine Layer",
+    "websiteUrl": "https://www.marinelayer.com",
+    "role": "HEAD_OF_GROWTH",
+    "personName": "Renee Lopes Halvorsen",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "renee.halvorsen@marinelayer.com",
+    "alternateEmails": [
+      {
+        "email": "reneehalvorsen@marinelayer.com",
+        "domain": "marinelayer.com",
+        "patternType": "FIRSTLAST",
+        "personName": "Renee Lopes Halvorsen",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "renee@marinelayer.com",
+        "domain": "marinelayer.com",
+        "patternType": "FIRST",
+        "personName": "Renee Lopes Halvorsen",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "r.halvorsen@marinelayer.com",
+        "domain": "marinelayer.com",
+        "patternType": "F.DOT.LAST",
+        "personName": "Renee Lopes Halvorsen",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "rhalvorsen@marinelayer.com",
+        "domain": "marinelayer.com",
+        "patternType": "F_LAST",
+        "personName": "Renee Lopes Halvorsen",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: renee.halvorsen@marinelayer.com (pattern: FIRST_LAST)",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 15,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  },
+  {
+    "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "EU Ecommerce Prospects",
+    "rowIndex": 4,
+    "companyName": "Parfumdreams",
+    "websiteUrl": "https://www.parfumdreams.de",
+    "role": "HEAD_OF_GROWTH",
+    "personName": "Jessica Haag",
+    "status": "UNRESOLVED",
+    "chosenEmail": null,
+    "alternateEmails": [
+      {
+        "email": "jessicahaag@parfumdreams.de",
+        "domain": "parfumdreams.de",
+        "patternType": "FIRSTLAST",
+        "personName": "Jessica Haag",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 20,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "jessica@parfumdreams.de",
+        "domain": "parfumdreams.de",
+        "patternType": "FIRST",
+        "personName": "Jessica Haag",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 20,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "j.haag@parfumdreams.de",
+        "domain": "parfumdreams.de",
+        "patternType": "F.DOT.LAST",
+        "personName": "Jessica Haag",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 20,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "jhaag@parfumdreams.de",
+        "domain": "parfumdreams.de",
+        "patternType": "F_LAST",
+        "personName": "Jessica Haag",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 20,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": {
+      "domain": "parfumdreams.de",
+      "patternType": "UNKNOWN",
+      "confidenceScore": 10,
+      "evidenceEmails": [
+        "info@parfumdreams.de",
+        "service@parfumdreams.de",
+        "datenschutz@parfumdreams.de"
+      ],
+      "notes": [
+        "only generic inboxes found"
+      ]
+    },
+    "evidence": [
+      "Domain parfumdreams.de: 3 emails found, 0 person-specific",
+      "Inferred pattern: UNKNOWN (confidence: 10)",
+      "only generic inboxes found",
+      "Generated: jessica.haag@parfumdreams.de (pattern: FIRST_LAST)",
+      "+10 person resolved PROBABLE",
+      "-25 pattern based only on generic inboxes",
+      "-20 no person-specific email evidence on domain"
+    ],
+    "confidenceScore": -15,
+    "confidenceLabel": null,
+    "blockingIssues": [
+      "Confidence too low to assign email"
+    ]
+  },
+  {
+    "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+    "sheetName": "US Ecommerce Prospects",
+    "rowIndex": 58,
+    "companyName": "Nisolo",
+    "websiteUrl": "https://www.nisolo.com",
+    "role": "HEAD_OF_GROWTH",
+    "personName": "Chris Rose",
+    "status": "RESOLVED_INFERRED",
+    "chosenEmail": "chris.rose@nisolo.com",
+    "alternateEmails": [
+      {
+        "email": "chrisrose@nisolo.com",
+        "domain": "nisolo.com",
+        "patternType": "FIRSTLAST",
+        "personName": "Chris Rose",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: FIRSTLAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "chris@nisolo.com",
+        "domain": "nisolo.com",
+        "patternType": "FIRST",
+        "personName": "Chris Rose",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: FIRST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "c.rose@nisolo.com",
+        "domain": "nisolo.com",
+        "patternType": "F.DOT.LAST",
+        "personName": "Chris Rose",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: F.DOT.LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      },
+      {
+        "email": "crose@nisolo.com",
+        "domain": "nisolo.com",
+        "patternType": "F_LAST",
+        "personName": "Chris Rose",
+        "role": "HEAD_OF_GROWTH",
+        "evidence": [
+          "fallback pattern: F_LAST"
+        ],
+        "confidenceScore": 30,
+        "confidenceLabel": "WEAK"
+      }
+    ],
+    "inferredPattern": null,
+    "evidence": [
+      "Generated: chris.rose@nisolo.com (pattern: FIRST_LAST)",
+      "+10 person resolved PROBABLE",
+      "-15 no email evidence at all on domain"
+    ],
+    "confidenceScore": 25,
+    "confidenceLabel": "WEAK",
+    "blockingIssues": []
+  }
+]

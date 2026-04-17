@@ -1,0 +1,503 @@
+{
+  "timestamp": "2026-04-13T08:49:50.995Z",
+  "overallPassed": true,
+  "writeCells": {
+    "total": 14,
+    "passed": 14,
+    "failed": 0
+  },
+  "skipExisting": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0
+  },
+  "skipNotApproved": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0
+  },
+  "skipBlocked": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "emailSpotCheck": {
+    "issues": 0
+  },
+  "writeResults": [
+    {
+      "action": {
+        "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "US Ecommerce Prospects",
+        "rowIndex": 2,
+        "companyName": "Tuckernuck",
+        "role": "CEO",
+        "columnName": "CEO / Founder Name",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "Jocelyn Gailliot",
+        "reason": "Person is plausible and role resolution is STRONG",
+        "confidenceLabel": "STRONG",
+        "evidenceSummary": [
+          "role=RESOLVED_STRONG",
+          "plausibility=PLAUSIBLE(130)",
+          "person_confidence=STRONG(160)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.897Z"
+      },
+      "actualValue": "Jocelyn Gailliot",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "US Ecommerce Prospects",
+        "rowIndex": 2,
+        "companyName": "Tuckernuck",
+        "role": "CEO",
+        "columnName": "CEO LinkedIn Profile",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "https://www.linkedin.com/in/jocelyn-gailliot-44135b4/",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_STRONG role",
+        "confidenceLabel": "STRONG",
+        "evidenceSummary": [
+          "role=RESOLVED_STRONG",
+          "plausibility=PLAUSIBLE(130)",
+          "person_confidence=STRONG(160)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.897Z"
+      },
+      "actualValue": "https://www.linkedin.com/in/jocelyn-gailliot-44135b4/",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "US Ecommerce Prospects",
+        "rowIndex": 56,
+        "companyName": "Tecovas",
+        "role": "HEAD_OF_ECOMMERCE",
+        "columnName": "Head of Ecommerce (Name)",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "Kirstin Grimm Smith",
+        "reason": "Person is plausible and role resolution is PROBABLE",
+        "confidenceLabel": "PROBABLE",
+        "evidenceSummary": [
+          "role=RESOLVED_PROBABLE",
+          "plausibility=PLAUSIBLE(125)",
+          "person_confidence=PROBABLE(80)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.903Z"
+      },
+      "actualValue": "Kirstin Grimm Smith",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "US Ecommerce Prospects",
+        "rowIndex": 58,
+        "companyName": "Nisolo",
+        "role": "HEAD_OF_GROWTH",
+        "columnName": "Head of Growth / CMO (Name)",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "Chris Rose",
+        "reason": "Person is plausible and role resolution is PROBABLE",
+        "confidenceLabel": "PROBABLE",
+        "evidenceSummary": [
+          "role=RESOLVED_PROBABLE",
+          "plausibility=PLAUSIBLE(125)",
+          "person_confidence=PROBABLE(65)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.903Z"
+      },
+      "actualValue": "Chris Rose",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "US Ecommerce Prospects",
+        "rowIndex": 59,
+        "companyName": "M.Gemi",
+        "role": "CEO",
+        "columnName": "CEO / Founder Name",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "Cheryl Kaplan",
+        "reason": "Person is plausible and role resolution is STRONG",
+        "confidenceLabel": "STRONG",
+        "evidenceSummary": [
+          "role=RESOLVED_STRONG",
+          "plausibility=PLAUSIBLE(130)",
+          "person_confidence=STRONG(105)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.903Z"
+      },
+      "actualValue": "Cheryl Kaplan",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "US Ecommerce Prospects",
+        "rowIndex": 59,
+        "companyName": "M.Gemi",
+        "role": "CEO",
+        "columnName": "CEO LinkedIn Profile",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "https://www.linkedin.com/in/cherylwkaplan/",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_STRONG role",
+        "confidenceLabel": "STRONG",
+        "evidenceSummary": [
+          "role=RESOLVED_STRONG",
+          "plausibility=PLAUSIBLE(130)",
+          "person_confidence=STRONG(105)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.903Z"
+      },
+      "actualValue": "https://www.linkedin.com/in/cherylwkaplan/",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "EU Ecommerce Prospects",
+        "rowIndex": 1,
+        "companyName": "Manufactum",
+        "role": "CEO",
+        "columnName": "CEO / MD Name",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "Dario Rendulic",
+        "reason": "Person is plausible and role resolution is STRONG",
+        "confidenceLabel": "STRONG",
+        "evidenceSummary": [
+          "role=RESOLVED_STRONG",
+          "plausibility=PLAUSIBLE(130)",
+          "person_confidence=STRONG(155)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.938Z"
+      },
+      "actualValue": "Dario Rendulic",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "EU Ecommerce Prospects",
+        "rowIndex": 1,
+        "companyName": "Manufactum",
+        "role": "CEO",
+        "columnName": "CEO LinkedIn Profile",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "https://www.linkedin.com/in/dario-rendulic-29951816/",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_STRONG role",
+        "confidenceLabel": "STRONG",
+        "evidenceSummary": [
+          "role=RESOLVED_STRONG",
+          "plausibility=PLAUSIBLE(130)",
+          "person_confidence=STRONG(155)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.938Z"
+      },
+      "actualValue": "https://www.linkedin.com/in/dario-rendulic-29951816/",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "EU Ecommerce Prospects",
+        "rowIndex": 3,
+        "companyName": "Flaconi",
+        "role": "HEAD_OF_PRODUCT",
+        "columnName": "Head of Product (Name)",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "Mohamed Sarwat",
+        "reason": "Person is plausible and role resolution is STRONG",
+        "confidenceLabel": "STRONG",
+        "evidenceSummary": [
+          "role=RESOLVED_STRONG",
+          "plausibility=PLAUSIBLE(130)",
+          "person_confidence=STRONG(115)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.938Z"
+      },
+      "actualValue": "Mohamed Sarwat",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "EU Ecommerce Prospects",
+        "rowIndex": 4,
+        "companyName": "Parfumdreams",
+        "role": "HEAD_OF_GROWTH",
+        "columnName": "Head of Growth / CMO (Name)",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "Jessica Haag",
+        "reason": "Person is plausible and role resolution is PROBABLE",
+        "confidenceLabel": "PROBABLE",
+        "evidenceSummary": [
+          "role=RESOLVED_PROBABLE",
+          "plausibility=PLAUSIBLE(125)",
+          "person_confidence=PROBABLE(65)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.938Z"
+      },
+      "actualValue": "Jessica Haag",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "EU Ecommerce Prospects",
+        "rowIndex": 5,
+        "companyName": "Rebelle",
+        "role": "CEO",
+        "columnName": "CEO LinkedIn Profile",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "https://www.linkedin.com/in/tanishacolonbibb",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_STRONG role",
+        "confidenceLabel": "STRONG",
+        "evidenceSummary": [
+          "role=RESOLVED_STRONG",
+          "plausibility=PLAUSIBLE(130)",
+          "person_confidence=STRONG(140)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.938Z"
+      },
+      "actualValue": "https://www.linkedin.com/in/tanishacolonbibb",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "EU Ecommerce Prospects",
+        "rowIndex": 6,
+        "companyName": "Bergzeit",
+        "role": "CEO",
+        "columnName": "CEO / MD Name",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "Stawros Koutis",
+        "reason": "Person is plausible and role resolution is STRONG",
+        "confidenceLabel": "STRONG",
+        "evidenceSummary": [
+          "role=RESOLVED_STRONG",
+          "plausibility=PLAUSIBLE(130)",
+          "person_confidence=STRONG(140)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.938Z"
+      },
+      "actualValue": "Stawros Koutis",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "EU Ecommerce Prospects",
+        "rowIndex": 6,
+        "companyName": "Bergzeit",
+        "role": "CEO",
+        "columnName": "CEO LinkedIn Profile",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "https://www.linkedin.com/in/stawros-koutis-735a2a227/",
+        "reason": "LinkedIn URL validated for plausible person with RESOLVED_STRONG role",
+        "confidenceLabel": "STRONG",
+        "evidenceSummary": [
+          "role=RESOLVED_STRONG",
+          "plausibility=PLAUSIBLE(130)",
+          "person_confidence=STRONG(140)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.938Z"
+      },
+      "actualValue": "https://www.linkedin.com/in/stawros-koutis-735a2a227/",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "EU Ecommerce Prospects",
+        "rowIndex": 7,
+        "companyName": "Bikester",
+        "role": "HEAD_OF_ECOMMERCE",
+        "columnName": "Head of Ecommerce (Name)",
+        "actionType": "WRITE_CELL",
+        "oldValue": "",
+        "newValue": "Alan Goldsmith",
+        "reason": "Person is plausible and role resolution is PROBABLE",
+        "confidenceLabel": "PROBABLE",
+        "evidenceSummary": [
+          "role=RESOLVED_PROBABLE",
+          "plausibility=PLAUSIBLE(125)",
+          "person_confidence=PROBABLE(65)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.938Z"
+      },
+      "actualValue": "Alan Goldsmith",
+      "passed": true
+    }
+  ],
+  "skipExistResults": [
+    {
+      "action": {
+        "sourceFile": "EU_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "EU Ecommerce Prospects",
+        "rowIndex": 5,
+        "companyName": "Rebelle",
+        "role": "CEO",
+        "columnName": "CEO / MD Name",
+        "actionType": "SKIP_EXISTING_VALUE",
+        "oldValue": "Max Schönemann",
+        "newValue": "Tanisha Colon",
+        "reason": "Cell already has value \"Max Schönemann\" — overwrite disabled",
+        "confidenceLabel": "STRONG",
+        "evidenceSummary": [
+          "role=RESOLVED_STRONG",
+          "plausibility=PLAUSIBLE(130)",
+          "person_confidence=STRONG(140)",
+          "linkedin=present",
+          "sources=SEARCH"
+        ],
+        "timestamp": "2026-04-13T08:48:54.938Z"
+      },
+      "actualValue": "Max Schönemann",
+      "passed": true
+    }
+  ],
+  "skipNotApprovedResults": [
+    {
+      "action": {
+        "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "US Ecommerce Prospects",
+        "rowIndex": 1,
+        "companyName": "Reformation",
+        "role": "HEAD_OF_ECOMMERCE",
+        "columnName": "Head of Ecommerce (Name)",
+        "actionType": "SKIP_NOT_APPROVED",
+        "oldValue": "",
+        "newValue": "Yael Aflalo",
+        "reason": "Status REVIEW not in allowed statuses: Role resolution is UNRESOLVED_WEAK — needs manual review",
+        "confidenceLabel": null,
+        "evidenceSummary": [],
+        "timestamp": "2026-04-13T08:48:54.897Z"
+      },
+      "actualValue": "",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "US Ecommerce Prospects",
+        "rowIndex": 4,
+        "companyName": "Faherty Brand",
+        "role": "CEO",
+        "columnName": "CEO / Founder Name",
+        "actionType": "SKIP_NOT_APPROVED",
+        "oldValue": "Alex Faherty",
+        "newValue": "Faherty Brand",
+        "reason": "Status REVIEW not in allowed statuses: Person \"Faherty Brand\" is suspicious (score: 30): company suffix: matches \\b(brand|brands|group|holding|holdings|company|enterprises)\\b, toxic token: \"brand\", name overlaps company name \"Faherty Brand\" — likely company/brand, not person",
+        "confidenceLabel": null,
+        "evidenceSummary": [],
+        "timestamp": "2026-04-13T08:48:54.897Z"
+      },
+      "actualValue": "Alex Faherty",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "US Ecommerce Prospects",
+        "rowIndex": 4,
+        "companyName": "Faherty Brand",
+        "role": "CEO",
+        "columnName": "CEO LinkedIn Profile",
+        "actionType": "SKIP_NOT_APPROVED",
+        "oldValue": "",
+        "newValue": "https://www.linkedin.com/in/mike-faherty-5a5aab45/",
+        "reason": "Status REVIEW not in allowed statuses: Person is suspicious — LinkedIn URL needs review",
+        "confidenceLabel": null,
+        "evidenceSummary": [],
+        "timestamp": "2026-04-13T08:48:54.897Z"
+      },
+      "actualValue": "",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "US Ecommerce Prospects",
+        "rowIndex": 5,
+        "companyName": "Marine Layer",
+        "role": "HEAD_OF_GROWTH",
+        "columnName": "Head of Growth / CMO (Name)",
+        "actionType": "SKIP_NOT_APPROVED",
+        "oldValue": "",
+        "newValue": "Renee Lopes Halvorsen",
+        "reason": "Status REVIEW not in allowed statuses: Role resolution is UNRESOLVED_WEAK — needs manual review",
+        "confidenceLabel": null,
+        "evidenceSummary": [],
+        "timestamp": "2026-04-13T08:48:54.897Z"
+      },
+      "actualValue": "",
+      "passed": true
+    },
+    {
+      "action": {
+        "sourceFile": "US_Ecommerce_Prospects_SiteSearch.xlsx",
+        "sheetName": "US Ecommerce Prospects",
+        "rowIndex": 57,
+        "companyName": "Thursday Boot Co",
+        "role": "HEAD_OF_PRODUCT",
+        "columnName": "Head of Product (Name)",
+        "actionType": "SKIP_NOT_APPROVED",
+        "oldValue": "",
+        "newValue": "Cheryl Keim",
+        "reason": "Status REVIEW not in allowed statuses: Role resolution is UNRESOLVED_WEAK — needs manual review",
+        "confidenceLabel": null,
+        "evidenceSummary": [],
+        "timestamp": "2026-04-13T08:48:54.903Z"
+      },
+      "actualValue": "",
+      "passed": true
+    }
+  ]
+}

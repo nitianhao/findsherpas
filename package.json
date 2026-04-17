@@ -20,7 +20,15 @@
     "enrichment:writeback:apply": "tsx src/enrichment/scripts/applyWriteback.ts",
     "enrichment:review:export": "tsx src/enrichment/scripts/exportReviewQueue.ts",
     "enrichment:review:template": "tsx src/enrichment/scripts/exportReviewTemplate.ts",
-    "enrichment:review:process": "tsx src/enrichment/scripts/processManualReviewDecisions.ts"
+    "enrichment:review:process": "tsx src/enrichment/scripts/processManualReviewDecisions.ts",
+    "enrichment:targeted": "tsx src/enrichment/scripts/runTargetedEnrichment.ts",
+    "enrichment:hunter": "tsx src/enrichment/scripts/runHunterEnrichment.ts",
+    "enrichment:apollo": "tsx src/enrichment/scripts/runApolloEnrichment.ts",
+    "enrichment:pattern": "tsx src/enrichment/scripts/runPatternInference.ts",
+    "enrichment:team-pages": "tsx src/enrichment/scripts/runTeamPageEnrichment.ts",
+    "enrichment:import-crm": "tsx --tsconfig tsconfig.json src/enrichment/scripts/importToCRM.ts",
+    "enrichment:update-tech-stack": "tsx --tsconfig tsconfig.json src/enrichment/scripts/updateCRMTechStack.ts",
+    "enrichment:update-linkedin": "tsx --tsconfig tsconfig.json src/enrichment/scripts/updateContactLinkedIn.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
