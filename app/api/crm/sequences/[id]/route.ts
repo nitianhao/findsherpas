@@ -62,7 +62,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Sequence not found' }, { status: 404 });
     }
 
-    deleteSequence(sequenceId);
+    await deleteSequence(sequenceId);
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json(
