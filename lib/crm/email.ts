@@ -37,7 +37,12 @@ export async function sendCrmEmail(task: EmailTask & { custom_fields?: Record<st
   }
 
   const subject = task.subject_template ? resolveTemplate(task.subject_template, vars) : '(no subject)';
-  const body = task.body_template ? resolveTemplate(task.body_template, vars) : '';
+  let body = task.body_template ? resolveTemplate(task.body_template, vars) : '';
+
+  // Append unsubscribe footer if URL is available and not already in the body
+  if (vars['unsubscribe_url'] && !body.includes(vars['unsubscribe_url'])) {
+    body += `\n\n---\nTo unsubscribe: ${vars['unsubscribe_url']}`;
+  }
 
   const from = fromEmail ?? process.env.RESEND_FROM_EMAIL;
   if (!from) throw new Error('RESEND_FROM_EMAIL env var not set');

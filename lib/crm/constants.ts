@@ -12,7 +12,7 @@ export const COMPANY_STATUSES = [
 export const CONTACT_STATUSES = [
   { value: 'active', label: 'Active', color: 'bg-teal-50 text-teal-700 border border-teal-200' },
   { value: 'bounced', label: 'Bounced', color: 'bg-red-50 text-red-600 border border-red-200' },
-  { value: 'unsubscribed', label: 'Unsubscribed', color: 'bg-gray-50 text-gray-500 border border-gray-200' },
+  { value: 'unsubscribed', label: 'Unsubscribed', color: 'bg-orange-50 text-orange-700 border border-orange-300' },
   { value: 'replied', label: 'Replied', color: 'bg-emerald-50 text-emerald-700 border border-emerald-200' },
 ] as const;
 
