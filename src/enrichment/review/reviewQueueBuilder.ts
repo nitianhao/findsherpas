@@ -90,7 +90,7 @@ function assignBuckets(input: ReviewInput): ReviewQueueItem[] {
       blockerSummary: [],
       suggestedHumanAction: "",
       rawReferences: {
-        topSearchQueries: search?.queryPlans?.map((q) => q.query).slice(0, 3) ?? [],
+        topSearchQueries: search?.queryPlan?.queries?.slice(0, 3) ?? [],
         topSearchUrls: search?.rawSearchResults?.map((r) => r.url).slice(0, 5) ?? [],
         topWebsitePages: discovery?.discoveredPages?.map((p) => p.url).slice(0, 3) ?? [],
       },
