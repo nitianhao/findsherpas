@@ -22,11 +22,11 @@ export function SiteFooter() {
             <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               Explore
             </div>
-            <ul className="mt-3 space-y-2 text-sm">
+            <ul className="mt-3 space-y-3 text-sm">
               <li>
                 <Link
                   href="/frameworks/search-failure-modes"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Failure modes
                 </Link>
@@ -34,7 +34,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/frameworks/query-interpretation"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Query interpretation
                 </Link>
@@ -42,7 +42,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/search-check"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Search check
                 </Link>
@@ -50,7 +50,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/about"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   About
                 </Link>
@@ -63,11 +63,11 @@ export function SiteFooter() {
             <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               Company
             </div>
-            <ul className="mt-3 space-y-2 text-sm">
+            <ul className="mt-3 space-y-3 text-sm">
               <li>
                 <Link
                   href="/#what-we-do"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Approach
                 </Link>
@@ -75,7 +75,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/notes"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Insights
                 </Link>
@@ -83,7 +83,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/book-a-call"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Contact
                 </Link>
@@ -119,12 +119,12 @@ export function SiteFooter() {
               </span>
             </div>
           </div>
-          <div className="mt-3 text-xs text-muted-foreground">
+          <div className="mt-3 text-sm text-muted-foreground">
             <a
-              href="mailto:michal.pekarcik@gmail.com"
-              className="transition-colors hover:text-foreground"
+              href="mailto:michal@findsherpas.com"
+              className="inline-block py-1 transition-colors hover:text-foreground"
             >
-              michal.pekarcik@gmail.com
+              michal@findsherpas.com
             </a>
           </div>
         </div>

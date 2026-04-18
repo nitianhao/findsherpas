@@ -44,10 +44,10 @@ export default async function Home() {
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button asChild size="lg" className="h-12 w-full text-base font-semibold sm:w-auto px-8">
-                <Link href="/#what-we-do">Our expertise</Link>
+                <Link href="/book-a-call">Book a call</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="h-12 w-full text-base font-medium sm:w-auto px-8">
-                <Link href="/book-a-call">Get in touch</Link>
+                <Link href="/#what-we-do">See our approach</Link>
               </Button>
             </div>
           </div>
@@ -157,7 +157,7 @@ export default async function Home() {
                   <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Query interpretation</p>
                   <h3 className="mt-2 text-base font-bold tracking-tight">Queries break without anyone noticing</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Synonyms missing. Compound queries split wrong. Attribute searches like &ldquo;red dress size 38&rdquo; treated as free text. No alerts, no fallback.
+                    How the engine reads the query fails quietly. Synonyms missing. Compound queries split wrong. Attribute searches like &ldquo;red dress size 38&rdquo; treated as free text. No alerts, no fallback.
                   </p>
                 </div>
 
@@ -165,7 +165,7 @@ export default async function Home() {
                   <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Ranking</p>
                   <h3 className="mt-2 text-base font-bold tracking-tight">Ranking rules nobody owns</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Boosting rules layered over months. Conflicting weights across categories. Result order changes and no one evaluates the impact.
+                    Boosting rules (manual ranking overrides) layered over months. Conflicting weights across categories. Result order changes and no one evaluates the impact.
                   </p>
                 </div>
 
@@ -194,7 +194,7 @@ export default async function Home() {
                 Test your search in 5 minutes
               </h2>
               <p className="mt-3 max-w-2xl text-muted-foreground">
-                Run three simple checks that often reveal hidden ranking or query
+                Run six simple checks that often reveal hidden ranking or query
                 interpretation problems.
               </p>
 
@@ -203,7 +203,7 @@ export default async function Home() {
                 <Button asChild size="lg" className="w-full font-semibold">
                   <Link href="/search-check">Run the quick search check &rarr;</Link>
                 </Button>
-                <p className="mt-2 text-center text-xs text-muted-foreground/60">3 checks &middot; 5 min &middot; no setup</p>
+                <p className="mt-2 text-center text-xs text-muted-foreground/60">6 checks &middot; ~5 min &middot; no setup</p>
               </div>
 
               {/* lg+: full card layout */}
@@ -228,6 +228,18 @@ export default async function Home() {
                       <span className="text-primary/50">&bull;</span>
                       Look at zero-result queries
                     </li>
+                    <li className="flex items-baseline gap-2">
+                      <span className="text-primary/50">&bull;</span>
+                      Try the ranking and sorting controls
+                    </li>
+                    <li className="flex items-baseline gap-2">
+                      <span className="text-primary/50">&bull;</span>
+                      Review autocomplete and typo recovery
+                    </li>
+                    <li className="flex items-baseline gap-2">
+                      <span className="text-primary/50">&bull;</span>
+                      Combine a few facets and refresh
+                    </li>
                   </ul>
                 </div>
 
@@ -238,35 +250,28 @@ export default async function Home() {
                       Internal search quick check
                     </p>
                     <p className="mt-0.5 text-xs text-muted-foreground">
-                      3 checks &middot; 5 minutes &middot; no setup
+                      6 checks &middot; ~5 minutes &middot; no setup
                     </p>
                   </div>
                   <div className="px-6 py-5">
                     <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
-                          1
-                        </span>
-                        <span className="text-sm font-medium text-foreground/80">
-                          Relevance check
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
-                          2
-                        </span>
-                        <span className="text-sm font-medium text-foreground/80">
-                          Query parsing check
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
-                          3
-                        </span>
-                        <span className="text-sm font-medium text-foreground/80">
-                          Coverage check
-                        </span>
-                      </div>
+                      {[
+                        "Relevance check",
+                        "Query parsing check",
+                        "Coverage check",
+                        "Ranking controls",
+                        "Query assistance",
+                        "Facet check",
+                      ].map((label, i) => (
+                        <div key={label} className="flex items-center gap-3">
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
+                            {i + 1}
+                          </span>
+                          <span className="text-sm font-medium text-foreground/80">
+                            {label}
+                          </span>
+                        </div>
+                      ))}
                     </div>
                     <div className="mt-6">
                       <Button asChild size="default" className="w-full font-semibold">
@@ -302,7 +307,7 @@ export default async function Home() {
               </p>
 
               {/* Desktop: 5 cards in a row */}
-              <div className="mt-10 hidden lg:grid lg:grid-cols-5 lg:gap-3">
+              <div className="mt-10 hidden lg:grid lg:grid-cols-6 lg:gap-3">
                 {[
                   {
                     number: "01",
@@ -312,7 +317,7 @@ export default async function Home() {
                   {
                     number: "02",
                     title: "Query interpretation",
-                    desc: "How the system reads the input. Tokenization, synonyms, compound handling, attribute mapping.",
+                    desc: "How the system reads the input. Tokenization (how words are split), synonyms, compound handling, attribute mapping.",
                   },
                   {
                     number: "03",
@@ -322,10 +327,15 @@ export default async function Home() {
                   {
                     number: "04",
                     title: "Ranking logic",
-                    desc: "Boosting rules, attribute weights, merchandising overrides, and their cumulative effect.",
+                    desc: "Boosting rules, attribute weights, merchandising overrides (manual ranking adjustments), and their cumulative effect.",
                   },
                   {
                     number: "05",
+                    title: "Search analytics",
+                    desc: "What's being measured — and what isn't. Events, funnels, zero-result tracking, and quality signals.",
+                  },
+                  {
+                    number: "06",
                     title: "Improvement roadmap",
                     desc: "Prioritized, actionable changes your team can implement. No dependency on us.",
                   },
@@ -364,7 +374,7 @@ export default async function Home() {
                   {
                     number: "02",
                     title: "Query interpretation",
-                    desc: "How the system reads the input. Tokenization, synonyms, compound handling, attribute mapping.",
+                    desc: "How the system reads the input. Tokenization (how words are split), synonyms, compound handling, attribute mapping.",
                   },
                   {
                     number: "03",
@@ -374,10 +384,15 @@ export default async function Home() {
                   {
                     number: "04",
                     title: "Ranking logic",
-                    desc: "Boosting rules, attribute weights, merchandising overrides, and their cumulative effect.",
+                    desc: "Boosting rules, attribute weights, merchandising overrides (manual ranking adjustments), and their cumulative effect.",
                   },
                   {
                     number: "05",
+                    title: "Search analytics",
+                    desc: "What's being measured — and what isn't. Events, funnels, zero-result tracking, and quality signals.",
+                  },
+                  {
+                    number: "06",
                     title: "Improvement roadmap",
                     desc: "Prioritized, actionable changes your team can implement. No dependency on us.",
                   },
@@ -409,7 +424,10 @@ export default async function Home() {
         <section id="frameworks" className="-mx-4 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-24">
           <div className="border-t border-gray-200 pt-8">
             <div className="mx-auto max-w-[1120px]">
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
+                Frameworks
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
                 Search frameworks
               </h2>
               <p className="mt-3 max-w-2xl text-muted-foreground">
@@ -422,7 +440,9 @@ export default async function Home() {
                     Framework 01
                   </p>
                   <h3 className="mt-3 text-base font-bold tracking-tight sm:text-lg">
-                    Relevance evaluation
+                    <Link href="/search-check" className="inline-block py-2 -my-2 hover:text-primary hover:underline">
+                      Relevance evaluation
+                    </Link>
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">
                     A structured method for measuring whether search results match user intent — beyond click-through rates and conversion proxies.
@@ -440,7 +460,7 @@ export default async function Home() {
                     Framework 02
                   </p>
                   <h3 className="mt-3 text-base font-bold tracking-tight sm:text-lg">
-                    <Link href="/frameworks/query-interpretation" className="hover:text-primary hover:underline">
+                    <Link href="/frameworks/query-interpretation" className="inline-block py-2 -my-2 hover:text-primary hover:underline">
                       Query taxonomy
                     </Link>
                   </h3>
@@ -461,7 +481,7 @@ export default async function Home() {
                     Framework 03
                   </p>
                   <h3 className="mt-3 text-base font-bold tracking-tight sm:text-lg">
-                    <Link href="/frameworks/search-failure-modes" className="hover:text-primary hover:underline">
+                    <Link href="/frameworks/search-failure-modes" className="inline-block py-2 -my-2 hover:text-primary hover:underline">
                       Ranking failure modes
                     </Link>
                   </h3>
@@ -480,7 +500,7 @@ export default async function Home() {
               <div className="mt-8">
                 <Link
                   href="/frameworks/search-failure-modes"
-                  className="text-sm font-medium text-primary hover:underline"
+                  className="inline-block py-2 -my-2 text-sm font-medium text-primary hover:underline"
                 >
                   Read the full failure modes framework &rarr;
                 </Link>
@@ -745,7 +765,7 @@ export default async function Home() {
               </p>
               <div className="mt-10">
                 <Button asChild size="lg" className="h-12 px-8 text-base font-semibold">
-                  <Link href="/book-a-call">Get in touch</Link>
+                  <Link href="/book-a-call">Book a call</Link>
                 </Button>
               </div>
             </div>

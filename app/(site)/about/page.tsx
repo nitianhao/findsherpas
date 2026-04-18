@@ -370,7 +370,7 @@ export default function AboutPage() {
             className="h-12 w-full px-8 text-base font-medium sm:w-auto"
           >
             <a
-              href={`mailto:michal.pekarcik@gmail.com?subject=${encodeURIComponent("Search looks off — query examples")}&body=${encodeURIComponent("Site:\n\nSearch platform (if known):\n\n3–5 queries:\n\nWhat I expected:\n\nWhat I got:\n\nAnything else:\n")}`}
+              href={`mailto:michal@findsherpas.com?subject=${encodeURIComponent("Search looks off — query examples")}&body=${encodeURIComponent("Site:\n\nSearch platform (if known):\n\n3–5 queries:\n\nWhat I expected:\n\nWhat I got:\n\nAnything else:\n")}`}
             >
               Email 3-5 queries
             </a>

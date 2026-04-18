@@ -32,10 +32,10 @@ export default async function StripeCancelPage({
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button asChild>
-              <Link href="/pricing">Back to pricing</Link>
+              <Link href="/book-a-call">Book a call</Link>
             </Button>
             <Button asChild variant="outline">
-              <a href="mailto:michal.pekarcik@gmail.com?subject=Find%20Sherpas%20audit%20-%20question">
+              <a href="mailto:michal@findsherpas.com?subject=Find%20Sherpas%20audit%20-%20question">
                 Contact
               </a>
             </Button>

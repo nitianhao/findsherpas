@@ -107,10 +107,10 @@ export default function BookACallPage() {
             <p className="text-sm text-muted-foreground">Or email directly</p>
           </div>
           <a
-            href="mailto:contact@findsherpas.com"
+            href="mailto:michal@findsherpas.com"
             className="mt-1 inline-block text-sm font-medium text-foreground underline-offset-4 hover:underline"
           >
-            contact@findsherpas.com
+            michal@findsherpas.com
           </a>
         </div>
       </div>

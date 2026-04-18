@@ -6,12 +6,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { href: "/#what-we-do", label: "Search audits" },
+  { href: "/#what-we-do", label: "Approach" },
   { href: "/frameworks/search-failure-modes", label: "Failure modes" },
   { href: "/frameworks/query-interpretation", label: "Query interpretation" },
   { href: "/search-check", label: "Search check" },
   { href: "/about", label: "About" },
-  { href: "/book-a-call", label: "Contact" },
+  { href: "/book-a-call", label: "Book a call" },
 ] as const;
 
 export function SiteNav() {
@@ -103,7 +103,7 @@ export function SiteNav() {
           {/* Mobile hamburger */}
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground md:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             onClick={() => setMobileOpen((v) => !v)}
           >
@@ -165,7 +165,7 @@ export function SiteNav() {
             </Link>
             <button
               type="button"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
               aria-label="Close menu"
               onClick={() => setMobileOpen(false)}
             >
@@ -211,10 +211,10 @@ export function SiteNav() {
           {/* Subtle email footer */}
           <div className="shrink-0 border-t px-4 py-4">
             <a
-              href="mailto:michal.pekarcik@gmail.com"
+              href="mailto:michal@findsherpas.com"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
-              michal.pekarcik@gmail.com
+              michal@findsherpas.com
             </a>
           </div>
         </div>

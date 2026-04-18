@@ -34,9 +34,6 @@ export default function SearchRelevanceAuditPage() {
         <Button asChild>
           <Link href="/book-a-call">Book a call</Link>
         </Button>
-        <Button asChild variant="outline">
-          <Link href="/pricing">See all pricing</Link>
-        </Button>
       </div>
 
       <section className="mt-14">

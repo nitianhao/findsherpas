@@ -191,9 +191,6 @@ export default function ExamplesPage() {
           <Button asChild>
             <Link href="/book-a-call">Book a call</Link>
           </Button>
-          <Button asChild variant="outline">
-            <Link href="/pricing">See pricing &amp; scope</Link>
-          </Button>
         </div>
       </section>
     </div>
