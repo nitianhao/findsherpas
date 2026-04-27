@@ -47,7 +47,7 @@ export async function POST(
     return NextResponse.json({ ok: true, messageId });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     return NextResponse.json(
       { error: error instanceof Error ? error.message : 'Failed to send test email' },
