@@ -10,6 +10,7 @@ import { StepEditor } from "@/components/crm/sequences/step-editor";
 import { EnrollmentTable } from "@/components/crm/sequences/enrollment-table";
 import { EnrollDialog } from "@/components/crm/sequences/enroll-dialog";
 import { SequencePerformance } from "@/components/crm/sequences/sequence-performance";
+import { TestEmailDialog } from "@/components/crm/sequences/test-email-dialog";
 import { Pencil, ArrowLeft, Users } from "lucide-react";
 
 export default async function SequenceDetailPage({
@@ -51,6 +52,7 @@ export default async function SequenceDetailPage({
           )}
         </div>
         <div className="flex gap-2">
+          <TestEmailDialog sequenceId={sequence.id} steps={steps} />
           <EnrollDialog sequenceId={sequence.id} />
           <Link href={`/crm/sequences/${sequence.id}/edit`} className={buttonVariants({ variant: "outline" })}>
             <Pencil className="mr-2 h-4 w-4" />

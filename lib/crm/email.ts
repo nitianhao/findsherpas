@@ -65,3 +65,25 @@ export async function sendCrmEmail(task: EmailTask & { custom_fields?: Record<st
 
   return data.id;
 }
+
+export async function sendTestEmail(
+  to: string,
+  subject: string,
+  body: string,
+  fromEmail?: string
+): Promise<string> {
+  const from = fromEmail ?? process.env.RESEND_FROM_EMAIL;
+  if (!from) throw new Error('RESEND_FROM_EMAIL env var not set');
+
+  const resend = getResend();
+  const { data, error } = await resend.emails.send({
+    from,
+    to,
+    replyTo: 'michal@findsherpas.com',
+    subject,
+    text: body,
+  });
+
+  if (error || !data) throw new Error(error?.message ?? 'Failed to send email');
+  return data.id;
+}
