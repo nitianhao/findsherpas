@@ -13,7 +13,6 @@ import {
 import { Button } from "@/components/crm/ui/button";
 import { Input } from "@/components/crm/ui/input";
 import { Label } from "@/components/crm/ui/label";
-import { ScrollArea } from "@/components/crm/ui/scroll-area";
 import { toast } from "sonner";
 import { FlaskConical, Loader2 } from "lucide-react";
 import type { SequenceStep } from "@/lib/crm/types";
@@ -105,15 +104,15 @@ export function TestEmailDialog({ sequenceId, steps }: TestEmailDialogProps) {
         <FlaskConical className="h-4 w-4" />
         Send Test
       </DialogTrigger>
-      <DialogContent className="sm:max-w-lg">
-        <DialogHeader>
+      <DialogContent className="sm:max-w-lg flex flex-col max-h-[90vh]">
+        <DialogHeader className="shrink-0">
           <DialogTitle>Send Test Email</DialogTitle>
           <DialogDescription>
             Fill in the variables for the selected step and send a test email to verify the output.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4">
+        <div className="flex-1 overflow-y-auto space-y-4 pr-1">
           <div className="space-y-1.5">
             <Label htmlFor="test-step">Step</Label>
             <select
@@ -124,8 +123,7 @@ export function TestEmailDialog({ sequenceId, steps }: TestEmailDialogProps) {
             >
               {steps.map((step) => (
                 <option key={step.id} value={step.id}>
-                  Step {step.step_order + 1}
-                  {step.subject_template ? ` — ${step.subject_template.slice(0, 50)}` : ""}
+                  Step {step.step_order + 1} — delay {step.delay_days} day{step.delay_days !== 1 ? "s" : ""}
                 </option>
               ))}
             </select>
@@ -145,23 +143,21 @@ export function TestEmailDialog({ sequenceId, steps }: TestEmailDialogProps) {
           {varNames.length > 0 && (
             <div className="space-y-1.5">
               <Label>Variables</Label>
-              <ScrollArea className="max-h-64 rounded-md border p-3">
-                <div className="space-y-3">
-                  {varNames.map((name) => (
-                    <div key={name} className="space-y-1">
-                      <label className="text-xs font-mono text-muted-foreground">
-                        {`{{${name}}}`}
-                      </label>
-                      <Input
-                        value={vars[name] ?? ""}
-                        onChange={(e) => setVar(name, e.target.value)}
-                        placeholder={name}
-                        className="h-8 text-sm"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </ScrollArea>
+              <div className="rounded-md border p-3 space-y-3">
+                {varNames.map((name) => (
+                  <div key={name} className="space-y-1">
+                    <label className="text-xs font-mono text-muted-foreground">
+                      {`{{${name}}}`}
+                    </label>
+                    <Input
+                      value={vars[name] ?? ""}
+                      onChange={(e) => setVar(name, e.target.value)}
+                      placeholder={name}
+                      className="h-8 text-sm"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
@@ -172,7 +168,7 @@ export function TestEmailDialog({ sequenceId, steps }: TestEmailDialogProps) {
           )}
         </div>
 
-        <DialogFooter>
+        <DialogFooter className="shrink-0 pt-4 border-t">
           <Button onClick={handleSend} disabled={submitting}>
             {submitting ? (
               <>
