@@ -75,13 +75,16 @@ export async function sendTestEmail(
   const from = fromEmail ?? process.env.RESEND_FROM_EMAIL;
   if (!from) throw new Error('RESEND_FROM_EMAIL env var not set');
 
+  // Append a placeholder unsubscribe footer so the test email mirrors real email layout
+  const bodyWithFooter = body + '\n\n---\nTo unsubscribe: [unsubscribe link — present in real emails]';
+
   const resend = getResend();
   const { data, error } = await resend.emails.send({
     from,
     to,
     replyTo: 'michal@findsherpas.com',
     subject,
-    text: body,
+    text: bodyWithFooter,
   });
 
   if (error || !data) throw new Error(error?.message ?? 'Failed to send email');
