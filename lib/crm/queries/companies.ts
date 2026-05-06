@@ -9,6 +9,8 @@ interface CompanyFilters {
   tag_id?: string;
   limit?: number;
   offset?: number;
+  sort_by?: 'updated_at' | 'name' | 'contacts_count';
+  sort_dir?: 'asc' | 'desc';
 }
 
 function now() {
@@ -62,7 +64,17 @@ function mapTag(t: Record<string, unknown>): Tag {
 }
 
 export async function getCompanies(filters: CompanyFilters = {}): Promise<{ companies: Company[]; total: number }> {
-  const { search, status, platform, search_solution, tag_id, limit = 50, offset = 0 } = filters;
+  const {
+    search,
+    status,
+    platform,
+    search_solution,
+    tag_id,
+    limit = 50,
+    offset = 0,
+    sort_by = 'updated_at',
+    sort_dir = 'desc',
+  } = filters;
 
   const data = await adminDb.query({ companies: { tags: {}, contacts: {} } });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -80,7 +92,17 @@ export async function getCompanies(filters: CompanyFilters = {}): Promise<{ comp
   if (search_solution) results = results.filter(c => c.search_solution === search_solution);
   if (tag_id) results = results.filter(c => c.tags?.some((t: Tag) => t.id === tag_id));
 
-  results.sort((a, b) => b.updated_at.localeCompare(a.updated_at));
+  results.sort((a, b) => {
+    let comparison = 0;
+    if (sort_by === 'contacts_count') {
+      comparison = (a.contacts_count ?? 0) - (b.contacts_count ?? 0);
+    } else if (sort_by === 'name') {
+      comparison = a.name.localeCompare(b.name);
+    } else {
+      comparison = a.updated_at.localeCompare(b.updated_at);
+    }
+    return sort_dir === 'asc' ? comparison : -comparison;
+  });
 
   return { companies: results.slice(offset, offset + limit), total: results.length };
 }

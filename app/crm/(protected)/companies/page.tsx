@@ -3,23 +3,44 @@ import { buttonVariants } from "@/components/crm/ui/button";
 import { CompanyTable } from "@/components/crm/companies/company-table";
 import { CompanyFilters } from "@/components/crm/companies/company-filters";
 import { ExportButton } from "@/components/crm/shared/export-button";
+import { PaginationControls } from "@/components/crm/shared/pagination-controls";
 import { getCompanies } from "@/lib/crm/queries/companies";
 import { Plus, Upload } from "lucide-react";
 import { CompanyStatus } from "@/lib/crm/types";
 import { Suspense } from "react";
 
+const PAGE_SIZE = 50;
+
 export default async function CompaniesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ search?: string; status?: string; platform?: string; search_solution?: string; tag_id?: string }>;
+  searchParams: Promise<{
+    search?: string;
+    status?: string;
+    platform?: string;
+    search_solution?: string;
+    tag_id?: string;
+    sort?: string;
+    page?: string;
+  }>;
 }) {
   const params = await searchParams;
+  const page = Math.max(1, Number(params.page) || 1);
+  const [requestedSortBy = "updated_at", requestedSortDir = "desc"] = (params.sort || "updated_at:desc").split(":");
+  const sort_by = ["updated_at", "name", "contacts_count"].includes(requestedSortBy)
+    ? requestedSortBy
+    : "updated_at";
+  const sort_dir = requestedSortDir === "asc" ? "asc" : "desc";
   const { companies, total } = await getCompanies({
     search: params.search,
     status: params.status as CompanyStatus | undefined,
     platform: params.platform,
     search_solution: params.search_solution,
     tag_id: params.tag_id ? params.tag_id : undefined,
+    limit: PAGE_SIZE,
+    offset: (page - 1) * PAGE_SIZE,
+    sort_by: sort_by as "updated_at" | "name" | "contacts_count",
+    sort_dir: sort_dir as "asc" | "desc",
   });
 
   return (
@@ -45,6 +66,13 @@ export default async function CompaniesPage({
         <CompanyFilters />
       </Suspense>
       <CompanyTable companies={companies} />
+      <PaginationControls
+        basePath="/crm/companies"
+        currentPage={page}
+        pageSize={PAGE_SIZE}
+        total={total}
+        searchParams={params}
+      />
     </div>
   );
 }

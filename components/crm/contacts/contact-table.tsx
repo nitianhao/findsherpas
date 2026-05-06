@@ -97,5 +97,5 @@ const columns: ColumnDef<Contact>[] = [
 ];
 
 export function ContactTable({ contacts }: { contacts: Contact[] }) {
-  return <DataTable columns={columns} data={contacts} />;
+  return <DataTable columns={columns} data={contacts} enableClientPagination={false} />;
 }

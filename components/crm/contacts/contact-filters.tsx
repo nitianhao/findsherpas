@@ -19,6 +19,7 @@ export function ContactFilters() {
       } else {
         params.delete(key);
       }
+      params.delete("page");
       params.delete("offset");
       router.push(`/crm/contacts?${params.toString()}`);
     },

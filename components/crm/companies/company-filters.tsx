@@ -19,6 +19,7 @@ export function CompanyFilters() {
       } else {
         params.delete(key);
       }
+      params.delete("page");
       params.delete("offset");
       router.push(`/crm/companies?${params.toString()}`);
     },
@@ -33,7 +34,7 @@ export function CompanyFilters() {
   }, [search, updateParams]);
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-wrap items-center gap-4">
       <Input
         placeholder="Search companies..."
         value={search}
@@ -80,6 +81,21 @@ export function CompanyFilters() {
           {SEARCH_SOLUTIONS.map((s) => (
             <SelectItem key={s} value={s}>{s}</SelectItem>
           ))}
+        </SelectContent>
+      </Select>
+      <Select
+        value={searchParams.get("sort") || "updated_at:desc"}
+        onValueChange={(value) => updateParams("sort", value ?? "updated_at:desc")}
+      >
+        <SelectTrigger className="w-[220px]">
+          <SelectValue placeholder="Sort companies" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="updated_at:desc">Recently updated</SelectItem>
+          <SelectItem value="contacts_count:desc">Most contacts</SelectItem>
+          <SelectItem value="contacts_count:asc">Fewest contacts</SelectItem>
+          <SelectItem value="name:asc">Company A-Z</SelectItem>
+          <SelectItem value="name:desc">Company Z-A</SelectItem>
         </SelectContent>
       </Select>
     </div>

@@ -123,5 +123,5 @@ const columns: ColumnDef<Company>[] = [
 ];
 
 export function CompanyTable({ companies }: { companies: Company[] }) {
-  return <DataTable columns={columns} data={companies} />;
+  return <DataTable columns={columns} data={companies} enableClientPagination={false} />;
 }

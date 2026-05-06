@@ -14,6 +14,8 @@ export async function GET(request: NextRequest) {
       tag_id: searchParams.get('tag_id') ?? undefined,
       limit: searchParams.get('limit') ? Number(searchParams.get('limit')) : undefined,
       offset: searchParams.get('offset') ? Number(searchParams.get('offset')) : undefined,
+      sort_by: (searchParams.get('sort_by') as 'updated_at' | 'name' | 'contacts_count') ?? undefined,
+      sort_dir: (searchParams.get('sort_dir') as 'asc' | 'desc') ?? undefined,
     };
 
     const result = await getCompanies(filters);

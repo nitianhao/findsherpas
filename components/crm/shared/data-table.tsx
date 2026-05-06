@@ -26,11 +26,13 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   searchKey?: string;
+  enableClientPagination?: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  enableClientPagination = true,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -40,7 +42,7 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    getPaginationRowModel: enableClientPagination ? getPaginationRowModel() : undefined,
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
@@ -87,29 +89,35 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-between py-4">
-        <div className="text-sm text-muted-foreground">
-          {table.getFilteredRowModel().rows.length} row(s)
+      {enableClientPagination ? (
+        <div className="flex items-center justify-between py-4">
+          <div className="text-sm text-muted-foreground">
+            {table.getFilteredRowModel().rows.length} row(s)
+          </div>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+            >
+              Previous
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              Next
+            </Button>
+          </div>
         </div>
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
+      ) : (
+        <div className="py-3 text-sm text-muted-foreground">
+          {table.getFilteredRowModel().rows.length} row(s) on this page
         </div>
-      </div>
+      )}
     </div>
   );
 }
