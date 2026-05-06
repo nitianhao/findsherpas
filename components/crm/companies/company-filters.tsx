@@ -9,7 +9,8 @@ import { useCallback, useEffect, useState } from "react";
 export function CompanyFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const currentSearch = searchParams.get("search") || "";
+  const [search, setSearch] = useState(currentSearch);
 
   const updateParams = useCallback(
     (key: string, value: string) => {
@@ -27,11 +28,12 @@ export function CompanyFilters() {
   );
 
   useEffect(() => {
+    if (search === currentSearch) return;
     const timeout = setTimeout(() => {
       updateParams("search", search);
     }, 300);
     return () => clearTimeout(timeout);
-  }, [search, updateParams]);
+  }, [currentSearch, search, updateParams]);
 
   return (
     <div className="flex flex-wrap items-center gap-4">
