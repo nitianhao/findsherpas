@@ -1047,7 +1047,7 @@ strong { font-weight: 600; }
 <script>
 (function() {
   var stored = localStorage.getItem('fs_auth_huckberry');
-  if (stored && stored === 'ce61da61df341ade02d712f899f08f1c3a1929d27af415df9f2386e66d1e30d5') {
+  if (stored && stored === '9d679629a7beb31cc8edcc1230ca457c72ac47e23d3ad9a23b557de0fa22be15') {
     document.getElementById('fs-gate').style.display = 'none';
   }
 })();
@@ -1055,7 +1055,7 @@ async function fsCheck() {
   var pw = document.getElementById('fs-pw').value;
   var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
   var hex = Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-  if (hex === 'ce61da61df341ade02d712f899f08f1c3a1929d27af415df9f2386e66d1e30d5') {
+  if (hex === '9d679629a7beb31cc8edcc1230ca457c72ac47e23d3ad9a23b557de0fa22be15') {
     localStorage.setItem('fs_auth_huckberry', hex);
     document.getElementById('fs-gate').style.display = 'none';
   } else {
