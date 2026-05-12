@@ -1,0 +1,2922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Audit Report: Zalando</title>
+<style>
+/* ============================================================
+   FIND SHERPAS — Prism Audit Report
+   Master template — design extracted from findsherpas.com
+   Based on: kytary_cz_20260408_170636_report.html
+   ============================================================ */
+
+:root {
+  --primary: #009ba3;
+  --primary-fg: #fafafa;
+  --bg: #ffffff;
+  --fg: #0a0a0a;
+  --muted: #737373;
+  --border: #e5e5e5;
+  --accent: #dcf8fa;
+  --secondary: #f5f5f5;
+  --destructive: #e40014;
+  --radius: 0.75rem;
+
+  /* Severity */
+  --sev-critical: #e40014;
+  --sev-moderate: #fcbb00;
+  --sev-minor: #009588;
+  --sev-pass: #009ba3;
+
+  /* Chart palette */
+  --chart-1: #f05100;
+  --chart-2: #009588;
+  --chart-3: #104e64;
+  --chart-4: #fcbb00;
+  --chart-5: #f99c00;
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Layout ---- */
+.page-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+}
+
+section:first-of-type {
+  border-top: none;
+}
+
+h1, h2, h3, h4 {
+  color: var(--fg);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; margin-bottom: 20px; }
+h3 { font-size: 1.125rem; margin-bottom: 12px; }
+h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+
+p { margin-bottom: 14px; }
+strong { font-weight: 600; }
+
+/* ---- Cover ---- */
+.cover {
+  padding: 60px 0 48px;
+  text-align: left;
+}
+
+.cover-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.cover-logo svg {
+  width: 28px;
+  height: 28px;
+}
+
+.cover-logo span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+.cover h1 {
+  font-size: 2.25rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.cover-meta {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.cover-meta .prism-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-left: 12px;
+}
+
+/* ---- Section label ---- */
+.section-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+/* ---- Stat cards ---- */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.stat-card {
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.stat-card .stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--fg);
+}
+
+.stat-card .stat-value.bad { color: var(--destructive); }
+.stat-card .stat-value.warn { color: var(--chart-5); }
+.stat-card .stat-value.good { color: var(--sev-pass); }
+
+.stat-card .stat-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* ---- Scorecard table ---- */
+.scorecard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.scorecard-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 10px 16px;
+  border-bottom: 2px solid var(--border);
+}
+
+.scorecard-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.scorecard-table tr:last-child td {
+  border-bottom: none;
+}
+
+.severity-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.severity-dot.critical { background: var(--sev-critical); }
+.severity-dot.moderate { background: var(--sev-moderate); }
+.severity-dot.minor { background: var(--sev-minor); }
+.severity-dot.pass { background: var(--sev-pass); }
+
+.severity-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.severity-label.critical { color: var(--sev-critical); }
+.severity-label.moderate { color: #b38600; }
+.severity-label.minor { color: var(--sev-minor); }
+.severity-label.pass { color: var(--sev-pass); }
+
+.scorecard-capability {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.scorecard-summary {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* ---- Stats summary ---- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 20px 0;
+}
+
+.stats-mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.stats-mini-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-mini-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-mini-table tr:last-child td {
+  border-bottom: none;
+}
+
+.stats-mini-table tr:nth-child(even) td {
+  background: var(--secondary);
+}
+
+.metric-list {
+  list-style: none;
+  margin: 20px 0;
+}
+
+.metric-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.metric-list li:last-child {
+  border-bottom: none;
+}
+
+.metric-list .metric-val {
+  font-weight: 700;
+  color: var(--fg);
+}
+
+/* ---- Deep dives ---- */
+.capability-section {
+  margin-bottom: 40px;
+}
+
+.capability-section h3 {
+  font-size: 1.25rem;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--primary);
+  margin-bottom: 16px;
+}
+
+.capability-intro {
+  color: var(--muted);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.query-example {
+  margin-bottom: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.query-header {
+  background: var(--secondary);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.query-header .query-text {
+  font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.query-header .query-category {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.query-body {
+  padding: 16px;
+}
+
+.query-body .narrative {
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  color: var(--fg);
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.comparison-col h4 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.comparison-col.actual h4 { color: var(--sev-critical); }
+.comparison-col.ideal h4 { color: var(--sev-minor); }
+
+.comparison-col.actual {
+  background: #fef2f2;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.comparison-col.ideal {
+  background: #f0fdf4;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.comparison-col ol {
+  list-style: none;
+  counter-reset: item;
+  font-size: 0.85rem;
+}
+
+.comparison-col ol li {
+  counter-increment: item;
+  padding: 4px 0;
+  line-height: 1.4;
+}
+
+.comparison-col ol li::before {
+  content: "#" counter(item) " ";
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-right: 2px;
+}
+
+.displacement-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* ---- What's Working ---- */
+.whats-working-list {
+  list-style: none;
+}
+
+.whats-working-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  padding-left: 24px;
+  position: relative;
+}
+
+.whats-working-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 18px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sev-pass);
+}
+
+.whats-working-list li:last-child {
+  border-bottom: none;
+}
+
+/* ---- Roadmap ---- */
+.roadmap-item {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.roadmap-item:last-child {
+  border-bottom: none;
+}
+
+.roadmap-number {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--primary-fg);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.roadmap-content {
+  flex: 1;
+}
+
+.roadmap-content h4 {
+  margin-bottom: 4px;
+}
+
+.roadmap-content p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+.badge.impact-critical { background: #fef2f2; color: var(--sev-critical); }
+.badge.impact-high { background: #fff7ed; color: var(--chart-5); }
+.badge.impact-moderate { background: #fefce8; color: #92400e; }
+.badge.effort-quick { background: #f0fdf4; color: var(--sev-minor); }
+.badge.effort-medium { background: #fefce8; color: #92400e; }
+.badge.effort-major { background: #fef2f2; color: var(--sev-critical); }
+
+/* ---- Benchmarks ---- */
+.benchmark-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.benchmark-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 10px 16px;
+  border-bottom: 2px solid var(--border);
+}
+
+.benchmark-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.benchmark-table .your-score {
+  font-weight: 700;
+}
+
+.benchmark-table .your-score.below { color: var(--sev-critical); }
+.benchmark-table .your-score.meets { color: var(--sev-minor); }
+
+.benchmark-table .target {
+  color: var(--muted);
+}
+
+.benchmark-table .source {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.callout {
+  background: var(--accent);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+
+.callout p {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Methodology ---- */
+.pipeline-steps {
+  list-style: none;
+  counter-reset: step;
+}
+
+.pipeline-step {
+  counter-increment: step;
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.pipeline-step:last-child {
+  border-bottom: none;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-content h4 {
+  margin-bottom: 2px;
+}
+
+.step-content p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+/* ---- Appendix table ---- */
+.appendix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin: 16px 0;
+}
+
+.appendix-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 8px 10px;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+
+.appendix-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.appendix-table tr:nth-child(even) td {
+  background: var(--secondary);
+}
+
+.appendix-table .query-col {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 0.8rem;
+}
+
+/* ---- CTA ---- */
+.cta-section {
+  text-align: center;
+  padding: 48px 0;
+}
+
+.cta-section h2 {
+  margin-bottom: 12px;
+}
+
+.cta-section p {
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto 24px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--primary-fg);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Scorecard result line ---- */
+.scorecard-result {
+  background: var(--secondary);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-top: 20px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  @page {
+    size: A4;
+    margin: 18mm 14mm 22mm 14mm;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.55;
+  }
+
+  .page-wrapper {
+    max-width: none;
+    padding: 0;
+  }
+
+  /* Page breaks */
+  .cover { page-break-after: always; }
+  .section-break-before { page-break-before: always; }
+
+  /* Avoid breaks inside these */
+  .query-example,
+  .roadmap-item,
+  .stat-row,
+  .scorecard-table tr,
+  .benchmark-table tr,
+  .pipeline-step,
+  .callout { page-break-inside: avoid; }
+
+  /* Avoid orphaned headings */
+  h2, h3 {
+    page-break-after: avoid;
+  }
+
+  /* Hide CTA button in print */
+  .cta-button { display: none; }
+
+  /* Ensure colors print */
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* Stat cards: shrink for print */
+  .stat-row {
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+  .stat-card .stat-value {
+    font-size: 1.4rem;
+  }
+
+  /* Comparison columns stack on narrow print */
+  .comparison {
+    gap: 10px;
+  }
+}
+<style>
+#fs-gate {
+  position: fixed; inset: 0; background: #fff; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+}
+#fs-gate-card {
+  text-align: center; max-width: 380px; width: 90%; padding: 2.5rem 2rem;
+  border: 1px solid #e8e8e8; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,.07);
+}
+#fs-gate h2 { font-size: 1.15rem; font-weight: 600; color: #111; margin: 0 0 .4rem; }
+#fs-gate p  { color: #666; font-size: .9rem; margin: 0 0 1.5rem; line-height: 1.5; }
+#fs-gate input {
+  width: 100%; box-sizing: border-box; padding: .7rem 1rem;
+  border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;
+  margin-bottom: .6rem; outline: none;
+}
+#fs-gate input:focus { border-color: #009ba3; }
+#fs-gate button {
+  width: 100%; padding: .75rem; background: #009ba3; color: #fff;
+  border: none; border-radius: 8px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; transition: background .15s;
+}
+#fs-gate button:hover { background: #007f87; }
+#fs-err { display: none; color: #e40014; font-size: .85rem; margin-bottom: .6rem; }
+#fs-gate footer { color: #bbb; font-size: .72rem; margin-top: 1.5rem; }
+</style></style>
+</head>
+<body>
+
+<div id="fs-gate">
+  <div id="fs-gate-card">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:1rem;">
+      <path d="M16 4L4 26h24L16 4z" fill="#1a1a1a" opacity="0.9"/>
+      <path d="M10 24c2-3 3.5-6 4-9s1.5-5 2-6" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.85"/>
+    </svg>
+    <h2>This report is password protected</h2>
+    <p>Enter the access password to view the search audit.</p>
+    <input id="fs-pw" type="password" placeholder="Password" autocomplete="current-password"
+      onkeydown="if(event.key==='Enter')fsCheck()">
+    <div id="fs-err">Incorrect password. Please try again.</div>
+    <button onclick="fsCheck()">View Report</button>
+    <footer>Find Sherpas &middot; findsherpas.com</footer>
+  </div>
+</div>
+<script>
+(function() {
+  var stored = localStorage.getItem('fs_auth_zalando');
+  if (stored && stored === 'f538446fbf7c94530f0db9af71b086473883053f149db9d28a8073f3ac0e0891') {
+    document.getElementById('fs-gate').style.display = 'none';
+  }
+})();
+async function fsCheck() {
+  var pw = document.getElementById('fs-pw').value;
+  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
+  var hex = Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  if (hex === 'f538446fbf7c94530f0db9af71b086473883053f149db9d28a8073f3ac0e0891') {
+    localStorage.setItem('fs_auth_zalando', hex);
+    document.getElementById('fs-gate').style.display = 'none';
+  } else {
+    document.getElementById('fs-err').style.display = 'block';
+    document.getElementById('fs-pw').value = '';
+  }
+}
+</script>
+
+
+<div class="page-wrapper">
+
+  <!-- ================ COVER ================ -->
+  <div class="cover">
+    <div class="cover-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Mountain peak -->
+  <path d="M16 4L4 26h24L16 4z" fill="#1a1a1a" opacity="0.9"/>
+  <!-- Trail/path leading up -->
+  <path d="M10 24c2-3 3.5-6 4-9s1.5-5 2-6" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.85"/>
+  <!-- Small summit marker -->
+  <circle cx="16" cy="6.5" r="1.2" fill="#ffffff" opacity="0.9"/>
+</svg>
+
+      <span>Find Sherpas</span>
+    </div>
+    <h1>Search Audit Report</h1>
+    <div style="font-size: 1.75rem; font-weight: 600; color: var(--primary); margin-bottom: 16px;">Zalando</div>
+    <div class="cover-meta">
+      April 13, 2026 <span class="prism-badge">Powered by Prism</span>
+    </div>
+    
+  </div>
+
+  <!-- ================ EXECUTIVE SUMMARY ================ -->
+  <section>
+    <div class="section-label">Executive Summary</div>
+    <h2>Zalando's search performed well on 0 of 6 capabilities.</h2>
+
+    <p>We tested 38 realistic customer queries across 6 core search capabilities.
+    No capability passed all tests.</p>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-value bad">0/6</div>
+        <div class="stat-label">Capabilities passed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value bad">#7</div>
+        <div class="stat-label">Avg. best result position</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value bad">55%</div>
+        <div class="stat-label">Best result outside top 3</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value warn">11%</div>
+        <div class="stat-label">Irrelevant #1 result</div>
+      </div>
+    </div>
+
+    <p style="color: var(--muted); font-size: 0.9rem;">
+      The most severe example: a customer searching <strong>"jack & jones"</strong>
+      had to scroll to position #16 to find the best matching result.
+    </p>
+  </section>
+
+  <!-- ================ SCORECARD ================ -->
+  <section>
+    <div class="section-label">Capability Scorecard</div>
+    <h2>Capabilities tested: 6</h2>
+
+    <table class="scorecard-table">
+      <thead>
+        <tr>
+          <th style="width: 100px;">Status</th>
+          <th>Capability</th>
+          <th>Summary</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>
+            <span class="severity-dot critical"></span>
+            <span class="severity-label critical">Critical</span>
+          </td>
+          <td class="scorecard-capability">Typo Tolerance</td>
+          <td class="scorecard-summary">14 of 14 queries failed critically. Typo Tolerance is not functional.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="severity-dot critical"></span>
+            <span class="severity-label critical">Critical</span>
+          </td>
+          <td class="scorecard-capability">Brand & Model Search</td>
+          <td class="scorecard-summary">4 of 4 queries failed critically. Brand & Model Search is not functional.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="severity-dot critical"></span>
+            <span class="severity-label critical">Critical</span>
+          </td>
+          <td class="scorecard-capability">Shopping Context</td>
+          <td class="scorecard-summary">4 of 4 queries failed critically. Shopping Context is not functional.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="severity-dot critical"></span>
+            <span class="severity-label critical">Critical</span>
+          </td>
+          <td class="scorecard-capability">Filters & Constraints</td>
+          <td class="scorecard-summary">8 of 8 queries failed critically. Filters & Constraints is not functional.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="severity-dot moderate"></span>
+            <span class="severity-label moderate">Moderate</span>
+          </td>
+          <td class="scorecard-capability">Product Discovery</td>
+          <td class="scorecard-summary">3 of 4 queries showed issues. Product Discovery needs improvement.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="severity-dot moderate"></span>
+            <span class="severity-label moderate">Moderate</span>
+          </td>
+          <td class="scorecard-capability">Language Understanding</td>
+          <td class="scorecard-summary">4 of 4 queries showed issues. Language Understanding needs improvement.</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <div class="scorecard-result">
+      Your search performed well on 0 of 6 capabilities.
+    </div>
+  </section>
+
+  <!-- ================ TEST RESULTS SUMMARY ================ -->
+  <section>
+    <div class="section-label">Prism Test Results</div>
+    <h2>38 queries tested</h2>
+
+    <div class="stats-grid">
+      <div>
+        <h4>Severity Distribution</h4>
+        <table class="stats-mini-table">
+          <thead><tr><th>Severity</th><th style="text-align:right">Queries</th></tr></thead>
+          <tbody>
+            <tr><td><span class="severity-dot critical"></span> Critical</td><td style="text-align:right"><strong>15</strong></td></tr>
+            <tr><td><span class="severity-dot moderate"></span> Moderate</td><td style="text-align:right"><strong>13</strong></td></tr>
+            <tr><td><span class="severity-dot minor"></span> Minor</td><td style="text-align:right"><strong>9</strong></td></tr>
+            <tr><td><span class="severity-dot pass"></span> Pass</td><td style="text-align:right"><strong>1</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Failure Mode Breakdown</h4>
+        <table class="stats-mini-table">
+          <thead><tr><th>Failure Mode</th><th style="text-align:right">Queries</th></tr></thead>
+          <tbody>
+            
+            <tr><td>Poor ranking</td><td style="text-align:right"><strong>28</strong></td></tr>
+            
+            <tr><td>Zero results</td><td style="text-align:right"><strong>3</strong></td></tr>
+            
+            <tr><td>Facet not extracted</td><td style="text-align:right"><strong>3</strong></td></tr>
+            
+            <tr><td>No semantic understanding</td><td style="text-align:right"><strong>1</strong></td></tr>
+            
+            <tr><td>Constraint dropped</td><td style="text-align:right"><strong>1</strong></td></tr>
+            
+            <tr><td>Brand bleed</td><td style="text-align:right"><strong>1</strong></td></tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <ul class="metric-list">
+      <li><span class="metric-val">#7</span> average best result position</li>
+      <li><span class="metric-val">74%</span> of queries: retrieval OK but ranking failed (28 of 38)</li>
+      <li><span class="metric-val">55%</span> of queries had their best result outside the top 3</li>
+      <li><span class="metric-val">11%</span> of queries showed an irrelevant result in the top position</li>
+    </ul>
+  </section>
+
+  <!-- ================ ROADMAP ================ -->
+  <section class="section-break-before">
+    <div class="section-label">Recommendations</div>
+    <h2>Prioritized Roadmap</h2>
+
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">1</div>
+      <div class="roadmap-content">
+        <h4>Fix ranking algorithm to prioritize relevance scores</h4>
+        <p>This addresses the core issue affecting Typo Tolerance, Brand & Model Search, Shopping Context, Product Discovery, and Language Understanding capabilities where correct products are found but ranked poorly.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-quick">Quick Win</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">2</div>
+      <div class="roadmap-content">
+        <h4>Implement special character normalization</h4>
+        <p>This fixes the zero-result failures for brand names like "jack & jones" and "marc o'polo" in the Special Characters & Partial Queries capability.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-quick">Quick Win</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">3</div>
+      <div class="roadmap-content">
+        <h4>Add German price constraint parsing</h4>
+        <p>This resolves the critical constraint violations in Filters & Constraints where "unter 100 euro" and "bis 50 euro" are ignored, showing customers products outside their stated budget.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-medium">Medium Effort</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">4</div>
+      <div class="roadmap-content">
+        <h4>Configure brand abbreviation mapping</h4>
+        <p>This fixes zero-result failures for common abbreviations like "ck jeans" and "tnf jacke" in the Brand & Model Search capability.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-quick">Quick Win</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">5</div>
+      <div class="roadmap-content">
+        <h4>Implement facet extraction for German terms</h4>
+        <p>This addresses the facet recognition failures in Filters & Constraints where terms like "damen", "herren", "leder", and "sale" should trigger filters rather than keyword matching.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-medium">Medium Effort</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">6</div>
+      <div class="roadmap-content">
+        <h4>Add prefix matching for partial product names</h4>
+        <p>This fixes zero-result issues in Special Characters & Partial Queries where searches like "chuck" and "ultra" should match complete product names.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-medium">Medium Effort</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">7</div>
+      <div class="roadmap-content">
+        <h4>Implement strict brand filtering</h4>
+        <p>This prevents brand bleed issues in Filters & Constraints where searches for "nike schuhe" return Converse products, ensuring brand names act as mandatory filters.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-quick">Quick Win</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">8</div>
+      <div class="roadmap-content">
+        <h4>Add seasonal and material boosting</h4>
+        <p>This improves Shopping Context results by boosting products that match seasonal terms like "winter" or material terms like "leder" when they appear in queries.</p>
+        <div>
+          
+          <span class="badge impact-moderate">Moderate</span>
+          
+          
+          <span class="badge effort-medium">Medium Effort</span>
+          
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- ================ BENCHMARKS ================ -->
+  <section class="section-break-before">
+    <div class="section-label">Industry Context</div>
+    <h2>How You Compare</h2>
+
+    <table class="benchmark-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Your Score</th>
+          <th>Industry Target</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>Relevant result in top 3</td>
+          <td class="your-score below">45%</td>
+          <td class="target">80%+</td>
+          <td class="source">Baymard Institute</td>
+        </tr>
+        
+        <tr>
+          <td>Average best result position</td>
+          <td class="your-score below">#7</td>
+          <td class="target">#1–2</td>
+          <td class="source">Industry best practice</td>
+        </tr>
+        
+        <tr>
+          <td>Irrelevant #1 result</td>
+          <td class="your-score below">11%</td>
+          <td class="target"><10%</td>
+          <td class="source">Industry best practice</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p><strong>70% of ecommerce sites cannot handle typos</strong> in their site search (Baymard Institute). Sites that do handle them gain a significant edge.</p>
+      <p><strong>~30% of ecommerce visitors use site search</strong>, but they generate a disproportionate share of revenue &mdash; search users convert at <strong>1.8&ndash;3x the rate</strong> of browse-only visitors (Econsultancy, Algolia).</p>
+      <p><strong>31% of site searches end at a dead end</strong> &mdash; irrelevant results or zero results &mdash; across the average ecommerce site (Baymard Institute).</p>
+      <p>The top 3 results capture <strong>~55&ndash;60% of all clicks</strong>. Results below position 3 are seen by a rapidly shrinking share of customers.</p>
+    </div>
+  </section>
+
+  <!-- ================ CRITICAL FAILURE EXAMPLES ================ -->
+  <section class="section-break-before">
+    <div class="section-label">Worst Offenders</div>
+    <h2>Critical Failure Examples</h2>
+
+    
+    <div class="query-example">
+      <div class="query-header">
+        <div class="query-text">"jack & jones"</div>
+        <div class="query-category">Typo Tolerance &middot;
+          <span class="severity-label critical">Critical</span>
+          &middot; Best result at position #16
+        </div>
+      </div>
+      <div class="query-body">
+        <p><strong>Expected intent:</strong> Typo Tolerance</p>
+        <p><strong>Actual #1 result:</strong> N/A</p>
+        <p class="narrative">Search for 'jack & jones' returned zero results despite this being a known brand in the system. The query contains an ampersand character which appears to have caused the search engine to fail completely rather than normalize the special character or find matching products.</p>
+      </div>
+    </div>
+    
+    <div class="query-example">
+      <div class="query-header">
+        <div class="query-text">"marc o'polo"</div>
+        <div class="query-category">Typo Tolerance &middot;
+          <span class="severity-label critical">Critical</span>
+          &middot; Best result at position #16
+        </div>
+      </div>
+      <div class="query-body">
+        <p><strong>Expected intent:</strong> Typo Tolerance</p>
+        <p><strong>Actual #1 result:</strong> N/A</p>
+        <p class="narrative">The search returned zero results for the query 'marc o'polo' despite this being a legitimate brand name. The engine completely failed to handle the apostrophe character in the brand name, resulting in no matches at all.</p>
+      </div>
+    </div>
+    
+    <div class="query-example">
+      <div class="query-header">
+        <div class="query-text">"chuck"</div>
+        <div class="query-category">Typo Tolerance &middot;
+          <span class="severity-label critical">Critical</span>
+          &middot; Best result at position #16
+        </div>
+      </div>
+      <div class="query-body">
+        <p><strong>Expected intent:</strong> Typo Tolerance</p>
+        <p><strong>Actual #1 result:</strong> N/A</p>
+        <p class="narrative">Query 'chuck' returned zero results despite the analysis indicating there should be relevant Converse Chuck Taylor All Star products in the catalog (best result was at position #16, suggesting products exist but weren't retrieved)</p>
+      </div>
+    </div>
+    
+    <div class="query-example">
+      <div class="query-header">
+        <div class="query-text">"ck jeans"</div>
+        <div class="query-category">Brand & Model Search &middot;
+          <span class="severity-label critical">Critical</span>
+          &middot; Best result at position #16
+        </div>
+      </div>
+      <div class="query-body">
+        <p><strong>Expected intent:</strong> Brand & Model Search</p>
+        <p><strong>Actual #1 result:</strong> N/A</p>
+        <p class="narrative">The search returned zero results for 'ck jeans' despite this being a common abbreviation for Calvin Klein jeans. The engine failed to recognize that 'CK' is the standard abbreviation for the Calvin Klein brand and should expand to match Calvin Klein products.</p>
+      </div>
+    </div>
+    
+    <div class="query-example">
+      <div class="query-header">
+        <div class="query-text">"ultra boost"</div>
+        <div class="query-category">Typo Tolerance &middot;
+          <span class="severity-label critical">Critical</span>
+          &middot; Best result at position #15
+        </div>
+      </div>
+      <div class="query-body">
+        <p><strong>Expected intent:</strong> Typo Tolerance</p>
+        <p><strong>Actual #1 result:</strong> adidas Performance ULTRABOOST 5 - Road running shoes - core black</p>
+        <p class="narrative">The search engine successfully retrieved all relevant Ultraboost products, proving it correctly rejoined the split compound word 'ultra boost' to match 'ULTRABOOST'. However, the ranking is severely broken: the highest relevance result (0.832) 'adidas Performance ULTRABOOST 5 - Road running shoes - hi-res yellow blue tint halo silver' was buried at position #15, while lower relevance results (0.820) like 'adidas Performance ULTRABOOST 5 - Road running shoes - core black' were ranked #1. The displacement of 14 positions for the best result indicates the ranking algorithm is not properly using the relevance scores.</p>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- ================ DEEP DIVES ================ -->
+  <section class="section-break-before">
+    <div class="section-label">Detailed Analysis</div>
+    
+    <div class="capability-section">
+      <h3>
+        <span class="severity-dot critical"></span>
+        Typo Tolerance
+      </h3>
+
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"jack & jones"</div>
+          <div class="query-category">Special character &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">Search for 'jack & jones' returned zero results despite this being a known brand in the system. The query contains an ampersand character which appears to have caused the search engine to fail completely rather than normalize the special character or find matching products.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"marc o'polo"</div>
+          <div class="query-category">Special character &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search returned zero results for the query 'marc o'polo' despite this being a legitimate brand name. The engine completely failed to handle the apostrophe character in the brand name, resulting in no matches at all.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"chuck"</div>
+          <div class="query-category">Partial query &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">Query 'chuck' returned zero results despite the analysis indicating there should be relevant Converse Chuck Taylor All Star products in the catalog (best result was at position #16, suggesting products exist but weren't retrieved)</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"ultra boost"</div>
+          <div class="query-category">Split word &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #15
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine successfully retrieved all relevant Ultraboost products, proving it correctly rejoined the split compound word 'ultra boost' to match 'ULTRABOOST'. However, the ranking is severely broken: the highest relevance result (0.832) 'adidas Performance ULTRABOOST 5 - Road running shoes - hi-res yellow blue tint halo silver' was buried at position #15, while lower relevance results (0.820) like 'adidas Performance ULTRABOOST 5 - Road running shoes - core black' were ranked #1. The displacement of 14 positions for the best result indicates the ranking algorithm is not properly using the relevance scores.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>adidas Performance ULTRABOOST 5 - Road running shoes - core black <span style="color: var(--muted);">(€179.89)</span></li>
+                
+                <li>adidas Performance ULTRABOOST 5X - Trail running shoes - crystal white   blue burst   blue burst <span style="color: var(--muted);">(€116.95)</span></li>
+                
+                <li>adidas Performance ULTRABOOST 5 - Road running shoes - lucid red/matte gold-coloured <span style="color: var(--muted);">(€134.95)</span></li>
+                
+                <li>adidas Performance ULTRABOOST 5 - Road running shoes - black/white <span style="color: var(--muted);">(€134.95)</span></li>
+                
+                <li>adidas Performance ULTRABOOST 5 - Road running shoes - footwear white/crystal white <span style="color: var(--muted);">(€161.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>adidas Performance ULTRABOOST 5 - Road running shoes - hi-res yellow   blue tint   halo silver <span style="color: var(--muted);">(€134.95)</span></li>
+                
+                <li>adidas Performance ULTRABOOST 21 C.RDY - Training shoe - black <span style="color: var(--muted);">(€89.49)</span></li>
+                
+                <li>adidas Performance ULTRABOOST 5 - Road running shoes - black/white <span style="color: var(--muted);">(€134.95)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #15.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Dr Martins 1460"</div>
+          <div class="query-category">Typo &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #14
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine correctly handled the typo 'Martins' → 'Martens' and retrieved all relevant Dr. Martens 1460 products, but the ranking is severely broken. The highest relevance result 'Dr. Martens 1460 - Lace-up ankle boots - black softy' (0.898) was buried at position #14, while much lower relevance results like 'Dr. Martens 1460 T Softy' (0.859) appeared at #1. The top 3 positions contained results with relevance scores of 0.859, 0.863, and 0.867, while results with scores of 0.895, 0.891, and 0.887 were pushed down to positions #8-15.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Dr. Martens 1460 T Softy - Lace-up ankle boots - schwarz <span style="color: var(--muted);">(€63.95)</span></li>
+                
+                <li>Dr. Martens 1460 Y SOFTY - Classic ankle boots - black <span style="color: var(--muted);">(€107.95)</span></li>
+                
+                <li>Dr. Martens 1460 J Softy - Lace-up ankle boots - black <span style="color: var(--muted);">(€71.95)</span></li>
+                
+                <li>Dr. Martens 1460 PASCAL 8 EYE BOOT UNISEX - Lace-up ankle boots - black ambassador <span style="color: var(--muted);">(€169.95)</span></li>
+                
+                <li>Dr. Martens 1460 PASCAL FLOWER 8 EYE BOOT - Lace-up ankle boots - dark brown grizzly <span style="color: var(--muted);">(€125.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Dr. Martens 1460 - Lace-up ankle boots - black softy <span style="color: var(--muted);">(€67.95)</span></li>
+                
+                <li>Dr. Martens 1460 PASCAL UNISEX - Classic ankle boots - dark brown/grizzly <span style="color: var(--muted);">(€146.95)</span></li>
+                
+                <li>Dr. Martens 1460 UNISEX - Lace-up ankle boots - silver-coloured <span style="color: var(--muted);">(€89.95)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #14.</p>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="capability-section">
+      <h3>
+        <span class="severity-dot critical"></span>
+        Brand & Model Search
+      </h3>
+
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"ck jeans"</div>
+          <div class="query-category">Abbreviation &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search returned zero results for 'ck jeans' despite this being a common abbreviation for Calvin Klein jeans. The engine failed to recognize that 'CK' is the standard abbreviation for the Calvin Klein brand and should expand to match Calvin Klein products.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"adidas sneaker"</div>
+          <div class="query-category">Brand search &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #11
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'adidas Originals SAMBA OG UNISEX - Trainers - footwear white/core black' (0.750 relevance) was buried at position #11, while much lower relevance results dominated the top positions. The #1 result 'adidas Originals HANDBALL SPEZIAL J - Trainers - collegiate navy/clear sky' had only 0.641 relevance. Multiple high-quality results were severely misplaced: SL 72 OG W (0.746 relevance) at #15, SAMBA OG LEOPARD (0.738 relevance) at #3, and SL72 OG (0.730 relevance) at #14.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>adidas Originals HANDBALL SPEZIAL J - Trainers - collegiate navy/clear sky <span style="color: var(--muted);">(€71.95)</span></li>
+                
+                <li>adidas Originals HANDBALL SPEZIAL - Trainers - earth strata/off white <span style="color: var(--muted);">(€109.95)</span></li>
+                
+                <li>adidas Originals SAMBA OG LEOPARD - Trainers - core black preloved red cream white <span style="color: var(--muted);">(€129.95)</span></li>
+                
+                <li>adidas Sportswear Trainers - core white   crystal linen   aurora coffee <span style="color: var(--muted);">(€39.95)</span></li>
+                
+                <li>adidas Originals HANDBALL SPEZIAL - Trainers - chalky brown   cloud white   magic beige <span style="color: var(--muted);">(€89.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>adidas Originals SAMBA OG UNISEX - Trainers - footwear white/core black <span style="color: var(--muted);">(€89.95)</span></li>
+                
+                <li>adidas Originals SL 72 OG W - Trainers - pink spark/shadow red <span style="color: var(--muted);">(€76.95)</span></li>
+                
+                <li>adidas Originals SAMBA OG LEOPARD - Trainers - core black preloved red cream white <span style="color: var(--muted);">(€129.95)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #11.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"tnf jacke"</div>
+          <div class="query-category">Abbreviation &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #5
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'The North Face QUEST JACKET - Hardshell jacket - tnf black' (0.742 relevance) was ranked at position #5, while lower relevance results like 'The North Face W TNF CYCLONE WIND - Light jacket - hushed lavender' (0.688 relevance) appeared at position #1. Additionally, non-jacket items like Salewa hiking shoes and leggings with very low relevance scores (0.283-0.328) were ranked in positions #7-#15, pushing down more relevant jacket results.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>The North Face W TNF CYCLONE WIND  - Light jacket - hushed lavender <span style="color: var(--muted);">(€115.00)</span></li>
+                
+                <li>The North Face W TNF CYCLONE WIND  - Light jacket - black <span style="color: var(--muted);">(€109.95)</span></li>
+                
+                <li>The North Face W TNF CYCLONE WIND  - Light jacket - white dune <span style="color: var(--muted);">(€115.00)</span></li>
+                
+                <li>The North Face W TNF RANGE DOWN HOODED JACKET - Down jacket - white dune <span style="color: var(--muted);">(€174.95)</span></li>
+                
+                <li>The North Face QUEST JACKET - Hardshell jacket - tnf black <span style="color: var(--muted);">(€116.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>The North Face QUEST JACKET - Hardshell jacket - tnf black <span style="color: var(--muted);">(€116.95)</span></li>
+                
+                <li>The North Face W TNF CYCLONE WIND  - Light jacket - black <span style="color: var(--muted);">(€109.95)</span></li>
+                
+                <li>The North Face W TNF CYCLONE WIND  - Light jacket - white dune <span style="color: var(--muted);">(€115.00)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #5.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Nike"</div>
+          <div class="query-category">Brand search &middot;
+            <span class="severity-label minor">Minor</span>
+            &middot; Best result at position #2
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance score product 'Nike Sportswear AIR FORCE 1 - Trainers - white' (0.801) was ranked #2 instead of #1. Multiple high-scoring products were out of order: 'Nike Sportswear AIR FORCE 1 07 - Trainers - white/black' (0.789) was at #7, 'Nike Sportswear AIR FORCE 1 LE GS - Trainers - black' (0.789) was at #11, and 'Nike Performance AIR MONARCH IV - Training shoe' (0.785) was buried at #12.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Nike Sportswear AIR FORCE 1 07 - Trainers - white <span style="color: var(--muted);">(€95.95)</span></li>
+                
+                <li>Nike Sportswear AIR FORCE 1  - Trainers - white <span style="color: var(--muted);">(€79.95)</span></li>
+                
+                <li>Nike Sportswear TEE FUTURA UNISEX - Basic T-shirt - black <span style="color: var(--muted);">(€16.00)</span></li>
+                
+                <li>Nike Performance DRY PARK III - Sports shorts - black <span style="color: var(--muted);">(€16.16)</span></li>
+                
+                <li>Nike Sportswear AIR FORCE 1 07 - Trainers - black <span style="color: var(--muted);">(€95.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Nike Sportswear AIR FORCE 1  - Trainers - white <span style="color: var(--muted);">(€79.95)</span></li>
+                
+                <li>Nike Sportswear AIR FORCE 1 07 - Trainers - white/black <span style="color: var(--muted);">(€95.95)</span></li>
+                
+                <li>Nike Sportswear AIR FORCE 1 LE GS - Trainers - black <span style="color: var(--muted);">(€89.95)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="capability-section">
+      <h3>
+        <span class="severity-dot critical"></span>
+        Shopping Context
+      </h3>
+
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"sommer sandalen"</div>
+          <div class="query-category">Seasonal / occasion &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #15
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'Keen UNEEK UNISEX - Walking sandals - white' (0.602 relevance) was buried at position #15, while much lower relevance results dominated the top positions: 'Pier One UNISEX - Sandals - light brown' (0.531 relevance) at #1, 'Jack & Jones JFWMILAN - Sandals - anthracite' (0.492 relevance) at #2, and 'Pier One LEATHER - T-bar sandals - dark brown' (0.500 relevance) at #3. The top 3 average relevance was only 0.508, well below the 0.60 threshold.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Pier One UNISEX - Sandals - light brown <span style="color: var(--muted);">(€10.59)</span></li>
+                
+                <li>Jack & Jones JFWMILAN  - Sandals - anthracite <span style="color: var(--muted);">(€44.99)</span></li>
+                
+                <li>Pier One LEATHER - T-bar sandals - dark brown <span style="color: var(--muted);">(€39.99)</span></li>
+                
+                <li>Pier One LEATHER - Sandals - cognac <span style="color: var(--muted);">(€44.99)</span></li>
+                
+                <li>Zign UNISEX - Sandals - brown <span style="color: var(--muted);">(€44.99)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Keen UNEEK UNISEX - Walking sandals - white <span style="color: var(--muted);">(€149.95)</span></li>
+                
+                <li>Keen UNEEK - Walking sandals - white <span style="color: var(--muted);">(€119.95)</span></li>
+                
+                <li>Keen UNEEK - Walking sandals - natural/birch <span style="color: var(--muted);">(€120.00)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #15.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"accessoire"</div>
+          <div class="query-category">Plural / singular &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #6
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine correctly retrieved relevant accessories but ranked them poorly. The highest relevance item 'Lacoste METROPOLE BRACELET - Bracelet' (0.590) was buried at position #6, while lower-scoring caps like 'Polo Ralph Lauren COTTON TWILL BALL CAP' (0.516) and 'Polo Ralph Lauren COTTON TWILL BALL CAP' (0.484) occupied the top positions. Other high-scoring accessories like 'Pier One UNISEX - Tote bag' (0.547) at position #7 and 'Nike Sportswear UNISEX - Cross body bag' (0.531) at position #14 were also poorly positioned.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Polo Ralph Lauren COTTON TWILL BALL CAP UNISEX - Cap - guide cream <span style="color: var(--muted);">(€45.00)</span></li>
+                
+                <li>Polo Ralph Lauren COTTON TWILL BALL CAP UNISEX - Cap - deckwash white <span style="color: var(--muted);">(€45.00)</span></li>
+                
+                <li>Oakley REMIX DAD UNISEX - Cap - blackout <span style="color: var(--muted);">(€29.95)</span></li>
+                
+                <li>Anna Field Tote bag - brown <span style="color: var(--muted);">(€24.99)</span></li>
+                
+                <li>Anna Field Tote bag - black <span style="color: var(--muted);">(€21.09)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Lacoste METROPOLE BRACELET - Bracelet - silver-coloured <span style="color: var(--muted);">(€89.95)</span></li>
+                
+                <li>Pier One UNISEX - Tote bag - beige/navy <span style="color: var(--muted);">(€10.79)</span></li>
+                
+                <li>Nike Sportswear UNISEX - Cross body bag - black/anthracite <span style="color: var(--muted);">(€23.15)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #6.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"winter stiefel"</div>
+          <div class="query-category">Seasonal / occasion &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #2
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search correctly retrieved winter boots but ranked them poorly. The highest relevance winter boot (bugatti Winter boots - schwarz, 0.621) was only #2, while a less relevant Timberland ankle boot (0.389) took #1. Multiple high-relevance winter boots were buried: Romika Winter boots (#8, 0.578), TOM TAILOR Winter boots (#13, 0.547), and Mustang Winter boots (#15, 0.543). The engine also mixed in generic ankle boots that aren't specifically winter footwear.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Timberland Lace-up ankle boots - wheat <span style="color: var(--muted);">(€172.95)</span></li>
+                
+                <li>bugatti Winter boots - schwarz <span style="color: var(--muted);">(€59.97)</span></li>
+                
+                <li>Timberland Lace-up ankle boots - black <span style="color: var(--muted);">(€160.95)</span></li>
+                
+                <li>camel active Winter boots - black <span style="color: var(--muted);">(€64.95)</span></li>
+                
+                <li>Rieker Lace-up ankle boots - noir <span style="color: var(--muted);">(€67.96)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>bugatti Winter boots - schwarz <span style="color: var(--muted);">(€59.97)</span></li>
+                
+                <li>Romika Winter boots - black <span style="color: var(--muted);">(€45.49)</span></li>
+                
+                <li>Spirale Winter boots - marrone <span style="color: var(--muted);">(€58.75)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"schuh"</div>
+          <div class="query-category">Plural / singular &middot;
+            <span class="severity-label minor">Minor</span>
+            &middot; Best result at position #2
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'adidas Originals ZX 1K BOOST SCHUH - Trainers - grey' (0.719) was ranked #2 instead of #1, while 'Sterntaler BABY-SCHUH - First shoes - marine' (0.680) was ranked #1. Multiple other high-relevance results were also mispositioned: 'Sterntaler STOFFSCHUHE WINTER BABY-SCHUH - First shoes - dunkelblau meliert' (0.691) at #3 should be #2, and 'Sterntaler AQUA-SCHUH - Watersports shoes - dunkelgrün' (0.684) at #5 should be #4.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Sterntaler BABY-SCHUH - First shoes - marine <span style="color: var(--muted);">(€22.99)</span></li>
+                
+                <li>adidas Originals ZX 1K BOOST SCHUH - Trainers - grey <span style="color: var(--muted);">(€110.00)</span></li>
+                
+                <li>Sterntaler STOFFSCHUHE WINTER BABY-SCHUH - First shoes - dunkelblau meliert <span style="color: var(--muted);">(€16.99)</span></li>
+                
+                <li>Sterntaler AQUA-SCHUH - Pool slides - marine <span style="color: var(--muted);">(€14.99)</span></li>
+                
+                <li>Sterntaler AQUA-SCHUH - Watersports shoes - dunkelgrün <span style="color: var(--muted);">(€14.99)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>adidas Originals ZX 1K BOOST SCHUH - Trainers - grey <span style="color: var(--muted);">(€110.00)</span></li>
+                
+                <li>Sterntaler STOFFSCHUHE WINTER BABY-SCHUH - First shoes - dunkelblau meliert <span style="color: var(--muted);">(€16.99)</span></li>
+                
+                <li>Sterntaler AQUA-SCHUH - Watersports shoes - dunkelgrün <span style="color: var(--muted);">(€14.99)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="capability-section">
+      <h3>
+        <span class="severity-dot critical"></span>
+        Filters & Constraints
+      </h3>
+
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"nike herren sneaker"</div>
+          <div class="query-category">Multi-attribute &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #9
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'Nike Sportswear AIR FORCE 1 07 FLYEASE - Trainers - WHITE' (0.621 relevance) was ranked #9 instead of #1. The actual #1 result 'Nike Sportswear AIR MAX PHOENIX - Trainers - anthracite/black' had only 0.555 relevance. Multiple high-relevance results were misplaced: #4 'Nike Sportswear AIR FORCE 1 07 - Trainers - black' (0.617 relevance) and #7 'Nike Sportswear AIR FORCE 1 07 FLYEASE - Trainers - black' (0.617 relevance) should have been in top 3.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Nike Sportswear AIR MAX PHOENIX - Trainers - anthracite/black <span style="color: var(--muted);">(€76.95)</span></li>
+                
+                <li>Nike Sportswear DUNK LOW RETRO UNISEX - Trainers - white/light smoke grey/white <span style="color: var(--muted);">(€107.95)</span></li>
+                
+                <li>Nike Sportswear AIR FORCE 1 07 - Trainers - white <span style="color: var(--muted);">(€95.95)</span></li>
+                
+                <li>Nike Sportswear AIR FORCE 1 07 - Trainers - black <span style="color: var(--muted);">(€95.95)</span></li>
+                
+                <li>Nike Sportswear AIR FORCE 1 07 - Trainers - white/black <span style="color: var(--muted);">(€95.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Nike Sportswear AIR FORCE 1 07 FLYEASE - Trainers - WHITE <span style="color: var(--muted);">(€119.95)</span></li>
+                
+                <li>Nike Sportswear AIR FORCE 1 07 - Trainers - black <span style="color: var(--muted);">(€95.95)</span></li>
+                
+                <li>Nike Sportswear AIR FORCE 1 07 FLYEASE - Trainers - black <span style="color: var(--muted);">(€83.95)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #9.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"damen sale kleider"</div>
+          <div class="query-category">Facet extraction &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #3
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The query 'damen sale kleider' contains three facet values: 'damen' (women's gender filter), 'sale' (promotional filter), and 'kleider' (dresses category). However, the search returned completely unrelated products: Nike trainers (#1, #8, #11, #14), men's underwear (Calvin Klein trunks and boxer briefs #12, #13, #15), unisex clogs (#2, #7, #9), sports socks (#10), and other athletic wear. None of these are women's dresses on sale. The engine treated these facet terms as keywords to match in product titles rather than as filters to apply.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Nike Sportswear AIR FORCE 1 07 - Trainers - white <span style="color: var(--muted);">(€95.95)</span></li>
+                
+                <li>Pier One LEATHER UNISEX - Clogs - brown <span style="color: var(--muted);">(€35.99)</span></li>
+                
+                <li>adidas Performance DEUTSCHLAND DFB 26 AWAY - Sports T-shirt <span style="color: var(--muted);">(€99.95)</span></li>
+                
+                <li>Vans KNU SKOOL UNISEX - Skate shoes - black true white <span style="color: var(--muted);">(€65.95)</span></li>
+                
+                <li>adidas Originals HANDBALL SPEZIAL - Trainers - earth strata/off white <span style="color: var(--muted);">(€109.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>adidas Performance DEUTSCHLAND DFB 26 AWAY - Sports T-shirt <span style="color: var(--muted);">(€99.95)</span></li>
+                
+                <li>Pier One LEATHER UNISEX - Clogs - safari <span style="color: var(--muted);">(€29.99)</span></li>
+                
+                <li>Nike Sportswear AIR FORCE 1 07 - Trainers - black <span style="color: var(--muted);">(€95.95)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"sneaker unter 100 euro"</div>
+          <div class="query-category">Price anchored &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #2
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The query 'sneaker unter 100 euro' explicitly requests sneakers under 100 euros, but 8 out of 13 results violate this price constraint: Nike AIR MAX 90 at €149.95 (#6), Nike AIR MAX 90 SE at €159.95 (#7), Nike AIR MAX MOTO 2K at €129.95 (#8), Nike AIR MAX MOTO 2K SE at €139.95 (#9), Nike AIR MAX 90 UNISEX at €134.95 (#10), Nike AIR MAX MUSE SE at €135.95 (#11), Nike AIR MAX 90 AMD UNISEX at €149.95 (#12), and Nike AIR MAX MUSE 2 at €159.95 (#13). These results range from €129.95 to €159.95, all significantly exceeding the 100 euro limit.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Even&Odd Trainers - white/silver-coloured/pink <span style="color: var(--muted);">(€34.99)</span></li>
+                
+                <li>Puma MAYZE - Trainers - white/peyote <span style="color: var(--muted);">(€59.95)</span></li>
+                
+                <li>Puma CARINA STREET - Trainers - white/frosty pink/alpine snow <span style="color: var(--muted);">(€56.95)</span></li>
+                
+                <li>Even&Odd Trainers - light pink <span style="color: var(--muted);">(€19.99)</span></li>
+                
+                <li>ASICS SportStyle JAPAN S PF - Trainers - white <span style="color: var(--muted);">(€84.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Puma MAYZE - Trainers - white/peyote <span style="color: var(--muted);">(€59.95)</span></li>
+                
+                <li>ASICS SportStyle JAPAN S PF - Trainers - white <span style="color: var(--muted);">(€84.95)</span></li>
+                
+                <li>Puma CARINA STREET - Trainers - white/frosty pink/alpine snow <span style="color: var(--muted);">(€56.95)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"rote nike schuhe"</div>
+          <div class="query-category">Facet extraction &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #3
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The query 'rote nike schuhe' specifically requested Nike shoes, but 10 out of 15 results (positions #6-15) are Converse products. These Converse results include 'CHUCK LO - Trainers - black/egret' at #6, 'CHUCK TAYLOR ALL STAR LIFT - High-top trainers - vintage white/egret/days ahead' at #8, and multiple other Chuck Taylor variants. The engine correctly identified shoes but completely ignored the Nike brand constraint for two-thirds of the results.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Nike Sportswear AIR MAX MUSE - Trainers - university red/metallic silver-coloured/black <span style="color: var(--muted);">(€87.95)</span></li>
+                
+                <li>Nike Sportswear LD 1000 SE 2 - Trainers - ember glow/beyond pink/sail/alabaster/med brown <span style="color: var(--muted);">(€44.95)</span></li>
+                
+                <li>Nike Sportswear SHOX SE - Trainers - red/dark red/silver-coloured <span style="color: var(--muted);">(€143.95)</span></li>
+                
+                <li>Nike Sportswear AIR MAX DN8 - Trainers - university red/team red <span style="color: var(--muted);">(€170.99)</span></li>
+                
+                <li>Nike Sportswear KILLSHOT 2 - Trainers - aster pink/aster pink/yellow/sail <span style="color: var(--muted);">(€42.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Nike Sportswear SHOX SE - Trainers - red/dark red/silver-coloured <span style="color: var(--muted);">(€143.95)</span></li>
+                
+                <li>Nike Sportswear AIR MAX DN8 - Trainers - university red/team red <span style="color: var(--muted);">(€170.99)</span></li>
+                
+                <li>Nike Sportswear AIR MAX MUSE - Trainers - university red/metallic silver-coloured/black <span style="color: var(--muted);">(€87.95)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"schwarze leder stiefel"</div>
+          <div class="query-category">Multi-attribute &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #2
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The query 'schwarze leder stiefel' (black leather boots) should filter for leather material, but all results show only color filtering. No leather boots appear in results - instead we see synthetic materials like 'Koi Footwear MALAI' at #1, 'rag & bone JONI' at #2, and 'Even&Odd Cowboy/Biker boots' at #4. The engine treated 'leder' (leather) as a keyword to match in titles rather than as a material filter, completely missing this key product attribute.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Koi Footwear MALAI - Lace-up ankle boots - black <span style="color: var(--muted);">(€29.95)</span></li>
+                
+                <li>rag & bone JONI - Boots - black <span style="color: var(--muted);">(€404.95)</span></li>
+                
+                <li>rag & bone COREY MID HEEL CHELSEA - Classic ankle boots - black <span style="color: var(--muted);">(€399.95)</span></li>
+                
+                <li>Even&Odd Cowboy/Biker boots - black <span style="color: var(--muted);">(€48.99)</span></li>
+                
+                <li>Anna Field Lace-up boots - black <span style="color: var(--muted);">(€35.99)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>rag & bone JONI - Boots - black <span style="color: var(--muted);">(€404.95)</span></li>
+                
+                <li>LASCANA Platform boots - schwarz <span style="color: var(--muted);">(€79.99)</span></li>
+                
+                <li>Even&Odd Over-the-knee boots - black <span style="color: var(--muted);">(€41.99)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="capability-section">
+      <h3>
+        <span class="severity-dot moderate"></span>
+        Product Discovery
+      </h3>
+
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Nike Air Max 90"</div>
+          <div class="query-category">Direct match &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #5
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine correctly retrieved all relevant Nike Air Max 90 products but ranked them poorly. The highest relevance score products (0.906) were buried at positions #5 and #10: 'Nike Sportswear AIR MAX 90 UNISEX - Trainers - black/metallic cool grey/dark smoke grey' and 'Nike Sportswear AIR MAX 90 UNISEX - Trainers - white/black/pink foam/anthracite/smoke grey'. Meanwhile, lower relevance products (0.895 and 0.891) occupied the top positions #1-#4.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Nike Sportswear AIR MAX 90 - Trainers - black <span style="color: var(--muted);">(€134.95)</span></li>
+                
+                <li>Nike Sportswear AIR MAX 90 - Trainers - black/white <span style="color: var(--muted);">(€134.95)</span></li>
+                
+                <li>Nike Sportswear AIR MAX 90 - Trainers - black/sapphire <span style="color: var(--muted);">(€134.95)</span></li>
+                
+                <li>Nike Sportswear AIR MAX 90 - Trainers - white <span style="color: var(--muted);">(€149.95)</span></li>
+                
+                <li>Nike Sportswear AIR MAX 90 UNISEX - Trainers - black/metallic cool grey/dark smoke grey <span style="color: var(--muted);">(€134.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Nike Sportswear AIR MAX 90 UNISEX - Trainers - black/metallic cool grey/dark smoke grey <span style="color: var(--muted);">(€134.95)</span></li>
+                
+                <li>Nike Sportswear AIR MAX 90 UNISEX - Trainers - white/black/pink foam/anthracite/smoke grey <span style="color: var(--muted);">(€149.95)</span></li>
+                
+                <li>Nike Sportswear AIR MAX 90 UNISEX - Trainers - phantom/tattoo/moon particle/taupe haze <span style="color: var(--muted);">(€84.95)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #5.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Birkenstock Arizona"</div>
+          <div class="query-category">Direct match &middot;
+            <span class="severity-label minor">Minor</span>
+            &middot; Best result at position #3
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance score product 'Birkenstock ARIZONA BF DARK BROWNN - REGULAR - Sandals - dark brown' (0.883) was ranked at position #3 instead of #1. The current #1 result 'Birkenstock ARIZONA EVA BLACKN - REGULAR - Sandals - black' has a lower relevance score of 0.879. All results are relevant Birkenstock Arizona products, but the ranking algorithm is not properly ordering by relevance score.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Birkenstock ARIZONA EVA BLACKN - REGULAR - Sandals - black <span style="color: var(--muted);">(€54.95)</span></li>
+                
+                <li>Birkenstock ARIZONA BF NARROW UNISEX - Sandals - faded khaki <span style="color: var(--muted);">(€89.95)</span></li>
+                
+                <li>Birkenstock ARIZONA BF DARK BROWNN - REGULAR - Sandals - dark brown <span style="color: var(--muted);">(€89.95)</span></li>
+                
+                <li>Birkenstock ARIZONA EVA REGULAR - Sandals - khaki <span style="color: var(--muted);">(€54.95)</span></li>
+                
+                <li>Birkenstock ARIZONA EVA BLACKS - NARROW - Sandals - black <span style="color: var(--muted);">(€54.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Birkenstock ARIZONA BF DARK BROWNN - REGULAR - Sandals - dark brown <span style="color: var(--muted);">(€89.95)</span></li>
+                
+                <li>Birkenstock ARIZONA EVA BLACKN - REGULAR - Sandals - black <span style="color: var(--muted);">(€54.95)</span></li>
+                
+                <li>Birkenstock ARIZONA EVA REGULAR - Sandals - khaki <span style="color: var(--muted);">(€54.95)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"schuhe"</div>
+          <div class="query-category">Broad category &middot;
+            <span class="severity-label minor">Minor</span>
+            &middot; Best result at position #2
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search correctly retrieved relevant footwear products for the broad category query 'schuhe', but the ranking is suboptimal. The highest relevance score product 'Marco Tozzi Ballet pumps - zwart' (0.699) appears at position #2, while the lowest relevance product 'Crocs CROCS GETAWAY PLATFORM FLIP FLOPS' (0.547) is ranked #1. Additionally, 'Anna Field Casual lace-ups - beige' (0.645) is at position #4 despite having higher relevance than products ranked above it.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Crocs CROCS GETAWAY PLATFORM FLIP FLOPS. - Pool slides - black <span style="color: var(--muted);">(€44.99)</span></li>
+                
+                <li>Marco Tozzi Ballet pumps - zwart <span style="color: var(--muted);">(€39.95)</span></li>
+                
+                <li>Crocs GETAWAY STRAPPY - Sandals - black <span style="color: var(--muted);">(€39.99)</span></li>
+                
+                <li>Anna Field Casual lace-ups - beige <span style="color: var(--muted);">(€26.99)</span></li>
+                
+                <li>Anna Field Espadrilles - black <span style="color: var(--muted);">(€24.99)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Marco Tozzi Ballet pumps - zwart <span style="color: var(--muted);">(€39.95)</span></li>
+                
+                <li>Anna Field Casual lace-ups - beige <span style="color: var(--muted);">(€26.99)</span></li>
+                
+                <li>Anna Field Espadrilles - black <span style="color: var(--muted);">(€24.99)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"bekleidung"</div>
+          <div class="query-category">Broad category &middot;
+            <span class="severity-label pass">Pass</span>
+            &middot; Best result at position #3
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The top 3 results are all highly relevant clothing items with strong relevance scores: #1 Impetus nightie (0.758), #2 Impetus nightie (0.750), #3 Impetus top (0.766). The best result is only displaced by 2 positions, and the top 3 average relevance is 0.758, well above the 0.60 threshold.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Impetus BEKLEIDUNG IM8662P6000 - Nightie - pink p p pk <span style="color: var(--muted);">(€67.55)</span></li>
+                
+                <li>Impetus BEKLEIDUNG IM8669P5500 - Nightie - orange p im p or <span style="color: var(--muted);">(€57.90)</span></li>
+                
+                <li>Impetus BEKLEIDUNG IM8319M8900 - Top - navy m-imm-nb <span style="color: var(--muted);">(€43.90)</span></li>
+                
+                <li>Bolongaro Trevor BEKLEIDUNG FREYA TRUCKER - Leather jacket - coco mocha wss <span style="color: var(--muted);">(€215.25)</span></li>
+                
+                <li>Bolongaro Trevor BEKLEIDUNG RYLEE MINI - Mini skirt - chinchilla (wss) <span style="color: var(--muted);">(€155.55)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Impetus BEKLEIDUNG IM8319M8900 - Top - navy m-imm-nb <span style="color: var(--muted);">(€43.90)</span></li>
+                
+                <li>Impetus BEKLEIDUNG IM8662P6000 - Nightie - pink p p pk <span style="color: var(--muted);">(€67.55)</span></li>
+                
+                <li>Bolongaro Trevor BEKLEIDUNG RYLEE MINI - Mini skirt - chinchilla (wss) <span style="color: var(--muted);">(€155.55)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="capability-section">
+      <h3>
+        <span class="severity-dot moderate"></span>
+        Language Understanding
+      </h3>
+
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"pullover"</div>
+          <div class="query-category">Synonym &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #4
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine correctly retrieved relevant pullover/hoodie/sweatshirt products but ranked them poorly. The highest relevance item 'PULL&BEAR Hoodie - black' (0.520) was placed at position #4, while lower-scoring items like 'Blend BHROBIN TROYER - Jumper - sand' (0.426) and 'Multiply Apparel Hoodie - snow white' (0.451) were ranked #1 and #2 respectively. Multiple PULL&BEAR hoodies with relevance scores above 0.48 were scattered throughout positions #4, #5, #8, #11, and #12 instead of being grouped at the top.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Blend BHROBIN TROYER - Jumper - sand <span style="color: var(--muted);">(€37.95)</span></li>
+                
+                <li>Multiply Apparel Hoodie - snow white <span style="color: var(--muted);">(€79.90)</span></li>
+                
+                <li>Multiply Apparel Hoodie - black <span style="color: var(--muted);">(€79.90)</span></li>
+                
+                <li>PULL&BEAR Hoodie - black <span style="color: var(--muted);">(€17.99)</span></li>
+                
+                <li>PULL&BEAR Hoodie - light grey <span style="color: var(--muted);">(€17.99)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>PULL&BEAR Hoodie - black <span style="color: var(--muted);">(€17.99)</span></li>
+                
+                <li>PULL&BEAR Hoodie - light grey <span style="color: var(--muted);">(€17.99)</span></li>
+                
+                <li>PULL&BEAR ROUND NECK - Sweatshirt - black <span style="color: var(--muted);">(€19.99)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #4.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"turnschuhe"</div>
+          <div class="query-category">Synonym &middot;
+            <span class="severity-label minor">Minor</span>
+            &middot; Best result at position #3
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search correctly retrieved relevant sneaker products for the German term 'turnschuhe', but the ranking algorithm prioritized the Skechers product (relevance 0.777) at #1 over higher-scoring results like 'Only & Sons SNEAKER TURNSCHUHE - Trainers - black' (relevance 0.797) at #3. The top 8 results all contain 'TURNSCHUHE' in their titles and are highly relevant, but they're not ordered by their relevance scores.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Skechers SLIP-INS BOBS LOVE TRUE DELIGHT TURNSCHUHE - Trainers - black <span style="color: var(--muted);">(€82.79)</span></li>
+                
+                <li>Creeks AMERICAN INSPIRATION FASHION COOL EASY TURNSCHUHE - Trainers - blanc <span style="color: var(--muted);">(€29.99)</span></li>
+                
+                <li>Only & Sons SNEAKER TURNSCHUHE - Trainers - black <span style="color: var(--muted);">(€49.99)</span></li>
+                
+                <li>Only & Sons SNEAKER TURNSCHUHE - Trainers - bright white <span style="color: var(--muted);">(€49.99)</span></li>
+                
+                <li>Only & Sons SNEAKER TURNSCHUHE - Trainers - walnut <span style="color: var(--muted);">(€49.99)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Only & Sons SNEAKER TURNSCHUHE - Trainers - black <span style="color: var(--muted);">(€49.99)</span></li>
+                
+                <li>Creeks AMERICAN INSPIRATION FASHION COOL EASY TURNSCHUHE - Trainers - blanc <span style="color: var(--muted);">(€29.99)</span></li>
+                
+                <li>Only & Sons SNEAKER TURNSCHUHE - Trainers - white <span style="color: var(--muted);">(€49.99)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"sportschuhe"</div>
+          <div class="query-category">Synonym &middot;
+            <span class="severity-label minor">Minor</span>
+            &middot; Best result at position #2
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search correctly retrieved relevant athletic shoes for 'sportschuhe' but ranked them poorly. The highest relevance result (0.828) 'Puma PUMA MILENIO TECH SNEAKER SPORTSCHUHE SCHUHE UNISEX 402623 19 WHITE/MAUVE' was at position #2, while a lower relevance result (0.801) was ranked #1. More significantly, the OYSHO result with 0.816 relevance was buried at position #9, and several other high-relevance LICO products were pushed down to positions #5, #7, and #10 despite having relevance scores of 0.781 and 0.773.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Puma PUMA MILENIO TECH SNEAKER SPORTSCHUHE SCHUHE UNISEX 402623 16 WEISS/BLAU - Skate shoes - white racing blue new navy <span style="color: var(--muted);">(€69.95)</span></li>
+                
+                <li>Puma PUMA MILENIO TECH SNEAKER SPORTSCHUHE SCHUHE UNISEX 402623 19 WHITE/MAUVE - Trainers - white-mauve pop-strong grey <span style="color: var(--muted);">(€69.94)</span></li>
+                
+                <li>LICO LICO SPORTSCHUH SIRO V - Skate shoes - marine lemon orange <span style="color: var(--muted);">(€25.95)</span></li>
+                
+                <li>adidas Performance KAPTIR 4.0 K KINDER UNISEX SNEAKER SPORTSCHUHE SCHUHE JR5656 WEISS/SCHWARZ - Trainers - white   core black   white <span style="color: var(--muted);">(€59.94)</span></li>
+                
+                <li>LICO LICO SPORTSCHUH FIT INDOOR - Walking trainers - petrol türkis <span style="color: var(--muted);">(€44.95)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Puma PUMA MILENIO TECH SNEAKER SPORTSCHUHE SCHUHE UNISEX 402623 19 WHITE/MAUVE - Trainers - white-mauve pop-strong grey <span style="color: var(--muted);">(€69.94)</span></li>
+                
+                <li>OYSHO GESCHNÜRTE SPORTSCHUHE MIT SOCKENARTIGEM OBERMATERIAL 11111880 - Trainers - bronze <span style="color: var(--muted);">(€45.99)</span></li>
+                
+                <li>Puma PUMA MILENIO TECH SNEAKER SPORTSCHUHE SCHUHE UNISEX 402623 16 WEISS/BLAU - Skate shoes - white racing blue new navy <span style="color: var(--muted);">(€69.95)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"jeans hose"</div>
+          <div class="query-category">Synonym &middot;
+            <span class="severity-label minor">Minor</span>
+            &middot; Best result at position #2
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine correctly retrieved relevant jeans products for the German query 'jeans hose', but failed to rank them by relevance score. The highest scoring result 'Topshop JAMIE - Jeans Skinny Fit' (0.457) was placed at position #2, while lower-scoring results like 'Street One Slim fit jeans' (0.445) ranked #1. Additionally, 'Stradivarius D92 - Straight leg jeans' (0.441) was buried at position #14 despite having the 4th highest relevance score.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Street One Slim fit jeans - blau <span style="color: var(--muted);">(€49.99)</span></li>
+                
+                <li>Topshop JAMIE - Jeans Skinny Fit - black denim <span style="color: var(--muted);">(€48.99)</span></li>
+                
+                <li>TOM TAILOR DENIM TTLINLEY Mom - Mom Jeans - used mid stone blue denim <span style="color: var(--muted);">(€49.99)</span></li>
+                
+                <li>PULL&BEAR RIPPED  - Mom Jeans - dark blue <span style="color: var(--muted);">(€29.99)</span></li>
+                
+                <li>Bershka SUPER - Baggy Jeans - royal blue <span style="color: var(--muted);">(€27.99)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Topshop JAMIE - Jeans Skinny Fit - black denim <span style="color: var(--muted);">(€48.99)</span></li>
+                
+                <li>Stradivarius MIT SEHR BUND  - Jeans Skinny Fit - blue denim <span style="color: var(--muted);">(€22.99)</span></li>
+                
+                <li>Street One Slim fit jeans - blau <span style="color: var(--muted);">(€49.99)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </section>
+
+  <!-- ================ WHAT'S WORKING ================ -->
+  <section>
+    <div class="section-label">Positive Findings</div>
+    <h2>What's Working</h2>
+    <ul class="whats-working-list">
+      
+      <li><strong>Retrieval is working</strong> — relevant results were found in 25 of 38 queries. The primary issue is ranking, not finding: the right results exist in the result set but aren't being surfaced at the top.</li>
+      
+      <li><strong>Close to correct</strong> on 16 queries ("Timberlnd boots", "Nike", "schuh"): the best result was within the top 3, just not at #1.</li>
+      
+    </ul>
+  </section>
+
+  <!-- ================ METHODOLOGY ================ -->
+  <section>
+    <div class="section-label">How We Did It</div>
+    <h2>The Prism Audit Pipeline</h2>
+
+    <p style="color: var(--muted); margin-bottom: 24px;">
+      This audit was conducted using our Prism pipeline &mdash; a seven-phase automated search quality assessment.
+      38 test queries were generated across 15 query categories, grouped into 6 core capabilities.
+    </p>
+
+    <ol class="pipeline-steps">
+      
+      <li class="pipeline-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>Site Discovery</h4>
+          <p>Automated analysis of your site’s structure, navigation categories, brands, and featured products to understand what your search engine should be able to find.</p>
+        </div>
+      </li>
+      
+      <li class="pipeline-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>Test Design</h4>
+          <p>Site-type-aware selection from a library of 26 test categories. Categories are chosen based on your site’s commerce model to ensure the audit tests what matters most for your customers.</p>
+        </div>
+      </li>
+      
+      <li class="pipeline-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>Query Generation</h4>
+          <p>AI-generated realistic customer queries grounded in the actual products, brands, and categories found on your site — not generic templates.</p>
+        </div>
+      </li>
+      
+      <li class="pipeline-step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>Result Collection</h4>
+          <p>Automated search execution collecting the top results for each test query exactly as your customers would see them.</p>
+        </div>
+      </li>
+      
+      <li class="pipeline-step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h4>Relevance Scoring</h4>
+          <p>Each result scored on a 0.0–1.0 scale by a specialized relevance model, producing an objective measure of how well each result matches the query intent.</p>
+        </div>
+      </li>
+      
+      <li class="pipeline-step">
+        <div class="step-number">6</div>
+        <div class="step-content">
+          <h4>Failure Analysis</h4>
+          <p>Each query classified by failure mode (e.g., poor ranking, constraint dropped, no fuzzy matching) and severity based on how far the best result was buried below irrelevant ones.</p>
+        </div>
+      </li>
+      
+      <li class="pipeline-step">
+        <div class="step-number">7</div>
+        <div class="step-content">
+          <h4>Report Assembly</h4>
+          <p>Findings synthesized into this actionable narrative with prioritized recommendations ordered by business impact.</p>
+        </div>
+      </li>
+      
+    </ol>
+  </section>
+
+  <!-- ================ APPENDIX ================ -->
+  <section class="section-break-before">
+    <div class="section-label">Full Data</div>
+    <h2>Appendix: Complete Test Results</h2>
+    <p style="color: var(--muted); margin-bottom: 16px;">All 38 queries tested by the Prism audit pipeline.</p>
+
+    <table class="appendix-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Query</th>
+          <th>Category</th>
+          <th>Severity</th>
+          <th>Best Position</th>
+          <th>Failure Mode</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>1</td>
+          <td class="query-col">jack & jones</td>
+          <td>Special character</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr>
+          <td>2</td>
+          <td class="query-col">marc o'polo</td>
+          <td>Special character</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr>
+          <td>3</td>
+          <td class="query-col">chuck</td>
+          <td>Partial query</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr>
+          <td>4</td>
+          <td class="query-col">ck jeans</td>
+          <td>Abbreviation</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>No semantic understanding</td>
+        </tr>
+        
+        <tr>
+          <td>5</td>
+          <td class="query-col">ultra boost</td>
+          <td>Split word</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#15</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>6</td>
+          <td class="query-col">sommer sandalen</td>
+          <td>Seasonal / occasion</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#15</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>7</td>
+          <td class="query-col">Dr Martins 1460</td>
+          <td>Typo</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#14</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>8</td>
+          <td class="query-col">herrenschuhe</td>
+          <td>Merged words</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#13</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>9</td>
+          <td class="query-col">chuck taylor</td>
+          <td>Split word</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#12</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>10</td>
+          <td class="query-col">ultra</td>
+          <td>Partial query</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#11</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>11</td>
+          <td class="query-col">adidas sneaker</td>
+          <td>Brand search</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#11</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>12</td>
+          <td class="query-col">air max</td>
+          <td>Split word</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#10</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>13</td>
+          <td class="query-col">nike herren sneaker</td>
+          <td>Multi-attribute</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#9</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>14</td>
+          <td class="query-col">damen sale kleider</td>
+          <td>Facet extraction</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#3</td>
+          <td>Facet not extracted</td>
+        </tr>
+        
+        <tr>
+          <td>15</td>
+          <td class="query-col">sneaker unter 100 euro</td>
+          <td>Price anchored</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#2</td>
+          <td>Constraint dropped</td>
+        </tr>
+        
+        <tr>
+          <td>16</td>
+          <td class="query-col">Convrse Chuck Taylor</td>
+          <td>Typo</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#6</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>17</td>
+          <td class="query-col">winterjacke</td>
+          <td>Merged words</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#6</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>18</td>
+          <td class="query-col">accessoire</td>
+          <td>Plural / singular</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#6</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>19</td>
+          <td class="query-col">Adidas Ulraboost</td>
+          <td>Typo</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#5</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>20</td>
+          <td class="query-col">tnf jacke</td>
+          <td>Abbreviation</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#5</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>21</td>
+          <td class="query-col">Nike Air Max 90</td>
+          <td>Direct match</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#5</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>22</td>
+          <td class="query-col">laufschuhe</td>
+          <td>Merged words</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#4</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>23</td>
+          <td class="query-col">pullover</td>
+          <td>Synonym</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#4</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>24</td>
+          <td class="query-col">rote nike schuhe</td>
+          <td>Facet extraction</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#3</td>
+          <td>Brand bleed</td>
+        </tr>
+        
+        <tr>
+          <td>25</td>
+          <td class="query-col">winter stiefel</td>
+          <td>Seasonal / occasion</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>26</td>
+          <td class="query-col">schwarze leder stiefel</td>
+          <td>Multi-attribute</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#2</td>
+          <td>Facet not extracted</td>
+        </tr>
+        
+        <tr>
+          <td>27</td>
+          <td class="query-col">herren winter stiefel</td>
+          <td>Facet extraction</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#2</td>
+          <td>Facet not extracted</td>
+        </tr>
+        
+        <tr>
+          <td>28</td>
+          <td class="query-col">damen winter jacke</td>
+          <td>Multi-attribute</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#1</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>29</td>
+          <td class="query-col">jacke bis 50 euro</td>
+          <td>Price anchored</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#3</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>30</td>
+          <td class="query-col">Birkenstock Arizona</td>
+          <td>Direct match</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#3</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>31</td>
+          <td class="query-col">turnschuhe</td>
+          <td>Synonym</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#3</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>32</td>
+          <td class="query-col">Timberlnd boots</td>
+          <td>Typo</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>33</td>
+          <td class="query-col">Nike</td>
+          <td>Brand search</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>34</td>
+          <td class="query-col">schuh</td>
+          <td>Plural / singular</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>35</td>
+          <td class="query-col">schuhe</td>
+          <td>Broad category</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>36</td>
+          <td class="query-col">sportschuhe</td>
+          <td>Synonym</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>37</td>
+          <td class="query-col">jeans hose</td>
+          <td>Synonym</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr>
+          <td>38</td>
+          <td class="query-col">bekleidung</td>
+          <td>Broad category</td>
+          <td><span class="severity-dot pass"></span> Pass</td>
+          <td>#1</td>
+          <td>—</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================ CTA ================ -->
+  <section class="cta-section">
+    <h2>Next Steps</h2>
+    <p>We'd welcome the opportunity to walk you through these findings in detail and discuss a remediation plan tailored to your team's priorities and timeline.</p>
+    <p style="font-size: 0.875rem; color: var(--muted);">The issues identified in this audit are fixable &mdash; most ecommerce search platforms support the capabilities tested here, and the roadmap above is ordered by impact to help you prioritize.</p>
+    <a href="#" class="cta-button">Schedule a 30-Minute Walkthrough</a>
+  </section>
+
+</div>
+
+</body>
+</html>
