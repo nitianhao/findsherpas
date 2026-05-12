@@ -1001,13 +1001,17 @@ strong { font-weight: 600; }
 }
 
 #fs-gate {
-  position: fixed; inset: 0; background: #fff; z-index: 9999;
+  position: fixed; inset: 0; z-index: 9999;
   display: flex; align-items: center; justify-content: center;
   font-family: Calibri, 'Segoe UI', sans-serif;
+  backdrop-filter: blur(10px) brightness(0.88);
+  -webkit-backdrop-filter: blur(10px) brightness(0.88);
+  background: rgba(240, 245, 245, 0.45);
 }
 #fs-gate-card {
   text-align: center; max-width: 380px; width: 90%; padding: 2.5rem 2rem;
-  border: 1px solid #e8e8e8; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,.07);
+  background: #fff; border: 1px solid #e8e8e8; border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.14);
 }
 #fs-gate h2 { font-size: 1.15rem; font-weight: 600; color: #111; margin: 0 0 .4rem; }
 #fs-gate p  { color: #666; font-size: .9rem; margin: 0 0 1.5rem; line-height: 1.5; }
@@ -1047,7 +1051,7 @@ strong { font-weight: 600; }
 <script>
 (function() {
   var stored = localStorage.getItem('fs_auth_huckberry');
-  if (stored && stored === 'cae86edc9a5768ab51ab07800d34ca2af1d1f863538257f44a3432538bfc4049') {
+  if (stored && stored === '45f2c05e9a52506daa685ad066c90ef44f76894eb0b5f4d795e61f5befb70702') {
     document.getElementById('fs-gate').style.display = 'none';
     document.body.style.overflow = '';
   }
@@ -1060,7 +1064,7 @@ async function fsCheck() {
   var pw = document.getElementById('fs-pw').value;
   var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
   var hex = Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-  if (hex === 'cae86edc9a5768ab51ab07800d34ca2af1d1f863538257f44a3432538bfc4049') {
+  if (hex === '45f2c05e9a52506daa685ad066c90ef44f76894eb0b5f4d795e61f5befb70702') {
     localStorage.setItem('fs_auth_huckberry', hex);
     fsUnlock();
   } else {
