@@ -999,7 +999,7 @@ strong { font-weight: 600; }
     grid-template-columns: 1fr;
   }
 }
-<style>
+
 #fs-gate {
   position: fixed; inset: 0; background: #fff; z-index: 9999;
   display: flex; align-items: center; justify-content: center;
@@ -1025,9 +1025,9 @@ strong { font-weight: 600; }
 #fs-gate button:hover { background: #007f87; }
 #fs-err { display: none; color: #e40014; font-size: .85rem; margin-bottom: .6rem; }
 #fs-gate footer { color: #bbb; font-size: .72rem; margin-top: 1.5rem; }
-</style></style>
+</style>
 </head>
-<body>
+<body style="overflow:hidden">
 
 <div id="fs-gate">
   <div id="fs-gate-card">
@@ -1047,17 +1047,22 @@ strong { font-weight: 600; }
 <script>
 (function() {
   var stored = localStorage.getItem('fs_auth_huckberry');
-  if (stored && stored === '9d679629a7beb31cc8edcc1230ca457c72ac47e23d3ad9a23b557de0fa22be15') {
+  if (stored && stored === 'cae86edc9a5768ab51ab07800d34ca2af1d1f863538257f44a3432538bfc4049') {
     document.getElementById('fs-gate').style.display = 'none';
+    document.body.style.overflow = '';
   }
 })();
+function fsUnlock() {
+  document.getElementById('fs-gate').style.display = 'none';
+  document.body.style.overflow = '';
+}
 async function fsCheck() {
   var pw = document.getElementById('fs-pw').value;
   var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
   var hex = Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-  if (hex === '9d679629a7beb31cc8edcc1230ca457c72ac47e23d3ad9a23b557de0fa22be15') {
+  if (hex === 'cae86edc9a5768ab51ab07800d34ca2af1d1f863538257f44a3432538bfc4049') {
     localStorage.setItem('fs_auth_huckberry', hex);
-    document.getElementById('fs-gate').style.display = 'none';
+    fsUnlock();
   } else {
     document.getElementById('fs-err').style.display = 'block';
     document.getElementById('fs-pw').value = '';
