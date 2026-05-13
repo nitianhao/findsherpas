@@ -321,56 +321,102 @@ strong { font-weight: 600; }
 /* ---- Coverage summary ---- */
 .coverage-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin: 18px 0;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 22px 0;
 }
 
 .coverage-item {
   border: 1px solid var(--border);
-  border-left: 4px solid var(--border);
+  border-left: 3px solid var(--border);
   border-radius: 6px;
-  padding: 14px 16px;
+  padding: 16px 18px;
   background: #fff;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.9fr) minmax(220px, 1.35fr) minmax(220px, 1.25fr);
+  gap: 18px;
+  align-items: start;
 }
 
-.coverage-item.hm-good { border-left-color: #16a34a; background: #f0fdf4; }
-.coverage-item.hm-ok { border-left-color: #b45309; background: #fffbeb; }
-.coverage-item.hm-bad { border-left-color: #c2410c; background: #fff7ed; }
-.coverage-item.hm-critical { border-left-color: var(--destructive); background: #fef2f2; }
+.coverage-item.hm-good { border-left-color: #16a34a; }
+.coverage-item.hm-mixed { border-left-color: #b45309; }
+.coverage-item.hm-developing { border-left-color: #c2410c; }
+.coverage-item.hm-gap { border-left-color: #94a3b8; }
 
 .coverage-topline {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 8px;
+  display: grid;
+  gap: 8px;
 }
 
 .coverage-capability {
   font-weight: 700;
   line-height: 1.35;
+  font-size: 0.96rem;
 }
 
-.coverage-pct {
-  font-size: 1.35rem;
-  font-weight: 800;
-  line-height: 1;
+.coverage-pattern {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.35;
 }
 
-.coverage-item.hm-good .coverage-pct { color: #16a34a; }
-.coverage-item.hm-ok .coverage-pct { color: #b45309; }
-.coverage-item.hm-bad .coverage-pct { color: #c2410c; }
-.coverage-item.hm-critical .coverage-pct { color: var(--destructive); }
+.coverage-status {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: var(--surface);
+}
+
+.coverage-item.hm-good .coverage-status {
+  color: #166534;
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+
+.coverage-item.hm-mixed .coverage-status {
+  color: #92400e;
+  border-color: #fde68a;
+  background: #fffbeb;
+}
+
+.coverage-item.hm-developing .coverage-status {
+  color: #9a3412;
+  border-color: #fed7aa;
+  background: #fff7ed;
+}
 
 .coverage-meta {
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.84rem;
+  line-height: 1.55;
 }
 
 .coverage-query-type {
   color: var(--fg);
   font-weight: 600;
+}
+
+.coverage-evidence {
+  color: var(--fg);
+  font-weight: 700;
+}
+
+.coverage-remedy {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.coverage-remedy strong {
+  color: var(--fg);
 }
 
 .diagnostic-grid {
@@ -1112,6 +1158,13 @@ strong { font-weight: 600; }
 .scope-grid div { border-left: 4px solid var(--primary); padding-left: 18px; }
 .scope-grid p { color: #b8b8b8; }
 
+@media (max-width: 900px) {
+  .coverage-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
 /* ============================================================
    PRINT STYLES
    ============================================================ */
@@ -1263,7 +1316,7 @@ strong { font-weight: 600; }
 <script>
 (function() {
   var stored = localStorage.getItem('fs_auth_huckberry');
-  if (stored && stored === 'bb15cc69c014feed53defe462d8f37afb56a47d9d372fdfc15534c5c5cef3a05') {
+  if (stored && stored === 'f91be91550a48e7e0973df1aff9d8c26c925cbe12302aa0072ec5821aa0c3dbf') {
     document.getElementById('fs-gate').style.display = 'none';
     document.body.style.overflow = '';
   }
@@ -1276,7 +1329,7 @@ async function fsCheck() {
   var pw = document.getElementById('fs-pw').value;
   var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
   var hex = Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-  if (hex === 'bb15cc69c014feed53defe462d8f37afb56a47d9d372fdfc15534c5c5cef3a05') {
+  if (hex === 'f91be91550a48e7e0973df1aff9d8c26c925cbe12302aa0072ec5821aa0c3dbf') {
     localStorage.setItem('fs_auth_huckberry', hex);
     fsUnlock();
   } else {
@@ -1410,159 +1463,234 @@ async function fsCheck() {
 
   <!-- ================ COVERAGE SUMMARY ================ -->
   <section id="coverage">
-    <div class="section-label">Coverage Summary</div>
-    <h2>Tested query patterns and pass rates</h2>
-    <p>Pass rate = queries where the customer sees a relevant top result. Each card shows a capability and query type that was actually tested.</p>
+    <div class="section-label">Query Pattern Diagnostics</div>
+    <h2>What each query family teaches us</h2>
+    <p>These are diagnostic probes, not final grades. Each row shows the customer behavior tested, what the current results suggest, and the practical tuning move to improve that pattern.</p>
 
     <div class="coverage-list">
       
-      <div class="coverage-item hm-ok">
+      <div class="coverage-item hm-good">
         <div class="coverage-topline">
           <div class="coverage-capability">Product Discovery</div>
-          <div class="coverage-pct">75%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Direct match</span></div>
+          <div class="coverage-status">Mostly reliable</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Direct match</span> &middot; 3/4 passed
+          <div><span class="coverage-evidence">3/4 clean passes</span> in this sample.</div>
+          <div>Can customers find an exact product when they already know the name?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Protect exact product-title matches and verify they are not outranked by broader keyword matches.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-developing">
         <div class="coverage-topline">
           <div class="coverage-capability">Product Discovery</div>
-          <div class="coverage-pct">25%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Broad category</span></div>
+          <div class="coverage-status">Inconsistent</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Broad category</span> &middot; 1/4 passed
+          <div><span class="coverage-evidence">1/4 clean passes</span> in this sample.</div>
+          <div>Does search understand high-level shopping terms and collection-style queries?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Map common retail terms to collections, category pages, and merchandising rules.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-gap">
         <div class="coverage-topline">
           <div class="coverage-capability">Product Discovery</div>
-          <div class="coverage-pct">0%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Category mapping</span></div>
+          <div class="coverage-status">Needs calibration</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Category mapping</span> &middot; 0/4 passed
+          <div><span class="coverage-evidence">0/4 clean passes</span> in this sample.</div>
+          <div>Can colloquial customer language map to the site's actual merchandising categories?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Create a synonym layer between customer phrases and internal taxonomy labels.
         </div>
       </div>
       
-      <div class="coverage-item hm-bad">
+      <div class="coverage-item hm-mixed">
         <div class="coverage-topline">
           <div class="coverage-capability">Typo Tolerance</div>
-          <div class="coverage-pct">50%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Typo</span></div>
+          <div class="coverage-status">Partly reliable</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Typo</span> &middot; 2/4 passed
+          <div><span class="coverage-evidence">2/4 clean passes</span> in this sample.</div>
+          <div>Does search recover when brand or product terms are misspelled?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Add fuzzy matching for high-value brands, product names, and common category terms.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-gap">
         <div class="coverage-topline">
           <div class="coverage-capability">Typo Tolerance</div>
-          <div class="coverage-pct">0%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Partial query</span></div>
+          <div class="coverage-status">Needs calibration</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Partial query</span> &middot; 0/4 passed
+          <div><span class="coverage-evidence">0/4 clean passes</span> in this sample.</div>
+          <div>Do incomplete typed-ahead queries surface plausible products before the full term is entered?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Tune prefix matching and autocomplete-backed retrieval for short or incomplete terms.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-gap">
         <div class="coverage-topline">
           <div class="coverage-capability">Language Understanding</div>
-          <div class="coverage-pct">0%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Synonym</span></div>
+          <div class="coverage-status">Needs calibration</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Synonym</span> &middot; 0/4 passed
+          <div><span class="coverage-evidence">0/4 clean passes</span> in this sample.</div>
+          <div>Does search connect customer vocabulary to the store's preferred product wording?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Expand synonym dictionaries and semantic embeddings for the product language customers actually use.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-gap">
         <div class="coverage-topline">
           <div class="coverage-capability">Language Understanding</div>
-          <div class="coverage-pct">0%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Natural language</span></div>
+          <div class="coverage-status">Needs calibration</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Natural language</span> &middot; 0/4 passed
+          <div><span class="coverage-evidence">0/4 clean passes</span> in this sample.</div>
+          <div>Can longer, conversational needs be translated into product intent?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Extract intent phrases from longer queries before ranking products.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-gap">
         <div class="coverage-topline">
           <div class="coverage-capability">Brand & Model Search</div>
-          <div class="coverage-pct">0%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Brand search</span></div>
+          <div class="coverage-status">Needs calibration</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Brand search</span> &middot; 0/4 passed
+          <div><span class="coverage-evidence">0/4 clean passes</span> in this sample.</div>
+          <div>Are brand requests recognized and protected from unrelated results?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Detect brand entities and boost or filter to products from the requested brand.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-gap">
         <div class="coverage-topline">
           <div class="coverage-capability">Filters & Constraints</div>
-          <div class="coverage-pct">0%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Facet extraction</span></div>
+          <div class="coverage-status">Needs calibration</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Facet extraction</span> &middot; 0/4 passed
+          <div><span class="coverage-evidence">0/4 clean passes</span> in this sample.</div>
+          <div>Are structured attributes like material, size, or product feature extracted from text?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Parse attributes into structured facets, then enforce them in ranking or filtering.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-gap">
         <div class="coverage-topline">
           <div class="coverage-capability">Filters & Constraints</div>
-          <div class="coverage-pct">0%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Negative intent</span></div>
+          <div class="coverage-status">Needs calibration</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Negative intent</span> &middot; 0/4 passed
+          <div><span class="coverage-evidence">0/4 clean passes</span> in this sample.</div>
+          <div>Can the engine respect exclusions such as 'not', 'without', or 'no'?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Add exclusion handling so banned terms reduce or remove matching products.
         </div>
       </div>
       
-      <div class="coverage-item hm-bad">
+      <div class="coverage-item hm-mixed">
         <div class="coverage-topline">
           <div class="coverage-capability">Filters & Constraints</div>
-          <div class="coverage-pct">50%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Multi-attribute</span></div>
+          <div class="coverage-status">Partly reliable</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Multi-attribute</span> &middot; 2/4 passed
+          <div><span class="coverage-evidence">2/4 clean passes</span> in this sample.</div>
+          <div>Can search keep multiple requirements active at the same time?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Score each constraint independently so one matched term does not drown out the rest.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-gap">
         <div class="coverage-topline">
           <div class="coverage-capability">Filters & Constraints</div>
-          <div class="coverage-pct">0%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Price anchored</span></div>
+          <div class="coverage-status">Needs calibration</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Price anchored</span> &middot; 0/4 passed
+          <div><span class="coverage-evidence">0/4 clean passes</span> in this sample.</div>
+          <div>Can price constraints be recognized and used as a ranking or filtering signal?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Parse numeric price limits and connect them to product price metadata.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-gap">
         <div class="coverage-topline">
           <div class="coverage-capability">Shopping Context</div>
-          <div class="coverage-pct">0%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Plural / singular</span></div>
+          <div class="coverage-status">Needs calibration</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Plural / singular</span> &middot; 0/4 passed
+          <div><span class="coverage-evidence">0/4 clean passes</span> in this sample.</div>
+          <div>Does search normalize simple wording variants such as singular and plural terms?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Normalize singular, plural, and close inflection variants before retrieval.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-gap">
         <div class="coverage-topline">
           <div class="coverage-capability">Shopping Context</div>
-          <div class="coverage-pct">0%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Subjective attribute</span></div>
+          <div class="coverage-status">Needs calibration</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Subjective attribute</span> &middot; 0/4 passed
+          <div><span class="coverage-evidence">0/4 clean passes</span> in this sample.</div>
+          <div>Can descriptive shopping language like premium, casual, or comfortable be mapped sensibly?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Connect subjective descriptors to curated tags, product copy, and merchandising attributes.
         </div>
       </div>
       
-      <div class="coverage-item hm-critical">
+      <div class="coverage-item hm-gap">
         <div class="coverage-topline">
           <div class="coverage-capability">Shopping Context</div>
-          <div class="coverage-pct">0%</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Seasonal / occasion</span></div>
+          <div class="coverage-status">Needs calibration</div>
         </div>
         <div class="coverage-meta">
-          <span class="coverage-query-type">Seasonal / occasion</span> &middot; 0/4 passed
+          <div><span class="coverage-evidence">0/4 clean passes</span> in this sample.</div>
+          <div>Can seasonal or occasion-based needs map to relevant categories and products?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Add occasion and season tags, then use them as ranking signals for broad needs.
         </div>
       </div>
       
