@@ -1,0 +1,4567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>75 TÃ¸j Searches. 41 Revenue-Risk Moments.</title>
+<style>
+/* ============================================================
+   FIND SHERPAS — Prism Audit Report
+   Master template — design extracted from findsherpas.com
+   Based on: kytary_cz_20260408_170636_report.html
+   ============================================================ */
+
+:root {
+  --primary: #009ba3;
+  --primary-fg: #fafafa;
+  --bg: #ffffff;
+  --fg: #0a0a0a;
+  --muted: #737373;
+  --border: #e5e5e5;
+  --accent: #dcf8fa;
+  --secondary: #f5f5f5;
+  --destructive: #e40014;
+  --radius: 0.75rem;
+
+  /* Severity */
+  --sev-critical: #e40014;
+  --sev-moderate: #fcbb00;
+  --sev-minor: #009588;
+  --sev-pass: #009ba3;
+
+  /* Chart palette */
+  --chart-1: #f05100;
+  --chart-2: #009588;
+  --chart-3: #104e64;
+  --chart-4: #fcbb00;
+  --chart-5: #f99c00;
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Layout ---- */
+.page-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+}
+
+section:first-of-type {
+  border-top: none;
+}
+
+h1, h2, h3, h4 {
+  color: var(--fg);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; margin-bottom: 20px; }
+h3 { font-size: 1.125rem; margin-bottom: 12px; }
+h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+
+p { margin-bottom: 14px; }
+strong { font-weight: 600; }
+
+/* ---- Cover ---- */
+.cover {
+  padding: 56px 0 48px;
+  text-align: left;
+}
+
+.cover-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  color: inherit;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.cover-logo:hover .brand-mark {
+  color: var(--primary);
+}
+
+.cover-logo svg {
+  width: 46px;
+  height: 46px;
+}
+
+.cover-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  line-height: 1.1;
+}
+
+.cover-brand .brand-mark {
+  font-size: 1.08rem;
+  font-weight: 750;
+  color: var(--fg);
+  letter-spacing: 0;
+}
+
+.cover-brand .brand-positioning {
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.cover h1 {
+  max-width: 760px;
+  font-size: clamp(2.2rem, 5.2vw, 3.35rem);
+  font-weight: 760;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+
+.cover .subtitle {
+  max-width: 680px;
+  font-size: 1.05rem;
+  font-weight: 450;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 20px;
+  letter-spacing: 0;
+}
+
+.cover-byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 5px;
+  margin-top: 18px;
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.cover-byline-label {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.cover-byline-name {
+  color: #525252;
+  font-weight: 600;
+}
+
+.cover-byline-separator {
+  color: #d4d4d4;
+}
+
+.cover-byline a {
+  color: #525252;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cover-byline a:hover {
+  text-decoration: underline;
+}
+
+/* ---- Report crossroads ---- */
+.report-crossroads {
+  padding: 28px 0 36px;
+  border-top: 1px solid var(--border);
+}
+
+.crossroads-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.crossroads-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--fg);
+  text-decoration: none;
+  background: #fff;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.crossroads-link:hover {
+  border-color: var(--primary);
+  background: var(--accent);
+}
+
+.crossroads-link span {
+  color: var(--primary);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* ---- Section label ---- */
+.section-label {
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+/* ---- Short version & risk summary ---- */
+.tldr {
+  background: var(--accent);
+  border-left: 4px solid var(--primary);
+  padding: 24px 28px;
+  border-radius: 6px;
+  margin: 24px 0;
+  font-size: 1.02rem;
+}
+
+.tldr h3 {
+  margin-bottom: 10px;
+}
+
+.tldr strong {
+  color: var(--destructive);
+}
+
+.hero-stat {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 28px;
+  align-items: center;
+  padding: 32px;
+  background: var(--secondary);
+  border-radius: var(--radius);
+  margin: 24px 0;
+}
+
+.hero-stat .n {
+  font-size: 5rem;
+  font-weight: 800;
+  color: var(--destructive);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.hero-stat .txt {
+  font-size: 1rem;
+  color: var(--fg);
+}
+
+.hero-stat .txt strong {
+  display: block;
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+}
+
+.hero-stat .txt em {
+  color: var(--muted);
+  font-style: normal;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 6px;
+}
+
+.worst-example {
+  position: relative;
+  margin: 28px 0 4px;
+  padding: 22px 26px 22px 34px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--destructive);
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+
+.worst-example::before {
+  content: "\201C";
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  color: var(--destructive);
+  font-size: 3.1rem;
+  line-height: 1;
+  font-weight: 800;
+  opacity: 0.18;
+}
+
+.worst-example-label {
+  display: block;
+  color: var(--destructive);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.worst-example-text {
+  display: block;
+  color: var(--fg);
+  font-size: 1.2rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.worst-example-text strong {
+  color: var(--fg);
+}
+
+.tier-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.tier {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  background: #fff;
+}
+
+.tier .tv {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.tier .tl {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.tier .td {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.tier.t-bad { border-top: 3px solid var(--destructive); }
+.tier.t-bad .tv, .tier.t-bad .tl { color: var(--destructive); }
+.tier.t-warn { border-top: 3px solid var(--chart-5); }
+.tier.t-warn .tv, .tier.t-warn .tl { color: var(--chart-5); }
+.tier.t-good { border-top: 3px solid var(--sev-pass); }
+.tier.t-good .tv, .tier.t-good .tl { color: var(--sev-pass); }
+
+/* ---- Coverage summary ---- */
+.coverage-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 22px 0;
+}
+
+.coverage-item {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 22px;
+  background: #fff;
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(320px, 1.45fr) minmax(260px, 1.05fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.coverage-item.hm-good { border-left-color: #16a34a; }
+.coverage-item.hm-mixed { border-left-color: #b45309; }
+.coverage-item.hm-developing { border-left-color: #2563eb; }
+.coverage-item.hm-gap { border-left-color: var(--destructive); }
+
+.coverage-topline {
+  display: grid;
+  gap: 8px;
+}
+
+.coverage-capability {
+  font-weight: 700;
+  line-height: 1.35;
+  font-size: 0.96rem;
+}
+
+.coverage-pattern {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.coverage-status {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.coverage-item.hm-good .coverage-status {
+  color: #166534;
+}
+
+.coverage-item.hm-mixed .coverage-status {
+  color: #92400e;
+}
+
+.coverage-item.hm-developing .coverage-status {
+  color: #1d4ed8;
+}
+
+.coverage-item.hm-gap .coverage-status {
+  color: var(--destructive);
+}
+
+.coverage-meta {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.coverage-query-type {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.coverage-evidence {
+  color: var(--fg);
+  font-weight: 700;
+}
+
+.coverage-signal-note {
+  margin-top: 4px;
+}
+
+.coverage-remedy {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.coverage-remedy strong {
+  color: var(--fg);
+}
+
+.diagnostic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 22px 0;
+}
+
+.diagnostic-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  background: #fff;
+}
+
+.diagnostic-card h4 {
+  margin-bottom: 10px;
+}
+
+.diagnostic-metric {
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+.diagnostic-metric.good { color: var(--sev-pass); }
+.diagnostic-metric.warn { color: #b45309; }
+.diagnostic-metric.bad { color: var(--destructive); }
+
+.diagnostic-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.diagnostic-list li {
+  margin-bottom: 8px;
+}
+
+.diagnostic-list strong,
+.diagnostic-list code {
+  color: var(--fg);
+}
+
+.diagnostic-section {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 22px;
+  margin: 18px 0;
+  background: #fff;
+}
+
+.diagnostic-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+
+.diagnostic-header h3 {
+  margin-bottom: 8px;
+}
+
+.diagnostic-meaning {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.diagnostic-score {
+  min-width: 140px;
+  text-align: right;
+}
+
+.diagnostic-score-label {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.diagnostic-body {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  gap: 24px;
+}
+
+.diagnostic-remedy {
+  background: var(--accent);
+  border-left: 3px solid var(--primary);
+  border-radius: 4px;
+  padding: 14px 16px;
+}
+
+.diagnostic-remedy p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Capability accordions ---- */
+.capability-accordion {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 16px 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.capability-accordion summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 14px;
+  min-height: 64px;
+  padding: 14px 18px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.capability-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.capability-accordion summary h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.capability-accordion .severity-dot {
+  display: none;
+}
+
+.capability-accordion summary::after {
+  content: "+";
+  color: var(--primary);
+  width: 28px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.capability-accordion[open] summary {
+  border-bottom: 1px solid var(--border);
+  background: var(--secondary);
+}
+
+.capability-accordion[open] summary::after {
+  content: "-";
+}
+
+.capability-accordion-body {
+  padding: 20px;
+}
+
+.accordion-count {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---- Progressive disclosure for long sections ---- */
+.load-more-scope {
+  position: relative;
+}
+
+.load-more-scope.is-collapsed {
+  padding-bottom: 72px;
+}
+
+.load-more-scope.is-collapsed::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 46px;
+  height: 96px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), #fff 78%);
+}
+
+.scope-section .load-more-scope.is-collapsed::after {
+  background: linear-gradient(to bottom, rgba(10,10,10,0), #0a0a0a 78%);
+}
+
+.load-more-item.is-hidden {
+  display: none;
+}
+
+.load-more-control {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 2;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: var(--primary-fg);
+  border-radius: 6px;
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.load-more-control:hover {
+  filter: brightness(0.95);
+}
+
+.note {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin-top: 8px;
+}
+
+/* ---- Stat cards ---- */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.stat-card {
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.stat-card .stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--fg);
+}
+
+.stat-card .stat-value.bad { color: var(--destructive); }
+.stat-card .stat-value.warn { color: var(--chart-5); }
+.stat-card .stat-value.good { color: var(--sev-pass); }
+
+.stat-card .stat-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* ---- Scorecard table ---- */
+.scorecard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.scorecard-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 10px 16px;
+  border-bottom: 2px solid var(--border);
+}
+
+.scorecard-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.scorecard-table tr:last-child td {
+  border-bottom: none;
+}
+
+.severity-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.severity-dot.critical { background: var(--sev-critical); }
+.severity-dot.moderate { background: var(--sev-moderate); }
+.severity-dot.minor { background: var(--sev-minor); }
+.severity-dot.pass { background: var(--sev-pass); }
+
+.severity-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.severity-label.critical { color: var(--sev-critical); }
+.severity-label.moderate { color: #b38600; }
+.severity-label.minor { color: var(--sev-minor); }
+.severity-label.pass { color: var(--sev-pass); }
+
+.scorecard-capability {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.scorecard-summary {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* ---- Stats summary ---- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 20px 0;
+}
+
+.stats-mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.stats-mini-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-mini-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-mini-table tr:last-child td {
+  border-bottom: none;
+}
+
+.stats-mini-table tr:nth-child(even) td {
+  background: var(--secondary);
+}
+
+.metric-list {
+  list-style: none;
+  margin: 20px 0;
+}
+
+.metric-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.metric-list li:last-child {
+  border-bottom: none;
+}
+
+.metric-list .metric-val {
+  font-weight: 700;
+  color: var(--fg);
+}
+
+/* ---- Deep dives ---- */
+.capability-section {
+  margin-bottom: 40px;
+}
+
+.capability-section h3 {
+  font-size: 1.25rem;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--primary);
+  margin-bottom: 16px;
+}
+
+.capability-intro {
+  color: var(--muted);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.query-example {
+  margin-bottom: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.query-header {
+  background: var(--secondary);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.query-header .query-text {
+  font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.query-header .query-category {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.query-body {
+  padding: 16px;
+}
+
+.query-body .narrative {
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  color: var(--fg);
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.comparison-col h4 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.comparison-col.actual h4 { color: var(--sev-critical); }
+.comparison-col.ideal h4 { color: var(--sev-minor); }
+
+.comparison-col.actual {
+  background: #fef2f2;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.comparison-col.ideal {
+  background: #f0fdf4;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.comparison-col ol {
+  list-style: none;
+  counter-reset: item;
+  font-size: 0.85rem;
+}
+
+.comparison-col ol li {
+  counter-increment: item;
+  padding: 4px 0;
+  line-height: 1.4;
+}
+
+.comparison-col ol li::before {
+  content: "#" counter(item) " ";
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-right: 2px;
+}
+
+.displacement-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* ---- What's Working ---- */
+.whats-working-list {
+  list-style: none;
+}
+
+.whats-working-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  padding-left: 24px;
+  position: relative;
+}
+
+.whats-working-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 18px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sev-pass);
+}
+
+.whats-working-list li:last-child {
+  border-bottom: none;
+}
+
+/* ---- Roadmap ---- */
+.roadmap-item {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.roadmap-item:last-child {
+  border-bottom: none;
+}
+
+.roadmap-number {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--primary-fg);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.roadmap-content {
+  flex: 1;
+}
+
+.roadmap-content h4 {
+  margin-bottom: 4px;
+}
+
+.roadmap-content p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+.badge.impact-critical { background: #fef2f2; color: var(--sev-critical); }
+.badge.impact-high { background: #fff7ed; color: var(--chart-5); }
+.badge.impact-moderate { background: #fefce8; color: #92400e; }
+.badge.effort-quick { background: #f0fdf4; color: var(--sev-minor); }
+.badge.effort-medium { background: #fefce8; color: #92400e; }
+.badge.effort-major { background: #fef2f2; color: var(--sev-critical); }
+
+/* ---- Benchmarks ---- */
+.benchmark-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.benchmark-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 10px 16px;
+  border-bottom: 2px solid var(--border);
+}
+
+.benchmark-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.benchmark-table .your-score {
+  font-weight: 700;
+}
+
+.benchmark-table .your-score.below { color: var(--sev-critical); }
+.benchmark-table .your-score.meets { color: var(--sev-minor); }
+
+.benchmark-table .target {
+  color: var(--muted);
+}
+
+.benchmark-table .source {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.callout {
+  background: var(--accent);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+
+.callout p {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Appendix table ---- */
+.appendix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin: 16px 0;
+}
+
+.appendix-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 8px 10px;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+
+.appendix-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.appendix-table tr:nth-child(even) td {
+  background: var(--secondary);
+}
+
+.appendix-table .query-col {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 0.8rem;
+}
+
+/* ---- CTA ---- */
+.cta-section {
+  text-align: center;
+  padding: 48px 0;
+}
+
+.cta-section h2 {
+  margin-bottom: 12px;
+}
+
+.cta-section p {
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto 24px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--primary-fg);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Scorecard result line ---- */
+.scorecard-result {
+  background: var(--secondary);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-top: 20px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* ---- Revenue-risk case cards ---- */
+.section-intro { color: var(--muted); max-width: 720px; margin-bottom: 24px; }
+.risk-case { border: 1px solid var(--border); border-left: 4px solid var(--destructive); border-radius: var(--radius); background: #fff; padding: 24px 28px; margin-bottom: 18px; }
+.case-topline { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+.case-num { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; color: var(--muted); }
+.case-topline code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 1rem; font-weight: 700; background: var(--secondary); border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; }
+.failure-badge { margin-left: auto; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; color: var(--destructive); background: #fff5f5; border: 1px solid #fecaca; padding: 4px 9px; border-radius: 3px; text-transform: uppercase; }
+.case-fail { color: var(--destructive); font-weight: 600; margin-bottom: 18px; }
+.case-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.9fr) minmax(220px, 0.9fr); gap: 28px; align-items: start; }
+.case-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+.case-copy { color: var(--fg); line-height: 1.6; }
+.case-fix { background: var(--accent); border-left: 3px solid var(--primary); border-radius: 4px; padding: 12px 14px; margin-top: 14px; font-size: 0.92rem; }
+.results-panel { background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
+.ideal-panel { background: #f7fdfd; border-color: #bdeff2; }
+.result-row { margin-bottom: 10px; }
+.result-row:last-child { margin-bottom: 0; }
+.result-row p { color: var(--muted); font-size: 0.83rem; line-height: 1.35; margin: 3px 0 0 24px; }
+.result-price { color: var(--muted); }
+.rel-line { display: flex; align-items: center; gap: 8px; }
+.rel-rank { color: var(--muted); width: 18px; text-align: right; flex-shrink: 0; }
+.rel-track { width: 86px; height: 5px; background: #ececec; border-radius: 999px; overflow: hidden; flex-shrink: 0; }
+.rel-fill { display: block; height: 100%; border-radius: 999px; }
+.rel-good { color: #16a34a; background: #16a34a; }
+.rel-warn { color: #d97706; background: #d97706; }
+.rel-bad { color: var(--destructive); background: var(--destructive); }
+.rel-score { width: 36px; font-weight: 800; }
+
+/* ---- Scope ---- */
+.scope-section { background: #0a0a0a; color: #fafafa; margin-left: -32px; margin-right: -32px; padding-left: 32px; padding-right: 32px; }
+.scope-section h2, .scope-section h4 { color: #fafafa; }
+.scope-section .section-label { color: var(--primary); }
+.scope-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.scope-grid div { border-left: 4px solid var(--primary); padding-left: 18px; }
+.scope-grid p { color: #b8b8b8; }
+
+@media (max-width: 900px) {
+  .coverage-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  @page {
+    size: A4;
+    margin: 18mm 14mm 22mm 14mm;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.55;
+  }
+
+  .page-wrapper {
+    max-width: none;
+    padding: 0;
+  }
+
+  /* Page breaks */
+  .cover { page-break-after: always; }
+  .section-break-before { page-break-before: always; }
+  .report-crossroads { page-break-after: always; }
+
+  /* Avoid breaks inside these */
+  .query-example,
+  .roadmap-item,
+  .stat-row,
+  .scorecard-table tr,
+  .benchmark-table tr,
+  .pipeline-step,
+  .callout { page-break-inside: avoid; }
+
+  /* Avoid orphaned headings */
+  h2, h3 {
+    page-break-after: avoid;
+  }
+
+  /* Hide CTA button in print */
+  .cta-button,
+  .load-more-control { display: none; }
+
+  .load-more-item.is-hidden {
+    display: revert !important;
+  }
+
+  .load-more-scope.is-collapsed {
+    padding-bottom: 0;
+  }
+
+  .load-more-scope.is-collapsed::after {
+    display: none;
+  }
+
+  /* Ensure colors print */
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* Stat cards: shrink for print */
+  .stat-row {
+    gap: 10px;
+  }
+
+  .hero-stat,
+  .tier-row,
+  .risk-case,
+  .capability-accordion,
+  .scope-grid div,
+  .diagnostic-card,
+  .diagnostic-section,
+  .coverage-item {
+    page-break-inside: avoid;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+  .stat-card .stat-value {
+    font-size: 1.4rem;
+  }
+
+  /* Comparison columns stack on narrow print */
+  .comparison {
+    gap: 10px;
+  }
+
+  .case-grid,
+  .crossroads-grid,
+  .diagnostic-grid,
+  .diagnostic-body,
+  .diagnostic-header,
+  .scope-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .diagnostic-score {
+    text-align: left;
+  }
+}
+
+#fs-gate {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  backdrop-filter: blur(10px) brightness(0.88);
+  -webkit-backdrop-filter: blur(10px) brightness(0.88);
+  background: rgba(240, 245, 245, 0.45);
+}
+#fs-gate-card {
+  text-align: center; max-width: 380px; width: 90%; padding: 2.5rem 2rem;
+  background: #fff; border: 1px solid #e8e8e8; border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.14);
+}
+#fs-gate h2 { font-size: 1.15rem; font-weight: 600; color: #111; margin: 0 0 .4rem; }
+#fs-gate p  { color: #666; font-size: .9rem; margin: 0 0 1.5rem; line-height: 1.5; }
+#fs-gate input {
+  width: 100%; box-sizing: border-box; padding: .7rem 1rem;
+  border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;
+  margin-bottom: .6rem; outline: none;
+}
+#fs-gate input:focus { border-color: #009ba3; }
+#fs-gate button {
+  width: 100%; padding: .75rem; background: #009ba3; color: #fff;
+  border: none; border-radius: 8px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; transition: background .15s;
+}
+#fs-gate button:hover { background: #007f87; }
+#fs-err { display: none; color: #e40014; font-size: .85rem; margin-bottom: .6rem; }
+#fs-gate footer { color: #bbb; font-size: .72rem; margin-top: 1.5rem; }
+</style>
+</head>
+<body style="overflow:hidden">
+
+<div id="fs-gate">
+  <div id="fs-gate-card">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:1rem;">
+      <path d="M16 4L4 26h24L16 4z" fill="#1a1a1a" opacity="0.9"/>
+      <path d="M10 24c2-3 3.5-6 4-9s1.5-5 2-6" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.85"/>
+    </svg>
+    <h2>This report is password protected</h2>
+    <p>Enter the access password to view the search audit.</p>
+    <input id="fs-pw" type="password" placeholder="Password" autocomplete="current-password"
+      onkeydown="if(event.key==='Enter')fsCheck()">
+    <div id="fs-err">Incorrect password. Please try again.</div>
+    <button onclick="fsCheck()">View Report</button>
+    <footer>Find Sherpas &middot; findsherpas.com</footer>
+  </div>
+</div>
+<script>
+(function() {
+  var stored = localStorage.getItem('fs_auth_miinto');
+  if (stored && stored === '37512c4d972ea2f74263132b4b207fa299ecd8bc66d222be20224505dc2e238d') {
+    document.getElementById('fs-gate').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+})();
+function fsUnlock() {
+  document.getElementById('fs-gate').style.display = 'none';
+  document.body.style.overflow = '';
+}
+async function fsCheck() {
+  var pw = document.getElementById('fs-pw').value;
+  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
+  var hex = Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  if (hex === '37512c4d972ea2f74263132b4b207fa299ecd8bc66d222be20224505dc2e238d') {
+    localStorage.setItem('fs_auth_miinto', hex);
+    fsUnlock();
+  } else {
+    document.getElementById('fs-err').style.display = 'block';
+    document.getElementById('fs-pw').value = '';
+  }
+}
+</script>
+
+
+<div class="page-wrapper">
+
+  <!-- ================ COVER ================ -->
+  <div class="cover">
+    <a class="cover-logo" href="https://findsherpas.com" target="_blank" rel="noopener noreferrer" aria-label="Find Sherpas homepage">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Mountain peak -->
+  <path d="M16 4L4 26h24L16 4z" fill="#1a1a1a" opacity="0.9"/>
+  <!-- Trail/path leading up -->
+  <path d="M10 24c2-3 3.5-6 4-9s1.5-5 2-6" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.85"/>
+  <!-- Small summit marker -->
+  <circle cx="16" cy="6.5" r="1.2" fill="#ffffff" opacity="0.9"/>
+</svg>
+
+      <div class="cover-brand">
+        <span class="brand-mark">Find Sherpas</span>
+        <span class="brand-positioning">Boutique Search Agency</span>
+      </div>
+    </a>
+    <div class="section-label">Search Quality Report</div>
+    <h1>75 TÃ¸j Searches. 41 Revenue-Risk Moments.</h1>
+    <div class="subtitle">An independent audit of how TÃ¸j search handles product names, brands, filters, and shopper intent.</div>
+    <div class="cover-byline" aria-label="Report author">
+      <span class="cover-byline-label">Prepared by</span>
+      <span class="cover-byline-name">Michal Pekarcik</span>
+      <span class="cover-byline-separator">&middot;</span>
+      <a href="https://findsherpas.com" target="_blank" rel="noopener noreferrer">Find Sherpas</a>
+    </div>
+    
+  </div>
+
+  <!-- ================ REPORT CROSSROADS ================ -->
+  <nav class="report-crossroads" aria-label="Report sections">
+    <div class="section-label">Report Crossroads</div>
+    <h2>Jump to a section</h2>
+    <div class="crossroads-grid">
+      <a class="crossroads-link" href="#summary">Search risk at a glance <span>&rarr;</span></a>
+      <a class="crossroads-link" href="#coverage">Tested query patterns <span>&rarr;</span></a>
+      <a class="crossroads-link" href="#improvement-map">Improvement map <span>&rarr;</span></a>
+      <a class="crossroads-link" href="#test-results">Test results summary <span>&rarr;</span></a>
+      <a class="crossroads-link" href="#advanced-diagnostics">Advanced diagnostics <span>&rarr;</span></a>
+      <a class="crossroads-link" href="#roadmap">Prioritized roadmap <span>&rarr;</span></a>
+      <a class="crossroads-link" href="#risk-failures">Revenue-risk failures <span>&rarr;</span></a>
+      <a class="crossroads-link" href="#deep-dives">Detailed analysis <span>&rarr;</span></a>
+      <a class="crossroads-link" href="#appendix">Complete test results <span>&rarr;</span></a>
+      <a class="crossroads-link" href="#scope">Scope and boundaries <span>&rarr;</span></a>
+    </div>
+  </nav>
+
+  <!-- ================ EXECUTIVE SUMMARY ================ -->
+  <section id="summary">
+    <div class="section-label">Summary</div>
+    <h2>Search risk at a glance</h2>
+
+    <div class="tldr">
+      <h3>The short version</h3>
+      <p>We tested 75 realistic customer queries against TÃ¸j's search, live on site. The audit checks whether customers see a relevant top result, not just whether the search engine returns something.</p>
+      <p>This report focuses on the 41 queries where a customer likely hits a dead end: an off-topic result, a missing interpretation, a dropped constraint, or a relevant product buried too far down.</p>
+      <p><strong>The first fix to ship: add an intent layer before ranking, so sale, bestseller, price, negative, and brand terms act as filters or boosts before generic keyword matches take over.</strong></p>
+    </div>
+
+    <div class="hero-stat">
+      <div class="n">55%</div>
+      <div class="txt">
+        <strong>revenue risk.</strong>
+        41 of 75 tested queries cause a likely customer bounce today.
+        <em>These are queries where a customer sees a dead end: no relevant top result, wrong interpretation, or the right product buried too far down.</em>
+      </div>
+    </div>
+
+    <div class="tier-row">
+      <div class="tier t-bad">
+        <div class="tv">41</div>
+        <div class="tl">Revenue risk</div>
+        <div class="td">Off-topic top result, missing interpretation, or severe ranking failure. The customer leaves.</div>
+      </div>
+      <div class="tier t-warn">
+        <div class="tv">31</div>
+        <div class="tl">Friction</div>
+        <div class="td">The query is close, but still creates work: the best match is not surfaced cleanly enough.</div>
+      </div>
+      <div class="tier t-good">
+        <div class="tv">3</div>
+        <div class="tl">Working well</div>
+        <div class="td">Top result is relevant and ranking is near-optimal. No immediate attention needed.</div>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-value warn">55%</div>
+        <div class="stat-label">Right products found, ranked too low</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value bad">#5</div>
+        <div class="stat-label">Avg. best result position</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value bad">60%</div>
+        <div class="stat-label">Best result outside top 3</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value good">0%</div>
+        <div class="stat-label">Irrelevant #1 result</div>
+      </div>
+    </div>
+
+    <blockquote class="worst-example">
+      <span class="worst-example-label">Most severe example</span>
+      <span class="worst-example-text">
+        A customer searching <strong>""</strong>
+        had to scroll to position #1 to find the best matching result.
+      </span>
+    </blockquote>
+  </section>
+
+  <!-- ================ COVERAGE SUMMARY ================ -->
+  <section id="coverage">
+    <div class="section-label">Pattern Calibration Map</div>
+    <h2>Where each query family needs tuning</h2>
+    <p>These are diagnostic probes, not grades. Each row shows the strength of the tuning signal in that sample, separating severe shopper-visible misses from minor ranking polish.</p>
+
+    <div class="coverage-list">
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Product Discovery</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Direct match</span></div>
+          <div class="coverage-status">Exact-match polish</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">3 probes reviewed: 3 visible misses.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Can customers find an exact product when they already know the name?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Protect exact product-title matches and verify they are not outranked by broader keyword matches.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Product Discovery</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Broad category</span></div>
+          <div class="coverage-status">Collection routing</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">3 probes reviewed: 2 visible misses, 1 polish note.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Does search understand high-level shopping terms and collection-style queries?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Map common retail terms to collections, category pages, and merchandising rules.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-mixed">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Product Discovery</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Category mapping</span></div>
+          <div class="coverage-status">Taxonomy mapping</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 2 friction points.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          <div>Can colloquial customer language map to the site's actual merchandising categories?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Create a synonym layer between customer phrases and internal taxonomy labels.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-mixed">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Language Understanding</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Synonym</span></div>
+          <div class="coverage-status">Vocabulary mapping</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">5 probes reviewed: 3 friction points, 2 polish notes.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          <div>Does search connect customer vocabulary to the store's preferred product wording?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Expand synonym dictionaries and semantic embeddings for the product language customers actually use.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Language Understanding</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Natural language</span></div>
+          <div class="coverage-status">Intent translation</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">4 probes reviewed: 4 visible misses.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Can longer, conversational needs be translated into product intent?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Extract intent phrases from longer queries before ranking products.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Language Understanding</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Stop-word heavy</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 2 visible misses.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Language Understanding</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Long verbose query</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 2 visible misses.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Language Understanding</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Semantic meaning</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">4 probes reviewed: 4 visible misses.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Typo Tolerance</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Typo</span></div>
+          <div class="coverage-status">Typo recovery</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">5 probes reviewed: 2 visible misses, 2 friction points, 1 polish note.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Does search recover when brand or product terms are misspelled?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Add fuzzy matching for high-value brands, product names, and common category terms.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-mixed">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Typo Tolerance</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Special character</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">3 probes reviewed: 2 friction points, 1 stable result.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Typo Tolerance</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Merged words</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">3 probes reviewed: 2 visible misses, 1 polish note.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Typo Tolerance</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Split word</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">3 probes reviewed: 1 visible miss, 1 friction point, 1 polish note.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Typo Tolerance</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Partial query</span></div>
+          <div class="coverage-status">Autocomplete intent</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 stable result.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Do incomplete typed-ahead queries surface plausible products before the full term is entered?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Tune prefix matching and autocomplete-backed retrieval for short or incomplete terms.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Brand & Model Search</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Brand search</span></div>
+          <div class="coverage-status">Brand protection</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">6 probes reviewed: 2 visible misses, 1 friction point, 3 polish notes.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Are brand requests recognized and protected from unrelated results?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Detect brand entities and boost or filter to products from the requested brand.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-mixed">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Brand & Model Search</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Abbreviation</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 1 friction point, 1 polish note.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Brand & Model Search</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">SKU / model number</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 stable result.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Filters & Constraints</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Price anchored</span></div>
+          <div class="coverage-status">Price parsing</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 2 visible misses.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Can price constraints be recognized and used as a ranking or filtering signal?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Parse numeric price limits and connect them to product price metadata.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Filters & Constraints</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Negative intent</span></div>
+          <div class="coverage-status">Exclusion handling</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 2 visible misses.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Can the engine respect exclusions such as 'not', 'without', or 'no'?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Add exclusion handling so banned terms reduce or remove matching products.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Filters & Constraints</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Unit variation</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 polish note.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Filters & Constraints</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Multi-attribute</span></div>
+          <div class="coverage-status">Constraint stacking</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">4 probes reviewed: 2 visible misses, 1 friction point, 1 polish note.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Can search keep multiple requirements active at the same time?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Score each constraint independently so one matched term does not drown out the rest.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Filters & Constraints</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Facet extraction</span></div>
+          <div class="coverage-status">Attribute parsing</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 2 visible misses.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Are structured attributes like material, size, or product feature extracted from text?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Parse attributes into structured facets, then enforce them in ranking or filtering.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Shopping Context</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Plural / singular</span></div>
+          <div class="coverage-status">Term normalization</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 friction point.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Does search normalize simple wording variants such as singular and plural terms?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Normalize singular, plural, and close inflection variants before retrieval.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-mixed">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Shopping Context</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Locale variation</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 1 friction point, 1 polish note.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Shopping Context</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Subjective attribute</span></div>
+          <div class="coverage-status">Merchandising language</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 polish note.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Can descriptive shopping language like premium, casual, or comfortable be mapped sensibly?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Connect subjective descriptors to curated tags, product copy, and merchandising attributes.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Shopping Context</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Use case</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">4 probes reviewed: 3 visible misses, 1 friction point.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-gap">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Shopping Context</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Seasonal / occasion</span></div>
+          <div class="coverage-status">Occasion matching</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 friction point.</span></div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div>Can seasonal or occasion-based needs map to relevant categories and products?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Add occasion and season tags, then use them as ranking signals for broad needs.
+        </div>
+      </div>
+      
+    </div>
+
+  </section>
+
+  <!-- ================ IMPROVEMENT FOCUS MAP ================ -->
+  <section id="improvement-map">
+    <div class="section-label">Improvement Map</div>
+    <h2>Where search can work harder</h2>
+
+    <table class="scorecard-table">
+      <thead>
+        <tr>
+          <th style="width: 110px;">Focus</th>
+          <th>Capability</th>
+          <th>What it means</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>
+            <span class="severity-dot critical"></span>
+            <span class="severity-label critical">Focus area</span>
+          </td>
+          <td class="scorecard-capability">Product Discovery</td>
+          <td class="scorecard-summary">8 of 8 query patterns show improvement room. This is a practical place to start for Product Discovery.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="severity-dot critical"></span>
+            <span class="severity-label critical">Focus area</span>
+          </td>
+          <td class="scorecard-capability">Language Understanding</td>
+          <td class="scorecard-summary">17 of 17 query patterns show improvement room. This is a practical place to start for Language Understanding.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="severity-dot critical"></span>
+            <span class="severity-label critical">Focus area</span>
+          </td>
+          <td class="scorecard-capability">Typo Tolerance</td>
+          <td class="scorecard-summary">14 of 16 query patterns show improvement room. This is a practical place to start for Typo Tolerance.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="severity-dot critical"></span>
+            <span class="severity-label critical">Focus area</span>
+          </td>
+          <td class="scorecard-capability">Brand & Model Search</td>
+          <td class="scorecard-summary">9 of 10 query patterns show improvement room. This is a practical place to start for Brand & Model Search.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="severity-dot critical"></span>
+            <span class="severity-label critical">Focus area</span>
+          </td>
+          <td class="scorecard-capability">Filters & Constraints</td>
+          <td class="scorecard-summary">12 of 12 query patterns show improvement room. This is a practical place to start for Filters & Constraints.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="severity-dot critical"></span>
+            <span class="severity-label critical">Focus area</span>
+          </td>
+          <td class="scorecard-capability">Shopping Context</td>
+          <td class="scorecard-summary">12 of 12 query patterns show improvement room. This is a practical place to start for Shopping Context.</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <div class="scorecard-result">
+      Use this as an improvement map: the focus areas are where changes are likely to help the most customer journeys.
+    </div>
+  </section>
+
+  <!-- ================ TEST RESULTS SUMMARY ================ -->
+  <section id="test-results">
+    <div class="section-label">Prism Test Results</div>
+    <h2>75 queries tested</h2>
+
+    <div class="stats-grid">
+      <div>
+        <h4>Severity Distribution</h4>
+        <table class="stats-mini-table">
+          <thead><tr><th>Severity</th><th style="text-align:right">Queries</th></tr></thead>
+          <tbody>
+            <tr><td><span class="severity-dot critical"></span> Critical</td><td style="text-align:right"><strong>41</strong></td></tr>
+            <tr><td><span class="severity-dot moderate"></span> Moderate</td><td style="text-align:right"><strong>17</strong></td></tr>
+            <tr><td><span class="severity-dot minor"></span> Minor</td><td style="text-align:right"><strong>14</strong></td></tr>
+            <tr><td><span class="severity-dot pass"></span> Pass</td><td style="text-align:right"><strong>3</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Failure Mode Breakdown</h4>
+        <table class="stats-mini-table">
+          <thead><tr><th>Failure Mode</th><th style="text-align:right">Queries</th></tr></thead>
+          <tbody>
+            
+            <tr><td>Poor ranking</td><td style="text-align:right"><strong>41</strong></td></tr>
+            
+            <tr><td>Zero results</td><td style="text-align:right"><strong>16</strong></td></tr>
+            
+            <tr><td>No semantic understanding</td><td style="text-align:right"><strong>6</strong></td></tr>
+            
+            <tr><td>Constraint dropped</td><td style="text-align:right"><strong>4</strong></td></tr>
+            
+            <tr><td>No fuzzy matching</td><td style="text-align:right"><strong>3</strong></td></tr>
+            
+            <tr><td>Other</td><td style="text-align:right"><strong>1</strong></td></tr>
+            
+            <tr><td>Facet not extracted</td><td style="text-align:right"><strong>1</strong></td></tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <ul class="metric-list">
+      <li><span class="metric-val">#5</span> average best result position</li>
+      <li><span class="metric-val">55%</span> of queries: retrieval OK but ranking failed (41 of 75)</li>
+      <li><span class="metric-val">60%</span> of queries had their best result outside the top 3</li>
+      <li><span class="metric-val">0%</span> of queries showed an irrelevant result in the top position</li>
+    </ul>
+  </section>
+
+  <!-- ================ ADVANCED QUERY DIAGNOSTICS ================ -->
+  <section id="advanced-diagnostics">
+    <div class="section-label">Advanced Diagnostics</div>
+    <h2>What the visible result set reveals</h2>
+    <p>These checks stay inside the same query → results → audit boundary, but look beyond the single best result.</p>
+
+    
+    <div class="diagnostic-section">
+      <div class="diagnostic-header">
+        <div>
+          <h3>Result Set Purity</h3>
+          <p class="diagnostic-meaning">This checks how much of the visible result set is actually relevant, not just whether one good result exists somewhere. A noisy top 5 means customers must visually filter around weak results even when search technically found a match.</p>
+        </div>
+        <div class="diagnostic-score">
+          <div class="diagnostic-metric warn">73%</div>
+          <div class="diagnostic-score-label">top 5 relevant</div>
+        </div>
+      </div>
+
+      <div class="diagnostic-body">
+        <div>
+          <p class="case-label">Result</p>
+          <p>The visible result set is fairly clean: 73% of top 5 results were relevant on average.</p>
+          
+          <p class="case-label">Evidence</p>
+          <ul class="diagnostic-list">
+            
+            <li>"children": 0/5 relevant in top 5</li>
+            
+            <li>"comfortable sneakers for everyday wear that look stylish": 0/1 relevant in top 5</li>
+            
+            <li>"Mos Mohs": 0/5 relevant in top 5</li>
+            
+            <li>"børn": 0/5 relevant in top 5</li>
+            
+          </ul>
+          
+        </div>
+        <div class="diagnostic-remedy">
+          <p class="case-label">How to remedy it</p>
+          <p>Tune ranking to demote low-relevance partial matches once a strong intent match exists. Add a top-N quality guardrail: for each important query class, require a minimum share of relevant results in the top 5, not only a good best-result position.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="diagnostic-section">
+      <div class="diagnostic-header">
+        <div>
+          <h3>Top Result Trust</h3>
+          <p class="diagnostic-meaning">This asks whether the first result is defensible as the best thing to show a customer. A bad #1 is the clearest search failure because it shapes the shopper's first impression.</p>
+        </div>
+        <div class="diagnostic-score">
+          <div class="diagnostic-metric bad">55%</div>
+          <div class="diagnostic-score-label">questionable #1 results</div>
+        </div>
+      </div>
+
+      <div class="diagnostic-body">
+        <div>
+          <p class="case-label">Result</p>
+          <p>The first result is not reliable enough: 41 of 75 queries (55%) had a weak, partial, or clearly beaten #1 result.</p>
+          
+          <p class="case-label">Evidence</p>
+          <ul class="diagnostic-list">
+            
+            <li>"Mos Mosh clothing": #1 was "No results" (score 0.00). No visible result was available.</li>
+            
+            <li>"something elegant for a dinner party": #1 was "No results" (score 0.00). No visible result was available.</li>
+            
+            <li>"warm jacket for winter weather": #1 was "No results" (score 0.00). No visible result was available.</li>
+            
+            <li>"where can i find the best mos mosh clothes": #1 was "No results" (score 0.00). No visible result was available.</li>
+            
+          </ul>
+          
+        </div>
+        <div class="diagnostic-remedy">
+          <p class="case-label">How to remedy it</p>
+          <p>Add a stricter first-result threshold for high-intent queries. If the top result is weak and a stronger result exists lower, boost the stronger exact/category/brand match or suppress the weak partial match from rank #1.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="diagnostic-section">
+      <div class="diagnostic-header">
+        <div>
+          <h3>Attribute Drift</h3>
+          <p class="diagnostic-meaning">This decomposes multi-attribute queries to see which terms survive into the top results. It distinguishes right-category-but-wrong-attribute failures from total search failures.</p>
+        </div>
+        <div class="diagnostic-score">
+          <div class="diagnostic-metric warn">9</div>
+          <div class="diagnostic-score-label">queries with attribute loss</div>
+        </div>
+      </div>
+
+      <div class="diagnostic-body">
+        <div>
+          <p class="case-label">Result</p>
+          <p>9 multi-attribute queries showed some attribute loss in the top 5. The audit separates preserved, partially preserved, and dropped terms so the team can see which part of the query is being lost.</p>
+          
+          <p class="case-label">Evidence</p>
+          <ul class="diagnostic-list">
+            
+            <li>"white leather sneakers size 42": dropped white, leather, sneaker, size, 42; partially preserved none</li>
+            
+            <li>"designer bag under 5000 kr": dropped designer, bag, 5000, kr; partially preserved none</li>
+            
+            <li>"show me sport clothes": dropped show, me, sport, clothe; partially preserved none</li>
+            
+            <li>"size 38 sko": dropped size, 38, sko; partially preserved none</li>
+            
+          </ul>
+          
+        </div>
+        <div class="diagnostic-remedy">
+          <p class="case-label">How to remedy it</p>
+          <p>Extract query attributes before ranking and give required attributes explicit weight. For brand, size, material, activity, and style terms, penalize results that match the product type but omit or contradict the attribute.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="diagnostic-section">
+      <div class="diagnostic-header">
+        <div>
+          <h3>Diversity vs Redundancy</h3>
+          <p class="diagnostic-meaning">This checks whether broad or exploratory queries show useful choice, or whether the top results are flooded by repeated variants. It is most useful for multi-brand or broad-catalog ecommerce, and less useful for true single-brand stores.</p>
+        </div>
+        <div class="diagnostic-score">
+          <div class="diagnostic-metric warn">4</div>
+          <div class="diagnostic-score-label">unique families in worst broad top 10</div>
+        </div>
+      </div>
+
+      <div class="diagnostic-body">
+        <div>
+          <p class="case-label">Result</p>
+          <p>The most redundant broad result set was "handbags": 4 unique product families across 10 top results.</p>
+          
+          <p class="case-label">Evidence</p>
+          <ul class="diagnostic-list">
+            
+            <li>"handbags": 4 unique product families across 10 top results</li>
+            
+            <li>"jackets": 7 unique product families across 10 top results</li>
+            
+            <li>"sko": 8 unique product families across 10 top results</li>
+            
+            <li>"shoes": 8 unique product families across 10 top results</li>
+            
+          </ul>
+          
+        </div>
+        <div class="diagnostic-remedy">
+          <p class="case-label">How to remedy it</p>
+          <p>Group color/size/variant duplicates under a product-family cap for broad queries. Keep exact product searches variant-rich, but diversify broad discovery queries across families, brands, styles, and use cases.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="diagnostic-section">
+      <div class="diagnostic-header">
+        <div>
+          <h3>Query Specificity Scaling</h3>
+          <p class="diagnostic-meaning">This compares broad -> specific query chains to see whether search gets better as the shopper becomes clearer. High-specificity queries often signal stronger purchase intent, so degradation here is commercially important.</p>
+        </div>
+        <div class="diagnostic-score">
+          <div class="diagnostic-metric warn">0</div>
+          <div class="diagnostic-score-label">specificity ladders detected</div>
+        </div>
+      </div>
+
+      <div class="diagnostic-body">
+        <div>
+          <p class="case-label">Result</p>
+          <p>No three-step specificity ladder was detected in this query set. This diagnostic activates when generated queries include broad -> specific query chains.</p>
+          
+        </div>
+        <div class="diagnostic-remedy">
+          <p class="case-label">How to remedy it</p>
+          <p>Generate intentional specificity ladders during query creation, then use them as regression tests. When a ladder breaks, inspect the attribute added at that step and tune query parsing or ranking weights for that attribute.</p>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- ================ ROADMAP ================ -->
+  <section id="roadmap" class="section-break-before">
+    <div class="section-label">Recommendations</div>
+    <h2>Prioritized Roadmap</h2>
+
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">1</div>
+      <div class="roadmap-content">
+        <h4>Fix zero results for brand searches</h4>
+        <p>Fixes Product Discovery failures where customers get no results for valid brand names like "Mos Mosh clothing" and "Anine Bing clothing."</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-quick">Quick Win</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">2</div>
+      <div class="roadmap-content">
+        <h4>Implement natural language query parsing</h4>
+        <p>Fixes Language Understanding failures for queries like "something elegant for a dinner party" and "warm jacket for winter weather."</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-medium">Medium Effort</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">3</div>
+      <div class="roadmap-content">
+        <h4>Add fuzzy matching for brand names and typos</h4>
+        <p>Fixes Typo Tolerance failures where customers get zero results for common misspellings like "Parajumper" and "Bottega Vaneta."</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-medium">Medium Effort</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">4</div>
+      <div class="roadmap-content">
+        <h4>Configure relevance-first ranking algorithm</h4>
+        <p>Fixes ranking inversions across all capabilities where high-relevance products are buried while low-relevance items rank at the top.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-quick">Quick Win</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">5</div>
+      <div class="roadmap-content">
+        <h4>Implement price constraint parsing</h4>
+        <p>Fixes Filters & Constraints failures where "under 1000 kr" and "designer bag under 5000 kr" don't apply price filters.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-medium">Medium Effort</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">6</div>
+      <div class="roadmap-content">
+        <h4>Add negation handling for exclusion queries</h4>
+        <p>Fixes Filters & Constraints failures where "boots not støvler" shows exactly what customers don't want.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-medium">Medium Effort</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">7</div>
+      <div class="roadmap-content">
+        <h4>Build semantic understanding for use cases and occasions</h4>
+        <p>Fixes Shopping Context failures for queries like "office outfit" and "gift for her" by mapping them to relevant product categories.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-major">Major Project</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">8</div>
+      <div class="roadmap-content">
+        <h4>Add exact SKU matching for model numbers</h4>
+        <p>Fixes Brand & Model Search failures where precise product identifiers like "AB-001" return zero results.</p>
+        <div>
+          
+          <span class="badge impact-critical">Critical</span>
+          
+          
+          <span class="badge effort-quick">Quick Win</span>
+          
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- ================ BENCHMARKS ================ -->
+  <section id="benchmarks" class="section-break-before">
+    <div class="section-label">Industry Context</div>
+    <h2>How You Compare</h2>
+
+    <table class="benchmark-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Your Score</th>
+          <th>Industry Target</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>Relevant result in top 3</td>
+          <td class="your-score below">40%</td>
+          <td class="target">80%+</td>
+          <td class="source">Baymard Institute</td>
+        </tr>
+        
+        <tr>
+          <td>Average best result position</td>
+          <td class="your-score below">#5</td>
+          <td class="target">#1–2</td>
+          <td class="source">Industry best practice</td>
+        </tr>
+        
+        <tr>
+          <td>Irrelevant #1 result</td>
+          <td class="your-score meets">0%</td>
+          <td class="target"><10%</td>
+          <td class="source">Industry best practice</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p><strong>70% of ecommerce sites cannot handle typos</strong> in their site search (Baymard Institute). Sites that do handle them gain a significant edge.</p>
+      <p><strong>~30% of ecommerce visitors use site search</strong>, but they generate a disproportionate share of revenue &mdash; search users convert at <strong>1.8&ndash;3x the rate</strong> of browse-only visitors (Econsultancy, Algolia).</p>
+      <p><strong>31% of site searches end at a dead end</strong> &mdash; irrelevant results or zero results &mdash; across the average ecommerce site (Baymard Institute).</p>
+      <p>The top 3 results capture <strong>~55&ndash;60% of all clicks</strong>. Results below position 3 are seen by a rapidly shrinking share of customers.</p>
+    </div>
+  </section>
+
+  <!-- ================ REVENUE-RISK FAILURES ================ -->
+  <section id="risk-failures" class="section-break-before">
+    <div class="section-label">Revenue-Risk Failures</div>
+    <h2>The queries most likely to cost sales</h2>
+    <p class="section-intro">These examples show where the customer either sees no useful result, sees the wrong intent first, or has to dig past weaker results to find the right product.</p>
+
+    <div class="load-more-scope" data-visible-count="3" data-more-label="Load more revenue-risk failures">
+    
+    <div class="risk-case load-more-item">
+      <div class="case-topline">
+        <span class="case-num">#1</span>
+        <code>Mos Mosh clothing</code>
+        <span class="failure-badge">Zero results</span>
+      </div>
+      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <div class="case-grid">
+        <div>
+          <p class="case-label">Evidence</p>
+          <p class="case-copy">The search returned zero results for the exact brand name 'Mos Mosh clothing' despite the stats indicating a best result exists at position #16, suggesting the engine failed to surface any results to the customer while potentially having relevant inventory</p>
+          <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
+        </div>
+
+        <div class="results-panel">
+          <p class="case-label">Customer saw</p>
+          
+        </div>
+
+        <div class="results-panel ideal-panel">
+          <p class="case-label">Should have seen</p>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="risk-case load-more-item">
+      <div class="case-topline">
+        <span class="case-num">#2</span>
+        <code>something elegant for a dinner party</code>
+        <span class="failure-badge">Zero results</span>
+      </div>
+      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <div class="case-grid">
+        <div>
+          <p class="case-label">Evidence</p>
+          <p class="case-copy">The search engine returned zero results for the query 'something elegant for a dinner party' despite the stats indicating there was a best result at position #16, suggesting products exist but the engine failed to retrieve any results at all</p>
+          <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
+        </div>
+
+        <div class="results-panel">
+          <p class="case-label">Customer saw</p>
+          
+        </div>
+
+        <div class="results-panel ideal-panel">
+          <p class="case-label">Should have seen</p>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="risk-case load-more-item">
+      <div class="case-topline">
+        <span class="case-num">#3</span>
+        <code>warm jacket for winter weather</code>
+        <span class="failure-badge">Zero results</span>
+      </div>
+      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <div class="case-grid">
+        <div>
+          <p class="case-label">Evidence</p>
+          <p class="case-copy">The search engine returned zero results for the query 'warm jacket for winter weather' despite this being a common, well-formed product search. The max relevance score of 0.000 and total results of 0 indicate complete search failure.</p>
+          <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
+        </div>
+
+        <div class="results-panel">
+          <p class="case-label">Customer saw</p>
+          
+        </div>
+
+        <div class="results-panel ideal-panel">
+          <p class="case-label">Should have seen</p>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="risk-case load-more-item">
+      <div class="case-topline">
+        <span class="case-num">#4</span>
+        <code>where can i find the best mos mosh clothes</code>
+        <span class="failure-badge">Zero results</span>
+      </div>
+      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <div class="case-grid">
+        <div>
+          <p class="case-label">Evidence</p>
+          <p class="case-copy">The search returned zero results for the query 'where can i find the best mos mosh clothes' despite the customer clearly looking for Mos Mosh brand clothing. The stats show 0 total results and max relevance score of 0.000, indicating complete search failure.</p>
+          <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
+        </div>
+
+        <div class="results-panel">
+          <p class="case-label">Customer saw</p>
+          
+        </div>
+
+        <div class="results-panel ideal-panel">
+          <p class="case-label">Should have seen</p>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="risk-case load-more-item">
+      <div class="case-topline">
+        <span class="case-num">#5</span>
+        <code>i want to buy some nice sneakers for myself</code>
+        <span class="failure-badge">Zero results</span>
+      </div>
+      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <div class="case-grid">
+        <div>
+          <p class="case-label">Evidence</p>
+          <p class="case-copy">The search engine returned zero results for the query 'i want to buy some nice sneakers for myself' despite this being a straightforward product search for sneakers. The max relevance score was 0.000 and total results was 0, indicating complete search failure.</p>
+          <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
+        </div>
+
+        <div class="results-panel">
+          <p class="case-label">Customer saw</p>
+          
+        </div>
+
+        <div class="results-panel ideal-panel">
+          <p class="case-label">Should have seen</p>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="risk-case load-more-item">
+      <div class="case-topline">
+        <span class="case-num">#6</span>
+        <code>i am looking for some really nice high quality designer clothing from brands like ganni or mos mosh for women that would be perfect for both casual and more formal occasions</code>
+        <span class="failure-badge">Zero results</span>
+      </div>
+      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <div class="case-grid">
+        <div>
+          <p class="case-label">Evidence</p>
+          <p class="case-copy">The search engine returned zero results for a query asking for designer women's clothing from brands like Ganni or Mos Mosh suitable for casual and formal occasions. The customer saw no results at all despite this being a reasonable product search query.</p>
+          <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
+        </div>
+
+        <div class="results-panel">
+          <p class="case-label">Customer saw</p>
+          
+        </div>
+
+        <div class="results-panel ideal-panel">
+          <p class="case-label">Should have seen</p>
+          
+        </div>
+      </div>
+    </div>
+    
+    </div>
+  </section>
+
+  <!-- ================ DEEP DIVES ================ -->
+  <section id="deep-dives" class="section-break-before">
+    <div class="section-label">Detailed Analysis</div>
+    
+    <details class="capability-accordion" open>
+      <summary>
+        <h3>
+          Product Discovery
+        </h3>
+        <span class="accordion-count">5 examples</span>
+      </summary>
+
+      <div class="capability-accordion-body">
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Mos Mosh clothing"</div>
+          <div class="query-category">Direct match &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search returned zero results for the exact brand name 'Mos Mosh clothing' despite the stats indicating a best result exists at position #16, suggesting the engine failed to surface any results to the customer while potentially having relevant inventory</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Parajumpers jackets"</div>
+          <div class="query-category">Direct match &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #15
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'Parajumpers – PM HYW U02 Jacket' (0.898 relevance) was buried at position #15, while lower-scoring results like 'Parajumpers – Parajumpers - Matty Hybrid Jacket - Sort, XLarge' (0.895 relevance) ranked #1. Multiple products with identical 0.887 relevance scores were scattered across positions #4, #6, #9, and #12 instead of being grouped together. The ranking algorithm is not properly ordering results by their calculated relevance scores.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Parajumpers – Parajumpers - Matty Hybrid Jacket - Sort, XLarge <span style="color: var(--muted);">(3090.00 kr.)</span></li>
+                
+                <li>Parajumpers – Cassian Hooded Down Jacket <span style="color: var(--muted);">(3823.90 kr.)</span></li>
+                
+                <li>Parajumpers – Ugo Short Down Jacket <span style="color: var(--muted);">(3462.05 kr.)</span></li>
+                
+                <li>Parajumpers – Jayden Jacket <span style="color: var(--muted);">(3130.82 kr.)</span></li>
+                
+                <li>Parajumpers – Panda Long Down Jacket <span style="color: var(--muted);">(6885.64 kr.)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Parajumpers – PM HYW U02 Jacket <span style="color: var(--muted);">(2870.15 kr.)</span></li>
+                
+                <li>Parajumpers – Parajumpers - Matty Hybrid Jacket - Sort, XLarge <span style="color: var(--muted);">(3090.00 kr.)</span></li>
+                
+                <li>Parajumpers – Jayden Jacket <span style="color: var(--muted);">(3130.82 kr.)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #15.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Co'Couture dresses"</div>
+          <div class="query-category">Direct match &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #14
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'Co'Couture – Dresses' (0.898) was buried at position #14, while lower-scoring results like 'Co'Couture – Short Dress' (0.848) appeared at position #3. Multiple high-scoring results were severely misplaced: 'Co'Couture – TeranCC Stripe Pleat Dress 46033' (0.879) at #7, 'Co'Couture – Knitted Dresses' (0.879) at #13, and several 0.875-scored items ('Serafin Sequin Dress', 'KesiCC Dress', 'KesiCC Pleat LS Dress', 'SagaCC Dress') scattered between positions #6-#15.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Co'Couture – Dresses <span style="color: var(--muted);">(1234.98 kr.)</span></li>
+                
+                <li>Co'Couture – EvaCC Strap Dress <span style="color: var(--muted);">(1123.25 kr.)</span></li>
+                
+                <li>Co'Couture – Short Dress <span style="color: var(--muted);">(719.98 kr.)</span></li>
+                
+                <li>Co'Couture – Dottiecc V-Dress i støvet blå <span style="color: var(--muted);">(778.26 kr.)</span></li>
+                
+                <li>Co'Couture – Heracc SS Wrap Dress <span style="color: var(--muted);">(822.98 kr.)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Co'Couture – Dresses <span style="color: var(--muted);">(1028.98 kr.)</span></li>
+                
+                <li>Co'Couture – Dresses <span style="color: var(--muted);">(1234.98 kr.)</span></li>
+                
+                <li>Co'Couture – TeranCC Stripe Pleat Dress 46033 <span style="color: var(--muted);">(925.98 kr.)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #14.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"sko"</div>
+          <div class="query-category">Broad category &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #13
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine correctly retrieved relevant shoe products for the query 'sko' (Danish for shoes), but severely misranked them. The most relevant result 'Sun68 – Sko' (0.820 relevance) was buried at position #13, while the least relevant 'Ralph Lauren – SKO' (0.719 relevance) was ranked #1. The top 3 positions contained products with relevance scores of 0.719, 0.777, and 0.738, while much better matches with scores of 0.820, 0.809, and 0.793 were relegated to positions #13, #15, and #14 respectively.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Ralph Lauren – SKO <span style="color: var(--muted);">(1261.90 kr.)</span></li>
+                
+                <li>Timberland – Sko <span style="color: var(--muted);">(861.68 kr.)</span></li>
+                
+                <li>Tommy Hilfiger – Sko <span style="color: var(--muted);">(2171.78 kr.)</span></li>
+                
+                <li>Sergio Levantesi – sko <span style="color: var(--muted);">(1844.19 kr.)</span></li>
+                
+                <li>New Feet – Sko <span style="color: var(--muted);">(1482.17 kr.)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Sun68 – Sko <span style="color: var(--muted);">(849.43 kr.)</span></li>
+                
+                <li>Cult – Sko <span style="color: var(--muted);">(857.97 kr.)</span></li>
+                
+                <li>Calvin Klein – Sko <span style="color: var(--muted);">(1449.12 kr.)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #13.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"accessories"</div>
+          <div class="query-category">Broad category &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #10
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The two highest-relevance results (Paolo Vitale products with 0.777 scores) were buried at positions #10 and #14, while lower-relevance items appeared at the top. Specifically, Gigi Clozeau (0.758) ranked #1, Anne & Valentin (0.742) ranked #2, and Lafont (0.727) ranked #7, all scoring lower than the Paolo Vitale items that should have been prioritized.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Gigi Clozeau – Accessories <span style="color: var(--muted);">(1808.19 kr.)</span></li>
+                
+                <li>Anne & Valentin – Accessories <span style="color: var(--muted);">(1107.95 kr.)</span></li>
+                
+                <li>Jacques Marie Mage – Accessories <span style="color: var(--muted);">(5078.03 kr.)</span></li>
+                
+                <li>Daniele Alessandrini – Accessories <span style="color: var(--muted);">(461.65 kr.)</span></li>
+                
+                <li>Moli@limo – Accessories <span style="color: var(--muted);">(1101.03 kr.)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Paolo Vitale – Accessories <span style="color: var(--muted);">(2266.00 kr.)</span></li>
+                
+                <li>Paolo Vitale – Accessories <span style="color: var(--muted);">(1648.00 kr.)</span></li>
+                
+                <li>Coccinelle – Accessories <span style="color: var(--muted);">(1000.23 kr.)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #10.</p>
+          
+        </div>
+      </div>
+      
+      </div>
+    </details>
+    
+    <details class="capability-accordion">
+      <summary>
+        <h3>
+          Language Understanding
+        </h3>
+        <span class="accordion-count">5 examples</span>
+      </summary>
+
+      <div class="capability-accordion-body">
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"something elegant for a dinner party"</div>
+          <div class="query-category">Natural language &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine returned zero results for the query 'something elegant for a dinner party' despite the stats indicating there was a best result at position #16, suggesting products exist but the engine failed to retrieve any results at all</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"warm jacket for winter weather"</div>
+          <div class="query-category">Natural language &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine returned zero results for the query 'warm jacket for winter weather' despite this being a common, well-formed product search. The max relevance score of 0.000 and total results of 0 indicate complete search failure.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"where can i find the best mos mosh clothes"</div>
+          <div class="query-category">Stop-word heavy &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search returned zero results for the query 'where can i find the best mos mosh clothes' despite the customer clearly looking for Mos Mosh brand clothing. The stats show 0 total results and max relevance score of 0.000, indicating complete search failure.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"i want to buy some nice sneakers for myself"</div>
+          <div class="query-category">Stop-word heavy &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine returned zero results for the query 'i want to buy some nice sneakers for myself' despite this being a straightforward product search for sneakers. The max relevance score was 0.000 and total results was 0, indicating complete search failure.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"i am looking for some really nice high quality designer clothing from brands like ganni or mos mosh for women that would be perfect for both casual and more formal occasions"</div>
+          <div class="query-category">Long verbose query &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine returned zero results for a query asking for designer women's clothing from brands like Ganni or Mos Mosh suitable for casual and formal occasions. The customer saw no results at all despite this being a reasonable product search query.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      </div>
+    </details>
+    
+    <details class="capability-accordion">
+      <summary>
+        <h3>
+          Typo Tolerance
+        </h3>
+        <span class="accordion-count">5 examples</span>
+      </summary>
+
+      <div class="capability-accordion-body">
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Parajumper"</div>
+          <div class="query-category">Typo &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">Query 'Parajumper' returned zero results despite being a common misspelling of 'Parajumpers', a well-known winter jacket brand. The search engine failed to recognize this as a typo and provide any fuzzy matching or spell correction.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Para jumpers"</div>
+          <div class="query-category">Split word &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">Query 'Para jumpers' returned zero results despite the stats indicating a best result exists at position #16. The search engine completely failed to surface any products for this compound word query.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Bottega Vaneta"</div>
+          <div class="query-category">Typo &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">Query 'Bottega Vaneta' returned zero results despite being a common misspelling of the luxury brand 'Bottega Veneta'. The search engine failed to recognize this as a typo and provide any fuzzy matching or spell correction.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"mosmosh"</div>
+          <div class="query-category">Merged words &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #15
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine correctly identified and returned all MOS MOSH products, showing it successfully split the merged word 'mosmosh' into 'MOS MOSH'. However, the ranking is severely broken: the highest relevance result 'MOS MOSH – Sleeveless Top' (0.625 relevance) was buried at position #15, while lower-scoring items like 'MOS MOSH – Flared Jeans' (0.609) and 'MOS MOSH – Rundhalset strik' (0.590) were ranked #1 and #2 respectively.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>MOS MOSH – Flared Jeans <span style="color: var(--muted);">(925.98 kr.)</span></li>
+                
+                <li>MOS MOSH – Rundhalset strik <span style="color: var(--muted);">(925.98 kr.)</span></li>
+                
+                <li>MOS MOSH – Trenchcoat <span style="color: var(--muted);">(1543.98 kr.)</span></li>
+                
+                <li>MOS MOSH – Midi Kjoler <span style="color: var(--muted);">(1646.98 kr.)</span></li>
+                
+                <li>MOS MOSH – Bluser <span style="color: var(--muted);">(822.98 kr.)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>MOS MOSH – Sleeveless Top <span style="color: var(--muted);">(822.98 kr.)</span></li>
+                
+                <li>MOS MOSH – Flared Jeans <span style="color: var(--muted);">(925.98 kr.)</span></li>
+                
+                <li>MOS MOSH – Shirt Dresses <span style="color: var(--muted);">(1234.98 kr.)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #15.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"strik"</div>
+          <div class="query-category">Partial query &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #10
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'Paolo Pecora – Strik' (0.734) was buried at position #10, while lower-scoring results dominated the top positions. The #1 result 'Ganni – Strik' scored only 0.723, and #3 'Burberry – STRIK' scored just 0.645 despite being in the top 3. Multiple high-scoring results were displaced: '032c – Strik' (0.730) at #7, 'WE11DONE – Strik' (0.727) at #6, and 'Roberto Collina – Strik' (0.727) at #8.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Ganni – Strik <span style="color: var(--muted);">(1788.80 kr.)</span></li>
+                
+                <li>Majestic Filatures – Strik <span style="color: var(--muted);">(2538.83 kr.)</span></li>
+                
+                <li>Burberry – STRIK <span style="color: var(--muted);">(4539.52 kr.)</span></li>
+                
+                <li>The Attico – Strik <span style="color: var(--muted);">(5193.52 kr.)</span></li>
+                
+                <li>Neil Barrett – Strik <span style="color: var(--muted);">(3223.83 kr.)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Paolo Pecora – Strik <span style="color: var(--muted);">(1307.92 kr.)</span></li>
+                
+                <li>032c – Strik <span style="color: var(--muted);">(2000.39 kr.)</span></li>
+                
+                <li>WE11DONE – Strik <span style="color: var(--muted);">(2885.29 kr.)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #10.</p>
+          
+        </div>
+      </div>
+      
+      </div>
+    </details>
+    
+    <details class="capability-accordion">
+      <summary>
+        <h3>
+          Brand & Model Search
+        </h3>
+        <span class="accordion-count">5 examples</span>
+      </summary>
+
+      <div class="capability-accordion-body">
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Anine Bing clothing"</div>
+          <div class="query-category">Brand search &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search returned zero results for 'Anine Bing clothing' despite this being a well-known fashion brand. The query stats show 0 total results and max relevance score of 0.000, indicating complete search failure.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"AB-001"</div>
+          <div class="query-category">SKU / model number &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">Query 'AB-001' returned zero results despite this being an exact SKU/model number search. The stats show 0 total results with max relevance score of 0.000, indicating the search engine found nothing at all for this specific product identifier.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Munthe dresses"</div>
+          <div class="query-category">Brand search &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #10
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The three highest relevance results (all 0.891) - 'Munthe – Dresses' products - were ranked at positions #10, #11, and #14 instead of the top positions. Meanwhile, lower relevance results like 'Munthe – Shirt Dresses' (0.863) and 'Munthe – Shirt Dress' (0.844) occupied the #1 and #2 spots. The best matching result was displaced by 9 positions.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Munthe – Shirt Dresses <span style="color: var(--muted);">(2676.98 kr.)</span></li>
+                
+                <li>Munthe – Shirt Dress <span style="color: var(--muted);">(2058.98 kr.)</span></li>
+                
+                <li>Munthe – Sequin Shirt Dress <span style="color: var(--muted);">(2367.98 kr.)</span></li>
+                
+                <li>Munthe – Byrus Dress <span style="color: var(--muted);">(2388.58 kr.)</span></li>
+                
+                <li>Munthe – Betulli Dress <span style="color: var(--muted);">(1986.87 kr.)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Munthe – Dresses <span style="color: var(--muted);">(2038.94 kr.)</span></li>
+                
+                <li>Munthe – Dresses <span style="color: var(--muted);">(3077.64 kr.)</span></li>
+                
+                <li>Munthe – Dresses <span style="color: var(--muted);">(2423.71 kr.)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #10.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"sweat"</div>
+          <div class="query-category">Abbreviation &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #5
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'Coperni – Sweat' (0.688) was ranked #5 instead of #1. The second-highest relevance result 'Paul & Shark – SWEAT' (0.680) was ranked #4 instead of #2. Additionally, 'Carhartt Wip – Half Zip Detroit Sweat' with relevance 0.609 was buried at position #12 despite being more relevant than several results ranked above it.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Kenzo – Sweat <span style="color: var(--muted);">(2962.16 kr.)</span></li>
+                
+                <li>The Attico – Sweat <span style="color: var(--muted);">(2423.45 kr.)</span></li>
+                
+                <li>Dsquared2 – Sweat <span style="color: var(--muted);">(1938.76 kr.)</span></li>
+                
+                <li>Paul & Shark – SWEAT <span style="color: var(--muted);">(2308.23 kr.)</span></li>
+                
+                <li>Coperni – Sweat <span style="color: var(--muted);">(2100.31 kr.)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Coperni – Sweat <span style="color: var(--muted);">(2100.31 kr.)</span></li>
+                
+                <li>Paul & Shark – SWEAT <span style="color: var(--muted);">(2308.23 kr.)</span></li>
+                
+                <li>Kenzo – Sweat <span style="color: var(--muted);">(2962.16 kr.)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #5.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Gucci vintage bags"</div>
+          <div class="query-category">Brand search &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #1
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine retrieved all relevant Gucci vintage bags but ranked them poorly. High-relevance results were buried: the #2 and #3 most relevant items (relevance 0.883) appeared at positions #14 and #15, while lower-relevance items like 'Vintage Clutch Taske' (0.859) and 'Vintage Plastic Clutch' (0.844) occupied positions #3 and #4. Multiple items with identical 0.879 relevance scores were scattered across positions #5, #8, #10, and #12 instead of being grouped together.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Gucci Vintage – Pre-owned Vintage GG Canvas Tote Bag <span style="color: var(--muted);">(1335.02 kr.)</span></li>
+                
+                <li>Gucci Vintage – Pre-owned Vintage GG Shoulder Bag <span style="color: var(--muted);">(2680.82 kr.)</span></li>
+                
+                <li>Gucci Vintage – Pre-owned Vintage Clutch Taske <span style="color: var(--muted);">(1658.02 kr.)</span></li>
+                
+                <li>Gucci Vintage – Pre-owned Vintage Plastic Clutch <span style="color: var(--muted);">(1507.29 kr.)</span></li>
+                
+                <li>Gucci Vintage – Pre-owned Vintage GG Boston Bag <span style="color: var(--muted);">(3186.85 kr.)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Gucci Vintage – Pre-owned Vintage GG Canvas Tote Bag <span style="color: var(--muted);">(1335.02 kr.)</span></li>
+                
+                <li>Gucci Vintage – Pre-owned Vintage Tote Bag <span style="color: var(--muted);">(2837.73 kr.)</span></li>
+                
+                <li>Gucci Vintage – Pre-owned Vintage Tote Bag <span style="color: var(--muted);">(5354.92 kr.)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      </div>
+    </details>
+    
+    <details class="capability-accordion">
+      <summary>
+        <h3>
+          Filters & Constraints
+        </h3>
+        <span class="accordion-count">5 examples</span>
+      </summary>
+
+      <div class="capability-accordion-body">
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"designer bag under 5000 kr"</div>
+          <div class="query-category">Price anchored &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search returned zero results for 'designer bag under 5000 kr' despite the displacement metric indicating the best result was at position #16, suggesting relevant designer bags exist in the catalog but the price constraint '5000 kr' was not properly parsed or applied as a filter</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"dress not vintage"</div>
+          <div class="query-category">Negative intent &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The query 'dress not vintage' returned zero results despite the displacement metric indicating the best result was at position #16, suggesting relevant dress products exist but the negation constraint 'not vintage' was completely ignored by the search engine</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"show me sport clothes"</div>
+          <div class="query-category">Facet extraction &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search returned zero results for the query 'show me sport clothes' despite the stats indicating there is a best result at position #16, suggesting products exist but the engine failed to retrieve any results for display to the customer.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"premium brand handbags"</div>
+          <div class="query-category">Facet extraction &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search returned zero results for the query 'premium brand handbags' despite the stats indicating there is a best result at position #16, suggesting products exist but the search engine failed to retrieve any results at all</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"white leather sneakers size 42"</div>
+          <div class="query-category">Multi-attribute &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search returned zero results for the query 'white leather sneakers size 42' despite the stats indicating a best result exists at position #16, suggesting the engine failed to return any results to the customer while having relevant inventory available</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      </div>
+    </details>
+    
+    <details class="capability-accordion">
+      <summary>
+        <h3>
+          Shopping Context
+        </h3>
+        <span class="accordion-count">5 examples</span>
+      </summary>
+
+      <div class="capability-accordion-body">
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"kjole"</div>
+          <div class="query-category">Plural / singular &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The query 'kjole' (Norwegian/Danish for 'dress') returned zero results despite the displacement metric indicating the best result was at position #16, suggesting relevant products exist but weren't retrieved due to language/spelling mismatch</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"office outfit"</div>
+          <div class="query-category">Use case &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search returned zero results for 'office outfit' despite this being a common use case query. The engine failed to understand that customers searching for 'office outfit' want professional clothing items like blazers, dress shirts, trousers, skirts, and business dresses. The stats show max relevance score of 0.000 and total results of 0, indicating complete failure to retrieve any relevant products.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"summer sale dresses"</div>
+          <div class="query-category">Seasonal / occasion &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine returned zero results for the query 'summer sale dresses' despite this being a common seasonal shopping query. The stats show 0 total results with a max relevance score of 0.000, indicating complete search failure.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"outfit til bryllup"</div>
+          <div class="query-category">Use case &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The query 'outfit til bryllup' (Norwegian for 'outfit for wedding') returned zero results despite the displacement metric indicating a relevant result exists at position #16. The search engine failed to understand that this query is asking for wedding-appropriate clothing and should match products like dresses, suits, formal wear, or wedding guest attire.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"sportstøj til løbetur"</div>
+          <div class="query-category">Use case &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #16
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The query 'sportstøj til løbetur' (Danish for 'sportswear for running') returned zero results despite this being a common use case query. The search engine failed to understand that this Danish phrase describes running apparel and should match products like running shoes, athletic clothing, and fitness gear.</p>
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+              </ol>
+            </div>
+          </div>
+          
+          <p class="displacement-note">Best match was buried at position #16.</p>
+          
+        </div>
+      </div>
+      
+      </div>
+    </details>
+    
+  </section>
+
+  <!-- ================ WHAT'S WORKING ================ -->
+  <section id="whats-working">
+    <div class="section-label">Positive Findings</div>
+    <h2>What's Working</h2>
+    <ul class="whats-working-list">
+      
+      <li><strong>Retrieval is working</strong> — relevant results were found in 34 of 75 queries. The primary issue is ranking, not finding: the right results exist in the result set but aren't being surfaced at the top.</li>
+      
+      <li><strong>Close to correct</strong> on 16 queries ("dame", "comfortable sneakers for everyday wear that look stylish", "Mos Mohs"): the best result was within the top 3, just not at #1.</li>
+      
+    </ul>
+  </section>
+
+  <!-- ================ APPENDIX ================ -->
+  <section id="appendix" class="section-break-before">
+    <div class="section-label">Full Data</div>
+    <h2>Appendix: Complete Test Results</h2>
+    <p style="color: var(--muted); margin-bottom: 16px;">All 75 queries evaluated in this audit.</p>
+
+    <div class="load-more-scope" data-visible-count="3" data-more-label="Load more test results">
+    <table class="appendix-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Query</th>
+          <th>Category</th>
+          <th>Severity</th>
+          <th>Best Position</th>
+          <th>Failure Mode</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr class="load-more-item">
+          <td>1</td>
+          <td class="query-col">Mos Mosh clothing</td>
+          <td>Direct match</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>2</td>
+          <td class="query-col">something elegant for a dinner party</td>
+          <td>Natural language</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>3</td>
+          <td class="query-col">warm jacket for winter weather</td>
+          <td>Natural language</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>4</td>
+          <td class="query-col">where can i find the best mos mosh clothes</td>
+          <td>Stop-word heavy</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>5</td>
+          <td class="query-col">i want to buy some nice sneakers for myself</td>
+          <td>Stop-word heavy</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>6</td>
+          <td class="query-col">i am looking for some really nice high quality designer clothing from brands like ganni or mos mosh for women that would be perfect for both casual and more formal occasions</td>
+          <td>Long verbose query</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>7</td>
+          <td class="query-col">help me find the perfect pair of stylish comfortable sneakers or boots that are trendy and fashionable from good quality brands available in your store</td>
+          <td>Long verbose query</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>8</td>
+          <td class="query-col">something to keep me warm</td>
+          <td>Semantic meaning</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>No semantic understanding</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>9</td>
+          <td class="query-col">professional wardrobe essentials</td>
+          <td>Semantic meaning</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>No semantic understanding</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>10</td>
+          <td class="query-col">vintage designer handbag that would work for both casual and formal occasions</td>
+          <td>Natural language</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>11</td>
+          <td class="query-col">outfit for a fancy dinner party</td>
+          <td>Semantic meaning</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>No semantic understanding</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>12</td>
+          <td class="query-col">comfortable everyday shoes for walking</td>
+          <td>Semantic meaning</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>13</td>
+          <td class="query-col">Parajumper</td>
+          <td>Typo</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>No fuzzy matching</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>14</td>
+          <td class="query-col">Para jumpers</td>
+          <td>Split word</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>15</td>
+          <td class="query-col">Bottega Vaneta</td>
+          <td>Typo</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>No fuzzy matching</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>16</td>
+          <td class="query-col">Anine Bing clothing</td>
+          <td>Brand search</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>17</td>
+          <td class="query-col">AB-001</td>
+          <td>SKU / model number</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>18</td>
+          <td class="query-col">designer bag under 5000 kr</td>
+          <td>Price anchored</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Constraint dropped</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>19</td>
+          <td class="query-col">dress not vintage</td>
+          <td>Negative intent</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Constraint dropped</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>20</td>
+          <td class="query-col">show me sport clothes</td>
+          <td>Facet extraction</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>21</td>
+          <td class="query-col">premium brand handbags</td>
+          <td>Facet extraction</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>22</td>
+          <td class="query-col">white leather sneakers size 42</td>
+          <td>Multi-attribute</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>23</td>
+          <td class="query-col">kjole</td>
+          <td>Plural / singular</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>No fuzzy matching</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>24</td>
+          <td class="query-col">office outfit</td>
+          <td>Use case</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>No semantic understanding</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>25</td>
+          <td class="query-col">summer sale dresses</td>
+          <td>Seasonal / occasion</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>Zero results</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>26</td>
+          <td class="query-col">outfit til bryllup</td>
+          <td>Use case</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>No semantic understanding</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>27</td>
+          <td class="query-col">sportstøj til løbetur</td>
+          <td>Use case</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#16</td>
+          <td>No semantic understanding</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>28</td>
+          <td class="query-col">Parajumpers jackets</td>
+          <td>Direct match</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#15</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>29</td>
+          <td class="query-col">mosmosh</td>
+          <td>Merged words</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#15</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>30</td>
+          <td class="query-col">Co'Couture dresses</td>
+          <td>Direct match</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#14</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>31</td>
+          <td class="query-col">boots not støvler</td>
+          <td>Negative intent</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#14</td>
+          <td>Constraint dropped</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>32</td>
+          <td class="query-col">sko</td>
+          <td>Broad category</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#13</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>33</td>
+          <td class="query-col">vintage Chanel bag</td>
+          <td>Multi-attribute</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#12</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>34</td>
+          <td class="query-col">trendy sneakers</td>
+          <td>Subjective attribute</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#11</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>35</td>
+          <td class="query-col">accessories</td>
+          <td>Broad category</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#10</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>36</td>
+          <td class="query-col">strik</td>
+          <td>Partial query</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#10</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>37</td>
+          <td class="query-col">Munthe dresses</td>
+          <td>Brand search</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#10</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>38</td>
+          <td class="query-col">marcjacobs</td>
+          <td>Merged words</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#9</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>39</td>
+          <td class="query-col">sneakers under 1000</td>
+          <td>Price anchored</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#6</td>
+          <td>Constraint dropped</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>40</td>
+          <td class="query-col">comfortable sneakers for everyday wear that look stylish</td>
+          <td>Natural language</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#1</td>
+          <td>Other</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>41</td>
+          <td class="query-col">size 38 sko</td>
+          <td>Unit variation</td>
+          <td><span class="severity-dot critical"></span> Critical</td>
+          <td>#1</td>
+          <td>Facet not extracted</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>42</td>
+          <td class="query-col">tops</td>
+          <td>Category mapping</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#7</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>43</td>
+          <td class="query-col">winter jakker</td>
+          <td>Seasonal / occasion</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#7</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>44</td>
+          <td class="query-col">outerwear</td>
+          <td>Category mapping</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#6</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>45</td>
+          <td class="query-col">skulderta sker</td>
+          <td>Split word</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#6</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>46</td>
+          <td class="query-col">colour</td>
+          <td>Locale variation</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#6</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>47</td>
+          <td class="query-col">handbags</td>
+          <td>Synonym</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#5</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>48</td>
+          <td class="query-col">Gani</td>
+          <td>Typo</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#5</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>49</td>
+          <td class="query-col">børn</td>
+          <td>Special character</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#5</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>50</td>
+          <td class="query-col">tøj</td>
+          <td>Special character</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#5</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>51</td>
+          <td class="query-col">Balmain jakke</td>
+          <td>Typo</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#5</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>52</td>
+          <td class="query-col">sweat</td>
+          <td>Abbreviation</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#5</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>53</td>
+          <td class="query-col">shoes</td>
+          <td>Synonym</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#4</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>54</td>
+          <td class="query-col">jackets</td>
+          <td>Synonym</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#4</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>55</td>
+          <td class="query-col">gift for her</td>
+          <td>Use case</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#4</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>56</td>
+          <td class="query-col">Gucci vintage bags</td>
+          <td>Brand search</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#1</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>57</td>
+          <td class="query-col">black Ganni dress</td>
+          <td>Multi-attribute</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#1</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>58</td>
+          <td class="query-col">accessory</td>
+          <td>Plural / singular</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#1</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>59</td>
+          <td class="query-col">women</td>
+          <td>Synonym</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#4</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>60</td>
+          <td class="query-col">children</td>
+          <td>Synonym</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#4</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>61</td>
+          <td class="query-col">tee</td>
+          <td>Abbreviation</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#4</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>62</td>
+          <td class="query-col">dame</td>
+          <td>Broad category</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#3</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>63</td>
+          <td class="query-col">Ganni dress</td>
+          <td>Brand search</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#3</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>64</td>
+          <td class="query-col">louisvuitton</td>
+          <td>Merged words</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>65</td>
+          <td class="query-col">sweat shirts</td>
+          <td>Split word</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>66</td>
+          <td class="query-col">Stella McCartney dresses</td>
+          <td>Brand search</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>67</td>
+          <td class="query-col">Celine bag</td>
+          <td>Brand search</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>68</td>
+          <td class="query-col">jumper</td>
+          <td>Locale variation</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#2</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>69</td>
+          <td class="query-col">Mos Mohs</td>
+          <td>Typo</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#1</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>70</td>
+          <td class="query-col">medium jakker</td>
+          <td>Unit variation</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#1</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>71</td>
+          <td class="query-col">vintage Gucci shoulder bag brown</td>
+          <td>Multi-attribute</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#1</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>72</td>
+          <td class="query-col">luxury handbags</td>
+          <td>Subjective attribute</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#1</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>73</td>
+          <td class="query-col">tøj & accessories</td>
+          <td>Special character</td>
+          <td><span class="severity-dot pass"></span> Pass</td>
+          <td>#1</td>
+          <td>—</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>74</td>
+          <td class="query-col">Gan</td>
+          <td>Partial query</td>
+          <td><span class="severity-dot pass"></span> Pass</td>
+          <td>#1</td>
+          <td>—</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>75</td>
+          <td class="query-col">MM2024</td>
+          <td>SKU / model number</td>
+          <td><span class="severity-dot pass"></span> Pass</td>
+          <td>#1</td>
+          <td>—</td>
+        </tr>
+        
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- ================ SCOPE ================ -->
+  <section id="scope" class="scope-section">
+    <div class="section-label">Scope and Boundaries</div>
+    <h2>What this audit covers</h2>
+    <div class="scope-grid">
+      <div>
+        <h4>Included</h4>
+        <p>Search relevance, ranking quality, retrieval gaps, query interpretation failures, visible result ordering, and prioritized fixes based on the tested query set.</p>
+      </div>
+      <div>
+        <h4>Not included</h4>
+        <p>Implementation work, platform configuration changes, merchandising strategy, analytics instrumentation, or a full conversion-rate analysis beyond the search result experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================ CTA ================ -->
+  <section id="next-steps" class="cta-section">
+    <h2>Next Steps</h2>
+    <p>We'd welcome the opportunity to walk you through these findings in detail and discuss a remediation plan tailored to your team's priorities and timeline.</p>
+    <p style="font-size: 0.875rem; color: var(--muted);">The issues identified in this audit are fixable &mdash; most ecommerce search platforms support the capabilities tested here, and the roadmap above is ordered by impact to help you prioritize.</p>
+    <a href="https://findsherpas.com/book-a-call" class="cta-button" target="_blank" rel="noopener noreferrer">Schedule a 30-Minute Walkthrough</a>
+  </section>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".load-more-scope").forEach(function (scope) {
+    var visibleCount = Number(scope.getAttribute("data-visible-count") || "3");
+    var items = Array.prototype.slice.call(scope.querySelectorAll(":scope > .load-more-item, :scope tbody > .load-more-item"));
+
+    if (items.length <= visibleCount) return;
+
+    items.slice(visibleCount).forEach(function (item) {
+      item.classList.add("is-hidden");
+    });
+    scope.classList.add("is-collapsed");
+
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "load-more-control";
+    button.textContent = scope.getAttribute("data-more-label") || "Load more";
+    button.addEventListener("click", function () {
+      items.forEach(function (item) {
+        item.classList.remove("is-hidden");
+      });
+      scope.classList.remove("is-collapsed");
+      button.remove();
+    });
+
+    scope.appendChild(button);
+  });
+});
+</script>
+
+</body>
+</html>
