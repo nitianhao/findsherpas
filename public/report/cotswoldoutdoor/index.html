@@ -1375,7 +1375,7 @@ strong { font-weight: 600; }
 <script>
 (function() {
   var stored = localStorage.getItem('fs_auth_cotswoldoutdoor');
-  if (stored && stored === 'be611491e7eec9ce3bfcb8775500346a94dcd3186eda6869943302dcdb504fbe') {
+  if (stored && stored === 'e64aafe8d084a5f552db70e080a3272867e226e79e47c41363086e31b8e28b92') {
     document.getElementById('fs-gate').style.display = 'none';
     document.body.style.overflow = '';
   }
@@ -1388,7 +1388,7 @@ async function fsCheck() {
   var pw = document.getElementById('fs-pw').value;
   var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
   var hex = Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-  if (hex === 'be611491e7eec9ce3bfcb8775500346a94dcd3186eda6869943302dcdb504fbe') {
+  if (hex === 'e64aafe8d084a5f552db70e080a3272867e226e79e47c41363086e31b8e28b92') {
     localStorage.setItem('fs_auth_cotswoldoutdoor', hex);
     fsUnlock();
   } else {
