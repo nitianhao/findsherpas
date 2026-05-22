@@ -28,7 +28,8 @@
     "enrichment:team-pages": "tsx src/enrichment/scripts/runTeamPageEnrichment.ts",
     "enrichment:import-crm": "tsx --tsconfig tsconfig.json src/enrichment/scripts/importToCRM.ts",
     "enrichment:update-tech-stack": "tsx --tsconfig tsconfig.json src/enrichment/scripts/updateCRMTechStack.ts",
-    "enrichment:update-linkedin": "tsx --tsconfig tsconfig.json src/enrichment/scripts/updateContactLinkedIn.ts"
+    "enrichment:update-linkedin": "tsx --tsconfig tsconfig.json src/enrichment/scripts/updateContactLinkedIn.ts",
+    "crm:update-sequences": "tsx --tsconfig tsconfig.json src/enrichment/scripts/updateSequenceTemplates.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
@@ -42,6 +43,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
+    "docx": "^9.6.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.563.0",
     "next": "16.1.6",

@@ -122,15 +122,15 @@ export default async function CompanyDetailPage({
                   <span>{company.language || "-"}</span>
                 </div>
                 {company.report_url && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Report</span>
+                  <div className="flex justify-between items-center gap-4">
+                    <span className="text-muted-foreground shrink-0">Report</span>
                     <a
                       href={company.report_url.startsWith("http") ? company.report_url : `https://${company.report_url}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-blue-600 hover:underline"
+                      className="flex items-center gap-1 text-blue-600 hover:underline text-right truncate"
                     >
-                      View <ExternalLink className="h-3 w-3" />
+                      {company.report_url.replace(/^https?:\/\//, "")} <ExternalLink className="h-3 w-3 shrink-0" />
                     </a>
                   </div>
                 )}
@@ -189,10 +189,11 @@ export default async function CompanyDetailPage({
             </CardHeader>
             <CardContent className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
               {[
-                { key: "score", label: "{{score}}", value: company.audit_score, suffix: " / 6 capabilities passing" },
+                { key: "score", label: "{{score}}", value: company.audit_score, suffix: " / 100 Search Quality Score" },
+                { key: "query_count", label: "{{query_count}}", value: company.audit_query_count, suffix: " queries tested" },
                 { key: "cap_count", label: "{{cap_count}}", value: company.audit_cap_count, suffix: " critical failures" },
-                { key: "top3rate", label: "{{top3rate}}", value: company.audit_top3rate, suffix: "%" },
-                { key: "outside3rate", label: "{{outside3rate}}", value: company.audit_outside3rate, suffix: "%" },
+                { key: "top3rate", label: "{{top_3_rate}}", value: company.audit_top3rate, suffix: "%" },
+                { key: "outside3rate", label: "{{outside_3_rate}}", value: company.audit_outside3rate, suffix: "%" },
                 { key: "worst_query", label: "{{worst_query}}", value: company.audit_worst_query, suffix: "" },
                 { key: "worst_pos", label: "{{worst_pos}}", value: company.audit_worst_pos ? `#${company.audit_worst_pos}` : null, suffix: "" },
                 { key: "wrong_product", label: "{{wrong_product}}", value: company.audit_wrong_product, suffix: "", wide: true },

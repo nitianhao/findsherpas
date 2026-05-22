@@ -350,6 +350,51 @@ strong { font-weight: 600; }
   border-bottom: none;
 }
 
+.worst-example {
+  position: relative;
+  margin: 28px 0 4px;
+  padding: 22px 26px 22px 34px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--destructive);
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+
+.worst-example::before {
+  content: "\201C";
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  color: var(--destructive);
+  font-size: 3.1rem;
+  line-height: 1;
+  font-weight: 800;
+  opacity: 0.18;
+}
+
+.worst-example-label {
+  display: block;
+  color: var(--destructive);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.worst-example-text {
+  display: block;
+  color: var(--fg);
+  font-size: 1.2rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.worst-example-text strong {
+  color: var(--fg);
+}
+
 .metric-list {
   list-style: none;
   margin: 28px 0 8px;
@@ -1276,10 +1321,13 @@ strong { font-weight: 600; }
       </div>
     </div>
 
-    <p style="color: var(--muted); font-size: 0.9rem;">
-      The most severe example: a customer searching <strong>"{{ stats.worst_query }}"</strong>
-      had to scroll to position #{{ stats.worst_displacement }} to find the best matching result.
-    </p>
+    <blockquote class="worst-example">
+      <span class="worst-example-label">Most severe example</span>
+      <span class="worst-example-text">
+        A customer searching <strong>"{{ stats.worst_query }}"</strong>
+        had to scroll to position #{{ stats.worst_displacement }} to find the best matching result.
+      </span>
+    </blockquote>
   </section>
 
   <!-- ================ SCORECARD ================ -->

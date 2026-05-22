@@ -6,6 +6,7 @@ import Image from "next/image";
 import {
   LayoutDashboard,
   Building2,
+  FileText,
   Users,
   Mail,
   TrendingUp,
@@ -20,6 +21,7 @@ import { useRouter } from "next/navigation";
 const navigation = [
   { name: "Dashboard", href: "/crm/dashboard", icon: LayoutDashboard },
   { name: "Companies", href: "/crm/companies", icon: Building2 },
+  { name: "Reports", href: "/crm/reports", icon: FileText },
   { name: "Contacts", href: "/crm/contacts", icon: Users },
   { name: "Sequences", href: "/crm/sequences", icon: Mail },
   { name: "Pipeline", href: "/crm/pipeline", icon: TrendingUp },

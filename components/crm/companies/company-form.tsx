@@ -123,9 +123,11 @@ export function CompanyForm({ company }: CompanyFormProps) {
       {/* Report */}
       <div className="space-y-4">
         <h3 className="text-lg font-medium">Report</h3>
-        <div className="space-y-2">
-          <Label htmlFor="report_url">Report URL</Label>
-          <Input id="report_url" {...form.register("report_url")} placeholder="https://..." />
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="report_url">Report URL</Label>
+            <Input id="report_url" {...form.register("report_url")} placeholder="https://..." />
+          </div>
         </div>
       </div>
 

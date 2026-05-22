@@ -40,6 +40,7 @@ function mapCompany(c: Record<string, unknown> & { tags?: Array<Record<string, u
     pdf_url: (c.pdf_url as string | null) ?? null,
     pdf_name: (c.pdf_name as string | null) ?? null,
     audit_score: (c.audit_score as string | null) ?? null,
+    audit_query_count: (c.audit_query_count as string | null) ?? null,
     audit_cap_count: (c.audit_cap_count as string | null) ?? null,
     audit_top3rate: (c.audit_top3rate as string | null) ?? null,
     audit_outside3rate: (c.audit_outside3rate as string | null) ?? null,
@@ -195,6 +196,7 @@ interface CompanyUpdateData {
   country?: string | null;
   language?: string | null;
   audit_score?: string | null;
+  audit_query_count?: string | null;
   audit_cap_count?: string | null;
   audit_top3rate?: string | null;
   audit_outside3rate?: string | null;

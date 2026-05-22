@@ -47,8 +47,12 @@ data/
 *.xlsx
 *.csv
 
-# Synthetic Search audit outputs
-src/audit/reports/
+# Find Sherpas audit local runtime artifacts
+reports/*
+!reports/report_slugs.json
 src/audit/.env
 src/audit/.venv/
 src/audit/src/__pycache__/
+
+# Report passwords — local only, never committed
+reports/passwords.json

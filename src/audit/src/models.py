@@ -203,6 +203,10 @@ class SiteContext(BaseModel):
         default="",
         description="Raw <meta name='description'> content from the homepage.",
     )
+    primary_language: str = Field(
+        default="English",
+        description="Primary language customers use to search this site (e.g. 'Swedish', 'English', 'German'). Used to ensure test queries are generated in the correct language.",
+    )
 
 
 class TestQuery(BaseModel):

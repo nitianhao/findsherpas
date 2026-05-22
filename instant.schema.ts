@@ -23,6 +23,7 @@ const _schema = i.schema({
       pdf_url: i.string().optional(),
       pdf_name: i.string().optional(),
       audit_score: i.string().optional(),
+      audit_query_count: i.string().optional(),
       audit_cap_count: i.string().optional(),
       audit_top3rate: i.string().optional(),
       audit_outside3rate: i.string().optional(),

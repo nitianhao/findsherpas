@@ -1,0 +1,1511 @@
+- generic [ref=e1]:
+  - generic [ref=e4]:
+    - navigation "Navigační odkazy pro přeskočení obsahu":
+      - link "Přejít na hlavní obsah" [ref=e5] [cursor=pointer]:
+        - /url: "#main"
+    - generic [ref=e6]:
+      - banner [ref=e7]:
+        - generic [ref=e8]:
+          - generic [ref=e9]:
+            - generic [ref=e11]:
+              - list [ref=e13]:
+                - listitem [ref=e14]:
+                  - link "Naše prodejny" [ref=e15] [cursor=pointer]:
+                    - /url: /nase-prodejny
+                - listitem [ref=e16]:
+                  - link "Kontakt" [ref=e17] [cursor=pointer]:
+                    - /url: /kontakt
+                - listitem [ref=e18]:
+                  - link "Klub celio+" [ref=e19] [cursor=pointer]:
+                    - /url: /celio-plus
+                - listitem [ref=e20]:
+                  - link "Užitečné informace" [ref=e21] [cursor=pointer]:
+                    - /url: /faq
+              - paragraph [ref=e24]:
+                - strong [ref=e25]:
+                  - link "Extra sleva 20 % na vybrané košile 👔" [ref=e26] [cursor=pointer]:
+                    - /url: https://www.celiostore.cz/kosile-cz
+              - list [ref=e29]:
+                - listitem [ref=e30]:
+                  - link "Přihlášení" [ref=e31] [cursor=pointer]:
+                    - /url: /uzivatel/prihlaseni
+                    - img [ref=e35]
+                    - text: Přihlášení
+                - listitem [ref=e38]:
+                  - link "Registrace" [ref=e39] [cursor=pointer]:
+                    - /url: /uzivatel/registrace
+            - paragraph [ref=e41]:
+              - link "REGISTRUJ SE A ZÍSKEJ DOPRAVU NEBO MOŽNOST VRÁCENÍ ZBOŽÍ ZDARMA" [ref=e42] [cursor=pointer]:
+                - /url: https://www.celiostore.cz/uzivatel/registrace
+          - generic [ref=e45]:
+            - generic [ref=e46]:
+              - link "Celio.cz" [ref=e48] [cursor=pointer]:
+                - /url: /
+                - img [ref=e51]
+              - navigation [ref=e54]:
+                - link "Novinky otevřít submenu" [ref=e56] [cursor=pointer]:
+                  - /url: /novinky
+                  - generic [ref=e57]:
+                    - text: Novinky
+                    - button "otevřít submenu" [ref=e58]:
+                      - img [ref=e61]
+                - link "Muži otevřít submenu" [ref=e64] [cursor=pointer]:
+                  - /url: /muzi
+                  - generic [ref=e65]:
+                    - text: Muži
+                    - button "otevřít submenu" [ref=e66]:
+                      - img [ref=e69]
+                - link "Formal otevřít submenu" [ref=e72] [cursor=pointer]:
+                  - /url: /formal-cz
+                  - generic [ref=e73]:
+                    - text: Formal
+                    - button "otevřít submenu" [ref=e74]:
+                      - img [ref=e77]
+                - link "Casual otevřít submenu" [ref=e80] [cursor=pointer]:
+                  - /url: /casual
+                  - generic [ref=e81]:
+                    - text: Casual
+                    - button "otevřít submenu" [ref=e82]:
+                      - img [ref=e85]
+                - link "Speciální edice otevřít submenu" [ref=e88] [cursor=pointer]:
+                  - /url: /specialni-edice
+                  - generic [ref=e89]:
+                    - text: Speciální edice
+                    - button "otevřít submenu" [ref=e90]:
+                      - img [ref=e93]
+                - link "Dárky otevřít submenu" [ref=e96] [cursor=pointer]:
+                  - /url: /darky
+                  - generic [ref=e97]:
+                    - text: Dárky
+                    - button "otevřít submenu" [ref=e98]:
+                      - img [ref=e101]
+                - link "Výprodej otevřít submenu" [ref=e104] [cursor=pointer]:
+                  - /url: /akce
+                  - generic [ref=e105]:
+                    - text: Výprodej
+                    - button "otevřít submenu" [ref=e106]:
+                      - img [ref=e109]
+                - link "be normal*" [ref=e112] [cursor=pointer]:
+                  - /url: /be-normal
+                  - generic [ref=e113]: be normal*
+            - list [ref=e115]:
+              - listitem [ref=e116]:
+                - button "Zobrazit výsledky hledání" [ref=e117] [cursor=pointer]:
+                  - img [ref=e120]
+              - listitem [ref=e122]:
+                - link "Oblíbené" [ref=e124] [cursor=pointer]:
+                  - /url: /wishlist
+                  - img [ref=e127]
+              - listitem [ref=e129]:
+                - link "Košík" [ref=e131] [cursor=pointer]:
+                  - /url: /kosik/obsah
+                  - img [ref=e134]
+      - main [active] [ref=e138]:
+        - generic [ref=e139]:
+          - generic [ref=e140]:
+            - 'heading "Výsledky hledání: \"tričko\"" [level=1] [ref=e141]'
+            - generic [ref=e142]: 895 produktů
+          - generic [ref=e143]:
+            - navigation "Navigační odkazy pro přeskočení obsahu":
+              - link "Přejít na filtry produktů" [ref=e144] [cursor=pointer]:
+                - /url: "#filters"
+              - link "Přejít na produkty" [ref=e145] [cursor=pointer]:
+                - /url: "#products"
+            - generic [ref=e149]:
+              - complementary "filters__aside-label" [ref=e150]:
+                - separator [ref=e151]
+                - group "discount-filter-label" [ref=e152]:
+                  - generic "Akce" [ref=e153] [cursor=pointer]: Akce
+                  - list [ref=e156]:
+                    - listitem [ref=e157]:
+                      - generic [ref=e158] [cursor=pointer]:
+                        - checkbox "Basic kousky do tvého šatníku" [ref=e159]
+                        - text: Basic kousky do tvého šatníku
+                    - listitem [ref=e160]:
+                      - generic [ref=e161] [cursor=pointer]:
+                        - checkbox "Feel Good" [ref=e162]
+                        - text: Feel Good
+                    - listitem [ref=e163]:
+                      - generic [ref=e164] [cursor=pointer]:
+                        - checkbox "Naše bestsellery" [ref=e165]
+                        - text: Naše bestsellery
+                    - listitem [ref=e166]:
+                      - generic [ref=e167] [cursor=pointer]:
+                        - checkbox "Speciální edice" [ref=e168]
+                        - text: Speciální edice
+                    - listitem [ref=e169]:
+                      - generic [ref=e170] [cursor=pointer]:
+                        - checkbox "Zpátky do práce" [ref=e171]
+                        - text: Zpátky do práce
+                    - listitem [ref=e172]:
+                      - generic [ref=e173] [cursor=pointer]:
+                        - checkbox "Zpátky do školy" [ref=e174]
+                        - text: Zpátky do školy
+                    - listitem [ref=e175]:
+                      - generic [ref=e176] [cursor=pointer]:
+                        - checkbox "Čerstvě naskladněno" [ref=e177]
+                        - text: Čerstvě naskladněno
+                - group "size-filter-label" [ref=e178]:
+                  - generic "Velikost" [ref=e179] [cursor=pointer]: Velikost
+                  - generic [ref=e181]:
+                    - list [ref=e182]:
+                      - listitem [ref=e183]:
+                        - generic [ref=e184] [cursor=pointer]:
+                          - checkbox "26" [ref=e185]
+                          - generic: "26"
+                      - listitem [ref=e186]:
+                        - generic [ref=e187] [cursor=pointer]:
+                          - checkbox "27/34" [ref=e188]
+                          - generic: 27/34
+                      - listitem [ref=e189]:
+                        - generic [ref=e190] [cursor=pointer]:
+                          - checkbox "28/34" [ref=e191]
+                          - generic: 28/34
+                      - listitem [ref=e192]:
+                        - generic [ref=e193] [cursor=pointer]:
+                          - checkbox "30" [ref=e194]
+                          - generic: "30"
+                      - listitem [ref=e195]:
+                        - generic [ref=e196] [cursor=pointer]:
+                          - checkbox "30/32" [ref=e197]
+                          - generic: 30/32
+                      - listitem [ref=e198]:
+                        - generic [ref=e199] [cursor=pointer]:
+                          - checkbox "30/34" [ref=e200]
+                          - generic: 30/34
+                      - listitem [ref=e201]:
+                        - generic [ref=e202] [cursor=pointer]:
+                          - checkbox "32" [ref=e203]
+                          - generic: "32"
+                      - listitem [ref=e204]:
+                        - generic [ref=e205] [cursor=pointer]:
+                          - checkbox "32/34" [ref=e206]
+                          - generic: 32/34
+                      - listitem [ref=e207]:
+                        - generic [ref=e208] [cursor=pointer]:
+                          - checkbox "33" [ref=e209]
+                          - generic: "33"
+                      - listitem [ref=e210]:
+                        - generic [ref=e211] [cursor=pointer]:
+                          - checkbox "33/34" [ref=e212]
+                          - generic: 33/34
+                      - listitem [ref=e213]:
+                        - generic [ref=e214] [cursor=pointer]:
+                          - checkbox "34" [ref=e215]
+                          - generic: "34"
+                      - listitem [ref=e216]:
+                        - generic [ref=e217] [cursor=pointer]:
+                          - checkbox "34/34" [ref=e218]
+                          - generic: 34/34
+                      - listitem [ref=e219]:
+                        - generic [ref=e220] [cursor=pointer]:
+                          - checkbox "36" [ref=e221]
+                          - generic: "36"
+                      - listitem [ref=e222]:
+                        - generic [ref=e223] [cursor=pointer]:
+                          - checkbox "36/32" [ref=e224]
+                          - generic: 36/32
+                      - listitem [ref=e225]:
+                        - generic [ref=e226] [cursor=pointer]:
+                          - checkbox "36/34" [ref=e227]
+                          - generic: 36/34
+                    - button "Zobrazit vše" [ref=e228] [cursor=pointer]
+                - group "default-filter-label" [ref=e229]:
+                  - generic "Základní kousky šatníku" [ref=e230] [cursor=pointer]: Základní kousky šatníku
+                  - generic [ref=e232]:
+                    - list [ref=e233]:
+                      - listitem [ref=e234]:
+                        - generic [ref=e235] [cursor=pointer]:
+                          - checkbox "B.01" [ref=e236]
+                          - text: B.01
+                      - listitem [ref=e237]:
+                        - generic [ref=e238] [cursor=pointer]:
+                          - checkbox "C.35" [ref=e239]
+                          - text: C.35
+                      - listitem [ref=e240]:
+                        - generic [ref=e241] [cursor=pointer]:
+                          - checkbox "K.01" [ref=e242]
+                          - text: K.01
+                      - listitem [ref=e243]:
+                        - generic [ref=e244] [cursor=pointer]:
+                          - checkbox "K.05" [ref=e245]
+                          - text: K.05
+                      - listitem [ref=e246]:
+                        - generic [ref=e247] [cursor=pointer]:
+                          - checkbox "P.01" [ref=e248]
+                          - text: P.01
+                      - listitem [ref=e249]:
+                        - generic [ref=e250] [cursor=pointer]:
+                          - checkbox "P.02" [ref=e251]
+                          - text: P.02
+                      - listitem [ref=e252]:
+                        - generic [ref=e253] [cursor=pointer]:
+                          - checkbox "P.04" [ref=e254]
+                          - text: P.04
+                      - listitem [ref=e255]:
+                        - generic [ref=e256] [cursor=pointer]:
+                          - checkbox "PO.01" [ref=e257]
+                          - text: PO.01
+                      - listitem [ref=e258]:
+                        - generic [ref=e259] [cursor=pointer]:
+                          - checkbox "PO.02" [ref=e260]
+                          - text: PO.02
+                      - listitem [ref=e261]:
+                        - generic [ref=e262] [cursor=pointer]:
+                          - checkbox "PO.03" [ref=e263]
+                          - text: PO.03
+                      - listitem [ref=e264]:
+                        - generic [ref=e265] [cursor=pointer]:
+                          - checkbox "T.01" [ref=e266]
+                          - text: T.01
+                      - listitem [ref=e267]:
+                        - generic [ref=e268] [cursor=pointer]:
+                          - checkbox "T.01v" [ref=e269]
+                          - text: T.01v
+                    - button "Zobrazit vše" [ref=e270] [cursor=pointer]
+                - group "color-filter-label" [ref=e271]:
+                  - generic "Barva" [ref=e272] [cursor=pointer]: Barva
+                  - list [ref=e275]:
+                    - listitem [ref=e276]:
+                      - generic "Barevná" [ref=e277]:
+                        - checkbox [ref=e278]
+                    - listitem [ref=e280]:
+                      - generic "Béžová" [ref=e281]:
+                        - checkbox [ref=e282]
+                    - listitem [ref=e284]:
+                      - generic "Bílá" [ref=e285]:
+                        - checkbox [ref=e286]
+                    - listitem [ref=e288]:
+                      - generic "Fialová" [ref=e289]:
+                        - checkbox [ref=e290]
+                    - listitem [ref=e292]:
+                      - generic "Hnědá" [ref=e293]:
+                        - checkbox [ref=e294]
+                    - listitem [ref=e296]:
+                      - generic "Khaki" [ref=e297]:
+                        - checkbox [ref=e298]
+                    - listitem [ref=e300]:
+                      - generic "Modrá" [ref=e301]:
+                        - checkbox [ref=e302]
+                    - listitem [ref=e304]:
+                      - generic "Oranžová" [ref=e305]:
+                        - checkbox [ref=e306]
+                    - listitem [ref=e308]:
+                      - generic "Růžová" [ref=e309]:
+                        - checkbox [ref=e310]
+                    - listitem [ref=e312]:
+                      - generic "Smetanová" [ref=e313]:
+                        - checkbox [ref=e314]
+                    - listitem [ref=e316]:
+                      - generic "Tmavě modrá" [ref=e317]:
+                        - checkbox [ref=e318]
+                    - listitem [ref=e320]:
+                      - generic "Tyrkysová" [ref=e321]:
+                        - checkbox [ref=e322]
+                    - listitem [ref=e324]:
+                      - generic "Vínová" [ref=e325]:
+                        - checkbox [ref=e326]
+                    - listitem [ref=e328]:
+                      - generic "Zelená" [ref=e329]:
+                        - checkbox [ref=e330]
+                    - listitem [ref=e332]:
+                      - generic "Černá" [ref=e333]:
+                        - checkbox [ref=e334]
+                    - listitem [ref=e336]:
+                      - generic "Červená" [ref=e337]:
+                        - checkbox [ref=e338]
+                    - listitem [ref=e340]:
+                      - generic "Šedá" [ref=e341]:
+                        - checkbox [ref=e342]
+                    - listitem [ref=e344]:
+                      - generic "Žlutá" [ref=e345]:
+                        - checkbox [ref=e346]
+                - group "default-filter-label" [ref=e348]:
+                  - generic "Materiál" [ref=e349] [cursor=pointer]: Materiál
+                  - list [ref=e352]:
+                    - listitem [ref=e353]:
+                      - generic [ref=e354] [cursor=pointer]:
+                        - checkbox "Bavlna" [ref=e355]
+                        - text: Bavlna
+                    - listitem [ref=e356]:
+                      - generic [ref=e357] [cursor=pointer]:
+                        - checkbox "Elastan" [ref=e358]
+                        - text: Elastan
+                    - listitem [ref=e359]:
+                      - generic [ref=e360] [cursor=pointer]:
+                        - checkbox "Kašmír" [ref=e361]
+                        - text: Kašmír
+                    - listitem [ref=e362]:
+                      - generic [ref=e363] [cursor=pointer]:
+                        - checkbox "Len" [ref=e364]
+                        - text: Len
+                    - listitem [ref=e365]:
+                      - generic [ref=e366] [cursor=pointer]:
+                        - checkbox "Viskóza" [ref=e367]
+                        - text: Viskóza
+                - group "price-filter-label" [ref=e368]:
+                  - generic "Cena" [ref=e369] [cursor=pointer]: Cena
+                  - list [ref=e372]:
+                    - listitem [ref=e373]:
+                      - generic [ref=e375]:
+                        - generic [ref=e376]:
+                          - generic [ref=e378]:
+                            - spinbutton "Kč" [ref=e379]: "149"
+                            - generic [ref=e380]: Kč
+                          - generic [ref=e382]:
+                            - spinbutton "Kč" [ref=e383]: "1889"
+                            - generic [ref=e384]: Kč
+                        - generic [ref=e387]:
+                          - slider "hodnota od 149" [ref=e388]
+                          - slider "hodnota do 1889" [ref=e390]
+                        - generic [ref=e392]:
+                          - generic [ref=e393]: 149 Kč
+                          - generic [ref=e394]: 1 889 Kč
+                - group "sale-filter-label" [ref=e395]:
+                  - generic "Sleva" [ref=e396] [cursor=pointer]: Sleva
+                  - list [ref=e399]:
+                    - listitem [ref=e400]:
+                      - generic [ref=e402]:
+                        - generic [ref=e403]:
+                          - generic [ref=e405]:
+                            - spinbutton "%" [ref=e406]: "0"
+                            - generic [ref=e407]: "%"
+                          - generic [ref=e409]:
+                            - spinbutton "%" [ref=e410]: "50"
+                            - generic [ref=e411]: "%"
+                        - generic [ref=e414]:
+                          - slider "hodnota od 0" [ref=e415]
+                          - slider "hodnota do 50" [ref=e417]
+                        - generic [ref=e419]:
+                          - generic [ref=e420]: 0 %
+                          - generic [ref=e421]: 50 %
+              - generic [ref=e422]:
+                - heading "Produkty" [level=2] [ref=e423]
+                - generic [ref=e424]:
+                  - article [ref=e425] [cursor=pointer]:
+                    - generic [ref=e426]:
+                      - link "Tričko Neunir" [ref=e427]:
+                        - /url: /bavlnene-basic-tricko-3
+                        - img "Tričko Neunir" [ref=e429]
+                      - button "Přidat do oblíbených" [ref=e431]:
+                        - img [ref=e434]
+                      - generic [ref=e436]:
+                        - generic [ref=e437]:
+                          - link [ref=e438]:
+                            - /url: /bavlnene-basic-tricko-3
+                            - text: S
+                          - link [ref=e439]:
+                            - /url: /bavlnene-basic-tricko-3
+                            - text: L
+                          - link [ref=e440]:
+                            - /url: /bavlnene-basic-tricko-3
+                            - text: XL
+                          - link [ref=e441]:
+                            - /url: /bavlnene-basic-tricko-3
+                            - text: XXL
+                        - generic [ref=e442]:
+                          - link [ref=e443]:
+                            - /url: /bavlnene-basic-tricko
+                            - img [ref=e446]
+                          - link [ref=e447]:
+                            - /url: /bavlnene-basic-tricko-4
+                            - img [ref=e450]
+                          - link [ref=e451]:
+                            - /url: /bavlnene-basic-tricko-2
+                            - img [ref=e454]
+                          - link [ref=e455]:
+                            - /url: /bavlnene-basic-tricko-3
+                            - img [ref=e458]
+                          - link [ref=e459]:
+                            - /url: /tricko-neunir-z-bavlny-supima-3
+                            - generic [ref=e461]: "+13"
+                    - link "T.03 • základ šatníku Tričko Neunir 17 barev 399 Kč" [ref=e462]:
+                      - /url: /bavlnene-basic-tricko-3
+                      - generic [ref=e463]: T.03 • základ šatníku
+                      - heading "Tričko Neunir" [level=3] [ref=e464]
+                      - generic [ref=e466]: 17 barev
+                      - strong [ref=e469]:
+                        - generic [ref=e470]: 399 Kč
+                  - article [ref=e471] [cursor=pointer]:
+                    - generic [ref=e472]:
+                      - link "Tričko Neunir" [ref=e473]:
+                        - /url: /bavlnene-basic-tricko
+                        - img "Tričko Neunir" [ref=e475]
+                      - button "Přidat do oblíbených" [ref=e477]:
+                        - img [ref=e480]
+                      - generic [ref=e482]:
+                        - link [ref=e484]:
+                          - /url: /bavlnene-basic-tricko
+                          - text: XXL
+                        - generic [ref=e485]:
+                          - link [ref=e486]:
+                            - /url: /bavlnene-basic-tricko
+                            - img [ref=e489]
+                          - link [ref=e490]:
+                            - /url: /bavlnene-basic-tricko-4
+                            - img [ref=e493]
+                          - link [ref=e494]:
+                            - /url: /bavlnene-basic-tricko-2
+                            - img [ref=e497]
+                          - link [ref=e498]:
+                            - /url: /bavlnene-basic-tricko-3
+                            - img [ref=e501]
+                          - link [ref=e502]:
+                            - /url: /tricko-neunir-z-bavlny-supima-3
+                            - generic [ref=e504]: "+13"
+                    - link "T.03 • základ šatníku Tričko Neunir 17 barev 399 Kč" [ref=e505]:
+                      - /url: /bavlnene-basic-tricko
+                      - generic [ref=e506]: T.03 • základ šatníku
+                      - heading "Tričko Neunir" [level=3] [ref=e507]
+                      - generic [ref=e509]: 17 barev
+                      - strong [ref=e512]:
+                        - generic [ref=e513]: 399 Kč
+                  - article [ref=e514] [cursor=pointer]:
+                    - generic [ref=e515]:
+                      - link "Tričko Neuniv" [ref=e516]:
+                        - /url: /basic-tricko-s-vystrihem-do-v
+                        - img "Tričko Neuniv" [ref=e518]
+                      - button "Přidat do oblíbených" [ref=e520]:
+                        - img [ref=e523]
+                      - generic [ref=e525]:
+                        - generic [ref=e526]:
+                          - link [ref=e527]:
+                            - /url: /basic-tricko-s-vystrihem-do-v
+                            - text: M
+                          - link [ref=e528]:
+                            - /url: /basic-tricko-s-vystrihem-do-v
+                            - text: L
+                          - link [ref=e529]:
+                            - /url: /basic-tricko-s-vystrihem-do-v
+                            - text: XL
+                          - link [ref=e530]:
+                            - /url: /basic-tricko-s-vystrihem-do-v
+                            - text: XXL
+                        - generic [ref=e531]:
+                          - link [ref=e532]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-3
+                            - img [ref=e535]
+                          - link [ref=e536]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-2
+                            - img [ref=e539]
+                          - link [ref=e540]:
+                            - /url: /basic-tricko-s-vystrihem-do-v
+                            - img [ref=e543]
+                          - link [ref=e544]:
+                            - /url: /bavlnene-tricko-neuniv
+                            - img [ref=e547]
+                          - link [ref=e548]:
+                            - /url: /neuniv-short-sleeves-tshirt
+                            - generic [ref=e550]: "+7"
+                    - link "T.03v • základ šatníku Tričko Neuniv 11 barev 399 Kč" [ref=e551]:
+                      - /url: /basic-tricko-s-vystrihem-do-v
+                      - generic [ref=e552]: T.03v • základ šatníku
+                      - heading "Tričko Neuniv" [level=3] [ref=e553]
+                      - generic [ref=e555]: 11 barev
+                      - strong [ref=e558]:
+                        - generic [ref=e559]: 399 Kč
+                  - article [ref=e560] [cursor=pointer]:
+                    - generic [ref=e561]:
+                      - link "Tričko Neuniv" [ref=e562]:
+                        - /url: /bavlnene-tricko-neuniv
+                        - img "Tričko Neuniv" [ref=e564]
+                      - button "Přidat do oblíbených" [ref=e566]:
+                        - img [ref=e569]
+                      - generic [ref=e571]:
+                        - generic [ref=e572]:
+                          - link [ref=e573]:
+                            - /url: /bavlnene-tricko-neuniv
+                            - text: S
+                          - link [ref=e574]:
+                            - /url: /bavlnene-tricko-neuniv
+                            - text: M
+                          - link [ref=e575]:
+                            - /url: /bavlnene-tricko-neuniv
+                            - text: XL
+                          - link [ref=e576]:
+                            - /url: /bavlnene-tricko-neuniv
+                            - text: XXL
+                        - generic [ref=e577]:
+                          - link [ref=e578]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-3
+                            - img [ref=e581]
+                          - link [ref=e582]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-2
+                            - img [ref=e585]
+                          - link [ref=e586]:
+                            - /url: /basic-tricko-s-vystrihem-do-v
+                            - img [ref=e589]
+                          - link [ref=e590]:
+                            - /url: /bavlnene-tricko-neuniv
+                            - img [ref=e593]
+                          - link [ref=e594]:
+                            - /url: /neuniv-short-sleeves-tshirt
+                            - generic [ref=e596]: "+7"
+                    - link "T.03v • základ šatníku Tričko Neuniv 11 barev 399 Kč" [ref=e597]:
+                      - /url: /bavlnene-tricko-neuniv
+                      - generic [ref=e598]: T.03v • základ šatníku
+                      - heading "Tričko Neuniv" [level=3] [ref=e599]
+                      - generic [ref=e601]: 11 barev
+                      - strong [ref=e604]:
+                        - generic [ref=e605]: 399 Kč
+                  - article [ref=e606] [cursor=pointer]:
+                    - generic [ref=e607]:
+                      - link "Tričko Neunir" [ref=e608]:
+                        - /url: /bavlnene-basic-tricko-2
+                        - img "Tričko Neunir" [ref=e610]
+                      - button "Přidat do oblíbených" [ref=e612]:
+                        - img [ref=e615]
+                      - generic [ref=e617]:
+                        - generic [ref=e618]:
+                          - link [ref=e619]:
+                            - /url: /bavlnene-basic-tricko-2
+                            - text: S
+                          - link [ref=e620]:
+                            - /url: /bavlnene-basic-tricko-2
+                            - text: L
+                          - link [ref=e621]:
+                            - /url: /bavlnene-basic-tricko-2
+                            - text: XL
+                        - generic [ref=e622]:
+                          - link [ref=e623]:
+                            - /url: /bavlnene-basic-tricko
+                            - img [ref=e626]
+                          - link [ref=e627]:
+                            - /url: /bavlnene-basic-tricko-4
+                            - img [ref=e630]
+                          - link [ref=e631]:
+                            - /url: /bavlnene-basic-tricko-2
+                            - img [ref=e634]
+                          - link [ref=e635]:
+                            - /url: /bavlnene-basic-tricko-3
+                            - img [ref=e638]
+                          - link [ref=e639]:
+                            - /url: /tricko-neunir-z-bavlny-supima-3
+                            - generic [ref=e641]: "+13"
+                    - link "T.03 • základ šatníku Tričko Neunir 17 barev 399 Kč" [ref=e642]:
+                      - /url: /bavlnene-basic-tricko-2
+                      - generic [ref=e643]: T.03 • základ šatníku
+                      - heading "Tričko Neunir" [level=3] [ref=e644]
+                      - generic [ref=e646]: 17 barev
+                      - strong [ref=e649]:
+                        - generic [ref=e650]: 399 Kč
+                  - article [ref=e651] [cursor=pointer]:
+                    - generic [ref=e652]:
+                      - link "Tričko Neuniv" [ref=e653]:
+                        - /url: /basic-tricko-s-vystrihem-do-v-2
+                        - img "Tričko Neuniv" [ref=e655]
+                      - button "Přidat do oblíbených" [ref=e657]:
+                        - img [ref=e660]
+                      - generic [ref=e662]:
+                        - generic [ref=e663]:
+                          - link [ref=e664]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-2
+                            - text: S
+                          - link [ref=e665]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-2
+                            - text: M
+                          - link [ref=e666]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-2
+                            - text: L
+                          - link [ref=e667]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-2
+                            - text: XXL
+                        - generic [ref=e668]:
+                          - link [ref=e669]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-3
+                            - img [ref=e672]
+                          - link [ref=e673]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-2
+                            - img [ref=e676]
+                          - link [ref=e677]:
+                            - /url: /basic-tricko-s-vystrihem-do-v
+                            - img [ref=e680]
+                          - link [ref=e681]:
+                            - /url: /bavlnene-tricko-neuniv
+                            - img [ref=e684]
+                          - link [ref=e685]:
+                            - /url: /neuniv-short-sleeves-tshirt
+                            - generic [ref=e687]: "+7"
+                    - link "T.03v • základ šatníku Tričko Neuniv 11 barev 399 Kč" [ref=e688]:
+                      - /url: /basic-tricko-s-vystrihem-do-v-2
+                      - generic [ref=e689]: T.03v • základ šatníku
+                      - heading "Tričko Neuniv" [level=3] [ref=e690]
+                      - generic [ref=e692]: 11 barev
+                      - strong [ref=e695]:
+                        - generic [ref=e696]: 399 Kč
+                  - article [ref=e697] [cursor=pointer]:
+                    - generic [ref=e698]:
+                      - link "Tričko Neunir" [ref=e699]:
+                        - /url: /tricko-neunir-24
+                        - img "Tričko Neunir" [ref=e701]
+                      - button "Přidat do oblíbených" [ref=e703]:
+                        - img [ref=e706]
+                      - generic [ref=e708]:
+                        - generic [ref=e709]:
+                          - link [ref=e710]:
+                            - /url: /tricko-neunir-24
+                            - text: S
+                          - link [ref=e711]:
+                            - /url: /tricko-neunir-24
+                            - text: M
+                          - link [ref=e712]:
+                            - /url: /tricko-neunir-24
+                            - text: L
+                          - link [ref=e713]:
+                            - /url: /tricko-neunir-24
+                            - text: XL
+                          - link [ref=e714]:
+                            - /url: /tricko-neunir-24
+                            - text: XXL
+                        - generic [ref=e715]:
+                          - link [ref=e716]:
+                            - /url: /bavlnene-basic-tricko
+                            - img [ref=e719]
+                          - link [ref=e720]:
+                            - /url: /bavlnene-basic-tricko-4
+                            - img [ref=e723]
+                          - link [ref=e724]:
+                            - /url: /bavlnene-basic-tricko-2
+                            - img [ref=e727]
+                          - link [ref=e728]:
+                            - /url: /bavlnene-basic-tricko-3
+                            - img [ref=e731]
+                          - link [ref=e732]:
+                            - /url: /tricko-neunir-z-bavlny-supima-3
+                            - generic [ref=e734]: "+13"
+                    - link "Novinka • základ šatníku • T.03 Tričko Neunir 17 barev 399 Kč" [ref=e735]:
+                      - /url: /tricko-neunir-24
+                      - generic [ref=e736]: Novinka • základ šatníku • T.03
+                      - heading "Tričko Neunir" [level=3] [ref=e737]
+                      - generic [ref=e739]: 17 barev
+                      - strong [ref=e742]:
+                        - generic [ref=e743]: 399 Kč
+                  - article [ref=e744] [cursor=pointer]:
+                    - generic [ref=e745]:
+                      - link "Tričko Nebertee" [ref=e746]:
+                        - /url: /tricko-nebertee
+                        - img "Tričko Nebertee" [ref=e748]
+                      - button "Přidat do oblíbených" [ref=e750]:
+                        - img [ref=e753]
+                      - generic [ref=e755]:
+                        - generic [ref=e756]:
+                          - link [ref=e757]:
+                            - /url: /tricko-nebertee
+                            - text: S
+                          - link [ref=e758]:
+                            - /url: /tricko-nebertee
+                            - text: M
+                          - link [ref=e759]:
+                            - /url: /tricko-nebertee
+                            - text: L
+                          - link [ref=e760]:
+                            - /url: /tricko-nebertee
+                            - text: XL
+                          - link [ref=e761]:
+                            - /url: /tricko-nebertee
+                            - text: XXL
+                        - generic [ref=e762]:
+                          - link [ref=e763]:
+                            - /url: /tricko-nebertee-1
+                            - img [ref=e766]
+                          - link [ref=e767]:
+                            - /url: /tricko-nebertee
+                            - img [ref=e770]
+                    - link "Tričko Nebertee 2 barvy 419 Kč 599 Kč" [ref=e771]:
+                      - /url: /tricko-nebertee
+                      - heading "Tričko Nebertee" [level=3] [ref=e772]
+                      - generic [ref=e774]: 2 barvy
+                      - generic [ref=e777]:
+                        - strong [ref=e778]:
+                          - generic [ref=e779]: 419 Kč
+                        - generic [ref=e782]: 599 Kč
+                  - article [ref=e783] [cursor=pointer]:
+                    - generic [ref=e784]:
+                      - link "Tričko Jenico" [ref=e785]:
+                        - /url: /tricko-s-kratkym-rukavem-jenico
+                        - img "Tričko Jenico" [ref=e787]
+                      - button "Přidat do oblíbených" [ref=e789]:
+                        - img [ref=e792]
+                      - generic [ref=e794]:
+                        - generic [ref=e795]:
+                          - link [ref=e796]:
+                            - /url: /tricko-s-kratkym-rukavem-jenico
+                            - text: S
+                          - link [ref=e797]:
+                            - /url: /tricko-s-kratkym-rukavem-jenico
+                            - text: M
+                          - link [ref=e798]:
+                            - /url: /tricko-s-kratkym-rukavem-jenico
+                            - text: L
+                          - link [ref=e799]:
+                            - /url: /tricko-s-kratkym-rukavem-jenico
+                            - text: XL
+                          - link [ref=e800]:
+                            - /url: /tricko-s-kratkym-rukavem-jenico
+                            - text: XXL
+                        - generic [ref=e801]:
+                          - link [ref=e802]:
+                            - /url: /tricko-s-kratkym-rukavem-jenico
+                            - img [ref=e805]
+                          - link [ref=e806]:
+                            - /url: /tricko-s-kratkym-rukavem-jenico-2
+                            - img [ref=e809]
+                    - link "Tričko Jenico 2 barvy 299 Kč 499 Kč" [ref=e810]:
+                      - /url: /tricko-s-kratkym-rukavem-jenico
+                      - heading "Tričko Jenico" [level=3] [ref=e811]
+                      - generic [ref=e813]: 2 barvy
+                      - generic [ref=e816]:
+                        - strong [ref=e817]:
+                          - generic [ref=e818]: 299 Kč
+                        - generic [ref=e821]: 499 Kč
+                  - article [ref=e822] [cursor=pointer]:
+                    - generic [ref=e823]:
+                      - link "Tričko Nerelief" [ref=e824]:
+                        - /url: /tricko-nerelief-1
+                        - img "Tričko Nerelief" [ref=e826]
+                      - button "Přidat do oblíbených" [ref=e828]:
+                        - img [ref=e831]
+                      - generic [ref=e833]:
+                        - generic [ref=e834]:
+                          - link [ref=e835]:
+                            - /url: /tricko-nerelief-1
+                            - text: S
+                          - link [ref=e836]:
+                            - /url: /tricko-nerelief-1
+                            - text: M
+                          - link [ref=e837]:
+                            - /url: /tricko-nerelief-1
+                            - text: L
+                          - link [ref=e838]:
+                            - /url: /tricko-nerelief-1
+                            - text: XL
+                          - link [ref=e839]:
+                            - /url: /tricko-nerelief-1
+                            - text: XXL
+                        - generic [ref=e840]:
+                          - link [ref=e841]:
+                            - /url: /tricko-nerelief-1
+                            - img [ref=e844]
+                          - link [ref=e845]:
+                            - /url: /tricko-nerelief
+                            - img [ref=e848]
+                    - link "Tričko Nerelief 2 barvy 419 Kč 599 Kč" [ref=e849]:
+                      - /url: /tricko-nerelief-1
+                      - heading "Tričko Nerelief" [level=3] [ref=e850]
+                      - generic [ref=e852]: 2 barvy
+                      - generic [ref=e855]:
+                        - strong [ref=e856]:
+                          - generic [ref=e857]: 419 Kč
+                        - generic [ref=e860]: 599 Kč
+                  - article [ref=e861] [cursor=pointer]:
+                    - generic [ref=e862]:
+                      - link "Tričko Jeswitchup" [ref=e863]:
+                        - /url: /tricko-jeswitchup-2
+                        - img "Tričko Jeswitchup" [ref=e865]
+                      - button "Přidat do oblíbených" [ref=e867]:
+                        - img [ref=e870]
+                      - generic [ref=e872]:
+                        - generic [ref=e873]:
+                          - link [ref=e874]:
+                            - /url: /tricko-jeswitchup-2
+                            - text: S
+                          - link [ref=e875]:
+                            - /url: /tricko-jeswitchup-2
+                            - text: M
+                          - link [ref=e876]:
+                            - /url: /tricko-jeswitchup-2
+                            - text: L
+                          - link [ref=e877]:
+                            - /url: /tricko-jeswitchup-2
+                            - text: XL
+                          - link [ref=e878]:
+                            - /url: /tricko-jeswitchup-2
+                            - text: XXL
+                        - generic [ref=e879]:
+                          - link [ref=e880]:
+                            - /url: /tricko-jeswitchup-2
+                            - img [ref=e883]
+                          - link [ref=e884]:
+                            - /url: /tricko-jeswitchup
+                            - img [ref=e887]
+                    - link "Tričko Jeswitchup 2 barvy 299 Kč 499 Kč" [ref=e888]:
+                      - /url: /tricko-jeswitchup-2
+                      - heading "Tričko Jeswitchup" [level=3] [ref=e889]
+                      - generic [ref=e891]: 2 barvy
+                      - generic [ref=e894]:
+                        - strong [ref=e895]:
+                          - generic [ref=e896]: 299 Kč
+                        - generic [ref=e899]: 499 Kč
+                  - article [ref=e900] [cursor=pointer]:
+                    - generic [ref=e901]:
+                      - link "Tričko Menewbloc" [ref=e902]:
+                        - /url: /tricko-menewbloc
+                        - img "Tričko Menewbloc" [ref=e904]
+                      - button "Přidat do oblíbených" [ref=e906]:
+                        - img [ref=e909]
+                      - generic [ref=e911]:
+                        - generic [ref=e912]:
+                          - link [ref=e913]:
+                            - /url: /tricko-menewbloc
+                            - text: S
+                          - link [ref=e914]:
+                            - /url: /tricko-menewbloc
+                            - text: M
+                          - link [ref=e915]:
+                            - /url: /tricko-menewbloc
+                            - text: L
+                          - link [ref=e916]:
+                            - /url: /tricko-menewbloc
+                            - text: XL
+                          - link [ref=e917]:
+                            - /url: /tricko-menewbloc
+                            - text: XXL
+                        - generic [ref=e918]:
+                          - link [ref=e919]:
+                            - /url: /tricko-menewbloc
+                          - link [ref=e922]:
+                            - /url: /tricko-menewbloc-1
+                            - img [ref=e925]
+                    - link "Tričko Menewbloc 2 barvy 349 Kč 499 Kč" [ref=e926]:
+                      - /url: /tricko-menewbloc
+                      - heading "Tričko Menewbloc" [level=3] [ref=e927]
+                      - generic [ref=e929]: 2 barvy
+                      - generic [ref=e932]:
+                        - strong [ref=e933]:
+                          - generic [ref=e934]: 349 Kč
+                        - generic [ref=e937]: 499 Kč
+                  - article [ref=e938] [cursor=pointer]:
+                    - generic [ref=e939]:
+                      - link "Tričko Nerelief3" [ref=e940]:
+                        - /url: /tricko-nerelief3-1
+                        - img "Tričko Nerelief3" [ref=e942]
+                      - button "Přidat do oblíbených" [ref=e944]:
+                        - img [ref=e947]
+                      - generic [ref=e949]:
+                        - generic [ref=e950]:
+                          - link [ref=e951]:
+                            - /url: /tricko-nerelief3-1
+                            - text: S
+                          - link [ref=e952]:
+                            - /url: /tricko-nerelief3-1
+                            - text: M
+                          - link [ref=e953]:
+                            - /url: /tricko-nerelief3-1
+                            - text: L
+                          - link [ref=e954]:
+                            - /url: /tricko-nerelief3-1
+                            - text: XL
+                          - link [ref=e955]:
+                            - /url: /tricko-nerelief3-1
+                            - text: XXL
+                        - generic [ref=e956]:
+                          - link [ref=e957]:
+                            - /url: /tricko-nerelief3
+                            - img [ref=e960]
+                          - link [ref=e961]:
+                            - /url: /tricko-nerelief3-1
+                            - img [ref=e964]
+                    - link "Tričko Nerelief3 2 barvy 349 Kč 499 Kč" [ref=e965]:
+                      - /url: /tricko-nerelief3-1
+                      - heading "Tričko Nerelief3" [level=3] [ref=e966]
+                      - generic [ref=e968]: 2 barvy
+                      - generic [ref=e971]:
+                        - strong [ref=e972]:
+                          - generic [ref=e973]: 349 Kč
+                        - generic [ref=e976]: 499 Kč
+                  - article [ref=e977] [cursor=pointer]:
+                    - generic [ref=e978]:
+                      - link "Tričko Mexjust" [ref=e979]:
+                        - /url: /tricko-mexjust
+                        - img "Tričko Mexjust" [ref=e981]
+                      - button "Přidat do oblíbených" [ref=e983]:
+                        - img [ref=e986]
+                      - generic [ref=e988]:
+                        - generic [ref=e989]:
+                          - link [ref=e990]:
+                            - /url: /tricko-mexjust
+                            - text: S
+                          - link [ref=e991]:
+                            - /url: /tricko-mexjust
+                            - text: M
+                          - link [ref=e992]:
+                            - /url: /tricko-mexjust
+                            - text: L
+                          - link [ref=e993]:
+                            - /url: /tricko-mexjust
+                            - text: XL
+                          - link [ref=e994]:
+                            - /url: /tricko-mexjust
+                            - text: XXL
+                        - generic [ref=e995]:
+                          - link [ref=e996]:
+                            - /url: /tricko-mexjust-2
+                            - img [ref=e999]
+                          - link [ref=e1000]:
+                            - /url: /tricko-mexjust
+                            - img [ref=e1003]
+                    - link "Tričko Mexjust 2 barvy 349 Kč 499 Kč" [ref=e1004]:
+                      - /url: /tricko-mexjust
+                      - heading "Tričko Mexjust" [level=3] [ref=e1005]
+                      - generic [ref=e1007]: 2 barvy
+                      - generic [ref=e1010]:
+                        - strong [ref=e1011]:
+                          - generic [ref=e1012]: 349 Kč
+                        - generic [ref=e1015]: 499 Kč
+                  - article [ref=e1016] [cursor=pointer]:
+                    - generic [ref=e1017]:
+                      - link "Tričko Neuniv" [ref=e1018]:
+                        - /url: /basic-tricko-s-vystrihem-do-v-3
+                        - img "Tričko Neuniv" [ref=e1020]
+                      - button "Přidat do oblíbených" [ref=e1022]:
+                        - img [ref=e1025]
+                      - generic [ref=e1027]:
+                        - generic [ref=e1028]:
+                          - link [ref=e1029]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-3
+                            - text: S
+                          - link [ref=e1030]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-3
+                            - text: M
+                        - generic [ref=e1031]:
+                          - link [ref=e1032]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-3
+                            - img [ref=e1035]
+                          - link [ref=e1036]:
+                            - /url: /basic-tricko-s-vystrihem-do-v-2
+                            - img [ref=e1039]
+                          - link [ref=e1040]:
+                            - /url: /basic-tricko-s-vystrihem-do-v
+                            - img [ref=e1043]
+                          - link [ref=e1044]:
+                            - /url: /bavlnene-tricko-neuniv
+                            - img [ref=e1047]
+                          - link [ref=e1048]:
+                            - /url: /neuniv-short-sleeves-tshirt
+                            - generic [ref=e1050]: "+7"
+                    - link "T.03v • základ šatníku Tričko Neuniv 11 barev 399 Kč" [ref=e1051]:
+                      - /url: /basic-tricko-s-vystrihem-do-v-3
+                      - generic [ref=e1052]: T.03v • základ šatníku
+                      - heading "Tričko Neuniv" [level=3] [ref=e1053]
+                      - generic [ref=e1055]: 11 barev
+                      - strong [ref=e1058]:
+                        - generic [ref=e1059]: 399 Kč
+                  - article [ref=e1060] [cursor=pointer]:
+                    - generic [ref=e1061]:
+                      - link "Tričko Netaimti" [ref=e1062]:
+                        - /url: /tricko-netaimti-3
+                        - img "Tričko Netaimti" [ref=e1064]
+                      - button "Přidat do oblíbených" [ref=e1066]:
+                        - img [ref=e1069]
+                      - generic [ref=e1071]:
+                        - generic [ref=e1072]:
+                          - link [ref=e1073]:
+                            - /url: /tricko-netaimti-3
+                            - text: S
+                          - link [ref=e1074]:
+                            - /url: /tricko-netaimti-3
+                            - text: M
+                          - link [ref=e1075]:
+                            - /url: /tricko-netaimti-3
+                            - text: L
+                          - link [ref=e1076]:
+                            - /url: /tricko-netaimti-3
+                            - text: XL
+                          - link [ref=e1077]:
+                            - /url: /tricko-netaimti-3
+                            - text: XXL
+                        - generic [ref=e1078]:
+                          - link [ref=e1079]:
+                            - /url: /tricko-netaimti
+                            - img [ref=e1082]
+                          - link [ref=e1083]:
+                            - /url: /tricko-netaimti-3
+                            - img [ref=e1086]
+                          - link [ref=e1087]:
+                            - /url: /tricko-netaimti-2
+                            - img [ref=e1090]
+                          - link [ref=e1091]:
+                            - /url: /tricko-netaimti-1
+                            - img [ref=e1094]
+                    - link "Novinka Tričko Netaimti 4 barvy 499 Kč" [ref=e1095]:
+                      - /url: /tricko-netaimti-3
+                      - generic [ref=e1096]: Novinka
+                      - heading "Tričko Netaimti" [level=3] [ref=e1097]
+                      - generic [ref=e1099]: 4 barvy
+                      - strong [ref=e1102]:
+                        - generic [ref=e1103]: 499 Kč
+                  - article [ref=e1104] [cursor=pointer]:
+                    - generic [ref=e1105]:
+                      - link "Tričko Netechti" [ref=e1106]:
+                        - /url: /tricko-netechti
+                        - img "Tričko Netechti" [ref=e1108]
+                      - button "Přidat do oblíbených" [ref=e1110]:
+                        - img [ref=e1113]
+                      - generic [ref=e1115]:
+                        - generic [ref=e1116]:
+                          - link [ref=e1117]:
+                            - /url: /tricko-netechti
+                            - text: S
+                          - link [ref=e1118]:
+                            - /url: /tricko-netechti
+                            - text: M
+                          - link [ref=e1119]:
+                            - /url: /tricko-netechti
+                            - text: L
+                        - generic [ref=e1120]:
+                          - link [ref=e1121]:
+                            - /url: /tricko-netechti-1
+                            - img [ref=e1124]
+                          - link [ref=e1125]:
+                            - /url: /tricko-netechti
+                            - img [ref=e1128]
+                    - link "Tričko Netechti 2 barvy 419 Kč 599 Kč" [ref=e1129]:
+                      - /url: /tricko-netechti
+                      - heading "Tričko Netechti" [level=3] [ref=e1130]
+                      - generic [ref=e1132]: 2 barvy
+                      - generic [ref=e1135]:
+                        - strong [ref=e1136]:
+                          - generic [ref=e1137]: 419 Kč
+                        - generic [ref=e1140]: 599 Kč
+                  - article [ref=e1141] [cursor=pointer]:
+                    - generic [ref=e1142]:
+                      - link "Tričko Nepicti" [ref=e1143]:
+                        - /url: /tricko-nepicti-2
+                        - img "Tričko Nepicti" [ref=e1145]
+                      - button "Přidat do oblíbených" [ref=e1147]:
+                        - img [ref=e1150]
+                      - generic [ref=e1152]:
+                        - generic [ref=e1153]:
+                          - link [ref=e1154]:
+                            - /url: /tricko-nepicti-2
+                            - text: S
+                          - link [ref=e1155]:
+                            - /url: /tricko-nepicti-2
+                            - text: M
+                          - link [ref=e1156]:
+                            - /url: /tricko-nepicti-2
+                            - text: L
+                          - link [ref=e1157]:
+                            - /url: /tricko-nepicti-2
+                            - text: XL
+                          - link [ref=e1158]:
+                            - /url: /tricko-nepicti-2
+                            - text: XXL
+                        - generic [ref=e1159]:
+                          - link [ref=e1160]:
+                            - /url: /tricko-nepicti
+                            - img [ref=e1163]
+                          - link [ref=e1164]:
+                            - /url: /tricko-nepicti-1
+                            - img [ref=e1167]
+                          - link [ref=e1168]:
+                            - /url: /tricko-nepicti-3
+                            - img [ref=e1171]
+                          - link [ref=e1172]:
+                            - /url: /tricko-nepicti-2
+                            - img [ref=e1175]
+                    - link "Novinka Tričko Nepicti 4 barvy 699 Kč" [ref=e1176]:
+                      - /url: /tricko-nepicti-2
+                      - generic [ref=e1177]: Novinka
+                      - heading "Tričko Nepicti" [level=3] [ref=e1178]
+                      - generic [ref=e1180]: 4 barvy
+                      - strong [ref=e1183]:
+                        - generic [ref=e1184]: 699 Kč
+                  - article [ref=e1185] [cursor=pointer]:
+                    - generic [ref=e1186]:
+                      - link "Tričko Nexity" [ref=e1187]:
+                        - /url: /tricko-nexity-1
+                        - img "Tričko Nexity" [ref=e1189]
+                      - button "Přidat do oblíbených" [ref=e1191]:
+                        - img [ref=e1194]
+                      - generic [ref=e1196]:
+                        - generic [ref=e1197]:
+                          - link [ref=e1198]:
+                            - /url: /tricko-nexity-1
+                            - text: S
+                          - link [ref=e1199]:
+                            - /url: /tricko-nexity-1
+                            - text: M
+                          - link [ref=e1200]:
+                            - /url: /tricko-nexity-1
+                            - text: L
+                          - link [ref=e1201]:
+                            - /url: /tricko-nexity-1
+                            - text: XL
+                          - link [ref=e1202]:
+                            - /url: /tricko-nexity-1
+                            - text: XXL
+                        - generic [ref=e1203]:
+                          - link [ref=e1204]:
+                            - /url: /tricko-nexity-1
+                            - img [ref=e1207]
+                          - link [ref=e1208]:
+                            - /url: /tricko-nexity
+                            - img [ref=e1211]
+                    - link "Novinka Tričko Nexity 2 barvy 499 Kč" [ref=e1212]:
+                      - /url: /tricko-nexity-1
+                      - generic [ref=e1213]: Novinka
+                      - heading "Tričko Nexity" [level=3] [ref=e1214]
+                      - generic [ref=e1216]: 2 barvy
+                      - strong [ref=e1219]:
+                        - generic [ref=e1220]: 499 Kč
+                  - article [ref=e1221] [cursor=pointer]:
+                    - generic [ref=e1222]:
+                      - link "Tričko Nepicti" [ref=e1223]:
+                        - /url: /tricko-nepicti-1
+                        - img "Tričko Nepicti" [ref=e1225]
+                      - button "Přidat do oblíbených" [ref=e1227]:
+                        - img [ref=e1230]
+                      - generic [ref=e1232]:
+                        - generic [ref=e1233]:
+                          - link [ref=e1234]:
+                            - /url: /tricko-nepicti-1
+                            - text: S
+                          - link [ref=e1235]:
+                            - /url: /tricko-nepicti-1
+                            - text: M
+                          - link [ref=e1236]:
+                            - /url: /tricko-nepicti-1
+                            - text: L
+                          - link [ref=e1237]:
+                            - /url: /tricko-nepicti-1
+                            - text: XL
+                          - link [ref=e1238]:
+                            - /url: /tricko-nepicti-1
+                            - text: XXL
+                        - generic [ref=e1239]:
+                          - link [ref=e1240]:
+                            - /url: /tricko-nepicti
+                            - img [ref=e1243]
+                          - link [ref=e1244]:
+                            - /url: /tricko-nepicti-1
+                            - img [ref=e1247]
+                          - link [ref=e1248]:
+                            - /url: /tricko-nepicti-3
+                            - img [ref=e1251]
+                          - link [ref=e1252]:
+                            - /url: /tricko-nepicti-2
+                            - img [ref=e1255]
+                    - link "Novinka Tričko Nepicti 4 barvy 699 Kč" [ref=e1256]:
+                      - /url: /tricko-nepicti-1
+                      - generic [ref=e1257]: Novinka
+                      - heading "Tričko Nepicti" [level=3] [ref=e1258]
+                      - generic [ref=e1260]: 4 barvy
+                      - strong [ref=e1263]:
+                        - generic [ref=e1264]: 699 Kč
+                  - article [ref=e1265] [cursor=pointer]:
+                    - generic [ref=e1266]:
+                      - link "Tričko Nepicti" [ref=e1267]:
+                        - /url: /tricko-nepicti
+                        - img "Tričko Nepicti" [ref=e1269]
+                      - button "Přidat do oblíbených" [ref=e1271]:
+                        - img [ref=e1274]
+                      - generic [ref=e1276]:
+                        - generic [ref=e1277]:
+                          - link [ref=e1278]:
+                            - /url: /tricko-nepicti
+                            - text: S
+                          - link [ref=e1279]:
+                            - /url: /tricko-nepicti
+                            - text: M
+                          - link [ref=e1280]:
+                            - /url: /tricko-nepicti
+                            - text: L
+                          - link [ref=e1281]:
+                            - /url: /tricko-nepicti
+                            - text: XL
+                          - link [ref=e1282]:
+                            - /url: /tricko-nepicti
+                            - text: XXL
+                        - generic [ref=e1283]:
+                          - link [ref=e1284]:
+                            - /url: /tricko-nepicti
+                            - img [ref=e1287]
+                          - link [ref=e1288]:
+                            - /url: /tricko-nepicti-1
+                            - img [ref=e1291]
+                          - link [ref=e1292]:
+                            - /url: /tricko-nepicti-3
+                            - img [ref=e1295]
+                          - link [ref=e1296]:
+                            - /url: /tricko-nepicti-2
+                            - img [ref=e1299]
+                    - link "Novinka Tričko Nepicti 4 barvy 699 Kč" [ref=e1300]:
+                      - /url: /tricko-nepicti
+                      - generic [ref=e1301]: Novinka
+                      - heading "Tričko Nepicti" [level=3] [ref=e1302]
+                      - generic [ref=e1304]: 4 barvy
+                      - strong [ref=e1307]:
+                        - generic [ref=e1308]: 699 Kč
+                  - article [ref=e1309] [cursor=pointer]:
+                    - generic [ref=e1310]:
+                      - link "Tričko Nepicti" [ref=e1311]:
+                        - /url: /tricko-nepicti-3
+                        - img "Tričko Nepicti" [ref=e1313]
+                      - button "Přidat do oblíbených" [ref=e1315]:
+                        - img [ref=e1318]
+                      - generic [ref=e1320]:
+                        - generic [ref=e1321]:
+                          - link [ref=e1322]:
+                            - /url: /tricko-nepicti-3
+                            - text: S
+                          - link [ref=e1323]:
+                            - /url: /tricko-nepicti-3
+                            - text: M
+                          - link [ref=e1324]:
+                            - /url: /tricko-nepicti-3
+                            - text: L
+                          - link [ref=e1325]:
+                            - /url: /tricko-nepicti-3
+                            - text: XL
+                          - link [ref=e1326]:
+                            - /url: /tricko-nepicti-3
+                            - text: XXL
+                        - generic [ref=e1327]:
+                          - link [ref=e1328]:
+                            - /url: /tricko-nepicti
+                            - img [ref=e1331]
+                          - link [ref=e1332]:
+                            - /url: /tricko-nepicti-1
+                            - img [ref=e1335]
+                          - link [ref=e1336]:
+                            - /url: /tricko-nepicti-3
+                            - img [ref=e1339]
+                          - link [ref=e1340]:
+                            - /url: /tricko-nepicti-2
+                            - img [ref=e1343]
+                    - link "Novinka Tričko Nepicti 4 barvy 699 Kč" [ref=e1344]:
+                      - /url: /tricko-nepicti-3
+                      - generic [ref=e1345]: Novinka
+                      - heading "Tričko Nepicti" [level=3] [ref=e1346]
+                      - generic [ref=e1348]: 4 barvy
+                      - strong [ref=e1351]:
+                        - generic [ref=e1352]: 699 Kč
+                  - article [ref=e1353] [cursor=pointer]:
+                    - generic [ref=e1354]:
+                      - link "Tričko Netaimti" [ref=e1355]:
+                        - /url: /tricko-netaimti
+                        - img "Tričko Netaimti" [ref=e1357]
+                      - button "Přidat do oblíbených" [ref=e1359]:
+                        - img [ref=e1362]
+                      - generic [ref=e1364]:
+                        - generic [ref=e1365]:
+                          - link [ref=e1366]:
+                            - /url: /tricko-netaimti
+                            - text: S
+                          - link [ref=e1367]:
+                            - /url: /tricko-netaimti
+                            - text: M
+                          - link [ref=e1368]:
+                            - /url: /tricko-netaimti
+                            - text: L
+                          - link [ref=e1369]:
+                            - /url: /tricko-netaimti
+                            - text: XL
+                          - link [ref=e1370]:
+                            - /url: /tricko-netaimti
+                            - text: XXL
+                        - generic [ref=e1371]:
+                          - link [ref=e1372]:
+                            - /url: /tricko-netaimti
+                            - img [ref=e1375]
+                          - link [ref=e1376]:
+                            - /url: /tricko-netaimti-3
+                            - img [ref=e1379]
+                          - link [ref=e1380]:
+                            - /url: /tricko-netaimti-2
+                            - img [ref=e1383]
+                          - link [ref=e1384]:
+                            - /url: /tricko-netaimti-1
+                            - img [ref=e1387]
+                    - link "Novinka Tričko Netaimti 4 barvy 499 Kč" [ref=e1388]:
+                      - /url: /tricko-netaimti
+                      - generic [ref=e1389]: Novinka
+                      - heading "Tričko Netaimti" [level=3] [ref=e1390]
+                      - generic [ref=e1392]: 4 barvy
+                      - strong [ref=e1395]:
+                        - generic [ref=e1396]: 499 Kč
+                  - article [ref=e1397] [cursor=pointer]:
+                    - generic [ref=e1398]:
+                      - link "Tričko Nenaif" [ref=e1399]:
+                        - /url: /tricko-nenaif-1
+                        - img "Tričko Nenaif" [ref=e1401]
+                      - button "Přidat do oblíbených" [ref=e1403]:
+                        - img [ref=e1406]
+                      - generic [ref=e1408]:
+                        - generic [ref=e1409]:
+                          - link [ref=e1410]:
+                            - /url: /tricko-nenaif-1
+                            - text: S
+                          - link [ref=e1411]:
+                            - /url: /tricko-nenaif-1
+                            - text: M
+                          - link [ref=e1412]:
+                            - /url: /tricko-nenaif-1
+                            - text: L
+                          - link [ref=e1413]:
+                            - /url: /tricko-nenaif-1
+                            - text: XL
+                          - link [ref=e1414]:
+                            - /url: /tricko-nenaif-1
+                            - text: XXL
+                        - generic [ref=e1415]:
+                          - link [ref=e1416]:
+                            - /url: /tricko-nenaif-2
+                            - img [ref=e1419]
+                          - link [ref=e1420]:
+                            - /url: /tricko-nenaif-1
+                            - img [ref=e1423]
+                          - link [ref=e1424]:
+                            - /url: /tricko-nenaif
+                            - img [ref=e1427]
+                    - link "Novinka Tričko Nenaif 3 barvy 499 Kč" [ref=e1428]:
+                      - /url: /tricko-nenaif-1
+                      - generic [ref=e1429]: Novinka
+                      - heading "Tričko Nenaif" [level=3] [ref=e1430]
+                      - generic [ref=e1432]: 3 barvy
+                      - strong [ref=e1435]:
+                        - generic [ref=e1436]: 499 Kč
+                - generic [ref=e1438]:
+                  - button "Načíst další produkty" [ref=e1440] [cursor=pointer]
+                  - navigation "Pagination" [ref=e1442]:
+                    - listitem [ref=e1443]:
+                      - link "Page 1 is your current page" [ref=e1444] [cursor=pointer]:
+                        - /url: /search?q=tričko&pageNumber=1&pageSize=24
+                        - text: "1"
+                    - listitem [ref=e1445]:
+                      - link "Page 2" [ref=e1446] [cursor=pointer]:
+                        - /url: /search?q=tričko&pageNumber=2&pageSize=24
+                        - text: "2"
+                    - listitem [ref=e1447]:
+                      - link "Page 3" [ref=e1448] [cursor=pointer]:
+                        - /url: /search?q=tričko&pageNumber=3&pageSize=24
+                        - text: "3"
+                    - listitem [ref=e1449]:
+                      - link "Page 4" [ref=e1450] [cursor=pointer]:
+                        - /url: /search?q=tričko&pageNumber=4&pageSize=24
+                        - text: "4"
+                    - listitem [ref=e1451]:
+                      - button "Jump forward" [ref=e1452] [cursor=pointer]: ...
+                    - listitem [ref=e1453]:
+                      - link "Page 38" [ref=e1454] [cursor=pointer]:
+                        - /url: /search?q=tričko&pageNumber=38&pageSize=24
+                        - text: "38"
+                    - listitem [ref=e1455]:
+                      - button "Next page" [ref=e1456] [cursor=pointer]:
+                        - img [ref=e1459]
+      - contentinfo [ref=e1461]:
+        - generic [ref=e1465]:
+          - complementary [ref=e1466]:
+            - heading "O nákupu" [level=2] [ref=e1467]
+            - generic [ref=e1468]:
+              - paragraph [ref=e1469]:
+                - link "Doprava a platba" [ref=e1470] [cursor=pointer]:
+                  - /url: /doprava-a-platba
+              - paragraph [ref=e1471]:
+                - link "Vrácení a výměna zboží" [ref=e1472] [cursor=pointer]:
+                  - /url: /vraceni-vymena-zbozi
+              - paragraph [ref=e1473]:
+                - link "Reklamační řád" [ref=e1474] [cursor=pointer]:
+                  - /url: /reklamacni-rad
+              - paragraph [ref=e1475]:
+                - link "Obchodní podmínky e-shopu" [ref=e1476] [cursor=pointer]:
+                  - /url: /obchodni-podminky
+              - paragraph [ref=e1477]:
+                - link "Obchodní podmínky prodejen" [ref=e1478] [cursor=pointer]:
+                  - /url: /obchodni-podminky-prodejny
+              - paragraph [ref=e1479]:
+                - link "Ochrana osobních údajů" [ref=e1480] [cursor=pointer]:
+                  - /url: /zasady-zpracovani-osobnich-udaju-csag
+              - paragraph [ref=e1481]:
+                - link "Zákon o ochraně oznamovatelů" [ref=e1482] [cursor=pointer]:
+                  - /url: https://forms.office.com/Pages/ResponsePage.aspx?id=wsl_RF7-2USoyASdfdOfh1OU6HPPabhCt7tvruZQyBtUQjVXQkFGRlZFSDNPTVlWTFJMS01RNTJBMC4u
+              - paragraph [ref=e1483]:
+                - link "Nastavení souborů cookies" [ref=e1484] [cursor=pointer]:
+                  - /url: "javascript: window.CookieConsentModalOpen()"
+          - complementary [ref=e1485]:
+            - heading "O nás" [level=2] [ref=e1486]
+            - generic [ref=e1487]:
+              - paragraph [ref=e1488]:
+                - link "Kontakt" [ref=e1489] [cursor=pointer]:
+                  - /url: /kontakt
+              - paragraph [ref=e1490]:
+                - link "Klub celio+" [ref=e1491] [cursor=pointer]:
+                  - /url: /celio-plus
+              - paragraph [ref=e1492]:
+                - link "O značce" [ref=e1493] [cursor=pointer]:
+                  - /url: /benormal
+              - paragraph [ref=e1494]:
+                - link "Naše prodejny" [ref=e1495] [cursor=pointer]:
+                  - /url: /nase-prodejny
+              - paragraph [ref=e1496]:
+                - link "Kariéra" [ref=e1497] [cursor=pointer]:
+                  - /url: https://www.celiostore.cz/kariera
+              - paragraph [ref=e1498]:
+                - link "Průvodce formal" [ref=e1499] [cursor=pointer]:
+                  - /url: /pruvodce-formal
+              - paragraph [ref=e1500]:
+                - link "Udržitelnější produkty" [ref=e1501] [cursor=pointer]:
+                  - /url: /feelgood
+              - paragraph [ref=e1502]:
+                - link "Velkoobchod" [ref=e1503] [cursor=pointer]:
+                  - /url: /velkoobchod-celio
+          - complementary [ref=e1504]:
+            - heading "Kontakty" [level=2] [ref=e1505]
+            - complementary [ref=e1507]:
+              - generic [ref=e1508]:
+                - generic [ref=e1509]:
+                  - generic [ref=e1510]:
+                    - img [ref=e1514]
+                    - heading "Telefon" [level=3] [ref=e1516]
+                  - link "+420 910 920 939" [ref=e1518] [cursor=pointer]:
+                    - /url: tel:+420910920939
+                  - generic [ref=e1520]: PO-PÁ 9:00 - 17:00
+                - generic [ref=e1521]:
+                  - generic [ref=e1522]:
+                    - img [ref=e1526]
+                    - heading "E-mail" [level=3] [ref=e1529]
+                  - link "info@celiostore.cz" [ref=e1531] [cursor=pointer]:
+                    - /url: mailto:info@celiostore.cz
+          - generic [ref=e1534]:
+            - link "Facebook" [ref=e1535] [cursor=pointer]:
+              - /url: https://www.facebook.com/celiocesko
+              - img [ref=e1538]
+            - link "Instagram" [ref=e1540] [cursor=pointer]:
+              - /url: https://www.instagram.com/celiocesko/
+              - img [ref=e1543]
+            - link "YouTube" [ref=e1546] [cursor=pointer]:
+              - /url: https://www.youtube.com/channel/UCKdxZML1OQrKjz4uVNCvClQ
+              - img [ref=e1549]
+        - generic [ref=e1551]:
+          - generic [ref=e1553]:
+            - generic [ref=e1554]:
+              - img "PPL" [ref=e1556]
+              - img "PPL výdejní místa" [ref=e1558]
+              - img "DPD" [ref=e1560]
+              - img "Zásilkova" [ref=e1562]
+            - generic [ref=e1563]:
+              - img "Visa" [ref=e1565]
+              - img "Master card" [ref=e1567]
+              - img "Apple pay" [ref=e1569]
+              - img "google pay" [ref=e1571]
+          - generic [ref=e1573]:
+            - paragraph [ref=e1574]:
+              - generic [ref=e1575]: "Nakupuješ na Slovensku? Klikni na:"
+              - link "sk" [ref=e1576] [cursor=pointer]:
+                - /url: https://www.celiostore.sk/
+            - paragraph [ref=e1577]: "Copyright © 2026 ML CZECH REPUBLIC s.r.o., IČ: 28468121"
+  - alert [ref=e1578]
+  - dialog "Vaše nastavení cookies" [ref=e1579]:
+    - tabpanel [ref=e1581]:
+      - generic [ref=e1583]:
+        - paragraph [ref=e1584]:
+          - strong [ref=e1585]: Sbíráme sušenky, abychom tě našli
+        - paragraph [ref=e1586]: Chceš se na internetu dívat na reklamy, které tě pobaví a neštvou? Nebudeme ti nabízet hrnce ani krém na revma. Díky informacím "cookies", na které nám dáš palec nahoru, ti můžeme naservírovat obsah na míru a vylepšovat naše služby.
+      - generic [ref=e1587]:
+        - button "Odmítnout vše" [ref=e1588] [cursor=pointer]:
+          - generic [ref=e1589]: Odmítnout vše
+        - button "Přizpůsobit" [ref=e1590] [cursor=pointer]:
+          - generic [ref=e1591]: Přizpůsobit
+        - button "Povolit vše" [ref=e1592] [cursor=pointer]:
+          - generic [ref=e1593]: Povolit vše

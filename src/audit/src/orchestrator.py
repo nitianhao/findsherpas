@@ -4,6 +4,7 @@ import argparse
 import json
 import logging
 import re
+import subprocess
 import sys
 import time
 from datetime import datetime
@@ -22,6 +23,7 @@ from src.report_generator import (
     build_capability_scores,
     generate_report,
 )
+from src.github_publisher import publish_report
 from src.html_renderer import save_html_report
 from src.sales_materials_generator import generate_sales_materials
 from src.scorer import score_results
@@ -40,6 +42,26 @@ def _slugify_domain(url: str) -> str:
     host = host.replace("www.", "")
     slug = re.sub(r"[^a-zA-Z0-9]+", "_", host).strip("_")
     return slug
+
+
+def _find_report_screenshot(out_path: Path) -> Path | None:
+    """Return the preferred screenshot for this report directory, if present."""
+    preferred_names = (
+        "screenshot.png",
+        "screenshot.jpg",
+        "screenshot.jpeg",
+    )
+    for name in preferred_names:
+        path = out_path / name
+        if path.exists():
+            return path
+
+    for pattern in ("*screenshot*.png", "*screenshot*.jpg", "*screenshot*.jpeg"):
+        matches = sorted(out_path.glob(pattern))
+        if matches:
+            return matches[0]
+
+    return None
 
 
 def _print_banner(target_url: str) -> None:
@@ -64,10 +86,15 @@ def _phase_header(num: int, name: str) -> None:
 # ---------------------------------------------------------------------------
 
 
+DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parents[3] / "reports"
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+
+
 def run_audit(
     target_url: str,
-    output_dir: str = "reports",
+    output_dir: str | Path = DEFAULT_OUTPUT_DIR,
     search_url_template: str | None = None,
+    crm_company_id: str | None = None,
 ) -> AuditReport:
     """Run the full search audit pipeline end to end."""
 
@@ -188,7 +215,7 @@ def run_audit(
 
     # ── Save outputs ───────────────────────────────────────────────────
     domain_slug = _slugify_domain(target_url)
-    out_path = Path(output_dir) / domain_slug
+    out_path = Path(output_dir).expanduser().resolve() / domain_slug
     out_path.mkdir(parents=True, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -197,6 +224,7 @@ def run_audit(
     md_file = out_path / f"{slug}_report.md"
     json_file = out_path / f"{slug}_data.json"
     html_file = out_path / f"{slug}_report.html"
+    access_file = out_path / f"{slug}_access.json"
 
     md_file.write_text(report.deep_dive_narrative, encoding="utf-8")
     json_file.write_text(report.model_dump_json(indent=2), encoding="utf-8")
@@ -204,12 +232,84 @@ def run_audit(
     print(f"\n  Saved: {md_file}")
     print(f"  Saved: {json_file}")
 
+    # ── Screenshot prompt ──────────────────────────────────────────────────
+    # Ask the operator to drop a screenshot into the report folder before
+    # the HTML is rendered.  Named screenshot.png / .jpg / .jpeg is picked up
+    # automatically by _find_report_screenshot().
+    print(f"\n  ── Screenshot ──────────────────────────────────────────────")
+    print(f"  Place a screenshot of the site's search results page into:")
+    print(f"    {out_path}")
+    print(f"  Name it:  screenshot.png  (or .jpg / .jpeg)")
+    print(f"  Then press ENTER to continue and generate the HTML report.")
+    try:
+        input("  [waiting for screenshot — press ENTER when ready] ")
+    except EOFError:
+        pass  # non-interactive run — skip the prompt
+    print()
+
     # ── HTML report (PDF-ready, styled via master_report.html template) ────
     try:
-        save_html_report(report, html_file)
+        screenshot_path = _find_report_screenshot(out_path)
+        save_html_report(report, html_file, screenshot_path=screenshot_path)
         print(f"  Saved: {html_file}")
+        if screenshot_path:
+            print(f"  Screenshot: {screenshot_path}")
     except Exception as e:
         print(f"  [WARN] HTML report generation failed: {e}")
+
+    # ── Publish HTML to findsherpas.com/report/{company}/ ─────────────────
+    report_url: str | None = None
+    try:
+        html_content = html_file.read_text(encoding="utf-8")
+        report_url = publish_report(html_content, domain_slug)
+        access_file.write_text(
+            json.dumps(
+                {
+                    "company_slug": re.sub(
+                        r"_(?:com|net|org|io|co_\w+|cz|de|uk|fr|es|pl|at|nl|be|ch|se|dk|fi|no|pt|hu|ro|sk|si)$",
+                        "",
+                        re.sub(r"^www_", "", domain_slug),
+                    ),
+                    "report_url": report_url,
+                    "published_at": datetime.now().isoformat(),
+                },
+                indent=2,
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        print(f"  Published: {report_url}")
+        print(f"  Access:    {access_file}")
+    except Exception as e:
+        print(f"  [WARN] GitHub publish failed: {e}")
+
+    # ── CRM writeback for email sequence variables ────────────────────────
+    if crm_company_id and report_url:
+        try:
+            cmd = [
+                "npx",
+                "tsx",
+                "--tsconfig",
+                "tsconfig.json",
+                "src/enrichment/scripts/writeAuditToCRM.ts",
+                "--company-id",
+                crm_company_id,
+                "--report",
+                str(json_file),
+                "--report-url",
+                report_url,
+            ]
+            subprocess.run(cmd, cwd=PROJECT_ROOT, check=True)
+            print(f"  CRM updated: {crm_company_id}")
+        except Exception as e:
+            print(f"  [WARN] CRM writeback failed: {e}")
+    elif crm_company_id:
+        print("  [WARN] CRM writeback skipped: report was not published.")
+    elif report_url:
+        print(
+            "  CRM writeback: pass --crm-company-id to store report_url "
+            "and audit variables on the company."
+        )
 
     # ── Sales materials (exec summary, brief, cold email) ──────────────────
     generate_sales_materials(report, out_path, slug)
@@ -267,8 +367,17 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output-dir",
         dest="output_dir",
-        default="reports",
-        help="Directory for output files (default: reports)",
+        default=str(DEFAULT_OUTPUT_DIR),
+        help=f"Directory for output files (default: {DEFAULT_OUTPUT_DIR})",
+    )
+    parser.add_argument(
+        "--crm-company-id",
+        dest="crm_company_id",
+        default=None,
+        help=(
+            "Optional InstantDB company id. When provided, the completed audit "
+            "writes audit variables plus report_url to CRM."
+        ),
     )
 
     args = parser.parse_args()
@@ -277,4 +386,5 @@ if __name__ == "__main__":
         target_url=args.target_url,
         output_dir=args.output_dir,
         search_url_template=args.search_url,
+        crm_company_id=args.crm_company_id,
     )

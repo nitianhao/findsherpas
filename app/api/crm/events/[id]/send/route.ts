@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { adminDb } from '@/lib/crm/instant-db';
 import { sendCrmEmail, buildVars, resolveTemplate, validateEmailDomain } from '@/lib/crm/email';
+import { buildSearchPlatformSentence } from '@/lib/crm/template';
 import { markEventSent } from '@/lib/crm/queries/events';
 import type { EmailTask } from '@/lib/crm/queries/tasks';
 
@@ -51,7 +52,7 @@ export async function POST(
 
     // Pull audit vars from the company record
     const auditKeys = [
-      'score', 'cap_count', 'top3rate', 'outside3rate',
+      'score', 'query_count', 'cap_count', 'top3rate', 'outside3rate',
       'worst_query', 'worst_pos', 'wrong_product',
     ] as const;
     const auditVars: Record<string, string> = {};
@@ -59,6 +60,15 @@ export async function POST(
       const v = company?.[`audit_${k}`];
       if (typeof v === 'string' && v.length > 0) auditVars[k] = v;
     }
+    // Alias to underscore names used in sequence templates
+    if (auditVars['top3rate']) auditVars['top_3_rate'] = auditVars['top3rate'];
+    if (auditVars['outside3rate']) auditVars['outside_3_rate'] = auditVars['outside3rate'];
+    // Compute gap vs 80% Baymard benchmark
+    const top3Parsed = parseFloat(auditVars['top_3_rate'] ?? '');
+    if (!isNaN(top3Parsed)) auditVars['gap'] = String(Math.round(80 - top3Parsed));
+    auditVars['search_platform_sentence'] = buildSearchPlatformSentence(
+      (company?.search_solution as string | null) ?? null
+    );
 
     const task: EmailTask & { custom_fields?: Record<string, string> | null } = {
       event_id: eventId,
@@ -75,6 +85,7 @@ export async function POST(
       is_overdue: false,
       send_hour: null,
       audit_vars: Object.keys(auditVars).length > 0 ? auditVars : null,
+      report_url: (company?.report_url as string | null) ?? null,
       custom_fields: customFields,
     };
 
@@ -127,14 +138,24 @@ export async function GET(
 
     const vars = buildVars(task);
     const auditKeys = [
-      'score', 'cap_count', 'top3rate', 'outside3rate',
+      'score', 'query_count', 'cap_count', 'top3rate', 'outside3rate',
       'worst_query', 'worst_pos', 'wrong_product',
     ] as const;
     for (const k of auditKeys) {
       const v = company?.[`audit_${k}`];
       if (typeof v === 'string' && v.length > 0) vars[k] = v;
     }
+    // Alias to underscore names used in sequence templates
+    if (vars['top3rate']) vars['top_3_rate'] = vars['top3rate'];
+    if (vars['outside3rate']) vars['outside_3_rate'] = vars['outside3rate'];
+    // Compute gap vs 80% Baymard benchmark
+    const top3Parsed = parseFloat(vars['top_3_rate'] ?? '');
+    if (!isNaN(top3Parsed)) vars['gap'] = String(Math.round(80 - top3Parsed));
+    vars['search_platform_sentence'] = buildSearchPlatformSentence(
+      (company?.search_solution as string | null) ?? null
+    );
     if (customFields) Object.assign(vars, customFields);
+    if (company?.report_url) vars['report_url'] = company.report_url as string;
 
     const subject = ev.step?.subject_template
       ? resolveTemplate(ev.step.subject_template, vars)

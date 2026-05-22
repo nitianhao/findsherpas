@@ -7,6 +7,7 @@ from datetime import date
 import anthropic
 from dotenv import load_dotenv
 
+from src.advanced_diagnostics import build_advanced_diagnostics_markdown
 from src.category_selector import CATEGORY_DESCRIPTIONS
 from src.models import (
     CAPABILITY_CATEGORY_MAP,
@@ -145,13 +146,13 @@ def build_capability_scores(judgments: list[QueryJudgment]) -> list[CapabilitySc
         non_pass = sum(1 for j in cap_judgments if j.severity != Severity.PASS.value)
 
         if worst_sev_value == Severity.CRITICAL.value:
-            summary = f"{non_pass} of {total} queries failed critically. {cap_name} is not functional."
+            summary = f"{non_pass} of {total} query patterns show improvement room. This is a practical place to start for {cap_name}."
         elif worst_sev_value == Severity.MODERATE.value:
-            summary = f"{non_pass} of {total} queries showed issues. {cap_name} needs improvement."
+            summary = f"{non_pass} of {total} query patterns showed friction. {cap_name} has a focused optimization opportunity."
         elif worst_sev_value == Severity.MINOR.value:
-            summary = f"Minor issues detected in {non_pass} of {total} queries. {cap_name} is mostly functional."
+            summary = f"{cap_name} is mostly working, with smaller refinements found in {non_pass} of {total} query patterns."
         else:
-            summary = f"All {total} queries passed. {cap_name} is working well."
+            summary = f"All {total} queries passed. {cap_name} is performing well in this sample."
 
         scores.append(CapabilityScore(
             capability=CapabilityGroup(cap_value),
@@ -169,23 +170,26 @@ def build_scorecard_markdown(capability_scores: list[CapabilityScore]) -> str:
     """Build the scorecard summary as a markdown table."""
     total = len(capability_scores)
     lines = [
-        f"## Search Capability Scorecard\n",
-        f"We tested your site's search across {total} core capabilities.\n",
+        f"## Search Improvement Focus Map\n",
+        f"We tested your site's search across {total} core capabilities and grouped the results by where improvements are likely to help most.\n",
         "",
-        "| Status | Capability | Summary |",
-        "|--------|-----------|---------|",
+        "| Priority | Capability | What it means |",
+        "|----------|-----------|---------------|",
     ]
 
-    pass_count = 0
+    priority_labels = {
+        Severity.CRITICAL.value: "Focus area",
+        Severity.MODERATE.value: "Watch",
+        Severity.MINOR.value: "Fine-tune",
+        Severity.PASS.value: "Working well",
+    }
     for cs in capability_scores:
-        emoji = _SEVERITY_EMOJI.get(cs.severity, "")
+        priority = priority_labels.get(cs.severity, _SEVERITY_SHORT.get(cs.severity, str(cs.severity)))
         cap_name = _CAPABILITY_NAMES.get(cs.capability, cs.capability)
-        lines.append(f"| {emoji} | {cap_name} | {cs.summary} |")
-        if cs.severity == Severity.PASS.value:
-            pass_count += 1
+        lines.append(f"| {priority} | {cap_name} | {cs.summary} |")
 
     lines.append("")
-    lines.append(f"**Result: Your search performed well on {pass_count} of {total} capabilities.**")
+    lines.append("**Use this as an improvement map: the focus areas are where changes are likely to help the most customer journeys.**")
     return "\n".join(lines)
 
 
@@ -375,6 +379,7 @@ A prioritized numbered list of fixes, ordered by business impact (Critical capab
   * Major Project — significant engineering effort, 1-3 months
 - Group related fixes — don't list the same fix twice for different queries
 Keep the roadmap to 5-8 items maximum. Be specific but not overly technical.
+Avoid vague titles like "fix the ranking algorithm" or "improve relevance." Name the concrete search behavior to ship first, such as applying sale, bestseller, price, negative, brand, or product-type intent before generic keyword ranking.
 
 Separate the two sections with this EXACT delimiter on its own line:
 {_SECTION_DELIMITER}"""
@@ -523,24 +528,37 @@ def compute_aggregate_stats(judgments: list[QueryJudgment]) -> dict:
     minor_count     = sum(1 for j in judgments if j.severity == Severity.MINOR.value)
     pass_count      = sum(1 for j in judgments if j.severity == Severity.PASS.value)
 
+    # Only consider queries that returned results for displacement-based stats.
+    # Zero-result queries have no meaningful "position" to report.
+    with_results = [j for j in judgments if j.results]
+    nres = len(with_results) or 1
+
     # pct_top3_irrelevant: best result NOT in top 3 (displacement > 2)
-    top3_irrelevant = sum(1 for j in judgments if j.displacement > 2)
-    pct_top3_irrelevant = (top3_irrelevant / total) * 100
+    top3_irrelevant = sum(1 for j in with_results if j.displacement > 2)
+    pct_top3_irrelevant = (top3_irrelevant / nres) * 100
 
     # avg_best_position: average original_rank of the highest-scoring result
-    avg_best_position = sum(j.displacement + 1 for j in judgments) / total
+    avg_best_position = (
+        sum(j.displacement + 1 for j in with_results) / nres if with_results else 0
+    )
 
     # pct_top1_irrelevant: #1 result's relevance_score below 0.40
     top1_irrelevant = 0
-    for j in judgments:
-        if j.results:
-            by_original = sorted(j.results, key=lambda r: r.original_rank)
-            if by_original and by_original[0].relevance_score < 0.40:
-                top1_irrelevant += 1
-    pct_top1_irrelevant = (top1_irrelevant / total) * 100
+    for j in with_results:
+        by_original = sorted(j.results, key=lambda r: r.original_rank)
+        if by_original and by_original[0].relevance_score < 0.40:
+            top1_irrelevant += 1
+    pct_top1_irrelevant = (top1_irrelevant / nres) * 100
 
-    # worst example: highest displacement
-    worst = max(judgments, key=lambda j: j.displacement)
+    # worst example: highest displacement among queries where the #1 result shown to
+    # customers was genuinely weak (top-1 relevance < 0.40). This avoids flagging
+    # queries where all results are on-topic but the scorer split hairs.
+    def _top1_relevance(j):
+        by_original = sorted(j.results, key=lambda r: r.original_rank)
+        return by_original[0].relevance_score if by_original else 1.0
+
+    weak_top1 = [j for j in with_results if _top1_relevance(j) < 0.40]
+    worst = max(weak_top1, key=lambda j: j.displacement) if weak_top1 else None
 
     return {
         "total_queries": total,
@@ -551,8 +569,8 @@ def compute_aggregate_stats(judgments: list[QueryJudgment]) -> dict:
         "pct_top3_irrelevant": pct_top3_irrelevant,
         "avg_best_position": avg_best_position,
         "pct_top1_irrelevant": pct_top1_irrelevant,
-        "worst_example_query": worst.test_query.query,
-        "worst_example_displacement": worst.displacement,
+        "worst_example_query": worst.test_query.query if worst else "",
+        "worst_example_displacement": worst.displacement if worst else 0,
     }
 
 
@@ -674,19 +692,23 @@ def build_executive_summary(
     worst_query         = stats["worst_example_query"]
     worst_disp          = stats["worst_example_displacement"]
 
-    return (
+    summary = (
         f"## Executive Summary\n\n"
-        f"Our {PIPELINE_NAME} audit tested {site_name}'s internal search engine across "
+        f"This audit tested {site_name}'s internal search engine across "
         f"{total_cap} core capabilities using {total_queries} realistic customer queries. "
-        f"**Your search performed well on {pass_cap} of {total_cap} capabilities.**\n\n"
+        f"**The results are grouped by where improvements are likely to help customer journeys most.**\n\n"
         f"On average, the most relevant result for a query appeared at "
         f"**position #{avg_best_position:.0f}** — while most customers only look at the first 3 results. "
         f"In **{pct_top3_irrelevant:.0f}% of queries**, the best matching result wasn't even in the top 3. "
         f"In **{pct_top1_irrelevant:.0f}% of queries**, the #1 result shown to customers "
-        f"was not relevant to what they searched for.\n\n"
-        f'The most severe example: a customer searching "{worst_query}" '
-        f"had to scroll to position #{worst_disp + 1} to find the best matching result."
+        f"was not relevant to what they searched for."
     )
+    if worst_query and worst_disp > 0:
+        summary += (
+            f'\n\nThe most severe example: a customer searching "{worst_query}" '
+            f"had to scroll to position #{worst_disp + 1} to find the best matching result."
+        )
+    return summary
 
 
 def build_methodology(
@@ -795,6 +817,7 @@ def generate_report(
     num_categories = len({j.test_query.category for j in judgments})
     executive_summary_md = build_executive_summary(site_context, capability_scores, stats)
     summary_stats_md = build_summary_statistics_markdown(stats, judgments)
+    advanced_diagnostics_md = build_advanced_diagnostics_markdown(site_context, judgments)
     benchmarks_md = build_industry_benchmarks_markdown(stats)
     appendix_md = build_full_query_appendix_markdown(judgments)
     methodology_md = build_methodology(
@@ -809,10 +832,11 @@ def generate_report(
     today = date.today().strftime("%B %d, %Y")
 
     full_narrative = "\n\n".join([
-        f"# Search Audit Report: {site_name}\n\n*Generated on {today} | Powered by {PIPELINE_NAME}*",
+        f"# Search Audit Report: {site_name}\n\n*Generated on {today}*",
         executive_summary_md,
         scorecard_md,
         summary_stats_md,
+        advanced_diagnostics_md,
         deep_dives_md,
         whats_working_md,
         f"## Prioritized Roadmap\n\n{roadmap_md}",

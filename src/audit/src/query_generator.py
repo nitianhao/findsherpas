@@ -8,13 +8,15 @@ import anthropic
 from dotenv import load_dotenv
 
 from src.category_selector import CATEGORY_DESCRIPTIONS
-from src.models import QueryCategory, SiteContext, SiteType, TestQuery
+from src.models import CAPABILITY_CATEGORY_MAP, CapabilityGroup, QueryCategory, SiteContext, SiteType, TestQuery
 
 load_dotenv(override=True)
 
 logger = logging.getLogger(__name__)
 
 _MODEL = "claude-sonnet-4-20250514"
+MIN_QUERY_COUNT = 60
+MAX_QUERY_GENERATION_ATTEMPTS = 3
 
 # ---------------------------------------------------------------------------
 # Per-category query counts
@@ -56,10 +58,47 @@ QUERY_COUNTS: dict[QueryCategory, int] = {
     QueryCategory.SEASONAL_OCCASION: _LOW,
 }
 
+_CAPABILITY_TARGETS: dict[CapabilityGroup, int] = {
+    CapabilityGroup.PRODUCT_DISCOVERY: 6,
+    CapabilityGroup.TYPO_TOLERANCE: 6,
+    CapabilityGroup.LANGUAGE_UNDERSTANDING: 6,
+    CapabilityGroup.BRAND_MODEL_SEARCH: 5,
+    CapabilityGroup.FILTERS_CONSTRAINTS: 5,
+    CapabilityGroup.SHOPPING_CONTEXT: 6,
+}
 
-def _calculate_expected_total(selected_categories: list[QueryCategory]) -> int:
+_CATEGORY_TO_CAPABILITY: dict[str, CapabilityGroup] = {}
+for _capability, _categories in CAPABILITY_CATEGORY_MAP.items():
+    for _category in _categories:
+        _CATEGORY_TO_CAPABILITY[_category.value] = _capability
+
+
+def _build_balanced_query_counts(selected_categories: list[QueryCategory]) -> dict[QueryCategory, int]:
+    """Evenly distribute at least MIN_QUERY_COUNT across selected query categories.
+
+    The audit should not overweight one query type while barely sampling another.
+    Counts differ by at most one query across the selected category set.
+    """
+    if not selected_categories:
+        return {}
+
+    target_total = max(MIN_QUERY_COUNT, len(selected_categories))
+    base = target_total // len(selected_categories)
+    remainder = target_total % len(selected_categories)
+
+    return {
+        category: base + (1 if index < remainder else 0)
+        for index, category in enumerate(selected_categories)
+    }
+
+
+def _calculate_expected_total(
+    selected_categories: list[QueryCategory],
+    query_counts: dict[QueryCategory, int] | None = None,
+) -> int:
     """Sum the expected query count for the given categories."""
-    return sum(QUERY_COUNTS.get(cat, _LOW) for cat in selected_categories)
+    counts = query_counts or QUERY_COUNTS
+    return sum(counts.get(cat, _LOW) for cat in selected_categories)
 
 
 # ---------------------------------------------------------------------------
@@ -70,6 +109,8 @@ def _calculate_expected_total(selected_categories: list[QueryCategory]) -> int:
 def _build_prompt(
     site_context: SiteContext,
     selected_categories: list[QueryCategory],
+    query_counts: dict[QueryCategory, int],
+    existing_queries: list[str] | None = None,
 ) -> str:
     """Build the Sonnet prompt for query generation."""
 
@@ -79,11 +120,21 @@ def _build_prompt(
 
     categories_block = ""
     for cat in selected_categories:
-        count = QUERY_COUNTS.get(cat, _LOW)
+        count = query_counts.get(cat, _LOW)
         desc = CATEGORY_DESCRIPTIONS.get(cat, "")
         categories_block += f"  - {cat.value} (generate {count} queries): {desc}\n"
 
-    total = _calculate_expected_total(selected_categories)
+    total = _calculate_expected_total(selected_categories, query_counts)
+    existing_block = ""
+    if existing_queries:
+        existing_lines = "\n".join(f"  - {q}" for q in existing_queries)
+        existing_block = f"""
+## Queries Already Generated
+Do NOT repeat or lightly rephrase any of these query strings:
+{existing_lines}
+"""
+
+    primary_language = getattr(site_context, "primary_language", "English") or "English"
 
     return f"""You are a search-quality engineer generating test queries for an ecommerce site audit.
 
@@ -91,6 +142,7 @@ def _build_prompt(
 - **Site name**: {site_context.site_name or "(unknown)"}
 - **URL**: {site_context.url}
 - **Site type**: {site_context.site_type}
+- **Primary customer language**: {primary_language}
 - **Meta description**: {site_context.raw_meta_description or "(none)"}
 
 ## Real Content From This Site's Homepage
@@ -100,9 +152,12 @@ def _build_prompt(
 
 ## Categories to Generate ({total} queries total)
 {categories_block}
+{existing_block}
 ## Critical Instructions
 
 You MUST ground every query in the REAL site data above. Follow these rules strictly:
+
+0. **LANGUAGE — NON-NEGOTIABLE**: All queries MUST be written in **{primary_language}**. This site's customers search in {primary_language}. International brand names (Nike, Adidas, Salomon, etc.) stay as-is — they are universal. All other query words — product types, categories, attributes, descriptions, natural language phrases — MUST be in {primary_language}. Do NOT write queries in English unless {primary_language} IS English.
 
 1. **Use real terms**: Every query must reference real product names, brand names, category names, or service names from the lists above. NEVER invent products, brands, or categories that aren't in the provided context.
 
@@ -146,7 +201,7 @@ Return ONLY a JSON array (no markdown fences, no commentary) of objects:
   ...
 ]
 
-Generate exactly the number of queries specified for each category ({total} total)."""
+Generate exactly the number of queries specified for each category ({total} total). This is a strict requirement: do not under-generate, and do not concentrate the audit in one category."""
 
 
 # ---------------------------------------------------------------------------
@@ -173,7 +228,7 @@ def _call_sonnet(prompt: str) -> list[dict] | None:
         client = anthropic.Anthropic()
         response = client.messages.create(
             model=_MODEL,
-            max_tokens=4000,
+            max_tokens=12000,
             temperature=0.7,
             messages=[{"role": "user", "content": prompt}],
         )
@@ -203,6 +258,7 @@ def _call_sonnet(prompt: str) -> list[dict] | None:
 def _validate_queries(
     raw_queries: list[dict],
     selected_categories: list[QueryCategory],
+    query_counts: dict[QueryCategory, int],
 ) -> list[TestQuery]:
     """Validate and convert raw dicts to TestQuery objects.
 
@@ -254,7 +310,7 @@ def _validate_queries(
     # Check counts per category
     counts = Counter(tq.category for tq in results)
     for cat in selected_categories:
-        expected = QUERY_COUNTS.get(cat, _LOW)
+        expected = query_counts.get(cat, _LOW)
         actual = counts.get(cat.value, 0)  # use_enum_values means .category is str
         if abs(actual - expected) > 1:
             logger.warning(
@@ -265,6 +321,52 @@ def _validate_queries(
             )
 
     return results
+
+
+def _merge_queries_to_targets(
+    existing: list[TestQuery],
+    incoming: list[TestQuery],
+    query_counts: dict[QueryCategory, int],
+) -> list[TestQuery]:
+    """Merge generated queries while enforcing per-category targets and dedupe."""
+    seen = {q.query.lower() for q in existing}
+    counts = Counter(q.category for q in existing)
+    merged = list(existing)
+
+    for query in incoming:
+        query_key = query.query.lower()
+        if query_key in seen:
+            continue
+
+        category_name = query.category
+        try:
+            category = QueryCategory(category_name)
+        except ValueError:
+            continue
+
+        target = query_counts.get(category, 0)
+        if counts.get(category.value, 0) >= target:
+            continue
+
+        merged.append(query)
+        seen.add(query_key)
+        counts[category.value] += 1
+
+    return merged
+
+
+def _missing_query_counts(
+    queries: list[TestQuery],
+    query_counts: dict[QueryCategory, int],
+) -> dict[QueryCategory, int]:
+    """Return categories still missing queries after validation/dedupe."""
+    counts = Counter(q.category for q in queries)
+    missing: dict[QueryCategory, int] = {}
+    for category, expected in query_counts.items():
+        actual = counts.get(category.value, 0)
+        if actual < expected:
+            missing[category] = expected - actual
+    return missing
 
 
 # ---------------------------------------------------------------------------
@@ -281,7 +383,8 @@ def generate_queries(
     Uses Claude Sonnet to produce queries anchored in real site content.
     Returns list[TestQuery] sorted by category.
     """
-    expected = _calculate_expected_total(selected_categories)
+    query_counts = _build_balanced_query_counts(selected_categories)
+    expected = _calculate_expected_total(selected_categories, query_counts)
     logger.info(
         "Generating ~%d queries across %d categories for %s",
         expected,
@@ -289,16 +392,65 @@ def generate_queries(
         site_context.site_name or site_context.url,
     )
 
-    prompt = _build_prompt(site_context, selected_categories)
-    raw_queries = _call_sonnet(prompt)
+    validated: list[TestQuery] = []
+    categories_to_generate = list(selected_categories)
+    counts_to_generate = dict(query_counts)
 
-    if raw_queries is None:
-        logger.warning("Sonnet call failed; returning empty query list")
-        return []
+    for attempt in range(1, MAX_QUERY_GENERATION_ATTEMPTS + 1):
+        prompt = _build_prompt(
+            site_context,
+            categories_to_generate,
+            counts_to_generate,
+            existing_queries=[q.query for q in validated],
+        )
+        raw_queries = _call_sonnet(prompt)
 
-    logger.info("Sonnet returned %d raw query entries", len(raw_queries))
-    validated = _validate_queries(raw_queries, selected_categories)
-    logger.info("Validated %d queries (expected ~%d)", len(validated), expected)
+        if raw_queries is None:
+            logger.warning("Sonnet call failed on attempt %d/%d", attempt, MAX_QUERY_GENERATION_ATTEMPTS)
+            continue
+
+        logger.info(
+            "Sonnet returned %d raw query entries on attempt %d/%d",
+            len(raw_queries),
+            attempt,
+            MAX_QUERY_GENERATION_ATTEMPTS,
+        )
+        batch = _validate_queries(raw_queries, categories_to_generate, counts_to_generate)
+        validated = _merge_queries_to_targets(validated, batch, query_counts)
+
+        missing = _missing_query_counts(validated, query_counts)
+        logger.info(
+            "Validated %d/%d queries after attempt %d",
+            len(validated),
+            expected,
+            attempt,
+        )
+
+        if not missing:
+            break
+
+        categories_to_generate = list(missing.keys())
+        counts_to_generate = missing
+        logger.warning(
+            "Query generation still missing %d queries across %d categories; retrying",
+            sum(missing.values()),
+            len(missing),
+        )
+
+    missing = _missing_query_counts(validated, query_counts)
+    if missing:
+        missing_desc = ", ".join(f"{cat.value}: {count}" for cat, count in missing.items())
+        raise RuntimeError(
+            f"Query generation produced {len(validated)}/{expected} validated queries. "
+            f"Missing required coverage: {missing_desc}"
+        )
+
+    if len(validated) < MIN_QUERY_COUNT:
+        raise RuntimeError(
+            f"Query generation produced {len(validated)} queries, below the minimum of {MIN_QUERY_COUNT}."
+        )
+
+    logger.info("Validated %d queries (expected %d)", len(validated), expected)
 
     # Sort by category (grouped)
     cat_order = {cat.value: i for i, cat in enumerate(selected_categories)}
@@ -364,7 +516,8 @@ if __name__ == "__main__":
 
     print(f"Site: {demo_context.site_name} ({demo_context.site_type})")
     print(f"URL:  {demo_context.url}")
-    expected_total = _calculate_expected_total(selected)
+    demo_counts = _build_balanced_query_counts(selected)
+    expected_total = _calculate_expected_total(selected, demo_counts)
     print(f"Generating ~{expected_total} queries across {len(selected)} categories...\n")
 
     queries = generate_queries(demo_context, selected)
@@ -373,7 +526,7 @@ if __name__ == "__main__":
     for tq in queries:
         if tq.category != current_cat:
             current_cat = tq.category
-            count = QUERY_COUNTS.get(QueryCategory(current_cat), _LOW)
+            count = demo_counts.get(QueryCategory(current_cat), _LOW)
             print(f"\n{'='*60}")
             print(f"  {current_cat} (target: {count} queries)")
             print(f"{'='*60}")

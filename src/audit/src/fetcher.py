@@ -38,6 +38,22 @@ if _PROXY_URL:
 _REQUESTS_PROXIES = {"http": _PROXY_URL, "https": _PROXY_URL} if _PROXY_URL else None
 _PW_PROXY = {"server": _PROXY_URL} if _PROXY_URL else None
 
+
+def _decode_response(resp) -> str:
+    """Decode a requests Response to str, preferring UTF-8 over requests' charset sniffing.
+
+    requests defaults to ISO-8859-1 for text/html without an explicit charset, which
+    mangles UTF-8 multibyte sequences (producing artifacts like 'Â kr.'). Force UTF-8
+    when the content-type header carries it or when the raw bytes parse cleanly as UTF-8.
+    """
+    ct = resp.headers.get("content-type", "").lower()
+    if "charset=utf-8" in ct or "charset=utf8" in ct:
+        return resp.content.decode("utf-8", errors="replace")
+    try:
+        return resp.content.decode("utf-8")
+    except UnicodeDecodeError:
+        return resp.text
+
 # LLM calls (validation, extraction, selector generation) require an API key.
 # When absent, these functions gracefully skip — the heuristic improvements
 # (quality scoring, stealth, persistent context) still work without any API calls.
@@ -49,7 +65,9 @@ _HAS_API_KEY = bool(_os.environ.get("ANTHROPIC_API_KEY", "").strip())
 # ---------------------------------------------------------------------------
 _PRICE_RE = re.compile(
     r"(?:"
-    r"(?:[A-Z]{0,2}[$€£¥₹₩₪฿₫₴])\s?\d[\d.,]*"
+    r"(?:[A-Z]{0,2}[$€£¥₹₩₪฿₫₴])\s?\d[\d.,]*"   # symbol-before: €14,60
+    r"|"
+    r"\d[\d.,]*\s?[$€£¥₹₩₪฿₫₴]"                   # symbol-after: 14,60 €
     r"|"
     r"(?:Kč|kč|zł|kr)\s?\d[\d.,]*"
     r"|"
@@ -171,7 +189,6 @@ class SiteMode:
 
 def _filter_junk_results(results: list[SearchResult]) -> list[SearchResult]:
     """Remove results that are clearly page chrome, not real products."""
-    seen_titles: set[str] = set()
     clean: list[SearchResult] = []
 
     for r in results:
@@ -186,11 +203,6 @@ def _filter_junk_results(results: list[SearchResult]) -> list[SearchResult]:
             continue
         if lower in _JUNK_EXACT:
             continue
-
-        title_key = re.sub(r"\s+", " ", lower).strip()
-        if title_key in seen_titles:
-            continue
-        seen_titles.add(title_key)
 
         clean.append(r)
 
@@ -242,7 +254,6 @@ def _try_site_specific(soup: BeautifulSoup, url: str, max_results: int) -> list[
 def _try_groupon(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
     """Extract deal cards from Groupon search results."""
     results: list[SearchResult] = []
-    seen_titles: set[str] = set()
 
     # Strategy: find all <a> tags linking to /deals/ paths — these are deal titles
     deal_links = [
@@ -266,11 +277,6 @@ def _try_groupon(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
 
         if not title or len(title) < 8:
             continue
-
-        title_key = re.sub(r"\s+", " ", title.lower()).strip()
-        if title_key in seen_titles:
-            continue
-        seen_titles.add(title_key)
 
         # --- Snippet: first meaningful short descriptor in the card ---
         # Generic approach: scan all inline text elements, skip anything that
@@ -410,24 +416,34 @@ def _collect_products_jsonld(data: object, results: list[SearchResult], max_resu
 # ---------------------------------------------------------------------------
 
 
+_CONTENT_OVERRIDE_RE = re.compile(
+    r"product|result|search|catalog|listing|grid|card|item|hit|deal|offer",
+    re.I,
+)
+
+
 def _is_inside_chrome(el: Tag) -> bool:
     for node in [el] + list(el.parents):
         if not isinstance(node, Tag):
             continue
         tag = (node.name or "").lower()
-        # Skip root-level tags — body/html are always ancestors and their
-        # functional classes (e.g. "js-sticky-header") must not poison all descendants.
-        if tag in ("body", "html"):
+        # Skip root-level tags and custom elements (hyphenated tag names like
+        # app-root, cx-storefront) — they are app framework containers whose
+        # classes often contain chrome keywords as camelCase substrings.
+        if tag in ("body", "html") or "-" in tag:
             continue
         if tag in ("header", "footer", "nav"):
             return True
         # Check each CSS class token individually to prevent substring false positives
         # (e.g. "js-sticky-header" must not match as "header").
+        # Exception: if the same token also contains a product/content keyword
+        # (e.g. "product-grid-sidebar"), it is NOT chrome.
         classes = node.get("class", [])
         el_id = node.get("id", "") or ""
-        if any(_CHROME_CLASSES.search(cls) for cls in classes):
-            return True
-        if _CHROME_CLASSES.search(el_id):
+        for cls in classes:
+            if _CHROME_CLASSES.search(cls) and not _CONTENT_OVERRIDE_RE.search(cls):
+                return True
+        if _CHROME_CLASSES.search(el_id) and not _CONTENT_OVERRIDE_RE.search(el_id):
             return True
     return False
 
@@ -498,39 +514,196 @@ def _detect_repeated_structure(soup: BeautifulSoup, max_results: int) -> list[Ta
                 if len(group) >= 5 and len(group) > len(best_group):
                     best_group = group
 
-    return best_group[:max_results]
+    # Return 3× the requested count so downstream deduplication (color variants,
+    # price-identical items) has enough buffer to still reach max_results.
+    return best_group[: max_results * 3]
+
+
+_HOVER_CONTAINER_RE = re.compile(
+    # Match visibility/display-state class tokens, NOT CSS animation suffixes like
+    # "hover-underline" or "hover-effect".  Require the pattern to appear as a
+    # standalone suffix after a "--" BEM modifier or as a standalone class token.
+    r"isvisible-false|is-hidden|is-invisible|fresnel-greaterThan|"
+    r"visually-hidden|sr-only|offscreen|display--none|"
+    r"(?:^|[\s_-])hover-content(?:$|[\s_-])|"  # hover-content as a word
+    r"(?:^|[\s_-])on-hover(?:$|[\s_-])|"       # on-hover as a word
+    r"--hover-show\b|--hover-visible\b|--is-hidden\b|--is-invisible\b",
+    re.I,
+)
+
+
+def _is_hover_or_hidden(el: Tag) -> bool:
+    """True if this element (or an ancestor) is a hover/hidden container."""
+    for node in [el] + list(el.parents):
+        if not isinstance(node, Tag):
+            continue
+        attrs = getattr(node, "attrs", None)
+        if not attrs:
+            continue
+        classes = " ".join(attrs.get("class", []) or []).lower()
+        testid = (attrs.get("data-testid", "") or "").lower()
+        if _HOVER_CONTAINER_RE.search(classes):
+            return True
+        if re.search(r"hover-content|hover-show|hover-overlay", testid):
+            return True
+    return False
+
+
+_BADGE_ATTR_RE = re.compile(r"flag|badge|tag|sticker|promo|label|sponsored", re.I)
+_NAME_ATTR_RE = re.compile(r"(?:^|-)(?:product-?name|item-?name|name|title)(?:-|$)", re.I)
+
+
+def _is_badge_element(el: Tag) -> bool:
+    """True if this element looks like a product badge/tag (Neu, Sale, Sponsored…)."""
+    attrs = getattr(el, "attrs", None) or {}
+    # data-*-flag / data-*-badge / etc.
+    for attr_name in attrs:
+        if attr_name.startswith("data-") and _BADGE_ATTR_RE.search(attr_name):
+            return True
+    # data-nc="badge…" (used by some component libraries)
+    data_nc = (attrs.get("data-nc", "") or "").lower()
+    if "badge" in data_nc:
+        return True
+    # Check parent too — if parent has data-nc="badge…", this child is a badge
+    parent = el.parent
+    if isinstance(parent, Tag):
+        parent_attrs = getattr(parent, "attrs", None) or {}
+        parent_nc = (parent_attrs.get("data-nc", "") or "").lower()
+        if "badge" in parent_nc:
+            return True
+    # class-based badge detection
+    classes = " ".join(attrs.get("class", []) or []).lower()
+    if _BADGE_ATTR_RE.search(classes):
+        return True
+    return False
+
+
+_DATA_PROPS_TITLE_KEYS = (
+    "brandLine1", "brandLine2", "brandLine3",
+    "articleDescription", "title", "name", "productName", "articleName",
+)
 
 
 def _extract_title_from_card(card: Tag) -> str:
+    # -1. Card IS a heading element — return its text directly.
+    if card.name and re.match(r"^h[1-6]$", card.name):
+        text = card.get_text(separator=" ", strip=True)
+        if text:
+            return text[:300]
+
+    # 0. data-props / data-product JSON: many React sites embed full product data
+    #    as a JSON string on the card or a direct descendant.
+    for el in [card] + card.find_all(True, recursive=True):
+        for attr_name in ("data-props", "data-product", "data-item", "data-product-data"):
+            props_str = el.get(attr_name, "") or ""
+            if not props_str:
+                continue
+            try:
+                props = json.loads(props_str)
+                if not isinstance(props, dict):
+                    continue
+                parts = [
+                    props[k].strip()
+                    for k in _DATA_PROPS_TITLE_KEYS
+                    if isinstance(props.get(k), str) and props[k].strip()
+                ]
+                if parts:
+                    return " ".join(parts)[:300]
+            except (json.JSONDecodeError, TypeError):
+                pass
+
+    # 1. Any data-* attribute NAME containing "name" or "title" as a word token
+    #    (covers data-testid="product-X-name", data-test-sell-product-name, etc.)
     for child in card.find_all(True, recursive=True):
+        if _is_hover_or_hidden(child) or _is_badge_element(child):
+            continue
+        attrs = getattr(child, "attrs", None) or {}
+        for attr_name in attrs:
+            if attr_name.startswith("data-") and _NAME_ATTR_RE.search(attr_name):
+                text = child.get_text(separator=" ", strip=True)
+                if text and len(text) > 2:
+                    return text[:300]
+
+    # 2. class containing "title", "name", or "heading" — skip hover/badge containers
+    for child in card.find_all(True, recursive=True):
+        if _is_hover_or_hidden(child) or _is_badge_element(child):
+            continue
         classes = " ".join(child.get("class", [])).lower()
         if any(kw in classes for kw in ("title", "name", "heading")):
             text = child.get_text(separator=" ", strip=True)
             if text and len(text) > 2:
                 return text[:300]
 
-    # role="heading"
+    # 3. role="heading"
     heading_el = card.find(attrs={"role": "heading"})
-    if heading_el:
+    if heading_el and not _is_hover_or_hidden(heading_el):
         text = heading_el.get_text(separator=" ", strip=True)
         if text:
             return text[:300]
 
+    # 4. <h1>–<h6>
     heading = card.find(re.compile(r"^h[1-6]$"))
-    if heading:
+    if heading and not _is_hover_or_hidden(heading):
         text = heading.get_text(separator=" ", strip=True)
         if text:
             return text[:300]
 
+    # 5. Link text fallback — strip hover/hidden and badge subtrees before reading.
+    #    Skip generic UI aria-labels that don't describe the product.
+    _GENERIC_ARIA_LABELS = re.compile(
+        r"^(view product|add to (cart|bag|basket|wishlist)|like product|"
+        r"remove|delete|close|open|toggle|expand|collapse|share|save|buy|purchase)$",
+        re.I,
+    )
     link = card.find("a")
     if link:
-        # Prefer aria-label over text when available
         label = link.get("aria-label", "").strip()
-        if label and len(label) > 4:
+        if label and len(label) > 4 and not _GENERIC_ARIA_LABELS.match(label):
             return label[:300]
-        text = link.get_text(separator=" ", strip=True)
+        import copy
+        link_copy = copy.copy(link)
+        for node in link_copy.find_all(True):
+            if isinstance(node, Tag) and (_is_hover_or_hidden(node) or _is_badge_element(node)):
+                node.decompose()
+        text = link_copy.get_text(separator=" ", strip=True)
         if text and len(text) > 2:
             return text[:300]
+
+    # 6. Accumulate leaf text nodes that look like a product name, stopping at prices.
+    #    Handles sites with fully hashed CSS-in-JS class names (e.g. styled-components)
+    #    where none of the class-based heuristics above can fire.
+    _UI_JUNK_RE = re.compile(
+        r"^(like|add to|view|remove|close|open|toggle|share|save|buy|"
+        r"purchase|wishlist|cart|basket|bag|compare|quick view|more info|"
+        r"sold out|out of stock|unavailable|new|sale|–?\d+\s*%|"
+        r"\+\d+\s*(mehr|more|colors?|colours?|variants?|options?)|"  # "+3 mehr", "+2 colors"
+        r"ab\s+[\d,.])",  # "ab 4,99 €" (German "from price")
+        re.I,
+    )
+    name_parts: list[str] = []
+    for child in card.find_all(True, recursive=True):
+        if _is_hover_or_hidden(child) or _is_badge_element(child):
+            continue
+        if child.find(True):  # skip non-leaf elements (would duplicate text)
+            continue
+        text = child.get_text(separator=" ", strip=True)
+        if not text:
+            continue
+        # Stop accumulating once we hit a price
+        if _PRICE_RE.search(text) or _PRICE_FALLBACK_RE.search(text):
+            break
+        if len(text) < 3 or len(text) > 150:
+            continue
+        if _UI_JUNK_RE.match(text):
+            continue
+        if re.match(r"^[\s​\d%.,/()\-]+$", text):
+            continue
+        name_parts.append(text)
+        # Stop after collecting a reasonable product name (brand + product line)
+        if len(name_parts) >= 3 or sum(len(p) for p in name_parts) >= 80:
+            break
+    if name_parts:
+        return " ".join(name_parts)[:300]
 
     return ""
 
@@ -546,6 +719,12 @@ def _extract_snippet_from_card(card: Tag) -> Optional[str]:
 
 
 def _extract_url_from_card(card: Tag) -> Optional[str]:
+    # Check if the card itself is inside an <a> (e.g. heading leaf inside a link wrapper)
+    parent = card.parent
+    if isinstance(parent, Tag) and parent.name == "a":
+        href = parent.get("href", "")
+        if href and href != "#":
+            return href
     link = card.find("a", href=True)
     if link:
         href = link.get("href", "")
@@ -556,7 +735,6 @@ def _extract_url_from_card(card: Tag) -> Optional[str]:
 
 def _try_product_cards(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
     results: list[SearchResult] = []
-    seen_titles: set[str] = set()
     cards: list[Tag] = []
 
     # --- Pass 1: class/id/data-attr/semantic matching ---
@@ -706,11 +884,6 @@ def _try_product_cards(soup: BeautifulSoup, max_results: int) -> list[SearchResu
         if not title or len(title) < 2:
             continue
 
-        title_lower = re.sub(r"\s+", " ", title.lower()).strip()
-        if title_lower in seen_titles:
-            continue
-        seen_titles.add(title_lower)
-
         results.append(SearchResult(
             rank=len(results) + 1,
             title=title,
@@ -759,29 +932,20 @@ def _try_generic_list(soup: BeautifulSoup, max_results: int) -> list[SearchResul
     if len(largest_group) < 2:
         return results
 
-    seen_titles: set[str] = set()
-
     for el in largest_group:
-        link = el.find("a", href=True)
-        title, url = "", None
-
-        if link:
-            title = link.get_text(separator=" ", strip=True)[:300]
-            href = link.get("href", "")
-            url = href if href and href != "#" else None
+        # Use smart title extraction (strips hover/hidden containers) rather than
+        # raw link.get_text() which picks up size labels and other hover-only text.
+        title = _extract_title_from_card(el)
+        url = _extract_url_from_card(el)
 
         if not title:
-            heading = el.find(re.compile(r"^h[1-6]$"))
-            if heading:
-                title = heading.get_text(separator=" ", strip=True)[:300]
+            link = el.find("a", href=True)
+            if link:
+                href = link.get("href", "")
+                url = url or (href if href and href != "#" else None)
 
         if not title or len(title) < 3:
             continue
-
-        title_lower = re.sub(r"\s+", " ", title.lower()).strip()
-        if title_lower in seen_titles:
-            continue
-        seen_titles.add(title_lower)
 
         results.append(SearchResult(
             rank=len(results) + 1,
@@ -881,6 +1045,14 @@ def _extract_results(html: str, max_results: int, url: str = "") -> list[SearchR
     )
 
     if winner:
+        # Strip any cookie-banner artefacts (e.g. CookieConsent.js items that remain in DOM)
+        winner = [
+            r for r in winner
+            if not (
+                (r.url or "").lower().startswith("javascript:")
+                or "cookie" in (r.title or "").lower()
+            )
+        ]
         _log_first_titles(winner, winner_name)
 
     return winner
@@ -978,6 +1150,9 @@ def _dismiss_consent_banners(page) -> None:
         "[aria-label*='Alle akzeptieren']",
         "button.didomi-components-button--color-green",  # Didomi
         "#CybotCookiebotDialogBodyButtonAccept",         # CookieBot
+        "button.cc-btn.cc-allow",                        # CookieConsent.js (Sportamore et al.)
+        "button.cc-btn-decision.cc-allow",               # CookieConsent.js variant
+        ".cc-compliance .cc-allow",                      # CookieConsent.js generic
     ]
     for cs in _CONSENT_SELECTORS:
         try:
@@ -998,12 +1173,63 @@ def _dismiss_consent_banners(page) -> None:
                 "accept all", "alle akzeptieren", "accepteer alle",
                 "accepter tout", "akzeptieren", "accept cookies",
                 "povolit vše", "přijmout vše", "souhlasím",
+                # Swedish
+                "acceptera", "godkänn", "godkann", "fortsätt", "tillåt alla",
+                "tillat alla", "acceptera alla",
+                # Norwegian / Danish
+                "godta alle", "accepter alle",
             )):
                 if btn.is_visible():
                     btn.click()
                     page.wait_for_timeout(1200)
                     logger.debug("Playwright: dismissed consent via text '%s'", txt)
                     return
+    except Exception:
+        pass
+
+    # JS eval fallback — directly clicks any visible consent/allow button by class or text.
+    # Catches CookieConsent.js (.cc-allow), custom banners, and others that don't respond
+    # to Playwright's query_selector due to timing or shadow DOM issues.
+    try:
+        clicked = page.evaluate("""() => {
+            function isVisible(el) {
+                const r = el.getBoundingClientRect();
+                const s = window.getComputedStyle(el);
+                return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+            }
+            function removeBannerContainer(el) {
+                const containers = ['.cc-window', '.cc-overlay', '#cookieconsent', '[class*="cookie-banner"]',
+                                    '[class*="consent-banner"]', '[id*="cookie"]'];
+                for (const sel of containers) {
+                    const c = document.querySelector(sel);
+                    if (c) { c.remove(); }
+                }
+            }
+            const classSelectors = [
+                'button.cc-allow', 'button.cc-btn-decision', '.cc-compliance button',
+                '.cc-window button.cc-btn', '[class*="accept"][class*="btn"]',
+                '[class*="consent"] button[class*="accept"]',
+            ];
+            for (const sel of classSelectors) {
+                const el = document.querySelector(sel);
+                if (el && isVisible(el)) { el.click(); removeBannerContainer(el); return sel; }
+            }
+            const acceptWords = [
+                'accept all', 'acceptera', 'fortsätt', 'godkänn', 'tillåt',
+                'accepter', 'akzeptieren', 'accepteer', 'povolit', 'souhlasím',
+                'godta', 'allow all', 'allow cookies',
+            ];
+            for (const btn of document.querySelectorAll('button')) {
+                const txt = (btn.innerText || '').trim().toLowerCase();
+                if (acceptWords.some(w => txt.includes(w)) && isVisible(btn)) {
+                    btn.click(); removeBannerContainer(btn); return 'text:' + txt.slice(0, 40);
+                }
+            }
+            return null;
+        }""")
+        if clicked:
+            page.wait_for_timeout(1200)
+            logger.debug("Playwright: JS-eval dismissed consent via '%s'", clicked)
     except Exception:
         pass
 
@@ -1062,18 +1288,65 @@ def _scroll_and_load_more(page) -> None:
     for _load_round in range(3):
         clicked = False
         try:
-            buttons = page.query_selector_all("button, a[href]")
-            for btn in buttons[:80]:
-                try:
-                    btn_text = (btn.inner_text() or "").strip()
-                    if _LOAD_MORE_RE.search(btn_text):
-                        logger.debug("Playwright: clicking '%s'", btn_text)
-                        btn.click()
-                        page.wait_for_timeout(2000)
-                        clicked = True
-                        break
-                except Exception:
-                    continue
+            # First pass: JS click on load-more buttons by CSS class pattern.
+            # JS click bypasses Playwright's viewport/visibility checks, which fail
+            # when a sticky header/footer pushes the button outside the viewport rect.
+            # Capture current tile count, then JS-click the load-more button.
+            pre_count = page.evaluate("""() => {
+                return document.querySelectorAll(
+                    'section[class*="tile"], li[class*="product"], li[class*="item"], ' +
+                    'div[class*="product-tile"], div[class*="product_tile"], ' +
+                    'article'
+                ).length;
+            }""") or 0
+            js_clicked = page.evaluate("""() => {
+                const selectors = [
+                    '[class*="load-more"]', '[class*="load_more"]',
+                    '[class*="loadmore"]', '[class*="show-more"]',
+                    '[class*="show_more"]',
+                ];
+                for (const sel of selectors) {
+                    const el = document.querySelector(sel);
+                    if (el) { el.click(); return el.textContent.trim().slice(0, 40); }
+                }
+                return null;
+            }""")
+            if js_clicked:
+                logger.debug("Playwright: JS-clicked load-more '%s' (pre-count=%d)", js_clicked, pre_count)
+                # Wait until DOM tile count grows beyond pre-click count, or 7s elapses.
+                if pre_count > 0:
+                    try:
+                        page.wait_for_function(
+                            f"""() => {{
+                                return document.querySelectorAll(
+                                    'section[class*="tile"], li[class*="product"], li[class*="item"], ' +
+                                    'div[class*="product-tile"], div[class*="product_tile"], article'
+                                ).length > {pre_count};
+                            }}""",
+                            timeout=7000,
+                        )
+                    except Exception:
+                        page.wait_for_timeout(4000)
+                else:
+                    page.wait_for_timeout(4000)
+                clicked = True
+            else:
+                # Second pass: text-based search with JS click fallback
+                buttons = page.query_selector_all("button, a[href]")
+                for btn in buttons[:80]:
+                    try:
+                        btn_text = (btn.inner_text() or "").strip()
+                        if _LOAD_MORE_RE.search(btn_text):
+                            logger.debug("Playwright: JS-clicking '%s'", btn_text)
+                            page.evaluate("(el) => el.click()", btn)
+                            try:
+                                page.wait_for_load_state("networkidle", timeout=6000)
+                            except Exception:
+                                page.wait_for_timeout(3000)
+                            clicked = True
+                            break
+                    except Exception:
+                        continue
         except Exception:
             pass
 
@@ -1551,7 +1824,6 @@ def _extract_with_cached_selectors(
     """Fast extraction using LLM-generated selectors from the probe query."""
     soup = BeautifulSoup(html, "html.parser")
     results: list[SearchResult] = []
-    seen_titles: set[str] = set()
 
     # Find the container
     container = soup.select_one(profile.container_selector)
@@ -1576,11 +1848,6 @@ def _extract_with_cached_selectors(
             title = _extract_title_from_card(card)
         if not title or len(title) < 3:
             continue
-
-        title_key = re.sub(r"\s+", " ", title.lower()).strip()
-        if title_key in seen_titles:
-            continue
-        seen_titles.add(title_key)
 
         # Extract price
         price = None
@@ -1691,6 +1958,8 @@ def _validate_results_with_llm(
                     "Return a JSON array of the 1-based indices of items that are REAL "
                     "product/service/deal listings. Exclude navigation links, UI buttons, "
                     "section headers, cookie banners, sign-in prompts, and any other page chrome.\n"
+                    "IMPORTANT: If the same product title appears multiple times, keep ALL occurrences — "
+                    "they are different color, size, or style variants and must not be deduplicated.\n"
                     "Return ONLY the JSON array, no commentary. Example: [1, 2, 4, 5]"
                 ),
             }],
@@ -1759,7 +2028,7 @@ def _probe_site(
             url, headers={"User-Agent": _USER_AGENT},
             timeout=5, allow_redirects=True, proxies=_REQUESTS_PROXIES,
         )
-        static_html = resp.text
+        static_html = _decode_response(resp)
         static_code = resp.status_code
         static_redirected = _is_search_redirect(url, resp.url, query)
         if static_redirected:
@@ -1777,12 +2046,23 @@ def _probe_site(
         logger.info("Probe: Cloudflare on static fetch → falling through to Playwright")
 
     # Static accessible, no redirect, and extraction sufficient?
+    static_results_cache: list = []
     if not static_redirected and static_code == 200 and len(static_html) > 2000:
-        results = _extract_results(static_html, max_results, url=url)
-        if len(results) >= 5:
+        results = _extract_results(static_html, max_results * 2, url=url)
+        if len(results) >= max_results:
+            # Static gives enough results — no need for Playwright.
             results = _validate_results_with_llm(results, query)
+            results = results[:max_results]
             logger.info("Probe: static extraction (%d validated results) → STATIC mode", len(results))
             return SiteMode.STATIC, results, static_html, False
+        elif len(results) >= 5:
+            # Static has some results but fewer than needed — cache them and try
+            # Playwright in case scroll/load-more reveals additional products.
+            static_results_cache = results
+            logger.info(
+                "Probe: static got only %d/%d results — trying Playwright for more",
+                len(results), max_results,
+            )
 
     # ---- Step 2: Full Playwright fetch (Firefox → Chromium stealth) ----------
     pw_html, pw_browser, pw_final_url = _fetch_with_playwright(url)
@@ -1808,12 +2088,24 @@ def _probe_site(
         )
         return mode, [], pw_html, True
 
-    results = _extract_results(pw_html, max_results, url=url)
+    results = _extract_results(pw_html, max_results * 2, url=url)
     results = _validate_results_with_llm(results, query)
+    results = results[:max_results]
     if len(results) < 5:
         llm_results = _extract_with_llm(pw_html, query, max_results, url=url)
         if len(llm_results) > len(results):
             results = llm_results
+
+    # If static cached results are better (Playwright didn't improve), fall back to static.
+    if static_results_cache and len(results) <= len(static_results_cache):
+        static_validated = _validate_results_with_llm(static_results_cache, query)
+        static_validated = static_validated[:max_results]
+        if len(static_validated) >= len(results):
+            logger.info(
+                "Probe: Playwright/%s (%d results) not better than static (%d) → STATIC mode",
+                pw_browser, len(results), len(static_validated),
+            )
+            return SiteMode.STATIC, static_validated, static_html, static_redirected
 
     was_redirected = static_redirected  # Playwright didn't redirect; static might have
     logger.info(
@@ -1853,7 +2145,7 @@ def _fetch_with_mode(
                 timeout=15, allow_redirects=True, proxies=_REQUESTS_PROXIES,
             )
             resp.raise_for_status()
-            html = resp.text
+            html = _decode_response(resp)
             final_url = resp.url
         except requests.RequestException as e:
             logger.warning("Static fetch failed for %s: %s", url, e)
@@ -1876,8 +2168,9 @@ def _fetch_with_mode(
         logger.info("Query '%s' redirected to %s — skipping", query, final_url)
         return [], True
 
-    results = _extract_results(html, max_results, url=url)
+    results = _extract_results(html, max_results * 2, url=url)
     results = _validate_results_with_llm(results, query)
+    results = results[:max_results]
     if len(results) < 5:
         llm_results = _extract_with_llm(html, query, max_results, url=url)
         if len(llm_results) > len(results):
@@ -1934,9 +2227,35 @@ def fetch_all_results(
         probe_url = search_url_template.replace("{}", quote_plus(probe_tq.query))
         logger.info("[probe %d/%d] Probing with query: '%s'", probe_position, total, probe_tq.query)
 
-        site_mode, probe_results, probe_html, was_redirected = _probe_site(
-            probe_url, probe_tq.query, max_results
-        )
+        import threading as _threading
+        _probe_result: list = []
+        _probe_error: list = []
+
+        def _run_probe() -> None:
+            try:
+                _probe_result.extend(_probe_site(probe_url, probe_tq.query, max_results))
+            except Exception as exc:
+                _probe_error.append(exc)
+
+        _pt = _threading.Thread(target=_run_probe, daemon=True)
+        _pt.start()
+        _pt.join(timeout=600)
+
+        if _pt.is_alive():
+            print(
+                f"\nTIMEOUT: Probing query '{probe_tq.query}' exceeded 10 minutes. "
+                "Skipping this site — please check the site manually.\n"
+            )
+            logger.warning("Probe for '%s' timed out after 600s", probe_tq.query)
+            all_results[probe_tq.query] = []
+            break
+        elif _probe_error:
+            raise _probe_error[0]
+        else:
+            site_mode, probe_results, probe_html, was_redirected = (
+                _probe_result[0], _probe_result[1], _probe_result[2], _probe_result[3]
+            )
+
         all_results[probe_tq.query] = probe_results
 
         if was_redirected:
@@ -1980,34 +2299,15 @@ def fetch_all_results(
         return all_results
 
     # ---- Phase 2: Apply proven mode to remaining queries --------------------
-    # For Playwright modes, create a persistent browser context so cookies and
-    # session state carry over across all queries (improves bot-protection bypass).
+    # For Playwright modes we intentionally use per-query browser launches here.
+    # The per-query timeout wrapper runs fetches in a worker thread; Playwright's
+    # sync API cannot safely reuse a persistent context across those thread
+    # boundaries (greenlet "Cannot switch to a different thread" errors).
     pw_count = llm_count = 0
     persistent_pw = None   # Playwright sync_playwright context manager
     persistent_browser = None
     persistent_context = None
     is_pw_mode = site_mode in (SiteMode.PLAYWRIGHT_FIREFOX, SiteMode.PLAYWRIGHT_CHROMIUM)
-
-    if is_pw_mode and remaining_queries:
-        try:
-            from playwright.sync_api import sync_playwright
-            persistent_pw = sync_playwright().start()
-            chromium_opts = {"args": ["--disable-blink-features=AutomationControlled", "--no-sandbox"]}
-            if site_mode == SiteMode.PLAYWRIGHT_CHROMIUM:
-                persistent_browser = persistent_pw.chromium.launch(headless=True, **chromium_opts)
-            else:
-                persistent_browser = persistent_pw.firefox.launch(headless=True)
-            pctx_kwargs = {
-                "user_agent": _USER_AGENT,
-                "viewport": {"width": 1280, "height": 900},
-            }
-            if _PW_PROXY:
-                pctx_kwargs["proxy"] = _PW_PROXY
-            persistent_context = persistent_browser.new_context(**pctx_kwargs)
-            logger.info("Created persistent browser context for %d remaining queries", len(remaining_queries))
-        except Exception as e:
-            logger.warning("Failed to create persistent context: %s — falling back to per-query browsers", e)
-            persistent_context = None
 
     # LLM-primary promotion: if heuristic extraction keeps failing, switch to
     # direct LLM extraction for remaining queries.
@@ -2016,6 +2316,8 @@ def fetch_all_results(
 
     if remaining_queries:
         time.sleep(1.5)
+
+    _PER_QUERY_TIMEOUT_S = 600  # 10 minutes per query hard limit
 
     try:
         for i, tq in enumerate(remaining_queries, probe_position + 1):
@@ -2049,10 +2351,38 @@ def fetch_all_results(
             else:
                 logger.info("[%d/%d] Fetching '%s' (mode: %s)", i, total, query_str, site_mode)
                 try:
-                    results, was_redirected = _fetch_with_mode(
-                        url, query_str, max_results, site_mode,
-                        reuse_context=persistent_context,
-                    )
+                    import threading as _threading
+                    _fetch_result: list = []
+                    _fetch_error: list = []
+
+                    def _run_fetch() -> None:
+                        try:
+                            _fetch_result.extend(
+                                _fetch_with_mode(
+                                    url, query_str, max_results, site_mode,
+                                    reuse_context=persistent_context,
+                                )
+                            )
+                        except Exception as exc:
+                            _fetch_error.append(exc)
+
+                    _t = _threading.Thread(target=_run_fetch, daemon=True)
+                    _t.start()
+                    _t.join(timeout=_PER_QUERY_TIMEOUT_S)
+
+                    if _t.is_alive():
+                        elapsed = _PER_QUERY_TIMEOUT_S
+                        print(
+                            f"\nTIMEOUT: Fetching query '{query_str}' exceeded "
+                            f"{_PER_QUERY_TIMEOUT_S // 60} minutes. "
+                            "Skipping this query — please check the site manually.\n"
+                        )
+                        logger.warning("Query '%s' timed out after %ds", query_str, elapsed)
+                        results, was_redirected = [], False
+                    elif _fetch_error:
+                        raise _fetch_error[0]
+                    else:
+                        results, was_redirected = _fetch_result[0], _fetch_result[1]
                 except Exception as e:
                     logger.warning("Unexpected error fetching '%s': %s", query_str, e)
                     results, was_redirected = [], False
@@ -2072,19 +2402,14 @@ def fetch_all_results(
                     thin_count += 1
                 logger.info("[%d/%d] '%s' → %d results", i, total, query_str, len(results))
 
-                # Track consecutive thin results for LLM-primary promotion
-                if not use_llm_primary:
-                    if len(results) < 3:
-                        consecutive_thin += 1
-                        if consecutive_thin >= 2:
-                            use_llm_primary = True
-                            logger.info(
-                                "Promoting to LLM-primary extraction: %d consecutive queries "
-                                "with < 3 results after heuristic+validation",
-                                consecutive_thin,
-                            )
-                    else:
-                        consecutive_thin = 0
+                # Track thin results for diagnostics only. Do not promote an
+                # entire site to LLM-primary extraction: some valid search
+                # queries naturally return few results, and promotion can
+                # poison later queries with zero-result LLM extraction.
+                if len(results) < 3:
+                    consecutive_thin += 1
+                else:
+                    consecutive_thin = 0
 
             if i < total:
                 time.sleep(1.5)

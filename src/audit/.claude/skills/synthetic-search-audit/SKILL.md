@@ -49,9 +49,11 @@ All files share a common slug prefix: `{domain_slug}_{YYYYMMDD_HHMMSS}`
 |------|-------------|
 | `{slug}_report.md` | Full deep-dive narrative (Markdown) |
 | `{slug}_data.json` | Complete AuditReport as JSON (all judgments, scores, raw data) |
+| `{slug}_report.html` | Styled HTML report (PDF-ready, rendered from `templates/master_report.html`) |
 | `{slug}_exec_summary.docx` | 2-page Executive Summary for prospects |
 | `{slug}_brief.docx` | 1-page Forwardable Brief (VP/CMO-ready) |
 | `{slug}_cold_email.txt` | Cold email opener, 3 versions (plain text) |
+| `findsherpas.com/report/{company}/` | Live report URL published to GitHub (noindex) |
 
 ---
 
@@ -67,6 +69,38 @@ All files share a common slug prefix: `{domain_slug}_{YYYYMMDD_HHMMSS}`
 | 6 | `src/judge.py` | Assigns `FailureMode`, `Severity`, `displacement`, `evidence` per query via Claude |
 | 7 | `src/report_generator.py` | Builds `AuditReport` with `CapabilityScore` groups + narrative via Claude |
 | Post | `src/sales_materials_generator.py` | Generates 3 sales docs from the completed report |
+
+---
+
+## GitHub Publishing
+
+After the HTML report is rendered, `orchestrator.py` automatically calls `publish_report()` from `src/github_publisher.py`. This:
+
+1. Generates a unique password (`{company}{4-digit}`, e.g. `huckberry6746`)
+2. Injects a client-side password gate into the HTML (SHA-256 hash, localStorage persistence)
+3. Uploads the gated HTML to `nitianhao/findsherpas` at `public/report/{company}/index.html`
+4. Saves the password to `reports/passwords.json` (local only — gitignored)
+5. Returns `(url, password)` — both printed to stdout
+
+The page is live at `https://findsherpas.com/report/{company}/` once Vercel deploys (typically < 30 seconds).
+
+The HTML includes `<meta name="robots" content="noindex, nofollow">` so it is not indexed by search engines.
+
+**Company slug derivation**: TLD suffixes are stripped automatically — `huckberry_com` → `huckberry`, `www_zalando_de` → `zalando`.
+
+**Password store**: `reports/passwords.json` — one entry per company, updated on every publish. Never committed to GitHub.
+
+**Re-publish an existing report:**
+```python
+from pathlib import Path
+from src.github_publisher import publish_report
+
+html = Path("reports/huckberry_com/huckberry_com_20260506_report.html").read_text()
+url, password = publish_report(html, "huckberry_com")
+print(url, password)
+```
+
+Requires the `gh` CLI to be authenticated (`gh auth status`). No additional env vars needed.
 
 ---
 

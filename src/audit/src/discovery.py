@@ -10,6 +10,7 @@ import requests
 from bs4 import BeautifulSoup, Tag
 
 from src.models import SiteContext, SiteType
+from src.fetcher import _fetch_with_playwright
 
 logger = logging.getLogger(__name__)
 
@@ -54,6 +55,140 @@ def _resolve_url(base: str, path: str) -> str:
 def _clean_text(text: str) -> str:
     """Collapse whitespace and strip a string."""
     return re.sub(r"\s+", " ", text).strip()
+
+
+# Map of BCP-47 language codes / prefixes to human-readable language names for query generation
+_LANG_CODE_MAP: dict[str, str] = {
+    "sv": "Swedish",
+    "da": "Danish",
+    "no": "Norwegian",
+    "nb": "Norwegian",
+    "nn": "Norwegian",
+    "fi": "Finnish",
+    "de": "German",
+    "nl": "Dutch",
+    "fr": "French",
+    "es": "Spanish",
+    "it": "Italian",
+    "pt": "Portuguese",
+    "pl": "Polish",
+    "cs": "Czech",
+    "sk": "Slovak",
+    "hu": "Hungarian",
+    "ro": "Romanian",
+    "el": "Greek",
+    "tr": "Turkish",
+    "ru": "Russian",
+    "uk": "Ukrainian",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "zh": "Chinese",
+    "ar": "Arabic",
+    "he": "Hebrew",
+    "en": "English",
+}
+
+
+def _detect_primary_language(soup: BeautifulSoup, url: str) -> str:
+    """Detect the site's primary customer-facing language.
+
+    Checks (in order): HTML lang attribute, og:locale meta tag, hreflang links,
+    and URL path prefix. Falls back to 'English'.
+    """
+    # 1. <html lang="sv"> or <html lang="sv-SE">
+    # Only trust non-English codes here — many sites wrongly declare lang="en"
+    try:
+        html_tag = soup.find("html")
+        if html_tag:
+            lang_attr = (html_tag.get("lang") or "").strip().lower()
+            if lang_attr:
+                code = lang_attr.split("-")[0]
+                if code in _LANG_CODE_MAP and code != "en":
+                    return _LANG_CODE_MAP[code]
+    except Exception:
+        pass
+
+    # 2. <meta property="og:locale" content="sv_SE">
+    try:
+        og_locale = soup.find("meta", property="og:locale")
+        if og_locale:
+            locale = (og_locale.get("content") or "").strip().lower()
+            code = locale.split("_")[0].split("-")[0]
+            if code in _LANG_CODE_MAP and code != "en":
+                return _LANG_CODE_MAP[code]
+    except Exception:
+        pass
+
+    # 3. <link rel="alternate" hreflang="sv"> — use the most prominent non-x-default
+    try:
+        hreflangs = soup.find_all("link", rel="alternate")
+        for link in hreflangs:
+            hl = (link.get("hreflang") or "").strip().lower()
+            if hl and hl != "x-default":
+                code = hl.split("-")[0]
+                if code in _LANG_CODE_MAP and code != "en":
+                    return _LANG_CODE_MAP[code]
+    except Exception:
+        pass
+
+    # 4. URL path prefix like /sv-se/ or /sv/
+    try:
+        from urllib.parse import urlparse as _urlparse
+        path = _urlparse(url).path.lower()
+        for code, name in _LANG_CODE_MAP.items():
+            if f"/{code}-" in path or f"/{code}/" in path or path.startswith(f"/{code}/"):
+                return name
+    except Exception:
+        pass
+
+    # 5. Country-code TLD (.se → Swedish, .de → German, etc.)
+    _CCTLD_MAP: dict[str, str] = {
+        ".se": "Swedish", ".dk": "Danish", ".no": "Norwegian", ".fi": "Finnish",
+        ".de": "German", ".at": "German", ".ch": "German",
+        ".fr": "French", ".be": "French",
+        ".nl": "Dutch",
+        ".es": "Spanish", ".mx": "Spanish",
+        ".it": "Italian",
+        ".pt": "Portuguese", ".br": "Portuguese",
+        ".pl": "Polish",
+        ".cz": "Czech",
+        ".sk": "Slovak",
+        ".hu": "Hungarian",
+        ".ro": "Romanian",
+        ".ru": "Russian",
+        ".tr": "Turkish",
+        ".jp": "Japanese",
+        ".kr": "Korean",
+        ".cn": "Chinese",
+    }
+    try:
+        from urllib.parse import urlparse as _urlparse2
+        host = _urlparse2(url).hostname or ""
+        for tld, name in _CCTLD_MAP.items():
+            if host.endswith(tld):
+                return name
+    except Exception:
+        pass
+
+    # 6. Content-based: high density of non-ASCII letters in page text suggests non-English
+    # Check specifically for Nordic characters (å, ä, ö, æ, ø) common in Scandinavian sites
+    try:
+        page_text = soup.get_text()
+        total_alpha = sum(1 for c in page_text if c.isalpha())
+        nordic = sum(1 for c in page_text if c in "åäöæøÅÄÖÆØ")
+        german = sum(1 for c in page_text if c in "üÜßéè")
+        if total_alpha > 200:
+            if nordic / total_alpha > 0.01:
+                # Distinguish Swedish (å, ä, ö) vs Danish/Norwegian (æ, ø more common)
+                sv_chars = sum(1 for c in page_text if c in "åäöÅÄÖ")
+                da_chars = sum(1 for c in page_text if c in "æøÆØ")
+                return "Danish" if da_chars > sv_chars else "Swedish"
+            if german / total_alpha > 0.005:
+                return "German"
+    except Exception:
+        pass
+
+    return "English"
 
 
 def _extract_site_name(soup: BeautifulSoup, url: str) -> str:
@@ -374,19 +509,26 @@ def discover_from_search_url(url: str) -> SiteContext:
     """
     search_url_template, _sample_query = parse_search_url(url)
 
-    response = requests.get(
-        url,
-        headers={"User-Agent": _USER_AGENT},
-        timeout=15,
-        allow_redirects=True,
-    )
-    response.raise_for_status()
+    effective_url = url
+    try:
+        response = requests.get(
+            url,
+            headers={"User-Agent": _USER_AGENT},
+            timeout=15,
+            allow_redirects=True,
+        )
+        response.raise_for_status()
+        html = response.text
+        effective_url = response.url
+    except requests.HTTPError as e:
+        logger.warning("Static discovery failed for %s: %s; trying Playwright", url, e)
+        html, _browser, final_url = _fetch_with_playwright(url, quick_probe=True)
+        if not html:
+            raise
+        effective_url = final_url or url
 
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(html, "html.parser")
     html_text = soup.get_text(separator=" ")
-
-    # Use the effective (post-redirect) URL as the canonical base.
-    effective_url = response.url
 
     site_name = _extract_site_name(soup, effective_url)
     raw_meta_description = _extract_meta_description(soup)
@@ -396,6 +538,8 @@ def discover_from_search_url(url: str) -> SiteContext:
     site_type = _detect_site_type(
         nav_categories, featured_items, raw_meta_description, html_text
     )
+    primary_language = _detect_primary_language(soup, effective_url)
+    logger.info("Detected primary language: %s", primary_language)
 
     return SiteContext(
         url=effective_url,
@@ -406,6 +550,7 @@ def discover_from_search_url(url: str) -> SiteContext:
         featured_items=featured_items,
         search_url_template=search_url_template,
         raw_meta_description=raw_meta_description,
+        primary_language=primary_language,
     )
 
 
@@ -524,6 +669,8 @@ def discover_site(url: str) -> SiteContext:
     site_type = _detect_site_type(
         nav_categories, featured_items, raw_meta_description, html_text
     )
+    primary_language = _detect_primary_language(soup, url)
+    logger.info("Detected primary language: %s", primary_language)
 
     return SiteContext(
         url=url,
@@ -534,6 +681,7 @@ def discover_site(url: str) -> SiteContext:
         featured_items=featured_items,
         search_url_template=search_url_template,
         raw_meta_description=raw_meta_description,
+        primary_language=primary_language,
     )
 
 

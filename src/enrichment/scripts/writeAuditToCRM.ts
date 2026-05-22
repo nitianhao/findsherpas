@@ -1,7 +1,7 @@
 /**
  * writeAuditToCRM.ts
  *
- * Reads a Synthetic Search _data.json audit report and writes the key
+ * Reads a Find Sherpas _data.json audit report and writes the key
  * personalization variables to the matching CRM company record.
  *
  * Audit variables live at the COMPANY level (one audit per company, shared
@@ -11,7 +11,8 @@
  * Usage:
  *   npx tsx src/enrichment/scripts/writeAuditToCRM.ts \
  *     --company-id <instantdb-company-id> \
- *     --report <path/to/_data.json>
+ *     --report <path/to/_data.json> \
+ *     --report-url <https://findsherpas.com/report/company/>
  *
  * Dry-run (print extracted vars without writing):
  *   npx tsx src/enrichment/scripts/writeAuditToCRM.ts \
@@ -19,13 +20,15 @@
  *     --dry-run
  *
  * Fields written to the company:
- *   audit_score         — number of capabilities passing (e.g. "2")   → {{score}}
+ *   audit_score         — Search Quality Score, 0-100                  → {{score}}
+ *   audit_query_count   — number of tested customer queries             → {{query_count}}
  *   audit_cap_count     — number of CRITICAL capability failures       → {{cap_count}}
  *   audit_outside3rate  — % of queries where best result is NOT top 3  → {{outside3rate}}
  *   audit_top3rate      — % of queries where best result IS top 3      → {{top3rate}}
  *   audit_worst_query   — query string with the highest displacement   → {{worst_query}}
  *   audit_worst_pos     — 1-indexed pos of best result for worst query → {{worst_pos}}
  *   audit_wrong_product — title of result at position #1 for that q    → {{wrong_product}}
+ *   report_url          — live unlisted report URL                      → {{report_url}}
  *   audit_run_at        — ISO timestamp of when this write happened
  */
 
@@ -81,6 +84,7 @@ interface AuditReport {
 
 interface AuditVars {
   score: string;
+  query_count: string;
   cap_count: string;
   outside3rate: string;
   top3rate: string;
@@ -91,10 +95,6 @@ interface AuditVars {
 
 function extractVars(report: AuditReport): AuditVars {
   const capabilities = report.capability_scores;
-
-  const passing = capabilities.filter(c =>
-    c.severity.toLowerCase().startsWith('pass')
-  ).length;
 
   const critical = capabilities.filter(c =>
     c.severity.toLowerCase().startsWith('critical')
@@ -121,7 +121,8 @@ function extractVars(report: AuditReport): AuditVars {
   const wrongProduct = sortedByOriginal[0]?.title ?? 'n/a';
 
   return {
-    score: String(passing),
+    score: String(computeSearchQualityScore(allJudgments)),
+    query_count: String(allJudgments.length),
     cap_count: String(critical),
     outside3rate: String(outside3rate),
     top3rate: String(top3rate),
@@ -129,6 +130,45 @@ function extractVars(report: AuditReport): AuditVars {
     worst_pos: String(worstPos),
     wrong_product: wrongProduct,
   };
+}
+
+function byOriginalRank(judgment: Judgment): ScoredResult[] {
+  return [...judgment.results].sort((a, b) => a.original_rank - b.original_rank);
+}
+
+function computeSearchQualityScore(judgments: Judgment[]): number {
+  if (judgments.length === 0) return 0;
+
+  const withResults = judgments.filter(j => j.results.length > 0);
+
+  const trustFailures = judgments.filter(j => {
+    const rankedResults = byOriginalRank(j);
+    if (rankedResults.length === 0) return true;
+
+    const topResult = rankedResults[0];
+    const bestScore = Math.max(...rankedResults.map(r => r.relevance_score));
+
+    return (
+      topResult.relevance_score < 0.6 ||
+      (bestScore - topResult.relevance_score >= 0.2 && j.displacement > 2)
+    );
+  }).length;
+
+  const topResultTrust = (1 - trustFailures / judgments.length) * 100;
+  const top3Findability =
+    withResults.length > 0
+      ? (withResults.filter(j => j.displacement <= 2).length / withResults.length) * 100
+      : 0;
+
+  const top3Rows = withResults.flatMap(j => byOriginalRank(j).slice(0, 3));
+  const resultSetPurity =
+    top3Rows.length > 0
+      ? (top3Rows.filter(r => r.relevance_score >= 0.6).length / top3Rows.length) * 100
+      : 0;
+
+  return Math.round(
+    topResultTrust * 0.45 + top3Findability * 0.35 + resultSetPurity * 0.2
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -144,12 +184,13 @@ function parseArgs() {
   return {
     companyId: get('--company-id'),
     reportPath: get('--report'),
+    reportUrl: get('--report-url'),
     dryRun: args.includes('--dry-run'),
   };
 }
 
 async function main() {
-  const { companyId, reportPath, dryRun } = parseArgs();
+  const { companyId, reportPath, reportUrl, dryRun } = parseArgs();
 
   if (!reportPath) {
     console.error(
@@ -168,13 +209,15 @@ async function main() {
   const vars = extractVars(raw);
 
   console.log('\nExtracted audit variables:');
-  console.log(`  {{score}}         = ${vars.score} / 6 capabilities passing`);
+  console.log(`  {{score}}         = ${vars.score} / 100 Search Quality Score`);
+  console.log(`  {{query_count}}   = ${vars.query_count} tested customer queries`);
   console.log(`  {{cap_count}}     = ${vars.cap_count} critical capability failures`);
   console.log(`  {{top3rate}}      = ${vars.top3rate}%`);
   console.log(`  {{outside3rate}}  = ${vars.outside3rate}%`);
   console.log(`  {{worst_query}}   = "${vars.worst_query}"`);
   console.log(`  {{worst_pos}}     = #${vars.worst_pos}`);
   console.log(`  {{wrong_product}} = "${vars.wrong_product}"`);
+  if (reportUrl) console.log(`  {{report_url}}    = ${reportUrl}`);
 
   if (dryRun || !companyId) {
     if (!companyId) {
@@ -201,12 +244,14 @@ async function main() {
   await db.transact(
     db.tx.companies[companyId].update({
       audit_score: vars.score,
+      audit_query_count: vars.query_count,
       audit_cap_count: vars.cap_count,
       audit_top3rate: vars.top3rate,
       audit_outside3rate: vars.outside3rate,
       audit_worst_query: vars.worst_query,
       audit_worst_pos: vars.worst_pos,
       audit_wrong_product: vars.wrong_product,
+      ...(reportUrl ? { report_url: reportUrl } : {}),
       audit_run_at: now,
       updated_at: now,
     })

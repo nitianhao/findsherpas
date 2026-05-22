@@ -51,8 +51,15 @@ export function TaskList({ initialEmailTasks, initialReminders }: TaskListProps)
     return acc;
   }, {});
 
-  function openPreview(task: EmailTask) {
+  function buildEmailVars(task: EmailTask) {
     const vars = buildVars(task);
+    if (task.audit_vars) Object.assign(vars, task.audit_vars);
+    if (task.report_url) vars.report_url = task.report_url;
+    return vars;
+  }
+
+  function openPreview(task: EmailTask) {
+    const vars = buildEmailVars(task);
     const subject = task.subject_template ? resolveTemplate(task.subject_template, vars) : "(no subject)";
     const body = task.body_template ? resolveTemplate(task.body_template, vars) : "";
     setPreview({ subject, body, to: task.contact_email, task });
@@ -232,7 +239,7 @@ export function TaskList({ initialEmailTasks, initialReminders }: TaskListProps)
                             </div>
                             {task.subject_template && (
                               <p className="text-sm truncate text-muted-foreground">
-                                Subject: {resolveTemplate(task.subject_template, buildVars(task))}
+                                Subject: {resolveTemplate(task.subject_template, buildEmailVars(task))}
                               </p>
                             )}
                           </div>
