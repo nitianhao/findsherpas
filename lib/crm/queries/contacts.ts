@@ -60,6 +60,31 @@ export async function getContacts(filters: ContactFilters = {}): Promise<{ conta
   return { contacts: results.slice(offset, offset + limit), total: results.length };
 }
 
+export async function getUnsubscribedContacts(
+  filters: { search?: string; limit?: number; offset?: number } = {}
+): Promise<{ contacts: Contact[]; total: number }> {
+  const { search, limit = 50, offset = 0 } = filters;
+
+  const data = await adminDb.query({ contacts: { company: {} } });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let results = (data.contacts as any[])
+    .map(mapContact)
+    .filter(c => c.status === 'unsubscribed');
+
+  if (search) {
+    const q = search.toLowerCase();
+    results = results.filter(c =>
+      c.name.toLowerCase().includes(q) ||
+      (c.email && c.email.toLowerCase().includes(q))
+    );
+  }
+
+  // Most recently unsubscribed first (status change updates updated_at)
+  results.sort((a, b) => b.updated_at.localeCompare(a.updated_at));
+
+  return { contacts: results.slice(offset, offset + limit), total: results.length };
+}
+
 export async function getContactsByCompanyId(companyId: string): Promise<Contact[]> {
   const data = await adminDb.query({
     contacts: { $: { where: { 'company.id': companyId } }, company: {} },
