@@ -30,6 +30,7 @@ const _schema = i.schema({
       audit_worst_query: i.string().optional(),
       audit_worst_pos: i.string().optional(),
       audit_wrong_product: i.string().optional(),
+      audit_worst_example: i.string().optional(),
       audit_run_at: i.string().optional(),
       created_at: i.string(),
       updated_at: i.string(),

@@ -53,7 +53,7 @@ export async function POST(
     // Pull audit vars from the company record
     const auditKeys = [
       'score', 'query_count', 'cap_count', 'top3rate', 'outside3rate',
-      'worst_query', 'worst_pos', 'wrong_product',
+      'worst_query', 'worst_pos', 'wrong_product', 'worst_example',
     ] as const;
     const auditVars: Record<string, string> = {};
     for (const k of auditKeys) {
@@ -139,7 +139,7 @@ export async function GET(
     const vars = buildVars(task);
     const auditKeys = [
       'score', 'query_count', 'cap_count', 'top3rate', 'outside3rate',
-      'worst_query', 'worst_pos', 'wrong_product',
+      'worst_query', 'worst_pos', 'wrong_product', 'worst_example',
     ] as const;
     for (const k of auditKeys) {
       const v = company?.[`audit_${k}`];

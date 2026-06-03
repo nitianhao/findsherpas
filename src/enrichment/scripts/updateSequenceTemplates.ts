@@ -65,11 +65,11 @@ Lucni 19, 130 00, Prague, Czech Republic`,
     subject_template: "{{worst_query}} on {{brand}}",
     body_template: `Hi {{first_name}},
 
-Quick follow-up on the "{{worst_query}}" query.
+Quick follow-up with a concrete example.
 
-{{wrong_product}} is showing at #1, while more relevant products are buried around position {{worst_pos}}.
+{{worst_example}}
 
-Same ranking pattern repeats across {{cap_count}} critical capability groups I tested.
+The same pattern repeats across {{cap_count}} critical capability groups I tested.
 
 The report page has the query evidence and prioritized fixes:
 {{report_url}}
@@ -168,9 +168,9 @@ Lucni 19, 130 00, Prague, Czech Republic`,
     subject_template: "What a customer sees on {{brand}}",
     body_template: `Hi {{first_name}},
 
-To make it concrete — a customer searches "{{worst_query}}" on {{brand}}:
+To make it concrete:
 
-They see {{wrong_product}} at #1, while more relevant products are buried around position {{worst_pos}}.
+{{worst_example}}
 
 The report page shows the query evidence and fixes:
 {{report_url}}
@@ -241,10 +241,11 @@ const seqCSteps = [
 I ran {{brand}}'s search through {{query_count}} real queries.
 
   {{outside_3_rate}}% of searches: best match outside top 3
-  "{{worst_query}}": relevant products buried around position {{worst_pos}}
   Search Quality Score: {{score}}/100
 
-Relevant products exist. Ranking is the issue.
+{{worst_example}}
+
+Relevant products exist. Search isn't surfacing them.
 
 I only fix on-site search ranking — that's the whole focus, not a side service.
 
@@ -266,9 +267,9 @@ Lucni 19, 130 00, Prague, Czech Republic`,
     subject_template: "{{brand}} query test",
     body_template: `{{first_name}},
 
-Pattern worth flagging: single-word category queries on {{brand}} consistently push relevant products outside the top results. Popularity signals are outranking relevance.
+Pattern worth flagging: common customer queries on {{brand}} consistently fail to surface relevant products you stock.
 
-"{{worst_query}}" is the sharpest example — {{wrong_product}} is shown at #1, while more relevant products are buried around position {{worst_pos}}.
+Sharpest example: {{worst_example}}
 
 Same pattern repeats across {{cap_count}} critical capability groups.
 

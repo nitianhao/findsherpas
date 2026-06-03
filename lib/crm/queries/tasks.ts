@@ -51,6 +51,7 @@ export async function getTodaysEmailTasks(): Promise<EmailTask[]> {
         'worst_query',
         'worst_pos',
         'wrong_product',
+        'worst_example',
       ] as const;
       const audit_vars: Record<string, string> = {};
       for (const k of auditKeys) {

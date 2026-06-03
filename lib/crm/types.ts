@@ -27,6 +27,7 @@ export interface Company {
   audit_worst_query: string | null;
   audit_worst_pos: string | null;
   audit_wrong_product: string | null;
+  audit_worst_example: string | null;
   audit_run_at: string | null;
   created_at: string;
   updated_at: string;

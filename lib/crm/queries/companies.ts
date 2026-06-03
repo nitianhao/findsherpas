@@ -47,6 +47,7 @@ function mapCompany(c: Record<string, unknown> & { tags?: Array<Record<string, u
     audit_worst_query: (c.audit_worst_query as string | null) ?? null,
     audit_worst_pos: (c.audit_worst_pos as string | null) ?? null,
     audit_wrong_product: (c.audit_wrong_product as string | null) ?? null,
+    audit_worst_example: (c.audit_worst_example as string | null) ?? null,
     audit_run_at: (c.audit_run_at as string | null) ?? null,
     created_at: (c.created_at as string) ?? now(),
     updated_at: (c.updated_at as string) ?? now(),
@@ -203,6 +204,7 @@ interface CompanyUpdateData {
   audit_worst_query?: string | null;
   audit_worst_pos?: string | null;
   audit_wrong_product?: string | null;
+  audit_worst_example?: string | null;
   audit_run_at?: string | null;
 }
 
