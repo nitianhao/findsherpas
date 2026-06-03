@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from collections import Counter, defaultdict
 from datetime import date
 
@@ -500,6 +501,146 @@ def _build_fallback_deep_dives(failing_scores: list[CapabilityScore]) -> str:
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+# "Most damning example" selection
+#
+# Mirrors the email-side selector (src/enrichment/scripts/writeAuditToCRM.ts) so
+# the report's headline example matches what prospects receive. Prefers the most
+# self-evident, costly failure — a zero-result search on a product the store
+# stocks — over subtle ranking nits. Never emits an empty query or a nonsensical
+# "scroll to position #1".
+# ---------------------------------------------------------------------------
+
+_HIGH_INTENT_CATEGORIES = {
+    "PRICE_ANCHORED", "MULTI_ATTRIBUTE", "SKU_MODEL_NUMBER", "BRAND_SEARCH",
+    "TYPO", "SPLIT_WORD", "PLURAL_SINGULAR", "DIRECT_MATCH",
+}
+
+_EXAMPLE_STOPWORDS = {
+    "the", "a", "an", "and", "or", "for", "with", "some", "any", "me", "my", "i",
+    "want", "need", "buy", "find", "looking", "look", "show", "help", "best",
+    "nice", "really", "high", "quality", "good", "great", "perfect", "stylish",
+    "comfortable", "trendy", "fashionable", "available", "store", "both", "that",
+    "would", "work", "casual", "formal", "occasions", "occasion", "where", "can",
+    "from", "like", "brands", "brand", "women", "men", "under", "over", "kr", "dkk",
+    "size", "pair", "of", "to", "in", "on", "is", "are", "this", "your", "you",
+    "clothing", "clothes", "jacket", "jackets", "dress", "dresses", "shoes",
+    "shoe", "sneakers", "sneaker", "boots", "boot", "bag", "bags", "handbag",
+    "handbags", "sport", "sports", "outfit", "wardrobe", "essentials",
+    "til", "og", "en", "et", "med", "jeg", "vil", "have", "kjole", "sko",
+}
+
+
+def _norm_token(s: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", s.lower())
+
+
+def _query_tokens(q: str) -> list[str]:
+    return [t for t in re.split(r"[^a-z0-9]+", q.lower()) if t]
+
+
+def _category_str(j: QueryJudgment) -> str:
+    c = j.test_query.category
+    return getattr(c, "value", str(c))
+
+
+def _candidate_phrases(query: str) -> list[str]:
+    words = [w for w in _query_tokens(query) if len(w) >= 3 and w not in _EXAMPLE_STOPWORDS]
+    phrases: list[str] = []
+    for i in range(len(words) - 1):
+        phrases.append(f"{words[i]} {words[i + 1]}")
+    phrases.extend(words)
+    seen: set[str] = set()
+    out: list[str] = []
+    for p in phrases:
+        if p in seen:
+            continue
+        seen.add(p)
+        if len(_norm_token(p)) >= 5:
+            out.append(p)
+    out.sort(key=lambda p: len(_norm_token(p)), reverse=True)
+    return out
+
+
+def _find_proof_of_stock(query: str, judgments: list[QueryJudgment]) -> dict | None:
+    """Prove a zero-result query SHOULD have matched: a direct search for the term
+    works elsewhere in the audit. Rejects coincidental generic-word matches."""
+    others = [j for j in judgments if j.test_query.query != query and j.results]
+    for phrase in _candidate_phrases(query):
+        needle = _norm_token(phrase)
+        df = sum(1 for j in others if any(needle in _norm_token(r.title) for r in j.results))
+        if df == 0 or df > 6:
+            continue
+        direct = [
+            j for j in others
+            if needle in _norm_token(j.test_query.query)
+            and any(needle in _norm_token(r.title) for r in j.results)
+        ]
+        if direct:
+            direct.sort(key=lambda j: len(j.test_query.query))
+            j = direct[0]
+            match = next(r for r in j.results if needle in _norm_token(r.title))
+            return {"working_variant": j.test_query.query, "example_title": match.title}
+    return None
+
+
+def pick_worst_example(judgments: list[QueryJudgment]) -> str:
+    """Return a ready-made sentence describing the single most damning failure."""
+    candidates: list[tuple[int, float, str]] = []
+    for j in judgments:
+        q = j.test_query.query
+        if not q:
+            continue
+        if not j.results:
+            proof = _find_proof_of_stock(q, judgments)
+            if proof:
+                candidates.append((1, len(q), (
+                    f'A customer searching "{q}" gets zero results — a blank page — '
+                    f'even though you carry it (e.g. "{proof["example_title"]}" shows up '
+                    f'when they instead search "{proof["working_variant"]}").'
+                )))
+            else:
+                high = _category_str(j) in _HIGH_INTENT_CATEGORIES
+                candidates.append((2 if high else 3, len(q), (
+                    f'A customer searching "{q}" gets zero results — a blank page, nothing at all.'
+                )))
+            continue
+        by_orig = sorted(j.results, key=lambda r: r.original_rank)
+        top = by_orig[0]
+        best_rel = max(r.relevance_score for r in j.results)
+        if top.relevance_score < 0.6:
+            candidates.append((4, -top.relevance_score, (
+                f'A customer searching "{q}" sees "{top.title}" at the #1 spot — '
+                f'not what they asked for.'
+            )))
+        elif j.displacement > 2 and best_rel - top.relevance_score >= 0.15:
+            pos = j.displacement + 1
+            candidates.append((5, float(-pos), (
+                f'A customer searching "{q}" has to scroll to position {pos} to reach '
+                f'the best-matching product — below {j.displacement} weaker results.'
+            )))
+        else:
+            candidates.append((99, 0.0, ""))
+
+    real = [c for c in candidates if c[0] != 99]
+    if real:
+        real.sort(key=lambda c: (c[0], c[1]))
+        return real[0][2]
+
+    # Fallback: largest genuine displacement, else nothing.
+    with_results = [j for j in judgments if j.results and j.test_query.query]
+    if not with_results:
+        return ""
+    worst = max(with_results, key=lambda j: j.displacement)
+    if worst.displacement <= 0:
+        return ""
+    pos = worst.displacement + 1
+    return (
+        f'A customer searching "{worst.test_query.query}" has to scroll to '
+        f'position {pos} to reach the best-matching product.'
+    )
+
+
 def compute_aggregate_stats(judgments: list[QueryJudgment]) -> dict:
     """Compute aggregate statistics across all judged queries.
 
@@ -521,6 +662,7 @@ def compute_aggregate_stats(judgments: list[QueryJudgment]) -> dict:
             "pct_top1_irrelevant": 0.0,
             "worst_example_query": "",
             "worst_example_displacement": 0,
+            "worst_example": "",
         }
 
     critical_count  = sum(1 for j in judgments if j.severity == Severity.CRITICAL.value)
@@ -571,6 +713,7 @@ def compute_aggregate_stats(judgments: list[QueryJudgment]) -> dict:
         "pct_top1_irrelevant": pct_top1_irrelevant,
         "worst_example_query": worst.test_query.query if worst else "",
         "worst_example_displacement": worst.displacement if worst else 0,
+        "worst_example": pick_worst_example(judgments),
     }
 
 

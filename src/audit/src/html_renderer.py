@@ -99,6 +99,7 @@ def _build_stats(report: AuditReport, judgments: list[QueryJudgment]) -> dict:
         "pct_top1_irrelevant_num": pct_top1,
         "worst_query": raw["worst_example_query"],
         "worst_displacement": raw["worst_example_displacement"] + 1,
+        "worst_example": raw.get("worst_example", ""),
         "pct_retrieval_ok": f"{pct_retrieval:.0f}",
         "retrieval_ok_count": poor_ranking_count,
         "num_categories": num_categories,

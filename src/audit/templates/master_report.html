@@ -1430,13 +1430,12 @@ strong { font-weight: 600; }
       </div>
     </div>
 
+    {% if stats.worst_example %}
     <blockquote class="worst-example">
       <span class="worst-example-label">Most severe example</span>
-      <span class="worst-example-text">
-        A customer searching <strong>"{{ stats.worst_query }}"</strong>
-        had to scroll to position #{{ stats.worst_displacement }} to find the best matching result.
-      </span>
+      <span class="worst-example-text">{{ stats.worst_example }}</span>
     </blockquote>
+    {% endif %}
   </section>
 
   <!-- ================ COVERAGE SUMMARY ================ -->
