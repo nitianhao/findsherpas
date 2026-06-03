@@ -10,7 +10,7 @@ import requests
 from bs4 import BeautifulSoup, Tag
 
 from src.models import SiteContext, SiteType
-from src.fetcher import _fetch_with_playwright
+from src.fetcher import _fetch_with_playwright, _decode_response
 
 logger = logging.getLogger(__name__)
 
@@ -191,29 +191,73 @@ def _detect_primary_language(soup: BeautifulSoup, url: str) -> str:
     return "English"
 
 
+# Second-level labels that are not the brand (e.g. example.co.uk, brand.com.au).
+_PUBLIC_SECOND_LEVELS = {"co", "com", "org", "net", "ac", "gov", "edu"}
+
+# Title segment separators, ordered longest-first so multi-char dashes win.
+_TITLE_SEPARATORS = (" — ", " – ", " - ", " | ", " · ")
+
+
+def _domain_brand(url: str) -> str:
+    """Derive a brand name from the domain (e.g. www.miinto.dk -> 'Miinto')."""
+    netloc = urlparse(url).netloc.split(":")[0]
+    labels = [p for p in netloc.split(".") if p and p.lower() != "www"]
+    if not labels:
+        return ""
+    if len(labels) >= 3 and labels[-2].lower() in _PUBLIC_SECOND_LEVELS:
+        sld = labels[-3]
+    elif len(labels) >= 2:
+        sld = labels[-2]
+    else:
+        sld = labels[0]
+    return sld.capitalize()
+
+
 def _extract_site_name(soup: BeautifulSoup, url: str) -> str:
-    """Extract site name from OG tag, <title>, or domain."""
-    # og:site_name
+    """Extract the brand/site name, strongly preferring the brand over a category.
+
+    Priority: og:site_name (if not a nav category) -> domain-derived brand ->
+    last <title> segment (if not a nav category) -> bare domain. The domain is
+    preferred over <title> parsing because page titles often lead with a category
+    (e.g. a Danish marketplace search page titled 'Tøj | Miinto'), which previously
+    leaked the category into the brand slot.
+    """
+    nav_categories = {c.strip().lower() for c in _extract_nav_categories(soup)}
+
+    def _is_categoryish(name: str) -> bool:
+        return name.strip().lower() in nav_categories
+
+    # 1. og:site_name — most reliable when present and not a category label
     try:
         og = soup.find("meta", property="og:site_name")
         if og and og.get("content", "").strip():
-            return og["content"].strip()
+            cand = og["content"].strip()
+            if not _is_categoryish(cand):
+                return cand
     except Exception:
         pass
 
-    # <title> — strip after " - " or " | "
+    # 2. Domain-derived brand — deterministic, correct for the vast majority of sites
+    domain_brand = _domain_brand(url)
+    if domain_brand:
+        return domain_brand
+
+    # 3. <title> — take the LAST segment (brand usually trails), if not a category
     try:
         title_tag = soup.find("title")
         if title_tag and title_tag.string:
             raw = title_tag.string.strip()
-            for sep in (" - ", " | ", " — ", " – "):
+            cand = raw
+            for sep in _TITLE_SEPARATORS:
                 if sep in raw:
-                    return raw.split(sep)[0].strip()
-            return raw
+                    cand = raw.split(sep)[-1].strip()
+                    break
+            if cand and not _is_categoryish(cand):
+                return cand
     except Exception:
         pass
 
-    # Fallback: domain
+    # 4. Fallback: bare domain
     return urlparse(url).netloc.replace("www.", "")
 
 
@@ -518,7 +562,7 @@ def discover_from_search_url(url: str) -> SiteContext:
             allow_redirects=True,
         )
         response.raise_for_status()
-        html = response.text
+        html = _decode_response(response)
         effective_url = response.url
     except requests.HTTPError as e:
         logger.warning("Static discovery failed for %s: %s; trying Playwright", url, e)
@@ -657,7 +701,7 @@ def discover_site(url: str) -> SiteContext:
     )
     response.raise_for_status()
 
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(_decode_response(response), "html.parser")
     html_text = soup.get_text(separator=" ")
 
     site_name = _extract_site_name(soup, url)
