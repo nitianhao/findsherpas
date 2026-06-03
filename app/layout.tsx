@@ -50,8 +50,41 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Find Sherpas",
+    url: "https://findsherpas.com",
+    email: "michal@findsherpas.com",
+    description:
+      "Internal search audits for ecommerce teams: diagnosing ranking, query interpretation, relevance, and search UX issues across on-site search, independent of the search vendor.",
+    areaServed: "Worldwide",
+    serviceType: [
+      "Ecommerce site search audit",
+      "Search relevance consulting",
+      "Query interpretation analysis",
+      "Search UX optimization",
+    ],
+    knowsAbout: [
+      "On-site search",
+      "Search relevance",
+      "Ranking",
+      "Query understanding",
+      "Algolia",
+      "Elasticsearch",
+      "OpenSearch",
+      "Typesense",
+    ],
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased text-base md:text-lg leading-relaxed`}>
         <Script
           strategy="afterInteractive"

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Target, CornerDownLeft, SlidersHorizontal, BarChart3, AlertTriangle, Workflow, Database, CheckCircle } from "lucide-react";
+import { Workflow, Database, CheckCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { HomeSidebar } from "@/components/site/home-sidebar";
@@ -49,81 +49,6 @@ export default async function Home() {
               <Button asChild variant="outline" size="lg" className="h-12 w-full text-base font-medium sm:w-auto px-8">
                 <Link href="/#what-we-do">See our approach</Link>
               </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================
-            2. THE PROBLEM WITH INTERNAL SEARCH
-            ============================================================ */}
-        <section id="search-problem" className="-mx-4 bg-primary/[0.04] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-24">
-          <div className="border-t border-gray-200 pt-8">
-            <div className="mx-auto max-w-[1120px]">
-              <div className="flex items-center gap-2">
-                <AlertTriangle size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
-                <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                  Most teams assume their search works well enough
-                </h2>
-              </div>
-              <p className="mt-3 max-w-2xl text-muted-foreground">
-                Until you examine real queries closely, ranking issues, weak query
-                handling, and dead ends stay invisible. The search engine returns
-                results — just not the right ones, often enough to matter.
-              </p>
-
-              <div className="mt-8 grid gap-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="flex gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-background shadow-sm ring-1 ring-border/50">
-                    <Target className="h-5 w-5 text-muted-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold">Ranking misses intent</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Results look plausible at a glance but don&apos;t match what
-                      the customer meant — especially on your most important queries.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-background shadow-sm ring-1 ring-border/50">
-                    <SlidersHorizontal className="h-5 w-5 text-muted-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold">Query handling breaks quietly</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Synonyms, typos, and compound queries return poor or empty
-                      results — and no one is alerted.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-background shadow-sm ring-1 ring-border/50">
-                    <CornerDownLeft className="h-5 w-5 text-muted-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold">Dead ends cause silent exits</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Zero-result pages and no-click searches push people away,
-                      but typical analytics don&apos;t flag them.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-background shadow-sm ring-1 ring-border/50">
-                    <BarChart3 className="h-5 w-5 text-muted-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold">No way to measure quality</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Without structured evaluation, teams can&apos;t tell whether
-                      search is improving, degrading, or standing still.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -713,34 +638,6 @@ export default async function Home() {
               <p className="mt-10 border-t border-border/40 pt-6 text-sm text-muted-foreground">
                 Different query. Same diagnostic structure.
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================
-            RECURRING AUDIT FINDINGS
-            ============================================================ */}
-        <section className="py-8 sm:py-12 lg:py-24">
-          <div className="border-t border-gray-200 pt-8">
-            <div className="mx-auto max-w-[1120px]">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
-                From real audits
-              </p>
-              <h2 className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
-                Failures we find repeatedly
-              </h2>
-              <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-                Specific patterns that appear across search systems, regardless of vendor or catalog size.
-              </p>
-              <ul className="mt-6 grid gap-x-12 gap-y-2 text-sm text-foreground/80 sm:grid-cols-2 lg:max-w-3xl">
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Merchandising rules overriding textual relevance</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Synonym lists masking deeper indexing gaps</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Attribute queries parsed as free-text search</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Compound queries returning partial or empty results</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Zero-result queries with no fallback or redirect</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Ranking configuration drifting without evaluation</li>
-                <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Boosting rules conflicting across product categories</li>
-              </ul>
             </div>
           </div>
         </section>

@@ -74,14 +74,6 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/notes"
-                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Insights
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/book-a-call"
                   className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
                 >

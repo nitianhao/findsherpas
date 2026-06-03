@@ -23,7 +23,11 @@ export async function generateMetadata({
   const title = post.frontmatter.seoTitle ?? post.frontmatter.title;
   const description = post.frontmatter.seoDescription ?? post.frontmatter.excerpt;
 
-  return { title, description };
+  return {
+    title,
+    description,
+    alternates: { canonical: `https://findsherpas.com/blog/${slug}` },
+  };
 }
 
 export default async function BlogPostPage({

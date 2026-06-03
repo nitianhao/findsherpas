@@ -182,8 +182,8 @@ export default function QueryInterpretationPage() {
           <div className="mt-6">
             <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Example</p>
             <p className="mt-2 text-sm leading-relaxed text-gray-600">
-              "red dress silk size 38" — the engine matches on partial keyword
-              overlap instead of filtering by color, material, and size as distinct attributes.
+              "red dress size 38" — the engine matches on partial keyword
+              overlap instead of filtering by color and size as distinct attributes.
             </p>
           </div>
         </div>
@@ -458,10 +458,11 @@ export default function QueryInterpretationPage() {
           <div className="mt-6">
             <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Example</p>
             <p className="mt-2 text-sm leading-relaxed text-gray-600">
-              "jaguar" in an outdoor equipment store — the system returns zero
-              results because it tries to match a brand name that doesn't exist
-              in the catalog, instead of interpreting it as an animal print or
-              pattern.
+              "apple" on a marketplace that sells both groceries and
+              electronics — results fill with Apple-branded devices while actual
+              produce is buried far below. A shopper looking for fruit assumes
+              it's out of stock. The query is valid for both intents; ranking
+              silently serves only one.
             </p>
           </div>
         </div>

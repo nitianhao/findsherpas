@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Articles about on-site search UX, relevance, and analytics—written for humans and search engines.",
+  alternates: { canonical: "https://findsherpas.com/blog" },
 };
 
 export default async function BlogIndexPage() {

@@ -1,5 +1,3 @@
-import { getBlogPostSlugs, getCaseStudySlugs } from "@/lib/content";
-
 function xmlEscape(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -14,11 +12,6 @@ export async function GET() {
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
     "https://findsherpas.com";
 
-  const [blogSlugs, caseStudySlugs] = await Promise.all([
-    getBlogPostSlugs(),
-    getCaseStudySlugs(),
-  ]);
-
   const staticUrls = [
     "/",
     "/about",
@@ -27,12 +20,8 @@ export async function GET() {
     "/search-check",
     "/book-a-call",
   ];
-  const dynamicUrls = [
-    ...blogSlugs.map((s) => `/blog/${s}`),
-    ...caseStudySlugs.map((s) => `/case-studies/${s}`),
-  ];
 
-  const urls = [...staticUrls, ...dynamicUrls].map((pathname) => {
+  const urls = staticUrls.map((pathname) => {
     const loc = `${siteUrl}${pathname}`;
     return `<url><loc>${xmlEscape(loc)}</loc></url>`;
   });
