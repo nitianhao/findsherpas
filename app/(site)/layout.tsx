@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteNav } from "@/components/site/site-nav";
+import { ScrollToTop } from "@/components/site/scroll-to-top";
 
 export default function SiteLayout({
   children,
@@ -20,6 +21,7 @@ export default function SiteLayout({
         </main>
         <SiteFooter />
       </div>
+      <ScrollToTop />
     </div>
   );
 }
