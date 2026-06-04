@@ -1,0 +1,302 @@
+[
+  {
+    "category": "DIRECT_MATCH",
+    "query": "Cyberpunk 2077",
+    "rationale": "Tests exact lookup of featured game title from homepage to verify precise product matching."
+  },
+  {
+    "category": "DIRECT_MATCH",
+    "query": "EA SPORTS FC 25",
+    "rationale": "Tests exact lookup of featured sports game title to ensure direct product name recognition."
+  },
+  {
+    "category": "DIRECT_MATCH",
+    "query": "Red Dead Redemption 2",
+    "rationale": "Tests exact lookup of featured Rockstar game to verify precise title matching capabilities."
+  },
+  {
+    "category": "DIRECT_MATCH",
+    "query": "Elden Ring",
+    "rationale": "Tests exact lookup of featured FromSoftware game title for direct product identification."
+  },
+  {
+    "category": "DIRECT_MATCH",
+    "query": "NordVPN",
+    "rationale": "Tests exact lookup of featured software brand to verify precise service name matching."
+  },
+  {
+    "category": "BROAD_CATEGORY",
+    "query": "games",
+    "rationale": "Tests mapping of generic term to primary site category 'Cheap Games' for broad product discovery."
+  },
+  {
+    "category": "BROAD_CATEGORY",
+    "query": "software",
+    "rationale": "Tests mapping of generic category term to site's 'Software' navigation section."
+  },
+  {
+    "category": "BROAD_CATEGORY",
+    "query": "gift cards",
+    "rationale": "Tests mapping of generic term to site's 'eGift Cards' category for broad browsing."
+  },
+  {
+    "category": "BROAD_CATEGORY",
+    "query": "random keys",
+    "rationale": "Tests mapping of site's specific 'Random Keys' category term for navigation."
+  },
+  {
+    "category": "BROAD_CATEGORY",
+    "query": "pc games",
+    "rationale": "Tests mapping of platform-specific game category mentioned in site description."
+  },
+  {
+    "category": "TYPO",
+    "query": "Cyberpnk 2077",
+    "rationale": "Tests typo tolerance by removing letter 'u' from featured game 'Cyberpunk 2077'."
+  },
+  {
+    "category": "TYPO",
+    "query": "Eldan Ring",
+    "rationale": "Tests typo tolerance by transposing letters in featured game 'Elden Ring'."
+  },
+  {
+    "category": "TYPO",
+    "query": "Playstation",
+    "rationale": "Tests typo tolerance by capitalizing 'S' in brand name 'PlayStation' from site brands."
+  },
+  {
+    "category": "TYPO",
+    "query": "Ubioft",
+    "rationale": "Tests typo tolerance by replacing 's' with 'f' in brand name 'Ubisoft'."
+  },
+  {
+    "category": "TYPO",
+    "query": "Nintedo",
+    "rationale": "Tests typo tolerance by transposing letters in brand name 'Nintendo'."
+  },
+  {
+    "category": "SYNONYM",
+    "query": "video games",
+    "rationale": "Tests synonym recognition for site's 'games' category using alternative term customers might use."
+  },
+  {
+    "category": "SYNONYM",
+    "query": "digital codes",
+    "rationale": "Tests synonym recognition for 'eGift Cards' using alternative term for digital gift cards."
+  },
+  {
+    "category": "SYNONYM",
+    "query": "programs",
+    "rationale": "Tests synonym recognition for 'Software' category using alternative term customers might search."
+  },
+  {
+    "category": "SYNONYM",
+    "query": "xbox console",
+    "rationale": "Tests synonym recognition for Xbox brand using alternative platform term."
+  },
+  {
+    "category": "SYNONYM",
+    "query": "gaming platform",
+    "rationale": "Tests synonym recognition for console brands using alternative gaming term."
+  },
+  {
+    "category": "BRAND_SEARCH",
+    "query": "Steam",
+    "rationale": "Tests brand recognition for Steam platform from site's brand list."
+  },
+  {
+    "category": "BRAND_SEARCH",
+    "query": "PlayStation games",
+    "rationale": "Tests brand plus category search combining PlayStation brand with games."
+  },
+  {
+    "category": "BRAND_SEARCH",
+    "query": "EA",
+    "rationale": "Tests brand recognition for EA publisher from site's brand list."
+  },
+  {
+    "category": "BRAND_SEARCH",
+    "query": "Xbox",
+    "rationale": "Tests brand recognition for Xbox platform from site's featured brands."
+  },
+  {
+    "category": "NATURAL_LANGUAGE",
+    "query": "what games are on sale for pc",
+    "rationale": "Tests natural language understanding for PC games from site's platform offerings."
+  },
+  {
+    "category": "NATURAL_LANGUAGE",
+    "query": "looking for cheap nintendo switch games",
+    "rationale": "Tests conversational query combining Nintendo brand with site's 'Cheap Games' focus."
+  },
+  {
+    "category": "NATURAL_LANGUAGE",
+    "query": "need a gift card for steam",
+    "rationale": "Tests natural language query combining gift cards category with Steam brand."
+  },
+  {
+    "category": "NATURAL_LANGUAGE",
+    "query": "want to buy cyberpunk game",
+    "rationale": "Tests conversational query for featured game 'Cyberpunk 2077' using natural phrasing."
+  },
+  {
+    "category": "USE_CASE",
+    "query": "birthday gift for gamer",
+    "rationale": "Tests use case understanding for gaming gifts using site's game-focused inventory."
+  },
+  {
+    "category": "USE_CASE",
+    "query": "stocking stuffers gaming",
+    "rationale": "Tests seasonal gift use case for gaming products from site's game categories."
+  },
+  {
+    "category": "USE_CASE",
+    "query": "surprise game gift",
+    "rationale": "Tests gift use case understanding that could map to 'Random Keys' category."
+  },
+  {
+    "category": "USE_CASE",
+    "query": "vpn for streaming",
+    "rationale": "Tests use case mapping for NordVPN software based on common VPN usage."
+  },
+  {
+    "category": "CATEGORY_MAPPING",
+    "query": "pc downloads",
+    "rationale": "Tests mapping of colloquial term to site's digital game and software categories."
+  },
+  {
+    "category": "CATEGORY_MAPPING",
+    "query": "gaming vouchers",
+    "rationale": "Tests mapping of alternative term to site's 'eGift Cards' category."
+  },
+  {
+    "category": "CATEGORY_MAPPING",
+    "query": "digital games",
+    "rationale": "Tests mapping of customer language to site's game categories and digital nature."
+  },
+  {
+    "category": "CATEGORY_MAPPING",
+    "query": "mystery games",
+    "rationale": "Tests mapping of colloquial term to site's 'Random Keys' category offering."
+  },
+  {
+    "category": "FACET_EXTRACTION",
+    "query": "steam games under 20",
+    "rationale": "Tests extraction of platform facet 'Steam' and price filter from natural query."
+  },
+  {
+    "category": "FACET_EXTRACTION",
+    "query": "xbox digital download",
+    "rationale": "Tests extraction of platform facet 'Xbox' and format type from query text."
+  },
+  {
+    "category": "FACET_EXTRACTION",
+    "query": "nintendo switch eshop",
+    "rationale": "Tests extraction of platform facet 'Nintendo' and store type from natural language."
+  },
+  {
+    "category": "FACET_EXTRACTION",
+    "query": "ubisoft action games",
+    "rationale": "Tests extraction of publisher facet 'Ubisoft' and genre filter from text."
+  },
+  {
+    "category": "NEGATIVE_INTENT",
+    "query": "games not ea sports",
+    "rationale": "Tests negation handling excluding EA brand games from site's game inventory."
+  },
+  {
+    "category": "NEGATIVE_INTENT",
+    "query": "software without subscription",
+    "rationale": "Tests exclusion intent for software category avoiding subscription-based products."
+  },
+  {
+    "category": "NEGATIVE_INTENT",
+    "query": "steam games not early access",
+    "rationale": "Tests negation combining Steam platform with exclusion of game development stage."
+  },
+  {
+    "category": "NEGATIVE_INTENT",
+    "query": "gift cards except battle.net",
+    "rationale": "Tests exclusion intent for gift cards category avoiding specific Battle.net brand."
+  },
+  {
+    "category": "MULTI_ATTRIBUTE",
+    "query": "cheap steam action games",
+    "rationale": "Tests multiple constraints combining price attribute, platform, and genre for games."
+  },
+  {
+    "category": "MULTI_ATTRIBUTE",
+    "query": "nintendo switch digital gift card",
+    "rationale": "Tests compound attributes combining platform brand, format, and product type."
+  },
+  {
+    "category": "MULTI_ATTRIBUTE",
+    "query": "ubisoft pc games sale",
+    "rationale": "Tests multiple filters combining publisher brand, platform, and pricing attributes."
+  },
+  {
+    "category": "MULTI_ATTRIBUTE",
+    "query": "xbox game pass compatible",
+    "rationale": "Tests compound constraints combining platform brand with service compatibility."
+  },
+  {
+    "category": "PLURAL_SINGULAR",
+    "query": "game",
+    "rationale": "Tests singular form handling versus site's 'games' category for equivalent results."
+  },
+  {
+    "category": "PLURAL_SINGULAR",
+    "query": "gift card",
+    "rationale": "Tests singular form versus site's 'eGift Cards' plural category naming."
+  },
+  {
+    "category": "PLURAL_SINGULAR",
+    "query": "random key",
+    "rationale": "Tests singular form versus site's 'Random Keys' plural category for consistency."
+  },
+  {
+    "category": "PLURAL_SINGULAR",
+    "query": "softwares",
+    "rationale": "Tests plural form handling versus site's 'Software' singular category naming."
+  },
+  {
+    "category": "PARTIAL_QUERY",
+    "query": "cyber",
+    "rationale": "Tests prefix matching for featured game 'Cyberpunk 2077' with truncated input."
+  },
+  {
+    "category": "PARTIAL_QUERY",
+    "query": "elden",
+    "rationale": "Tests partial matching for featured game 'Elden Ring' using first word only."
+  },
+  {
+    "category": "PARTIAL_QUERY",
+    "query": "nord",
+    "rationale": "Tests prefix matching for 'NordVPN' software brand with partial input."
+  },
+  {
+    "category": "PARTIAL_QUERY",
+    "query": "red dead",
+    "rationale": "Tests partial matching for 'Red Dead Redemption 2' using first two words."
+  },
+  {
+    "category": "SUBJECTIVE_ATTRIBUTE",
+    "query": "best steam games",
+    "rationale": "Tests subjective qualifier 'best' applied to Steam platform games from site inventory."
+  },
+  {
+    "category": "SUBJECTIVE_ATTRIBUTE",
+    "query": "popular xbox games",
+    "rationale": "Tests subjective attribute 'popular' with Xbox platform games from site offerings."
+  },
+  {
+    "category": "SUBJECTIVE_ATTRIBUTE",
+    "query": "affordable nintendo games",
+    "rationale": "Tests subjective qualifier 'affordable' matching site's 'Cheap Games' focus with Nintendo brand."
+  },
+  {
+    "category": "SUBJECTIVE_ATTRIBUTE",
+    "query": "premium software",
+    "rationale": "Tests subjective attribute 'premium' applied to site's software category for quality filtering."
+  }
+]

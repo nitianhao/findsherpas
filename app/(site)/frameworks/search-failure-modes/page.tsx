@@ -8,6 +8,7 @@ import {
   Tag,
   Timer,
 } from "lucide-react";
+import { FailureModesSidebar } from "@/components/site/failure-modes-sidebar";
 
 export const metadata: Metadata = {
   title: { absolute: "Search failure modes | Find Sherpas" },
@@ -93,9 +94,12 @@ const overviewItems = [
 
 export default function SearchFailureModesPage() {
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-[80px_1fr]">
+      <FailureModesSidebar />
+
+      <div>
       {/* ── Hero ── */}
-      <section className="pb-8 pt-12 sm:pb-12 sm:pt-20 lg:pt-28">
+      <section id="overview" className="scroll-mt-24 pb-8 pt-12 sm:pb-12 sm:pt-20 lg:pt-28">
         <div className="mx-auto max-w-3xl">
           <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
             Framework
@@ -267,7 +271,7 @@ export default function SearchFailureModesPage() {
       {/* ═══════════════════════════════════════════
           02 — RANKING
           ═══════════════════════════════════════════ */}
-      <section id="ranking" className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20">
+      <section id="ranking" className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tabular-nums text-muted-foreground/50">02</p>
           <div className="mt-2 flex items-center gap-2">
@@ -417,7 +421,7 @@ export default function SearchFailureModesPage() {
       {/* ═══════════════════════════════════════════
           04 — EVALUATION
           ═══════════════════════════════════════════ */}
-      <section id="evaluation" className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20">
+      <section id="evaluation" className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tabular-nums text-muted-foreground/50">04</p>
           <div className="mt-2 flex items-center gap-2">
@@ -563,7 +567,7 @@ export default function SearchFailureModesPage() {
       {/* ═══════════════════════════════════════════
           06 — OPERATIONAL DRIFT
           ═══════════════════════════════════════════ */}
-      <section id="operational-drift" className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20">
+      <section id="operational-drift" className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tabular-nums text-muted-foreground/50">06</p>
           <div className="mt-2 flex items-center gap-2">
@@ -636,7 +640,7 @@ export default function SearchFailureModesPage() {
       </section>
 
       {/* ── Closing ── */}
-      <section className="-mx-4 border-t border-border/30 bg-primary/[0.04] px-4 py-8 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8">
+      <section className="-mx-4 border-t border-border/30 bg-primary/[0.04] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
             Diagnosing search requires looking at the system whole
@@ -713,6 +717,7 @@ export default function SearchFailureModesPage() {
           </div>
         </div>
       </section>
+      </div>{/* end main content */}
     </div>
   );
 }

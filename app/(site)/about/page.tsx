@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Search, Slash, Database, Layers, GitBranch, CheckCircle, Users, AlertCircle, Globe } from "lucide-react";
+import { Search, Slash, Database, Layers, GitBranch, CheckCircle, Users, AlertCircle, Globe, MapPin } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -336,7 +336,47 @@ export default function AboutPage() {
         </details>
       </section>
 
-      {/* ── 11. CTA ─────────────────────────────────────────── */}
+      {/* ── 11. Where to find us ────────────────────────────── */}
+      <section id="where-to-find-us" className="mt-10 scroll-mt-24 sm:mt-14">
+        <div className="flex items-center gap-2">
+          <MapPin size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
+          <h2 className="text-xl font-semibold tracking-tight">Where to find us</h2>
+        </div>
+        <div className="mt-5 grid gap-4 overflow-hidden rounded-xl border border-gray-200 bg-white sm:grid-cols-[1fr_1.4fr]">
+          <div className="p-6">
+            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Studio
+            </p>
+            <address className="mt-3 not-italic text-sm leading-relaxed text-gray-800">
+              Find Sherpas
+              <br />
+              Luční 17
+              <br />
+              130 00 Praha 3
+              <br />
+              Czech Republic
+            </address>
+            <a
+              href="https://www.openstreetmap.org/?mlat=50.0848&mlon=14.4682#map=17/50.0848/14.4682"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block text-sm font-medium text-primary hover:underline"
+            >
+              Open in maps
+            </a>
+          </div>
+          <div className="min-h-[240px] border-t border-gray-200 sm:border-l sm:border-t-0">
+            <iframe
+              title="Find Sherpas studio location — Luční 17, Prague"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=14.4592%2C50.0803%2C14.4772%2C50.0893&layer=mapnik&marker=50.0848%2C14.4682"
+              loading="lazy"
+              className="h-full min-h-[240px] w-full border-0"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ── 12. CTA ─────────────────────────────────────────── */}
       <section
         id="contact"
         className="mt-10 scroll-mt-24 border-t border-border/40 pt-8 sm:mt-14 sm:pt-10"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Layers, Tag, RefreshCw, Cpu, HelpCircle } from "lucide-react";
+import { QueryInterpretationSidebar } from "@/components/site/query-interpretation-sidebar";
 
 export const metadata: Metadata = {
   title: { absolute: "Query interpretation in search systems | Find Sherpas" },
@@ -29,9 +30,12 @@ const overviewItems = [
 
 export default function QueryInterpretationPage() {
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-[80px_1fr]">
+      <QueryInterpretationSidebar />
+
+      <div>
       {/* ── Hero ── */}
-      <section className="pb-8 pt-12 sm:pb-12 sm:pt-20 lg:pt-28">
+      <section id="overview" className="scroll-mt-24 pb-8 pt-12 sm:pb-12 sm:pt-20 lg:pt-28">
         <div className="mx-auto max-w-3xl">
           <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
             Framework
@@ -194,7 +198,7 @@ export default function QueryInterpretationPage() {
           ═══════════════════════════════════════════ */}
       <section
         id="attribute-queries"
-        className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20"
+        className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20"
       >
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tabular-nums text-muted-foreground/50">02</p>
@@ -337,7 +341,7 @@ export default function QueryInterpretationPage() {
           ═══════════════════════════════════════════ */}
       <section
         id="tokenization"
-        className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20"
+        className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20"
       >
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tabular-nums text-muted-foreground/50">04</p>
@@ -469,7 +473,7 @@ export default function QueryInterpretationPage() {
       </section>
 
       {/* ── Failure patterns ── */}
-      <section className="-mx-4 bg-primary/[0.04] px-4 py-8 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8">
+      <section className="-mx-4 bg-primary/[0.04] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
             Common failure patterns
@@ -518,7 +522,7 @@ export default function QueryInterpretationPage() {
       </section>
 
       {/* ── Closing ── */}
-      <section className="-mx-4 border-t border-border/30 bg-primary/[0.04] px-4 py-8 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8">
+      <section className="-mx-4 border-t border-border/30 bg-primary/[0.04] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
             Diagnosis starts with the query
@@ -588,6 +592,7 @@ export default function QueryInterpretationPage() {
           </div>
         </div>
       </section>
+      </div>{/* end main content */}
     </div>
   );
 }

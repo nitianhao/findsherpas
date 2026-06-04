@@ -9,6 +9,7 @@ const sections = [
   { id: "who-we-work-with", label: "Who this is for" },
   { id: "typical-situations", label: "Typical situations" },
   { id: "why-this-studio", label: "Why this studio exists" },
+  { id: "where-to-find-us", label: "Where to find us" },
 ];
 
 export function AboutSidebar() {

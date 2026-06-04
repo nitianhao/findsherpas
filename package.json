@@ -23,6 +23,7 @@
     "enrichment:review:process": "tsx src/enrichment/scripts/processManualReviewDecisions.ts",
     "enrichment:targeted": "tsx src/enrichment/scripts/runTargetedEnrichment.ts",
     "enrichment:hunter": "tsx src/enrichment/scripts/runHunterEnrichment.ts",
+    "enrichment:hunter-crm": "tsx src/enrichment/scripts/enrichCrmHunter.ts",
     "enrichment:apollo": "tsx src/enrichment/scripts/runApolloEnrichment.ts",
     "enrichment:pattern": "tsx src/enrichment/scripts/runPatternInference.ts",
     "enrichment:team-pages": "tsx src/enrichment/scripts/runTeamPageEnrichment.ts",

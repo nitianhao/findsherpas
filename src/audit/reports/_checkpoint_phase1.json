@@ -1,0 +1,30 @@
+{
+  "url": "https://www.eneba.com/store/all?text=game",
+  "site_name": "ENEBA",
+  "site_type": "MARKETPLACE_MIXED",
+  "nav_categories": [
+    "Cheap Games",
+    "Software",
+    "eGift Cards",
+    "Random Keys"
+  ],
+  "brands": [
+    "Steam",
+    "PlayStation",
+    "Xbox",
+    "Nintendo",
+    "Battle.net",
+    "EA",
+    "Ubisoft",
+    "NordVPN"
+  ],
+  "featured_items": [
+    "Cyberpunk 2077",
+    "EA SPORTS FC 25",
+    "Red Dead Redemption 2",
+    "Elden Ring"
+  ],
+  "search_url_template": "https://www.eneba.com/store/all?text={}",
+  "raw_meta_description": "Eneba — the fastest-growing marketplace for gamers. Get games and gift cards for PC, PlayStation, Xbox, Nintendo in safe and affordable way. Eneba way.",
+  "primary_language": "English"
+}

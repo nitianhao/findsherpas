@@ -4,6 +4,7 @@ import { Target, Sliders, SearchX, ArrowUpDown, Sparkles, Filter, type LucideIco
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SearchCheckSidebar } from "@/components/site/search-check-sidebar";
 
 export const metadata: Metadata = {
   title: { absolute: "Internal search self-assessment — Is your ecommerce search working? | Find Sherpas" },
@@ -117,11 +118,14 @@ const checks: {
 
 export default function SearchCheckPage() {
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-[80px_1fr]">
+      <SearchCheckSidebar />
+
+      <div>
       {/* ================================================================
           HERO
           ================================================================ */}
-      <section className="-mx-4 bg-gradient-to-b from-primary/[0.08] via-primary/[0.03] to-transparent px-4 pb-8 pt-10 sm:-mx-6 sm:px-6 sm:pb-14 sm:pt-20 lg:-mx-8 lg:px-8 lg:pb-20 lg:pt-28">
+      <section id="overview" className="-mx-4 scroll-mt-24 px-4 pb-8 pt-10 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:pb-14 sm:pt-20 lg:-mx-8 lg:px-8 lg:pb-20 lg:pt-28">
         <div className="mx-auto max-w-3xl text-center">
           <Badge
             variant="outline"
@@ -156,7 +160,7 @@ export default function SearchCheckPage() {
       {/* ================================================================
           ASSESSMENT GRID
           ================================================================ */}
-      <section className="py-6 sm:py-12">
+      <section id="assessment" className="scroll-mt-24 py-6 sm:py-12">
         <div className="mx-auto max-w-4xl">
           <div className="grid gap-6 md:grid-cols-2">
             {checks.map((check) => (
@@ -218,7 +222,7 @@ export default function SearchCheckPage() {
       {/* ================================================================
           INTERPRETATION
           ================================================================ */}
-      <section className="-mx-4 border-y border-gray-200 px-4 py-8 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-16">
+      <section id="interpretation" className="-mx-4 scroll-mt-24 border-y border-gray-200 px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-xl font-semibold tracking-tight text-gray-900 sm:text-2xl">
             How to interpret what you found
@@ -269,7 +273,7 @@ export default function SearchCheckPage() {
       {/* ================================================================
           CTA
           ================================================================ */}
-      <section className="py-8 sm:py-12 lg:py-16">
+      <section id="contact" className="scroll-mt-24 py-8 sm:py-12 lg:py-16">
         <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/[0.06] via-primary/[0.03] to-background shadow-md">
           <div className="p-8 text-center sm:p-10">
             <p className="text-xs font-semibold uppercase tracking-wide text-primary">
@@ -302,6 +306,7 @@ export default function SearchCheckPage() {
           </div>
         </div>
       </section>
+      </div>{/* end main content */}
     </div>
   );
 }

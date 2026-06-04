@@ -248,7 +248,71 @@ def _try_site_specific(soup: BeautifulSoup, url: str, max_results: int) -> list[
     if "groupon" in host:
         return _try_groupon(soup, max_results)
 
+    if "lyko.com" in host:
+        return _try_lyko(soup, max_results)
+
     return []
+
+
+def _try_lyko(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Extract product cards from Lyko search results.
+
+    Lyko uses a stable class `link-product-page` on product anchor tags.
+    Each product appears twice (image link + price link) — we deduplicate by URL.
+    """
+    results: list[SearchResult] = []
+    seen_urls: set[str] = set()
+
+    product_links = soup.find_all("a", class_=re.compile(r"link-product-page", re.I))
+    # Also try generic /sv/{brand}/{product} URL pattern as fallback
+    if not product_links:
+        product_links = [
+            a for a in soup.find_all("a", href=True)
+            if re.match(r"^/sv/[^/]+/[^/]+$", a.get("href", ""))
+        ]
+
+    for link in product_links:
+        href = (link.get("href") or "").strip()
+        if not href or href in seen_urls:
+            continue
+        seen_urls.add(href)
+
+        url_full = f"https://lyko.com{href}" if href.startswith("/") else href
+
+        # Title: strip Lyko promo boilerplate, keep brand + product name
+        raw = link.get_text(separator=" ", strip=True)
+        # Remove promo badges: "Combo Deal 20%", "Se villkor på produktsidan", "Reapris X kr", "Utan kampanj X kr"
+        text = re.sub(r"Combo Deal\s*\d+%", "", raw, flags=re.I)
+        text = re.sub(r"Se villkor p[åa] produktsidan", "", text, flags=re.I)
+        text = re.sub(r"Reapris\s*[\d\s,.]+kr", "", text, flags=re.I)
+        text = re.sub(r"Utan kampanj\s*[\d\s,.]+kr", "", text, flags=re.I)
+        text = re.sub(r"Utan paketpris[:\s]*[\d\s,.]+kr", "", text, flags=re.I)
+        text = re.sub(r"[\d][\d\s,.]*\s*kr", "", text)
+        text = re.sub(r"\s{2,}", " ", text).strip()
+
+        # Must look like a real product name (brand + name, at least 8 chars, not a nav link)
+        if not text or len(text) < 8:
+            continue
+        # Skip obvious non-product strings
+        if any(skip in text.lower() for skip in ("se profilsida", "kontakta", "mina sidor", "kundservice", "villkor")):
+            continue
+
+        # Price: find first kr price in raw text
+        price = None
+        price_m = re.search(r"(\d[\d\s,.]*)\s*kr", raw)
+        if price_m:
+            price = price_m.group(0).strip()
+
+        results.append(SearchResult(
+            rank=len(results) + 1,
+            title=text[:120],
+            url=url_full,
+            price=price,
+        ))
+        if len(results) >= max_results:
+            break
+
+    return results
 
 
 def _try_groupon(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
