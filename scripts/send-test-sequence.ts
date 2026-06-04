@@ -9,7 +9,7 @@ import { config } from 'dotenv';
 import { resolve } from 'path';
 import { init } from '@instantdb/admin';
 import schema from '../instant.schema';
-import { buildSearchPlatformSentence } from '../lib/crm/template';
+import { buildSearchPlatformSentence, buildHeadlineStat } from '../lib/crm/template';
 
 config({ path: resolve(process.cwd(), '.env.local') });
 
@@ -64,7 +64,7 @@ async function main() {
   // Build audit_vars exactly as getTodaysEmailTasks does
   const auditKeys = [
     'score', 'query_count', 'cap_count', 'top3rate', 'outside3rate',
-    'worst_query', 'worst_pos', 'wrong_product', 'worst_example',
+    'zero_result_rate', 'worst_query', 'worst_pos', 'wrong_product', 'worst_example',
   ] as const;
   const audit_vars: Record<string, string> = {};
   for (const k of auditKeys) {
@@ -75,6 +75,10 @@ async function main() {
       if (k === 'outside3rate') audit_vars['outside_3_rate'] = v;
     }
   }
+  // Compute gap + headline_stat (mirrors app/api/crm/events/[id]/send/route.ts)
+  const top3Parsed = parseFloat(audit_vars['top_3_rate'] ?? '');
+  if (!isNaN(top3Parsed)) audit_vars['gap'] = String(Math.round(80 - top3Parsed));
+  audit_vars['headline_stat'] = buildHeadlineStat(audit_vars['zero_result_rate'], audit_vars['outside_3_rate']);
   audit_vars['search_platform_sentence'] = buildSearchPlatformSentence(
     (co.search_solution as string | null) ?? null
   );

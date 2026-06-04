@@ -27,6 +27,7 @@ const _schema = i.schema({
       audit_cap_count: i.string().optional(),
       audit_top3rate: i.string().optional(),
       audit_outside3rate: i.string().optional(),
+      audit_zero_result_rate: i.string().optional(),
       audit_worst_query: i.string().optional(),
       audit_worst_pos: i.string().optional(),
       audit_wrong_product: i.string().optional(),

@@ -48,6 +48,7 @@ export async function getTodaysEmailTasks(): Promise<EmailTask[]> {
         'cap_count',
         'top3rate',
         'outside3rate',
+        'zero_result_rate',
         'worst_query',
         'worst_pos',
         'wrong_product',

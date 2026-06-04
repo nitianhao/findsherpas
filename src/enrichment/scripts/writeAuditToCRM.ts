@@ -88,6 +88,8 @@ interface AuditVars {
   cap_count: string;
   outside3rate: string;
   top3rate: string;
+  /** % of queries that returned zero results (a blank page). */
+  zero_result_rate: string;
   worst_query: string;
   worst_pos: string;
   wrong_product: string;
@@ -333,6 +335,9 @@ function extractVars(report: AuditReport): AuditVars {
   const outside3rate = Math.round((outsideTop3 / allJudgments.length) * 100);
   const top3rate = 100 - outside3rate;
 
+  const zeroResults = allJudgments.filter(j => j.results.length === 0).length;
+  const zeroResultRate = Math.round((zeroResults / allJudgments.length) * 100);
+
   const pick = pickWorstExample(allJudgments);
 
   return {
@@ -341,6 +346,7 @@ function extractVars(report: AuditReport): AuditVars {
     cap_count: String(critical),
     outside3rate: String(outside3rate),
     top3rate: String(top3rate),
+    zero_result_rate: String(zeroResultRate),
     worst_query: pick.query,
     worst_pos: String(pick.worstPos),
     wrong_product: pick.wrongProduct,
@@ -431,6 +437,7 @@ async function main() {
   console.log(`  {{cap_count}}     = ${vars.cap_count} critical capability failures`);
   console.log(`  {{top3rate}}      = ${vars.top3rate}%`);
   console.log(`  {{outside3rate}}  = ${vars.outside3rate}%`);
+  console.log(`  {{zero_result_rate}} = ${vars.zero_result_rate}%`);
   console.log(`  {{worst_query}}   = "${vars.worst_query}"`);
   console.log(`  {{worst_pos}}     = #${vars.worst_pos}`);
   console.log(`  {{wrong_product}} = "${vars.wrong_product}"`);
@@ -467,6 +474,7 @@ async function main() {
       audit_cap_count: vars.cap_count,
       audit_top3rate: vars.top3rate,
       audit_outside3rate: vars.outside3rate,
+      audit_zero_result_rate: vars.zero_result_rate,
       audit_worst_query: vars.worst_query,
       audit_worst_pos: vars.worst_pos,
       audit_wrong_product: vars.wrong_product,

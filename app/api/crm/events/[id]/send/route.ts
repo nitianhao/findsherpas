@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { adminDb } from '@/lib/crm/instant-db';
 import { sendCrmEmail, buildVars, resolveTemplate, validateEmailDomain } from '@/lib/crm/email';
-import { buildSearchPlatformSentence } from '@/lib/crm/template';
+import { buildSearchPlatformSentence, buildHeadlineStat } from '@/lib/crm/template';
 import { markEventSent } from '@/lib/crm/queries/events';
 import type { EmailTask } from '@/lib/crm/queries/tasks';
 
@@ -53,7 +53,7 @@ export async function POST(
     // Pull audit vars from the company record
     const auditKeys = [
       'score', 'query_count', 'cap_count', 'top3rate', 'outside3rate',
-      'worst_query', 'worst_pos', 'wrong_product', 'worst_example',
+      'zero_result_rate', 'worst_query', 'worst_pos', 'wrong_product', 'worst_example',
     ] as const;
     const auditVars: Record<string, string> = {};
     for (const k of auditKeys) {
@@ -66,6 +66,7 @@ export async function POST(
     // Compute gap vs 80% Baymard benchmark
     const top3Parsed = parseFloat(auditVars['top_3_rate'] ?? '');
     if (!isNaN(top3Parsed)) auditVars['gap'] = String(Math.round(80 - top3Parsed));
+    auditVars['headline_stat'] = buildHeadlineStat(auditVars['zero_result_rate'], auditVars['outside_3_rate']);
     auditVars['search_platform_sentence'] = buildSearchPlatformSentence(
       (company?.search_solution as string | null) ?? null
     );
@@ -139,7 +140,7 @@ export async function GET(
     const vars = buildVars(task);
     const auditKeys = [
       'score', 'query_count', 'cap_count', 'top3rate', 'outside3rate',
-      'worst_query', 'worst_pos', 'wrong_product', 'worst_example',
+      'zero_result_rate', 'worst_query', 'worst_pos', 'wrong_product', 'worst_example',
     ] as const;
     for (const k of auditKeys) {
       const v = company?.[`audit_${k}`];
@@ -151,6 +152,7 @@ export async function GET(
     // Compute gap vs 80% Baymard benchmark
     const top3Parsed = parseFloat(vars['top_3_rate'] ?? '');
     if (!isNaN(top3Parsed)) vars['gap'] = String(Math.round(80 - top3Parsed));
+    vars['headline_stat'] = buildHeadlineStat(vars['zero_result_rate'], vars['outside_3_rate']);
     vars['search_platform_sentence'] = buildSearchPlatformSentence(
       (company?.search_solution as string | null) ?? null
     );

@@ -40,11 +40,9 @@ const seqASteps = [
 
 I ran {{brand}}'s search through {{query_count}} real customer queries last week and one pattern stood out.
 
-— {{outside_3_rate}}% of searches returned the best match outside the top 3
-— Relevant products exist — they're just being outranked
-— Search Quality Score: {{score}}/100
+{{headline_stat}} The Search Quality Score came out at {{score}}/100.
 
-That's usually a ranking configuration issue, not a platform or catalog problem.
+The products exist in your catalog — search just isn't surfacing them. Usually fixable in configuration, without replatforming.
 
 I put the report here:
 {{report_url}}
@@ -62,7 +60,7 @@ Lucni 19, 130 00, Prague, Czech Republic`,
   {
     step_order: 2,
     delay_days: 3,
-    subject_template: "{{worst_query}} on {{brand}}",
+    subject_template: "A real customer search on {{brand}}",
     body_template: `Hi {{first_name}},
 
 Quick follow-up with a concrete example.
@@ -95,7 +93,7 @@ One more data point:
 Baymard benchmark: 80%+ of searches should return the best match in top 3.
 {{brand}} currently: {{top_3_rate}}% — a {{gap}}-point gap.
 
-Interesting pattern across audits: single-word category queries push relevant products outside the top results — popularity signals end up outranking relevance.
+Interesting pattern across audits: common customer phrasings — typos, brand names, natural-language queries — often return nothing or push relevant products out of the top results.
 
 {{search_platform_sentence}}
 
@@ -142,11 +140,11 @@ const seqBSteps = [
     subject_template: "Something I noticed about {{brand}}'s search",
     body_template: `Hi {{first_name}},
 
-I ran {{brand}}'s search through {{query_count}} real customer queries last week and one result stood out.
+I ran {{brand}}'s search through {{query_count}} real customer queries last week and one pattern stood out.
 
-{{outside_3_rate}}% of searches returned the best match outside the top 3. Relevant products exist — they're just being outranked.
+{{headline_stat}} The products exist; search just isn't surfacing them.
 
-I specialize only in fixing on-site search ranking for ecommerce teams — not a general consultant.
+I specialize only in fixing on-site search for ecommerce teams — not a general consultant.
 
 I put the report here:
 {{report_url}}
@@ -240,14 +238,13 @@ const seqCSteps = [
 
 I ran {{brand}}'s search through {{query_count}} real queries.
 
-  {{outside_3_rate}}% of searches: best match outside top 3
-  Search Quality Score: {{score}}/100
+{{headline_stat}} Search Quality Score: {{score}}/100.
 
 {{worst_example}}
 
-Relevant products exist. Search isn't surfacing them.
+The products exist. Search isn't surfacing them.
 
-I only fix on-site search ranking — that's the whole focus, not a side service.
+I only fix on-site search — that's the whole focus, not a side service.
 
 Report:
 {{report_url}}

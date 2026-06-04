@@ -24,6 +24,7 @@ export interface Company {
   audit_cap_count: string | null;
   audit_top3rate: string | null;
   audit_outside3rate: string | null;
+  audit_zero_result_rate: string | null;
   audit_worst_query: string | null;
   audit_worst_pos: string | null;
   audit_wrong_product: string | null;
