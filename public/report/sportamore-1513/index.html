@@ -1495,7 +1495,6 @@ strong { font-weight: 600; }
       <a class="crossroads-link" href="#summary">Search risk at a glance <span>&rarr;</span></a>
       <a class="crossroads-link" href="#coverage">Tested query patterns <span>&rarr;</span></a>
       <a class="crossroads-link" href="#improvement-map">Improvement map <span>&rarr;</span></a>
-      <a class="crossroads-link" href="#test-results">Test results summary <span>&rarr;</span></a>
       <a class="crossroads-link" href="#advanced-diagnostics">Advanced diagnostics <span>&rarr;</span></a>
       <a class="crossroads-link" href="#roadmap">Prioritized roadmap <span>&rarr;</span></a>
       <a class="crossroads-link" href="#risk-failures">Revenue-risk failures <span>&rarr;</span></a>
@@ -2129,57 +2128,6 @@ strong { font-weight: 600; }
       <span><i class="seg-minor"></i> Minor</span>
       <span><i class="seg-clean"></i> Clean</span>
     </div>
-  </section>
-
-  <!-- ================ TEST RESULTS SUMMARY ================ -->
-  <section id="test-results">
-    <div class="section-label">Prism Test Results</div>
-    <h2>60 queries tested</h2>
-
-    <div class="stats-grid">
-      <div>
-        <h4>Severity Distribution</h4>
-        <table class="stats-mini-table">
-          <thead><tr><th>Severity</th><th style="text-align:right">Queries</th></tr></thead>
-          <tbody>
-            <tr><td><span class="severity-dot critical"></span> Critical</td><td style="text-align:right"><strong>34</strong></td></tr>
-            <tr><td><span class="severity-dot moderate"></span> Moderate</td><td style="text-align:right"><strong>13</strong></td></tr>
-            <tr><td><span class="severity-dot minor"></span> Minor</td><td style="text-align:right"><strong>13</strong></td></tr>
-            <tr><td><span class="severity-dot pass"></span> Pass</td><td style="text-align:right"><strong>0</strong></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h4>Failure Mode Breakdown</h4>
-        <table class="stats-mini-table">
-          <thead><tr><th>Failure Mode</th><th style="text-align:right">Queries</th></tr></thead>
-          <tbody>
-            
-            <tr><td>Poor ranking</td><td style="text-align:right"><strong>47</strong></td></tr>
-            
-            <tr><td>Zero results</td><td style="text-align:right"><strong>7</strong></td></tr>
-            
-            <tr><td>No fuzzy matching</td><td style="text-align:right"><strong>2</strong></td></tr>
-            
-            <tr><td>Brand bleed</td><td style="text-align:right"><strong>1</strong></td></tr>
-            
-            <tr><td>Partial keyword match</td><td style="text-align:right"><strong>1</strong></td></tr>
-            
-            <tr><td>Other</td><td style="text-align:right"><strong>1</strong></td></tr>
-            
-            <tr><td>Facet not extracted</td><td style="text-align:right"><strong>1</strong></td></tr>
-            
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <ul class="metric-list">
-      <li><span class="metric-val">#7</span> average best result position</li>
-      <li><span class="metric-val">78%</span> of queries: retrieval OK but ranking failed (47 of 60)</li>
-      <li><span class="metric-val">67%</span> of queries had their best result outside the top 3</li>
-      <li><span class="metric-val">19%</span> of queries showed an irrelevant result in the top position</li>
-    </ul>
   </section>
 
   <!-- ================ ADVANCED QUERY DIAGNOSTICS ================ -->

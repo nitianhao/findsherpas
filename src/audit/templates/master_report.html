@@ -1487,7 +1487,6 @@ strong { font-weight: 600; }
       <a class="crossroads-link" href="#summary">Search risk at a glance <span>&rarr;</span></a>
       <a class="crossroads-link" href="#coverage">Tested query patterns <span>&rarr;</span></a>
       <a class="crossroads-link" href="#improvement-map">Improvement map <span>&rarr;</span></a>
-      <a class="crossroads-link" href="#test-results">Test results summary <span>&rarr;</span></a>
       <a class="crossroads-link" href="#advanced-diagnostics">Advanced diagnostics <span>&rarr;</span></a>
       <a class="crossroads-link" href="#roadmap">Prioritized roadmap <span>&rarr;</span></a>
       <a class="crossroads-link" href="#risk-failures">Revenue-risk failures <span>&rarr;</span></a>
@@ -1638,45 +1637,6 @@ strong { font-weight: 600; }
       <span><i class="seg-minor"></i> Minor</span>
       <span><i class="seg-clean"></i> Clean</span>
     </div>
-  </section>
-
-  <!-- ================ TEST RESULTS SUMMARY ================ -->
-  <section id="test-results">
-    <div class="section-label">{{ pipeline_name }} Test Results</div>
-    <h2>{{ stats.total_queries }} queries tested</h2>
-
-    <div class="stats-grid">
-      <div>
-        <h4>Severity Distribution</h4>
-        <table class="stats-mini-table">
-          <thead><tr><th>Severity</th><th style="text-align:right">Queries</th></tr></thead>
-          <tbody>
-            <tr><td><span class="severity-dot critical"></span> Critical</td><td style="text-align:right"><strong>{{ stats.critical_count }}</strong></td></tr>
-            <tr><td><span class="severity-dot moderate"></span> Moderate</td><td style="text-align:right"><strong>{{ stats.moderate_count }}</strong></td></tr>
-            <tr><td><span class="severity-dot minor"></span> Minor</td><td style="text-align:right"><strong>{{ stats.minor_count }}</strong></td></tr>
-            <tr><td><span class="severity-dot pass"></span> Pass</td><td style="text-align:right"><strong>{{ stats.pass_count_queries }}</strong></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h4>Failure Mode Breakdown</h4>
-        <table class="stats-mini-table">
-          <thead><tr><th>Failure Mode</th><th style="text-align:right">Queries</th></tr></thead>
-          <tbody>
-            {% for fm in failure_modes %}
-            <tr><td>{{ fm.name }}</td><td style="text-align:right"><strong>{{ fm.count }}</strong></td></tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <ul class="metric-list">
-      <li><span class="metric-val">#{{ stats.avg_best_position }}</span> average best result position</li>
-      <li><span class="metric-val">{{ stats.pct_retrieval_ok }}%</span> of queries: retrieval OK but ranking failed ({{ stats.retrieval_ok_count }} of {{ stats.total_queries }})</li>
-      <li><span class="metric-val">{{ stats.pct_top3_irrelevant }}%</span> of queries had their best result outside the top 3</li>
-      <li><span class="metric-val">{{ stats.pct_top1_irrelevant }}%</span> of queries showed an irrelevant result in the top position</li>
-    </ul>
   </section>
 
   <!-- ================ ADVANCED QUERY DIAGNOSTICS ================ -->
