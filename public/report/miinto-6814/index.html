@@ -66,6 +66,48 @@ section:first-of-type {
   border-top: none;
 }
 
+/* ---- Section spine (left-side bubble nav) ---- */
+.report-spine {
+  position: fixed;
+  left: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.report-spine-line {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  transform: translateX(-50%);
+  background: var(--border);
+}
+
+.report-spine-dot {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #a3a3a3;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.report-spine-dot:hover { transform: scale(1.25); }
+.report-spine-dot.active { background: var(--fg); border-color: var(--fg); }
+
+@media (max-width: 1099px) {
+  .report-spine { display: none; }
+}
+
 h1, h2, h3, h4 {
   color: var(--fg);
   font-weight: 600;
@@ -1448,9 +1490,23 @@ strong { font-weight: 600; }
 .scroll-top-btn:hover{filter:brightness(.93)}
 .scroll-top-btn:focus-visible{outline:2px solid var(--primary,#009ba3);outline-offset:2px}
 @media print{.scroll-top-btn{display:none!important}}
+@media print{.report-spine{display:none!important}}
 </style>
 </head>
 <body>
+
+<nav class="report-spine" aria-label="Section navigation">
+  <span class="report-spine-line" aria-hidden="true"></span>
+  <a class="report-spine-dot" href="#summary" data-target="summary" aria-label="Search risk at a glance" title="Search risk at a glance"></a>
+  <a class="report-spine-dot" href="#coverage" data-target="coverage" aria-label="Tested query patterns" title="Tested query patterns"></a>
+  <a class="report-spine-dot" href="#improvement-map" data-target="improvement-map" aria-label="Improvement map" title="Improvement map"></a>
+  <a class="report-spine-dot" href="#advanced-diagnostics" data-target="advanced-diagnostics" aria-label="Advanced diagnostics" title="Advanced diagnostics"></a>
+  <a class="report-spine-dot" href="#roadmap" data-target="roadmap" aria-label="Prioritized roadmap" title="Prioritized roadmap"></a>
+  <a class="report-spine-dot" href="#risk-failures" data-target="risk-failures" aria-label="Revenue-risk failures" title="Revenue-risk failures"></a>
+  <a class="report-spine-dot" href="#deep-dives" data-target="deep-dives" aria-label="Detailed analysis" title="Detailed analysis"></a>
+  <a class="report-spine-dot" href="#appendix" data-target="appendix" aria-label="Complete test results" title="Complete test results"></a>
+  <a class="report-spine-dot" href="#scope" data-target="scope" aria-label="Scope and boundaries" title="Scope and boundaries"></a>
+</nav>
 
 <div class="page-wrapper">
 
@@ -4841,6 +4897,27 @@ document.addEventListener("DOMContentLoaded", function () {
   btn.addEventListener("click",function(){ window.scrollTo({top:0,behavior:"smooth"}); });
   window.addEventListener("scroll",toggle,{passive:true});
   toggle();
+})();
+</script>
+
+<!-- section spine active-state -->
+<script>
+(function(){
+  var dots=Array.prototype.slice.call(document.querySelectorAll(".report-spine-dot"));
+  if(!dots.length)return;
+  function setActive(id){
+    dots.forEach(function(d){ d.classList.toggle("active", d.getAttribute("data-target")===id); });
+  }
+  var observer=new IntersectionObserver(function(entries){
+    var visible=entries.filter(function(e){return e.isIntersecting;})
+      .sort(function(a,b){return a.boundingClientRect.top-b.boundingClientRect.top;});
+    if(visible.length>0){ setActive(visible[0].target.id); }
+  },{rootMargin:"-15% 0px -70% 0px",threshold:0});
+  dots.forEach(function(d){
+    var el=document.getElementById(d.getAttribute("data-target"));
+    if(el)observer.observe(el);
+  });
+  setActive(dots[0].getAttribute("data-target"));
 })();
 </script>
 
