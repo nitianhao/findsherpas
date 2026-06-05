@@ -823,6 +823,96 @@ strong { font-weight: 600; }
   font-size: 0.875rem;
 }
 
+/* ---- Improvement map (severity bars) ---- */
+.improvement-intro {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 4px 0 20px;
+}
+
+.improvement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.improvement-row {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.improvement-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.improvement-capability {
+  font-weight: 700;
+  color: var(--fg);
+  font-size: 0.98rem;
+}
+
+.improvement-grade {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.improvement-grade.r-critical { color: #99554e; background: #f1e2df; }
+.improvement-grade.r-moderate { color: #846629; background: #f4ecd9; }
+.improvement-grade.r-minor    { color: #4d7166; background: #e2ece8; }
+.improvement-grade.r-clean    { color: #566a6a; background: #e7ecec; }
+
+.improvement-bar {
+  display: flex;
+  width: 100%;
+  height: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--border);
+}
+
+.improvement-bar .seg { display: block; height: 100%; }
+
+.seg-critical { background: #c08079; }
+.seg-moderate { background: #d8b676; }
+.seg-minor    { background: #8aa89d; }
+.seg-clean    { background: #e4e2dd; }
+
+.improvement-meta {
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.improvement-meta .improvement-counts { font-weight: 600; color: var(--fg); }
+.improvement-meta .improvement-sep { margin: 0 7px; color: var(--border); }
+
+.improvement-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.improvement-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.improvement-legend i {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
 /* ---- Stats summary ---- */
 .stats-grid {
   display: grid;
@@ -1843,75 +1933,155 @@ strong { font-weight: 600; }
     <div class="section-label">Improvement Map</div>
     <h2>Where search can work harder</h2>
 
-    <table class="scorecard-table">
-      <thead>
-        <tr>
-          <th style="width: 110px;">Focus</th>
-          <th>Capability</th>
-          <th>What it means</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-        <tr>
-          <td>
-            <span class="severity-dot critical"></span>
-            <span class="severity-label critical">Focus area</span>
-          </td>
-          <td class="scorecard-capability">Product Discovery</td>
-          <td class="scorecard-summary">8 of 8 query patterns show improvement room. This is a practical place to start for Product Discovery.</td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="severity-dot critical"></span>
-            <span class="severity-label critical">Focus area</span>
-          </td>
-          <td class="scorecard-capability">Typo Tolerance</td>
-          <td class="scorecard-summary">19 of 20 query patterns show improvement room. This is a practical place to start for Typo Tolerance.</td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="severity-dot critical"></span>
-            <span class="severity-label critical">Focus area</span>
-          </td>
-          <td class="scorecard-capability">Language Understanding</td>
-          <td class="scorecard-summary">4 of 4 query patterns show improvement room. This is a practical place to start for Language Understanding.</td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="severity-dot critical"></span>
-            <span class="severity-label critical">Focus area</span>
-          </td>
-          <td class="scorecard-capability">Brand & Model Search</td>
-          <td class="scorecard-summary">8 of 8 query patterns show improvement room. This is a practical place to start for Brand & Model Search.</td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="severity-dot critical"></span>
-            <span class="severity-label critical">Focus area</span>
-          </td>
-          <td class="scorecard-capability">Shopping Context</td>
-          <td class="scorecard-summary">16 of 16 query patterns show improvement room. This is a practical place to start for Shopping Context.</td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="severity-dot critical"></span>
-            <span class="severity-label critical">Focus area</span>
-          </td>
-          <td class="scorecard-capability">Filters & Constraints</td>
-          <td class="scorecard-summary">4 of 4 query patterns show improvement room. This is a practical place to start for Filters & Constraints.</td>
-        </tr>
-        
-      </tbody>
-    </table>
+    <p class="improvement-intro">Capabilities ranked by how much of the tested sample puts a sale at risk. The bar shows the severity mix across every probe in that family.</p>
 
-    <div class="scorecard-result">
-      Use this as an improvement map: the focus areas are where changes are likely to help the most customer journeys.
+    <div class="improvement-list">
+      
+      <div class="improvement-row">
+        <div class="improvement-head">
+          <span class="improvement-capability">Typo Tolerance</span>
+          <span class="improvement-grade r-critical">8 at risk</span>
+        </div>
+        <div class="improvement-bar" role="img"
+             aria-label="8 critical · 8 friction · 3 minor, 5% clean of 20 probes">
+          <span class="seg seg-critical" style="flex-grow: 8;" title="8 critical"></span>
+          <span class="seg seg-moderate" style="flex-grow: 8;" title="8 friction"></span>
+          <span class="seg seg-minor" style="flex-grow: 3;" title="3 minor"></span>
+          <span class="seg seg-clean" style="flex-grow: 1;" title="1 clean"></span>
+        </div>
+        <div class="improvement-meta">
+          <span class="improvement-counts">8 critical · 8 friction · 3 minor</span>
+          <span class="improvement-sep">·</span>
+          <span class="improvement-clean">5% clean of 20</span>
+          
+          <span class="improvement-sep">·</span>
+          <span class="improvement-issue">mostly poor ranking</span>
+          
+        </div>
+      </div>
+      
+      <div class="improvement-row">
+        <div class="improvement-head">
+          <span class="improvement-capability">Shopping Context</span>
+          <span class="improvement-grade r-critical">7 at risk</span>
+        </div>
+        <div class="improvement-bar" role="img"
+             aria-label="7 critical · 5 friction · 4 minor, 0% clean of 16 probes">
+          <span class="seg seg-critical" style="flex-grow: 7;" title="7 critical"></span>
+          <span class="seg seg-moderate" style="flex-grow: 5;" title="5 friction"></span>
+          <span class="seg seg-minor" style="flex-grow: 4;" title="4 minor"></span>
+          
+        </div>
+        <div class="improvement-meta">
+          <span class="improvement-counts">7 critical · 5 friction · 4 minor</span>
+          <span class="improvement-sep">·</span>
+          <span class="improvement-clean">0% clean of 16</span>
+          
+          <span class="improvement-sep">·</span>
+          <span class="improvement-issue">mostly poor ranking</span>
+          
+        </div>
+      </div>
+      
+      <div class="improvement-row">
+        <div class="improvement-head">
+          <span class="improvement-capability">Product Discovery</span>
+          <span class="improvement-grade r-critical">4 at risk</span>
+        </div>
+        <div class="improvement-bar" role="img"
+             aria-label="4 critical · 1 friction · 3 minor, 0% clean of 8 probes">
+          <span class="seg seg-critical" style="flex-grow: 4;" title="4 critical"></span>
+          <span class="seg seg-moderate" style="flex-grow: 1;" title="1 friction"></span>
+          <span class="seg seg-minor" style="flex-grow: 3;" title="3 minor"></span>
+          
+        </div>
+        <div class="improvement-meta">
+          <span class="improvement-counts">4 critical · 1 friction · 3 minor</span>
+          <span class="improvement-sep">·</span>
+          <span class="improvement-clean">0% clean of 8</span>
+          
+          <span class="improvement-sep">·</span>
+          <span class="improvement-issue">mostly poor ranking</span>
+          
+        </div>
+      </div>
+      
+      <div class="improvement-row">
+        <div class="improvement-head">
+          <span class="improvement-capability">Brand & Model Search</span>
+          <span class="improvement-grade r-critical">4 at risk</span>
+        </div>
+        <div class="improvement-bar" role="img"
+             aria-label="4 critical · 1 friction · 3 minor, 0% clean of 8 probes">
+          <span class="seg seg-critical" style="flex-grow: 4;" title="4 critical"></span>
+          <span class="seg seg-moderate" style="flex-grow: 1;" title="1 friction"></span>
+          <span class="seg seg-minor" style="flex-grow: 3;" title="3 minor"></span>
+          
+        </div>
+        <div class="improvement-meta">
+          <span class="improvement-counts">4 critical · 1 friction · 3 minor</span>
+          <span class="improvement-sep">·</span>
+          <span class="improvement-clean">0% clean of 8</span>
+          
+          <span class="improvement-sep">·</span>
+          <span class="improvement-issue">mostly poor ranking</span>
+          
+        </div>
+      </div>
+      
+      <div class="improvement-row">
+        <div class="improvement-head">
+          <span class="improvement-capability">Language Understanding</span>
+          <span class="improvement-grade r-critical">2 at risk</span>
+        </div>
+        <div class="improvement-bar" role="img"
+             aria-label="2 critical · 2 friction, 0% clean of 4 probes">
+          <span class="seg seg-critical" style="flex-grow: 2;" title="2 critical"></span>
+          <span class="seg seg-moderate" style="flex-grow: 2;" title="2 friction"></span>
+          
+          
+        </div>
+        <div class="improvement-meta">
+          <span class="improvement-counts">2 critical · 2 friction</span>
+          <span class="improvement-sep">·</span>
+          <span class="improvement-clean">0% clean of 4</span>
+          
+          <span class="improvement-sep">·</span>
+          <span class="improvement-issue">mostly poor ranking</span>
+          
+        </div>
+      </div>
+      
+      <div class="improvement-row">
+        <div class="improvement-head">
+          <span class="improvement-capability">Filters & Constraints</span>
+          <span class="improvement-grade r-critical">2 at risk</span>
+        </div>
+        <div class="improvement-bar" role="img"
+             aria-label="2 critical · 1 friction · 1 minor, 0% clean of 4 probes">
+          <span class="seg seg-critical" style="flex-grow: 2;" title="2 critical"></span>
+          <span class="seg seg-moderate" style="flex-grow: 1;" title="1 friction"></span>
+          <span class="seg seg-minor" style="flex-grow: 1;" title="1 minor"></span>
+          
+        </div>
+        <div class="improvement-meta">
+          <span class="improvement-counts">2 critical · 1 friction · 1 minor</span>
+          <span class="improvement-sep">·</span>
+          <span class="improvement-clean">0% clean of 4</span>
+          
+          <span class="improvement-sep">·</span>
+          <span class="improvement-issue">mostly poor ranking</span>
+          
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="improvement-legend">
+      <span><i class="seg-critical"></i> Critical</span>
+      <span><i class="seg-moderate"></i> Friction</span>
+      <span><i class="seg-minor"></i> Minor</span>
+      <span><i class="seg-clean"></i> Clean</span>
     </div>
   </section>
 

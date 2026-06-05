@@ -454,6 +454,72 @@ def _build_capability_scores_ctx(judgments: list[QueryJudgment]) -> list[dict]:
     ]
 
 
+def _improvement_headline(critical: int, moderate: int, minor: int) -> tuple[str, str]:
+    """The row's priority chip: the count that actually drives its ranking.
+
+    Returns (label, css_class). Distinct per row (it's a count) and consistent
+    with the sort, instead of a share-based grade that clumps every row together.
+    """
+    if critical:
+        return f"{critical} at risk", "r-critical"
+    if moderate:
+        return f"{moderate} friction", "r-moderate"
+    if minor:
+        return f"{minor} to polish", "r-minor"
+    return "clean", "r-clean"
+
+
+def _build_improvement_map(judgments: list[QueryJudgment]) -> list[dict]:
+    """Capability-level overview as proportional severity bars, most-urgent first."""
+    rows = []
+    for cs in build_capability_scores(judgments):
+        critical = sum(1 for j in cs.judgments if j.severity == Severity.CRITICAL.value)
+        moderate = sum(1 for j in cs.judgments if j.severity == Severity.MODERATE.value)
+        minor = sum(1 for j in cs.judgments if j.severity == Severity.MINOR.value)
+        passed = sum(1 for j in cs.judgments if j.severity == Severity.PASS.value)
+        total = len(cs.judgments)
+
+        # dominant failure mode among the non-passing probes
+        fail_modes = Counter(
+            _FAILURE_MODE_DISPLAY.get(j.failure_mode, j.failure_mode)
+            for j in cs.judgments
+            if j.severity != Severity.PASS.value
+        )
+        top_issue = fail_modes.most_common(1)[0][0] if fail_modes else ""
+
+        # human-readable counts for the non-zero issue segments
+        parts = []
+        if critical:
+            parts.append(f"{critical} critical")
+        if moderate:
+            parts.append(f"{moderate} friction")
+        if minor:
+            parts.append(f"{minor} minor")
+        counts_label = " · ".join(parts) if parts else "no issues in sample"
+
+        headline, headline_class = _improvement_headline(critical, moderate, minor)
+
+        rows.append({
+            "capability": _CAPABILITY_NAMES.get(cs.capability, cs.capability),
+            "total": total,
+            "critical": critical,
+            "moderate": moderate,
+            "minor": minor,
+            "passed": passed,
+            "counts_label": counts_label,
+            "clean_pct": round((passed / total) * 100) if total else 0,
+            "top_issue": top_issue,
+            "headline": headline,
+            "headline_class": headline_class,
+        })
+
+    rows.sort(
+        key=lambda r: (r["critical"], r["moderate"], r["minor"], -r["passed"]),
+        reverse=True,
+    )
+    return rows
+
+
 def _build_failure_modes(judgments: list[QueryJudgment]) -> list[dict]:
     counts = Counter(
         j.failure_mode for j in judgments if j.severity != Severity.PASS.value
@@ -848,6 +914,7 @@ def render_html_report(report: AuditReport, screenshot_path: str | Path | None =
         "short_version": _build_short_version(site_name, stats, roadmap_items),
         "coverage_summary": _build_coverage_summary(judgments),
         "capability_scores": _build_capability_scores_ctx(judgments),
+        "improvement_map": _build_improvement_map(judgments),
         "failure_modes": _build_failure_modes(judgments),
         "advanced_diagnostics": build_advanced_diagnostics_sections(report.site_context, judgments),
         "deep_dives": _build_deep_dives(judgments),
