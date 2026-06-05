@@ -215,11 +215,27 @@ def _build_short_version(site_name: str, stats: dict, roadmap_items: list[dict])
             f"This report focuses on the {stats['critical_count']} queries where a customer likely hits a dead end: "
             "an off-topic result, a missing interpretation, a dropped constraint, or a relevant product buried too far down."
         ),
-        "fix": (
-            "The first fix to ship: add an intent layer before ranking, so sale, bestseller, price, "
-            "negative, and brand terms act as filters or boosts before generic keyword matches take over."
-        ),
+        "fix": _build_short_version_fix(roadmap_items),
     }
+
+
+def _build_short_version_fix(roadmap_items: list[dict]) -> str:
+    """Derive the headline 'first fix to ship' line from the site's top roadmap item.
+
+    Falls back to a generic recommendation only when no roadmap is available.
+    """
+    if roadmap_items:
+        top = roadmap_items[0]
+        title = " ".join((top.get("title") or "").split()).rstrip(".")
+        description = " ".join((top.get("description") or "").split())
+        if title and description:
+            return f"The first fix to ship: {title} — {description}"
+        if title:
+            return f"The first fix to ship: {title}."
+    return (
+        "The first fix to ship: add an intent layer before ranking, so sale, bestseller, price, "
+        "negative, and brand terms act as filters or boosts before generic keyword matches take over."
+    )
 
 
 def _coverage_class(critical: int, moderate: int, minor: int, pass_rate: float) -> str:
