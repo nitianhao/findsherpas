@@ -1356,6 +1356,12 @@ strong { font-weight: 600; }
 .case-fix { background: var(--accent); border-left: 3px solid var(--primary); border-radius: 4px; padding: 12px 14px; margin-top: 14px; font-size: 0.92rem; }
 .results-panel { background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
 .ideal-panel { background: #f7fdfd; border-color: #bdeff2; }
+.deadend-panel { grid-column: span 2; border-style: dashed; }
+.deadend { display: flex; align-items: flex-start; gap: 12px; padding: 4px 2px; }
+.deadend-icon { color: var(--muted); flex-shrink: 0; line-height: 0; margin-top: 1px; }
+.deadend-title { font-weight: 700; color: var(--fg); font-size: 0.9rem; margin: 0; }
+.deadend-sub { color: var(--muted); font-size: 0.83rem; line-height: 1.45; margin: 4px 0 0; max-width: 34ch; }
+.deadend-inline { color: var(--muted); font-size: 0.86rem; font-style: italic; margin: 8px 0 0; }
 .result-row { margin-bottom: 10px; }
 .result-row:last-child { margin-bottom: 0; }
 .result-row p { color: var(--muted); font-size: 0.83rem; line-height: 1.35; margin: 3px 0 0 24px; }
@@ -2529,7 +2535,7 @@ strong { font-weight: 600; }
         <code>löpaskor</code>
         <span class="failure-badge">No fuzzy matching</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2537,15 +2543,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add typo and fuzzy matching for high-value product, category, and brand terms so small spelling errors still reach the right products.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2555,7 +2566,7 @@ strong { font-weight: 600; }
         <code>löparskordam</code>
         <span class="failure-badge">No fuzzy matching</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2563,15 +2574,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add typo and fuzzy matching for high-value product, category, and brand terms so small spelling errors still reach the right products.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2581,7 +2597,7 @@ strong { font-weight: 600; }
         <code>hoka träningsskor</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2589,15 +2605,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2607,7 +2628,7 @@ strong { font-weight: 600; }
         <code>vinter träningskläder</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2615,15 +2636,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2633,7 +2659,7 @@ strong { font-weight: 600; }
         <code>rea sportkläder</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2641,15 +2667,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2659,7 +2690,7 @@ strong { font-weight: 600; }
         <code>snygga träningskläder</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2667,15 +2698,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2708,6 +2744,7 @@ strong { font-weight: 600; }
           
           <p class="narrative">The highest relevance result 'Nano X2 Tr Adventure Shoes Pure Grey 2' (0.703 relevance) was buried at position #13, while lower-relevance items appeared first. Position #1 showed 'Nanoflex Tr 2 Barely Grey/team Tea' with only 0.621 relevance. Even worse, completely irrelevant rain outfits 'Rain outfit Tihku Greyish green' (0.301 relevance) and 'Rain outfit Tihku Yellow' (0.307 relevance) appeared at positions #5 and #6, despite having no connection to training shoes.</p>
           
+          
           <div class="comparison">
             <div class="comparison-col actual">
               <h4>Customer Saw</h4>
@@ -2739,6 +2776,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #13.</p>
           
         </div>
@@ -2755,6 +2793,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Gym Ball 70-75cm Black' (0.471 relevance) was buried at position #13, while lower-relevance items like 'Klistermärke Bokstav L' (0.387 relevance) appeared at position #2. The search engine retrieved relevant equipment items but failed to surface the most relevant ones first.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -2787,6 +2826,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #13.</p>
           
         </div>
@@ -2803,6 +2843,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved all Nike products but ranked them poorly. The two highest-scoring results (Nike Dri-fit Swoosh products with 0.781 relevance) were buried at positions #12 and #13, while lower-scoring items like 'Nike B 4" Volley Short Ess Black' (0.703 relevance) appeared at position #2. The best result was displaced by 11 positions from where it should have been.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -2835,6 +2876,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #12.</p>
           
         </div>
@@ -2851,6 +2893,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant clothing items for the Swedish query 'kläder' but severely misranked them. The highest relevance item 'Funky Tee Black' (0.609) was buried at position #12, while lower-scoring items like 'Altitude Tights Black' (0.543) and 'Cursive Bra Black' (0.523) were ranked #1 and #3 respectively. The top 3 positions contained items with relevance scores of 0.543, 0.574, and 0.523, while much better matches with scores of 0.609, 0.598, and 0.594 were relegated to positions #12, #14, and #13.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -2883,6 +2926,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #12.</p>
           
         </div>
@@ -2899,6 +2943,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The best matching result 'Air Zoom Vomero 16 Men's Road Running Shoes' with relevance score 0.500 was buried at position #9, while much less relevant results like 'Floatride Energy Symmetros Black' (0.357) and 'Revolution 6 Big Kids' Road Running Shoes PEARL PINK' (0.398) occupied the top positions. The top 3 average relevance was only 0.393, well below the 0.60 threshold for good performance.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -2931,6 +2976,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #9.</p>
           
         </div>
@@ -2961,20 +3007,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">Query 'löpaskor' (missing 'r' from correct Swedish word 'löparskor' meaning running shoes) returned zero results despite the displacement metric indicating a best result exists at position #16, suggesting relevant products are in the catalog but the search engine cannot handle the single character typo</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -2993,20 +3028,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The query 'löparskordam' returned zero results despite being a compound Swedish word meaning 'running shoes women' (löparskor + dam). The search engine failed to recognize this as a merged compound query and did not attempt to split it into meaningful tokens or match it against existing products.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3024,6 +3048,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The two highest relevance Under Armour products were buried at positions #13 and #15: 'Under Armour Havoc 2' (0.777 relevance) and 'Under Armour 7/8 Tights Black' (0.785 relevance). Meanwhile, products with much lower relevance scores dominated the top positions: 'Armour Comp Sl' at #1 (0.420 relevance) and 'HG Armour Shorts Black' at #2 (0.447 relevance). The best matching result was displaced by 14 positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3056,6 +3081,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #15.</p>
           
         </div>
@@ -3072,6 +3098,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant t-shirts but ranked them poorly. The two highest-scoring results 'Team II T-Shirt 4her Grey' (0.660 relevance) and 'T-shirt Exercise Women Grey' (0.641 relevance) were buried at positions #15 and #13 respectively. Meanwhile, lower-scoring results like 'Dylan LS T-Shirt Purple' (0.523) and 'Crewneck T-Shirt Black' (0.523) appeared at the top positions #1 and #2. The best result was displaced by 14 positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3104,6 +3131,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #15.</p>
           
         </div>
@@ -3120,6 +3148,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved Salomon products despite the typo 'salomon' (missing 'o'), but severely misranked them. The highest relevance result 'Sense Ride GTX Noctur Black/Grey' (0.369 relevance) was buried at position #11, while lower-scoring results like 'Xa Pro V8 J Stormy Weather/zen Blue/goji B' (0.293 relevance) appeared at #1. The top 3 positions averaged only 0.293 relevance when they should have averaged 0.346.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3152,6 +3181,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #11.</p>
           
         </div>
@@ -3181,6 +3211,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant jacket products for the Swedish query 'jackor' but severely misranked them. The highest relevance result 'K Sogn Jacket 421 Lav Green' (0.602 relevance) was buried at position #14, while lower-scoring results like 'Kicker Jacket Black' (0.578) and 'Jr Chloe Bomber Jacket Pink' (0.508) were ranked #1 and #4 respectively. The best result was displaced by 13 positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3213,6 +3244,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #14.</p>
           
         </div>
@@ -3229,6 +3261,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The query 'bra skor för löpning' (good shoes for running) returned sports bras as top results instead of running shoes. Position #2 'Fe/nom Flyknit Bra Black/Grey', #3 'UA Infinity High Bra Black', and #4 'Fe/nom Flyknit Bra White/Black' are all sports bras, not shoes. The engine matched on the word 'bra' (which means 'good' in Swedish but also appears in sports bra product names) while ignoring 'skor' (shoes) and 'löpning' (running). The best running shoe 'Xa Elevate GTX®' was buried at position #11.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3261,6 +3294,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #11.</p>
           
         </div>
@@ -3277,6 +3311,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly identified relevant training clothes but ranked them poorly. The most relevant result 'Active Crop Top Black' (0.613 relevance) was buried at position #7, while less relevant items like 'Stereo Underwear Blue/White' (0.367 relevance) and 'Corinne Swimsuit Black' (0.305 relevance) appeared at positions #2 and #3. Other highly relevant training items like 'Scend Pro Puma' athletic shoes (0.504 relevance) and 'Adidas Essentials Hoodie' (0.490 relevance) were pushed down to positions #13 and #14.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3309,6 +3344,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #7.</p>
           
         </div>
@@ -3325,6 +3361,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant sweatshirt products for the Swedish query 'tröjor' (sweaters), but ranked them poorly. The two highest-relevance products 'Crewneck Sweatshirt Junior Red' (0.559) and 'Core Crew Sweatshirt White' (0.559) were buried at positions #4 and #15 respectively, while lower-relevance products like 'Hooded Sweatshirt Peachy Keen' (0.471) and 'Hooded Sweatshirt Black Beauty' (0.471) occupied the top two positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3357,6 +3394,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #4.</p>
           
         </div>
@@ -3373,6 +3411,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search correctly retrieved relevant pants/trousers products for the Swedish synonym 'byxor', but the ranking is inconsistent with relevance scores. Products with higher relevance scores are ranked lower: 'Cargo Pants Khaki' (0.340 relevance) is at position #4 instead of #2, 'Inflect Tights Black' (0.338 relevance) is at position #5 instead of #3, and 'Sportswear Club Fleece Women's Mid-Rise Pants' (0.334 relevance) is buried at position #11 despite being more relevant than several products ranked above it like 'Essentials 3S Pant' (0.307 relevance) at position #3.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3405,6 +3444,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3433,20 +3473,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for 'hoka träningsskor' despite this being a straightforward brand + product type query. The stats show 0 total results, max relevance score of 0.000, and the best result was displaced to position 16, indicating the engine found nothing relevant in the top positions.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3464,6 +3493,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The three most relevant sports bras were buried deep in results: 'Sculpture Intense Sports Bra Forest Green' (0.602 relevance) was ranked #15, 'High Control Sports bra Black' (0.562 relevance) was ranked #12, and 'Smooth Sports Bra Black' (0.555 relevance) was ranked #14. Meanwhile, less relevant items like 'Lead 2.0 Black' (0.371 relevance) appeared at #2 and 'Bluebell ll Pink/Purple' (0.316 relevance) appeared at #6.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3496,6 +3526,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #15.</p>
           
         </div>
@@ -3512,6 +3543,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">All 15 results are men's underwear: 'String Thong Black' (#1), 'Core Dry Boxer Black' (#2), 'Performance Boxer 2p Multipack 1' (#3), 'Hipster Black' (#5), 'William 2-pack Boxer Black' (#6), etc. Zero sports bras or women's bras appear despite 'bh' being the Swedish abbreviation for 'bra'.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3544,6 +3576,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #14.</p>
           
         </div>
@@ -3560,6 +3593,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The two highest relevance results were buried deep in the rankings: 'Pureboost 22 Shoes' (0.688 relevance) was at position #11 instead of #1, and 'SolarBoost 3 Shoes' (0.684 relevance) was at position #12 instead of #2. Meanwhile, lower-relevance results like 'Puremotion 2.0 Shoes' (0.637 relevance) and 'Advantage Shoes' (0.473 relevance) were ranked #1 and #5 respectively.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3592,6 +3626,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #11.</p>
           
         </div>
@@ -3608,6 +3643,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">High-relevance Puma products are scattered throughout results instead of being ranked by relevance score. 'Puma Smash 3.0 L' (0.766 relevance) appears at position #10, 'Puma R78 Voyage Ps' (0.766 relevance) at position #15, and 'Puma Smash 3.0' (0.758 relevance) at position #11, while lower-scoring items like 'Carina 2.0' (0.723 relevance) and 'Karmen L' (0.711 relevance) occupy positions #2 and #3.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3640,6 +3676,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3668,20 +3705,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for the query 'vinter träningskläder' (winter training clothes in Swedish). Despite the stats indicating a best result at position #16, the actual results shown are empty, meaning customers see no products at all when searching for winter workout clothing.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3700,20 +3726,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for the query 'rea sportkläder' (Swedish for 'sale sportswear'), despite the analysis indicating there was a best result at position #16 with displacement of 15 positions. This suggests relevant products exist in the catalog but the search engine failed to retrieve any results at all.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3732,20 +3747,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for the Swedish query 'snygga träningskläder' (stylish training clothes), despite this being a common product category that should exist in any clothing retailer's inventory.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3764,20 +3768,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for the query 'billiga sportkläder' (cheap sports clothes in Swedish), despite the analysis indicating there was a best result at position #16 with displacement of 15 positions, suggesting relevant products exist in the catalog but were not retrieved</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3795,6 +3788,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Pureboost 23 Shoes Green' (0.637 relevance) was buried at position #15, while lower-relevance results like 'Reimatec Shoes Hiipien Black' (0.574 relevance) appeared at position #3. Multiple high-relevance results were severely misplaced: 'Response Super 3.0 Shoes' (0.633 relevance) at position #7, and three results with 0.613 relevance scattered at positions #5, #10, and #14.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3827,6 +3821,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #15.</p>
           
         </div>
@@ -3857,20 +3852,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for the query 'herr jackor vinter' (men's jackets winter in Swedish), despite the stats indicating there was a best result at position #16 with relevance score 0.000. This suggests the engine has products that should match but failed to retrieve any results for display.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3888,6 +3872,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The query 'nike svarta löparskor' (Nike black running shoes) should prioritize black Nike running shoes, but the top results include non-black items like 'Nike Md Valiant Baby/toddler S Mystic Navy/grey Fog-atomic Gr' (#1) and 'Nike Star Runner 3 Se Big Kids Summit White/pink Gaze -pink F' (#2). Meanwhile, the best matching black Nike running shoes 'React Miler Shield White/Black' (0.467 relevance) was buried at position #6, and other black Nike shoes like 'MD Valiant Little Kids' Shoes BLACK/WHITE' and 'MD Valiant Baby/Toddler Shoes BLACK/WHITE' were ranked #14 and #15 respectively.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3920,6 +3905,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #6.</p>
           
         </div>
@@ -3936,6 +3922,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Adidas Runner Long Sleeve Tee Women Alumina' (0.766) was ranked #4 instead of #1. Two boys' products with lower relevance scores (0.486 and 0.523) were ranked #1 and #2, despite the query 'dam träningskläder adidas' specifically requesting women's training clothes. The women's-specific result should have been prioritized.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3968,6 +3955,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #4.</p>
           
         </div>
@@ -3984,6 +3972,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search correctly identified relevant Nike children's shoes, but the ranking algorithm prioritized some results incorrectly. For example, 'Nike Revolution 6 Little Kids'' (relevance 0.762) appeared at position #4 instead of #2, and 'Tanjun Baby/Toddler Shoes' (relevance 0.426) was buried at position #14 instead of #9. The top result was correctly positioned, but several highly relevant Nike kids' shoes were ranked below less relevant items.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4015,6 +4004,7 @@ strong { font-weight: 600; }
               </ol>
             </div>
           </div>
+          
           
         </div>
       </div>

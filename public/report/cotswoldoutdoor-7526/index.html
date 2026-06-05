@@ -1356,6 +1356,12 @@ strong { font-weight: 600; }
 .case-fix { background: var(--accent); border-left: 3px solid var(--primary); border-radius: 4px; padding: 12px 14px; margin-top: 14px; font-size: 0.92rem; }
 .results-panel { background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
 .ideal-panel { background: #f7fdfd; border-color: #bdeff2; }
+.deadend-panel { grid-column: span 2; border-style: dashed; }
+.deadend { display: flex; align-items: flex-start; gap: 12px; padding: 4px 2px; }
+.deadend-icon { color: var(--muted); flex-shrink: 0; line-height: 0; margin-top: 1px; }
+.deadend-title { font-weight: 700; color: var(--fg); font-size: 0.9rem; margin: 0; }
+.deadend-sub { color: var(--muted); font-size: 0.83rem; line-height: 1.45; margin: 4px 0 0; max-width: 34ch; }
+.deadend-inline { color: var(--muted); font-size: 0.86rem; font-style: italic; margin: 8px 0 0; }
 .result-row { margin-bottom: 10px; }
 .result-row:last-child { margin-bottom: 0; }
 .result-row p { color: var(--muted); font-size: 0.83rem; line-height: 1.35; margin: 3px 0 0 24px; }
@@ -2514,6 +2520,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -2613,6 +2620,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -2630,6 +2638,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -2729,6 +2738,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -2746,6 +2756,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -2845,6 +2856,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -2862,6 +2874,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -2961,6 +2974,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -2978,6 +2992,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add synonym and semantic mappings for this customer phrasing so the engine recognizes the intended product need.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -3023,6 +3038,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -3040,6 +3056,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -3139,6 +3156,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -3171,6 +3189,7 @@ strong { font-weight: 600; }
           
           <p class="narrative">The highest relevance result 'Mountain Equipment Womens Makalu Waterproof Jacket' (0.852 relevance) was buried at position #14, while lower-relevance items like 'Rab Mens Kangri GTX Jacket' (0.633 relevance) and 'The North Face Mens Quest Hooded Jacket' (0.496 relevance) ranked #1 and #4 respectively. Multiple high-relevance Patagonia Torrentshell jackets (0.785-0.789 relevance) were scattered at positions #2, #8, and #13 instead of being grouped at the top.</p>
           
+          
           <div class="comparison">
             <div class="comparison-col actual">
               <h4>Customer Saw</h4>
@@ -3202,6 +3221,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3216,6 +3236,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Patagonia Womens Torrentshell 3L Jacket' (0.766 relevance) was buried at position #13, while lower-scoring results like 'Rab Womens Microlight Alpine Jacket' (0.734 relevance) occupied positions #1 and #2. Multiple high-scoring jackets were displaced: 'The North Face Mens Whiton 3L Jacket' (0.762) was at #11, and 'Arc'teryx Mens Atom Hooded Jacket' (0.758) was at #7.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3248,6 +3269,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3262,6 +3284,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant footwear products but ranked them poorly. The highest relevance product 'Scarpa Mens Cyrus 2 GTX Shoes' (0.691 relevance) was buried at position #11, while two sock products with much lower relevance scores (0.465 and 0.473) occupied the top two positions. Multiple high-quality boots from Scarpa, Merrell, and other brands with relevance scores above 0.66 were pushed down to positions 7-14.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3294,6 +3317,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3308,6 +3332,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">When searching for 'sale', customers expect to see discounted products, but the engine returned full-price items like Meindl Mens Bhutan MFS GTX Boots at £290.00 (#3), Rab Mens Kangri GTX Jacket at £340.00 (#9), and multiple £210.00 jackets. The highest relevance item (Rab Kit Bag II - 80L at 0.531 relevance) was buried at position #11. None of the top results appear to be sale items despite this being a clear navigation query for the Sale category.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3340,6 +3365,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3354,6 +3380,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The two highest relevance products (Meindl Mens Bhutan MFS GTX Boots at 0.648 and Meindl Womens Journey Mid GTX Boots at 0.648) were ranked at positions #5 and #12 respectively, while lower relevance products like Salomon Womens Quest 5 GTX Boots (0.613) and Scarpa Womens Cyrus 2 Mid GTX Boots (0.598) were ranked at positions #1 and #6. The best matching result was displaced by 4 positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3386,6 +3413,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3413,6 +3441,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly handled the typo 'patagnoia' and retrieved all Patagonia products, but severely misranked them. The highest relevance result 'Patagonia Mens P6 Logo Responsibili- T-Shirt' (0.621 relevance) was buried at position #12, while lower-scoring items like 'Patagonia Womens Retro Pile Marsupial Fleece' (0.566 relevance) appeared at #1. Multiple products with identical 0.578 relevance scores were scattered across positions #3, #5, #6, #9, and #11 instead of being grouped together.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3445,6 +3474,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3459,6 +3489,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine successfully handled the typo 'slaomon' and retrieved all Salomon products, but severely misranked them. The highest relevance result 'Salomon Unisex XT 25 Daypack' (0.566) was buried at position #10, while lower-scoring items like 'Salomon Adv Skin 12 Hydration Vest' (0.547) appeared at #1. The top 3 positions contained results with relevance scores of 0.547, 0.543, and 0.555, while better matches with scores of 0.566, 0.562, and 0.559 were ranked much lower.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3491,6 +3522,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3505,6 +3537,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The query 'walkingboots' should return walking boots, but the top results include MSR Hubba Hubba NX Tent (#2), MSR Elixir 3 Tent (#4), Garmin smartwatches (#6, #8), and running shoes (#5, #7). No actual walking boots appear in the results despite this being a clear product category search.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3537,6 +3570,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3551,6 +3585,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">Customer searched for 'waterprooftrousers' but got completely unrelated results: hiking socks (#1, #3), tents (#2, #4), running shoes (#5, #7), and smartwatches (#6, #8). None of these are waterproof trousers or even clothing items that could be waterproof trousers. The only clothing item is a jacket (#9) which isn't trousers.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3582,6 +3617,7 @@ strong { font-weight: 600; }
               </ol>
             </div>
           </div>
+          
           
         </div>
       </div>
@@ -3598,6 +3634,7 @@ strong { font-weight: 600; }
           
           <p class="narrative">The most relevant result 'Rab Womens Microlight Alpine Jacket' (relevance: 0.463) was buried at position #9, while completely irrelevant items like 'Bridgedale Mens Special Edition Merino Hiker Socks' (relevance: 0.236) and 'MSR Hubba Hubba NX Tent' (relevance: 0.270) occupied the top positions. The jacket is the only apparel item that could reasonably match 'softshelljackets' but was ranked last despite having the highest relevance score.</p>
           
+          
           <div class="comparison">
             <div class="comparison-col actual">
               <h4>Customer Saw</h4>
@@ -3628,6 +3665,7 @@ strong { font-weight: 600; }
               </ol>
             </div>
           </div>
+          
           
         </div>
       </div>
@@ -3656,6 +3694,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Rab Womens Nexus Pull On Fleece' (0.664 relevance) was buried at position #14, while much lower relevance results dominated the top positions: 'Patagonia Mens Better Sweater Fleece Jacket' (0.566 relevance) at #1, 'Patagonia Mens R1 Air Full-Zip Hoodie Jacket' (0.398 relevance) at #3, and 'Ayacucho Mens Mountain Midlayer Jacket II' (0.385 relevance) at #10. The search engine retrieved the right fleece products but completely failed to rank them by relevance score.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3688,6 +3727,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3702,6 +3742,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The query 'something waterproof for walking in the rain' returned only 2 results: a promotional banner 'Mid-Season Sale - Up to 30% Off' at #1 and a 'no matching products' message at #2. Despite the query clearly describing waterproof outdoor gear, no actual waterproof jackets, rain gear, or walking equipment were retrieved.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3726,6 +3767,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3740,6 +3782,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The two most relevant results for 'comfortable boots for long walks' were New Balance walking shoes (relevance 0.457 and 0.436) but they appeared at positions #7 and #5. Instead, the top positions were occupied by hiking socks (#1 and #3, relevance 0.379), camping tents (#2 and #4, relevance 0.229 and 0.235), and GPS watches (#6 and #8, relevance 0.223 and 0.199). The best matching result was displaced by 6 positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3772,6 +3815,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3786,6 +3830,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant hiking boots but ranked them poorly. The two highest-relevance products (Meindl Mens Bhutan MFS GTX Boots at 0.664 and Meindl Womens Journey Mid GTX Boots at 0.664) were buried at positions #5 and #12 respectively. Meanwhile, lower-relevance products like Salomon Womens Quest 5 GTX Boots (0.586) and Scarpa Womens Terra GTX Boots (0.582) were ranked #1 and #3.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3818,6 +3863,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3832,6 +3878,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant running shoes for the query 'trainers' but ranked them poorly. The highest relevance products were buried: Asics Mens Trabuco 14 GTX Shoes (0.574 relevance) was ranked #6 instead of #1, Asics Mens Novablast 5 Shoes (0.574 relevance) was ranked #14 instead of #2, and New Balance Womens 1080V15 Shoes (0.570 relevance) was ranked #15 instead of #3. Meanwhile, lower-relevance Hoka products dominated the top positions: Hoka Mens Speedgoat 7 Shoes - Wide (0.492 relevance) at #1 and Hoka Womens Speedgoat 7 Shoes - Wide (0.484 relevance) at #2.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3864,6 +3911,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3891,6 +3939,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance product 'Osprey Mens Atmos AG 65 Rucksack' (0.773 relevance) was buried at position #10, while lower relevance products like 'Osprey Womens Tempest 33 Daypack' (0.758 relevance) and 'Osprey Hydraulics Reservoir - 2L' (0.703 relevance) appeared at positions #1 and #3 respectively. The top 3 positions contained products with relevance scores of 0.758, 0.762, and 0.703, while higher-scoring products like 'Osprey Nebula 32 Daypack' (0.770) and 'Osprey Daylite Plus Daypack' (0.766) were ranked at #4 and #5.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3923,6 +3972,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3937,6 +3987,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Mountain Equipment Mens Nanda Devi Jacket' (0.840 relevance) was buried at position #12, while lower relevance items like 'Mountain Equipment Mens Ibex Mountain Trousers' (0.828 relevance) appeared at #1. The second-best result 'Mountain Equipment Mens Makalu Jacket' (0.832 relevance) was also misplaced at #11. Additionally, 'Mountain Equipment Helium 600 Sleeping Bag' (0.812 relevance) was pushed down to #15 despite having the same relevance as items ranked much higher.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3969,6 +4020,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3983,6 +4035,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly expanded 'TNF' to 'The North Face' and retrieved all relevant jackets, but ranked them poorly. The highest relevance product 'The North Face Mens Nimble 2 Jacket' (0.656 relevance) was buried at position #15, while the lowest relevance product 'The North Face Womens Dryvent Hikesteller Parka' (0.523 relevance) was ranked #1. Multiple high-relevance products were displaced: 'Whiton 3L Jacket' (0.648) dropped from #3 to should-be #2, 'Terra Peak Jacket' (0.641) dropped from #12 to should-be #3.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4015,6 +4068,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4029,6 +4083,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The query 'uv sunglasses' returned completely unrelated products: hiking socks (positions #1 and #3), camping tents (positions #2 and #4), running shoes (positions #5 and #7), GPS watches (positions #6 and #8), and a jacket (position #9). None of these results are sunglasses or eyewear products. The engine failed to understand that 'UV' is an abbreviation for 'ultraviolet' in the context of sun protection, and completely missed that the user was searching for sunglasses with UV protection.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4061,6 +4116,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4075,6 +4131,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search correctly retrieved all Arc'teryx jackets, but the ranking is severely misaligned with relevance scores. The highest relevance item 'Arc'teryx Mens Beta SL Jacket' (0.883) was ranked #5, while 'Arc'teryx Womens Beta Coat' (0.719) was ranked #1. Additionally, 'Arc'teryx Mens Thorium Jacket' with high relevance (0.879) was buried at position #11.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4107,6 +4164,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4134,6 +4192,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'The North Face Mens Whiton 3L Jacket' (0.809) was buried at position #11, while lower-scoring results like 'Rab Womens Microlight Alpine Jacket' (0.762) occupied positions #1 and #2. The top 3 positions contained results with relevance scores of 0.762, 0.762, and 0.801, while better matches with scores of 0.805 and 0.809 were pushed to positions #13 and #11 respectively.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4166,6 +4225,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4180,6 +4240,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Ayacucho Unisex Ultra Light Crew Socks (2 Pack)' with score 0.762 was buried at position #10, while lower-scoring results like 'Bridgedale Mens Ultra Lightweight Merino Endurance Socks' (0.754) and 'Bridgedale Womens Ultra Lightweight Merino Endurance Socks' (0.742) occupied the top positions. The second-best result 'Ayacucho Unisex Ultra Light Mini Socks' (0.758) was pushed down to position #14.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4212,6 +4273,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4226,6 +4288,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Grangers Fabsil Tent and Gear Care Kit' (0.574) was buried at position #8, while lower-relevance items like 'Bridgedale Womens Ultra Lightweight Merino Endurance Socks' (0.430) ranked #1. Multiple high-relevance gear care products were displaced: 'Nikwax Tent & Gear SolarProof Spray-On' (0.543) at #4 instead of #2, and 'Nikwax Tent & Gear SolarWash & SolarProof Duo Pack' (0.531) at #12 instead of #3.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4258,6 +4321,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4272,6 +4336,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'New Balance Womens Essential Run Sports Bra' (0.578 relevance) was buried at position #9, while the irrelevant 'Buff Merino Lightweight Neckwear' (0.383 relevance) was ranked #1. Multiple high-relevance running essentials like 'New Balance Mens RC Essential Joggers' (0.535) and 'New Balance Mens Sport Essentials 7" Shorts' (0.504) were pushed down to positions #8 and #6 respectively.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4304,6 +4369,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4318,6 +4384,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">For 'winter hiking gear', customers expect insulated jackets, waterproof boots, and warm accessories. Instead, the top results are gear maintenance products: #1 'Grangers Footwear+ Gear Cleaner' (0.381), #2 'Grangers Footwear + Gear Cleaner Spray-On' (0.361), and #4-5 'Gear Aid Tenacious Repair Tape' products (0.350-0.352). The only actual winter hiking apparel - 'Patagonia Mens Houdini Jacket' with highest relevance (0.467) - is buried at position #15. The engine matched the literal word 'gear' but completely missed that customers want winter-specific hiking equipment, not maintenance supplies.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4350,6 +4417,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4377,6 +4445,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The query 'patagonia fleeces sale' includes 'sale' as a constraint, but none of the returned results appear to be on sale. All products show regular prices (£94-£140) with no sale indicators. The highest relevance item 'Patagonia Womens Retro Pile Marsupial Fleece' at £140.00 was buried at position #15, while a lower-relevance item 'Patagonia Mens R1 Air Full-Zip Hoodie Jacket' at £94 was ranked #1, suggesting the engine may have confused lower price with sale status.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4409,6 +4478,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4423,6 +4493,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Patagonia Mens Torrentshell 3L Rain Jacket' (0.852) was ranked #4 instead of #1. The second-best result 'Rab Mens Downpour Mountain Jacket' (0.820) was buried at #10. Meanwhile, lower-scoring results like 'Arc'teryx Mens Beta Jacket' (0.688) and 'The North Face Mens Quest Hooded Jacket' (0.586) were ranked #1 and #5 respectively.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4455,6 +4526,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4469,6 +4541,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant North Face insulated jackets but ranked them poorly. The three highest-scoring results (The North Face Womens Inlux Insulated Jacket with 0.906 relevance) were buried at positions #6, #7, and #12, while lower-scoring results like ThermoBall jackets (0.781 relevance) occupied the top positions #1 and #2. The Quest Insulated Jacket (0.887 relevance) was pushed down to position #10.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4501,6 +4574,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4515,6 +4589,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">All results are highly relevant Salomon waterproof walking boots with GTX technology, but the ranking is suboptimal. The highest relevance score (0.547) belongs to 'Salomon Mens Quest 4 GTX Boots' which appears at position #2, while a lower-scoring result (0.516) 'Salomon Womens Quest 4 GTX Boots' is ranked #1. Additionally, several other high-scoring results like 'Salomon Mens Quest 5 GTX Boots' (0.539) at #3 and 'Salomon Mens Quest Echo GTX Boots' (0.539) at #5 should be ranked higher than lower-scoring results currently in top positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4546,6 +4621,7 @@ strong { font-weight: 600; }
               </ol>
             </div>
           </div>
+          
           
         </div>
       </div>

@@ -1356,6 +1356,12 @@ strong { font-weight: 600; }
 .case-fix { background: var(--accent); border-left: 3px solid var(--primary); border-radius: 4px; padding: 12px 14px; margin-top: 14px; font-size: 0.92rem; }
 .results-panel { background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
 .ideal-panel { background: #f7fdfd; border-color: #bdeff2; }
+.deadend-panel { grid-column: span 2; border-style: dashed; }
+.deadend { display: flex; align-items: flex-start; gap: 12px; padding: 4px 2px; }
+.deadend-icon { color: var(--muted); flex-shrink: 0; line-height: 0; margin-top: 1px; }
+.deadend-title { font-weight: 700; color: var(--fg); font-size: 0.9rem; margin: 0; }
+.deadend-sub { color: var(--muted); font-size: 0.83rem; line-height: 1.45; margin: 4px 0 0; max-width: 34ch; }
+.deadend-inline { color: var(--muted); font-size: 0.86rem; font-style: italic; margin: 8px 0 0; }
 .result-row { margin-bottom: 10px; }
 .result-row:last-child { margin-bottom: 0; }
 .result-row p { color: var(--muted); font-size: 0.83rem; line-height: 1.35; margin: 3px 0 0 24px; }
@@ -2499,7 +2505,7 @@ strong { font-weight: 600; }
         <code>Flint adn Tinder</code>
         <span class="failure-badge">No fuzzy matching</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2507,15 +2513,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add typo and fuzzy matching for high-value product, category, and brand terms so small spelling errors still reach the right products.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2525,7 +2536,7 @@ strong { font-weight: 600; }
         <code>need something for outdoor activities</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2533,15 +2544,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2551,7 +2567,7 @@ strong { font-weight: 600; }
         <code>Proof sport shorts sale</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2559,15 +2575,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2577,7 +2598,7 @@ strong { font-weight: 600; }
         <code>sale shirts under 60</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2585,15 +2606,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2603,7 +2629,7 @@ strong { font-weight: 600; }
         <code>spring sale shorts</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2611,15 +2637,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2637,6 +2668,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -2736,6 +2768,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -2768,6 +2801,7 @@ strong { font-weight: 600; }
           
           <p class="narrative">The query 'bestsellers' should map to a bestsellers category/collection, but instead the engine treated it as a keyword search. The top 10 results are dominated by '365 Chino Short - 7"' products (positions #1-9, #11) all with identical relevance scores of 0.363, suggesting keyword matching rather than bestseller ranking. The actual highest-relevance products like 'Women's Silky Gold Omega Chain' (0.414) and 'ConcealPack™ 21L' (0.400) are buried at positions #14 and #13 respectively.</p>
           
+          
           <div class="comparison">
             <div class="comparison-col actual">
               <h4>Customer Saw</h4>
@@ -2799,6 +2833,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #14.</p>
           
         </div>
@@ -2815,6 +2850,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result '001 Trail Running Sneaker' (0.480) was buried at position #13, while lower-scoring results dominated the top positions. Multiple duplicate 'Sevens Sport Short Lined - 7"' entries (0.449) occupied positions #1, #3, #9, #10, and #12, and 'PatinaTech T-Shirt' (0.316) appeared at positions #2 and #8 despite having much lower relevance scores.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -2847,6 +2883,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #13.</p>
           
         </div>
@@ -2863,6 +2900,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance results were buried deep in rankings: Transport Casual Jacket (0.621 relevance) appeared at positions #13 and #14, while much lower relevance items like Fino Pique Polo (0.428) and Women's Stacked Diamond Huggie Earrings (0.361) occupied the top positions. The best matching result was displaced by 12 positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -2895,6 +2933,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #13.</p>
           
         </div>
@@ -2911,6 +2950,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance products (Classic Swim Short - 5.5" with 0.844 relevance) were buried at positions #10, #12, #13, and #15, while lower relevance products (Classic Solid Swim Short and Resort Swim Short with 0.836 relevance) dominated positions #1-#9. The best matching result was displaced by 9 positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -2942,6 +2982,7 @@ strong { font-weight: 600; }
               </ol>
             </div>
           </div>
+          
           
           <p class="displacement-note">Best match was buried at position #10.</p>
           
@@ -2960,6 +3001,7 @@ strong { font-weight: 600; }
           
           <p class="narrative">For query 'sale items', the engine returned promotional content instead of actual sale products: 'All Ways Forward' (rank #2, relevance 0.277) and 'Get Free Shipping Today' (rank #3, relevance 0.359) appear to be marketing pages or banners rather than discounted products. Only one actual product appeared: 'norda 001 RZ 2023 Trail Running Sneaker' (rank #1, relevance 0.410), but there's no indication this is a sale item. The engine failed to map 'sale items' to the site's Sale category and instead treated it as keywords to match in content.</p>
           
+          
           <div class="comparison">
             <div class="comparison-col actual">
               <h4>Customer Saw</h4>
@@ -2986,6 +3028,7 @@ strong { font-weight: 600; }
               </ol>
             </div>
           </div>
+          
           
         </div>
       </div>
@@ -3015,20 +3058,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">Query 'Flint adn Tinder' returned zero results despite containing only a simple typo ('adn' instead of 'and'). The stats show a best result exists at position #16 with displacement of 15 positions, indicating relevant Flint and Tinder products exist in the catalog but the search engine failed to retrieve them due to the typo.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3046,6 +3078,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result '365 Chino Short - 5' (0.676) was buried at position #12, while lower relevance pants dominated the top positions. The top 3 positions showed pants with relevance scores of 0.582, 0.586, and 0.617, while shorts with better scores (0.668, 0.676) were pushed down to positions #7, #11, and #12. This is particularly problematic since the query '365 Chin' appears to be targeting the 365 Chino Short line based on the test rationale.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3078,6 +3111,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #12.</p>
           
         </div>
@@ -3094,6 +3128,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'The Stevens Linen Herringbone Blazer' (0.320) was buried at position #11, while lower-scoring results like 'The Jack Everyday Oxford Shirt' (0.277) and 'The Ojai Chore Coat' (0.262) occupied the top positions. The best result was displaced by 10 positions despite having a significantly higher relevance score.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3126,6 +3161,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #11.</p>
           
         </div>
@@ -3142,6 +3178,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved all relevant Flyweight products but ranked them incorrectly. The highest relevance products (Flyweight Flex Chino Pant with 0.527 relevance) were buried at positions #11, #13, and #14, while lower relevance products dominated the top positions. Specifically, Flyweight Flex Short products with only 0.486 relevance occupied 6 of the top 10 positions, including #1, #4, #7, #8, #9, and #10.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3174,6 +3211,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #11.</p>
           
         </div>
@@ -3190,6 +3228,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">Customer searched for 'Fahery Brand' (missing 't' in Faherty) but got generic product results with no brand recognition. The highest relevance score was only 0.334 for 'All Day 4-Way Stretch Short - 9'' at position #7, and none of the top results appear to be from Faherty Brand. The search engine failed to recognize the typo and match it to the correct brand name.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3222,6 +3261,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #7.</p>
           
         </div>
@@ -3252,20 +3292,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search engine returned zero results for the query 'need something for outdoor activities' despite this being a natural language request that should map to outdoor/active category products. The max relevance score of 0.000 and total results of 0 confirm complete search failure.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3283,6 +3312,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Classic Linen Shirt' (0.629) was buried at position #13, while much lower relevance results dominated the top positions: 'Linen Applique Short Sleeve Shirt' (0.520) at #1, and 'Gonzo Short Sleeve Shirt' (0.305) at positions #2 and #3. The top 3 average relevance was only 0.376, indicating poor ranking quality.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3315,6 +3345,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #13.</p>
           
         </div>
@@ -3331,6 +3362,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Ripstop Regiment Cargo Pant' (0.883) was buried at position #12, while lower-scoring results like 'M-51 Lightweight Cargo Pant - Exclusive' (0.875) occupied the top 3 positions. Multiple products with identical relevance scores (0.875, 0.871, 0.867) were scattered throughout the results instead of being grouped together by score.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3363,6 +3395,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #12.</p>
           
         </div>
@@ -3379,6 +3412,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The two highest relevance results (Cotton Linen Chino - HB Straight™ with 0.770 relevance) were buried at positions #10 and #13, while lower-scoring 365 Chino Pant variants (0.738 relevance) dominated positions #1-2. The 72-Hour Merino Chino variants (0.754 relevance) were also pushed down to positions #11-12 despite outscoring the top-ranked results.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3411,6 +3445,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #10.</p>
           
         </div>
@@ -3427,6 +3462,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">Customer searched for 'versatile casual shorts' but got sandals ranked #1 and #2 (Biarritz Sandal, relevance 0.195). The only potentially relevant result 'All Ways Forward' (which could be shorts) was buried at position #5 despite having the highest relevance score of 0.293. The engine appears to have matched on the word 'short' in 'Journey Short Sleeve Shirt' but completely missed that the customer wanted shorts as a garment category, not shirts.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3459,6 +3495,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #5.</p>
           
         </div>
@@ -3488,6 +3525,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The three highest-relevance Flint and Tinder products were buried deep in results: 'Flint and Tinder x Rancourt & Co. Leather Tote' (0.766 relevance) at position #10, 'Flint and Tinder x Rancourt & Co. Acadia Chukka Boot' (0.723 relevance) at position #8, and 'Flint and Tinder x Rancourt & Co. Beef Roll Penny Loafer' (0.707 relevance) at position #9. Meanwhile, products with much lower relevance scores dominated the top positions: '365 5-Pocket Pant - HB Athletic Tapered™' (0.199 relevance) at #1, 'Vintage Soft Wash T-Shirt' (0.206 relevance) at #2, and 'Dobby Camp Shirt' (0.236 relevance) at #3.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3520,6 +3558,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #10.</p>
           
         </div>
@@ -3536,6 +3575,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance products (Flyweight Flex Short - 8.5" with 0.539 relevance) were buried at positions #10-15, while lower relevance products (Flyweight Flex Blazer with 0.520 relevance) dominated positions #1-7. The best matching result was displaced by 9 positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3568,6 +3608,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #10.</p>
           
         </div>
@@ -3584,6 +3625,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">Customer searched for 'Proof shorts' but zero Proof brand products appear in the results. Instead, the engine returned shorts from other brands: Equator Hybrid Short (#1), Sevens Sport Short Lined (positions #2, #4, #7-15), TrailTech Short (#5, #11), and Rover EDC Short (#3, #6). The search engine completely ignored the brand constraint 'Proof' and only matched on the product type 'shorts'.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3616,6 +3658,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3630,6 +3673,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">All results are Taylor Stitch products showing the brand constraint is working, but ranking is suboptimal. The highest relevance product 'The Jack Seersucker Shirt' (0.324) was ranked #2 instead of #1. Higher-scoring items like 'The Jack Everyday Oxford Short Sleeve Shirt' (0.309) and 'The Button Down Polo' (0.309) were buried at positions #6 and #12 respectively, while lower-scoring duplicates of 'The Jack Everyday Oxford Shirt' (0.307) occupied multiple top positions (#1, #3, #5).</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3662,6 +3706,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3690,20 +3735,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for the query 'Proof sport shorts sale' despite the query containing valid search terms. The max relevance score was 0.000 and no products were displayed to the customer.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3722,20 +3756,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for 'sale shirts under 60' despite the displacement metric indicating the best result was at position #16, suggesting relevant products exist in the catalog but the search engine failed to retrieve any results at all</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3754,6 +3777,7 @@ strong { font-weight: 600; }
           
           <p class="narrative">The highest relevance products '7" Training Short' (0.867 relevance) were buried at positions #11-13, while lower relevance products dominated the top positions. Specifically, 'Drawstring Canoe Short - 7"' products with only 0.824 relevance occupied positions #1-3, and 'Cotton Linen Chino Short - 7"' products with 0.855 relevance were mixed throughout positions #4-9. The best matching result was displaced by 10 positions.</p>
           
+          
           <div class="comparison">
             <div class="comparison-col actual">
               <h4>Customer Saw</h4>
@@ -3785,6 +3809,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #11.</p>
           
         </div>
@@ -3801,6 +3826,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The query 'shirts not linen' explicitly excludes linen shirts, but 14 out of 15 results are linen shirts: positions #1-9 and #11-15 all show 'Short Sleeve Isles Linen Shirt' or 'Isles Linen Shirt'. Only position #10 'Tencel Resort Shirt' correctly excludes linen material. The best non-linen result is buried at position #10.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3833,6 +3859,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #10.</p>
           
         </div>
@@ -3849,6 +3876,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The query 'shorts not cargo' explicitly excludes cargo items, but cargo shorts dominate the results: '365 Cargo Short - 9%' appears at positions #2, #3, #4, '365 Cargo Short - 7%' at positions #10, #11, and 'Cargo Compression Tights' at position #12. Meanwhile, non-cargo shorts like 'Vidda Pro Lite Shorts' (highest relevance 0.523) are buried at positions #6 and #9.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3881,6 +3909,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #6.</p>
           
         </div>
@@ -3911,20 +3940,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for 'spring sale shorts' despite this being a straightforward seasonal product query. The stats show 0 total results, max relevance score of 0.000, and the best result was displaced to position 16, indicating the engine found nothing relevant in the top positions.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3942,6 +3960,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Tropical Camo Short Sleeve Shirt' (0.461) was buried at position #14, while the lowest relevance result 'Tellaro Sweater Polo' (0.312) appeared at position #6. The top position was occupied by 'Lousada Camp Collar Shirt' with only 0.381 relevance. Multiple high-scoring summer shirts like 'Palma Linen Short Sleeve Camp Shirt' (0.459) were pushed to positions #11 and #15.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3974,6 +3993,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #14.</p>
           
         </div>
@@ -3990,6 +4010,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The two highest relevance products 'Cord Supply Short - 7.5"' (0.719 relevance) were ranked at positions #11 and #12 instead of #1 and #2. The current #1 result 'Sevens Sport Short Lined - 7"' has only 0.691 relevance, which is 0.028 points lower than the best available results. Multiple products with identical relevance scores (0.703, 0.680, 0.676) are scattered throughout the rankings instead of being grouped together.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4022,6 +4043,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #11.</p>
           
         </div>
@@ -4038,6 +4060,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The engine matched only on 'outdoor' and ignored 'shorts' and 'premium'. Results #1-9 are all outdoor furniture sectionals (Felloe Sectional 6-piece, 4-piece, 5-piece, and Terra Outdoor Sectional) with relevance scores 0.230-0.264. The actual shorts products (Baggies Shorts - 5" and Women's Terrebonne Shorts) with much higher relevance scores (0.398-0.410) were buried at positions #10-14.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4070,6 +4093,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #11.</p>
           
         </div>
@@ -4086,6 +4110,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Outdoor Graphic T-Shirt' (0.516) was buried at position #11, while a much lower relevance result 'Screen-Free Digital Camera' (0.348) was ranked #1. Additionally, the same product 'DB2 - Indestructible Waterproof BT Speaker' appears 6 times consecutively in positions #4-#10, all with identical relevance scores of 0.385, indicating duplicate results are crowding out better matches.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4117,6 +4142,7 @@ strong { font-weight: 600; }
               </ol>
             </div>
           </div>
+          
           
           <p class="displacement-note">Best match was buried at position #11.</p>
           

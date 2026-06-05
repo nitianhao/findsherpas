@@ -1356,6 +1356,12 @@ strong { font-weight: 600; }
 .case-fix { background: var(--accent); border-left: 3px solid var(--primary); border-radius: 4px; padding: 12px 14px; margin-top: 14px; font-size: 0.92rem; }
 .results-panel { background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
 .ideal-panel { background: #f7fdfd; border-color: #bdeff2; }
+.deadend-panel { grid-column: span 2; border-style: dashed; }
+.deadend { display: flex; align-items: flex-start; gap: 12px; padding: 4px 2px; }
+.deadend-icon { color: var(--muted); flex-shrink: 0; line-height: 0; margin-top: 1px; }
+.deadend-title { font-weight: 700; color: var(--fg); font-size: 0.9rem; margin: 0; }
+.deadend-sub { color: var(--muted); font-size: 0.83rem; line-height: 1.45; margin: 4px 0 0; max-width: 34ch; }
+.deadend-inline { color: var(--muted); font-size: 0.86rem; font-style: italic; margin: 8px 0 0; }
 .result-row { margin-bottom: 10px; }
 .result-row:last-child { margin-bottom: 0; }
 .result-row p { color: var(--muted); font-size: 0.83rem; line-height: 1.35; margin: 3px 0 0 24px; }
@@ -2752,7 +2758,7 @@ strong { font-weight: 600; }
         <code>Mos Mosh clothing</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2760,15 +2766,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2778,7 +2789,7 @@ strong { font-weight: 600; }
         <code>something elegant for a dinner party</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2786,15 +2797,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2804,7 +2820,7 @@ strong { font-weight: 600; }
         <code>warm jacket for winter weather</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2812,15 +2828,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2830,7 +2851,7 @@ strong { font-weight: 600; }
         <code>where can i find the best mos mosh clothes</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2838,15 +2859,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2856,7 +2882,7 @@ strong { font-weight: 600; }
         <code>i want to buy some nice sneakers for myself</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2864,15 +2890,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2882,7 +2913,7 @@ strong { font-weight: 600; }
         <code>i am looking for some really nice high quality designer clothing from brands like ganni or mos mosh for women that would be perfect for both casual and more formal occasions</code>
         <span class="failure-badge">Zero results</span>
       </div>
-      <p class="case-fail">The best matching result appeared at position #16, after weaker results.</p>
+      <p class="case-fail">The search returned zero results — the customer reached a dead end.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
@@ -2890,15 +2921,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
+        
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
         </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-        </div>
+        
       </div>
     </div>
     
@@ -2931,20 +2967,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for the exact brand name 'Mos Mosh clothing' despite the stats indicating a best result exists at position #16, suggesting the engine failed to surface any results to the customer while potentially having relevant inventory</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -2962,6 +2987,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Parajumpers – PM HYW U02 Jacket' (0.898 relevance) was buried at position #15, while lower-scoring results like 'Parajumpers – Parajumpers - Matty Hybrid Jacket - Sort, XLarge' (0.895 relevance) ranked #1. Multiple products with identical 0.887 relevance scores were scattered across positions #4, #6, #9, and #12 instead of being grouped together. The ranking algorithm is not properly ordering results by their calculated relevance scores.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -2994,6 +3020,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #15.</p>
           
         </div>
@@ -3010,6 +3037,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Co'Couture – Dresses' (0.898) was buried at position #14, while lower-scoring results like 'Co'Couture – Short Dress' (0.848) appeared at position #3. Multiple high-scoring results were severely misplaced: 'Co'Couture – TeranCC Stripe Pleat Dress 46033' (0.879) at #7, 'Co'Couture – Knitted Dresses' (0.879) at #13, and several 0.875-scored items ('Serafin Sequin Dress', 'KesiCC Dress', 'KesiCC Pleat LS Dress', 'SagaCC Dress') scattered between positions #6-#15.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3042,6 +3070,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #14.</p>
           
         </div>
@@ -3058,6 +3087,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant shoe products for the query 'sko' (Danish for shoes), but severely misranked them. The most relevant result 'Sun68 – Sko' (0.820 relevance) was buried at position #13, while the least relevant 'Ralph Lauren – SKO' (0.719 relevance) was ranked #1. The top 3 positions contained products with relevance scores of 0.719, 0.777, and 0.738, while much better matches with scores of 0.820, 0.809, and 0.793 were relegated to positions #13, #15, and #14 respectively.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3090,6 +3120,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #13.</p>
           
         </div>
@@ -3106,6 +3137,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The two highest-relevance results (Paolo Vitale products with 0.777 scores) were buried at positions #10 and #14, while lower-relevance items appeared at the top. Specifically, Gigi Clozeau (0.758) ranked #1, Anne & Valentin (0.742) ranked #2, and Lafont (0.727) ranked #7, all scoring lower than the Paolo Vitale items that should have been prioritized.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3138,6 +3170,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #10.</p>
           
         </div>
@@ -3168,20 +3201,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search engine returned zero results for the query 'something elegant for a dinner party' despite the stats indicating there was a best result at position #16, suggesting products exist but the engine failed to retrieve any results at all</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3200,20 +3222,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search engine returned zero results for the query 'warm jacket for winter weather' despite this being a common, well-formed product search. The max relevance score of 0.000 and total results of 0 indicate complete search failure.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3232,20 +3243,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for the query 'where can i find the best mos mosh clothes' despite the customer clearly looking for Mos Mosh brand clothing. The stats show 0 total results and max relevance score of 0.000, indicating complete search failure.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3264,20 +3264,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search engine returned zero results for the query 'i want to buy some nice sneakers for myself' despite this being a straightforward product search for sneakers. The max relevance score was 0.000 and total results was 0, indicating complete search failure.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3296,20 +3285,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search engine returned zero results for a query asking for designer women's clothing from brands like Ganni or Mos Mosh suitable for casual and formal occasions. The customer saw no results at all despite this being a reasonable product search query.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3341,20 +3319,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">Query 'Parajumper' returned zero results despite being a common misspelling of 'Parajumpers', a well-known winter jacket brand. The search engine failed to recognize this as a typo and provide any fuzzy matching or spell correction.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3373,20 +3340,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">Query 'Para jumpers' returned zero results despite the stats indicating a best result exists at position #16. The search engine completely failed to surface any products for this compound word query.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3405,20 +3361,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">Query 'Bottega Vaneta' returned zero results despite being a common misspelling of the luxury brand 'Bottega Veneta'. The search engine failed to recognize this as a typo and provide any fuzzy matching or spell correction.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3436,6 +3381,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly identified and returned all MOS MOSH products, showing it successfully split the merged word 'mosmosh' into 'MOS MOSH'. However, the ranking is severely broken: the highest relevance result 'MOS MOSH – Sleeveless Top' (0.625 relevance) was buried at position #15, while lower-scoring items like 'MOS MOSH – Flared Jeans' (0.609) and 'MOS MOSH – Rundhalset strik' (0.590) were ranked #1 and #2 respectively.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3468,6 +3414,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #15.</p>
           
         </div>
@@ -3484,6 +3431,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Paolo Pecora – Strik' (0.734) was buried at position #10, while lower-scoring results dominated the top positions. The #1 result 'Ganni – Strik' scored only 0.723, and #3 'Burberry – STRIK' scored just 0.645 despite being in the top 3. Multiple high-scoring results were displaced: '032c – Strik' (0.730) at #7, 'WE11DONE – Strik' (0.727) at #6, and 'Roberto Collina – Strik' (0.727) at #8.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3516,6 +3464,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #10.</p>
           
         </div>
@@ -3546,20 +3495,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for 'Anine Bing clothing' despite this being a well-known fashion brand. The query stats show 0 total results and max relevance score of 0.000, indicating complete search failure.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3578,20 +3516,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">Query 'AB-001' returned zero results despite this being an exact SKU/model number search. The stats show 0 total results with max relevance score of 0.000, indicating the search engine found nothing at all for this specific product identifier.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3609,6 +3536,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The three highest relevance results (all 0.891) - 'Munthe – Dresses' products - were ranked at positions #10, #11, and #14 instead of the top positions. Meanwhile, lower relevance results like 'Munthe – Shirt Dresses' (0.863) and 'Munthe – Shirt Dress' (0.844) occupied the #1 and #2 spots. The best matching result was displaced by 9 positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3641,6 +3569,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #10.</p>
           
         </div>
@@ -3657,6 +3586,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Coperni – Sweat' (0.688) was ranked #5 instead of #1. The second-highest relevance result 'Paul & Shark – SWEAT' (0.680) was ranked #4 instead of #2. Additionally, 'Carhartt Wip – Half Zip Detroit Sweat' with relevance 0.609 was buried at position #12 despite being more relevant than several results ranked above it.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3689,6 +3619,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #5.</p>
           
         </div>
@@ -3705,6 +3636,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine retrieved all relevant Gucci vintage bags but ranked them poorly. High-relevance results were buried: the #2 and #3 most relevant items (relevance 0.883) appeared at positions #14 and #15, while lower-relevance items like 'Vintage Clutch Taske' (0.859) and 'Vintage Plastic Clutch' (0.844) occupied positions #3 and #4. Multiple items with identical 0.879 relevance scores were scattered across positions #5, #8, #10, and #12 instead of being grouped together.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3737,6 +3669,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3765,20 +3698,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for 'designer bag under 5000 kr' despite the displacement metric indicating the best result was at position #16, suggesting relevant designer bags exist in the catalog but the price constraint '5000 kr' was not properly parsed or applied as a filter</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3797,20 +3719,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The query 'dress not vintage' returned zero results despite the displacement metric indicating the best result was at position #16, suggesting relevant dress products exist but the negation constraint 'not vintage' was completely ignored by the search engine</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3829,20 +3740,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for the query 'show me sport clothes' despite the stats indicating there is a best result at position #16, suggesting products exist but the engine failed to retrieve any results for display to the customer.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3861,20 +3761,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for the query 'premium brand handbags' despite the stats indicating there is a best result at position #16, suggesting products exist but the search engine failed to retrieve any results at all</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3893,20 +3782,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for the query 'white leather sneakers size 42' despite the stats indicating a best result exists at position #16, suggesting the engine failed to return any results to the customer while having relevant inventory available</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3938,20 +3816,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The query 'kjole' (Norwegian/Danish for 'dress') returned zero results despite the displacement metric indicating the best result was at position #16, suggesting relevant products exist but weren't retrieved due to language/spelling mismatch</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -3970,20 +3837,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search returned zero results for 'office outfit' despite this being a common use case query. The engine failed to understand that customers searching for 'office outfit' want professional clothing items like blazers, dress shirts, trousers, skirts, and business dresses. The stats show max relevance score of 0.000 and total results of 0, indicating complete failure to retrieve any relevant products.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -4002,20 +3858,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The search engine returned zero results for the query 'summer sale dresses' despite this being a common seasonal shopping query. The stats show 0 total results with a max relevance score of 0.000, indicating complete search failure.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -4034,20 +3879,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The query 'outfit til bryllup' (Norwegian for 'outfit for wedding') returned zero results despite the displacement metric indicating a relevant result exists at position #16. The search engine failed to understand that this query is asking for wedding-appropriate clothing and should match products like dresses, suits, formal wear, or wedding guest attire.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           
@@ -4066,20 +3900,9 @@ strong { font-weight: 600; }
           
           <p class="narrative">The query 'sportstøj til løbetur' (Danish for 'sportswear for running') returned zero results despite this being a common use case query. The search engine failed to understand that this Danish phrase describes running apparel and should match products like running shoes, athletic clothing, and fitness gear.</p>
           
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-              </ol>
-            </div>
-          </div>
+          
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          
           
           <p class="displacement-note">Best match was buried at position #16.</p>
           

@@ -1356,6 +1356,12 @@ strong { font-weight: 600; }
 .case-fix { background: var(--accent); border-left: 3px solid var(--primary); border-radius: 4px; padding: 12px 14px; margin-top: 14px; font-size: 0.92rem; }
 .results-panel { background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
 .ideal-panel { background: #f7fdfd; border-color: #bdeff2; }
+.deadend-panel { grid-column: span 2; border-style: dashed; }
+.deadend { display: flex; align-items: flex-start; gap: 12px; padding: 4px 2px; }
+.deadend-icon { color: var(--muted); flex-shrink: 0; line-height: 0; margin-top: 1px; }
+.deadend-title { font-weight: 700; color: var(--fg); font-size: 0.9rem; margin: 0; }
+.deadend-sub { color: var(--muted); font-size: 0.83rem; line-height: 1.45; margin: 4px 0 0; max-width: 34ch; }
+.deadend-inline { color: var(--muted); font-size: 0.86rem; font-style: italic; margin: 8px 0 0; }
 .result-row { margin-bottom: 10px; }
 .result-row:last-child { margin-bottom: 0; }
 .result-row p { color: var(--muted); font-size: 0.83rem; line-height: 1.35; margin: 3px 0 0 24px; }
@@ -1816,6 +1822,20 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>{{ case.fix }}</p></div>
         </div>
 
+        {% if case.no_results %}
+        <div class="results-panel deadend-panel">
+          <p class="case-label">What the customer got</p>
+          <div class="deadend">
+            <span class="deadend-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </span>
+            <div>
+              <p class="deadend-title">No results</p>
+              <p class="deadend-sub">An empty results page &mdash; nothing to click. The shopper hits a dead end and most leave.</p>
+            </div>
+          </div>
+        </div>
+        {% else %}
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           {% for r in case.actual_results %}
@@ -1843,6 +1863,7 @@ strong { font-weight: 600; }
           </div>
           {% endfor %}
         </div>
+        {% endif %}
       </div>
     </div>
     {% endfor %}
@@ -1875,6 +1896,7 @@ strong { font-weight: 600; }
           {% if query.evidence %}
           <p class="narrative">{{ query.evidence }}</p>
           {% endif %}
+          {% if query.actual_top %}
           <div class="comparison">
             <div class="comparison-col actual">
               <h4>Customer Saw</h4>
@@ -1893,6 +1915,9 @@ strong { font-weight: 600; }
               </ol>
             </div>
           </div>
+          {% else %}
+          <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
+          {% endif %}
           {% if query.displacement > 2 %}
           <p class="displacement-note">Best match was buried at position #{{ query.best_position }}.</p>
           {% endif %}

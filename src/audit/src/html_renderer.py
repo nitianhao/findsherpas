@@ -606,16 +606,19 @@ def _build_risk_cases(judgments: list[QueryJudgment]) -> list[dict]:
         by_relevance = sorted(j.results, key=lambda r: r.relevance_score, reverse=True)[:5]
         failure_label = _FAILURE_MODE_DISPLAY.get(j.failure_mode, j.failure_mode)
         best_position = j.displacement + 1
-        fail = (
-            "The best matching result was not surfaced cleanly."
-            if best_position <= 1
-            else f"The best matching result appeared at position #{best_position}, after weaker results."
-        )
+        no_results = not by_original
+        if no_results:
+            fail = "The search returned zero results — the customer reached a dead end."
+        elif best_position <= 1:
+            fail = "The best matching result was not surfaced cleanly."
+        else:
+            fail = f"The best matching result appeared at position #{best_position}, after weaker results."
 
         cases.append({
             "query": j.test_query.query,
             "failure_label": failure_label,
             "fail": fail,
+            "no_results": no_results,
             "evidence_text": j.evidence,
             "fix": _fix_guidance(j),
             "actual_results": [

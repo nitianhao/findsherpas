@@ -1356,6 +1356,12 @@ strong { font-weight: 600; }
 .case-fix { background: var(--accent); border-left: 3px solid var(--primary); border-radius: 4px; padding: 12px 14px; margin-top: 14px; font-size: 0.92rem; }
 .results-panel { background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
 .ideal-panel { background: #f7fdfd; border-color: #bdeff2; }
+.deadend-panel { grid-column: span 2; border-style: dashed; }
+.deadend { display: flex; align-items: flex-start; gap: 12px; padding: 4px 2px; }
+.deadend-icon { color: var(--muted); flex-shrink: 0; line-height: 0; margin-top: 1px; }
+.deadend-title { font-weight: 700; color: var(--fg); font-size: 0.9rem; margin: 0; }
+.deadend-sub { color: var(--muted); font-size: 0.83rem; line-height: 1.45; margin: 4px 0 0; max-width: 34ch; }
+.deadend-inline { color: var(--muted); font-size: 0.86rem; font-style: italic; margin: 8px 0 0; }
 .result-row { margin-bottom: 10px; }
 .result-row:last-child { margin-bottom: 0; }
 .result-row p { color: var(--muted); font-size: 0.83rem; line-height: 1.35; margin: 3px 0 0 24px; }
@@ -2491,6 +2497,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -2590,6 +2597,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -2607,6 +2615,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -2706,6 +2715,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -2723,6 +2733,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -2822,6 +2833,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -2839,6 +2851,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -2938,6 +2951,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -2955,6 +2969,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -3054,6 +3069,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -3071,6 +3087,7 @@ strong { font-weight: 600; }
           <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
         </div>
 
+        
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
           
@@ -3170,6 +3187,7 @@ strong { font-weight: 600; }
           </div>
           
         </div>
+        
       </div>
     </div>
     
@@ -3202,6 +3220,7 @@ strong { font-weight: 600; }
           
           <p class="narrative">The highest relevance result 'IDA WARG Beauty Everyday Shampoo 100 ml' (0.816 relevance) was buried at position #13, while lower-relevance sponsored results occupied the top positions. The top 3 positions contained results with relevance scores of 0.801, 0.781, and 0.789, but the best match was displaced 12 positions down.</p>
           
+          
           <div class="comparison">
             <div class="comparison-col actual">
               <h4>Customer Saw</h4>
@@ -3233,6 +3252,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #13.</p>
           
         </div>
@@ -3249,6 +3269,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance foundation product 'Loreal Paris Infaillible 32H Fresh Wear Foundation' (0.777 relevance) was buried at position #13, while a sponsored setting powder with only 0.379 relevance occupied the #1 spot. Multiple high-relevance foundation products were displaced: True Match foundations (0.773 relevance) at positions #3 and #15, and Maybelline foundations (0.754-0.766 relevance) scattered throughout positions #5, #6, #10, #11.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3281,6 +3302,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #13.</p>
           
         </div>
@@ -3297,6 +3319,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved nail products for the 'naglar' category query, but severely misranked them. The highest relevance product 'Essie Nail Lacquer 13 Mademoiselle' (0.471 relevance) was buried at position #12, while much lower relevance products like 'Depend Gel Builder Soft Pink' (0.295 relevance) and 'Depend Gel Builder Startkit' (0.293 relevance) occupied the top positions. The top 3 results had an average relevance of only 0.342, while the actual top 3 most relevant products averaged 0.450.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3329,6 +3352,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #12.</p>
           
         </div>
@@ -3345,6 +3369,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">All 15 results are generic conditioners and shampoos with no connection to 'balsam': Löwengrip shampoo (#1), By Lyko volume products (#2), L'Oreal conditioners (#3, #8, #9, #13, #14), Waterclouds conditioner (#4), etc. None contain 'balsam' in their titles despite this being a direct product name search.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3377,6 +3402,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #6.</p>
           
         </div>
@@ -3393,6 +3419,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search correctly retrieved relevant perfume products, but the ranking is severely disrupted by sponsored deodorant products. Two deodorants (Dove Whole Body Deodorant at #1 with 0.400 relevance and Löwengrip Count On Me Deodorant at #2 with 0.393 relevance) are ranked above highly relevant perfumes like Isabelle Laurier Roll-on Parfym Vanilla Caramel (0.758 relevance, ranked #4) and multiple Eau de Parfum products with 0.6+ relevance scores.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3425,6 +3452,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #4.</p>
           
         </div>
@@ -3454,6 +3482,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine successfully found relevant shampoo products despite the typo 'shampo', but ranked them poorly. The highest relevance result 'Artègo Good Society 05 Ash Blue Shampo 250 ml' (0.766 relevance) was buried at position #14, while lower-relevance results like 'Loreal Paris Elvital Dream Length Shampoo 250 ml' (0.688 relevance) appeared at #1. Additionally, 'milk_shake No Frizz Allowed Perfecting Shampo 300 ml' (0.758 relevance) was at #6, and 'Alfons Åberg Alfons duschtvål och shampo 200 ml' (0.719 relevance) was at #15.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3486,6 +3515,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #14.</p>
           
         </div>
@@ -3502,6 +3532,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The three highest relevance L'Oréal products were buried deep in results: 'L'Oréal Professionnel Metal DX Mask 250 ml' (0.734 relevance) was ranked #14, 'L'Oréal Professionnel Tecni.Art Flex Pli Spray 190 ml' (0.730 relevance) was ranked #5, and 'L'Oréal Professionnel Metal DX Serie Expert Shampoo 300 ml' (0.723 relevance) was ranked #10. Meanwhile, lower-relevance products like 'Loreal Paris True Match Super-Blendable Foundation 1.N' (0.668 relevance) and 'Loreal Paris Elvital Growth Booster Hair Serum' (0.664 relevance) occupied the top positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3534,6 +3565,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #14.</p>
           
         </div>
@@ -3550,6 +3582,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search correctly identified Kérastase products as relevant to the partial query 'kéras', but ranked them terribly. The highest relevance Kérastase product (Genesis Bain Hydra Fortifiant Shampoo, 0.473 relevance) was buried at position #13, while three irrelevant Lumene products with much lower relevance scores (0.309, 0.312, 0.305) occupied the top 3 positions. All 11 Kérastase products in the results have higher relevance scores than the top-ranked Lumene products.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3582,6 +3615,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #13.</p>
           
         </div>
@@ -3598,6 +3632,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'IDA WARG Beauty Everyday Shampoo 100 ml' (0.443 relevance) was buried at position #13, while lower relevance results like 'Sim Sensitive Blonde Shampoo 250 ml' (0.428 relevance) and 'Sol de Janeiro Brazilian Joia Strengthening + Smoothing Shampoo 295 ml' (0.416 relevance) were ranked #1 and #2 respectively. The search engine correctly identified all relevant shampoo products for the partial query 'sham' but failed to order them by their computed relevance scores.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3630,6 +3665,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #13.</p>
           
         </div>
@@ -3646,6 +3682,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance product 'CeraVe Facial Moisturising Lotion' (0.660 relevance) was ranked #10 instead of #1. Multiple high-relevance skincare products were severely misplaced: 'AXIS-Y Dark Spot Correcting Glow Serum' (0.613 relevance) at #8, 'COSRX Advanced Snail 92 All in one Cream' (0.613 relevance) at #13, and 'Beauty of Joseon Revive Eye Serum' (0.570 relevance) buried at #15. Meanwhile, lower-relevance products like 'Naturie Hatomugi Essence' (0.523 relevance) were promoted to #4.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3678,6 +3715,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #10.</p>
           
         </div>
@@ -3707,6 +3745,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant face cream products for the synonym query 'ansiktskrem', but severely misranked them. The highest relevance products were buried: Kiehl's Ultra Facial Cream (0.781 relevance) was ranked #15, Clinique Moisture Surge (0.777 relevance) was ranked #14, and COSRX Advanced Snail Cream (0.746 relevance) was ranked #8. Meanwhile, lower relevance products dominated the top positions: Dr. Althea Relief Cream (0.656 relevance) was ranked #1, and SKIN1004 Sun serum (0.494 relevance) was ranked #3.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3739,6 +3778,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #15.</p>
           
         </div>
@@ -3755,6 +3795,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The query 'sminkbas' (Swedish for 'foundation') returned makeup accessories like beauty bags, powder puffs, and brushes instead of foundation products. None of the top 15 results appear to be actual foundation/base makeup products. The highest relevance score was only 0.436, and results include items like 'By Lyko Padded Beauty Bag Pink' (#1), 'By Lyko Cushion Cloud Mini Puffs' (#3), and 'Real Techniques Mini Miracle Powder Puff Trio' (#4) - all accessories rather than foundation products.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3787,6 +3828,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3801,6 +3843,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly identified relevant fragrance products for the Swedish synonym 'doft' (scent/fragrance), but ranked them poorly. High-relevance items like 'CLEAN Classic Fresh Linens Eau de Parfum' (0.475 relevance) was buried at position #7, 'HICKAP Soft-touch 48h Antiperspirant Deodorant' (0.471 relevance) was at position #10, and 'Lancôme La Vie est Belle Eau de Parfum' (0.449 relevance) was pushed down to position #14. Meanwhile, lower-relevance body mists like 'HICKAP Miami Peach Body Mist' (0.332 relevance) and 'HICKAP Cashmere Sunday Body Mist' (0.342 relevance) were ranked at positions #4 and #5 respectively.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3833,6 +3876,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3847,6 +3891,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">Several highly relevant hair conditioner products are ranked poorly: 'Ogx Biotin & Collagen Balsam' (relevance 0.688) appears at position #11 instead of #3, 'La'dor NEWPLEX Balancing Conditioner' (relevance 0.598) is at position #15 instead of #9, and 'Loreal Paris Elvital Dream Length Conditioner' (relevance 0.605) is at position #10 instead of #8. Meanwhile, 'På Stell Lærbalsam' (leather conditioner, not hair conditioner) with relevance 0.609 is ranked #2, and a shampoo product 'Kérastase Gloss Absolu Bain Hydra-Glaze Shampoo' with low relevance 0.475 is ranked #4.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3879,6 +3924,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -3906,6 +3952,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">All 15 results are L'Oréal Professionnel products with relevance scores between 0.801-0.836, but the ranking is inverted. The highest relevance product 'L'Oréal Professionnel Pro Longer Serie Expert Professional Conditioner 200 ml' (0.836) appears at position #10, while lower relevance products like 'L'Oréal Professionnel Metal DX Serie Expert Shampoo 500 ml' (0.809) rank at #1. The best result is displaced by 9 positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3938,6 +3985,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #10.</p>
           
         </div>
@@ -3954,6 +4002,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The two highest relevance serums are buried deep in results: 'The Ordinary Soothing & Barrier Support Serum' (relevance 0.852) appears at position #9, and 'The Ordinary Multi-Peptide Lash and Brow Serum' (relevance 0.812) appears at position #7. Meanwhile, lower-relevance products like 'The Ordinary Niacinamide 10% + Zinc 1%' (relevance 0.559) and non-serum products like 'The Ordinary Glycolic Acid 7% Exfoliating Toner' (relevance 0.520) occupy the top positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -3986,6 +4035,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #9.</p>
           
         </div>
@@ -4002,6 +4052,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance score product 'Kérastase Specifique Bain Vital Dermocalm Shampoo 250 ml' (0.887) was ranked #8, while lower relevance bundle products were prioritized at the top. Position #1 shows 'Kérastase Gloss Absolu Bundle' (0.844) and position #3 shows another bundle (0.840), both scoring significantly lower than individual shampoo products that were buried deeper in results.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4034,6 +4085,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #8.</p>
           
         </div>
@@ -4050,6 +4102,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant CC cream products but ranked them poorly. The highest relevance score (0.828) belongs to 'Lumene CC Color Correcting Cream SPF20 0.5 Light' but it was buried at position #8. Meanwhile, completely irrelevant sponsored results dominated the top: 'ACO Balancing Face Cream' (relevance 0.480) at #1 and 'Rexona Whole Body Deo Fresh Citrus Cream' (relevance 0.422) at #2. These products don't contain 'CC' and aren't color correcting creams. The top 3 average relevance was only 0.574, well below the 0.60 threshold.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4082,6 +4135,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #8.</p>
           
         </div>
@@ -4098,6 +4152,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Redken Extreme Length Shampoo 300 ml & Conditioner 300 ml' (0.789 relevance) was ranked at position #7 instead of #1. Multiple products with lower relevance scores were ranked higher: 'Redken Acidic Bonding Concentrate Leave In Treatment 150 ml' (0.773) at #1, 'Redken Extreme Length Shampoo 300 ml' (0.770) at #2, and 'Redken Volume Injection Shampoo 300 ml' (0.766) at #4. The best result was displaced by 6 positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4130,6 +4185,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #7.</p>
           
         </div>
@@ -4159,6 +4215,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search engine correctly retrieved relevant shampoo products for the Swedish spelling 'schampo', but severely misranked them. The three most relevant results were buried deep: 'Barnängen Fukt&Glans Schampo' (0.758 relevance) was ranked #13, 'Barnängen Normal Schampo Ekologiska Örter' (0.719 relevance) was ranked #8, and 'Barnängen Närande Schampo Kokosnöt' (0.711 relevance) was ranked #9. Meanwhile, sponsored results with lower relevance scores (0.648) occupied the top two positions.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4191,6 +4248,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #13.</p>
           
         </div>
@@ -4207,6 +4265,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance product 'Sisley Hair Rituel by Sisley Precious Hair Care Oil 100 ml' (0.652 relevance) was buried at position #11, while lower-scoring products like 'Maria Åkerberg Scalp Treatment Rosemary 125 ml' (0.605 relevance) and 'Maria Åkerberg Scalp Treatment Nettle 125 ml' (0.605 relevance) occupied the top positions. The search engine has all the right products but is ranking them in reverse order of their actual relevance to 'professionell hårvård'.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4239,6 +4298,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #11.</p>
           
         </div>
@@ -4255,6 +4315,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Björn Axén Universal Styling Cream 100 ml' (0.633 relevance) was buried at position #10, while lower-relevance sponsored results dominated the top positions. The #1 result 'Sponsrad Rexona Men Whole Body Deo Ocean Rush Cream 75 ml' had only 0.582 relevance, and the #2 result 'Sponsrad Rexona Whole Body Deo Fresh Citrus Cream 75 ml' had 0.551 relevance. The displacement of 9 positions for the best result indicates critical ranking failure.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4287,6 +4348,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #10.</p>
           
         </div>
@@ -4303,6 +4365,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance product 'Redken Acidic Bonding Concentrate Big Duo for Damaged Hair' (0.707 relevance) was buried at position #10, while much lower relevance products like 'Redken Acidic Bonding Concentrate Shampoo Refill' (0.436 relevance) appeared at position #3. The top 3 positions contained products with relevance scores of 0.496, 0.523, and 0.436, while products with scores of 0.707, 0.594, and 0.590 were ranked at positions #10, #14, and #11 respectively.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4335,6 +4398,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #10.</p>
           
         </div>
@@ -4351,6 +4415,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Women'secret Ws Gold Seduction Gift Set' (0.582 relevance) was buried at position #9, while lower-relevance items like 'Rituals The Ritual of Ayurveda Medium Gift Set' (0.436 relevance) and 'NEONAIL Advent Calendar' (0.395 relevance) were ranked #1 and #7 respectively. The search engine correctly identified relevant gift products for girlfriends but failed to surface the most relevant ones first.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4383,6 +4448,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #9.</p>
           
         </div>
@@ -4412,6 +4478,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance result 'Redken All Soft Shampoo 300 ml' (0.602 relevance) was buried at position #11, while lower-relevance items like 'Redken All Soft Conditioner 500 ml' (0.432 relevance) ranked #2. Multiple shampoo products with higher relevance scores were pushed down: 'Redken Frizz Dismiss Shampoo 300 ml' (0.586 relevance) at #10 and 'Redken All Soft Mega Curls Shampoo 300 ml' (0.559 relevance) at #8.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4444,6 +4511,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #11.</p>
           
         </div>
@@ -4460,6 +4528,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The highest relevance product 'Kérastase Première Premìere Discovery Set for damaged hair' (0.699 relevance) was buried at position #8, while lower relevance products like 'Kérastase Resistance Bain Force Architecte shampoo 250 ml' (0.441 relevance) appeared at position #2. The search correctly retrieved relevant Kérastase products including conditioners/balsams for damaged hair, but failed to prioritize them by relevance score.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4492,6 +4561,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
           <p class="displacement-note">Best match was buried at position #8.</p>
           
         </div>
@@ -4508,6 +4578,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search correctly retrieved relevant Maybelline waterproof mascaras, but the ranking is suboptimal. High-relevance waterproof products are buried: 'Maybelline New York The Colossal Mascara Waterproof Black' (0.855 relevance) appears at position #9 instead of #2, 'Maybelline New York Lash Sensational Firework Waterproof Mascara Very Black' (0.828 relevance) appears at position #13 instead of #4, and 'Maybelline New York Lash Sensational Sky High Mascara Black Waterproof Duo' (0.824 relevance) appears at position #15 instead of #5. Meanwhile, non-waterproof products like 'Maybelline New York Lash Sensational Mascara 01 Very Black' (0.789 relevance) rank higher at position #2.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4540,6 +4611,7 @@ strong { font-weight: 600; }
             </div>
           </div>
           
+          
         </div>
       </div>
       
@@ -4554,6 +4626,7 @@ strong { font-weight: 600; }
         <div class="query-body">
           
           <p class="narrative">The search correctly retrieved relevant CeraVe facial moisturizers, but several high-relevance products were poorly positioned: 'CeraVe Facial Moisturising Lotion SPF30 52 ml' (relevance 0.691) was at position #6 instead of #2, 'CeraVe Facial Moisturising Lotion SPF50 52 ml' (relevance 0.688) was at position #7 instead of #4, and 'CeraVe Facial Moisturizing Lotion PM Duo 2x52ml' (relevance 0.684) was buried at position #13 instead of #6.</p>
+          
           
           <div class="comparison">
             <div class="comparison-col actual">
@@ -4585,6 +4658,7 @@ strong { font-weight: 600; }
               </ol>
             </div>
           </div>
+          
           
         </div>
       </div>
