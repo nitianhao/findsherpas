@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import base64
+import hashlib
 import mimetypes
 import re
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
 
@@ -875,6 +876,59 @@ def _load_logo_svg() -> str:
     )
 
 
+def _build_query_cloud(report: AuditReport, limit: int = 26) -> list[dict]:
+    """A representative, balanced subset of tested queries for a word-cloud display.
+
+    Round-robins across query categories (so every intent type is represented),
+    prefers shorter/punchier phrases, dedupes, then assigns a deterministic size
+    tier per query — skewed so a few render large and most medium/small.
+    """
+    by_cat: dict[str, list[str]] = defaultdict(list)
+    for q in report.queries:
+        # strip surrounding/trailing ASCII quotes so the CSS quote marks don't double up
+        text = (q.query or "").strip().strip('"').strip()
+        if text:
+            by_cat[q.category].append(text)
+
+    # within each category: dedupe (case-insensitive), drop very long phrases, shortest first
+    for cat, items in list(by_cat.items()):
+        seen: set[str] = set()
+        uniq: list[str] = []
+        for s in sorted(items, key=len):
+            key = s.lower()
+            if key not in seen and len(s) <= 40:
+                seen.add(key)
+                uniq.append(s)
+        by_cat[cat] = uniq
+
+    # round-robin across categories for balanced coverage
+    cats = [c for c in by_cat if by_cat[c]]
+    picked: list[str] = []
+    idx = 0
+    while len(picked) < limit and any(by_cat[c] for c in cats):
+        c = cats[idx % len(cats)]
+        if by_cat[c]:
+            picked.append(by_cat[c].pop(0))
+        idx += 1
+
+    def _tier(s: str) -> int:
+        h = int(hashlib.md5(s.encode("utf-8")).hexdigest(), 16) % 100
+        if h < 8:
+            return 5
+        if h < 24:
+            return 4
+        if h < 56:
+            return 3
+        if h < 82:
+            return 2
+        return 1
+
+    items = [{"text": s, "size": _tier(s)} for s in picked]
+    # deterministic, organic order (not grouped by category)
+    items.sort(key=lambda it: hashlib.md5(it["text"].encode("utf-8")).hexdigest())
+    return items
+
+
 def render_html_report(report: AuditReport, screenshot_path: str | Path | None = None) -> str:
     """Render an AuditReport into a self-contained HTML string."""
     # Reconstruct judgments from capability_scores
@@ -913,6 +967,7 @@ def render_html_report(report: AuditReport, screenshot_path: str | Path | None =
         "logo_svg": _load_logo_svg(),
         "screenshot_b64": screenshot_b64,
         "screenshot_mime": screenshot_mime,
+        "query_cloud": _build_query_cloud(report),
         "stats": stats,
         "short_version": _build_short_version(site_name, stats, roadmap_items),
         "coverage_summary": _build_coverage_summary(judgments),

@@ -225,6 +225,46 @@ strong { font-weight: 600; }
   text-decoration: underline;
 }
 
+/* ---- Query word cloud ---- */
+.query-cloud-wrap {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.query-cloud-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.query-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 18px;
+  line-height: 1.3;
+}
+
+.query-cloud .qc {
+  color: var(--muted);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.query-cloud .qc::before { content: "\201C"; opacity: 0.45; }
+.query-cloud .qc::after  { content: "\201D"; opacity: 0.45; }
+
+.query-cloud .qc-1 { font-size: 0.82rem; }
+.query-cloud .qc-2 { font-size: 0.98rem; }
+.query-cloud .qc-3 { font-size: 1.18rem; color: #525252; }
+.query-cloud .qc-4 { font-size: 1.45rem; color: var(--fg); font-weight: 600; }
+.query-cloud .qc-5 { font-size: 1.78rem; color: var(--primary); font-weight: 700; }
+
 /* ---- Report crossroads ---- */
 .report-crossroads {
   padding: 28px 0 36px;
@@ -1537,6 +1577,17 @@ strong { font-weight: 600; }
     {% if screenshot_b64 %}
     <div class="cover-screenshot" style="margin-top: 24px;">
       <img src="data:{{ screenshot_mime }};base64,{{ screenshot_b64 }}" alt="Screenshot of {{ site_name }}" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.10);" />
+    </div>
+    {% endif %}
+
+    {% if query_cloud %}
+    <div class="query-cloud-wrap" aria-label="A representative sample of the queries we tested">
+      <p class="query-cloud-label">A sample of the {{ stats.total_queries }} real customer queries we tested</p>
+      <div class="query-cloud">
+        {% for q in query_cloud %}
+        <span class="qc qc-{{ q.size }}">{{ q.text }}</span>
+        {% endfor %}
+      </div>
     </div>
     {% endif %}
   </div>
