@@ -330,12 +330,66 @@ def _coverage_signal_summary(critical: int, moderate: int, minor: int, passed: i
 
 def _coverage_signal_note(critical: int, moderate: int, minor: int) -> str:
     if critical:
-        return "At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks."
+        return "At least one probe showed a shopper-visible miss. The example below is the clearest case."
     if moderate:
         return "The pattern works in places, but the experience is not consistently clean."
     if minor:
         return "The pattern mostly surfaces relevant products; the remaining work is ranking polish."
     return "No immediate tuning signal appeared in this sample."
+
+
+_SEVERITY_RANK: dict[str, int] = {
+    Severity.CRITICAL.value: 3,
+    Severity.MODERATE.value: 2,
+    Severity.MINOR.value: 1,
+    Severity.PASS.value: 0,
+}
+
+
+def _trim_evidence(text: str, limit: int = 160) -> str:
+    """Collapse whitespace and trim free-text evidence to a single short observation."""
+    cleaned = " ".join((text or "").split())
+    if not cleaned:
+        return ""
+    # Prefer cutting at the first sentence boundary when it yields a usable line.
+    for end in (". ", "; "):
+        idx = cleaned.find(end)
+        if 0 < idx <= limit:
+            return cleaned[: idx + 1].strip()
+    if len(cleaned) <= limit:
+        return cleaned
+    return cleaned[:limit].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+
+
+def _coverage_example(matching: list[QueryJudgment]) -> dict | None:
+    """Pick the single most illustrative failing probe in a calibration row.
+
+    Worst-first: highest severity, then most buried best match, then lowest peak
+    relevance. Returns the real query string plus a one-line observation, or None
+    when nothing in the row failed.
+    """
+    failing = [j for j in matching if j.severity != Severity.PASS.value]
+    if not failing:
+        return None
+
+    worst = max(
+        failing,
+        key=lambda j: (
+            _SEVERITY_RANK.get(j.severity, 0),
+            j.displacement,
+            -j.max_relevance_score,
+        ),
+    )
+
+    detail = _trim_evidence(worst.evidence)
+    if not detail:
+        mode = _FAILURE_MODE_DISPLAY.get(worst.failure_mode, worst.failure_mode)
+        if worst.displacement:
+            detail = f"{mode}: best match buried at position {worst.displacement + 1}."
+        else:
+            detail = f"{mode}."
+
+    return {"query": worst.test_query.query, "detail": detail}
 
 
 def _build_coverage_summary(judgments: list[QueryJudgment]) -> dict:
@@ -374,6 +428,7 @@ def _build_coverage_summary(judgments: list[QueryJudgment]) -> dict:
                 "status": _coverage_status(category, critical, moderate, minor),
                 "signal_summary": _coverage_signal_summary(critical, moderate, minor, passed, total),
                 "signal_note": _coverage_signal_note(critical, moderate, minor),
+                "example": _coverage_example(matching),
                 "pass_rate": f"{pass_rate:.0f}",
                 "passed": passed,
                 "minor": minor,

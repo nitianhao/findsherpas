@@ -468,6 +468,34 @@ strong { font-weight: 600; }
   margin-top: 4px;
 }
 
+.coverage-example {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-left: 3px solid var(--border);
+  background: var(--surface-muted, rgba(127, 127, 127, 0.06));
+  border-radius: 4px;
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.coverage-example .coverage-example-label {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-right: 6px;
+}
+
+.coverage-example .coverage-example-query {
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.coverage-example .coverage-example-detail {
+  color: var(--muted);
+}
+
 .coverage-remedy {
   color: var(--muted);
   font-size: 0.84rem;
@@ -1445,10 +1473,12 @@ strong { font-weight: 600; }
       </div>
     </div>
 
+    
     <blockquote class="worst-example">
       <span class="worst-example-label">Most severe example</span>
       <span class="worst-example-text">A customer searching "Parajumper" gets zero results — a blank page — even though you carry it (e.g. "Parajumpers – PM HYW U02 Jacket" shows up when they instead search "Parajumpers jackets").</span>
     </blockquote>
+    
   </section>
 
   <!-- ================ COVERAGE SUMMARY ================ -->
@@ -1467,7 +1497,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">3 probes reviewed: 3 visible misses.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;Mos Mosh clothing&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search returned zero results for the exact brand name 'Mos Mosh clothing' despite the stats indicating a best result exists at position #16, suggesting the…</span>
+          </div>
+          
           <div>Can customers find an exact product when they already know the name?</div>
         </div>
         <div class="coverage-remedy">
@@ -1483,7 +1520,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">3 probes reviewed: 2 visible misses, 1 polish note.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;sko&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search engine correctly retrieved relevant shoe products for the query 'sko' (Danish for shoes), but severely misranked them.</span>
+          </div>
+          
           <div>Does search understand high-level shopping terms and collection-style queries?</div>
         </div>
         <div class="coverage-remedy">
@@ -1500,6 +1544,13 @@ strong { font-weight: 600; }
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 2 friction points.</span></div>
           <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;tops&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search engine correctly retrieved relevant 'tops' products but ranked them poorly.</span>
+          </div>
+          
           <div>Can colloquial customer language map to the site's actual merchandising categories?</div>
         </div>
         <div class="coverage-remedy">
@@ -1516,6 +1567,13 @@ strong { font-weight: 600; }
         <div class="coverage-meta">
           <div><span class="coverage-evidence">5 probes reviewed: 3 friction points, 2 polish notes.</span></div>
           <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;handbags&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search engine retrieved all relevant handbag products but ranked them poorly.</span>
+          </div>
+          
           <div>Does search connect customer vocabulary to the store's preferred product wording?</div>
         </div>
         <div class="coverage-remedy">
@@ -1531,7 +1589,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">4 probes reviewed: 4 visible misses.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;something elegant for a dinner party&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search engine returned zero results for the query 'something elegant for a dinner party' despite the stats indicating there was a best result at position…</span>
+          </div>
+          
           <div>Can longer, conversational needs be translated into product intent?</div>
         </div>
         <div class="coverage-remedy">
@@ -1547,7 +1612,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 2 visible misses.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;where can i find the best mos mosh clothes&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search returned zero results for the query 'where can i find the best mos mosh clothes' despite the customer clearly looking for Mos Mosh brand clothing.</span>
+          </div>
+          
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
         </div>
         <div class="coverage-remedy">
@@ -1563,7 +1635,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 2 visible misses.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;i am looking for some really nice high quality designer clothing from brands like ganni or mos mosh for women that would be perfect for both casual and more formal occasions&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search engine returned zero results for a query asking for designer women's clothing from brands like Ganni or Mos Mosh suitable for casual and formal…</span>
+          </div>
+          
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
         </div>
         <div class="coverage-remedy">
@@ -1579,7 +1658,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">4 probes reviewed: 4 visible misses.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;something to keep me warm&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The query 'something to keep me warm' returned zero results despite this being a clear request for warming products like jackets, sweaters, blankets, heaters…</span>
+          </div>
+          
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
         </div>
         <div class="coverage-remedy">
@@ -1595,7 +1681,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">5 probes reviewed: 2 visible misses, 2 friction points, 1 polish note.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;Parajumper&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; Query 'Parajumper' returned zero results despite being a common misspelling of 'Parajumpers', a well-known winter jacket brand.</span>
+          </div>
+          
           <div>Does search recover when brand or product terms are misspelled?</div>
         </div>
         <div class="coverage-remedy">
@@ -1612,6 +1705,13 @@ strong { font-weight: 600; }
         <div class="coverage-meta">
           <div><span class="coverage-evidence">3 probes reviewed: 2 friction points, 1 stable result.</span></div>
           <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;børn&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The highest relevance result 'Medicom Toy – Bearbrick Sæt 100% & 400%' (0.520 relevance) was ranked at position #5 instead of #1.</span>
+          </div>
+          
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
         </div>
         <div class="coverage-remedy">
@@ -1627,7 +1727,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">3 probes reviewed: 2 visible misses, 1 polish note.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;mosmosh&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search engine correctly identified and returned all MOS MOSH products, showing it successfully split the merged word 'mosmosh' into 'MOS MOSH'.</span>
+          </div>
+          
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
         </div>
         <div class="coverage-remedy">
@@ -1643,7 +1750,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">3 probes reviewed: 1 visible miss, 1 friction point, 1 polish note.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;Para jumpers&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; Query 'Para jumpers' returned zero results despite the stats indicating a best result exists at position #16.</span>
+          </div>
+          
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
         </div>
         <div class="coverage-remedy">
@@ -1659,7 +1773,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 stable result.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;strik&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The highest relevance result 'Paolo Pecora – Strik' (0.734) was buried at position #10, while lower-scoring results dominated the top positions.</span>
+          </div>
+          
           <div>Do incomplete typed-ahead queries surface plausible products before the full term is entered?</div>
         </div>
         <div class="coverage-remedy">
@@ -1675,7 +1796,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">6 probes reviewed: 2 visible misses, 1 friction point, 3 polish notes.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;Anine Bing clothing&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search returned zero results for 'Anine Bing clothing' despite this being a well-known fashion brand.</span>
+          </div>
+          
           <div>Are brand requests recognized and protected from unrelated results?</div>
         </div>
         <div class="coverage-remedy">
@@ -1692,6 +1820,13 @@ strong { font-weight: 600; }
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 1 friction point, 1 polish note.</span></div>
           <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;sweat&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The highest relevance result 'Coperni – Sweat' (0.688) was ranked #5 instead of #1.</span>
+          </div>
+          
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
         </div>
         <div class="coverage-remedy">
@@ -1707,7 +1842,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 stable result.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;AB-001&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; Query 'AB-001' returned zero results despite this being an exact SKU/model number search.</span>
+          </div>
+          
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
         </div>
         <div class="coverage-remedy">
@@ -1723,7 +1865,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 2 visible misses.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;designer bag under 5000 kr&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search returned zero results for 'designer bag under 5000 kr' despite the displacement metric indicating the best result was at position #16, suggesting…</span>
+          </div>
+          
           <div>Can price constraints be recognized and used as a ranking or filtering signal?</div>
         </div>
         <div class="coverage-remedy">
@@ -1739,7 +1888,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 2 visible misses.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;dress not vintage&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The query 'dress not vintage' returned zero results despite the displacement metric indicating the best result was at position #16, suggesting relevant dress…</span>
+          </div>
+          
           <div>Can the engine respect exclusions such as 'not', 'without', or 'no'?</div>
         </div>
         <div class="coverage-remedy">
@@ -1755,7 +1911,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 polish note.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;size 38 sko&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The query 'size 38 sko' contains a specific size constraint (38) and product type (sko = shoes in Danish), but only 2 results were returned with low relevance…</span>
+          </div>
+          
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
         </div>
         <div class="coverage-remedy">
@@ -1771,7 +1934,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">4 probes reviewed: 2 visible misses, 1 friction point, 1 polish note.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;white leather sneakers size 42&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search returned zero results for the query 'white leather sneakers size 42' despite the stats indicating a best result exists at position #16, suggesting…</span>
+          </div>
+          
           <div>Can search keep multiple requirements active at the same time?</div>
         </div>
         <div class="coverage-remedy">
@@ -1787,7 +1957,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 2 visible misses.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;show me sport clothes&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search returned zero results for the query 'show me sport clothes' despite the stats indicating there is a best result at position #16, suggesting products…</span>
+          </div>
+          
           <div>Are structured attributes like material, size, or product feature extracted from text?</div>
         </div>
         <div class="coverage-remedy">
@@ -1803,7 +1980,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 friction point.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;kjole&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The query 'kjole' (Norwegian/Danish for 'dress') returned zero results despite the displacement metric indicating the best result was at position #16…</span>
+          </div>
+          
           <div>Does search normalize simple wording variants such as singular and plural terms?</div>
         </div>
         <div class="coverage-remedy">
@@ -1820,6 +2004,13 @@ strong { font-weight: 600; }
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 1 friction point, 1 polish note.</span></div>
           <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;colour&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search engine correctly retrieved relevant products containing 'colour' but ranked them poorly.</span>
+          </div>
+          
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
         </div>
         <div class="coverage-remedy">
@@ -1835,7 +2026,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 polish note.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;trendy sneakers&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The highest relevance result 'Philipp Plein – Trendy sneakers med unikt design' (0.910 relevance) was buried at position #11, while much lower relevance…</span>
+          </div>
+          
           <div>Can descriptive shopping language like premium, casual, or comfortable be mapped sensibly?</div>
         </div>
         <div class="coverage-remedy">
@@ -1851,7 +2049,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">4 probes reviewed: 3 visible misses, 1 friction point.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;office outfit&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search returned zero results for 'office outfit' despite this being a common use case query.</span>
+          </div>
+          
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
         </div>
         <div class="coverage-remedy">
@@ -1867,7 +2072,14 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-meta">
           <div><span class="coverage-evidence">2 probes reviewed: 1 visible miss, 1 friction point.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss; the examples below show where the behavior breaks.</div>
+          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;summer sale dresses&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The search engine returned zero results for the query 'summer sale dresses' despite this being a common seasonal shopping query.</span>
+          </div>
+          
           <div>Can seasonal or occasion-based needs map to relevant categories and products?</div>
         </div>
         <div class="coverage-remedy">
