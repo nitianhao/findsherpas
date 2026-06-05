@@ -428,7 +428,6 @@ def build_advanced_diagnostics_sections(
     trust = diagnostics["top_result_trust"]
     drift = diagnostics["attribute_drift"]
     diversity = diagnostics["diversity"]
-    specificity = diagnostics["specificity"]
 
     sections = [
         {
@@ -513,29 +512,6 @@ def build_advanced_diagnostics_sections(
             "remedy": (
                 "Group color/size/variant duplicates under a product-family cap for broad queries. Keep exact product searches variant-rich, "
                 "but diversify broad discovery queries across families, brands, styles, and use cases."
-            ),
-        },
-        {
-            "key": "specificity",
-            "title": "Query Specificity Scaling",
-            "metric": str(len(specificity["ladders"])),
-            "metric_label": "specificity ladders detected",
-            "metric_class": "warn" if not specificity["detected"] else "good",
-            "meaning": (
-                "This compares broad -> specific query chains to see whether search gets better as the shopper becomes clearer. "
-                "High-specificity queries often signal stronger purchase intent, so degradation here is commercially important."
-            ),
-            "result": _specificity_result_text(specificity),
-            "evidence": [
-                (
-                    " -> ".join(f"\"{query}\"" for query in ladder["queries"]) +
-                    (f"; break point: \"{ladder['break_query']}\"" if ladder["break_query"] else "; no clear break point")
-                )
-                for ladder in specificity["ladders"][:3]
-            ],
-            "remedy": (
-                "Generate intentional specificity ladders during query creation, then use them as regression tests. "
-                "When a ladder breaks, inspect the attribute added at that step and tune query parsing or ranking weights for that attribute."
             ),
         },
     ]

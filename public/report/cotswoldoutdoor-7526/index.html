@@ -2322,40 +2322,6 @@ strong { font-weight: 600; }
       </div>
     </div>
     
-    <div class="diagnostic-section">
-      <div class="diagnostic-header">
-        <div>
-          <h3>Query Specificity Scaling</h3>
-          <p class="diagnostic-meaning">This compares broad -> specific query chains to see whether search gets better as the shopper becomes clearer. High-specificity queries often signal stronger purchase intent, so degradation here is commercially important.</p>
-        </div>
-        <div class="diagnostic-score">
-          <div class="diagnostic-metric good">2</div>
-          <div class="diagnostic-score-label">specificity ladders detected</div>
-        </div>
-      </div>
-
-      <div class="diagnostic-body">
-        <div>
-          <p class="case-label">Result</p>
-          <p>Specificity ladders were detected, with no clear relevance drop across the tested chain.</p>
-          
-          <p class="case-label">Evidence</p>
-          <ul class="diagnostic-list">
-            
-            <li>"jackets" -> "waterproof jackets" -> "men's waterproof jackets"; no clear break point</li>
-            
-            <li>"jacket" -> "waterproof jackets" -> "men's waterproof jackets"; no clear break point</li>
-            
-          </ul>
-          
-        </div>
-        <div class="diagnostic-remedy">
-          <p class="case-label">How to remedy it</p>
-          <p>Generate intentional specificity ladders during query creation, then use them as regression tests. When a ladder breaks, inspect the attribute added at that step and tune query parsing or ranking weights for that attribute.</p>
-        </div>
-      </div>
-    </div>
-    
   </section>
 
   <!-- ================ ROADMAP ================ -->
