@@ -750,6 +750,50 @@ def _build_whats_working(judgments: list[QueryJudgment]) -> list[str]:
     return bullets
 
 
+# Concrete intent terms that make a "ranking" title acceptable (not vague).
+_INTENT_TERMS = (
+    "intent", "boost", "price", "brand", "bestseller", "best seller", "sale",
+    "product-type", "product type", "filter", "negative", "facet", "constraint",
+    "synonym", "typo", "fuzzy",
+)
+
+# Canonical concrete title used when a roadmap item is relevance/ranking-vague.
+_REFRAMED_RANKING_TITLE = (
+    "Add an intent & boost layer before keyword ranking "
+    "(brand, product-type, price, and bestseller signals)"
+)
+
+
+def _is_relevance_vague_title(title: str) -> bool:
+    """True when a roadmap title leads with generic 'relevance/ranking' framing.
+
+    Per product decision, the headline fix must never be 'fix relevance scoring'
+    or 'fix the ranking algorithm' — it must name a concrete search behavior.
+    A title mentioning 'ranking' is allowed only if it also names a concrete
+    intent signal (brand, price, bestseller, etc.).
+    """
+    t = title.lower()
+    if "relevance" in t:
+        return True
+    if "ranking algorithm" in t or "sort order" in t or "re-rank" in t or "rerank" in t:
+        return True
+    if "ranking" in t and not any(term in t for term in _INTENT_TERMS):
+        return True
+    return False
+
+
+def _reframe_roadmap_titles(items: list[dict]) -> list[dict]:
+    """Rewrite relevance/ranking-vague titles to a concrete intent-layer title.
+
+    Deterministic guard so a generation slip can never put 'fix relevance
+    ranking' as the first fix to ship. Descriptions are preserved.
+    """
+    for item in items:
+        if _is_relevance_vague_title(item.get("title", "")):
+            item["title"] = _REFRAMED_RANKING_TITLE
+    return items
+
+
 def _parse_roadmap(roadmap_markdown: str) -> list[dict]:
     """Parse the LLM-generated roadmap markdown into structured items."""
     items = []
@@ -805,7 +849,7 @@ def _parse_roadmap(roadmap_markdown: str) -> list[dict]:
             "effort_class": effort_class,
         })
 
-    return items
+    return _reframe_roadmap_titles(items)
 
 
 def _build_benchmarks(stats: dict) -> list[dict]:

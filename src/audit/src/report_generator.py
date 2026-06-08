@@ -380,7 +380,7 @@ A prioritized numbered list of fixes, ordered by business impact (Critical capab
   * Major Project — significant engineering effort, 1-3 months
 - Group related fixes — don't list the same fix twice for different queries
 Keep the roadmap to 5-8 items maximum. Be specific but not overly technical.
-Avoid vague titles like "fix the ranking algorithm" or "improve relevance." Name the concrete search behavior to ship first, such as applying sale, bestseller, price, negative, brand, or product-type intent before generic keyword ranking.
+HARD RULE — the #1 (first) roadmap item must NEVER be framed as fixing "relevance", "relevance score", "relevance ranking", "the ranking algorithm", "sort order", or "re-ranking". Those phrasings are forbidden in any roadmap title. Express the dominant ranking problem instead as a concrete intent/boost layer: name the specific signals to apply BEFORE generic keyword ranking (e.g. brand, product-type, price, bestseller, sale, negative-term intent acting as filters or boosts). A title may mention "ranking" only if it also names at least one of those concrete signals. Apply this even when poor ranking is the single most common failure mode — lead with the concrete behavior, not the abstract metric.
 
 Separate the two sections with this EXACT delimiter on its own line:
 {_SECTION_DELIMITER}"""
