@@ -50,6 +50,7 @@ data/
 # Find Sherpas audit local runtime artifacts
 reports/*
 !reports/report_slugs.json
+src/audit/reports/
 src/audit/.env
 src/audit/.venv/
 src/audit/src/__pycache__/
