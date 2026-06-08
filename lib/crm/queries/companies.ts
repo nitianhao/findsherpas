@@ -96,6 +96,11 @@ export async function getCompanies(filters: CompanyFilters = {}): Promise<{ comp
   if (tag_id) results = results.filter(c => c.tags?.some((t: Tag) => t.id === tag_id));
 
   results.sort((a, b) => {
+    // "Not Interested" companies always sink to the end, regardless of sort.
+    const aNotInterested = a.status === 'not-interested';
+    const bNotInterested = b.status === 'not-interested';
+    if (aNotInterested !== bNotInterested) return aNotInterested ? 1 : -1;
+
     let comparison = 0;
     if (sort_by === 'contacts_count') {
       comparison = (a.contacts_count ?? 0) - (b.contacts_count ?? 0);
