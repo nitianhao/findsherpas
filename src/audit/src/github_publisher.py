@@ -25,7 +25,7 @@ def _company_slug(domain_slug: str) -> str:
     'celiostore_cz'     → 'celiostore'
     """
     slug = re.sub(r"^www_", "", domain_slug)
-    slug = re.sub(r"_(?:com|net|org|io|co_\w+|cz|de|uk|fr|es|pl|at|nl|be|ch|se|dk|fi|no|pt|hu|ro|sk|si)$", "", slug)
+    slug = re.sub(r"_(?:com|net|org|io|co_\w+|cz|de|uk|fr|es|pl|at|nl|be|ch|se|dk|fi|no|pt|hu|ro|sk|si|ie|eu|us|ca|it)$", "", slug)
     return slug
 
 
