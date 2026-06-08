@@ -49,7 +49,7 @@ const columns: ColumnDef<Company>[] = [
     id: "report",
     header: "Report",
     cell: ({ row }) =>
-      row.original.report_url ? (
+      row.original.has_report ? (
         <span className="font-medium text-green-600">YES</span>
       ) : (
         <span className="text-muted-foreground">NO</span>

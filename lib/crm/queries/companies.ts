@@ -1,5 +1,6 @@
 import { adminDb, id } from '@/lib/crm/instant-db';
 import type { Company, CompanyStatus, Tag } from '@/lib/crm/types';
+import { getReportRegistryKeySet, companyHasReport } from '@/lib/crm/queries/report-registry';
 
 interface CompanyFilters {
   search?: string;
@@ -81,9 +82,13 @@ export async function getCompanies(filters: CompanyFilters = {}): Promise<{ comp
     sort_dir = 'desc',
   } = filters;
 
-  const data = await adminDb.query({ companies: { tags: {}, contacts: {} } });
+  const [data, reportKeys] = await Promise.all([
+    adminDb.query({ companies: { tags: {}, contacts: {} } }),
+    getReportRegistryKeySet(),
+  ]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let results = (data.companies as any[]).map(mapCompany);
+  results.forEach(c => { c.has_report = companyHasReport(c, reportKeys); });
 
   if (search) {
     const q = search.toLowerCase();
@@ -95,7 +100,7 @@ export async function getCompanies(filters: CompanyFilters = {}): Promise<{ comp
   if (status) results = results.filter(c => c.status === status);
   if (platform) results = results.filter(c => c.platform === platform);
   if (search_solution) results = results.filter(c => c.search_solution === search_solution);
-  if (report !== undefined) results = results.filter(c => Boolean(c.report_url) === report);
+  if (report !== undefined) results = results.filter(c => Boolean(c.has_report) === report);
   if (tag_id) results = results.filter(c => c.tags?.some((t: Tag) => t.id === tag_id));
 
   results.sort((a, b) => {

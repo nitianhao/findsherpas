@@ -34,6 +34,7 @@ export interface Company {
   updated_at: string;
   contacts_count?: number;
   tags?: Tag[];
+  has_report?: boolean;
 }
 
 export type CompanyStatus = 'prospect' | 'contacted' | 'in-sequence' | 'replied' | 'meeting-booked' | 'won' | 'lost' | 'not-interested';
