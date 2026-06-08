@@ -46,9 +46,14 @@ const columns: ColumnDef<Company>[] = [
     },
   },
   {
-    accessorKey: "platform",
-    header: "Platform",
-    cell: ({ row }) => row.getValue("platform") || <span className="text-muted-foreground">-</span>,
+    id: "report",
+    header: "Report",
+    cell: ({ row }) =>
+      row.original.report_url ? (
+        <span className="font-medium text-green-600">YES</span>
+      ) : (
+        <span className="text-muted-foreground">NO</span>
+      ),
   },
   {
     accessorKey: "search_solution",

@@ -6,6 +6,7 @@ interface CompanyFilters {
   status?: CompanyStatus;
   platform?: string;
   search_solution?: string;
+  report?: boolean;
   tag_id?: string;
   limit?: number;
   offset?: number;
@@ -72,6 +73,7 @@ export async function getCompanies(filters: CompanyFilters = {}): Promise<{ comp
     status,
     platform,
     search_solution,
+    report,
     tag_id,
     limit = 50,
     offset = 0,
@@ -93,6 +95,7 @@ export async function getCompanies(filters: CompanyFilters = {}): Promise<{ comp
   if (status) results = results.filter(c => c.status === status);
   if (platform) results = results.filter(c => c.platform === platform);
   if (search_solution) results = results.filter(c => c.search_solution === search_solution);
+  if (report !== undefined) results = results.filter(c => Boolean(c.report_url) === report);
   if (tag_id) results = results.filter(c => c.tags?.some((t: Tag) => t.id === tag_id));
 
   results.sort((a, b) => {

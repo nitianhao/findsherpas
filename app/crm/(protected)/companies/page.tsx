@@ -19,6 +19,7 @@ export default async function CompaniesPage({
     status?: string;
     platform?: string;
     search_solution?: string;
+    report?: string;
     tag_id?: string;
     sort?: string;
     page?: string;
@@ -36,6 +37,7 @@ export default async function CompaniesPage({
     status: params.status as CompanyStatus | undefined,
     platform: params.platform,
     search_solution: params.search_solution,
+    report: params.report === "yes" ? true : params.report === "no" ? false : undefined,
     tag_id: params.tag_id ? params.tag_id : undefined,
     limit: PAGE_SIZE,
     offset: (page - 1) * PAGE_SIZE,

@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/crm/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/crm/ui/select";
-import { COMPANY_STATUSES, PLATFORMS, SEARCH_SOLUTIONS } from "@/lib/crm/constants";
+import { COMPANY_STATUSES, SEARCH_SOLUTIONS } from "@/lib/crm/constants";
 import { useCallback, useEffect, useState } from "react";
 
 export function CompanyFilters() {
@@ -58,17 +58,16 @@ export function CompanyFilters() {
         </SelectContent>
       </Select>
       <Select
-        value={searchParams.get("platform") || "all"}
-        onValueChange={(value) => updateParams("platform", value ?? "all")}
+        value={searchParams.get("report") || "all"}
+        onValueChange={(value) => updateParams("report", value ?? "all")}
       >
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="All platforms" />
+          <SelectValue placeholder="Report" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All platforms</SelectItem>
-          {PLATFORMS.map((p) => (
-            <SelectItem key={p} value={p}>{p}</SelectItem>
-          ))}
+          <SelectItem value="all">All reports</SelectItem>
+          <SelectItem value="yes">Has report</SelectItem>
+          <SelectItem value="no">No report</SelectItem>
         </SelectContent>
       </Select>
       <Select
