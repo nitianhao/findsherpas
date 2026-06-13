@@ -1,5 +1,6 @@
 import { adminDb } from '@/lib/crm/instant-db';
 import { buildSearchPlatformSentence } from '@/lib/crm/template';
+import { isContactOutreachReady } from '@/lib/crm/outreach-guard';
 import { format } from 'date-fns';
 
 export interface EmailTask {
@@ -38,7 +39,10 @@ export async function getTodaysEmailTasks(): Promise<EmailTask[]> {
   const tasks = (data.events as any[])
     .filter(ev => {
       const scheduledDate = ev.scheduled_date as string;
-      return scheduledDate <= today && ev.enrollment?.status === 'active';
+      if (!(scheduledDate <= today && ev.enrollment?.status === 'active')) return false;
+      // Outreach safety guard: never surface tasks for opted-out, bounced, or
+      // non-verified contacts. Mirrors the hard check in the send route.
+      return isContactOutreachReady(ev.enrollment?.contact ?? {});
     })
     .map(ev => {
       const co = ev.enrollment?.contact?.company ?? {};

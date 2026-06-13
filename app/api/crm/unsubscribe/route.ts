@@ -16,9 +16,14 @@ export async function GET(req: NextRequest) {
 
   const ts = new Date().toISOString();
 
-  // Mark contact as unsubscribed
+  // Mark contact as unsubscribed (status enum + explicit opt-out fields)
   await adminDb.transact(
-    adminDb.tx.contacts[contactId].update({ status: 'unsubscribed', updated_at: ts })
+    adminDb.tx.contacts[contactId].update({
+      status: 'unsubscribed',
+      opt_out: 1,
+      opt_out_at: ts,
+      updated_at: ts,
+    })
   );
 
   // Pause all active enrollments for this contact

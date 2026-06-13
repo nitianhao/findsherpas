@@ -3,11 +3,24 @@
 // ---------------------------------------------------------------------------
 
 const PERSONAL_DOMAINS = new Set([
+  // Global free providers
   "gmail.com", "googlemail.com", "yahoo.com", "yahoo.co.uk",
-  "hotmail.com", "outlook.com", "live.com", "aol.com",
+  "yahoo.de", "yahoo.fr", "yahoo.it", "yahoo.es", "yahoo.se",
+  "hotmail.com", "hotmail.co.uk", "hotmail.de", "hotmail.fr",
+  "outlook.com", "outlook.de", "outlook.fr", "live.com", "aol.com",
   "icloud.com", "me.com", "mac.com", "protonmail.com",
-  "proton.me", "mail.com", "gmx.com", "gmx.de", "web.de",
-  "ymail.com", "msn.com",
+  "proton.me", "pm.me", "mail.com", "gmx.com", "gmx.de", "gmx.net",
+  "gmx.at", "gmx.ch", "web.de", "ymail.com", "msn.com",
+  "zoho.com", "yandex.com", "yandex.ru", "tutanota.com", "fastmail.com",
+  // Czech free providers (CZ market — these are personal, not business)
+  "seznam.cz", "email.cz", "centrum.cz", "centrum.sk", "atlas.cz",
+  "post.cz", "volny.cz", "tiscali.cz", "quick.cz", "chello.cz",
+  // Slovak / regional free providers
+  "zoznam.sk", "azet.sk", "pobox.sk", "post.sk",
+  // Other European free providers
+  "freenet.de", "t-online.de", "orange.fr", "wanadoo.fr", "laposte.net",
+  "free.fr", "libero.it", "virgilio.it", "telia.com", "wp.pl",
+  "o2.pl", "interia.pl", "onet.pl",
 ]);
 
 export function isPersonalDomain(domain: string): boolean {

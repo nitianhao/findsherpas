@@ -45,6 +45,21 @@ const _schema = i.schema({
       status: i.string().indexed(),
       notes: i.any().optional(),
       custom_fields: i.string().optional(),
+      // --- Enrichment provenance & email quality (additive, all optional) ---
+      // email_status: verified | risky | guessed | invalid | unavailable
+      email_status: i.string().optional().indexed(),
+      email_source: i.string().optional(),   // existing_crm | hunter | apollo | ...
+      email_provider: i.string().optional(), // provider that supplied the email
+      email_confidence: i.number().optional(),
+      email_verified_at: i.string().optional(),
+      enriched_at: i.string().optional(),
+      enrichment_source_url: i.string().optional(),
+      company_domain: i.string().optional(),
+      business_relevance_reason: i.string().optional(),
+      // --- GDPR / opt-out (status enum stays source of truth; these add detail) ---
+      opt_out: i.number().optional().indexed(), // 1 = opted out
+      opt_out_at: i.string().optional(),
+      last_contacted_at: i.string().optional(),
       created_at: i.string(),
       updated_at: i.string(),
     }),

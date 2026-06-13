@@ -53,6 +53,7 @@ reports/*
 src/audit/reports/
 src/audit/.env
 src/audit/.venv/
+src/audit/.venv*/
 src/audit/src/__pycache__/
 
 # Report passwords — local only, never committed

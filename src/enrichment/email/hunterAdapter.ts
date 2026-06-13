@@ -163,6 +163,35 @@ export async function searchDomain(
 }
 
 // ---------------------------------------------------------------------------
+// Email Verifier: confirm deliverability of a specific address
+// ---------------------------------------------------------------------------
+
+export interface HunterVerifyResult {
+  /** Hunter status: "valid" | "invalid" | "accept_all" | "webmail" |
+   *  "disposable" | "unknown" | "error". */
+  status: string;
+  score: number | null;
+  errorMessage?: string;
+}
+
+export async function verifyEmail(email: string): Promise<HunterVerifyResult> {
+  const apiKey = getApiKey();
+  try {
+    const res = await fetch(
+      `${BASE_URL}/email-verifier?email=${encodeURIComponent(email)}&api_key=${apiKey}`,
+    );
+    const json = (await res.json()) as any;
+    if (!res.ok) {
+      const msg = json?.errors?.[0]?.details ?? json?.error ?? `HTTP ${res.status}`;
+      return { status: "error", score: null, errorMessage: msg };
+    }
+    return { status: json?.data?.status ?? "unknown", score: json?.data?.score ?? null };
+  } catch (err) {
+    return { status: "error", score: null, errorMessage: String(err) };
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Parse a full name into first + last
 // ---------------------------------------------------------------------------
 

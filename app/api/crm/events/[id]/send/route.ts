@@ -3,6 +3,7 @@ import { adminDb } from '@/lib/crm/instant-db';
 import { sendCrmEmail, buildVars, resolveTemplate, validateEmailDomain } from '@/lib/crm/email';
 import { buildSearchPlatformSentence, buildHeadlineStat } from '@/lib/crm/template';
 import { markEventSent } from '@/lib/crm/queries/events';
+import { getOutreachReadiness } from '@/lib/crm/outreach-guard';
 import type { EmailTask } from '@/lib/crm/queries/tasks';
 
 export async function POST(
@@ -33,6 +34,17 @@ export async function POST(
 
     if (!contact?.email) {
       return NextResponse.json({ error: 'Contact has no email address' }, { status: 400 });
+    }
+
+    // Outreach safety guard (GDPR / opt-out / email quality). Defense-in-depth:
+    // refuse to send to opted-out, bounced, or non-verified contacts even when
+    // an event is sent directly by id.
+    const readiness = getOutreachReadiness(contact);
+    if (!readiness.ready) {
+      return NextResponse.json(
+        { error: `Blocked by outreach guard: ${readiness.reason}`, code: readiness.code },
+        { status: 422 }
+      );
     }
 
     // Email domain validation

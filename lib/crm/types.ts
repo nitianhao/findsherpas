@@ -50,12 +50,33 @@ export interface Contact {
   status: ContactStatus;
   notes: string | null;
   custom_fields: Record<string, string> | null;
+  // Enrichment provenance & email quality (all optional/additive)
+  email_status?: EmailStatus | null;
+  email_source?: string | null;
+  email_provider?: string | null;
+  email_confidence?: number | null;
+  email_verified_at?: string | null;
+  enriched_at?: string | null;
+  enrichment_source_url?: string | null;
+  company_domain?: string | null;
+  business_relevance_reason?: string | null;
+  // GDPR / opt-out
+  opt_out?: number | null;
+  opt_out_at?: string | null;
+  last_contacted_at?: string | null;
   created_at: string;
   updated_at: string;
   company_name?: string;
 }
 
 export type ContactStatus = 'active' | 'bounced' | 'unsubscribed' | 'replied';
+
+/**
+ * Email deliverability classification — mirrors EmailStatus in the enrichment
+ * layer (src/enrichment/email/emailQuality.ts). Only `verified` is eligible for
+ * automated outreach.
+ */
+export type EmailStatus = 'verified' | 'risky' | 'guessed' | 'invalid' | 'unavailable';
 
 export interface Tag {
   id: string;
