@@ -90,28 +90,51 @@ def _gh_api(method: str, path: str, payload: dict | None = None, allow_404: bool
 # Public API
 # ---------------------------------------------------------------------------
 
+def _put_repo_file(repo_path: str, content_bytes: bytes, message: str) -> None:
+    """Create or update a file in the findsherpas repo via the GitHub contents API."""
+    api_path = f"/repos/{_REPO}/contents/{repo_path}"
+    existing = _gh_api("GET", api_path, allow_404=True)
+    sha = existing.get("sha")
+    payload = {
+        "message": message,
+        "content": base64.b64encode(content_bytes).decode("ascii"),
+    }
+    if sha:
+        payload["sha"] = sha
+    _gh_api("PUT", api_path, payload)
+
+
 def publish_report(
     html_content: str,
     domain_slug: str,
     slugs_file: Path = _DEFAULT_SLUGS_FILE,
 ) -> str:
-    """Upload the report and return its unlisted URL."""
+    """Upload the report and return its unlisted URL.
+
+    Pushes BOTH the report HTML and the updated report registry to the repo:
+      1. public/report/{slug}/index.html  → the live findsherpas.com page
+      2. reports/report_slugs.json         → read by the CRM Reports page
+
+    The registry MUST be committed to the repo, not just updated locally — the
+    deployed CRM reads it from the repo, so a local-only update leaves the report
+    invisible in the CRM.
+    """
     company = _company_slug(domain_slug)
-    report_slug = _report_slug(company, slugs_file)
+    report_slug = _report_slug(company, slugs_file)  # updates local report_slugs.json
 
-    repo_path = f"public/report/{report_slug}/index.html"
-    api_path = f"/repos/{_REPO}/contents/{repo_path}"
+    # 1. Report HTML → live page
+    _put_repo_file(
+        f"public/report/{report_slug}/index.html",
+        html_content.encode("utf-8"),
+        f"Add search audit report: {report_slug}",
+    )
 
-    existing = _gh_api("GET", api_path, allow_404=True)
-    sha = existing.get("sha")
+    # 2. Registry → CRM listing (push the same file the CRM reads from the repo)
+    _put_repo_file(
+        "reports/report_slugs.json",
+        slugs_file.read_bytes(),
+        f"Register search audit in report registry: {report_slug}",
+    )
 
-    payload = {
-        "message": f"{'Update' if sha else 'Add'} search audit report: {report_slug}",
-        "content": base64.b64encode(html_content.encode("utf-8")).decode("ascii"),
-    }
-    if sha:
-        payload["sha"] = sha
-
-    _gh_api("PUT", api_path, payload)
     url = f"{_BASE_URL}/{report_slug}/"
     return url
