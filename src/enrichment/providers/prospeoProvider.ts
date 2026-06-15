@@ -38,15 +38,38 @@ export const prospeoProvider: EmailEnrichmentProvider = {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const json = (await res.json()) as any;
 
-      // Out of credits / rate limit → tell the waterfall to move on.
-      const code = json?.error_code ?? json?.message;
-      if (res.status === 429 || code === "INSUFFICIENT_CREDITS") {
-        return { ...base, outcome: "error", creditsExhausted: res.status !== 429,
-          error: `prospeo ${res.status} ${code}`, reasons: [code === "INSUFFICIENT_CREDITS" ? "OUT_OF_CREDITS" : "RATE_LIMIT"] };
-      }
+      // ---- Failure classification -------------------------------------------------
+      // Distinguish "no result" (not an error) from the kinds of failure we care
+      // about — especially OUT_OF_CREDITS vs a transient/rate-limit blip — so the
+      // logs make clear whether Prospeo is exhausted or just flaky.
       if (!res.ok || json?.error) {
-        if (code === "NO_MATCH") return { ...base, reasons: ["prospeo: no match"] };
-        return { ...base, outcome: "error", error: `prospeo ${res.status} ${code ?? ""}` };
+        const errorCode: string | undefined = json?.error_code;
+        const message: string | undefined = json?.message;
+
+        // Not failures — Prospeo simply has no match / not enough input.
+        if (errorCode === "NO_MATCH") return { ...base, reasons: ["prospeo: no match"] };
+        if (errorCode === "INVALID_DATAPOINTS") return { ...base, reasons: ["prospeo: insufficient input data"] };
+
+        let kind: "OUT_OF_CREDITS" | "RATE_LIMIT" | "AUTH_ERROR" | "TRANSIENT_ERROR";
+        let creditsExhausted = false;
+        if (errorCode === "INSUFFICIENT_CREDITS" || res.status === 402) {
+          kind = "OUT_OF_CREDITS";
+          creditsExhausted = true;
+        } else if (res.status === 429 || /rate.?limit/i.test(message ?? "")) {
+          kind = "RATE_LIMIT";
+        } else if (errorCode === "INVALID_API_KEY" || res.status === 401 || res.status === 403) {
+          kind = "AUTH_ERROR";
+        } else {
+          kind = "TRANSIENT_ERROR";
+        }
+
+        return {
+          ...base,
+          outcome: "error",
+          creditsExhausted,
+          error: `prospeo ${kind}: HTTP ${res.status}${errorCode ? ` ${errorCode}` : ""}${message ? ` — ${message}` : ""}`,
+          reasons: [kind],
+        };
       }
 
       const emailObj = json?.response?.person?.email ?? json?.person?.email;
