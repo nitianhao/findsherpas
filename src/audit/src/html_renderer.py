@@ -347,19 +347,36 @@ _SEVERITY_RANK: dict[str, int] = {
 }
 
 
-def _trim_evidence(text: str, limit: int = 160) -> str:
-    """Collapse whitespace and trim free-text evidence to a single short observation."""
+def _trim_evidence(text: str, limit: int = 200) -> str:
+    """Collapse whitespace and trim free-text evidence to a self-contained observation.
+
+    The snippet must never read as cut off mid-sentence. We end on the fullest
+    natural boundary that still fits within ``limit`` — sentence breaks are
+    preferred over clause breaks, and we take the *last* qualifying boundary so
+    the fragment carries as much of the observation as possible. Only when no
+    boundary exists at all do we fall back to a hard word-boundary cut with an
+    ellipsis.
+
+    Note: figures like "0.621" contain a period but no following space, so a
+    boundary requires the trailing space — this prevents cutting inside a score.
+    """
     cleaned = " ".join((text or "").split())
     if not cleaned:
         return ""
-    # Prefer cutting at the first sentence boundary when it yields a usable line.
-    for end in (". ", "; "):
-        idx = cleaned.find(end)
-        if 0 < idx <= limit:
-            return cleaned[: idx + 1].strip()
     if len(cleaned) <= limit:
         return cleaned
-    return cleaned[:limit].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+
+    # Prefer the last sentence break within the limit; fall back to the last
+    # clause break. rfind requires the trailing space so decimals never match.
+    for markers in ((". ", "; "), (", ", ": ")):
+        cut = max((cleaned.rfind(m, 0, limit + 1) for m in markers), default=-1)
+        if cut > 0:
+            fragment = cleaned[:cut].rstrip(" ,;:")
+            if fragment.endswith((".", "!", "?")):
+                return fragment
+            return fragment + "."
+
+    return cleaned[:limit].rsplit(" ", 1)[0].rstrip(" ,;:") + "…"
 
 
 def _coverage_example(matching: list[QueryJudgment]) -> dict | None:

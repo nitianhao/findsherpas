@@ -338,6 +338,9 @@ def _build_narrative_prompt(
 
 Use neutral, professional product terminology throughout: say "results", "items", or "products" — never site-specific terms like "deals", "listings", or "offers" unless directly quoting an actual product title.
 
+Do NOT name or qualify the site's own language in your prose. The reader is a native speaker who already knows the site operates in that language, so tagging terms, queries, or fixes with the language name (e.g. "[Language] category terms", "[Language] character normalization", "[Language] synonym mapping", "conversational [Language] queries") is redundant and reads as robotic, templated output. Refer to the customers' searches, terms, and the specific quoted examples directly — the examples already make the language self-evident. Only reference a language when you are explicitly contrasting two different languages.
+HARD CAP: the site's language name may appear AT MOST ONCE across the entire report (deep dives + roadmap combined), and only if a fix is genuinely language-specific in a way the quoted examples cannot convey on their own. Default to zero uses. Never repeat it across multiple roadmap items.
+
 ## Site
 - **Name**: {site_context.site_name or "(unknown)"}
 - **URL**: {site_context.url}
@@ -437,6 +440,44 @@ def _clean_sonnet_output(text: str, section: str) -> str:
     return result.strip()
 
 
+def _limit_language_mentions(
+    text: str,
+    language: str,
+    already_kept: int,
+    cap: int = 1,
+) -> tuple[str, int]:
+    """Drop redundant mentions of the site's own language beyond ``cap``.
+
+    The reader is a native speaker, so qualifying terms/fixes as "[Language] …"
+    in item after item reads as robotic templating. We keep at most ``cap``
+    mentions in total (threaded across sections via ``already_kept``) and strip
+    the rest, removing the word plus a trailing space so "Swedish synonym
+    mapping" -> "synonym mapping". Returns (cleaned_text, running_count).
+    """
+    if not language:
+        return text, already_kept
+
+    word_re = re.compile(rf"\b{re.escape(language)}\b[ ]?", re.IGNORECASE)
+    count = already_kept
+    pieces: list[str] = []
+    pos = 0
+    for m in word_re.finditer(text):
+        count += 1
+        pieces.append(text[pos:m.start()])
+        if count <= cap:
+            pieces.append(m.group(0))  # keep this mention
+        pos = m.end()
+    pieces.append(text[pos:])
+    result = "".join(pieces)
+
+    # Tidy whitespace/punctuation and re-capitalize any title/sentence whose
+    # leading word was stripped (e.g. "**Swedish synonym…" -> "**synonym…").
+    result = re.sub(r"(?<=\S)[ ]{2,}", " ", result)  # interior only; keep line indents
+    result = re.sub(r"[ ]+([,.;:])", r"\1", result)
+    result = re.sub(r"(\*\*[ ]*)([a-zåäöéü])", lambda mm: mm.group(1) + mm.group(2).upper(), result)
+    return result, count
+
+
 def generate_deep_dives_and_roadmap(
     site_context: SiteContext,
     capability_scores: list[CapabilityScore],
@@ -478,6 +519,14 @@ def generate_deep_dives_and_roadmap(
         logger.warning("Section delimiter not found in Sonnet response — treating all as deep dives")
         deep_dives = _clean_sonnet_output(raw, section="dives")
         roadmap = "Roadmap section was not generated. Review the capability scores above for priority order."
+
+    # Enforce the language-mention cap deterministically: the model tends to tag
+    # nearly every fix with the site's language even when told not to, which
+    # reads as templated. Keep at most the first mention across both sections.
+    language = getattr(site_context, "primary_language", None)
+    if language and language.lower() != "english":
+        deep_dives, kept = _limit_language_mentions(deep_dives, language, already_kept=0)
+        roadmap, _ = _limit_language_mentions(roadmap, language, already_kept=kept)
 
     return deep_dives, roadmap
 

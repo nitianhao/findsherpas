@@ -168,7 +168,7 @@ You MUST ground every query in the REAL site data above. Follow these rules stri
    - SYNONYM: Take a real category/product term and use a natural alternative that a customer might type. Example: "sneakers" instead of "Running Shoes".
    - BRAND_SEARCH: Use actual brand names from the brands list, alone or with a product type.
    - SKU_MODEL_NUMBER: Use realistic model identifiers based on real product names in the context (e.g., "AM90" from "Air Max 90").
-   - DIRECT_MATCH: Use exact product names from the featured items list.
+   - DIRECT_MATCH: Use a FULL, specific product name from the featured items list (typically multi-word — e.g. a brand plus a product line or model). This tests whether a shopper who ALREADY KNOWS the exact product can find it. NEVER use a bare navigation category, a single generic noun, or a product *type* here — a category or type term (e.g. "perfume", "shoes") belongs in BROAD_CATEGORY / CATEGORY_MAPPING, not DIRECT_MATCH. If no specific product name is available in the context, use a real brand + product descriptor rather than a category label.
    - USE_CASE / SEMANTIC_MEANING / NATURAL_LANGUAGE: Ground scenarios in what this site actually sells. Reference real categories and product types.
    - MULTI_ATTRIBUTE: Combine real attributes visible in the context (category + brand, category + descriptor).
    - SUBJECTIVE_ATTRIBUTE: Apply subjective qualifiers to real product categories from the context.
@@ -255,10 +255,33 @@ def _call_sonnet(prompt: str) -> list[dict] | None:
 # ---------------------------------------------------------------------------
 
 
+def _category_mismatch_reason(
+    cat_name: str,
+    query: str,
+    site_context: SiteContext | None,
+) -> str | None:
+    """Return a reason string when a query clearly does not fit its category.
+
+    Catches the common LLM error of filing a generic navigation/category term
+    under DIRECT_MATCH. DIRECT_MATCH must reference a SPECIFIC product the shopper
+    already knows by name; a bare category label produces a misleading "direct
+    match buried at #N" finding. High-precision check: only reject when the query
+    text exactly equals one of the site's real navigation category labels.
+    """
+    if site_context is None or cat_name != QueryCategory.DIRECT_MATCH.value:
+        return None
+    norm = " ".join(query.split()).lower()
+    nav_labels = {" ".join(c.split()).lower() for c in (site_context.nav_categories or [])}
+    if norm in nav_labels:
+        return "DIRECT_MATCH query is a navigation category label, not a specific product"
+    return None
+
+
 def _validate_queries(
     raw_queries: list[dict],
     selected_categories: list[QueryCategory],
     query_counts: dict[QueryCategory, int],
+    site_context: SiteContext | None = None,
 ) -> list[TestQuery]:
     """Validate and convert raw dicts to TestQuery objects.
 
@@ -287,6 +310,13 @@ def _validate_queries(
         # Validate query text
         if not query:
             logger.warning("Empty query string for category %s, skipping", cat_name)
+            continue
+
+        # Reject queries that clearly do not fit their category; the generation
+        # loop will regenerate to refill the category's target count.
+        mismatch = _category_mismatch_reason(cat_name, query, site_context)
+        if mismatch:
+            logger.warning("Skipping '%s' (%s): %s", query, cat_name, mismatch)
             continue
 
         # Dedupe
@@ -415,7 +445,7 @@ def generate_queries(
             attempt,
             MAX_QUERY_GENERATION_ATTEMPTS,
         )
-        batch = _validate_queries(raw_queries, categories_to_generate, counts_to_generate)
+        batch = _validate_queries(raw_queries, categories_to_generate, counts_to_generate, site_context)
         validated = _merge_queries_to_targets(validated, batch, query_counts)
 
         missing = _missing_query_counts(validated, query_counts)

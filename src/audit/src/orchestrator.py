@@ -25,7 +25,6 @@ from src.report_generator import (
 )
 from src.github_publisher import publish_report
 from src.html_renderer import save_html_report
-from src.sales_materials_generator import generate_sales_materials
 from src.scorer import score_results
 
 logger = logging.getLogger(__name__)
@@ -311,8 +310,8 @@ def run_audit(
             "and audit variables on the company."
         )
 
-    # ── Sales materials (exec summary, brief, cold email) ──────────────────
-    generate_sales_materials(report, out_path, slug)
+    # ── Sales materials: removed from the workflow (exec summary, brief,
+    #    cold email are no longer generated). Intentionally skipped. ─────────
 
     # ── Final summary ──────────────────────────────────────────────────
     elapsed = time.time() - start_time

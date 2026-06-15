@@ -25,7 +25,7 @@ All output lands in `reports/{domain_slug}/`.
 | Mode | How | When |
 |------|-----|------|
 | **A — gated manual (default)** | Call individual `src.*` phase functions via `python3 -c`, stopping for approval between phases. See the skill. | Default. Quality-first; lets you correct categories/queries before they poison the report. |
-| **C — automated orchestrator (fast)** | `python -m src.orchestrator "<search-url>"` runs all phases + publish + sales materials in one shot. | When you trust the inputs and want speed/volume. |
+| **C — automated orchestrator (fast)** | `python -m src.orchestrator "<search-url>"` runs all phases through publish in one shot (sales materials removed — see note below). | When you trust the inputs and want speed/volume. |
 
 ```bash
 # Fast mode (orchestrator)
@@ -46,10 +46,10 @@ python -m src.orchestrator "https://www.example.com" --output-dir my_reports
 |-------|--------|--------------|
 | 1 | `src/discovery.py` | Scrapes nav categories, brands, featured items, search URL template |
 | 2 | `src/category_selector.py` | Picks which `QueryCategory` types to test based on `SiteType` |
-| 3 | `src/query_generator.py` | Generates ~20–30 test queries via Claude |
+| 3 | `src/query_generator.py` | Generates ~20–30 test queries via Claude; validates category fit (rejects miscategorized queries, e.g. a nav-category label filed under `DIRECT_MATCH` — see note below) |
 | 4 | `src/fetcher.py` | Fetches search results per query (requests + BeautifulSoup) |
 | 5 | `src/scorer.py` | Scores relevance via Voyage AI `rerank-2-5` |
-| 6 | `src/judge.py` | Assigns `FailureMode`, `Severity`, `displacement`, `evidence` per query via Claude |
+| 6 | `src/judge.py` | Assigns `FailureMode`, `Severity`, `displacement`, `evidence` per query via Claude, then applies a deterministic severity cap for immaterial displacement (see note below) |
 | 7 | `src/report_generator.py` | Builds `AuditReport` with `CapabilityScore` groups + narrative |
 | Publish | `src/github_publisher.py` | Uploads HTML + registers report (see below) |
 | Post | `src/sales_materials_generator.py` | Generates the 3 sales docs from the completed report |
@@ -153,6 +153,8 @@ intentionally cautious and currently renders `Looks fixable without replatformin
 
 ## Sales materials generation
 
+> **Removed from the workflow (2026-06-15).** The audit ends at publish (Phase 8). The orchestrator no longer calls `generate_sales_materials`, and the gated skill no longer includes a sales-materials phase. The `src/sales_materials_generator.py` module is retained for reference/manual use only — the section below documents its internals but it is **not** part of any standard audit run.
+
 ```python
 from src.sales_materials_generator import generate_sales_materials
 generate_sales_materials(report, out_dir, slug)
@@ -227,6 +229,34 @@ AuditReport
 - `"Minor — Niche edge case. Low search volume, but still a gap."`
 - `"Pass — Search handles this well."`
 
+### Materiality cap on ranking severity (`judge.py`)
+
+`displacement` (original rank of the best-scoring result − 1) is **not** a sufficient basis for a `CRITICAL` `POOR_RANKING` call on its own. After the LLM verdict (and in the stats-only fallback), `_ranking_materially_broken()` checks whether reordering by relevance would *materially* change what the shopper sees: if the result the customer saw at original rank #1 is already within `MATERIAL_RANK_GAP` (0.20) of the best available result, the misordering is cosmetic and the severity is capped at `MODERATE`. The judge prompt also surfaces this gap and instructs Claude not to flag immaterial displacement as critical.
+
+This prevents broad/generic queries with tightly clustered, all-relevant results (e.g. a category term where every hit is on-topic) from being over-reported as severe ranking failures. The LLM judge still owns nuance; the cap is a deterministic floor on over-severity.
+
+### Category-fit validation (`query_generator.py`)
+
+`_category_mismatch_reason()` rejects queries that definitionally don't fit their category before they enter the audit. The high-precision check in place: a `DIRECT_MATCH` query (which must reference a *specific product the shopper already knows by name*) whose text exactly equals one of the site's real navigation-category labels is rejected — the generation loop then regenerates to refill that category's target count. This stops generic category terms (e.g. "parfym") from producing misleading "direct match buried at #N" findings.
+
+### Evidence snippet trimming (`html_renderer.py`)
+
+`_trim_evidence()` shortens free-text `evidence` for compact callouts (e.g. the pattern-calibration example). It ends on the fullest natural boundary that fits — sentence breaks preferred, clause breaks as fallback — so a snippet never reads as cut off mid-sentence. Note: decimal figures like `0.621` are not treated as sentence boundaries (a boundary requires a trailing space).
+
+### Advanced diagnostics — zero-result exclusion & non-ASCII tokenization (`advanced_diagnostics.py`)
+
+These diagnostics assess the quality of the *visible* result set, so queries that returned **no results** are excluded from them entirely — `Result Set Purity`, `Top Result Trust`, and `Attribute Drift` all skip zero-result queries. A dead-end query has no #1 result to trust and no products to inspect for attribute coverage; counting it here inflates failure rates and emits nonsensical evidence (`#1 was "No results"`, or "every term dropped"). Dead ends are captured separately by the `ZERO_RESULTS_OR_GARBAGE` failure mode and reflected in the purity denominator. Failure rates are therefore computed over *evaluated* (result-bearing) queries, not all queries. (See also the `feedback_zero_result_stats` rule for executive-summary position stats.)
+
+Tokenization (`_query_terms`) and family-key extraction (`_family_key`) are **Unicode-aware** (`[^\W_]+` / `[^\w\s-]`), not ASCII-only. An ASCII-only regex shreds non-English query words (e.g. Swedish "kläder" → "kl","der"), which then never match product titles and surface as falsely "dropped" attributes. This matters for any non-English site. Note that `Attribute Drift` matches query terms against result **titles** by substring, so attributes expressed only in facets/variants (color, size) or as compound/plural forms ("väskor" vs "axelväska") can legitimately read as low coverage — it is a directional title-coverage signal, not a semantic relevance measure.
+
+**`Attribute Drift` only assesses title-observable terms.** Title-substring matching cannot see attributes carried in facet metadata — colour, size, gender, generic category words almost never appear in product titles — so naively treating them as "dropped" produced a false failure for nearly every multi-attribute query (the original bug). The diagnostic now classifies each query term against the actual result set:
+
+- **preserved** — the term appears in a TOP-5 result title;
+- **dropped** — the term appears *somewhere* in the returned result titles but **not** in the top 5 (matching products exist yet are ranked below — genuine, observable ranking drift);
+- **unverifiable** — the term appears in **no** returned title (a facet/metadata attribute, or the engine returned nothing matching — indistinguishable from titles, so we don't guess).
+
+A query is reported as drift **only** when it has both a *preserved* anchor and a *dropped* observable attribute. Total misses (no preserved anchor) and zero-result queries are left to the failure-mode analysis. When a catalog expresses its attributes only in facets (common for non-fashion retail — e.g. Åhléns), the section honestly reports "no title-observable drift" and counts the `unverifiable` queries rather than inventing dropped attributes. `common_dropped` counts only observable dropped terms from reported rows.
+
 ---
 
 ## Dependencies
@@ -290,3 +320,4 @@ generate_sales_materials(report, Path("reports/example_com"), "example_com_20260
 - No methodology section in exec summary
 - Cold email: starts mid-thought, no "hope this finds you well," no sign-off
 - Tone: peer-to-peer, consultative — the reader is smart and has seen plenty of agency pitches
+- Do not name the site's own language repeatedly. The reader is a native speaker, so qualifying every fix as "[Language] …" reads as templated. The narrative prompt forbids it, and `_limit_language_mentions()` in `report_generator.py` deterministically enforces a cap of one mention across deep dives + roadmap combined (using `site_context.primary_language`), stripping the rest. Let the quoted query examples convey the language instead.

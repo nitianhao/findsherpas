@@ -1,21 +1,3 @@
-<!--
-  ╔══════════════════════════════════════════════════════════════════════╗
-  ║  VERSION-CONTROLLED MIRROR — NOT THE WORKING SKILL                      ║
-  ╠══════════════════════════════════════════════════════════════════════╣
-  ║  This is a read-only backup of the audit operating procedure.          ║
-  ║                                                                        ║
-  ║  The LIVE skill that Claude loads lives at:                            ║
-  ║      ~/.claude/skills/synthetic-search-audit/SKILL.md                  ║
-  ║                                                                        ║
-  ║  To change the procedure: edit the LIVE skill there, then re-copy it   ║
-  ║  here to keep this mirror in sync. Do NOT treat this file as the       ║
-  ║  source of truth, and do NOT place it under any .claude/skills/ path   ║
-  ║  (that would make it load as a second, competing skill).               ║
-  ║                                                                        ║
-  ║  Last synced: 2026-06-13                                               ║
-  ╚══════════════════════════════════════════════════════════════════════╝
--->
-
 ---
 name: synthetic-search-audit
 description: "Use when the user wants to run a search quality audit on a website, test site search functionality, or generate a Prism audit report for any URL in any language."
@@ -28,7 +10,7 @@ Run an 8-phase search quality audit with human review between every phase. Work 
 ## Two run modes
 
 - **Mode A — gated manual (DEFAULT, this skill).** Call the individual phase functions one at a time and stop for approval between every phase. Use this unless explicitly told otherwise.
-- **Mode C — automated orchestrator (fast, opt-in).** `python -m src.orchestrator "<search-url>"` runs every phase + publish + sales materials in one shot, with no gates. Only use when the user explicitly asks for the fast/one-shot run.
+- **Mode C — automated orchestrator (fast, opt-in).** `python -m src.orchestrator "<search-url>"` runs every phase through publish in one shot, with no gates. Only use when the user explicitly asks for the fast/one-shot run. (Sales materials are no longer part of the workflow — if the orchestrator still emits them, ignore/disable that step.)
 
 For how the code is built (models, modules, sales-materials internals, publishing details), see `src/audit/docs/ARCHITECTURE.md`. This skill is the operating procedure; that doc is the code reference.
 
@@ -45,7 +27,6 @@ For how the code is built (models, modules, sales-materials internals, publishin
 | 6 | Judge | `judge_all_queries(queries, scored_results)` | `src.judge` |
 | 7 | Report | `generate_report(site_context, judgments)` | `src.report_generator` |
 | 8 | Publish | `publish_report(html_content, domain_slug)` | `src.github_publisher` |
-| 9 | Sales materials | `generate_sales_materials(report, out_dir, slug)` | `src.sales_materials_generator` |
 
 ## Rules
 
@@ -224,18 +205,6 @@ Verify before reporting done (check the REPO copy, not just local):
 
 Then give the user the live URL and tell them the CRM row appears after the redeploy (~1–2 min).
 
-## Phase 9: Sales materials (do not skip)
+Phase 8 is the final step — once the report is published and registered, the audit is complete.
 
-After publishing, generate the three sales deliverables from the completed report — these are part of every audit, not optional extras. Run:
-
-```python
-from src.sales_materials_generator import generate_sales_materials
-generate_sales_materials(report, out_path, slug)   # report = the AuditReport from Phase 7
-```
-
-This writes into `reports/{domain_slug}/`:
-- `{slug}_exec_summary.docx` — 2-page Executive Summary
-- `{slug}_brief.docx` — 1-page Forwardable Brief
-- `{slug}_cold_email.txt` — cold email opener, 3 versions
-
-Show the user the file paths. For prompt copy, branding, and internal logic, see `src/audit/docs/ARCHITECTURE.md`. (In Mode C the orchestrator runs this automatically at the end of `run_audit()`.)
+> Note: sales-materials generation (formerly Phase 9 — exec summary / forwardable brief / cold email) has been **removed from the workflow**. Do not generate them, and do not treat their absence as an incomplete audit.

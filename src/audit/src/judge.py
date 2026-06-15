@@ -96,6 +96,17 @@ _SEVERITY_EMOJI: dict[str, str] = {
 # ---------------------------------------------------------------------------
 
 
+# Minimum relevance gap between the best available result and the result the
+# customer actually saw first for a misordering to count as a real, visible
+# failure. When the customer's original #1 is already within this gap of the
+# best result, reordering by relevance would not meaningfully change what the
+# shopper sees, so a large positional "displacement" is cosmetic rather than a
+# CRITICAL ranking failure. This stops generic queries with tightly clustered,
+# all-relevant results (e.g. a broad category term where every hit is on-topic)
+# from being flagged as severe ranking failures on displacement alone.
+MATERIAL_RANK_GAP = 0.20
+
+
 def _compute_stats(
     results: list[ScoredResult],
 ) -> tuple[float, float, int]:
@@ -120,6 +131,26 @@ def _compute_stats(
     return max_relevance, top3_avg, displacement
 
 
+def _top1_seen_relevance(results: list[ScoredResult]) -> float:
+    """Relevance of the result shown at the customer's original rank #1."""
+    if not results:
+        return 0.0
+    return min(results, key=lambda r: r.original_rank).relevance_score
+
+
+def _ranking_materially_broken(results: list[ScoredResult]) -> bool:
+    """True when reordering by relevance would materially change the top result.
+
+    False when the customer's original #1 is already within ``MATERIAL_RANK_GAP``
+    of the best available result — i.e. any positional displacement is cosmetic
+    and not a customer-visible ranking failure.
+    """
+    if not results:
+        return False
+    max_relevance = max(r.relevance_score for r in results)
+    return (max_relevance - _top1_seen_relevance(results)) >= MATERIAL_RANK_GAP
+
+
 # ---------------------------------------------------------------------------
 # Prompt construction
 # ---------------------------------------------------------------------------
@@ -136,6 +167,10 @@ def _build_prompt(
 
     cat = QueryCategory(test_query.category)
     cat_desc = CATEGORY_DESCRIPTIONS.get(cat, "")
+
+    top1_seen = _top1_seen_relevance(results)
+    relevance_gap = max_relevance - top1_seen
+    material_gap = MATERIAL_RANK_GAP
 
     # Original ranking (what the customer saw)
     by_original = sorted(results, key=lambda r: r.original_rank)
@@ -177,6 +212,8 @@ def _build_prompt(
 - Max relevance score: {max_relevance:.3f}
 - Top 3 average relevance: {top3_avg:.3f}
 - Displacement of best result: {displacement} positions (best result was at original rank #{displacement + 1})
+- Relevance of the result the customer actually saw FIRST (original #1): {top1_seen:.3f}
+- Relevance gap (best available − customer's #1): {relevance_gap:.3f}
 - Total results: {len(results)}
 
 ## Failure Mode Menu
@@ -184,10 +221,13 @@ Pick the SINGLE most important failure mode:
 {chr(10).join(fm_lines)}
 
 ## Severity Criteria
-- **CRITICAL**: The best matching result is buried 7+ positions deep, OR the max relevance score is below 0.25, OR results are completely unrelated to the query. Business impact: customers searching this way see irrelevant results and leave.
+- **CRITICAL**: The best matching result is buried 7+ positions deep AND the displacement is MATERIAL (see below), OR the max relevance score is below 0.25, OR results are completely unrelated to the query. Business impact: customers searching this way see irrelevant results and leave.
 - **MODERATE**: The best matching result is 3-6 positions deep, OR results are partially relevant but miss a key aspect of the query. Business impact: degraded experience, customers may bounce.
 - **MINOR**: The best matching result is within top 3 but not #1, OR results are mostly relevant with small issues. Business impact: edge case, low frequency.
 - **PASS**: Top 3 results are relevant and well-ordered. Displacement 0-2 and top 3 average above 0.60.
+
+## Materiality of Displacement — READ CAREFULLY
+Displacement only matters when reordering would change what the customer effectively sees. If the **relevance gap (best available − customer's #1)** above is small (roughly < {material_gap:.2f}), the customer already saw a near-best, on-topic result first. In that case a large displacement is COSMETIC — do NOT report it as CRITICAL or as "customers see irrelevant results." This is common for broad/generic queries where every result is topically relevant and scores are tightly clustered. Reserve CRITICAL ranking failures for cases where a genuinely strong match is buried beneath clearly weaker or off-topic results (a large relevance gap).
 
 ## Instructions
 - Pick the SINGLE most important failure mode. If the query passed (results are relevant and well-ordered), use severity PASS and set failure_mode to "OTHER" with failure_mode_explanation "No failure detected — results are relevant and well-ordered."
@@ -267,7 +307,9 @@ def _fallback_judgment(
         sev = Severity.CRITICAL
     elif displacement > 6:
         fm = FailureMode.POOR_RANKING
-        sev = Severity.CRITICAL
+        # Only CRITICAL when the displacement is material (see _ranking_materially_broken);
+        # otherwise the customer already saw a near-best result first.
+        sev = Severity.CRITICAL if _ranking_materially_broken(results) else Severity.MODERATE
     elif displacement > 2:
         fm = FailureMode.POOR_RANKING
         sev = Severity.MODERATE
@@ -322,6 +364,21 @@ def _judge_single_query(
     # Parse severity
     sev_str = llm_response.get("severity", "MODERATE")
     sev = _SEVERITY_MAP.get(sev_str.upper(), Severity.MODERATE)
+
+    # Deterministic guard: a ranking failure cannot be CRITICAL on displacement
+    # alone when the misordering is not material (the customer's original #1 is
+    # already within MATERIAL_RANK_GAP of the best result). Caps over-severe
+    # POOR_RANKING calls on generic queries with clustered, all-relevant results.
+    if (
+        fm == FailureMode.POOR_RANKING
+        and sev == Severity.CRITICAL
+        and not _ranking_materially_broken(results)
+    ):
+        logger.info(
+            "Capping POOR_RANKING CRITICAL -> MODERATE for '%s' (immaterial displacement)",
+            test_query.query,
+        )
+        sev = Severity.MODERATE
 
     # Parse text fields
     evidence = llm_response.get("evidence", "No evidence provided by LLM.")

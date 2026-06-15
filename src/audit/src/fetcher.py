@@ -241,6 +241,12 @@ def _extract_price(element: Tag) -> Optional[str]:
 # ---------------------------------------------------------------------------
 
 
+# Hosts that server-render the product grid but hydrate prices client-side.
+# For these the probe must not short-circuit to STATIC mode (prices would be
+# missing) — always fetch via Playwright so prices load.
+_CLIENT_RENDERED_PRICE_HOSTS = ("bergzeit.de",)
+
+
 def _try_site_specific(soup: BeautifulSoup, url: str, max_results: int) -> list[SearchResult]:
     """Site-specific extraction for known sites. Returns empty list if no match."""
     host = urlparse(url).netloc.lower()
@@ -251,7 +257,98 @@ def _try_site_specific(soup: BeautifulSoup, url: str, max_results: int) -> list[
     if "lyko.com" in host:
         return _try_lyko(soup, max_results)
 
+    if "bergzeit.de" in host:
+        return _try_bergzeit(soup, max_results)
+
     return []
+
+
+def _try_bergzeit(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Extract product cards from Bergzeit search results.
+
+    Bergzeit product anchors use the URL pattern `/p/<slug>/<id>/`. Each product
+    appears multiple times (image link, title link, per-size variant links), so we
+    deduplicate by the numeric product id. The link text carries
+    "<brand> | <category>\\n<product name>\\n<price>".
+    """
+    results: list[SearchResult] = []
+    seen_ids: set[str] = set()
+
+    id_re = re.compile(r"^/p/[^/]+/(\d+)/")
+
+    # Scope to the actual search-results grid. Product cards carry the class
+    # `products-list__product-box`; promo/recommendation `/p/` links (e.g. the
+    # footer voucher teaser) live outside it and must NOT be treated as results.
+    product_links = soup.find_all("a", class_=re.compile(r"products-list__product-box"))
+    if not product_links:
+        # Fallback: anchors inside the results wrapper, excluding footer teasers.
+        wrapper = soup.select_one(
+            ".products-list-page__products-list-wrapper, .products-list-page__main, .products-list"
+        )
+        scope = wrapper or soup
+        product_links = [
+            a for a in scope.find_all("a", href=True)
+            if id_re.match(a.get("href", ""))
+            and not a.find_parent(class_=re.compile(r"footer-teaser"))
+        ]
+
+    for link in product_links:
+        if not id_re.match((link.get("href") or "")):
+            continue
+        href = (link.get("href") or "").split("#")[0].strip()
+        m = id_re.match(href)
+        if not m:
+            continue
+        pid = m.group(1)
+        if pid in seen_ids:
+            continue
+        seen_ids.add(pid)
+
+        url_full = f"https://www.bergzeit.de{href}" if href.startswith("/") else href
+
+        # Title: link text is "<brand> | <category>\n<product name>\n<price>".
+        # Drop a leading "Größen" size-picker label and the trailing price line.
+        raw = link.get_text(separator="\n", strip=True)
+        lines = [ln.strip() for ln in raw.split("\n") if ln.strip()]
+        lines = [ln for ln in lines if ln.lower() != "größen"]
+        # Price: search the whole card container, not just the anchor — on many
+        # cards the price node sits as a sibling of the product-box link.
+        card = link.find_parent(class_=re.compile(r"products-list__element")) or link.parent or link
+        price = _extract_price(card) or _extract_price(link)
+        # Build title from brand/name lines, excluding any line that is just a price
+        title_lines = [
+            ln for ln in lines
+            if not _PRICE_RE.search(ln) and not _PRICE_FALLBACK_RE.search(ln)
+        ]
+        title = " ".join(title_lines).strip()
+        # Strip sale-card noise that trails the product name: discount badges,
+        # availability hints, and size runs (alpha "XXS XS S M L", numeric
+        # "38 39 40", or pipe/decimal "41 | 42 | 42.5").
+        title = re.sub(r"\+?\s*verf[üu]gbar in vielen Gr[öo][ßs]en", "", title, flags=re.I)
+        title = re.sub(r"\bDu sparst\s*(?:bis\s*)?\d+\s*%", "", title, flags=re.I)
+        title = re.sub(
+            r"\b(?:XXS|XS|S|M|L|XL|XXL|XXXL|3XL|4XL)\b(?:\s*\|?\s*(?:XXS|XS|S|M|L|XL|XXL|XXXL|3XL|4XL)\b)+",
+            "",
+            title,
+        )
+        # Trailing numeric/pipe size run (2+ size tokens, optional decimals).
+        title = re.sub(r"(?:\b\d{1,3}(?:[.,]\d)?\b\s*\|?\s*){2,}$", "", title)
+        title = re.sub(r"\s*\|\s*", " | ", title)
+        title = re.sub(r"\s{2,}", " ", title).strip(" |+")
+
+        if not title or len(title) < 4:
+            continue
+
+        results.append(SearchResult(
+            rank=len(results) + 1,
+            title=title[:120],
+            url=url_full,
+            price=price,
+        ))
+        if len(results) >= max_results:
+            break
+
+    return results
 
 
 def _try_lyko(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
@@ -1073,6 +1170,17 @@ def _extract_results(html: str, max_results: int, url: str = "") -> list[SearchR
     """
     global _site_extraction_profile
 
+    # Highest priority: a purpose-built site-specific extractor. It returns []
+    # for unknown hosts (falling through to the cache/sweep below), but when it
+    # matches a known site its hand-tuned output must win over generic cached
+    # selectors — otherwise the probe-learned profile can mask it with lower-
+    # quality results (e.g. priceless generic cards on bergzeit.de).
+    site_soup = BeautifulSoup(html, "html.parser")
+    site_results = _try_site_specific(site_soup, url, max_results)
+    if site_results:
+        logger.debug("Site-specific extractor matched: %d results", len(site_results))
+        return site_results
+
     # Fast path: try cached LLM-generated selectors first
     if _site_extraction_profile is not None:
         cached_results = _extract_with_cached_selectors(html, _site_extraction_profile, max_results)
@@ -1425,6 +1533,45 @@ def _scroll_and_load_more(page) -> None:
     page.wait_for_timeout(2000)
 
 
+def _hydrate_lazy_prices(page, url: str) -> None:
+    """Host-scoped lazy-load trigger for sites that hydrate prices on scroll.
+
+    Bergzeit renders product titles/links immediately but only hydrates the
+    price node (`.product-box-content__price`) once a card scrolls into view.
+    A single jump to the bottom misses mid-page cards, so step through the page
+    incrementally, then wait briefly for the price nodes to populate. No-op for
+    other hosts so the shared fetch path is unaffected.
+    """
+    try:
+        host = urlparse(url).netloc.lower()
+    except Exception:
+        return
+    if "bergzeit.de" not in host:
+        return
+
+    try:
+        height = page.evaluate("document.body.scrollHeight") or 0
+        step = 700
+        pos = 0
+        while pos < height:
+            page.evaluate(f"window.scrollTo(0, {pos})")
+            page.wait_for_timeout(250)
+            pos += step
+            height = page.evaluate("document.body.scrollHeight") or height
+        page.evaluate("window.scrollTo(0, 0)")
+        # Give the price nodes a moment to finish hydrating.
+        try:
+            page.wait_for_function(
+                "document.querySelectorAll('.product-box-content__price').length > 0",
+                timeout=4000,
+            )
+        except Exception:
+            pass
+        page.wait_for_timeout(800)
+    except Exception:
+        pass
+
+
 def _fetch_with_playwright(
     url: str,
     quick_probe: bool = False,
@@ -1526,6 +1673,7 @@ def _fetch_with_playwright(
                 page.wait_for_timeout(2000)
             else:
                 _scroll_and_load_more(page)
+                _hydrate_lazy_prices(page, url)
 
             html = page.content()
             final_url = page.url
@@ -1561,6 +1709,7 @@ def _fetch_on_context(context, url: str, quick_probe: bool = False) -> tuple[str
             page.wait_for_timeout(2000)
         else:
             _scroll_and_load_more(page)
+            _hydrate_lazy_prices(page, url)
 
         html = page.content()
         final_url = page.url
@@ -2109,11 +2258,18 @@ def _probe_site(
     if static_html and _classify_response(static_html, static_code) == "cloudflare":
         logger.info("Probe: Cloudflare on static fetch → falling through to Playwright")
 
+    # Some sites server-render the product grid but inject prices only via
+    # client-side JS, so a static fetch returns products with no prices. For
+    # those hosts the static short-circuit must be skipped — always use
+    # Playwright so prices hydrate.
+    host = urlparse(url).netloc.lower()
+    client_priced_host = any(h in host for h in _CLIENT_RENDERED_PRICE_HOSTS)
+
     # Static accessible, no redirect, and extraction sufficient?
     static_results_cache: list = []
     if not static_redirected and static_code == 200 and len(static_html) > 2000:
         results = _extract_results(static_html, max_results * 2, url=url)
-        if len(results) >= max_results:
+        if len(results) >= max_results and not client_priced_host:
             # Static gives enough results — no need for Playwright.
             results = _validate_results_with_llm(results, query)
             results = results[:max_results]
@@ -2164,12 +2320,23 @@ def _probe_site(
     if static_results_cache and len(results) <= len(static_results_cache):
         static_validated = _validate_results_with_llm(static_results_cache, query)
         static_validated = static_validated[:max_results]
-        if len(static_validated) >= len(results):
+        # Count is not the only quality signal: some sites render prices only
+        # client-side, so static HTML yields the same products but with no prices.
+        # Don't discard the Playwright set when it has strictly better price
+        # coverage — those prices are real data the static fetch can't produce.
+        pw_priced = sum(1 for r in results if r.price)
+        static_priced = sum(1 for r in static_validated if r.price)
+        if len(static_validated) >= len(results) and static_priced >= pw_priced:
             logger.info(
                 "Probe: Playwright/%s (%d results) not better than static (%d) → STATIC mode",
                 pw_browser, len(results), len(static_validated),
             )
             return SiteMode.STATIC, static_validated, static_html, static_redirected
+        if pw_priced > static_priced:
+            logger.info(
+                "Probe: keeping Playwright/%s (%d priced) over static (%d priced) despite equal count",
+                pw_browser, pw_priced, static_priced,
+            )
 
     was_redirected = static_redirected  # Playwright didn't redirect; static might have
     logger.info(

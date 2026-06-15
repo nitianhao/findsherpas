@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>60 Ahlens Searches. 36 Revenue-Risk Moments.</title>
+<title>60 Ahlens Searches. 8 Revenue-Risk Moments.</title>
 <style>
 /* ============================================================
    FIND SHERPAS — Prism Audit Report
@@ -1574,7 +1574,7 @@ strong { font-weight: 600; }
       </div>
     </a>
     <div class="section-label">Search Quality Report</div>
-    <h1>60 Ahlens Searches. 36 Revenue-Risk Moments.</h1>
+    <h1>60 Ahlens Searches. 8 Revenue-Risk Moments.</h1>
     <div class="subtitle">An independent audit of how Ahlens search handles product names, brands, filters, and shopper intent.</div>
     <div class="cover-byline" aria-label="Report author">
       <span class="cover-byline-label">Prepared by</span>
@@ -1597,15 +1597,17 @@ strong { font-weight: 600; }
         
         <span class="qc qc-2">Fiskars sax</span>
         
-        <span class="qc qc-5">smycken</span>
+        <span class="qc qc-3">mode</span>
         
-        <span class="qc qc-3">väska</span>
+        <span class="qc qc-5">smycken</span>
         
         <span class="qc qc-3">L'Oréal</span>
         
         <span class="qc qc-1">Rituals</span>
         
         <span class="qc qc-5">skonhet</span>
+        
+        <span class="qc qc-1">vad har ni för billiga parfymer</span>
         
         <span class="qc qc-3">hårvård</span>
         
@@ -1614,6 +1616,8 @@ strong { font-weight: 600; }
         <span class="qc qc-3">hår vård</span>
         
         <span class="qc qc-2">jag behöver något för torr hud</span>
+        
+        <span class="qc qc-1">Cli</span>
         
         <span class="qc qc-4">Lan</span>
         
@@ -1625,11 +1629,7 @@ strong { font-weight: 600; }
         
         <span class="qc qc-3">hem</span>
         
-        <span class="qc qc-3">L'O</span>
-        
         <span class="qc qc-2">stora väskor svart</span>
-        
-        <span class="qc qc-4">L'Oréal smink röd</span>
         
         <span class="qc qc-2">sko</span>
         
@@ -1675,32 +1675,32 @@ strong { font-weight: 600; }
     <div class="tldr">
       <h3>The short version</h3>
       <p>We tested 60 realistic customer queries against Ahlens's search, live on site. The audit checks whether customers see a relevant top result, not just whether the search engine returns something.</p>
-      <p>This report focuses on the 36 queries where a customer likely hits a dead end: an off-topic result, a missing interpretation, a dropped constraint, or a relevant product buried too far down.</p>
-      <p><strong>The first fix to ship: Implement brand and product-type intent boosting before keyword ranking — Fixes Product Discovery by ensuring brand searches like "L'Oréal" and category searches like "parfym" prioritize exact brand matches and product-type relevance over generic keyword scoring.</strong></p>
+      <p>This report focuses on the 8 queries where a customer likely hits a dead end: an off-topic result, a missing interpretation, a dropped constraint, or a relevant product buried too far down.</p>
+      <p><strong>The first fix to ship: Boost brand matches and exact product-type matches over generic keyword scoring — Fixes Product Discovery failures where customers searching for specific brands or categories see weaker matches first.</strong></p>
     </div>
 
     <div class="hero-stat">
-      <div class="n">60%</div>
+      <div class="n">13%</div>
       <div class="txt">
         <strong>revenue risk.</strong>
-        36 of 60 tested queries cause a likely customer bounce today.
+        8 of 60 tested queries cause a likely customer bounce today.
         <em>These are queries where a customer sees a dead end: no relevant top result, wrong interpretation, or the right product buried too far down.</em>
       </div>
     </div>
 
     <div class="tier-row">
       <div class="tier t-bad">
-        <div class="tv">36</div>
+        <div class="tv">8</div>
         <div class="tl">Revenue risk</div>
         <div class="td">Off-topic top result, missing interpretation, or severe ranking failure. The customer leaves.</div>
       </div>
       <div class="tier t-warn">
-        <div class="tv">23</div>
+        <div class="tv">44</div>
         <div class="tl">Friction</div>
         <div class="td">The query is close, but still creates work: the best match is not surfaced cleanly enough.</div>
       </div>
       <div class="tier t-good">
-        <div class="tv">1</div>
+        <div class="tv">8</div>
         <div class="tl">Working well</div>
         <div class="td">Top result is relevant and ranking is near-optimal. No immediate attention needed.</div>
       </div>
@@ -1708,7 +1708,7 @@ strong { font-weight: 600; }
 
     <div class="stat-row">
       <div class="stat-card">
-        <div class="stat-value warn">82%</div>
+        <div class="stat-value warn">63%</div>
         <div class="stat-label">Right products found, ranked too low</div>
       </div>
       <div class="stat-card">
@@ -1741,20 +1741,20 @@ strong { font-weight: 600; }
 
     <div class="coverage-list">
       
-      <div class="coverage-item hm-gap">
+      <div class="coverage-item hm-mixed">
         <div class="coverage-topline">
           <div class="coverage-capability">Product Discovery</div>
           <div class="coverage-pattern"><span class="coverage-query-type">Direct match</span></div>
           <div class="coverage-status">Exact-match polish</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 1 visible miss, 1 friction point, 2 polish notes.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          <div><span class="coverage-evidence">4 probes reviewed: 1 friction point, 2 polish notes, 1 stable result.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
           
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
             <span class="coverage-example-query">&ldquo;parfym&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The highest relevance product 'Fenjal Creme de Parfum Fluid' (0.621 relevance) was buried at position #11, while much lower relevance products dominated the…</span>
+            <span class="coverage-example-detail">&mdash; The highest relevance result 'Fenjal Creme de Parfum Fluid' (0.621) was buried at position #11, while the customer saw 'Rituals The Ritual of Seshen Hair & Body Mist' (0.426) first.</span>
           </div>
           
           <div>Can customers find an exact product when they already know the name?</div>
@@ -1771,13 +1771,13 @@ strong { font-weight: 600; }
           <div class="coverage-status">Collection routing</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 4 visible misses.</span></div>
+          <div><span class="coverage-evidence">4 probes reviewed: 1 visible miss, 3 friction points.</span></div>
           <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
           
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
-            <span class="coverage-example-query">&ldquo;hälsa&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The highest relevance product 'Rituals Sport 24h Anti-Perspirant Stick' (0.357 relevance) was buried at position #15, while lower-scoring products dominated…</span>
+            <span class="coverage-example-query">&ldquo;barn&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The query 'barn' (Swedish for 'children') should map to children's products, but the engine is treating it as a keyword search in product titles.</span>
           </div>
           
           <div>Does search understand high-level shopping terms and collection-style queries?</div>
@@ -1794,7 +1794,7 @@ strong { font-weight: 600; }
           <div class="coverage-status">Typo recovery</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 3 visible misses, 1 polish note.</span></div>
+          <div><span class="coverage-evidence">4 probes reviewed: 1 visible miss, 2 friction points, 1 stable result.</span></div>
           <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
           
           <div class="coverage-example">
@@ -1810,20 +1810,20 @@ strong { font-weight: 600; }
         </div>
       </div>
       
-      <div class="coverage-item hm-gap">
+      <div class="coverage-item hm-mixed">
         <div class="coverage-topline">
           <div class="coverage-capability">Typo Tolerance</div>
           <div class="coverage-pattern"><span class="coverage-query-type">Merged words</span></div>
           <div class="coverage-status">Pattern tuning</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 4 visible misses.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          <div><span class="coverage-evidence">4 probes reviewed: 4 friction points.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
           
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
             <span class="coverage-example-query">&ldquo;heminredning&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The search engine correctly retrieved relevant home decor products for 'heminredning' (home decoration), but severely misranked them.</span>
+            <span class="coverage-example-detail">&mdash; The best matching result 'Åhléns Home Gåvoset doftljus och doftspridare' (relevance 0.508) was buried at position #12.</span>
           </div>
           
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
@@ -1833,15 +1833,15 @@ strong { font-weight: 600; }
         </div>
       </div>
       
-      <div class="coverage-item hm-gap">
+      <div class="coverage-item hm-mixed">
         <div class="coverage-topline">
           <div class="coverage-capability">Typo Tolerance</div>
           <div class="coverage-pattern"><span class="coverage-query-type">Split word</span></div>
           <div class="coverage-status">Pattern tuning</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 2 visible misses, 1 friction point, 1 polish note.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          <div><span class="coverage-evidence">4 probes reviewed: 3 friction points, 1 polish note.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
           
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
@@ -1856,20 +1856,20 @@ strong { font-weight: 600; }
         </div>
       </div>
       
-      <div class="coverage-item hm-gap">
+      <div class="coverage-item hm-mixed">
         <div class="coverage-topline">
           <div class="coverage-capability">Typo Tolerance</div>
           <div class="coverage-pattern"><span class="coverage-query-type">Special character</span></div>
           <div class="coverage-status">Pattern tuning</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 3 visible misses, 1 friction point.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          <div><span class="coverage-evidence">4 probes reviewed: 3 friction points, 1 polish note.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
           
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
             <span class="coverage-example-query">&ldquo;hem & inredning&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The highest relevance result 'Åhléns Home Bordslampa TOVA' (0.488) was buried at position #8, while lower-scoring items like 'Åhléns Home Termosmugg med…</span>
+            <span class="coverage-example-detail">&mdash; The highest relevance result 'Åhléns Home Bordslampa TOVA' (0.488) was buried at position #8.</span>
           </div>
           
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
@@ -1879,20 +1879,20 @@ strong { font-weight: 600; }
         </div>
       </div>
       
-      <div class="coverage-item hm-gap">
+      <div class="coverage-item hm-mixed">
         <div class="coverage-topline">
           <div class="coverage-capability">Typo Tolerance</div>
           <div class="coverage-pattern"><span class="coverage-query-type">Partial query</span></div>
           <div class="coverage-status">Autocomplete intent</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 3 visible misses, 1 friction point.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          <div><span class="coverage-evidence">4 probes reviewed: 2 friction points, 2 polish notes.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
           
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
             <span class="coverage-example-query">&ldquo;skön&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The highest relevance result 'Biotherm Lait Corporel Moisturizing Body Lotion' (0.387 relevance) was buried at position #14, while lower-scoring results like…</span>
+            <span class="coverage-example-detail">&mdash; The query 'skön' is a prefix of 'skönhet' (beauty category in Swedish), but the engine failed to recognize this category mapping.</span>
           </div>
           
           <div>Do incomplete typed-ahead queries surface plausible products before the full term is entered?</div>
@@ -1909,13 +1909,13 @@ strong { font-weight: 600; }
           <div class="coverage-status">Vocabulary mapping</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 3 visible misses, 1 friction point.</span></div>
+          <div><span class="coverage-evidence">4 probes reviewed: 1 visible miss, 3 friction points.</span></div>
           <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
           
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
-            <span class="coverage-example-query">&ldquo;kosmetika&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The highest relevance result 'Fugazzi PARFUM 1' (0.523 relevance) was buried at position #13, while lower-scoring results like 'Fugazzi VANILLA HAZE' (0.443…</span>
+            <span class="coverage-example-query">&ldquo;klädesplagg&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; Query 'klädesplagg' (Swedish for clothing/garments) returned completely unrelated products: Dermalogica skincare serums and baby pacifier clips. None of the results are clothing items.</span>
           </div>
           
           <div>Does search connect customer vocabulary to the store's preferred product wording?</div>
@@ -1938,7 +1938,7 @@ strong { font-weight: 600; }
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
             <span class="coverage-example-query">&ldquo;vad har ni för billiga parfymer&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The search engine returned zero results for the Swedish query 'vad har ni för billiga parfymer' (what cheap perfumes do you have), despite the stats indicating…</span>
+            <span class="coverage-example-detail">&mdash; The search engine returned zero results for the Swedish query 'vad har ni för billiga parfymer' (what cheap perfumes do you have).</span>
           </div>
           
           <div>Can longer, conversational needs be translated into product intent?</div>
@@ -1948,66 +1948,20 @@ strong { font-weight: 600; }
         </div>
       </div>
       
-      <div class="coverage-item hm-gap">
-        <div class="coverage-topline">
-          <div class="coverage-capability">Brand & Model Search</div>
-          <div class="coverage-pattern"><span class="coverage-query-type">Brand search</span></div>
-          <div class="coverage-status">Brand protection</div>
-        </div>
-        <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 1 visible miss, 3 friction points.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
-          
-          <div class="coverage-example">
-            <span class="coverage-example-label">Example</span>
-            <span class="coverage-example-query">&ldquo;Fiskars sax&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The highest relevance result 'Fiskars Fisksax FF Renew 22 cm' (0.867 relevance) was buried at position #12, while lower-relevance results like 'Fiskars Kökssax…</span>
-          </div>
-          
-          <div>Are brand requests recognized and protected from unrelated results?</div>
-        </div>
-        <div class="coverage-remedy">
-          <strong>Next tuning move:</strong> Detect brand entities and boost or filter to products from the requested brand.
-        </div>
-      </div>
-      
-      <div class="coverage-item hm-gap">
-        <div class="coverage-topline">
-          <div class="coverage-capability">Brand & Model Search</div>
-          <div class="coverage-pattern"><span class="coverage-query-type">Abbreviation</span></div>
-          <div class="coverage-status">Pattern tuning</div>
-        </div>
-        <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 3 visible misses, 1 friction point.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
-          
-          <div class="coverage-example">
-            <span class="coverage-example-label">Example</span>
-            <span class="coverage-example-query">&ldquo;EL&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The highest relevance result 'Å WOMAN Stickade fingervantar JULIE' (0.352) was buried at position #12, while lower-scoring results like 'Slim fit-jeans DNM7…</span>
-          </div>
-          
-          <div>This probe checks whether search handles this customer query pattern predictably.</div>
-        </div>
-        <div class="coverage-remedy">
-          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
-        </div>
-      </div>
-      
-      <div class="coverage-item hm-gap">
+      <div class="coverage-item hm-mixed">
         <div class="coverage-topline">
           <div class="coverage-capability">Shopping Context</div>
           <div class="coverage-pattern"><span class="coverage-query-type">Plural / singular</span></div>
           <div class="coverage-status">Term normalization</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 1 visible miss, 3 friction points.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          <div><span class="coverage-evidence">4 probes reviewed: 2 friction points, 2 stable results.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
           
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
             <span class="coverage-example-query">&ldquo;accessoar&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The highest relevance result 'Caroline Svedbom Leia Bracelet' (0.527) was buried at position #10, while much lower relevance items appeared first: 'Carin…</span>
+            <span class="coverage-example-detail">&mdash; The highest relevance result 'Caroline Svedbom Leia Bracelet' (0.527) was buried at position #10, while much lower scoring results appeared first.</span>
           </div>
           
           <div>Does search normalize simple wording variants such as singular and plural terms?</div>
@@ -2024,7 +1978,7 @@ strong { font-weight: 600; }
           <div class="coverage-status">Occasion matching</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">3 probes reviewed: 2 visible misses, 1 polish note.</span></div>
+          <div><span class="coverage-evidence">3 probes reviewed: 1 visible miss, 1 friction point, 1 stable result.</span></div>
           <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
           
           <div class="coverage-example">
@@ -2040,20 +1994,20 @@ strong { font-weight: 600; }
         </div>
       </div>
       
-      <div class="coverage-item hm-gap">
+      <div class="coverage-item hm-mixed">
         <div class="coverage-topline">
           <div class="coverage-capability">Shopping Context</div>
           <div class="coverage-pattern"><span class="coverage-query-type">Locale variation</span></div>
           <div class="coverage-status">Pattern tuning</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">3 probes reviewed: 2 visible misses, 1 friction point.</span></div>
-          <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
+          <div><span class="coverage-evidence">3 probes reviewed: 3 friction points.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
           
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
             <span class="coverage-example-query">&ldquo;damkläder&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The highest relevance result 'Å WOMAN T-shirt SOFIE' (0.711) was buried at position #15, while the lowest relevance result 'Wera Indoor-jacka JOSEPHINE'…</span>
+            <span class="coverage-example-detail">&mdash; The highest relevance result 'Å WOMAN T-shirt SOFIE' (0.711) was buried at position #15, while the customer saw 'Wera Indoor-jacka JOSEPHINE' (0.566) first.</span>
           </div>
           
           <div>This probe checks whether search handles this customer query pattern predictably.</div>
@@ -2070,13 +2024,13 @@ strong { font-weight: 600; }
           <div class="coverage-status">Constraint stacking</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">4 probes reviewed: 2 friction points, 1 polish note, 1 stable result.</span></div>
+          <div><span class="coverage-evidence">4 probes reviewed: 1 friction point, 2 polish notes, 1 stable result.</span></div>
           <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
           
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
-            <span class="coverage-example-query">&ldquo;L'Oréal smink röd&rdquo;</span>
-            <span class="coverage-example-detail">&mdash; The highest relevance result 'L'Oréal Paris True Match Blush' (0.598) was ranked #7 instead of #1.</span>
+            <span class="coverage-example-query">&ldquo;barn kläder vinter&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The highest relevance result 'ISBJÖRN of Sweden Shaun Hoodie Kids' (0.691) was ranked #5 instead of #1.</span>
           </div>
           
           <div>Can search keep multiple requirements active at the same time?</div>
@@ -2093,7 +2047,7 @@ strong { font-weight: 600; }
           <div class="coverage-status">Attribute parsing</div>
         </div>
         <div class="coverage-meta">
-          <div><span class="coverage-evidence">3 probes reviewed: 1 visible miss, 1 friction point, 1 polish note.</span></div>
+          <div><span class="coverage-evidence">3 probes reviewed: 1 visible miss, 2 friction points.</span></div>
           <div class="coverage-signal-note">At least one probe showed a shopper-visible miss. The example below is the clearest case.</div>
           
           <div class="coverage-example">
@@ -2106,6 +2060,52 @@ strong { font-weight: 600; }
         </div>
         <div class="coverage-remedy">
           <strong>Next tuning move:</strong> Parse attributes into structured facets, then enforce them in ranking or filtering.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-mixed">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Brand & Model Search</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Brand search</span></div>
+          <div class="coverage-status">Brand protection</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">4 probes reviewed: 1 friction point, 2 polish notes, 1 stable result.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;Fiskars sax&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The highest relevance result 'Fiskars Fisksax FF Renew 22 cm' (0.867) was buried at position #12, while lower-scoring results like 'Fiskars Kökssax Classic 18 cm CO' (0.844) appeared at #1.</span>
+          </div>
+          
+          <div>Are brand requests recognized and protected from unrelated results?</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Detect brand entities and boost or filter to products from the requested brand.
+        </div>
+      </div>
+      
+      <div class="coverage-item hm-mixed">
+        <div class="coverage-topline">
+          <div class="coverage-capability">Brand & Model Search</div>
+          <div class="coverage-pattern"><span class="coverage-query-type">Abbreviation</span></div>
+          <div class="coverage-status">Pattern tuning</div>
+        </div>
+        <div class="coverage-meta">
+          <div><span class="coverage-evidence">4 probes reviewed: 2 friction points, 1 polish note, 1 stable result.</span></div>
+          <div class="coverage-signal-note">The pattern works in places, but the experience is not consistently clean.</div>
+          
+          <div class="coverage-example">
+            <span class="coverage-example-label">Example</span>
+            <span class="coverage-example-query">&ldquo;L'O&rdquo;</span>
+            <span class="coverage-example-detail">&mdash; The highest relevance result 'L'Oréal Paris Extraordinary Oil, 100 ml' (0.492) was buried at position #9, while lower-scoring results like 'L'Oréal Paris Telescopic Mascara' (0.461) appeared first.</span>
+          </div>
+          
+          <div>This probe checks whether search handles this customer query pattern predictably.</div>
+        </div>
+        <div class="coverage-remedy">
+          <strong>Next tuning move:</strong> Review the failed examples and add this pattern to the search relevance regression set.
         </div>
       </div>
       
@@ -2124,41 +2124,18 @@ strong { font-weight: 600; }
       
       <div class="improvement-row">
         <div class="improvement-head">
-          <span class="improvement-capability">Typo Tolerance</span>
-          <span class="improvement-grade r-critical">15 at risk</span>
-        </div>
-        <div class="improvement-bar" role="img"
-             aria-label="15 critical · 3 friction · 2 minor, 0% clean of 20 probes">
-          <span class="seg seg-critical" style="flex-grow: 15;" title="15 critical"></span>
-          <span class="seg seg-moderate" style="flex-grow: 3;" title="3 friction"></span>
-          <span class="seg seg-minor" style="flex-grow: 2;" title="2 minor"></span>
-          
-        </div>
-        <div class="improvement-meta">
-          <span class="improvement-counts">15 critical · 3 friction · 2 minor</span>
-          <span class="improvement-sep">·</span>
-          <span class="improvement-clean">0% clean of 20</span>
-          
-          <span class="improvement-sep">·</span>
-          <span class="improvement-issue">mostly poor ranking</span>
-          
-        </div>
-      </div>
-      
-      <div class="improvement-row">
-        <div class="improvement-head">
           <span class="improvement-capability">Language Understanding</span>
-          <span class="improvement-grade r-critical">6 at risk</span>
+          <span class="improvement-grade r-critical">4 at risk</span>
         </div>
         <div class="improvement-bar" role="img"
-             aria-label="6 critical · 1 friction, 0% clean of 7 probes">
-          <span class="seg seg-critical" style="flex-grow: 6;" title="6 critical"></span>
-          <span class="seg seg-moderate" style="flex-grow: 1;" title="1 friction"></span>
+             aria-label="4 critical · 3 friction, 0% clean of 7 probes">
+          <span class="seg seg-critical" style="flex-grow: 4;" title="4 critical"></span>
+          <span class="seg seg-moderate" style="flex-grow: 3;" title="3 friction"></span>
           
           
         </div>
         <div class="improvement-meta">
-          <span class="improvement-counts">6 critical · 1 friction</span>
+          <span class="improvement-counts">4 critical · 3 friction</span>
           <span class="improvement-sep">·</span>
           <span class="improvement-clean">0% clean of 7</span>
           
@@ -2170,20 +2147,43 @@ strong { font-weight: 600; }
       
       <div class="improvement-row">
         <div class="improvement-head">
-          <span class="improvement-capability">Shopping Context</span>
-          <span class="improvement-grade r-critical">5 at risk</span>
+          <span class="improvement-capability">Typo Tolerance</span>
+          <span class="improvement-grade r-critical">1 at risk</span>
         </div>
         <div class="improvement-bar" role="img"
-             aria-label="5 critical · 4 friction · 1 minor, 0% clean of 10 probes">
-          <span class="seg seg-critical" style="flex-grow: 5;" title="5 critical"></span>
-          <span class="seg seg-moderate" style="flex-grow: 4;" title="4 friction"></span>
-          <span class="seg seg-minor" style="flex-grow: 1;" title="1 minor"></span>
-          
+             aria-label="1 critical · 14 friction · 4 minor, 5% clean of 20 probes">
+          <span class="seg seg-critical" style="flex-grow: 1;" title="1 critical"></span>
+          <span class="seg seg-moderate" style="flex-grow: 14;" title="14 friction"></span>
+          <span class="seg seg-minor" style="flex-grow: 4;" title="4 minor"></span>
+          <span class="seg seg-clean" style="flex-grow: 1;" title="1 clean"></span>
         </div>
         <div class="improvement-meta">
-          <span class="improvement-counts">5 critical · 4 friction · 1 minor</span>
+          <span class="improvement-counts">1 critical · 14 friction · 4 minor</span>
           <span class="improvement-sep">·</span>
-          <span class="improvement-clean">0% clean of 10</span>
+          <span class="improvement-clean">5% clean of 20</span>
+          
+          <span class="improvement-sep">·</span>
+          <span class="improvement-issue">mostly poor ranking</span>
+          
+        </div>
+      </div>
+      
+      <div class="improvement-row">
+        <div class="improvement-head">
+          <span class="improvement-capability">Shopping Context</span>
+          <span class="improvement-grade r-critical">1 at risk</span>
+        </div>
+        <div class="improvement-bar" role="img"
+             aria-label="1 critical · 6 friction, 30% clean of 10 probes">
+          <span class="seg seg-critical" style="flex-grow: 1;" title="1 critical"></span>
+          <span class="seg seg-moderate" style="flex-grow: 6;" title="6 friction"></span>
+          
+          <span class="seg seg-clean" style="flex-grow: 3;" title="3 clean"></span>
+        </div>
+        <div class="improvement-meta">
+          <span class="improvement-counts">1 critical · 6 friction</span>
+          <span class="improvement-sep">·</span>
+          <span class="improvement-clean">30% clean of 10</span>
           
           <span class="improvement-sep">·</span>
           <span class="improvement-issue">mostly poor ranking</span>
@@ -2194,42 +2194,19 @@ strong { font-weight: 600; }
       <div class="improvement-row">
         <div class="improvement-head">
           <span class="improvement-capability">Product Discovery</span>
-          <span class="improvement-grade r-critical">5 at risk</span>
+          <span class="improvement-grade r-critical">1 at risk</span>
         </div>
         <div class="improvement-bar" role="img"
-             aria-label="5 critical · 1 friction · 2 minor, 0% clean of 8 probes">
-          <span class="seg seg-critical" style="flex-grow: 5;" title="5 critical"></span>
-          <span class="seg seg-moderate" style="flex-grow: 1;" title="1 friction"></span>
-          <span class="seg seg-minor" style="flex-grow: 2;" title="2 minor"></span>
-          
-        </div>
-        <div class="improvement-meta">
-          <span class="improvement-counts">5 critical · 1 friction · 2 minor</span>
-          <span class="improvement-sep">·</span>
-          <span class="improvement-clean">0% clean of 8</span>
-          
-          <span class="improvement-sep">·</span>
-          <span class="improvement-issue">mostly poor ranking</span>
-          
-        </div>
-      </div>
-      
-      <div class="improvement-row">
-        <div class="improvement-head">
-          <span class="improvement-capability">Brand & Model Search</span>
-          <span class="improvement-grade r-critical">4 at risk</span>
-        </div>
-        <div class="improvement-bar" role="img"
-             aria-label="4 critical · 4 friction, 0% clean of 8 probes">
-          <span class="seg seg-critical" style="flex-grow: 4;" title="4 critical"></span>
+             aria-label="1 critical · 4 friction · 2 minor, 12% clean of 8 probes">
+          <span class="seg seg-critical" style="flex-grow: 1;" title="1 critical"></span>
           <span class="seg seg-moderate" style="flex-grow: 4;" title="4 friction"></span>
-          
-          
+          <span class="seg seg-minor" style="flex-grow: 2;" title="2 minor"></span>
+          <span class="seg seg-clean" style="flex-grow: 1;" title="1 clean"></span>
         </div>
         <div class="improvement-meta">
-          <span class="improvement-counts">4 critical · 4 friction</span>
+          <span class="improvement-counts">1 critical · 4 friction · 2 minor</span>
           <span class="improvement-sep">·</span>
-          <span class="improvement-clean">0% clean of 8</span>
+          <span class="improvement-clean">12% clean of 8</span>
           
           <span class="improvement-sep">·</span>
           <span class="improvement-issue">mostly poor ranking</span>
@@ -2253,6 +2230,29 @@ strong { font-weight: 600; }
           <span class="improvement-counts">1 critical · 3 friction · 2 minor</span>
           <span class="improvement-sep">·</span>
           <span class="improvement-clean">14% clean of 7</span>
+          
+          <span class="improvement-sep">·</span>
+          <span class="improvement-issue">mostly facet not extracted</span>
+          
+        </div>
+      </div>
+      
+      <div class="improvement-row">
+        <div class="improvement-head">
+          <span class="improvement-capability">Brand & Model Search</span>
+          <span class="improvement-grade r-moderate">3 friction</span>
+        </div>
+        <div class="improvement-bar" role="img"
+             aria-label="3 friction · 3 minor, 25% clean of 8 probes">
+          
+          <span class="seg seg-moderate" style="flex-grow: 3;" title="3 friction"></span>
+          <span class="seg seg-minor" style="flex-grow: 3;" title="3 minor"></span>
+          <span class="seg seg-clean" style="flex-grow: 2;" title="2 clean"></span>
+        </div>
+        <div class="improvement-meta">
+          <span class="improvement-counts">3 friction · 3 minor</span>
+          <span class="improvement-sep">·</span>
+          <span class="improvement-clean">25% clean of 8</span>
           
           <span class="improvement-sep">·</span>
           <span class="improvement-issue">mostly poor ranking</span>
@@ -2322,7 +2322,7 @@ strong { font-weight: 600; }
           <p class="diagnostic-meaning">This asks whether the first result is defensible as the best thing to show a customer. A bad #1 is the clearest search failure because it shapes the shopper's first impression.</p>
         </div>
         <div class="diagnostic-score">
-          <div class="diagnostic-metric bad">75%</div>
+          <div class="diagnostic-metric bad">74%</div>
           <div class="diagnostic-score-label">questionable #1 results</div>
         </div>
       </div>
@@ -2330,18 +2330,18 @@ strong { font-weight: 600; }
       <div class="diagnostic-body">
         <div>
           <p class="case-label">Result</p>
-          <p>The first result is not reliable enough: 45 of 60 queries (75%) had a weak, partial, or clearly beaten #1 result.</p>
+          <p>The first result is not reliable enough: 42 of 57 queries (74%) had a weak, partial, or clearly beaten #1 result.</p>
           
           <p class="case-label">Evidence</p>
           <ul class="diagnostic-list">
             
-            <li>"vad har ni för billiga parfymer": #1 was "No results" (score 0.00). No visible result was available.</li>
-            
-            <li>"söker present till min mamma som gillar smink": #1 was "No results" (score 0.00). No visible result was available.</li>
-            
-            <li>"mors dag parfym": #1 was "No results" (score 0.00). No visible result was available.</li>
-            
             <li>"klädesplagg": #1 was "Dermalogica BioLumin C Serum" (score 0.26). The first result is weakly related to the query.</li>
+            
+            <li>"mode": #1 was "Carin Wester Solglasögon SIGNE" (score 0.30). The first result is weakly related to the query.</li>
+            
+            <li>"sommar rea kläder": #1 was "RIKIKI Stråhatt katt RODNA" (score 0.31). The first result is weakly related to the query.</li>
+            
+            <li>"heminredning": #1 was "Lexington Herringbone Towel" (score 0.33). The first result is weakly related to the query.</li>
             
           </ul>
           
@@ -2357,31 +2357,18 @@ strong { font-weight: 600; }
       <div class="diagnostic-header">
         <div>
           <h3>Attribute Drift</h3>
-          <p class="diagnostic-meaning">This decomposes multi-attribute queries to see which terms survive into the top results. It distinguishes right-category-but-wrong-attribute failures from total search failures.</p>
+          <p class="diagnostic-meaning">This decomposes multi-attribute queries to see which terms survive into the top results. It distinguishes right-category-but-wrong-attribute failures from total search failures. Only attributes that appear in product titles can be checked here; attributes carried in facet metadata (colour, size, gender) are assessed in the failure-mode analysis instead.</p>
         </div>
         <div class="diagnostic-score">
-          <div class="diagnostic-metric warn">7</div>
-          <div class="diagnostic-score-label">queries with attribute loss</div>
+          <div class="diagnostic-metric good">0</div>
+          <div class="diagnostic-score-label">queries with attribute drift</div>
         </div>
       </div>
 
       <div class="diagnostic-body">
         <div>
           <p class="case-label">Result</p>
-          <p>7 multi-attribute queries showed some attribute loss in the top 5. The audit separates preserved, partially preserved, and dropped terms so the team can see which part of the query is being lost.</p>
-          
-          <p class="case-label">Evidence</p>
-          <ul class="diagnostic-list">
-            
-            <li>"barn kläder vinter": dropped barn, kl, der, vinter; partially preserved none</li>
-            
-            <li>"barn skor storlek 25": dropped barn, skor, storlek, 25; partially preserved none</li>
-            
-            <li>"stora väskor svart": dropped stora, skor, svart; partially preserved none</li>
-            
-            <li>"svart väska dam": dropped svart, dam; partially preserved none</li>
-            
-          </ul>
+          <p>No title-observable attribute drift detected. In this catalog the constraint attributes (colour, size, gender, category) for 6 multi-attribute queries appear only in facet metadata, not in product titles, so drift cannot be confirmed from result text — attribute handling for these is assessed in the failure-mode analysis (e.g. FACET_NOT_EXTRACTED, CONSTRAINT_DROPPED).</p>
           
         </div>
         <div class="diagnostic-remedy">
@@ -2440,8 +2427,8 @@ strong { font-weight: 600; }
     <div class="roadmap-item">
       <div class="roadmap-number">1</div>
       <div class="roadmap-content">
-        <h4>Implement brand and product-type intent boosting before keyword ranking</h4>
-        <p>Fixes Product Discovery by ensuring brand searches like "L'Oréal" and category searches like "parfym" prioritize exact brand matches and product-type relevance over generic keyword scoring.</p>
+        <h4>Boost brand matches and exact product-type matches over generic keyword scoring</h4>
+        <p>Fixes Product Discovery failures where customers searching for specific brands or categories see weaker matches first.</p>
         <div>
           
           <span class="badge impact-critical">Critical</span>
@@ -2456,14 +2443,14 @@ strong { font-weight: 600; }
     <div class="roadmap-item">
       <div class="roadmap-number">2</div>
       <div class="roadmap-content">
-        <h4>Add Swedish language synonym mapping and category recognition</h4>
-        <p>Fixes Language Understanding by mapping Swedish terms like "barn" (children), "skönhet" (beauty), and "kosmetika" (cosmetics) to their corresponding product categories instead of treating them as keywords.</p>
+        <h4>Add character normalization for Nordic characters (ö/o, å/a, ä/a)</h4>
+        <p>Fixes Typo Tolerance failures where customers can't find products due to missing accent marks.</p>
         <div>
           
           <span class="badge impact-critical">Critical</span>
           
           
-          <span class="badge effort-medium">Medium Effort</span>
+          <span class="badge effort-quick">Quick Win</span>
           
         </div>
       </div>
@@ -2472,8 +2459,8 @@ strong { font-weight: 600; }
     <div class="roadmap-item">
       <div class="roadmap-number">3</div>
       <div class="roadmap-content">
-        <h4>Configure typo tolerance with edit distance algorithms</h4>
-        <p>Fixes Typo Tolerance by recognizing common misspellings like "L'Oréall", "skonhet", and "Lancmoe" and mapping them to the correct brand or category terms.</p>
+        <h4>Implement category mapping for department terms</h4>
+        <p>Fixes Language Understanding failures where "barn," "hem," "skönhet" don't map to their respective product categories.</p>
         <div>
           
           <span class="badge impact-critical">Critical</span>
@@ -2488,14 +2475,14 @@ strong { font-weight: 600; }
     <div class="roadmap-item">
       <div class="roadmap-number">4</div>
       <div class="roadmap-content">
-        <h4>Implement Swedish natural language query processing</h4>
-        <p>Fixes Language Understanding for conversational queries like "jag behöver något för torr hud" by extracting intent (skincare need) and product type (moisturizer) from natural language patterns.</p>
+        <h4>Add synonym dictionary for product categories</h4>
+        <p>Fixes Language Understanding failures where "klädesplagg," "kosmetika," "doft" don't return relevant products.</p>
         <div>
           
           <span class="badge impact-critical">Critical</span>
           
           
-          <span class="badge effort-major">Major Project</span>
+          <span class="badge effort-medium">Medium Effort</span>
           
         </div>
       </div>
@@ -2504,8 +2491,8 @@ strong { font-weight: 600; }
     <div class="roadmap-item">
       <div class="roadmap-number">5</div>
       <div class="roadmap-content">
-        <h4>Add facet extraction for Swedish size, color, and attribute terms</h4>
-        <p>Fixes Filters & Constraints by recognizing terms like "storlek 25", "röd", and "stora" as filter values rather than keywords, then applying them as product attribute filters.</p>
+        <h4>Configure facet extraction for size and color terms</h4>
+        <p>Fixes Filters & Constraints failures where "storlek 25," "röd," "svart" are treated as keywords instead of filters.</p>
         <div>
           
           <span class="badge impact-critical">Critical</span>
@@ -2520,8 +2507,8 @@ strong { font-weight: 600; }
     <div class="roadmap-item">
       <div class="roadmap-number">6</div>
       <div class="roadmap-content">
-        <h4>Configure seasonal and occasion-based query expansion</h4>
-        <p>Fixes Shopping Context by mapping seasonal terms like "mors dag" (Mother's Day) and "sommar rea" (summer sale) to relevant product categories and applying appropriate filters or boosts.</p>
+        <h4>Implement fuzzy matching for brand names and common product terms</h4>
+        <p>Fixes Typo Tolerance failures where simple spelling mistakes return zero results or wrong brands.</p>
         <div>
           
           <span class="badge impact-critical">Critical</span>
@@ -2536,11 +2523,27 @@ strong { font-weight: 600; }
     <div class="roadmap-item">
       <div class="roadmap-number">7</div>
       <div class="roadmap-content">
-        <h4>Implement compound word splitting and recognition for Swedish</h4>
-        <p>Fixes Typo Tolerance for merged words like "barnkläder", "hudvård", and "heminredning" by splitting them into component parts and searching for the combined meaning.</p>
+        <h4>Add natural language processing for gift and seasonal queries</h4>
+        <p>Fixes Shopping Context failures where "mors dag parfym" and "julklappar barn" return zero results.</p>
         <div>
           
-          <span class="badge impact-critical">Critical</span>
+          <span class="badge impact-moderate">Moderate</span>
+          
+          
+          <span class="badge effort-major">Major Project</span>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="roadmap-item">
+      <div class="roadmap-number">8</div>
+      <div class="roadmap-content">
+        <h4>Boost seasonal and occasion-specific products during relevant time periods</h4>
+        <p>Fixes Shopping Context failures where seasonal queries don't prioritize contextually relevant products.</p>
+        <div>
+          
+          <span class="badge impact-moderate">Moderate</span>
           
           
           <span class="badge effort-medium">Medium Effort</span>
@@ -2617,7 +2620,7 @@ strong { font-weight: 600; }
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
-          <p class="case-copy">The search engine returned zero results for the Swedish query 'vad har ni för billiga parfymer' (what cheap perfumes do you have), despite the stats indicating there is a best result at position #16 with relevance score 0.000, suggesting products exist but the engine failed to retrieve any results at all</p>
+          <p class="case-copy">The search engine returned zero results for the Swedish query 'vad har ni för billiga parfymer' (what cheap perfumes do you have). This is a natural language query asking about affordable perfumes, which should be a common product category.</p>
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
@@ -2648,7 +2651,7 @@ strong { font-weight: 600; }
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
-          <p class="case-copy">The search engine returned zero results for the Swedish query 'söker present till min mamma som gillar smink' (looking for a gift for my mom who likes makeup). The query clearly indicates intent to find makeup products as gifts, but the engine failed to return any results at all.</p>
+          <p class="case-copy">The search engine returned zero results for the Swedish query 'söker present till min mamma som gillar smink' (looking for a gift for my mom who likes makeup). Despite the query clearly indicating intent to find makeup products as gifts, no results were returned at all.</p>
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
@@ -2679,7 +2682,7 @@ strong { font-weight: 600; }
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
-          <p class="case-copy">The search returned zero results for the query 'mors dag parfym' (Mother's Day perfume in Swedish). Despite the stats indicating a best result at position #16, the actual results shown are empty, meaning customers see no products at all when searching for Mother's Day perfume gifts.</p>
+          <p class="case-copy">The search returned zero results for the query 'mors dag parfym' (Mother's Day perfume in Swedish). This is a complete search failure - no products were retrieved despite this being a reasonable seasonal gift query combining a major holiday with a common product category.</p>
           <div class="case-fix"><p class="case-label">Fix</p><p>Add query rewriting, token splitting, and fallback matching for this query pattern so customers do not hit a dead end.</p></div>
         </div>
 
@@ -2703,251 +2706,15 @@ strong { font-weight: 600; }
     <div class="risk-case load-more-item">
       <div class="case-topline">
         <span class="case-num">#4</span>
-        <code>damkläder</code>
-        <span class="failure-badge">Poor ranking</span>
-      </div>
-      <p class="case-fail">The best matching result appeared at position #15, after weaker results.</p>
-      <div class="case-grid">
-        <div>
-          <p class="case-label">Evidence</p>
-          <p class="case-copy">The highest relevance result 'Å WOMAN T-shirt SOFIE' (0.711) was buried at position #15, while the lowest relevance result 'Wera Indoor-jacka JOSEPHINE' (0.566) was ranked #1. Multiple high-relevance women's clothing items like 'Å WOMAN Strumpor i angoramix' (0.684) and 'Å WOMAN Badrock MILOU' (0.660) were pushed down to positions #4, #6, #9, and #12 despite being more relevant than items ranked higher.</p>
-          <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
-        </div>
-
-        
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#1</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:57%"></span></span>
-              <span class="rel-score rel-warn">0.57</span>
-            </div>
-            <p>Wera Indoor-jacka JOSEPHINE <span class="result-price">90 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#2</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:61%"></span></span>
-              <span class="rel-score rel-warn">0.61</span>
-            </div>
-            <p>Slim fit-jeans DNM7 03 <span class="result-price">120 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#3</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:61%"></span></span>
-              <span class="rel-score rel-warn">0.61</span>
-            </div>
-            <p>Slim fit-jeans DNM7 03 <span class="result-price">120 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#4</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:68%"></span></span>
-              <span class="rel-score rel-warn">0.68</span>
-            </div>
-            <p>Å WOMAN Strumpor i angoramix <span class="result-price">39 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#5</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:61%"></span></span>
-              <span class="rel-score rel-warn">0.61</span>
-            </div>
-            <p>Carin Wester T-shirt SIKA <span class="result-price">150 kr</span></p>
-          </div>
-          
-        </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#15</span>
-              <span class="rel-track"><span class="rel-fill rel-good" style="width:71%"></span></span>
-              <span class="rel-score rel-good">0.71</span>
-            </div>
-            <p>Å WOMAN T-shirt SOFIE <span class="result-price">74 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#4</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:68%"></span></span>
-              <span class="rel-score rel-warn">0.68</span>
-            </div>
-            <p>Å WOMAN Strumpor i angoramix <span class="result-price">39 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#6</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:66%"></span></span>
-              <span class="rel-score rel-warn">0.66</span>
-            </div>
-            <p>Å WOMAN Badrock MILOU <span class="result-price">299 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#9</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:66%"></span></span>
-              <span class="rel-score rel-warn">0.66</span>
-            </div>
-            <p>Å WOMAN Badrock MILOU <span class="result-price">299 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#12</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:66%"></span></span>
-              <span class="rel-score rel-warn">0.66</span>
-            </div>
-            <p>Å WOMAN Badrock MILOU <span class="result-price">299 kr</span></p>
-          </div>
-          
-        </div>
-        
-      </div>
-    </div>
-    
-    <div class="risk-case load-more-item">
-      <div class="case-topline">
-        <span class="case-num">#5</span>
-        <code>hälsa</code>
-        <span class="failure-badge">Poor ranking</span>
-      </div>
-      <p class="case-fail">The best matching result appeared at position #15, after weaker results.</p>
-      <div class="case-grid">
-        <div>
-          <p class="case-label">Evidence</p>
-          <p class="case-copy">The highest relevance product 'Rituals Sport 24h Anti-Perspirant Stick' (0.357 relevance) was buried at position #15, while lower-scoring products dominated the top positions. The #1 result 'Rituals The Ritual of Ayurveda - Medium Gift Set 2025' had only 0.348 relevance, and the #2 result 'Pukka Mixask Green Collection Örtte' had just 0.277 relevance. Multiple products with relevance scores above 0.350 were ranked below position #10.</p>
-          <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
-        </div>
-
-        
-        <div class="results-panel">
-          <p class="case-label">Customer saw</p>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#1</span>
-              <span class="rel-track"><span class="rel-fill rel-bad" style="width:35%"></span></span>
-              <span class="rel-score rel-bad">0.35</span>
-            </div>
-            <p>Rituals The Ritual of Ayurveda - Medium Gift Set 2025 <span class="result-price">314 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#2</span>
-              <span class="rel-track"><span class="rel-fill rel-bad" style="width:28%"></span></span>
-              <span class="rel-score rel-bad">0.28</span>
-            </div>
-            <p>Pukka Mixask Green Collection Örtte <span class="result-price">40 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#3</span>
-              <span class="rel-track"><span class="rel-fill rel-bad" style="width:35%"></span></span>
-              <span class="rel-score rel-bad">0.35</span>
-            </div>
-            <p>Rituals The Ritual of Hammam Hand Wash <span class="result-price">119 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#4</span>
-              <span class="rel-track"><span class="rel-fill rel-bad" style="width:34%"></span></span>
-              <span class="rel-score rel-bad">0.34</span>
-            </div>
-            <p>Rituals The Ritual of Sakura Body Lotion Mousse <span class="result-price">119 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#5</span>
-              <span class="rel-track"><span class="rel-fill rel-bad" style="width:30%"></span></span>
-              <span class="rel-score rel-bad">0.30</span>
-            </div>
-            <p>Rituals Trial Set Homme 2022 <span class="result-price">172 kr</span></p>
-          </div>
-          
-        </div>
-
-        <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#15</span>
-              <span class="rel-track"><span class="rel-fill rel-bad" style="width:36%"></span></span>
-              <span class="rel-score rel-bad">0.36</span>
-            </div>
-            <p>Rituals Sport 24h Anti-Perspirant Stick <span class="result-price">97 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#13</span>
-              <span class="rel-track"><span class="rel-fill rel-bad" style="width:36%"></span></span>
-              <span class="rel-score rel-bad">0.36</span>
-            </div>
-            <p>Rituals The Ritual of Ayurveda - Large Gift Set 2025 <span class="result-price">524 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#12</span>
-              <span class="rel-track"><span class="rel-fill rel-bad" style="width:35%"></span></span>
-              <span class="rel-score rel-bad">0.35</span>
-            </div>
-            <p>Rituals Sweet Jasmine Hand Balm <span class="result-price">142 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#3</span>
-              <span class="rel-track"><span class="rel-fill rel-bad" style="width:35%"></span></span>
-              <span class="rel-score rel-bad">0.35</span>
-            </div>
-            <p>Rituals The Ritual of Hammam Hand Wash <span class="result-price">119 kr</span></p>
-          </div>
-          
-          <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#1</span>
-              <span class="rel-track"><span class="rel-fill rel-bad" style="width:35%"></span></span>
-              <span class="rel-score rel-bad">0.35</span>
-            </div>
-            <p>Rituals The Ritual of Ayurveda - Medium Gift Set 2025 <span class="result-price">314 kr</span></p>
-          </div>
-          
-        </div>
-        
-      </div>
-    </div>
-    
-    <div class="risk-case load-more-item">
-      <div class="case-topline">
-        <span class="case-num">#6</span>
-        <code>Lancmoe</code>
-        <span class="failure-badge">Poor ranking</span>
+        <code>barn skor storlek 25</code>
+        <span class="failure-badge">Facet not extracted</span>
       </div>
       <p class="case-fail">The best matching result appeared at position #14, after weaker results.</p>
       <div class="case-grid">
         <div>
           <p class="case-label">Evidence</p>
-          <p class="case-copy">The search engine correctly handled the typo 'Lancmoe' and retrieved all Lancôme products, but severely misranked them. The highest relevance result 'Lancôme Renergie Multi-Lift Lifting Firming Anti-Wrinkle Night Cream' (0.609 relevance) was buried at position #14, while lower-scoring mascara products like 'Lancôme Le 8 Hypnose Mascara Noir Grenat' (0.586 relevance) appeared at #1. Multiple high-scoring products were displaced: 'Lancôme Lash Idole Mascara' (0.594) at #6, 'Lancôme Bi-Facil Lotion Instant Cleanser' (0.594) at #8, and 'Lancôme Rénergie H.C.F. Triple Serum' (0.594) at #13.</p>
-          <div class="case-fix"><p class="case-label">Fix</p><p>Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set.</p></div>
+          <p class="case-copy">The query 'barn skor storlek 25' contains 'storlek 25' (size 25) which should be extracted as a size filter, but the engine treated it as keywords. The best matching result 'Adidas Originals Samba OG Skor Barn' (relevance 0.562) was buried at position #14, while generic sneakers without clear children's sizing like 'Tango Pax sneaker' (relevance 0.367) ranked #1-2. The relevance gap of 0.195 shows customers saw significantly weaker matches first.</p>
+          <div class="case-fix"><p class="case-label">Fix</p><p>Extract this as a structured facet and use it as a ranking/filtering signal instead of treating it as loose text.</p></div>
         </div>
 
         
@@ -2957,46 +2724,46 @@ strong { font-weight: 600; }
           <div class="result-row">
             <div class="rel-line">
               <span class="rel-rank">#1</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:59%"></span></span>
-              <span class="rel-score rel-warn">0.59</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:37%"></span></span>
+              <span class="rel-score rel-bad">0.37</span>
             </div>
-            <p>Lancôme Le 8 Hypnose Mascara Noir Grenat <span class="result-price">238 kr</span></p>
+            <p>Tango Pax sneaker <span class="result-price">280 kr</span></p>
           </div>
           
           <div class="result-row">
             <div class="rel-line">
               <span class="rel-rank">#2</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:58%"></span></span>
-              <span class="rel-score rel-warn">0.58</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:37%"></span></span>
+              <span class="rel-score rel-bad">0.37</span>
             </div>
-            <p>Lancôme Le 8 Hypnose Mascara Noir Malachite <span class="result-price">238 kr</span></p>
+            <p>Tango Pax sneaker <span class="result-price">280 kr</span></p>
           </div>
           
           <div class="result-row">
             <div class="rel-line">
               <span class="rel-rank">#3</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:58%"></span></span>
-              <span class="rel-score rel-warn">0.58</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:35%"></span></span>
+              <span class="rel-score rel-bad">0.35</span>
             </div>
-            <p>Lancôme Hypnose Mascara <span class="result-price">465 kr</span></p>
+            <p>Stray Pax Sneaker <span class="result-price">315 kr</span></p>
           </div>
           
           <div class="result-row">
             <div class="rel-line">
               <span class="rel-rank">#4</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:57%"></span></span>
-              <span class="rel-score rel-warn">0.57</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:32%"></span></span>
+              <span class="rel-score rel-bad">0.32</span>
             </div>
-            <p>Lancôme Definicils Mascara Black <span class="result-price">465 kr</span></p>
+            <p>Vans Old Skool V <span class="result-price">599 kr</span></p>
           </div>
           
           <div class="result-row">
             <div class="rel-line">
               <span class="rel-rank">#5</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:58%"></span></span>
-              <span class="rel-score rel-warn">0.58</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:32%"></span></span>
+              <span class="rel-score rel-bad">0.32</span>
             </div>
-            <p>Lancôme Hypnôse Mascara Duo Set <span class="result-price">600 kr</span></p>
+            <p>Vans Knu Skool <span class="result-price">649 kr</span></p>
           </div>
           
         </div>
@@ -3007,46 +2774,282 @@ strong { font-weight: 600; }
           <div class="result-row">
             <div class="rel-line">
               <span class="rel-rank">#14</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:61%"></span></span>
-              <span class="rel-score rel-warn">0.61</span>
+              <span class="rel-track"><span class="rel-fill rel-warn" style="width:56%"></span></span>
+              <span class="rel-score rel-warn">0.56</span>
             </div>
-            <p>Lancôme Renergie Multi-Lift Lifting Firming Anti-Wrinkle Night Cream <span class="result-price">1450 kr</span></p>
+            <p>Adidas Originals Samba OG Skor Barn <span class="result-price">749 kr</span></p>
           </div>
           
           <div class="result-row">
             <div class="rel-line">
-              <span class="rel-rank">#6</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:59%"></span></span>
-              <span class="rel-score rel-warn">0.59</span>
+              <span class="rel-rank">#7</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:47%"></span></span>
+              <span class="rel-score rel-bad">0.47</span>
             </div>
-            <p>Lancôme Lash Idole Mascara <span class="result-price">370 kr</span></p>
+            <p>Minimoca Hopfrög Smart Walker Junior Barefoot <span class="result-price">599 kr</span></p>
           </div>
           
           <div class="result-row">
             <div class="rel-line">
               <span class="rel-rank">#8</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:59%"></span></span>
-              <span class="rel-score rel-warn">0.59</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:46%"></span></span>
+              <span class="rel-score rel-bad">0.46</span>
             </div>
-            <p>Lancôme Bi-Facil Lotion Instant Cleanser <span class="result-price">340 kr</span></p>
+            <p>New Balance 574 Kids Hook & Loop <span class="result-price">720 kr</span></p>
           </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#1</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:37%"></span></span>
+              <span class="rel-score rel-bad">0.37</span>
+            </div>
+            <p>Tango Pax sneaker <span class="result-price">280 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#2</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:37%"></span></span>
+              <span class="rel-score rel-bad">0.37</span>
+            </div>
+            <p>Tango Pax sneaker <span class="result-price">280 kr</span></p>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="risk-case load-more-item">
+      <div class="case-topline">
+        <span class="case-num">#5</span>
+        <code>L'Oréall</code>
+        <span class="failure-badge">No fuzzy matching</span>
+      </div>
+      <p class="case-fail">The best matching result appeared at position #14, after weaker results.</p>
+      <div class="case-grid">
+        <div>
+          <p class="case-label">Evidence</p>
+          <p class="case-copy">Customer searched for 'L'Oréall' (L'Oréal with extra 'l') but got zero L'Oréal products in results. Instead saw Biotherm products at positions #1-7, #9, #11, #14 and Lancôme products at #8, #10, #12, #13. The search engine completely failed to recognize that 'L'Oréall' is a simple typo of the brand 'L'Oréal' and returned unrelated beauty brands instead.</p>
+          <div class="case-fix"><p class="case-label">Fix</p><p>Add typo and fuzzy matching for high-value product, category, and brand terms so small spelling errors still reach the right products.</p></div>
+        </div>
+
+        
+        <div class="results-panel">
+          <p class="case-label">Customer saw</p>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#1</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:35%"></span></span>
+              <span class="rel-score rel-bad">0.35</span>
+            </div>
+            <p>Biotherm Duo Deo Pure Set <span class="result-price">255 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#2</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>Biotherm Lait Corporel Body Lotion <span class="result-price">315 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#3</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:36%"></span></span>
+              <span class="rel-score rel-bad">0.36</span>
+            </div>
+            <p>Biotherm Oil Therapy Baume Corps Duo Set <span class="result-price">364 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#4</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>Biotherm Lait Corporel Moisturizing Body Lotion <span class="result-price">194 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#5</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:36%"></span></span>
+              <span class="rel-score rel-bad">0.36</span>
+            </div>
+            <p>Biotherm Homme Duo Deo Day Control 48H Set 2026 <span class="result-price">262 kr</span></p>
+          </div>
+          
+        </div>
+
+        <div class="results-panel ideal-panel">
+          <p class="case-label">Should have seen</p>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#14</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:39%"></span></span>
+              <span class="rel-score rel-bad">0.39</span>
+            </div>
+            <p>Biotherm Lait Corporel Active Recovery Moisturizing Body Lotion <span class="result-price">270 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#2</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>Biotherm Lait Corporel Body Lotion <span class="result-price">315 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#4</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>Biotherm Lait Corporel Moisturizing Body Lotion <span class="result-price">194 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#6</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:37%"></span></span>
+              <span class="rel-score rel-bad">0.37</span>
+            </div>
+            <p>Biotherm Baume Corps Oil Therapy Moisturizing Body Lotion <span class="result-price">224 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#15</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:37%"></span></span>
+              <span class="rel-score rel-bad">0.37</span>
+            </div>
+            <p>Kiehls Ultra Facial Cream SPF 30 <span class="result-price">425 kr</span></p>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="risk-case load-more-item">
+      <div class="case-topline">
+        <span class="case-num">#6</span>
+        <code>barn</code>
+        <span class="failure-badge">Category mapping failure</span>
+      </div>
+      <p class="case-fail">The best matching result appeared at position #13, after weaker results.</p>
+      <div class="case-grid">
+        <div>
+          <p class="case-label">Evidence</p>
+          <p class="case-copy">The query 'barn' (Swedish for 'children') should map to children's products, but the engine is treating it as a keyword search in product titles. The best matching result 'Å KIDS Nattlinne PALOMA' (children's nightgown with 0.516 relevance) is buried at position #13, while positions #1-5 are dominated by identical 'RIKIKI Badrock i frotté TINTIN' bathrobes with lower relevance scores of 0.375. The engine failed to recognize 'barn' as a category term that should prioritize children's clothing and accessories.</p>
+          <div class="case-fix"><p class="case-label">Fix</p><p>Map this phrase to the intended product category and prioritize category-relevant products above adjacent or generic results.</p></div>
+        </div>
+
+        
+        <div class="results-panel">
+          <p class="case-label">Customer saw</p>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#1</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>RIKIKI Badrock i frotté TINTIN <span class="result-price">249 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#2</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>RIKIKI Badrock i frotté TINTIN <span class="result-price">249 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#3</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>RIKIKI Badrock i frotté TINTIN <span class="result-price">249 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#4</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>RIKIKI Badrock i frotté TINTIN <span class="result-price">249 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#5</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>RIKIKI Badrock i frotté TINTIN <span class="result-price">249 kr</span></p>
+          </div>
+          
+        </div>
+
+        <div class="results-panel ideal-panel">
+          <p class="case-label">Should have seen</p>
           
           <div class="result-row">
             <div class="rel-line">
               <span class="rel-rank">#13</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:59%"></span></span>
-              <span class="rel-score rel-warn">0.59</span>
+              <span class="rel-track"><span class="rel-fill rel-warn" style="width:52%"></span></span>
+              <span class="rel-score rel-warn">0.52</span>
             </div>
-            <p>Lancôme Rénergie H.C.F. Triple Serum <span class="result-price">1675 kr</span></p>
+            <p>Å KIDS Nattlinne PALOMA <span class="result-price">100 kr</span></p>
           </div>
           
           <div class="result-row">
             <div class="rel-line">
-              <span class="rel-rank">#10</span>
-              <span class="rel-track"><span class="rel-fill rel-warn" style="width:59%"></span></span>
-              <span class="rel-score rel-warn">0.59</span>
+              <span class="rel-rank">#1</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
             </div>
-            <p>Lancôme L'Absolu Rouge Intimatte Lipstick <span class="result-price">255 kr</span></p>
+            <p>RIKIKI Badrock i frotté TINTIN <span class="result-price">249 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#2</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>RIKIKI Badrock i frotté TINTIN <span class="result-price">249 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#3</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>RIKIKI Badrock i frotté TINTIN <span class="result-price">249 kr</span></p>
+          </div>
+          
+          <div class="result-row">
+            <div class="rel-line">
+              <span class="rel-rank">#4</span>
+              <span class="rel-track"><span class="rel-fill rel-bad" style="width:38%"></span></span>
+              <span class="rel-score rel-bad">0.38</span>
+            </div>
+            <p>RIKIKI Badrock i frotté TINTIN <span class="result-price">249 kr</span></p>
           </div>
           
         </div>
@@ -3073,56 +3076,6 @@ strong { font-weight: 600; }
       
       <div class="query-example">
         <div class="query-header">
-          <div class="query-text">"hälsa"</div>
-          <div class="query-category">Broad category &middot;
-            <span class="severity-label critical">Critical</span>
-            &middot; Best result at position #15
-          </div>
-        </div>
-        <div class="query-body">
-          
-          <p class="narrative">The highest relevance product 'Rituals Sport 24h Anti-Perspirant Stick' (0.357 relevance) was buried at position #15, while lower-scoring products dominated the top positions. The #1 result 'Rituals The Ritual of Ayurveda - Medium Gift Set 2025' had only 0.348 relevance, and the #2 result 'Pukka Mixask Green Collection Örtte' had just 0.277 relevance. Multiple products with relevance scores above 0.350 were ranked below position #10.</p>
-          
-          
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-                <li>Rituals The Ritual of Ayurveda - Medium Gift Set 2025 <span style="color: var(--muted);">(314 kr)</span></li>
-                
-                <li>Pukka Mixask Green Collection Örtte <span style="color: var(--muted);">(40 kr)</span></li>
-                
-                <li>Rituals The Ritual of Hammam Hand Wash <span style="color: var(--muted);">(119 kr)</span></li>
-                
-                <li>Rituals The Ritual of Sakura Body Lotion Mousse <span style="color: var(--muted);">(119 kr)</span></li>
-                
-                <li>Rituals Trial Set Homme 2022 <span style="color: var(--muted);">(172 kr)</span></li>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-                <li>Rituals Sport 24h Anti-Perspirant Stick <span style="color: var(--muted);">(97 kr)</span></li>
-                
-                <li>Rituals The Ritual of Ayurveda - Large Gift Set 2025 <span style="color: var(--muted);">(524 kr)</span></li>
-                
-                <li>Rituals Sweet Jasmine Hand Balm <span style="color: var(--muted);">(142 kr)</span></li>
-                
-              </ol>
-            </div>
-          </div>
-          
-          
-          <p class="displacement-note">Best match was buried at position #15.</p>
-          
-        </div>
-      </div>
-      
-      <div class="query-example">
-        <div class="query-header">
           <div class="query-text">"barn"</div>
           <div class="query-category">Broad category &middot;
             <span class="severity-label critical">Critical</span>
@@ -3131,7 +3084,7 @@ strong { font-weight: 600; }
         </div>
         <div class="query-body">
           
-          <p class="narrative">The query 'barn' (Swedish for 'children') should map to children's products, but the search engine is treating it as a literal keyword match. The highest relevance result 'Å KIDS Nattlinne PALOMA' (children's nightgown) with 0.516 relevance is buried at position #13, while lower-relevance adult products like 'RIKIKI Badrock i frotté TINTIN' (adult bathrobes) with only 0.375 relevance dominate positions #1-5. The engine failed to recognize 'barn' as a category term for children's products.</p>
+          <p class="narrative">The query 'barn' (Swedish for 'children') should map to children's products, but the engine is treating it as a keyword search in product titles. The best matching result 'Å KIDS Nattlinne PALOMA' (children's nightgown with 0.516 relevance) is buried at position #13, while positions #1-5 are dominated by identical 'RIKIKI Badrock i frotté TINTIN' bathrobes with lower relevance scores of 0.375. The engine failed to recognize 'barn' as a category term that should prioritize children's clothing and accessories.</p>
           
           
           <div class="comparison">
@@ -3173,15 +3126,65 @@ strong { font-weight: 600; }
       
       <div class="query-example">
         <div class="query-header">
+          <div class="query-text">"hälsa"</div>
+          <div class="query-category">Broad category &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #15
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The best matching result 'Rituals Sport 24h Anti-Perspirant Stick' (relevance: 0.357) was buried at position #15, while weaker results like 'Pukka Mixask Green Collection Örtte' (relevance: 0.277) appeared at position #2. Multiple high-relevance products were significantly displaced: 'Rituals The Ritual of Ayurveda - Large Gift Set 2025' (0.355) dropped from potential #2 to #13, and 'Rituals Sweet Jasmine Hand Balm' (0.352) fell from potential #3 to #12.</p>
+          
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Rituals The Ritual of Ayurveda - Medium Gift Set 2025 <span style="color: var(--muted);">(314 kr)</span></li>
+                
+                <li>Pukka Mixask Green Collection Örtte <span style="color: var(--muted);">(40 kr)</span></li>
+                
+                <li>Rituals The Ritual of Hammam Hand Wash <span style="color: var(--muted);">(119 kr)</span></li>
+                
+                <li>Rituals The Ritual of Sakura Body Lotion Mousse <span style="color: var(--muted);">(119 kr)</span></li>
+                
+                <li>Rituals Trial Set Homme 2022 <span style="color: var(--muted);">(172 kr)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Rituals Sport 24h Anti-Perspirant Stick <span style="color: var(--muted);">(97 kr)</span></li>
+                
+                <li>Rituals The Ritual of Ayurveda - Large Gift Set 2025 <span style="color: var(--muted);">(524 kr)</span></li>
+                
+                <li>Rituals Sweet Jasmine Hand Balm <span style="color: var(--muted);">(142 kr)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          
+          <p class="displacement-note">Best match was buried at position #15.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
           <div class="query-text">"parfym"</div>
           <div class="query-category">Direct match &middot;
-            <span class="severity-label critical">Critical</span>
+            <span class="severity-label moderate">Moderate</span>
             &middot; Best result at position #11
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance product 'Fenjal Creme de Parfum Fluid' (0.621 relevance) was buried at position #11, while much lower relevance products dominated the top positions: 'Rituals The Ritual of Seshen Hair & Body Mist' (0.426 relevance) at #1, 'Sol de Janeiro Brazilian Crush Body Mist Fragrance' (0.516 relevance) at #2, and 'Sol de Janeiro Brazilian Crush Frag Body Mist' (0.494 relevance) at #3. The top 3 average relevance was only 0.479, well below the 0.60 threshold.</p>
+          <p class="narrative">The highest relevance result 'Fenjal Creme de Parfum Fluid' (0.621) was buried at position #11, while the customer saw 'Rituals The Ritual of Seshen Hair & Body Mist' (0.426) first. Multiple other high-relevance perfume products were also misranked: 'Sol de Janeiro Cheriosa 59 Perfume Mist' (0.543) at #6, 'HUGO BOSS Boss Bottled Infinite EdP' (0.520) at #5, and 'Sol de Janeiro Cheirosa 76 Perfume Mist' (0.520) at #15. The relevance gap of 0.195 shows customers saw a significantly weaker match first.</p>
           
           
           <div class="comparison">
@@ -3225,13 +3228,13 @@ strong { font-weight: 600; }
         <div class="query-header">
           <div class="query-text">"mode"</div>
           <div class="query-category">Broad category &middot;
-            <span class="severity-label critical">Critical</span>
+            <span class="severity-label moderate">Moderate</span>
             &middot; Best result at position #11
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance result 'Clique Sverige Bucket Hat' (0.379) was buried at position #11, while much lower relevance items appeared at the top: 'Carin Wester Solglasögon SIGNE' (0.303) at #1 and 'Å WOMAN Stickade fingervantar JULIE' (0.324) at #2. The best result was displaced by 10 positions.</p>
+          <p class="narrative">The highest relevance result 'Clique Sverige Bucket Hat' (0.379) was buried at position #11, while lower-scoring results appeared first: 'Carin Wester Solglasögon SIGNE' (0.303) at #1, 'Å WOMAN Stickade fingervantar JULIE' (0.324) at #2, and 'RIKIKI Stråhatt katt RODNA' (0.279) at #4. Multiple results with scores above 0.350 were pushed below position #5.</p>
           
           
           <div class="comparison">
@@ -3275,13 +3278,13 @@ strong { font-weight: 600; }
         <div class="query-header">
           <div class="query-text">"hem"</div>
           <div class="query-category">Broad category &middot;
-            <span class="severity-label critical">Critical</span>
+            <span class="severity-label moderate">Moderate</span>
             &middot; Best result at position #8
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance result 'Åhléns Home Bordslampa TOVA' (0.436) was ranked #8 instead of #1, displaced by 7 positions. Lower relevance items like 'Lexington Herringbone Towel' (0.385) and 'Iittala Vitvinsglas' (0.326) were ranked #2, #3, and #7 respectively, pushing better matches down the list.</p>
+          <p class="narrative">The query 'hem' is part of the category 'hem & inredning' (home & interior) but the engine failed to recognize this as a category mapping. Instead it appears to be doing keyword matching in product titles, resulting in scattered home products with no clear category organization. The best result 'Åhléns Home Bordslampa TOVA' (table lamp) with relevance 0.436 was buried at position #8, while a thermos mug with lower relevance 0.428 appeared first.</p>
           
           
           <div class="comparison">
@@ -3344,7 +3347,7 @@ strong { font-weight: 600; }
         </div>
         <div class="query-body">
           
-          <p class="narrative">Customer searched for 'L'Oréall' (L'Oréal with extra 'l') but got zero L'Oréal products in results. Instead, top results were Biotherm products like 'Biotherm Duo Deo Pure Set' (#1) and 'Biotherm Lait Corporel Body Lotion' (#2), plus some Lancôme items like 'Lancôme Le 8 Hypnose Mascara Noir Grenat' (#8). The best matching result was buried at position #14 with only 0.387 relevance, indicating the search engine completely failed to recognize the typo and match it to the intended L'Oréal brand.</p>
+          <p class="narrative">Customer searched for 'L'Oréall' (L'Oréal with extra 'l') but got zero L'Oréal products in results. Instead saw Biotherm products at positions #1-7, #9, #11, #14 and Lancôme products at #8, #10, #12, #13. The search engine completely failed to recognize that 'L'Oréall' is a simple typo of the brand 'L'Oréal' and returned unrelated beauty brands instead.</p>
           
           
           <div class="comparison">
@@ -3388,13 +3391,13 @@ strong { font-weight: 600; }
         <div class="query-header">
           <div class="query-text">"skonhet"</div>
           <div class="query-category">Typo &middot;
-            <span class="severity-label critical">Critical</span>
+            <span class="severity-label moderate">Moderate</span>
             &middot; Best result at position #14
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance result 'Biotherm Lait Corporel Moisturizing Body Lotion' (0.389 relevance) was buried at position #14, while much lower relevance results like 'Rituals The Ritual of Seshen Foaming Shower Gel' (0.352 relevance) and 'Rituals The Ritual of Sakura - Medium Gift Set 2025' (0.301 relevance) were ranked #1 and #4 respectively. The top 3 positions contained results with relevance scores of 0.352, 0.371, and 0.383, while better matches with scores of 0.389, 0.367, and 0.361 were ranked much lower.</p>
+          <p class="narrative">The query 'skonhet' is a misspelling of 'skönhet' (Swedish for beauty), but the search engine failed to recognize this typo and correct it. Instead of returning beauty/skincare products as the top results, it returned a mixed bag with shower gels and body products ranked seemingly randomly. The highest relevance beauty product 'Biotherm Lait Corporel Moisturizing Body Lotion' (0.389 relevance) was buried at position #14, while lower-relevance shower products like 'Rituals The Ritual of Seshen Foaming Shower Gel' (0.352 relevance) appeared first.</p>
           
           
           <div class="comparison">
@@ -3438,13 +3441,13 @@ strong { font-weight: 600; }
         <div class="query-header">
           <div class="query-text">"Lancmoe"</div>
           <div class="query-category">Typo &middot;
-            <span class="severity-label critical">Critical</span>
+            <span class="severity-label moderate">Moderate</span>
             &middot; Best result at position #14
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The search engine correctly handled the typo 'Lancmoe' and retrieved all Lancôme products, but severely misranked them. The highest relevance result 'Lancôme Renergie Multi-Lift Lifting Firming Anti-Wrinkle Night Cream' (0.609 relevance) was buried at position #14, while lower-scoring mascara products like 'Lancôme Le 8 Hypnose Mascara Noir Grenat' (0.586 relevance) appeared at #1. Multiple high-scoring products were displaced: 'Lancôme Lash Idole Mascara' (0.594) at #6, 'Lancôme Bi-Facil Lotion Instant Cleanser' (0.594) at #8, and 'Lancôme Rénergie H.C.F. Triple Serum' (0.594) at #13.</p>
+          <p class="narrative">The search engine correctly handled the typo 'Lancmoe' and retrieved all Lancôme products, but ranked them poorly. The highest-scoring result 'Lancôme Renergie Multi-Lift Lifting Firming Anti-Wrinkle Night Cream' (0.609 relevance) was buried at position #14, while lower-scoring mascara products like 'Lancôme Le 8 Hypnose Mascara Noir Grenat' (0.586 relevance) appeared at #1. Multiple high-scoring products were displaced: #6 'Lash Idole Mascara' (0.594), #8 'Bi-Facil Lotion' (0.594), and #13 'Triple Serum' (0.594) should have ranked in top 5.</p>
           
           
           <div class="comparison">
@@ -3486,65 +3489,15 @@ strong { font-weight: 600; }
       
       <div class="query-example">
         <div class="query-header">
-          <div class="query-text">"Lan"</div>
-          <div class="query-category">Partial query &middot;
-            <span class="severity-label critical">Critical</span>
-            &middot; Best result at position #14
-          </div>
-        </div>
-        <div class="query-body">
-          
-          <p class="narrative">The highest relevance score product 'Lancôme Renergie Multi-Lift Lifting Firming Anti-Wrinkle Night Cream' (0.494 relevance) was buried at position #14, while lower-scoring mascara products dominated the top positions. The top 3 positions showed relevance scores of 0.473, 0.469, and 0.473, significantly lower than the best available results.</p>
-          
-          
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-                <li>Lancôme Le 8 Hypnose Mascara Noir Grenat <span style="color: var(--muted);">(238 kr)</span></li>
-                
-                <li>Lancôme Le 8 Hypnose Mascara Noir Malachite <span style="color: var(--muted);">(238 kr)</span></li>
-                
-                <li>Lancôme Hypnose Mascara <span style="color: var(--muted);">(465 kr)</span></li>
-                
-                <li>Lancôme Definicils Mascara Black <span style="color: var(--muted);">(465 kr)</span></li>
-                
-                <li>Lancôme Hypnôse Mascara Duo Set <span style="color: var(--muted);">(600 kr)</span></li>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-                <li>Lancôme Renergie Multi-Lift Lifting Firming Anti-Wrinkle Night Cream <span style="color: var(--muted);">(1450 kr)</span></li>
-                
-                <li>Lancôme L'Absolu Rouge Intimatte Lipstick <span style="color: var(--muted);">(255 kr)</span></li>
-                
-                <li>Lancôme Rénergie H.C.F. Triple Serum <span style="color: var(--muted);">(1675 kr)</span></li>
-                
-              </ol>
-            </div>
-          </div>
-          
-          
-          <p class="displacement-note">Best match was buried at position #14.</p>
-          
-        </div>
-      </div>
-      
-      <div class="query-example">
-        <div class="query-header">
           <div class="query-text">"skön"</div>
           <div class="query-category">Partial query &middot;
-            <span class="severity-label critical">Critical</span>
+            <span class="severity-label moderate">Moderate</span>
             &middot; Best result at position #14
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance result 'Biotherm Lait Corporel Moisturizing Body Lotion' (0.387 relevance) was buried at position #14, while lower-scoring results like 'Rituals The Ritual of Seshen Foaming Shower Gel' (0.375 relevance) and 'Biotherm Duo Deo Pure Set' (0.359 relevance) occupied the top positions. The search engine correctly identified relevant beauty products but completely failed to rank them by their computed relevance scores.</p>
+          <p class="narrative">The query 'skön' is a prefix of 'skönhet' (beauty category in Swedish), but the engine failed to recognize this category mapping. Instead it treated 'skön' as a literal keyword to match in product titles. The best result 'Biotherm Lait Corporel Moisturizing Body Lotion' (relevance 0.387) was buried at position #14, while weaker matches like 'Rituals The Ritual of Seshen Foaming Shower Gel' (relevance 0.375) appeared first. All results are beauty/personal care products that should match the skönhet category, but the ranking doesn't reflect proper category understanding.</p>
           
           
           <div class="comparison">
@@ -3584,6 +3537,56 @@ strong { font-weight: 600; }
         </div>
       </div>
       
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"heminredning"</div>
+          <div class="query-category">Merged words &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #12
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The best matching result 'Åhléns Home Gåvoset doftljus och doftspridare' (relevance 0.508) was buried at position #12, while much weaker results like 'Lexington Herringbone Towel' (relevance 0.330) appeared at positions #1 and #2. The top 5 positions contained results with relevance scores of 0.330, 0.330, 0.453, 0.383, and 0.488, while better matches with scores of 0.508, 0.482, 0.463, 0.443, and 0.439 were ranked between positions #9-#14.</p>
+          
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Lexington Herringbone Towel <span style="color: var(--muted);">(62 kr)</span></li>
+                
+                <li>Lexington Herringbone Towel <span style="color: var(--muted);">(62 kr)</span></li>
+                
+                <li>Åhléns Home Kökshandduk VEGA 50x70 cm <span style="color: var(--muted);">(30 kr)</span></li>
+                
+                <li>Åhléns Home Termosmugg med handtag 1,18 L <span style="color: var(--muted);">(99 kr)</span></li>
+                
+                <li>Åhléns Home Bordslampa TOVA <span style="color: var(--muted);">(180 kr)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Åhléns Home Gåvoset doftljus och doftspridare <span style="color: var(--muted);">(174 kr)</span></li>
+                
+                <li>Åhléns Home Bordslampa TOVA <span style="color: var(--muted);">(180 kr)</span></li>
+                
+                <li>Åhléns Home Kronljus 25 cm, 4-pack <span style="color: var(--muted);">(45 kr)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          
+          <p class="displacement-note">Best match was buried at position #12.</p>
+          
+        </div>
+      </div>
+      
       </div>
     </details>
     
@@ -3607,7 +3610,7 @@ strong { font-weight: 600; }
         </div>
         <div class="query-body">
           
-          <p class="narrative">The search engine returned zero results for the Swedish query 'vad har ni för billiga parfymer' (what cheap perfumes do you have), despite the stats indicating there is a best result at position #16 with relevance score 0.000, suggesting products exist but the engine failed to retrieve any results at all</p>
+          <p class="narrative">The search engine returned zero results for the Swedish query 'vad har ni för billiga parfymer' (what cheap perfumes do you have). This is a natural language query asking about affordable perfumes, which should be a common product category.</p>
           
           
           <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
@@ -3628,7 +3631,7 @@ strong { font-weight: 600; }
         </div>
         <div class="query-body">
           
-          <p class="narrative">The search engine returned zero results for the Swedish query 'söker present till min mamma som gillar smink' (looking for a gift for my mom who likes makeup). The query clearly indicates intent to find makeup products as gifts, but the engine failed to return any results at all.</p>
+          <p class="narrative">The search engine returned zero results for the Swedish query 'söker present till min mamma som gillar smink' (looking for a gift for my mom who likes makeup). Despite the query clearly indicating intent to find makeup products as gifts, no results were returned at all.</p>
           
           
           <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
@@ -3641,15 +3644,111 @@ strong { font-weight: 600; }
       
       <div class="query-example">
         <div class="query-header">
-          <div class="query-text">"kosmetika"</div>
+          <div class="query-text">"klädesplagg"</div>
           <div class="query-category">Synonym &middot;
             <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #2
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">Query 'klädesplagg' (Swedish for clothing/garments) returned completely unrelated products: Dermalogica skincare serums and baby pacifier clips. None of the results are clothing items. The engine failed to understand that 'klädesplagg' is a synonym for 'kläder' (clothes) and should return clothing products.</p>
+          
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Dermalogica BioLumin C Serum <span style="color: var(--muted);">(1250 kr)</span></li>
+                
+                <li>Elodie Details Pacifier Clip <span style="color: var(--muted);">(149 kr)</span></li>
+                
+                <li>Dermalogica Daily Brightness Booster Kit <span style="color: var(--muted);">(635 kr)</span></li>
+                
+                <li>Dermalogica BioLumin-C Serum <span style="color: var(--muted);">(1935 kr)</span></li>
+                
+                <li>Elodie Details Pacifier Clip <span style="color: var(--muted);">(129 kr)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Elodie Details Pacifier Clip <span style="color: var(--muted);">(149 kr)</span></li>
+                
+                <li>Elodie Details Pacifier Clip <span style="color: var(--muted);">(129 kr)</span></li>
+                
+                <li>Dermalogica Daily Brightness Booster Kit <span style="color: var(--muted);">(635 kr)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"jag behöver något för torr hud"</div>
+          <div class="query-category">Natural language &middot;
+            <span class="severity-label critical">Critical</span>
+            &middot; Best result at position #1
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">Customer searched for 'jag behöver något för torr hud' (I need something for dry skin) but all 5 results are nail gel products: Depend Gel Builder Cleanser, Depend Gel Builder, Depend Gel Builder Topcoat, Depend Gel Builder Startkit, and Depend Gel Builder Bas. None address dry skin care needs. Max relevance score of 0.379 indicates poor semantic matching.</p>
+          
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Depend Gel Builder Cleanser <span style="color: var(--muted);">(39 kr)</span></li>
+                
+                <li>Depend Gel Builder <span style="color: var(--muted);">(99 kr)</span></li>
+                
+                <li>Depend Gel Builder Topcoat <span style="color: var(--muted);">(89 kr)</span></li>
+                
+                <li>Depend Gel Builder Startkit <span style="color: var(--muted);">(499 kr)</span></li>
+                
+                <li>Depend Gel Builder Bas <span style="color: var(--muted);">(89 kr)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Depend Gel Builder Cleanser <span style="color: var(--muted);">(39 kr)</span></li>
+                
+                <li>Depend Gel Builder <span style="color: var(--muted);">(99 kr)</span></li>
+                
+                <li>Depend Gel Builder Startkit <span style="color: var(--muted);">(499 kr)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"kosmetika"</div>
+          <div class="query-category">Synonym &middot;
+            <span class="severity-label moderate">Moderate</span>
             &middot; Best result at position #13
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance result 'Fugazzi PARFUM 1' (0.523 relevance) was buried at position #13, while lower-scoring results like 'Fugazzi VANILLA HAZE' (0.443 relevance) and 'Fugazzi ORANGE CRUSH' (0.424 relevance) occupied the top positions. The second-highest scoring result 'GALT Fixa frisyren - hårdekorationer' (0.482 relevance) was at position #4. This represents a 12-position displacement of the best result.</p>
+          <p class="narrative">The highest relevance result 'Fugazzi PARFUM 1' (0.523) was buried at position #13, while lower-scoring results like 'Fugazzi VANILLA HAZE' (0.443) and 'Fugazzi ORANGE CRUSH' (0.424) appeared at positions #1 and #2. The search engine correctly retrieved relevant cosmetics/beauty products but failed to rank them by their computed relevance scores.</p>
           
           
           <div class="comparison">
@@ -3689,367 +3788,6 @@ strong { font-weight: 600; }
         </div>
       </div>
       
-      <div class="query-example">
-        <div class="query-header">
-          <div class="query-text">"inredning"</div>
-          <div class="query-category">Synonym &middot;
-            <span class="severity-label critical">Critical</span>
-            &middot; Best result at position #11
-          </div>
-        </div>
-        <div class="query-body">
-          
-          <p class="narrative">The highest relevance result 'Åhléns Home Champagnekylare på fot BISTRO 40 cm' (0.492 relevance) was buried at position #11, while much lower relevance items like 'Arabia Mumin mugg 0,3L Sommardans' (0.297 relevance) appeared at position #10. The top 3 positions were occupied by items with relevance scores of 0.400, 0.332, and 0.332, while better matches with scores of 0.492, 0.484, and 0.482 were ranked at positions #11, #8, and #14 respectively.</p>
-          
-          
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-                <li>Åhléns Home Termosmugg med handtag 1,18 L <span style="color: var(--muted);">(99 kr)</span></li>
-                
-                <li>Lexington Herringbone Towel <span style="color: var(--muted);">(62 kr)</span></li>
-                
-                <li>Lexington Herringbone Towel <span style="color: var(--muted);">(62 kr)</span></li>
-                
-                <li>Åhléns Home Termosmugg med handtag 1,18 L <span style="color: var(--muted);">(99 kr)</span></li>
-                
-                <li>Åhléns Home Kökshandduk VEGA 50x70 cm <span style="color: var(--muted);">(30 kr)</span></li>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-                <li>Åhléns Home Champagnekylare på fot BISTRO 40 cm <span style="color: var(--muted);">(249 kr)</span></li>
-                
-                <li>Åhléns Home Bordslampa TOVA <span style="color: var(--muted);">(180 kr)</span></li>
-                
-                <li>Åhléns Home Skål i porslin VALLMO 16 cm <span style="color: var(--muted);">(39 kr)</span></li>
-                
-              </ol>
-            </div>
-          </div>
-          
-          
-          <p class="displacement-note">Best match was buried at position #11.</p>
-          
-        </div>
-      </div>
-      
-      <div class="query-example">
-        <div class="query-header">
-          <div class="query-text">"klädesplagg"</div>
-          <div class="query-category">Synonym &middot;
-            <span class="severity-label critical">Critical</span>
-            &middot; Best result at position #2
-          </div>
-        </div>
-        <div class="query-body">
-          
-          <p class="narrative">Query 'klädesplagg' (Swedish for clothing/garments) returned completely unrelated products: Dermalogica skincare serums at positions #1 and #4, and baby pacifier clips at positions #2 and #5. None of these are clothing items. The engine failed to understand that 'klädesplagg' is a synonym for 'kläder' (clothes) and should return clothing products.</p>
-          
-          
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-                <li>Dermalogica BioLumin C Serum <span style="color: var(--muted);">(1250 kr)</span></li>
-                
-                <li>Elodie Details Pacifier Clip <span style="color: var(--muted);">(149 kr)</span></li>
-                
-                <li>Dermalogica Daily Brightness Booster Kit <span style="color: var(--muted);">(635 kr)</span></li>
-                
-                <li>Dermalogica BioLumin-C Serum <span style="color: var(--muted);">(1935 kr)</span></li>
-                
-                <li>Elodie Details Pacifier Clip <span style="color: var(--muted);">(129 kr)</span></li>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-                <li>Elodie Details Pacifier Clip <span style="color: var(--muted);">(149 kr)</span></li>
-                
-                <li>Elodie Details Pacifier Clip <span style="color: var(--muted);">(129 kr)</span></li>
-                
-                <li>Dermalogica Daily Brightness Booster Kit <span style="color: var(--muted);">(635 kr)</span></li>
-                
-              </ol>
-            </div>
-          </div>
-          
-          
-        </div>
-      </div>
-      
-      </div>
-    </details>
-    
-    <details class="capability-accordion">
-      <summary>
-        <h3>
-          Brand & Model Search
-        </h3>
-        <span class="accordion-count">5 examples</span>
-      </summary>
-
-      <div class="capability-accordion-body">
-      
-      <div class="query-example">
-        <div class="query-header">
-          <div class="query-text">"EL"</div>
-          <div class="query-category">Abbreviation &middot;
-            <span class="severity-label critical">Critical</span>
-            &middot; Best result at position #12
-          </div>
-        </div>
-        <div class="query-body">
-          
-          <p class="narrative">The highest relevance result 'Å WOMAN Stickade fingervantar JULIE' (0.352) was buried at position #12, while lower-scoring results like 'Slim fit-jeans DNM7 03' (0.344) occupied the top positions #1, #2, and #9. The top 3 positions contained results with relevance scores of 0.344, 0.344, and 0.340, while better-scoring items like 'Rituals Amsterdam Collection Foaming Shower Gel' (0.350) and 'SPANXsculpt™ Seamless Power High-Waisted Mid-Thigh Short' (0.350) were ranked at positions #10 and #15 respectively.</p>
-          
-          
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-                <li>Slim fit-jeans DNM7 03 <span style="color: var(--muted);">(120 kr)</span></li>
-                
-                <li>Slim fit-jeans DNM7 03 <span style="color: var(--muted);">(120 kr)</span></li>
-                
-                <li>Å WOMAN Strumpor i angoramix <span style="color: var(--muted);">(39 kr)</span></li>
-                
-                <li>Carin Wester T-shirt SIKA <span style="color: var(--muted);">(150 kr)</span></li>
-                
-                <li>Clique Sverige T-shirt <span style="color: var(--muted);">(149 kr)</span></li>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-                <li>Å WOMAN Stickade fingervantar JULIE <span style="color: var(--muted);">(18 kr)</span></li>
-                
-                <li>Rituals Amsterdam Collection Foaming Shower Gel <span style="color: var(--muted);">(97 kr)</span></li>
-                
-                <li>SPANXsculpt™ Seamless Power High-Waisted Mid-Thigh Short <span style="color: var(--muted);">(499 kr)</span></li>
-                
-              </ol>
-            </div>
-          </div>
-          
-          
-          <p class="displacement-note">Best match was buried at position #12.</p>
-          
-        </div>
-      </div>
-      
-      <div class="query-example">
-        <div class="query-header">
-          <div class="query-text">"Fiskars sax"</div>
-          <div class="query-category">Brand search &middot;
-            <span class="severity-label critical">Critical</span>
-            &middot; Best result at position #12
-          </div>
-        </div>
-        <div class="query-body">
-          
-          <p class="narrative">The highest relevance result 'Fiskars Fisksax FF Renew 22 cm' (0.867 relevance) was buried at position #12, while lower-relevance results like 'Fiskars Kökssax Classic 18 cm CO' (0.844 relevance) ranked #1. Multiple high-relevance Fiskars scissors with 0.863 scores were scattered at positions #3, #10, and #11 instead of being grouped at the top.</p>
-          
-          
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-                <li>Fiskars Kökssax Classic 18 cm CO <span style="color: var(--muted);">(319 kr)</span></li>
-                
-                <li>Fiskars Universalsax classic 21 cm CO <span style="color: var(--muted);">(319 kr)</span></li>
-                
-                <li>Fiskars Universalsax FF Renew 21 cm <span style="color: var(--muted);">(279 kr)</span></li>
-                
-                <li>Fiskars Universalsax classic Vänster 21 cm CO <span style="color: var(--muted);">(319 kr)</span></li>
-                
-                <li>Universalsax Fiskars x Iittala 21 cm Taika röd <span style="color: var(--muted);">(369 kr)</span></li>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-                <li>Fiskars Fisksax FF Renew 22 cm <span style="color: var(--muted);">(419 kr)</span></li>
-                
-                <li>Fiskars Universalsax FF Renew 21 cm <span style="color: var(--muted);">(279 kr)</span></li>
-                
-                <li>Fiskars Universalsax FF Renew 17 cm <span style="color: var(--muted);">(249 kr)</span></li>
-                
-              </ol>
-            </div>
-          </div>
-          
-          
-          <p class="displacement-note">Best match was buried at position #12.</p>
-          
-        </div>
-      </div>
-      
-      <div class="query-example">
-        <div class="query-header">
-          <div class="query-text">"L'O"</div>
-          <div class="query-category">Abbreviation &middot;
-            <span class="severity-label critical">Critical</span>
-            &middot; Best result at position #9
-          </div>
-        </div>
-        <div class="query-body">
-          
-          <p class="narrative">The search correctly identified all L'Oréal products for the 'L'O' abbreviation query, but ranked them poorly. The highest relevance product 'L'Oréal Paris Extraordinary Oil, 100 ml' (0.492 relevance) was buried at position #9, while lower-scoring products like 'L'Oréal Paris Telescopic Mascara' (0.461 relevance) appeared at #1. Multiple high-relevance products were displaced: #10 product had 0.480 relevance, #6 had 0.475 relevance, and #7 had 0.473 relevance.</p>
-          
-          
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-                <li>L'Oréal Paris Telescopic Mascara <span style="color: var(--muted);">(189 kr)</span></li>
-                
-                <li>L'Oréal Paris Age Perfect Golden Age Day Creme SPF 20 <span style="color: var(--muted);">(239 kr)</span></li>
-                
-                <li>L'Oréal Paris Volume Million Lashes Panorama <span style="color: var(--muted);">(229 kr)</span></li>
-                
-                <li>L'Oréal Paris Elvital Dream Lenght Heat Slayer <span style="color: var(--muted);">(69 kr)</span></li>
-                
-                <li>L'Oréal Paris Volume Million Lashes Mascara <span style="color: var(--muted);">(189 kr)</span></li>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-                <li>L'Oréal Paris Extraordinary Oil, 100 ml <span style="color: var(--muted);">(139 kr)</span></li>
-                
-                <li>L'Oréal Paris Revitalift Day Cream SPF 30 <span style="color: var(--muted);">(189 kr)</span></li>
-                
-                <li>L'Oréal Paris Magic Retouch <span style="color: var(--muted);">(129 kr)</span></li>
-                
-              </ol>
-            </div>
-          </div>
-          
-          
-          <p class="displacement-note">Best match was buried at position #9.</p>
-          
-        </div>
-      </div>
-      
-      <div class="query-example">
-        <div class="query-header">
-          <div class="query-text">"edt"</div>
-          <div class="query-category">Abbreviation &middot;
-            <span class="severity-label critical">Critical</span>
-            &middot; Best result at position #8
-          </div>
-        </div>
-        <div class="query-body">
-          
-          <p class="narrative">The search engine correctly retrieved all relevant eau de toilette products but ranked them poorly. The highest relevance product 'Yves Saint Laurent L'Homme EdT' (0.750) was buried at position #8, while lower-relevance products like 'Gucci Bamboo Eau de Toilette' (0.633) and 'Elizabeth Arden Green Tea Coconut Breeze Eau de toilette' (0.629) were ranked #1 and #2. Products with 'EdT' abbreviation in titles consistently scored higher relevance (0.668-0.750) but were ranked below products with full 'Eau de Toilette' spelling.</p>
-          
-          
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-                <li>Gucci Bamboo Eau de Toilette <span style="color: var(--muted);">(582 kr)</span></li>
-                
-                <li>Elizabeth Arden Green Tea Coconut Breeze Eau de toilette <span style="color: var(--muted);">(351 kr)</span></li>
-                
-                <li>L’Occitane en Provence Verbena Eau de Toilette <span style="color: var(--muted);">(443 kr)</span></li>
-                
-                <li>Van Gils Between Sheets EdT <span style="color: var(--muted);">(570 kr)</span></li>
-                
-                <li>Emporio Armani Stronger With You EdT <span style="color: var(--muted);">(990 kr)</span></li>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-                <li>Yves Saint Laurent L'Homme EdT <span style="color: var(--muted);">(1400 kr)</span></li>
-                
-                <li>Eau De Lacoste Blanc EdT, 100 ml <span style="color: var(--muted);">(1055 kr)</span></li>
-                
-                <li>Yves Saint Laurent Libre EdT <span style="color: var(--muted);">(965 kr)</span></li>
-                
-              </ol>
-            </div>
-          </div>
-          
-          
-          <p class="displacement-note">Best match was buried at position #8.</p>
-          
-        </div>
-      </div>
-      
-      <div class="query-example">
-        <div class="query-header">
-          <div class="query-text">"Clinique hudvård"</div>
-          <div class="query-category">Brand search &middot;
-            <span class="severity-label moderate">Moderate</span>
-            &middot; Best result at position #7
-          </div>
-        </div>
-        <div class="query-body">
-          
-          <p class="narrative">The search correctly retrieved all Clinique skincare products, but the ranking is severely misaligned with relevance scores. The two highest-scoring products (both with 0.793 relevance) - 'Clinique Dramatically Different Moisturizing Lotion+ Face Cream' and 'Clinique Dramatically Different Moisturizing Lotion +' - were ranked at positions #7 and #12 respectively, while a lower-scoring product (0.766 relevance) 'Clinique Liquid Facial Soap Mild cleanser' was placed at #1. The best result was displaced by 6 positions.</p>
-          
-          
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-                <li>Clinique Liquid Facial Soap Mild cleanser - Very dry to combination skin <span style="color: var(--muted);">(305 kr)</span></li>
-                
-                <li>Clinique Moisture Surge 100-Hour Auto-Replenishing Moisturizing Face Cream <span style="color: var(--muted);">(450 kr)</span></li>
-                
-                <li>Clinique Clarifying Lotion 2 Dry to Combination Skin <span style="color: var(--muted);">(535 kr)</span></li>
-                
-                <li>Clinique Redness Solutions Daily Relief Face Cream <span style="color: var(--muted);">(700 kr)</span></li>
-                
-                <li>Clinique Take the Day off Makeup Remover for Lids, Lashes and Lips <span style="color: var(--muted);">(280 kr)</span></li>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-                <li>Clinique Dramatically Different Moisturizing Lotion+ Face Cream <span style="color: var(--muted);">(405 kr)</span></li>
-                
-                <li>Clinique Dramatically Different Moisturizing Lotion + <span style="color: var(--muted);">(565 kr)</span></li>
-                
-                <li>Clinique Moisture Surge 100-Hour Auto-Replenishing Moisturizing Face Cream <span style="color: var(--muted);">(450 kr)</span></li>
-                
-              </ol>
-            </div>
-          </div>
-          
-          
-          <p class="displacement-note">Best match was buried at position #7.</p>
-          
-        </div>
-      </div>
-      
       </div>
     </details>
     
@@ -4073,7 +3811,7 @@ strong { font-weight: 600; }
         </div>
         <div class="query-body">
           
-          <p class="narrative">The search returned zero results for the query 'mors dag parfym' (Mother's Day perfume in Swedish). Despite the stats indicating a best result at position #16, the actual results shown are empty, meaning customers see no products at all when searching for Mother's Day perfume gifts.</p>
+          <p class="narrative">The search returned zero results for the query 'mors dag parfym' (Mother's Day perfume in Swedish). This is a complete search failure - no products were retrieved despite this being a reasonable seasonal gift query combining a major holiday with a common product category.</p>
           
           
           <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
@@ -4088,13 +3826,13 @@ strong { font-weight: 600; }
         <div class="query-header">
           <div class="query-text">"damkläder"</div>
           <div class="query-category">Locale variation &middot;
-            <span class="severity-label critical">Critical</span>
+            <span class="severity-label moderate">Moderate</span>
             &middot; Best result at position #15
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance result 'Å WOMAN T-shirt SOFIE' (0.711) was buried at position #15, while the lowest relevance result 'Wera Indoor-jacka JOSEPHINE' (0.566) was ranked #1. Multiple high-relevance women's clothing items like 'Å WOMAN Strumpor i angoramix' (0.684) and 'Å WOMAN Badrock MILOU' (0.660) were pushed down to positions #4, #6, #9, and #12 despite being more relevant than items ranked higher.</p>
+          <p class="narrative">The highest relevance result 'Å WOMAN T-shirt SOFIE' (0.711) was buried at position #15, while the customer saw 'Wera Indoor-jacka JOSEPHINE' (0.566) first. Multiple high-scoring women's clothing items were displaced: 'Å WOMAN Strumpor i angoramix' (0.684) dropped from #4 to ideal #2, and 'Å WOMAN Badrock MILOU' (0.660) appeared at positions #6, #9, #12 instead of top positions. The relevance gap of 0.145 between best available and what customer saw first is material.</p>
           
           
           <div class="comparison">
@@ -4138,13 +3876,13 @@ strong { font-weight: 600; }
         <div class="query-header">
           <div class="query-text">"sommar rea kläder"</div>
           <div class="query-category">Seasonal / occasion &middot;
-            <span class="severity-label critical">Critical</span>
+            <span class="severity-label moderate">Moderate</span>
             &middot; Best result at position #13
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance result 'J.Lindeberg Ellis Cotton Resort Shirt' (0.447) was buried at position #13, while low-relevance hat results dominated the top positions: 'RIKIKI Stråhatt katt RODNA' (0.307) at #1, 'RIKIKI Solhatt SHELL' (0.354) at #2. Summer clothing items like 'Molo Abay Shorts' (0.430) and 'GABBA Jason K3995 SANZA Denim Shorts' (0.400) were pushed down to positions #11, #7, #8, and #10 despite having higher relevance scores than the top-ranked results.</p>
+          <p class="narrative">The best matching result 'J.Lindeberg Ellis Cotton Resort Shirt' (relevance 0.447) was buried at position #13, while low-relevance hat results dominated the top positions: 'RIKIKI Stråhatt katt RODNA' (0.307) at #1, 'RIKIKI Solhatt SHELL' (0.354) at #2. Summer clothing items like shorts and resort shirts that perfectly match 'sommar rea kläder' were pushed far down despite having higher relevance scores.</p>
           
           
           <div class="comparison">
@@ -4188,13 +3926,13 @@ strong { font-weight: 600; }
         <div class="query-header">
           <div class="query-text">"smink färg"</div>
           <div class="query-category">Locale variation &middot;
-            <span class="severity-label critical">Critical</span>
+            <span class="severity-label moderate">Moderate</span>
             &middot; Best result at position #11
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance result 'Yves Saint Laurent Make Me Blush Bold Blurring Blush' (0.500 relevance) was ranked #11 instead of #1. Other high-relevance makeup products were also buried: 'Dior Forever Skin Glow Foundation' (0.492 relevance) at #14, 'rom&nd Juicy Lasting Tint' (0.488 relevance) at #15. Meanwhile, lower-relevance items dominated the top: 'Estée Lauder Revitalizing Supreme Tint Release moisturizer' (0.361 relevance) at #2 and 'ALL I AM BEAUTY Tinted Moisturiser' (0.385 relevance) at #10.</p>
+          <p class="narrative">The best matching result 'Yves Saint Laurent Make Me Blush Bold Blurring Blush' (relevance 0.500) was buried at position #11, while weaker results appeared first. The customer saw 'Färgad dagkräm Luminous 630 Anti Dark-Spot CC Fluid' (relevance 0.449) at #1, and 'Estée Lauder Revitalizing Supreme Tint Release moisturizer' (relevance 0.361) at #2. High-quality makeup products like 'Dior Forever Skin Glow Foundation' (0.492) and 'rom&nd Juicy Lasting Tint' (0.488) were pushed down to positions #14 and #15 respectively.</p>
           
           
           <div class="comparison">
@@ -4238,13 +3976,13 @@ strong { font-weight: 600; }
         <div class="query-header">
           <div class="query-text">"accessoar"</div>
           <div class="query-category">Plural / singular &middot;
-            <span class="severity-label critical">Critical</span>
+            <span class="severity-label moderate">Moderate</span>
             &middot; Best result at position #10
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance result 'Caroline Svedbom Leia Bracelet' (0.527) was buried at position #10, while much lower relevance items appeared first: 'Carin Wester Solglasögon SIGNE' (0.490) at #1 and 'Å WOMAN Stickade fingervantar JULIE' (0.465) at #2. The top 3 positions contained items with relevance scores of 0.490, 0.465, and 0.498, while better matches with scores of 0.527, 0.516, and 0.516 were ranked at positions #10, #11, and #13 respectively.</p>
+          <p class="narrative">The highest relevance result 'Caroline Svedbom Leia Bracelet' (0.527) was buried at position #10, while much lower scoring results appeared first: 'Carin Wester Solglasögon SIGNE' (0.490) at #1 and 'Å WOMAN Stickade fingervantar JULIE' (0.465) at #2. The top 3 positions contained results with average relevance of 0.484, significantly below the best available match.</p>
           
           
           <div class="comparison">
@@ -4307,7 +4045,7 @@ strong { font-weight: 600; }
         </div>
         <div class="query-body">
           
-          <p class="narrative">The query 'barn skor storlek 25' contains 'storlek 25' (size 25) which should be extracted as a size filter, but the engine treated it as keywords. The best matching result 'Adidas Originals Samba OG Skor Barn' with relevance 0.562 was buried at position #14, while lower-relevance results like 'Tango Pax sneaker' (0.367) and 'Stray Pax Sneaker' (0.348) ranked in top 3. The engine failed to understand that '25' is a size constraint that should filter the children's shoes ('barn skor') results.</p>
+          <p class="narrative">The query 'barn skor storlek 25' contains 'storlek 25' (size 25) which should be extracted as a size filter, but the engine treated it as keywords. The best matching result 'Adidas Originals Samba OG Skor Barn' (relevance 0.562) was buried at position #14, while generic sneakers without clear children's sizing like 'Tango Pax sneaker' (relevance 0.367) ranked #1-2. The relevance gap of 0.195 shows customers saw significantly weaker matches first.</p>
           
           
           <div class="comparison">
@@ -4349,56 +4087,6 @@ strong { font-weight: 600; }
       
       <div class="query-example">
         <div class="query-header">
-          <div class="query-text">"L'Oréal smink röd"</div>
-          <div class="query-category">Multi-attribute &middot;
-            <span class="severity-label moderate">Moderate</span>
-            &middot; Best result at position #7
-          </div>
-        </div>
-        <div class="query-body">
-          
-          <p class="narrative">The highest relevance result 'L'Oréal Paris True Match Blush' (0.598) was ranked #7 instead of #1. The third-highest relevance result 'L'Oréal Paris Lumi Le Liquid Blush' (0.590) was buried at position #15. Meanwhile, lower-relevance products like 'L'Oréal Paris Hyaluron Lip Stain Serum' (0.500) appeared at position #4.</p>
-          
-          
-          <div class="comparison">
-            <div class="comparison-col actual">
-              <h4>Customer Saw</h4>
-              <ol>
-                
-                <li>L'Oréal Paris Color Riche Läppstift <span style="color: var(--muted);">(169 kr)</span></li>
-                
-                <li>L'Oréal Paris Glow Paradise Balm-in-Lipstick <span style="color: var(--muted);">(179 kr)</span></li>
-                
-                <li>L'Oréal Paris Color Riche Intense Volume Matte <span style="color: var(--muted);">(179 kr)</span></li>
-                
-                <li>L'Oréal Paris Hyaluron Lip Stain Serum <span style="color: var(--muted);">(179 kr)</span></li>
-                
-                <li>L'Oréal Paris Color Riche Satin Lipstick <span style="color: var(--muted);">(169 kr)</span></li>
-                
-              </ol>
-            </div>
-            <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
-              <ol>
-                
-                <li>L'Oréal Paris True Match Blush <span style="color: var(--muted);">(139 kr)</span></li>
-                
-                <li>L'Oréal Paris Color Riche Läppstift <span style="color: var(--muted);">(169 kr)</span></li>
-                
-                <li>L'Oréal Paris Lumi Le Liquid Blush <span style="color: var(--muted);">(189 kr)</span></li>
-                
-              </ol>
-            </div>
-          </div>
-          
-          
-          <p class="displacement-note">Best match was buried at position #7.</p>
-          
-        </div>
-      </div>
-      
-      <div class="query-example">
-        <div class="query-header">
           <div class="query-text">"barn kläder vinter"</div>
           <div class="query-category">Multi-attribute &middot;
             <span class="severity-label moderate">Moderate</span>
@@ -4407,7 +4095,7 @@ strong { font-weight: 600; }
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance result 'ISBJÖRN of Sweden Shaun Hoodie Kids' (0.691) was ranked #5 instead of #1. The second-best result 'Didriksons Bus Kids Beanie' (0.613) was buried at #14. Meanwhile, lower-relevance items like 'RIKIKI Ribbstickad mössa JACK' (0.432) and 'RIKIKI Mössa i fuskpäls PENNI' (0.432) occupied the top positions.</p>
+          <p class="narrative">The highest relevance result 'ISBJÖRN of Sweden Shaun Hoodie Kids' (0.691) was ranked #5 instead of #1. Other strong matches like 'Didriksons Bus Kids Beanie' (0.613) and 'Didriksons Biggles Kid's Mittens' (0.605) were buried at positions #14 and #13 respectively. Meanwhile, lower-scoring items like 'RIKIKI Ribbstickad mössa JACK' (0.432) and 'RIKIKI Mössa i fuskpäls PENNI' (0.432) occupied the top positions.</p>
           
           
           <div class="comparison">
@@ -4449,6 +4137,54 @@ strong { font-weight: 600; }
       
       <div class="query-example">
         <div class="query-header">
+          <div class="query-text">"stora väskor svart"</div>
+          <div class="query-category">Facet extraction &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #2
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The query 'stora väskor svart' contains 'stora' (large size) and 'svart' (black color) which should be extracted as filters, but the engine is treating them as keywords to match in titles. Results like 'Carin Wester Stor crossbody CYNTHIA' (#1) and 'Carin Wester Stor flätad axelväska EMMA' (#2) match 'stor' in the title but don't necessarily have black color. Meanwhile, no black bags are visible in the top results, indicating the color filter 'svart' was completely ignored.</p>
+          
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Carin Wester Stor crossbody CYNTHIA <span style="color: var(--muted);">(599 kr)</span></li>
+                
+                <li>Carin Wester Stor flätad axelväska EMMA <span style="color: var(--muted);">(599 kr)</span></li>
+                
+                <li>Carin Wester Toteväska SANYA <span style="color: var(--muted);">(599 kr)</span></li>
+                
+                <li>Carin Wester Totebag CLEAN <span style="color: var(--muted);">(499 kr)</span></li>
+                
+                <li>Å WOMAN Handväska med datorfack KAY <span style="color: var(--muted);">(599 kr)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Carin Wester Stor flätad axelväska EMMA <span style="color: var(--muted);">(599 kr)</span></li>
+                
+                <li>Å WOMAN Stor crossbodyväska ALYSSA <span style="color: var(--muted);">(399 kr)</span></li>
+                
+                <li>Å WOMAN Organizer för väska ANNA large <span style="color: var(--muted);">(299 kr)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
           <div class="query-text">"röd läppstift L'Oréal"</div>
           <div class="query-category">Facet extraction &middot;
             <span class="severity-label moderate">Moderate</span>
@@ -4457,7 +4193,7 @@ strong { font-weight: 600; }
         </div>
         <div class="query-body">
           
-          <p class="narrative">The query 'röd läppstift L'Oréal' contains 'röd' (red) which should be extracted as a color filter, but the search engine treated it as a keyword. Results show L'Oréal lipsticks but without color filtering - products like 'L'Oréal Paris Color RIche Satin Nudes' (#8) and 'L'Oréal Paris Infaillible Matte Resistance' (#7) appear in results despite likely not being red. The engine correctly identified the brand and product type but failed to parse the color facet.</p>
+          <p class="narrative">The query 'röd läppstift L'Oréal' contains 'röd' (red) which should be extracted as a color filter, but the search engine treated it as a keyword to match in product titles. All results are L'Oréal lipsticks but none specifically show red color variants. High-scoring results like 'L'Oréal Paris Color Riche Satin Lipstick' (#4, 0.738) and 'L'Oréal Paris Color Riche Lip Blush' (#12, 0.734) are ranked lower than they should be because the engine is trying to keyword-match 'röd' instead of filtering by red color.</p>
           
           
           <div class="comparison">
@@ -4497,15 +4233,15 @@ strong { font-weight: 600; }
       
       <div class="query-example">
         <div class="query-header">
-          <div class="query-text">"svart väska dam"</div>
+          <div class="query-text">"L'Oréal smink röd"</div>
           <div class="query-category">Multi-attribute &middot;
             <span class="severity-label minor">Minor</span>
-            &middot; Best result at position #3
+            &middot; Best result at position #7
           </div>
         </div>
         <div class="query-body">
           
-          <p class="narrative">The highest relevance result 'Å WOMAN Axelväska MIMI' (0.617) was ranked #3 instead of #1, and the second-highest relevance result 'Carin Wester Väska ANGIE' (0.594) was buried at position #14. Meanwhile, lower-relevance items like 'Carin Wester Crossbody MIX' (0.523) and 'Å WOMAN Sadelväska FINA' (0.562) were ranked #1 and #2 respectively.</p>
+          <p class="narrative">The query 'L'Oréal smink röd' includes 'röd' (red) as a color filter, but the engine treated it as a keyword search instead of extracting it as a color facet. The highest-scoring red makeup items like 'L'Oréal Paris True Match Blush' (0.598) and 'L'Oréal Paris Lumi Le Liquid Blush' (0.590) were ranked at positions #7 and #15 respectively, while non-red lip products dominated the top positions.</p>
           
           
           <div class="comparison">
@@ -4513,15 +4249,15 @@ strong { font-weight: 600; }
               <h4>Customer Saw</h4>
               <ol>
                 
-                <li>Carin Wester Crossbody MIX <span style="color: var(--muted);">(150 kr)</span></li>
+                <li>L'Oréal Paris Color Riche Läppstift <span style="color: var(--muted);">(169 kr)</span></li>
                 
-                <li>Å WOMAN Sadelväska FINA <span style="color: var(--muted);">(200 kr)</span></li>
+                <li>L'Oréal Paris Glow Paradise Balm-in-Lipstick <span style="color: var(--muted);">(179 kr)</span></li>
                 
-                <li>Å WOMAN Axelväska MIMI <span style="color: var(--muted);">(174 kr)</span></li>
+                <li>L'Oréal Paris Color Riche Intense Volume Matte <span style="color: var(--muted);">(179 kr)</span></li>
                 
-                <li>Carin Wester Shopperväska TONE <span style="color: var(--muted);">(250 kr)</span></li>
+                <li>L'Oréal Paris Hyaluron Lip Stain Serum <span style="color: var(--muted);">(179 kr)</span></li>
                 
-                <li>Carin Wester Kuvertväska ZAKY <span style="color: var(--muted);">(499 kr)</span></li>
+                <li>L'Oréal Paris Color Riche Satin Lipstick <span style="color: var(--muted);">(169 kr)</span></li>
                 
               </ol>
             </div>
@@ -4529,16 +4265,281 @@ strong { font-weight: 600; }
               <h4>Should Have Seen</h4>
               <ol>
                 
-                <li>Å WOMAN Axelväska MIMI <span style="color: var(--muted);">(174 kr)</span></li>
+                <li>L'Oréal Paris True Match Blush <span style="color: var(--muted);">(139 kr)</span></li>
                 
-                <li>Carin Wester Väska ANGIE <span style="color: var(--muted);">(599 kr)</span></li>
+                <li>L'Oréal Paris Color Riche Läppstift <span style="color: var(--muted);">(169 kr)</span></li>
                 
-                <li>By Malene Birger Ivy Clutch monogramväska <span style="color: var(--muted);">(1100 kr)</span></li>
+                <li>L'Oréal Paris Lumi Le Liquid Blush <span style="color: var(--muted);">(189 kr)</span></li>
                 
               </ol>
             </div>
           </div>
           
+          
+          <p class="displacement-note">Best match was buried at position #7.</p>
+          
+        </div>
+      </div>
+      
+      </div>
+    </details>
+    
+    <details class="capability-accordion">
+      <summary>
+        <h3>
+          Brand & Model Search
+        </h3>
+        <span class="accordion-count">5 examples</span>
+      </summary>
+
+      <div class="capability-accordion-body">
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Fiskars sax"</div>
+          <div class="query-category">Brand search &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #12
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'Fiskars Fisksax FF Renew 22 cm' (0.867) was buried at position #12, while lower-scoring results like 'Fiskars Kökssax Classic 18 cm CO' (0.844) appeared at #1. Multiple high-scoring results were misplaced: 'Fiskars Universalsax FF Renew 17 cm' (0.863) at #10 and 'Fiskars Universalsax Stor FF Renew 25 cm' (0.863) at #11, all ranking below the lower-scoring #1 result.</p>
+          
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Fiskars Kökssax Classic 18 cm CO <span style="color: var(--muted);">(319 kr)</span></li>
+                
+                <li>Fiskars Universalsax classic 21 cm CO <span style="color: var(--muted);">(319 kr)</span></li>
+                
+                <li>Fiskars Universalsax FF Renew 21 cm <span style="color: var(--muted);">(279 kr)</span></li>
+                
+                <li>Fiskars Universalsax classic Vänster 21 cm CO <span style="color: var(--muted);">(319 kr)</span></li>
+                
+                <li>Universalsax Fiskars x Iittala 21 cm Taika röd <span style="color: var(--muted);">(369 kr)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Fiskars Fisksax FF Renew 22 cm <span style="color: var(--muted);">(419 kr)</span></li>
+                
+                <li>Fiskars Universalsax FF Renew 21 cm <span style="color: var(--muted);">(279 kr)</span></li>
+                
+                <li>Fiskars Universalsax FF Renew 17 cm <span style="color: var(--muted);">(249 kr)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          
+          <p class="displacement-note">Best match was buried at position #12.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"L'O"</div>
+          <div class="query-category">Abbreviation &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #9
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'L'Oréal Paris Extraordinary Oil, 100 ml' (0.492) was buried at position #9, while lower-scoring results like 'L'Oréal Paris Telescopic Mascara' (0.461) appeared first. Multiple high-scoring results were displaced: #10 'Revitalift Day Cream SPF 30' (0.480), #6 'Magic Retouch' (0.475), and #7 'Extraordinary Oil 10-in-1' (0.473) all scored higher than the top-ranked result.</p>
+          
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>L'Oréal Paris Telescopic Mascara <span style="color: var(--muted);">(189 kr)</span></li>
+                
+                <li>L'Oréal Paris Age Perfect Golden Age Day Creme SPF 20 <span style="color: var(--muted);">(239 kr)</span></li>
+                
+                <li>L'Oréal Paris Volume Million Lashes Panorama <span style="color: var(--muted);">(229 kr)</span></li>
+                
+                <li>L'Oréal Paris Elvital Dream Lenght Heat Slayer <span style="color: var(--muted);">(69 kr)</span></li>
+                
+                <li>L'Oréal Paris Volume Million Lashes Mascara <span style="color: var(--muted);">(189 kr)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>L'Oréal Paris Extraordinary Oil, 100 ml <span style="color: var(--muted);">(139 kr)</span></li>
+                
+                <li>L'Oréal Paris Revitalift Day Cream SPF 30 <span style="color: var(--muted);">(189 kr)</span></li>
+                
+                <li>L'Oréal Paris Magic Retouch <span style="color: var(--muted);">(129 kr)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          
+          <p class="displacement-note">Best match was buried at position #9.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"edt"</div>
+          <div class="query-category">Abbreviation &middot;
+            <span class="severity-label moderate">Moderate</span>
+            &middot; Best result at position #8
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The search engine correctly retrieved all relevant eau de toilette products but ranked them poorly. The highest relevance product 'Yves Saint Laurent L'Homme EdT' (0.750) was buried at position #8, while much lower relevance products like 'Gucci Bamboo Eau de Toilette' (0.633) and 'Elizabeth Arden Green Tea Coconut Breeze Eau de toilette' (0.629) appeared in positions #1 and #2. The top 8 highest-scoring products were all displaced from their optimal positions.</p>
+          
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Gucci Bamboo Eau de Toilette <span style="color: var(--muted);">(582 kr)</span></li>
+                
+                <li>Elizabeth Arden Green Tea Coconut Breeze Eau de toilette <span style="color: var(--muted);">(351 kr)</span></li>
+                
+                <li>L’Occitane en Provence Verbena Eau de Toilette <span style="color: var(--muted);">(443 kr)</span></li>
+                
+                <li>Van Gils Between Sheets EdT <span style="color: var(--muted);">(570 kr)</span></li>
+                
+                <li>Emporio Armani Stronger With You EdT <span style="color: var(--muted);">(990 kr)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Yves Saint Laurent L'Homme EdT <span style="color: var(--muted);">(1400 kr)</span></li>
+                
+                <li>Eau De Lacoste Blanc EdT, 100 ml <span style="color: var(--muted);">(1055 kr)</span></li>
+                
+                <li>Yves Saint Laurent Libre EdT <span style="color: var(--muted);">(965 kr)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          
+          <p class="displacement-note">Best match was buried at position #8.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"Clinique hudvård"</div>
+          <div class="query-category">Brand search &middot;
+            <span class="severity-label minor">Minor</span>
+            &middot; Best result at position #7
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The two highest-scoring results (both with 0.793 relevance) - 'Clinique Dramatically Different Moisturizing Lotion+ Face Cream' and 'Clinique Dramatically Different Moisturizing Lotion +' - were ranked at positions #7 and #12 respectively, while a lower-scoring result (0.766) 'Clinique Liquid Facial Soap Mild cleanser' was ranked #1. The relevance gap is small at 0.027, indicating the customer still saw a highly relevant Clinique skincare product first.</p>
+          
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Clinique Liquid Facial Soap Mild cleanser - Very dry to combination skin <span style="color: var(--muted);">(305 kr)</span></li>
+                
+                <li>Clinique Moisture Surge 100-Hour Auto-Replenishing Moisturizing Face Cream <span style="color: var(--muted);">(450 kr)</span></li>
+                
+                <li>Clinique Clarifying Lotion 2 Dry to Combination Skin <span style="color: var(--muted);">(535 kr)</span></li>
+                
+                <li>Clinique Redness Solutions Daily Relief Face Cream <span style="color: var(--muted);">(700 kr)</span></li>
+                
+                <li>Clinique Take the Day off Makeup Remover for Lids, Lashes and Lips <span style="color: var(--muted);">(280 kr)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Clinique Dramatically Different Moisturizing Lotion+ Face Cream <span style="color: var(--muted);">(405 kr)</span></li>
+                
+                <li>Clinique Dramatically Different Moisturizing Lotion + <span style="color: var(--muted);">(565 kr)</span></li>
+                
+                <li>Clinique Moisture Surge 100-Hour Auto-Replenishing Moisturizing Face Cream <span style="color: var(--muted);">(450 kr)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          
+          <p class="displacement-note">Best match was buried at position #7.</p>
+          
+        </div>
+      </div>
+      
+      <div class="query-example">
+        <div class="query-header">
+          <div class="query-text">"spf 30"</div>
+          <div class="query-category">Abbreviation &middot;
+            <span class="severity-label minor">Minor</span>
+            &middot; Best result at position #7
+          </div>
+        </div>
+        <div class="query-body">
+          
+          <p class="narrative">The highest relevance result 'Rituals The Ritual of Karma Sun Protection Face Cream SPF 30' (0.852) was ranked #7, while lower-scoring results like 'Solkräm Protect & Moisture Lotion SPF30' (0.836) and 'Kiehls Ultra Facial Cream SPF 30' (0.832) were ranked #1 and #2. Multiple high-scoring results were displaced: 'Caudalie Vinosun High Protection Cream SPF30' (0.848) at #14 and 'Caudalie Vinosun Invisible High Protection Spray SPF30' (0.844) at #6.</p>
+          
+          
+          <div class="comparison">
+            <div class="comparison-col actual">
+              <h4>Customer Saw</h4>
+              <ol>
+                
+                <li>Solkräm Protect & Moisture Lotion SPF30 200 ml NIVEA SUN <span style="color: var(--muted);">(199 kr)</span></li>
+                
+                <li>Kiehls Ultra Facial Cream SPF 30 <span style="color: var(--muted);">(425 kr)</span></li>
+                
+                <li>Solskydd spray Protect & Moisture Sun Spray SPF30 200 ml NIVEA SUN <span style="color: var(--muted);">(204 kr)</span></li>
+                
+                <li>Färgad dagkräm Luminous 630 Anti Dark-Spot CC Fluid 3-in-1 Medium SPF30 40 ml NIVEA <span style="color: var(--muted);">(197 kr)</span></li>
+                
+                <li>NIVEA Cellular Expert Lift Day Cream <span style="color: var(--muted);">(173 kr)</span></li>
+                
+              </ol>
+            </div>
+            <div class="comparison-col ideal">
+              <h4>Should Have Seen</h4>
+              <ol>
+                
+                <li>Rituals The Ritual of Karma Sun Protection Face Cream SPF 30 <span style="color: var(--muted);">(199 kr)</span></li>
+                
+                <li>Caudalie Vinosun High Protection Cream SPF30 <span style="color: var(--muted);">(180 kr)</span></li>
+                
+                <li>Caudalie Vinosun Invisible High Protection Spray SPF30 <span style="color: var(--muted);">(213 kr)</span></li>
+                
+              </ol>
+            </div>
+          </div>
+          
+          
+          <p class="displacement-note">Best match was buried at position #7.</p>
           
         </div>
       </div>
@@ -4554,9 +4555,9 @@ strong { font-weight: 600; }
     <h2>What's Working</h2>
     <ul class="whats-working-list">
       
-      <li><strong>Retrieval is working</strong> — relevant results were found in 23 of 60 queries. The primary issue is ranking, not finding: the right results exist in the result set but aren't being surfaced at the top.</li>
+      <li><strong>Retrieval is working</strong> — relevant results were found in 19 of 60 queries. The primary issue is ranking, not finding: the right results exist in the result set but aren't being surfaced at the top.</li>
       
-      <li><strong>Close to correct</strong> on 13 queries ("Estée Lauder", "skönhet", "Estee Lauder"): the best result was within the top 3, just not at #1.</li>
+      <li><strong>Close to correct</strong> on 9 queries ("Estée Lauder", "hud vård", "Cli"): the best result was within the top 3, just not at #1.</li>
       
     </ul>
   </section>
@@ -4610,24 +4611,6 @@ strong { font-weight: 600; }
         
         <tr class="load-more-item">
           <td>4</td>
-          <td class="query-col">hälsa</td>
-          <td>Broad category</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#15</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>5</td>
-          <td class="query-col">damkläder</td>
-          <td>Locale variation</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#15</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>6</td>
           <td class="query-col">L'Oréall</td>
           <td>Typo</td>
           <td><span class="severity-dot critical"></span> Critical</td>
@@ -4636,43 +4619,7 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>7</td>
-          <td class="query-col">skonhet</td>
-          <td>Typo</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#14</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>8</td>
-          <td class="query-col">Lancmoe</td>
-          <td>Typo</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#14</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>9</td>
-          <td class="query-col">Lan</td>
-          <td>Partial query</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#14</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>10</td>
-          <td class="query-col">skön</td>
-          <td>Partial query</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#14</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>11</td>
+          <td>5</td>
           <td class="query-col">barn skor storlek 25</td>
           <td>Facet extraction</td>
           <td><span class="severity-dot critical"></span> Critical</td>
@@ -4681,7 +4628,7 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>12</td>
+          <td>6</td>
           <td class="query-col">barn</td>
           <td>Broad category</td>
           <td><span class="severity-dot critical"></span> Critical</td>
@@ -4690,205 +4637,7 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>13</td>
-          <td class="query-col">kosmetika</td>
-          <td>Synonym</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#13</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>14</td>
-          <td class="query-col">sommar rea kläder</td>
-          <td>Seasonal / occasion</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#13</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>15</td>
-          <td class="query-col">heminredning</td>
-          <td>Merged words</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#12</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>16</td>
-          <td class="query-col">EL</td>
-          <td>Abbreviation</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#12</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>17</td>
-          <td class="query-col">Fiskars sax</td>
-          <td>Brand search</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#12</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>18</td>
-          <td class="query-col">parfym</td>
-          <td>Direct match</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#11</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>19</td>
-          <td class="query-col">mode</td>
-          <td>Broad category</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#11</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>20</td>
-          <td class="query-col">barnkläder</td>
-          <td>Merged words</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#11</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>21</td>
-          <td class="query-col">inredning</td>
-          <td>Synonym</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#11</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>22</td>
-          <td class="query-col">smink färg</td>
-          <td>Locale variation</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#11</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>23</td>
-          <td class="query-col">hudvård</td>
-          <td>Merged words</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#10</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>24</td>
-          <td class="query-col">hår vård</td>
-          <td>Split word</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#10</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>25</td>
-          <td class="query-col">accessoar</td>
-          <td>Plural / singular</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#10</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>26</td>
-          <td class="query-col">Rit</td>
-          <td>Partial query</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#9</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>27</td>
-          <td class="query-col">L'O</td>
-          <td>Abbreviation</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#9</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>28</td>
-          <td class="query-col">hem</td>
-          <td>Broad category</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#8</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>29</td>
-          <td class="query-col">hårvård</td>
-          <td>Merged words</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#8</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>30</td>
-          <td class="query-col">under kläder</td>
-          <td>Split word</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#8</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>31</td>
-          <td class="query-col">hem & inredning</td>
-          <td>Special character</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#8</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>32</td>
-          <td class="query-col">hem & inredning textil</td>
-          <td>Special character</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#8</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>33</td>
-          <td class="query-col">hud & hår</td>
-          <td>Special character</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#8</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>34</td>
-          <td class="query-col">edt</td>
-          <td>Abbreviation</td>
-          <td><span class="severity-dot critical"></span> Critical</td>
-          <td>#8</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>35</td>
+          <td>7</td>
           <td class="query-col">klädesplagg</td>
           <td>Synonym</td>
           <td><span class="severity-dot critical"></span> Critical</td>
@@ -4897,7 +4646,7 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>36</td>
+          <td>8</td>
           <td class="query-col">jag behöver något för torr hud</td>
           <td>Natural language</td>
           <td><span class="severity-dot critical"></span> Critical</td>
@@ -4906,25 +4655,241 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>37</td>
-          <td class="query-col">Clinique hudvård</td>
+          <td>9</td>
+          <td class="query-col">hälsa</td>
+          <td>Broad category</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#15</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>10</td>
+          <td class="query-col">damkläder</td>
+          <td>Locale variation</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#15</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>11</td>
+          <td class="query-col">skonhet</td>
+          <td>Typo</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#14</td>
+          <td>No fuzzy matching</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>12</td>
+          <td class="query-col">Lancmoe</td>
+          <td>Typo</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#14</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>13</td>
+          <td class="query-col">skön</td>
+          <td>Partial query</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#14</td>
+          <td>Category mapping failure</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>14</td>
+          <td class="query-col">kosmetika</td>
+          <td>Synonym</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#13</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>15</td>
+          <td class="query-col">sommar rea kläder</td>
+          <td>Seasonal / occasion</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#13</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>16</td>
+          <td class="query-col">heminredning</td>
+          <td>Merged words</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#12</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>17</td>
+          <td class="query-col">Fiskars sax</td>
           <td>Brand search</td>
           <td><span class="severity-dot moderate"></span> Moderate</td>
-          <td>#7</td>
+          <td>#12</td>
           <td>Poor ranking</td>
         </tr>
         
         <tr class="load-more-item">
-          <td>38</td>
-          <td class="query-col">spf 30</td>
+          <td>18</td>
+          <td class="query-col">parfym</td>
+          <td>Direct match</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#11</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>19</td>
+          <td class="query-col">mode</td>
+          <td>Broad category</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#11</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>20</td>
+          <td class="query-col">barnkläder</td>
+          <td>Merged words</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#11</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>21</td>
+          <td class="query-col">inredning</td>
+          <td>Synonym</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#11</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>22</td>
+          <td class="query-col">smink färg</td>
+          <td>Locale variation</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#11</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>23</td>
+          <td class="query-col">hudvård</td>
+          <td>Merged words</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#10</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>24</td>
+          <td class="query-col">hår vård</td>
+          <td>Split word</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#10</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>25</td>
+          <td class="query-col">accessoar</td>
+          <td>Plural / singular</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#10</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>26</td>
+          <td class="query-col">Rit</td>
+          <td>Partial query</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#9</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>27</td>
+          <td class="query-col">L'O</td>
           <td>Abbreviation</td>
           <td><span class="severity-dot moderate"></span> Moderate</td>
-          <td>#7</td>
+          <td>#9</td>
           <td>Poor ranking</td>
         </tr>
         
         <tr class="load-more-item">
-          <td>39</td>
+          <td>28</td>
+          <td class="query-col">hem</td>
+          <td>Broad category</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#8</td>
+          <td>Category mapping failure</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>29</td>
+          <td class="query-col">hårvård</td>
+          <td>Merged words</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#8</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>30</td>
+          <td class="query-col">under kläder</td>
+          <td>Split word</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#8</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>31</td>
+          <td class="query-col">hem & inredning</td>
+          <td>Special character</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#8</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>32</td>
+          <td class="query-col">hem & inredning textil</td>
+          <td>Special character</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#8</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>33</td>
+          <td class="query-col">hud & hår</td>
+          <td>Special character</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#8</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>34</td>
+          <td class="query-col">edt</td>
+          <td>Abbreviation</td>
+          <td><span class="severity-dot moderate"></span> Moderate</td>
+          <td>#8</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>35</td>
           <td class="query-col">smycken</td>
           <td>Locale variation</td>
           <td><span class="severity-dot moderate"></span> Moderate</td>
@@ -4933,43 +4898,7 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>40</td>
-          <td class="query-col">L'Oréal smink röd</td>
-          <td>Multi-attribute</td>
-          <td><span class="severity-dot moderate"></span> Moderate</td>
-          <td>#7</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>41</td>
-          <td class="query-col">L'Oréal</td>
-          <td>Direct match</td>
-          <td><span class="severity-dot moderate"></span> Moderate</td>
-          <td>#6</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>42</td>
-          <td class="query-col">L'Oréal Paris</td>
-          <td>Special character</td>
-          <td><span class="severity-dot moderate"></span> Moderate</td>
-          <td>#6</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>43</td>
-          <td class="query-col">Rituals</td>
-          <td>Brand search</td>
-          <td><span class="severity-dot moderate"></span> Moderate</td>
-          <td>#6</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>44</td>
+          <td>36</td>
           <td class="query-col">lek saker</td>
           <td>Split word</td>
           <td><span class="severity-dot moderate"></span> Moderate</td>
@@ -4978,25 +4907,7 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>45</td>
-          <td class="query-col">Levi's jeans</td>
-          <td>Brand search</td>
-          <td><span class="severity-dot moderate"></span> Moderate</td>
-          <td>#5</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>46</td>
-          <td class="query-col">väska</td>
-          <td>Plural / singular</td>
-          <td><span class="severity-dot moderate"></span> Moderate</td>
-          <td>#5</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>47</td>
+          <td>37</td>
           <td class="query-col">leksak</td>
           <td>Plural / singular</td>
           <td><span class="severity-dot moderate"></span> Moderate</td>
@@ -5005,7 +4916,7 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>48</td>
+          <td>38</td>
           <td class="query-col">barn kläder vinter</td>
           <td>Multi-attribute</td>
           <td><span class="severity-dot moderate"></span> Moderate</td>
@@ -5014,16 +4925,16 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>49</td>
-          <td class="query-col">Cli</td>
-          <td>Partial query</td>
+          <td>39</td>
+          <td class="query-col">stora väskor svart</td>
+          <td>Facet extraction</td>
           <td><span class="severity-dot moderate"></span> Moderate</td>
-          <td>#1</td>
-          <td>Poor ranking</td>
+          <td>#2</td>
+          <td>Facet not extracted</td>
         </tr>
         
         <tr class="load-more-item">
-          <td>50</td>
+          <td>40</td>
           <td class="query-col">doft</td>
           <td>Synonym</td>
           <td><span class="severity-dot moderate"></span> Moderate</td>
@@ -5032,16 +4943,7 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>51</td>
-          <td class="query-col">sko</td>
-          <td>Plural / singular</td>
-          <td><span class="severity-dot moderate"></span> Moderate</td>
-          <td>#1</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>52</td>
+          <td>41</td>
           <td class="query-col">röd läppstift L'Oréal</td>
           <td>Facet extraction</td>
           <td><span class="severity-dot moderate"></span> Moderate</td>
@@ -5050,7 +4952,70 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>53</td>
+          <td>42</td>
+          <td class="query-col">Lan</td>
+          <td>Partial query</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#14</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>43</td>
+          <td class="query-col">L'Oréal smink röd</td>
+          <td>Multi-attribute</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#7</td>
+          <td>Facet not extracted</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>44</td>
+          <td class="query-col">Clinique hudvård</td>
+          <td>Brand search</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#7</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>45</td>
+          <td class="query-col">spf 30</td>
+          <td>Abbreviation</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#7</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>46</td>
+          <td class="query-col">L'Oréal</td>
+          <td>Direct match</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#6</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>47</td>
+          <td class="query-col">L'Oréal Paris</td>
+          <td>Special character</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#6</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>48</td>
+          <td class="query-col">Levi's jeans</td>
+          <td>Brand search</td>
+          <td><span class="severity-dot minor"></span> Minor</td>
+          <td>#5</td>
+          <td>Poor ranking</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>49</td>
           <td class="query-col">svart väska dam</td>
           <td>Multi-attribute</td>
           <td><span class="severity-dot minor"></span> Minor</td>
@@ -5059,7 +5024,7 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>54</td>
+          <td>50</td>
           <td class="query-col">Estée Lauder</td>
           <td>Direct match</td>
           <td><span class="severity-dot minor"></span> Minor</td>
@@ -5068,25 +5033,7 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>55</td>
-          <td class="query-col">skönhet</td>
-          <td>Direct match</td>
-          <td><span class="severity-dot minor"></span> Minor</td>
-          <td>#2</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>56</td>
-          <td class="query-col">Estee Lauder</td>
-          <td>Typo</td>
-          <td><span class="severity-dot minor"></span> Minor</td>
-          <td>#2</td>
-          <td>Poor ranking</td>
-        </tr>
-        
-        <tr class="load-more-item">
-          <td>57</td>
+          <td>51</td>
           <td class="query-col">hud vård</td>
           <td>Split word</td>
           <td><span class="severity-dot minor"></span> Minor</td>
@@ -5095,27 +5042,81 @@ strong { font-weight: 600; }
         </tr>
         
         <tr class="load-more-item">
-          <td>58</td>
-          <td class="query-col">julklappar barn</td>
-          <td>Seasonal / occasion</td>
+          <td>52</td>
+          <td class="query-col">Cli</td>
+          <td>Partial query</td>
           <td><span class="severity-dot minor"></span> Minor</td>
-          <td>#2</td>
+          <td>#1</td>
           <td>Poor ranking</td>
         </tr>
         
         <tr class="load-more-item">
+          <td>53</td>
+          <td class="query-col">EL</td>
+          <td>Abbreviation</td>
+          <td><span class="severity-dot pass"></span> Pass</td>
+          <td>#1</td>
+          <td>—</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>54</td>
+          <td class="query-col">Rituals</td>
+          <td>Brand search</td>
+          <td><span class="severity-dot pass"></span> Pass</td>
+          <td>#1</td>
+          <td>—</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>55</td>
+          <td class="query-col">väska</td>
+          <td>Plural / singular</td>
+          <td><span class="severity-dot pass"></span> Pass</td>
+          <td>#1</td>
+          <td>—</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>56</td>
+          <td class="query-col">Levi's jeans blå herr</td>
+          <td>Multi-attribute</td>
+          <td><span class="severity-dot pass"></span> Pass</td>
+          <td>#1</td>
+          <td>—</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>57</td>
+          <td class="query-col">skönhet</td>
+          <td>Direct match</td>
+          <td><span class="severity-dot pass"></span> Pass</td>
+          <td>#1</td>
+          <td>—</td>
+        </tr>
+        
+        <tr class="load-more-item">
+          <td>58</td>
+          <td class="query-col">Estee Lauder</td>
+          <td>Typo</td>
+          <td><span class="severity-dot pass"></span> Pass</td>
+          <td>#1</td>
+          <td>—</td>
+        </tr>
+        
+        <tr class="load-more-item">
           <td>59</td>
-          <td class="query-col">stora väskor svart</td>
-          <td>Facet extraction</td>
-          <td><span class="severity-dot minor"></span> Minor</td>
-          <td>#2</td>
-          <td>Facet not extracted</td>
+          <td class="query-col">julklappar barn</td>
+          <td>Seasonal / occasion</td>
+          <td><span class="severity-dot pass"></span> Pass</td>
+          <td>#1</td>
+          <td>—</td>
         </tr>
         
         <tr class="load-more-item">
           <td>60</td>
-          <td class="query-col">Levi's jeans blå herr</td>
-          <td>Multi-attribute</td>
+          <td class="query-col">sko</td>
+          <td>Plural / singular</td>
           <td><span class="severity-dot pass"></span> Pass</td>
           <td>#1</td>
           <td>—</td>

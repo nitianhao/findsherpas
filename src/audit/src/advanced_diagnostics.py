@@ -56,7 +56,11 @@ def _pct(part: float, total: float) -> float:
 
 def _query_terms(query: str) -> list[str]:
     terms = []
-    for raw in re.findall(r"[a-zA-Z0-9]+", query.lower()):
+    # Unicode-aware tokenization: ``[^\W_]+`` matches letters/digits in any
+    # language (incl. å, ä, ö, é, ü …) but excludes underscore. An ASCII-only
+    # regex shreds non-English words (e.g. "kläder" -> "kl","der") so every
+    # term then fails to match product titles and shows as falsely "dropped".
+    for raw in re.findall(r"[^\W_]+", query.lower()):
         token = raw.rstrip("s") if len(raw) > 4 else raw
         if token in _STOPWORDS:
             continue
@@ -74,7 +78,7 @@ def _family_key(title: str) -> str:
     key = title.lower()
     key = re.sub(r"\b\d+(?:\.\d+)?\b", " ", key)
     key = re.sub(r"\b\d+(?:\.\d+)?\s*(?:in|inch|\"|oz|ml|g|kg|pack)\b", " ", key)
-    key = re.sub(r"[^a-z0-9\s-]", " ", key)
+    key = re.sub(r"[^\w\s-]", " ", key)  # keep Unicode letters/digits (non-ASCII safe)
     tokens = [
         t.rstrip("s") if len(t) > 4 else t
         for t in key.split()
@@ -124,20 +128,19 @@ def _build_result_set_purity(judgments: list[QueryJudgment]) -> dict:
 def _build_top_result_trust(judgments: list[QueryJudgment]) -> dict:
     rows = []
     failed = 0
+    evaluated = 0
 
     for j in judgments:
         results = _by_original(j)
+        # Zero-result queries have no #1 result to assess for trustworthiness.
+        # That is a separate dead-end failure (ZERO_RESULTS_OR_GARBAGE) captured
+        # elsewhere; including them here both inflates the failure rate and
+        # produces nonsensical "#1 was 'No results'" evidence. Exclude them from
+        # this diagnostic entirely (matching Result Set Purity).
         if not results:
-            failed += 1
-            rows.append({
-                "query": j.test_query.query,
-                "top_result": "No results",
-                "top_score": 0.0,
-                "best_score": j.max_relevance_score,
-                "reason": "No visible result was available.",
-            })
             continue
 
+        evaluated += 1
         top = results[0]
         best_score = max(r.relevance_score for r in results)
         reason = ""
@@ -159,68 +162,85 @@ def _build_top_result_trust(judgments: list[QueryJudgment]) -> dict:
             })
 
     rows.sort(key=lambda r: (r["top_score"], -r["best_score"]))
-    total = len(judgments)
     return {
-        "failure_rate": _pct(failed, total),
+        "failure_rate": _pct(failed, evaluated),
         "failed": failed,
-        "total": total,
+        "total": evaluated,
         "worst": rows[:5],
     }
 
 
 def _build_attribute_drift(judgments: list[QueryJudgment]) -> dict:
+    """Detect attribute drift using only *title-observable* terms.
+
+    Title-substring matching cannot see attributes that live in facet metadata
+    (colour, size, gender, generic category words) — those never appear in
+    product titles, so naively treating them as "dropped" produces a false
+    failure for almost every multi-attribute query. We therefore classify each
+    query term by what the result set actually shows:
+
+      * observable in the TOP results          -> preserved
+      * observable elsewhere in the result set
+        but absent from the top                 -> dropped (genuine ranking drift)
+      * not present in ANY returned title       -> unverifiable (facet/metadata,
+                                                    or the engine returned no
+                                                    matching product — can't tell
+                                                    from titles, so we don't guess)
+
+    A query is reported as genuine drift only when it has BOTH a preserved
+    (title-observable) anchor and a dropped title-observable attribute: the
+    right product type is surfaced, but matching products for another attribute
+    are buried. Total misses (no preserved anchor) and zero-result queries are
+    handled by the failure-mode analysis, not here.
+    """
     candidates = [
         j for j in judgments
         if j.test_query.category in _ATTRIBUTE_CATEGORIES
+        and len(_query_terms(j.test_query.query)) >= 2
+        and _by_original(j)
     ]
     rows = []
     dropped_counter: Counter[str] = Counter()
+    unverifiable_queries = 0
 
     for j in candidates:
         terms = _query_terms(j.test_query.query)
-        if len(terms) < 2:
-            continue
+        results = _by_original(j)
+        top = results[:5]
 
-        results = _by_original(j)[:5]
-        if not results:
+        preserved, dropped, unverifiable = [], [], []
+        for term in terms:
+            all_hits = sum(1 for r in results if term in _title_text(r))
+            top_hits = sum(1 for r in top if term in _title_text(r))
+            if all_hits == 0:
+                unverifiable.append(term)
+            elif top_hits == 0:
+                dropped.append(term)
+            else:
+                preserved.append(term)
+
+        if preserved and dropped:
+            dropped_counter.update(dropped)
             rows.append({
                 "query": j.test_query.query,
-                "preserved": [],
-                "partial": [],
-                "dropped": terms,
-                "coverage": 0.0,
+                "preserved": preserved,
+                "dropped": dropped,
+                "unverifiable": unverifiable,
+                # coverage over the title-observable terms only
+                "coverage": _pct(len(preserved), len(preserved) + len(dropped)),
             })
-            dropped_counter.update(terms)
-            continue
-
-        preserved = []
-        partial = []
-        dropped = []
-        for term in terms:
-            hits = sum(1 for r in results if term in _title_text(r))
-            if hits >= max(3, len(results) // 2 + 1):
-                preserved.append(term)
-            elif hits > 0:
-                partial.append(term)
-            else:
-                dropped.append(term)
-                dropped_counter[term] += 1
-
-        covered_terms = len(preserved) + (0.5 * len(partial))
-        coverage = _pct(covered_terms, len(terms))
-        rows.append({
-            "query": j.test_query.query,
-            "preserved": preserved,
-            "partial": partial,
-            "dropped": dropped,
-            "coverage": coverage,
-        })
+        elif unverifiable and not dropped:
+            # Attributes existed but none were title-observable, so drift could
+            # not be assessed from result text. Count it for honest reporting.
+            unverifiable_queries += 1
 
     rows.sort(key=lambda r: (r["coverage"], -len(r["dropped"])))
     return {
         "queries": rows,
         "worst": rows[:5],
         "common_dropped": dropped_counter.most_common(8),
+        "unverifiable_queries": unverifiable_queries,
+        "candidate_count": len(candidates),
     }
 
 
@@ -387,12 +407,24 @@ def _trust_result_text(trust: dict) -> str:
 
 
 def _drift_result_text(drift: dict) -> str:
-    if not drift["worst"]:
+    if not drift["queries"]:
+        unverifiable = drift.get("unverifiable_queries", 0)
+        if unverifiable:
+            return (
+                f"No title-observable attribute drift detected. In this catalog the constraint "
+                f"attributes (colour, size, gender, category) for {unverifiable} multi-attribute "
+                "quer" + ("y" if unverifiable == 1 else "ies") + " appear only in facet metadata, "
+                "not in product titles, so drift cannot be confirmed from result text — attribute "
+                "handling for these is assessed in the failure-mode analysis (e.g. FACET_NOT_EXTRACTED, "
+                "CONSTRAINT_DROPPED)."
+            )
         return "No multi-attribute constraint queries were available for this diagnostic."
-    affected = sum(1 for row in drift["queries"] if row["dropped"] or row["partial"])
+    affected = len(drift["queries"])
     return (
-        f"{affected} multi-attribute queries showed some attribute loss in the top 5. "
-        "The audit separates preserved, partially preserved, and dropped terms so the team can see which part of the query is being lost."
+        f"{affected} multi-attribute quer" + ("y" if affected == 1 else "ies") + " showed genuine "
+        "attribute drift: the product type was surfaced in the top results, but matching products "
+        "for another title-observable attribute were ranked below it. Only attributes that actually "
+        "appear in product titles are assessed; facet-only attributes are not guessed at."
     )
 
 
@@ -473,16 +505,20 @@ def build_advanced_diagnostics_sections(
         {
             "key": "attribute_drift",
             "title": "Attribute Drift",
-            "metric": str(len([row for row in drift["queries"] if row["dropped"] or row["partial"]])),
-            "metric_label": "queries with attribute loss",
-            "metric_class": "warn" if drift["worst"] else "good",
+            "metric": str(len(drift["queries"])),
+            "metric_label": "queries with attribute drift",
+            "metric_class": "warn" if drift["queries"] else "good",
             "meaning": (
                 "This decomposes multi-attribute queries to see which terms survive into the top results. "
-                "It distinguishes right-category-but-wrong-attribute failures from total search failures."
+                "It distinguishes right-category-but-wrong-attribute failures from total search failures. "
+                "Only attributes that appear in product titles can be checked here; attributes carried in facet "
+                "metadata (colour, size, gender) are assessed in the failure-mode analysis instead."
             ),
             "result": _drift_result_text(drift),
             "evidence": [
-                f"\"{row['query']}\": dropped {', '.join(row['dropped']) if row['dropped'] else 'none'}; partially preserved {', '.join(row['partial']) if row['partial'] else 'none'}"
+                f"\"{row['query']}\": kept {', '.join(row['preserved'])}; "
+                f"buried below the top results: {', '.join(row['dropped'])}"
+                + (f"; not verifiable from titles: {', '.join(row['unverifiable'])}" if row['unverifiable'] else "")
                 for row in drift["worst"][:4]
             ],
             "remedy": (
