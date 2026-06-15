@@ -132,6 +132,40 @@ describe('credit exhaustion → skip to next, then inference fallback', () => {
   });
 });
 
+describe('off-domain guard', () => {
+  it('rejects a provider email on a different company domain', async () => {
+    // Provider "finds" a verified email, but at a different employer.
+    const dropcontact = fakeProvider('dropcontact', { email: 'azonnenberg@zeeman.com', status: 'verified', outcome: 'found' });
+    const res = await runEmailWaterfall(
+      { fullName: 'Amber Zonnenberg', companyDomain: 'debijenkorf.nl' },
+      { ...acceptVerified, providers: [dropcontact] },
+    );
+    expect(res.email).toBeNull();
+    expect(res.status).toBe('unavailable');
+    // the attempt is recorded but rejected with a clear reason
+    expect(res.attempts[0].reasons.join(' ')).toMatch(/off-domain/i);
+  });
+
+  it('accepts a matching domain and its sub-domains', async () => {
+    const p1 = fakeProvider('hunter', { email: 'jane@debijenkorf.nl', status: 'verified', outcome: 'found' });
+    const r1 = await runEmailWaterfall({ fullName: 'Jane', companyDomain: 'debijenkorf.nl' }, { ...acceptVerified, providers: [p1] });
+    expect(r1.email).toBe('jane@debijenkorf.nl');
+
+    const p2 = fakeProvider('hunter', { email: 'jane@mail.debijenkorf.nl', status: 'verified', outcome: 'found' });
+    const r2 = await runEmailWaterfall({ fullName: 'Jane', companyDomain: 'debijenkorf.nl' }, { ...acceptVerified, providers: [p2] });
+    expect(r2.email).toBe('jane@mail.debijenkorf.nl');
+  });
+
+  it('allows off-domain when explicitly configured', async () => {
+    const p = fakeProvider('dropcontact', { email: 'a@zeeman.com', status: 'verified', outcome: 'found' });
+    const res = await runEmailWaterfall(
+      { fullName: 'A', companyDomain: 'debijenkorf.nl' },
+      { config: { acceptStatuses: ['verified'], allowOffDomainEmails: true }, providers: [p] },
+    );
+    expect(res.email).toBe('a@zeeman.com');
+  });
+});
+
 describe('guessed emails are never auto-accepted', () => {
   it('a guessed email does not satisfy the default verified accept threshold', async () => {
     const hunter = fakeProvider('hunter', { email: 'jane@acme.com', status: 'guessed', outcome: 'found' });

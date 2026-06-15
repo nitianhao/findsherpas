@@ -43,6 +43,18 @@ function nowIso(): string {
   return new Date().toISOString();
 }
 
+/**
+ * True if an email's domain belongs to the target company domain.
+ * Matches exact domain or sub-domains in either direction
+ * (e.g. "mail.acme.com" ↔ "acme.com"), but NOT a different company
+ * ("zeeman.com" vs "debijenkorf.nl").
+ */
+function domainMatches(emailDomain: string, companyDomain: string): boolean {
+  const a = emailDomain.toLowerCase().replace(/^www\./, "");
+  const b = companyDomain.toLowerCase().replace(/^www\./, "");
+  return a === b || a.endsWith(`.${b}`) || b.endsWith(`.${a}`);
+}
+
 function emptyResult(reason: string): WaterfallResult {
   return {
     email: null,
@@ -127,6 +139,19 @@ export async function runEmailWaterfall(
     attempts.push(result);
 
     if (result.outcome === "found" && result.email) {
+      // Domain guard: a provider may return the person's email at a DIFFERENT
+      // employer. Never attribute an off-domain address to this company.
+      const emailDomain = result.email.split("@")[1] ?? "";
+      if (!cfg.allowOffDomainEmails && !domainMatches(emailDomain, domain)) {
+        result.reasons = [
+          ...result.reasons,
+          `REJECTED off-domain: ${emailDomain} ≠ ${domain} (likely a different employer)`,
+        ];
+        result.outcome = "not_found";
+        result.email = null;
+        continue;
+      }
+
       const candidate: WaterfallResult = {
         email: result.email,
         status: result.status,

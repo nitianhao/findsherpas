@@ -42,6 +42,13 @@ export interface WaterfallConfig {
   acceptStatuses: EmailStatus[];
   /** Re-verify an existing CRM email through a provider instead of trusting it. */
   reverifyExisting: boolean;
+  /**
+   * Accept emails whose domain does NOT match the requested company domain.
+   * Default false: a provider returning e.g. someone's email at a *different*
+   * employer is rejected, so we never attribute an off-domain address to the
+   * target company. Prevents cross-company contamination.
+   */
+  allowOffDomainEmails: boolean;
 }
 
 function parseOrder(raw: string | undefined): ProviderName[] {
@@ -69,6 +76,7 @@ export function loadWaterfallConfig(): WaterfallConfig {
     allowRoleInboxes: process.env.ENRICHMENT_ALLOW_ROLE_INBOXES === "true",
     acceptStatuses: parseStatuses(process.env.ENRICHMENT_ACCEPT_STATUSES),
     reverifyExisting: process.env.ENRICHMENT_REVERIFY_EXISTING === "true",
+    allowOffDomainEmails: process.env.ENRICHMENT_ALLOW_OFF_DOMAIN === "true",
   };
 }
 
