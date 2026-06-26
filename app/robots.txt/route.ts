@@ -5,6 +5,9 @@ export function GET() {
 
   const body = [
     "User-agent: *",
+    "Disallow: /report/",
+    "Disallow: /crm/",
+    "Disallow: /api/",
     "Allow: /",
     "",
     `Sitemap: ${siteUrl}/sitemap.xml`,
@@ -17,4 +20,3 @@ export function GET() {
     },
   });
 }
-

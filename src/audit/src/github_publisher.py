@@ -108,12 +108,18 @@ def publish_report(
     html_content: str,
     domain_slug: str,
     slugs_file: Path = _DEFAULT_SLUGS_FILE,
+    data_json: str | None = None,
+    report_md: str | None = None,
 ) -> str:
     """Upload the report and return its unlisted URL.
 
-    Pushes BOTH the report HTML and the updated report registry to the repo:
+    Pushes to the repo (all via the GitHub contents API, which commits
+    server-side and therefore bypasses the local `reports/*` gitignore):
       1. public/report/{slug}/index.html  → the live findsherpas.com page
       2. reports/report_slugs.json         → read by the CRM Reports page
+      3. audit-data/{slug}/{slug}_data.json + _report.md (when provided)
+         → version-controlled archive of the raw audit data so it survives a
+           local wipe. NOT under public/ — never web-served.
 
     The registry MUST be committed to the repo, not just updated locally — the
     deployed CRM reads it from the repo, so a local-only update leaves the report
@@ -135,6 +141,20 @@ def publish_report(
         slugs_file.read_bytes(),
         f"Register search audit in report registry: {report_slug}",
     )
+
+    # 3. Raw audit data → version-controlled archive (survives a local wipe).
+    if data_json is not None:
+        _put_repo_file(
+            f"audit-data/{report_slug}/{report_slug}_data.json",
+            data_json.encode("utf-8"),
+            f"Archive raw audit data: {report_slug}",
+        )
+    if report_md is not None:
+        _put_repo_file(
+            f"audit-data/{report_slug}/{report_slug}_report.md",
+            report_md.encode("utf-8"),
+            f"Archive audit narrative: {report_slug}",
+        )
 
     url = f"{_BASE_URL}/{report_slug}/"
     return url

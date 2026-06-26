@@ -25,6 +25,6 @@ export function proxy(req: NextRequest) {
   return NextResponse.redirect(loginUrl);
 }
 
-export const proxyConfig = {
+export const config = {
   matcher: ['/crm/:path*', '/api/crm/:path*'],
 };
