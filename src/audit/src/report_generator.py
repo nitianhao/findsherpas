@@ -15,6 +15,7 @@ from src.models import (
     AuditReport,
     CapabilityGroup,
     CapabilityScore,
+    FailureMode,
     QueryCategory,
     QueryJudgment,
     Severity,
@@ -25,7 +26,7 @@ load_dotenv(override=True)
 
 logger = logging.getLogger(__name__)
 
-_MODEL = "claude-sonnet-4-20250514"
+_MODEL = "claude-sonnet-4-6"
 
 # Severity ordering for comparisons (higher index = worse)
 _SEVERITY_RANK: dict[str, int] = {
@@ -62,7 +63,7 @@ _SEVERITY_SHORT: dict[str, str] = {
 }
 
 # Pipeline brand name — used in methodology, headers, executive summary
-PIPELINE_NAME = "Prism"
+PIPELINE_NAME = ""  # report is unbranded; kept for backward-compat references
 
 # Human-readable failure mode labels
 _FAILURE_MODE_DISPLAY: dict[str, str] = {
@@ -74,6 +75,7 @@ _FAILURE_MODE_DISPLAY: dict[str, str] = {
     "NO_FUZZY_MATCHING": "No fuzzy matching",
     "NO_SEMANTIC_UNDERSTANDING": "No semantic understanding",
     "POOR_RANKING": "Poor ranking",
+    "DUPLICATE_FLOODING": "Duplicate flooding",
     "ZERO_RESULTS_OR_GARBAGE": "Zero results",
     "OTHER": "Other",
 }
@@ -97,7 +99,7 @@ _CATEGORY_DISPLAY: dict[str, str] = {
     "LOCALE_VARIATION": "Locale variation",
     "SKU_MODEL_NUMBER": "SKU / model number",
     "SUBJECTIVE_ATTRIBUTE": "Subjective attribute",
-    "USE_CASE": "Use case",
+    "OCCASION": "Occasion",
     "SEASONAL_OCCASION": "Seasonal / occasion",
     "MULTI_ATTRIBUTE": "Multi-attribute",
     "STOP_WORD_HEAVY": "Stop-word heavy",
@@ -145,6 +147,13 @@ def build_capability_scores(judgments: list[QueryJudgment]) -> list[CapabilitySc
         cap_name = _CAPABILITY_NAMES.get(cap_value, cap_value)
         total = len(cap_judgments)
         non_pass = sum(1 for j in cap_judgments if j.severity != Severity.PASS.value)
+        pass_count = total - non_pass
+
+        # Ease-up rule: worst-severity-wins overstates a capability where MOST queries pass.
+        # If more than half the queries in the group passed, a single critical query should not
+        # mark the whole capability critical — downgrade CRITICAL to MODERATE.
+        if worst_sev_value == Severity.CRITICAL.value and pass_count > total / 2:
+            worst_sev_value = Severity.MODERATE.value
 
         if worst_sev_value == Severity.CRITICAL.value:
             summary = f"{non_pass} of {total} query patterns show improvement room. This is a practical place to start for {cap_name}."
@@ -195,17 +204,42 @@ def build_scorecard_markdown(capability_scores: list[CapabilityScore]) -> str:
 
 
 def build_whats_working_markdown(capability_scores: list[CapabilityScore]) -> str:
-    """Build a section listing capabilities that passed, or partial wins if none passed."""
-    passing = [cs for cs in capability_scores if cs.severity == Severity.PASS.value]
+    """List what's working — at the QUERY-CATEGORY grain, not capability grain.
 
-    if passing:
-        lines = ["## What's Working\n"]
-        for cs in passing:
-            cap_name = _CAPABILITY_NAMES.get(cs.capability, cs.capability)
-            lines.append(f"- **{cap_name}**: {cs.summary}")
+    Capability-level passes (worst-severity-wins) hide genuine strengths: a capability with
+    one failing query is "not passing" even when several of its query types passed 100%. So we
+    surface query categories that fully passed (with an example each), which gives a fair,
+    fuller picture. Falls back to partial-wins only if no category passed cleanly.
+    """
+    all_judgments: list[QueryJudgment] = []
+    for cs in capability_scores:
+        all_judgments.extend(cs.judgments)
+
+    # Group by query category; find categories where EVERY query passed (>= 2 queries tested).
+    by_cat: dict[str, list[QueryJudgment]] = defaultdict(list)
+    for j in all_judgments:
+        by_cat[getattr(j.test_query.category, "value", j.test_query.category)].append(j)
+
+    strong = []
+    for cat, js in by_cat.items():
+        passed = [j for j in js if j.severity == Severity.PASS.value]
+        if len(js) >= 2 and len(passed) == len(js):
+            strong.append((len(js), cat, passed))
+    strong.sort(reverse=True)  # most-tested first
+
+    if strong:
+        lines = [
+            "## What's Working\n",
+            "Several query types were handled reliably — every test in these categories returned "
+            "relevant results:\n",
+        ]
+        for total, cat, passed in strong:
+            disp = _CATEGORY_DISPLAY.get(cat, cat)
+            example = passed[0].test_query.query
+            lines.append(f"- **{disp}** ({total}/{total} passed) — e.g. \"{example}\"")
         return "\n".join(lines)
 
-    # No capability passed — look for partial wins across all judgments
+    # No category passed cleanly — look for partial wins across all judgments
     lines = ["## What's Working\n"]
     bullets: list[str] = []
 
@@ -296,6 +330,11 @@ def _build_narrative_prompt(
 
         judgment_blocks = []
         for j in cs.judgments:
+            # Only narrate actual failures — never feed PASS queries into the deep dives, or
+            # the model pads a thin capability with passing queries reframed as problems
+            # (e.g. a partial-match query that passed shown as "ranked poorly").
+            if j.severity == Severity.PASS.value:
+                continue
             # Top 5 by original rank
             by_original = sorted(j.results, key=lambda r: r.original_rank)[:5]
             original_lines = []
@@ -359,17 +398,21 @@ Do NOT include a report title or any top-level heading (no "# Search Audit Repor
 For each failing capability above, write a subsection:
 - A heading (## capability name)
 - 2-3 sentences explaining what this capability means and why it matters for their business. Do NOT use technical jargon like "fuzzy matching" or "tokenization". Write as if explaining to a smart business person.
-- Then for the 4-5 WORST queries in that capability (pick by severity first, then by displacement):
+- Then cover the FAILING queries in that capability (up to 5, worst first by severity then displacement). Only queries listed below are failures — NEVER introduce or invent a query, and if a capability has fewer than 5 failures, show only those (do not pad with passing queries):
   - Show the query the customer typed
   - 1-2 sentences in plain language referencing specific product titles from the results
-  - A before/after comparison (label as "Customer saw:" and "Should have seen:"). You do NOT need to show exactly 3 items every time — show as many as makes the point clearly (sometimes 1 is enough; sometimes all 5).
-  - State the displacement plainly: "The best match was buried at position #X." Do NOT add any phrase like "Most customers never scroll past position 3" or similar visibility warnings — that is already in the Executive Summary.
+  - MATCH THE NARRATIVE TO THE FAILURE TYPE — do NOT force a before/after or a position number onto every query:
+    * RETRIEVAL failures (failure mode ZERO_RESULTS_OR_GARBAGE, NO_SEMANTIC_UNDERSTANDING, CATEGORY_MAPPING_FAILURE, NO_FUZZY_MATCHING — typically the query returned NOTHING): state plainly that the search returned no usable results. If the evidence says the store stocks matching items, say so ("…even though the store carries {{product type}}"). Do NOT write a "Should have seen:" list of specific product titles — you have no result data for these; instead name the TYPE of product that should have appeared. NEVER cite "buried at position #X" — there is no position when nothing was returned.
+    * CONSTRAINT failures (CONSTRAINT_DROPPED): lead with the violation across the set ("every result was wool", "every result contained leather", "all results were jewellery") and quote 2-3 offending titles. No position number.
+    * RANKING / PARTIAL failures (POOR_RANKING, PARTIAL_KEYWORD_MATCH, where results DO exist): use the before/after — label "Customer saw:" and "Should have seen:" — and only here state "The best match was buried at position #X." Show as many items as make the point (sometimes 1, sometimes all 5).
+  - Do NOT add any phrase like "Most customers never scroll past position 3" or similar visibility warnings — that is already in the Executive Summary.
 - Vary your lead-in style for each capability. Do NOT use the same opening structure twice in a row. Options:
+  * Lead with the dead end: "When customers searched for [query], the search returned nothing at all — even though the store carries [product type]."
   * Lead with the most absurd result: "When customers searched for [query], [irrelevant thing] ranked #1."
   * Lead with the displacement: "The best [thing] was buried at position #X out of #Y results."
   * Lead with the constraint violation: "Every single result exceeded the $50 budget — the cheapest was $X."
   * Lead with what worked, then what failed: "Your search correctly recognized the typo — but then ranked the corrected results poorly."
-- Show 4-5 examples per capability to demonstrate the breadth of testing. Pick the most compelling ones.
+- Show up to 5 failing examples per capability to demonstrate the breadth of testing. Pick the most compelling ones; show fewer if the capability has fewer failures.
 
 SECTION 2 — ROADMAP:
 Do NOT add any heading like "## Roadmap" or "## ROADMAP" — the heading is added by the report assembly code. Start directly with the numbered list.
@@ -381,7 +424,7 @@ A prioritized numbered list of fixes, ordered by business impact (Critical capab
   * Quick Win — configuration change or parameter tuning, days not weeks
   * Medium Effort — requires development work, 2-4 weeks
   * Major Project — significant engineering effort, 1-3 months
-- Group related fixes — don't list the same fix twice for different queries
+- Group related fixes — don't list the same fix twice for different queries. In particular, the "product type / head noun is under-weighted versus a modifier" defect (e.g. "outerwear"→throws, "woollen throws"→sweaters, "throws grey"→socks, "winter coat sale"→socks, "grey accessories"→t-shirts) is ONE fix — consolidate it into a SINGLE roadmap item covering both the requirement (the product-type noun must match) and the ranking boost (it ranks above items sharing only a colour/material/season word). Do NOT split the "require the head noun" and "boost the product type" framings into two separate items. This item ALSO absorbs every ordering problem within a correctly-retrieved set (the right product scored highest but ranked low) — do NOT create any separate item about "fixing ranking", "relevance order", "surfacing the highest-scoring product first", or "a popularity/recency signal overriding relevance". There is no standalone ranking item: all such cases are the product-type/head-noun fix. If you find yourself writing a roadmap item whose title is about ranking or relevance order in the abstract, fold it into this product-type item instead. Likewise, ALL category-mapping failures — colloquial/occasion/category terms that should map to the site's taxonomy but return nothing (e.g. "Father's Day gift ideas", "stationery", "bedtime wear", "unique Irish gifts") — are ONE fix: consolidate them into a SINGLE roadmap item, whether the term has an exact category page or spans several taxonomy nodes. Do NOT create a separate item for "stationery" or any individual category term.
 Keep the roadmap to 5-8 items maximum. Be specific but not overly technical.
 HARD RULE — the #1 (first) roadmap item must NEVER be framed as fixing "relevance", "relevance score", "relevance ranking", "the ranking algorithm", "sort order", or "re-ranking". Those phrasings are forbidden in any roadmap title. Express the dominant ranking problem instead as a concrete intent/boost layer: name the specific signals to apply BEFORE generic keyword ranking (e.g. brand, product-type, price, bestseller, sale, negative-term intent acting as filters or boosts). A title may mention "ranking" only if it also names at least one of those concrete signals. Apply this even when poor ranking is the single most common failure mode — lead with the concrete behavior, not the abstract metric.
 
@@ -633,27 +676,63 @@ def _find_proof_of_stock(query: str, judgments: list[QueryJudgment]) -> dict | N
     return None
 
 
+_MATCHED_CATEGORY_RE = re.compile(r"matching category[^']*'([^']+)'")
+
+
+def _excluded_term_simple(query: str) -> str | None:
+    """The term a 'X not Y' / 'X without Y' query asks to exclude."""
+    m = re.search(r"\b(?:not|without)\s+(.+)$", query.lower())
+    return m.group(1).strip() if m else None
+
+
 def pick_worst_example(judgments: list[QueryJudgment]) -> str:
-    """Return a ready-made sentence describing the single most damning failure."""
-    candidates: list[tuple[int, float, str]] = []
+    """Return a ready-made sentence describing the single most damning, TRUE failure.
+
+    Only genuine failures are eligible — never a PASS (incl. a catalog-gap zero, where the
+    store simply doesn't carry the item). The "you carry it" claim is based on VERIFIABLE
+    evidence the audit actually established — a query that maps to a real site category, or a
+    constraint the engine ignored — NOT a fragile token match against an unrelated product
+    (which produced false claims like "joggers" proving a "black top" is stocked).
+    """
+    candidates: list[tuple[float, float, str]] = []
     for j in judgments:
+        if j.severity == Severity.PASS.value:
+            continue  # never feature a non-failure
         q = j.test_query.query
         if not q:
             continue
+        fm = j.failure_mode
+
         if not j.results:
-            proof = _find_proof_of_stock(q, judgments)
-            if proof:
+            # Zero result. If judging confirmed a matching site category, that is a verifiable
+            # "you have this" claim. Otherwise just state the dead end — no invented proof.
+            cat = None
+            if fm == FailureMode.CATEGORY_MAPPING_FAILURE.value:
+                m = _MATCHED_CATEGORY_RE.search(j.evidence or "")
+                cat = m.group(1) if m else None
+            if cat:
                 candidates.append((1, len(q), (
-                    f'A customer searching "{q}" gets zero results — a blank page — '
-                    f'even though you carry it (e.g. "{proof["example_title"]}" shows up '
-                    f'when they instead search "{proof["working_variant"]}").'
+                    f'A customer searching "{q}" gets a blank page — even though you have a '
+                    f'"{cat}" category for exactly this.'
                 )))
             else:
                 high = _category_str(j) in _HIGH_INTENT_CATEGORIES
                 candidates.append((2 if high else 3, len(q), (
-                    f'A customer searching "{q}" gets zero results — a blank page, nothing at all.'
+                    f'A customer searching "{q}" gets a blank page — no results at all.'
                 )))
             continue
+
+        # Constraint the engine ignored — concrete and fully verifiable from the titles shown.
+        if fm == FailureMode.CONSTRAINT_DROPPED.value:
+            excl = _excluded_term_simple(q)
+            if excl:
+                n = len(j.results)
+                candidates.append((1.5, float(-n), (
+                    f'A customer searching "{q}" is still shown {n} results that include '
+                    f'"{excl}" — the exact thing they asked to leave out.'
+                )))
+                continue
+
         by_orig = sorted(j.results, key=lambda r: r.original_rank)
         top = by_orig[0]
         best_rel = max(r.relevance_score for r in j.results)
@@ -675,19 +754,7 @@ def pick_worst_example(judgments: list[QueryJudgment]) -> str:
     if real:
         real.sort(key=lambda c: (c[0], c[1]))
         return real[0][2]
-
-    # Fallback: largest genuine displacement, else nothing.
-    with_results = [j for j in judgments if j.results and j.test_query.query]
-    if not with_results:
-        return ""
-    worst = max(with_results, key=lambda j: j.displacement)
-    if worst.displacement <= 0:
-        return ""
-    pos = worst.displacement + 1
-    return (
-        f'A customer searching "{worst.test_query.query}" has to scroll to '
-        f'position {pos} to reach the best-matching product.'
-    )
+    return ""
 
 
 def compute_aggregate_stats(judgments: list[QueryJudgment]) -> dict:
@@ -707,8 +774,13 @@ def compute_aggregate_stats(judgments: list[QueryJudgment]) -> dict:
             "minor_count": 0,
             "pass_count": 0,
             "pct_top3_irrelevant": 0.0,
+            "pct_top3_relevant_all": 0.0,
             "avg_best_position": 0.0,
             "pct_top1_irrelevant": 0.0,
+            "zero_result_count": 0,
+            "pct_zero_result": 0.0,
+            "pct_no_relevant_first": 0.0,
+            "worst_zero_query": "",
             "worst_example_query": "",
             "worst_example_displacement": 0,
             "worst_example": "",
@@ -727,6 +799,11 @@ def compute_aggregate_stats(judgments: list[QueryJudgment]) -> dict:
     # pct_top3_irrelevant: best result NOT in top 3 (displacement > 2)
     top3_irrelevant = sum(1 for j in with_results if j.displacement > 2)
     pct_top3_irrelevant = (top3_irrelevant / nres) * 100
+
+    # All-search version: best result IS in the top 3, counted over ALL queries (zero-result
+    # queries have nothing relevant in the top 3, so they correctly count against this).
+    top3_relevant_all = sum(1 for j in with_results if j.displacement <= 2)
+    pct_top3_relevant_all = (top3_relevant_all / total) * 100
 
     # avg_best_position: average original_rank of the highest-scoring result
     avg_best_position = (
@@ -751,6 +828,40 @@ def compute_aggregate_stats(judgments: list[QueryJudgment]) -> dict:
     weak_top1 = [j for j in with_results if _top1_relevance(j) < 0.40]
     worst = max(weak_top1, key=lambda j: j.displacement) if weak_top1 else None
 
+    # Retrieval-health metrics computed over ALL queries (zero-result queries INCLUDED).
+    # These are the true headline for retrieval-failure-dominated sites — unlike the
+    # position metrics above, they do not silently drop the queries that returned nothing.
+    # Count zero-result queries that are actual FAILURES — exclude correctly-empty results
+    # (a catalog gap judged PASS, e.g. a product the store doesn't carry) so we don't inflate.
+    zero_result_count = sum(
+        1 for j in judgments if not j.results and j.severity != Severity.PASS.value
+    )
+    pct_zero_result = (zero_result_count / total) * 100
+    # "No relevant result surfaced first": zero results OR the customer's #1 was irrelevant.
+    no_relevant_first = 0
+    for j in judgments:
+        if j.severity == Severity.PASS.value:
+            continue  # a PASS gave the customer a relevant result (or correctly nothing)
+        if not j.results:
+            no_relevant_first += 1
+            continue
+        by_original = sorted(j.results, key=lambda r: r.original_rank)
+        if by_original and by_original[0].relevance_score < 0.40:
+            no_relevant_first += 1
+    pct_no_relevant_first = (no_relevant_first / total) * 100
+
+    # Worst example, retrieval-first: prefer a CRITICAL zero-result query that the store
+    # PROVABLY stocks (the term works elsewhere in the audit) — the most self-evident,
+    # costly failure. Fall back to any critical zero-result, else the displacement example.
+    zero_critical = [
+        j for j in judgments
+        if not j.results and j.severity == Severity.CRITICAL.value
+    ]
+    worst_zero = next(
+        (j for j in zero_critical if _find_proof_of_stock(j.test_query.query, judgments)),
+        zero_critical[0] if zero_critical else None,
+    )
+
     return {
         "total_queries": total,
         "critical_count": critical_count,
@@ -758,8 +869,13 @@ def compute_aggregate_stats(judgments: list[QueryJudgment]) -> dict:
         "minor_count": minor_count,
         "pass_count": pass_count,
         "pct_top3_irrelevant": pct_top3_irrelevant,
+        "pct_top3_relevant_all": pct_top3_relevant_all,
         "avg_best_position": avg_best_position,
         "pct_top1_irrelevant": pct_top1_irrelevant,
+        "zero_result_count": zero_result_count,
+        "pct_zero_result": pct_zero_result,
+        "pct_no_relevant_first": pct_no_relevant_first,
+        "worst_zero_query": worst_zero.test_query.query if worst_zero else "",
         "worst_example_query": worst.test_query.query if worst else "",
         "worst_example_displacement": worst.displacement if worst else 0,
         "worst_example": pick_worst_example(judgments),
@@ -775,7 +891,7 @@ def build_summary_statistics_markdown(
     total = stats["total_queries"]
 
     lines = [
-        f"## {PIPELINE_NAME} Test Results Summary\n",
+        f"## Test Results Summary\n",
         f"We ran **{total} test queries** across multiple search capability categories. "
         f"Here is the breakdown.\n",
     ]
@@ -809,22 +925,41 @@ def build_summary_statistics_markdown(
     # Key metrics
     lines.append("")
     lines.append("### Key Metrics\n")
-    lines.append(f"- **Average best result position:** #{stats['avg_best_position']:.1f}")
 
-    poor_ranking_count = sum(1 for j in judgments if j.failure_mode == "POOR_RANKING")
     if total > 0:
-        pct_ranking = (poor_ranking_count / total) * 100
+        # Retrieval failed entirely — returned nothing usable.
+        zero_count = stats["zero_result_count"]
         lines.append(
-            f"- **Retrieval OK, ranking failed:** {pct_ranking:.0f}% of queries "
-            f"({poor_ranking_count} of {total}) — the right results were found but buried"
+            f"- **No usable results returned:** {stats['pct_zero_result']:.0f}% of queries "
+            f"({zero_count} of {total}) — the search returned nothing relevant at all"
         )
 
+        # Retrieval succeeded but result QUALITY failed: a non-pass verdict where the engine
+        # DID return results — covers poor ranking, partial keyword matches, dropped
+        # constraints, brand bleed, facet misses, duplicate flooding (not just POOR_RANKING).
+        retrieved_but_wrong = sum(
+            1 for j in judgments
+            if j.severity != Severity.PASS.value and j.results
+        )
+        pct_retrieved_wrong = (retrieved_but_wrong / total) * 100
+        lines.append(
+            f"- **Results returned but mis-ranked or wrong:** {pct_retrieved_wrong:.0f}% of queries "
+            f"({retrieved_but_wrong} of {total}) — the engine found products but ordered them poorly, "
+            f"dropped a stated constraint, or surfaced only partial matches"
+        )
+
+    # Position metrics are scoped to queries that returned results (zero-result queries have
+    # no position) — label them so, to avoid implying they cover all queries.
     lines.append(
-        f"- **Top-3 miss rate:** {stats['pct_top3_irrelevant']:.0f}% of queries "
+        f"- **Average best result position (among queries that returned results):** "
+        f"#{stats['avg_best_position']:.1f}"
+    )
+    lines.append(
+        f"- **Top-3 miss rate (among queries that returned results):** {stats['pct_top3_irrelevant']:.0f}% "
         f"had their best result outside the top 3"
     )
     lines.append(
-        f"- **Irrelevant #1 result:** {stats['pct_top1_irrelevant']:.0f}% of queries "
+        f"- **Irrelevant #1 result (among queries that returned results):** {stats['pct_top1_irrelevant']:.0f}% "
         f"showed an irrelevant result in the top position"
     )
 
@@ -837,7 +972,7 @@ def build_full_query_appendix_markdown(judgments: list[QueryJudgment]) -> str:
 
     lines = [
         f"## Appendix: Complete Test Results\n",
-        f"All {total} queries tested by the {PIPELINE_NAME} audit pipeline.\n",
+        f"All {total} queries tested in this audit.\n",
         "| # | Query | Category | Severity | Best Position | Failure Mode |",
         "|---|-------|----------|----------|--------------|-------------|",
     ]
@@ -859,6 +994,9 @@ def build_full_query_appendix_markdown(judgments: list[QueryJudgment]) -> str:
         if j.severity == Severity.PASS.value:
             failure = "—"
             best_pos = "#1"
+        elif not j.results:
+            # Zero-result query: no position exists.
+            best_pos = "—"
 
         lines.append(
             f"| {idx} | {query} | {category} | {emoji} {sev_label} | {best_pos} | {failure} |"
@@ -880,7 +1018,10 @@ def build_executive_summary(
     total_queries       = stats["total_queries"]
     avg_best_position   = stats["avg_best_position"]
     pct_top3_irrelevant = stats["pct_top3_irrelevant"]
-    pct_top1_irrelevant = stats["pct_top1_irrelevant"]
+    pct_no_relevant     = stats["pct_no_relevant_first"]
+    zero_count          = stats["zero_result_count"]
+    pct_zero            = stats["pct_zero_result"]
+    worst_zero          = stats["worst_zero_query"]
     worst_query         = stats["worst_example_query"]
     worst_disp          = stats["worst_example_displacement"]
 
@@ -889,15 +1030,28 @@ def build_executive_summary(
         f"This audit tested {site_name}'s internal search engine across "
         f"{total_cap} core capabilities using {total_queries} realistic customer queries. "
         f"**The results are grouped by where improvements are likely to help customer journeys most.**\n\n"
-        f"On average, the most relevant result for a query appeared at "
-        f"**position #{avg_best_position:.0f}** — while most customers only look at the first 3 results. "
-        f"In **{pct_top3_irrelevant:.0f}% of queries**, the best matching result wasn't even in the top 3. "
-        f"In **{pct_top1_irrelevant:.0f}% of queries**, the #1 result shown to customers "
-        f"was not relevant to what they searched for."
+        # Lead with retrieval health over ALL queries — including the ones that returned nothing.
+        f"In **{pct_no_relevant:.0f}% of queries**, the customer was not shown a relevant result first — "
+        f"either no usable results at all or an off-topic top result. In particular, "
+        f"**{pct_zero:.0f}% of queries ({zero_count} of {total_queries}) returned no usable results**, "
+        f"most often because the search could not interpret everyday phrasing, map common terms to the "
+        f"right category, tolerate a typo, or honour an exclusion."
     )
-    if worst_query and worst_disp > 0:
+    # Secondary: ordering quality, scoped to queries that DID return results.
+    summary += (
+        f"\n\nAmong the queries that did return results, the best match appeared at "
+        f"**position #{avg_best_position:.0f}** on average — past the first 3 results most customers look at — "
+        f"and in **{pct_top3_irrelevant:.0f}%** of them the best match wasn't in the top 3."
+    )
+    # Worst example, retrieval-first: a zero-result on a product the store stocks beats a scroll example.
+    if worst_zero:
         summary += (
-            f'\n\nThe most severe example: a customer searching "{worst_query}" '
+            f'\n\nThe most telling example: a customer searching "{worst_zero}" was shown '
+            f"**no usable results at all**, even though the store carries matching products."
+        )
+    elif worst_query and worst_disp > 0:
+        summary += (
+            f'\n\nThe most severe ranking example: a customer searching "{worst_query}" '
             f"had to scroll to position #{worst_disp + 1} to find the best matching result."
         )
     return summary
@@ -910,8 +1064,8 @@ def build_methodology(
 ) -> str:
     """Build a detailed methodology section describing the full audit pipeline."""
     return (
-        f"## Methodology: The {PIPELINE_NAME} Audit Pipeline\n\n"
-        f"This audit was conducted using our {PIPELINE_NAME} pipeline — a seven-phase automated "
+        f"## Methodology: The Audit Pipeline\n\n"
+        f"This audit was conducted using our search-quality audit pipeline — a seven-phase automated "
         f"search quality assessment. {total_queries} test queries were generated across "
         f"{num_categories} query categories, grouped into {num_capabilities} core capabilities.\n\n"
         f"**1. Site Discovery**\n"
@@ -931,9 +1085,10 @@ def build_methodology(
         f"Each result scored on a 0.0–1.0 scale by a specialized relevance model, producing an "
         f"objective measure of how well each result matches the query intent.\n\n"
         f"**6. Failure Analysis**\n"
-        f"Each query classified by failure mode (e.g., poor ranking, constraint dropped, no "
-        f"fuzzy matching) and severity based on how far the best result was buried below "
-        f"irrelevant ones.\n\n"
+        f"Each query classified by failure mode (e.g., no results, category not understood, "
+        f"constraint ignored, typo not handled, or relevant results buried) and assigned a "
+        f"severity based on customer impact — whether the search returned nothing, surfaced the "
+        f"wrong products, or simply ordered the right ones poorly.\n\n"
         f"**7. Report Assembly**\n"
         f"Findings synthesized into this actionable narrative with prioritized recommendations "
         f"ordered by business impact."
@@ -942,18 +1097,22 @@ def build_methodology(
 
 def build_industry_benchmarks_markdown(stats: dict) -> str:
     """Build a section comparing the client's scores against published industry benchmarks."""
-    pct_top3_relevant = 100 - stats["pct_top3_irrelevant"]
+    pct_dead_end = stats["pct_no_relevant_first"]
+    pct_top3_relevant_all = stats["pct_top3_relevant_all"]
     avg_best = stats["avg_best_position"]
     pct_top1_irrelevant = stats["pct_top1_irrelevant"]
 
     lines = [
         "## How You Compare: Industry Benchmarks\n",
-        "Your results in context of published ecommerce search research.\n",
+        "Your results in context of published ecommerce search research. The first two rows "
+        "are measured across ALL searches (a search that returns nothing has no relevant "
+        "result); the last two describe ordering among searches that did return results.\n",
         "| Metric | Your Score | Industry Target | Source |",
         "|--------|-----------|----------------|--------|",
-        f"| Relevant result in top 3 | {pct_top3_relevant:.0f}% | 80%+ | Baymard Institute |",
-        f"| Average best result position | #{avg_best:.1f} | #1–2 | Industry best practice |",
-        f"| Irrelevant #1 result | {pct_top1_irrelevant:.0f}% | <10% | Industry best practice |",
+        f"| Searches ending in a dead end (nothing usable / irrelevant first result) | {pct_dead_end:.0f}% | <10% (avg ~31%) | Baymard Institute |",
+        f"| Relevant result in top 3 (all searches) | {pct_top3_relevant_all:.0f}% | 80%+ | Baymard Institute |",
+        f"| Average best result position (when results returned) | #{avg_best:.1f} | #1–2 | Industry best practice |",
+        f"| Irrelevant #1 result (when results returned) | {pct_top1_irrelevant:.0f}% | <10% | Industry best practice |",
         "",
         "### Why This Matters\n",
         "- **70% of ecommerce sites cannot handle typos** in their site search "
@@ -991,18 +1150,26 @@ def build_call_to_action() -> str:
 def generate_report(
     site_context: SiteContext,
     judgments: list[QueryJudgment],
+    deep_dives_md: str | None = None,
+    roadmap_md: str | None = None,
 ) -> AuditReport:
-    """Assemble the full audit report: deterministic scoring + LLM narratives."""
+    """Assemble the full audit report: deterministic scoring + LLM narratives.
+
+    ``deep_dives_md`` / ``roadmap_md`` let a caller supply already-reviewed LLM narratives
+    (the deep-dives + roadmap are non-deterministic, so a reviewed version should be passed in
+    rather than regenerated at assembly time). When omitted, they are generated fresh.
+    """
 
     # Part 1: Deterministic
     capability_scores = build_capability_scores(judgments)
     scorecard_md = build_scorecard_markdown(capability_scores)
     whats_working_md = build_whats_working_markdown(capability_scores)
 
-    # Part 2: LLM narratives
-    deep_dives_md, roadmap_md = generate_deep_dives_and_roadmap(
-        site_context, capability_scores
-    )
+    # Part 2: LLM narratives — reuse reviewed versions if supplied, else generate.
+    if deep_dives_md is None or roadmap_md is None:
+        deep_dives_md, roadmap_md = generate_deep_dives_and_roadmap(
+            site_context, capability_scores
+        )
 
     # Part 3: Deterministic stats + framing sections
     stats = compute_aggregate_stats(judgments)

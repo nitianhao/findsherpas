@@ -6,6 +6,7 @@ import re
 import sys
 from urllib.parse import parse_qs, quote_plus, urlencode, urljoin, urlparse
 
+import anthropic
 import requests
 from bs4 import BeautifulSoup, Tag
 
@@ -13,6 +14,9 @@ from src.models import SiteContext, SiteType
 from src.fetcher import _fetch_with_playwright, _decode_response
 
 logger = logging.getLogger(__name__)
+
+# Haiku refines the rule-based discovery fields (site_type / brands / categories).
+_HAIKU_MODEL = "claude-haiku-4-5-20251001"
 
 _USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -582,6 +586,28 @@ def discover_from_search_url(url: str) -> SiteContext:
     site_type = _detect_site_type(
         nav_categories, featured_items, raw_meta_description, html_text
     )
+
+    # Haiku refinement pass: correct the noisy rule-based fields (see _refine_with_haiku).
+    refined = _refine_with_haiku(
+        site_name=site_name,
+        meta_description=raw_meta_description,
+        nav_categories=nav_categories,
+        brands=brands,
+        featured_items=featured_items,
+        html_text=html_text,
+        heuristic_site_type=site_type,
+    )
+    if refined:
+        site_type = SiteType(refined["site_type"])
+        if refined.get("brands"):
+            brands = refined["brands"]
+        if refined.get("nav_categories"):
+            nav_categories = refined["nav_categories"]
+        # featured_items may legitimately become empty (junk removed) — accept the list as-is.
+        if "featured_items" in refined and isinstance(refined["featured_items"], list):
+            featured_items = refined["featured_items"]
+        logger.info("Haiku refined discovery: site_type=%s, %d brands", site_type.value, len(brands))
+
     primary_language = _detect_primary_language(soup, effective_url)
     logger.info("Detected primary language: %s", primary_language)
 
@@ -689,6 +715,97 @@ def _detect_site_type(
     if service_hits > goods_hits:
         return SiteType.SERVICES_EXPERIENCES
     return SiteType.MARKETPLACE_MIXED
+
+
+def _refine_with_haiku(
+    *,
+    site_name: str,
+    meta_description: str,
+    nav_categories: list[str],
+    brands: list[str],
+    featured_items: list[str],
+    html_text: str,
+    heuristic_site_type: SiteType,
+) -> dict | None:
+    """Use Claude Haiku to correct the rule-based discovery fields.
+
+    The substring-count heuristic (:func:`_detect_site_type`) over-weights
+    experiential nouns (experience/heritage/café/visit/events/gifting) and can't
+    see purchase signals (prices and add-to-cart live on product pages, not the
+    scraped homepage), so goods retailers with lifestyle/café framing get
+    misclassified as SERVICES_EXPERIENCES. The rule-based extractors also leave
+    brand names mixed into ``nav_categories`` and pack ``featured_items`` with
+    nav/legal junk. This pass re-derives ``site_type``, splits brands out of nav,
+    and keeps only real product departments / signature products.
+
+    Returns a dict ``{site_type, brands, nav_categories, featured_items}`` or
+    ``None`` on any failure, so the caller falls back to the heuristic values.
+    """
+    nav_block = ", ".join(nav_categories[:60]) or "(none)"
+    brands_block = ", ".join(brands[:40]) or "(none)"
+    items_block = ", ".join(featured_items[:40]) or "(none)"
+    text_sample = re.sub(r"\s+", " ", html_text)[:6000]
+
+    prompt = f"""You are cleaning up the auto-detected profile of an ecommerce/services website for a search-quality audit. The rule-based scraper is noisy: it mixes brand names into navigation, fills "featured items" with nav/legal links, and misclassifies the site type.
+
+## What the scraper found
+- Site name: {site_name or "(unknown)"}
+- Meta description: {meta_description or "(none)"}
+- Heuristic site_type (often wrong): {heuristic_site_type.value}
+- Navigation categories: {nav_block}
+- Brands: {brands_block}
+- Featured items: {items_block}
+
+## Page text sample
+{text_sample}
+
+## Your task
+Return a corrected profile as a JSON object (no markdown fences, no commentary) with EXACTLY these keys:
+{{
+  "site_type": "PHYSICAL_GOODS" | "SERVICES_EXPERIENCES" | "MARKETPLACE_MIXED",
+  "brands": ["..."],
+  "nav_categories": ["..."],
+  "featured_items": ["..."]
+}}
+
+Rules:
+- site_type: PHYSICAL_GOODS = sells its own catalog of physical products. MARKETPLACE_MIXED = broad multi-department retailer and/or carries many third-party brands. SERVICES_EXPERIENCES = the core offering is bookings/appointments/experiences/tickets. A goods retailer that ALSO runs cafés, visitor sites, or "experiences" is still a goods retailer — do NOT classify it as SERVICES_EXPERIENCES for that reason.
+- brands: proper-noun product labels sold on the site (third-party brands and the site's own house brand). Pull these OUT of the navigation list. Empty array if none are identifiable.
+- nav_categories: real product departments/categories only. Remove brand names (they go in brands), and remove generic chrome ("Shop All", "Go to ...", "New In" is fine if it's a real department).
+- featured_items: specific signature PRODUCTS only. Drop nav links, legal/footer links (Privacy Policy, Terms, Cookie Policy), and account/cart items (Your basket, Customer Services). Empty array if no real products are identifiable.
+- Do not invent anything not supported by the data above."""
+
+    try:
+        client = anthropic.Anthropic()
+        response = client.messages.create(
+            model=_HAIKU_MODEL,
+            max_tokens=1500,
+            temperature=0,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = response.content[0].text.strip()
+        if raw.startswith("```"):
+            raw = raw.split("\n", 1)[1] if "\n" in raw else raw[3:]
+            if raw.endswith("```"):
+                raw = raw[:-3]
+            raw = raw.strip()
+        data = json.loads(raw)
+        if not isinstance(data, dict) or "site_type" not in data:
+            logger.warning("Haiku discovery refinement returned unexpected shape")
+            return None
+        if data["site_type"] not in SiteType._value2member_map_:
+            logger.warning("Haiku returned invalid site_type: %r", data.get("site_type"))
+            return None
+        return data
+    except anthropic.APIError as e:
+        logger.warning("Haiku discovery refinement API error: %s", e)
+        return None
+    except (json.JSONDecodeError, IndexError, KeyError) as e:
+        logger.warning("Failed to parse Haiku discovery refinement: %s", e)
+        return None
+    except Exception as e:
+        logger.warning("Unexpected error in Haiku discovery refinement: %s", e)
+        return None
 
 
 def discover_site(url: str) -> SiteContext:

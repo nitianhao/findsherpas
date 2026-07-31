@@ -7,7 +7,7 @@
 <title>{{ report_title }}</title>
 <style>
 /* ============================================================
-   FIND SHERPAS — Prism Audit Report
+   Find Sherpas — Search Audit Report
    Master template — design extracted from findsherpas.com
    Based on: kytary_cz_20260408_170636_report.html
    ============================================================ */
@@ -606,86 +606,191 @@ strong { font-weight: 600; }
   margin-bottom: 10px;
 }
 
-.diagnostic-metric {
-  font-size: 2rem;
-  line-height: 1;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 6px;
-}
-
-.diagnostic-metric.good { color: var(--sev-pass); }
-.diagnostic-metric.warn { color: #b45309; }
-.diagnostic-metric.bad { color: var(--destructive); }
-
-.diagnostic-list {
-  margin: 12px 0 0;
-  padding-left: 18px;
-  color: var(--muted);
-}
-
-.diagnostic-list li {
-  margin-bottom: 8px;
-}
-
-.diagnostic-list strong,
-.diagnostic-list code {
-  color: var(--fg);
-}
-
+/* ---- Advanced diagnostics ---- */
+/* Soft severity palette — calmer than the report's alert reds; tints + muted tones. */
 .diagnostic-section {
+  --tone: #6f7b86;
+  --tone-soft: #f4f6f8;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 22px;
-  margin: 18px 0;
+  border-radius: 14px;
+  padding: 24px 26px;
+  margin: 16px 0;
   background: #fff;
 }
+.diagnostic-section.sev-good { --tone: #0d8f88; --tone-soft: #e8f6f5; }
+.diagnostic-section.sev-warn { --tone: #b07d1a; --tone-soft: #fbf3e2; }
+.diagnostic-section.sev-bad  { --tone: #c75d57; --tone-soft: #fbeeed; }
 
 .diagnostic-header {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 24px;
+  gap: 28px;
   align-items: start;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
   margin-bottom: 18px;
 }
 
-.diagnostic-header h3 {
-  margin-bottom: 8px;
+.diag-chip {
+  display: inline-block;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--tone);
+  background: var(--tone-soft);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
 }
 
-.diagnostic-meaning {
+.diagnostic-header h3 {
+  margin: 0 0 8px;
+  font-size: 1.18rem;
+}
+
+.diagnostic-narrative {
   color: var(--muted);
-  margin-bottom: 0;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  max-width: 52ch;
 }
 
 .diagnostic-score {
-  min-width: 140px;
-  text-align: right;
+  text-align: center;
+  background: var(--tone-soft);
+  border-radius: 12px;
+  padding: 14px 18px;
+  min-width: 116px;
+}
+
+.diagnostic-metric {
+  font-size: 1.85rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--tone);
+  white-space: nowrap;
 }
 
 .diagnostic-score-label {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   line-height: 1.3;
+  margin-top: 6px;
 }
 
-.diagnostic-body {
+.diagnostic-list {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.diagnostic-list li {
+  font-size: 0.88rem;
+  color: var(--muted);
+  padding: 9px 0;
+  border-top: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+.diagnostic-list code {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+/* ---- specificity bars ---- */
+.diagnostic-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.diag-bar-row {
   display: grid;
-  grid-template-columns: 1fr 0.85fr;
-  gap: 24px;
+  grid-template-columns: 110px 1fr 92px;
+  align-items: center;
+  gap: 14px;
 }
 
-.diagnostic-remedy {
-  background: var(--accent);
-  border-left: 3px solid var(--primary);
-  border-radius: 4px;
-  padding: 14px 16px;
+.diag-bar-label {
+  font-size: 0.85rem;
+  color: var(--fg);
 }
 
-.diagnostic-remedy p:last-child {
-  margin-bottom: 0;
+.diag-bar-track {
+  height: 10px;
+  background: #f0f1f2;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.diag-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.diag-bar-fill.good { background: #2bab9f; }
+.diag-bar-fill.warn { background: #e3a83c; }
+.diag-bar-fill.bad  { background: #d98079; }
+
+.diag-bar-pct {
+  font-size: 0.82rem;
+  color: var(--fg);
+}
+
+.diag-bar-pct strong {
+  font-weight: 700;
+}
+
+.diag-bar-detail {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ---- substitution table ---- */
+.diagnostic-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+.diagnostic-table th {
+  text-align: left;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 14px 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.diagnostic-table td {
+  padding: 11px 14px 11px 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.diagnostic-table tr:last-child td {
+  border-bottom: none;
+}
+
+.diagnostic-table .diag-got { color: var(--fg); }
+
+.diagnostic-table .diag-why {
+  white-space: nowrap;
+}
+
+.diag-why-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--tone);
+  background: var(--tone-soft);
+  padding: 3px 9px;
+  border-radius: 999px;
 }
 
 /* ---- Capability accordions ---- */
@@ -1699,11 +1804,15 @@ strong { font-weight: 600; }
             <span class="coverage-example-detail">&mdash; {{ item.example.detail }}</span>
           </div>
           {% endif %}
+          {% if item.has_issue %}
           <div>{{ item.meaning }}</div>
+          {% endif %}
         </div>
+        {% if item.has_issue %}
         <div class="coverage-remedy">
           <strong>Next tuning move:</strong> {{ item.remedy }}
         </div>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
@@ -1755,40 +1864,57 @@ strong { font-weight: 600; }
   <!-- ================ ADVANCED QUERY DIAGNOSTICS ================ -->
   <section id="advanced-diagnostics">
     <div class="section-label">Advanced Diagnostics</div>
-    <h2>What the visible result set reveals</h2>
-    <p>These checks stay inside the same query → results → audit boundary, but look beyond the single best result.</p>
+    <h2>How the result page actually behaves</h2>
+    <p>Beyond pass/fail, these read the whole page the way a shopper does &mdash; and are drawn from the audited verdicts, not internal relevance scores.</p>
 
     {% for diagnostic in advanced_diagnostics %}
-    <div class="diagnostic-section">
+    <div class="diagnostic-section sev-{{ diagnostic.headline_class }}">
       <div class="diagnostic-header">
-        <div>
+        <div class="diag-head-main">
+          <span class="diag-chip">{{ diagnostic.status_label }}</span>
           <h3>{{ diagnostic.title }}</h3>
-          <p class="diagnostic-meaning">{{ diagnostic.meaning }}</p>
+          <p class="diagnostic-narrative">{{ diagnostic.narrative }}</p>
         </div>
         <div class="diagnostic-score">
-          <div class="diagnostic-metric {{ diagnostic.metric_class }}">{{ diagnostic.metric }}</div>
-          <div class="diagnostic-score-label">{{ diagnostic.metric_label }}</div>
+          <div class="diagnostic-metric {{ diagnostic.headline_class }}">{{ diagnostic.headline }}</div>
+          <div class="diagnostic-score-label">{{ diagnostic.headline_label }}</div>
         </div>
       </div>
 
-      <div class="diagnostic-body">
-        <div>
-          <p class="case-label">Result</p>
-          <p>{{ diagnostic.result }}</p>
-          {% if diagnostic.evidence %}
-          <p class="case-label">Evidence</p>
-          <ul class="diagnostic-list">
-            {% for item in diagnostic.evidence %}
-            <li>{{ item }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
+      {% if diagnostic.type == 'bars' %}
+      <div class="diagnostic-bars">
+        {% for bar in diagnostic.bars %}
+        <div class="diag-bar-row">
+          <span class="diag-bar-label">{{ bar.label }}</span>
+          <span class="diag-bar-track"><span class="diag-bar-fill {{ bar.cls }}" style="width: {{ bar.pct }}%;"></span></span>
+          <span class="diag-bar-pct"><strong>{{ bar.pct_label }}</strong> <span class="diag-bar-detail">{{ bar.detail }}</span></span>
         </div>
-        <div class="diagnostic-remedy">
-          <p class="case-label">How to remedy it</p>
-          <p>{{ diagnostic.remedy }}</p>
-        </div>
+        {% endfor %}
       </div>
+
+      {% elif diagnostic.type == 'table' %}
+      <table class="diagnostic-table">
+        <thead>
+          <tr><th>Shopper searched</th><th>Top result was</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          {% for row in diagnostic.rows %}
+          <tr>
+            <td><code>{{ row.searched }}</code></td>
+            <td class="diag-got">{{ row.got }}</td>
+            <td class="diag-why"><span class="diag-why-pill">{{ row.why }}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% elif diagnostic.examples %}
+      <ul class="diagnostic-list">
+        {% for item in diagnostic.examples %}
+        <li><code>{{ item.code }}</code> &mdash; {{ item.detail }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
     </div>
     {% endfor %}
   </section>
@@ -1940,7 +2066,7 @@ strong { font-weight: 600; }
           <div class="query-text">"{{ query.query }}"</div>
           <div class="query-category">{{ query.category }} &middot;
             <span class="severity-label {{ query.severity_class }}">{{ query.severity_short }}</span>
-            &middot; Best result at position #{{ query.best_position }}
+            {% if query.no_results %}&middot; No results returned{% else %}&middot; Best result at position #{{ query.best_position }}{% endif %}
           </div>
         </div>
         <div class="query-body">
@@ -1969,7 +2095,7 @@ strong { font-weight: 600; }
           {% else %}
           <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
           {% endif %}
-          {% if query.displacement > 2 %}
+          {% if not query.no_results and query.displacement > 2 %}
           <p class="displacement-note">Best match was buried at position #{{ query.best_position }}.</p>
           {% endif %}
         </div>
@@ -2016,7 +2142,7 @@ strong { font-weight: 600; }
           <td class="query-col">{{ q.query }}</td>
           <td>{{ q.category }}</td>
           <td><span class="severity-dot {{ q.severity_class }}"></span> {{ q.severity_short }}</td>
-          <td>#{{ q.best_position }}</td>
+          <td>{% if q.best_position %}#{{ q.best_position }}{% else %}&mdash;{% endif %}</td>
           <td>{{ q.failure_mode }}</td>
         </tr>
         {% endfor %}

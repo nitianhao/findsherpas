@@ -244,7 +244,156 @@ def _extract_price(element: Tag) -> Optional[str]:
 # Hosts that server-render the product grid but hydrate prices client-side.
 # For these the probe must not short-circuit to STATIC mode (prices would be
 # missing) — always fetch via Playwright so prices load.
-_CLIENT_RENDERED_PRICE_HOSTS = ("bergzeit.de",)
+_CLIENT_RENDERED_PRICE_HOSTS = ("bergzeit.de", "lyko.com")
+
+
+# Hosts that must be fetched with Chromium, not Firefox. cotswoldoutdoor.com
+# issues a client-side `?...&sred=1` redirect from /lister.html to a curated
+# category page for many keyword queries; Firefox aborts that redirect with a
+# "Network Protocol Error" (capturing a ~6KB stub → 0 results), while Chromium
+# follows it cleanly and renders the full product grid. Forcing Chromium makes
+# the probe settle on PLAYWRIGHT_CHROMIUM so every query uses it.
+_PREFER_CHROMIUM_HOSTS = ("cotswoldoutdoor.com",)
+
+
+def _prefers_chromium(url: str) -> bool:
+    try:
+        host = urlparse(url).netloc.lower()
+    except Exception:
+        return False
+    return any(h in host for h in _PREFER_CHROMIUM_HOSTS)
+
+
+# Hosts with a hand-tuned extractor in _try_site_specific. For these, an empty
+# extraction is authoritative (genuine zero results) — the dispatcher must not fall
+# back to generic strategies that would scrape recommendation chrome as results.
+_DEDICATED_EXTRACTOR_HOSTS = ("groupon", "lyko.com", "ahlens.se", "bergzeit.de", "avoca.com", "huckberry.com", "manufactum.de", "imerco.dk", "baechli-bergsport.ch", "cotswoldoutdoor.com")
+
+
+# Hosts where a query that uniquely matches one product redirects the server
+# straight to that product's detail page (PDP), bypassing the search-results
+# grid entirely. The generic redirect handling (_is_search_redirect) treats
+# any such redirect as "no results, skip" — for these hosts that's wrong: the
+# redirect destination IS the single correct answer and must be extracted as
+# a 1-result list, not discarded. This is a GOOD search-engine behavior (an
+# unambiguous exact-title query short-circuiting straight to the answer), not
+# a failure — see JUDGE_PLAYBOOK.md for how DIRECT_MATCH scoring treats it.
+_PDP_REDIRECT_HOSTS = ("baechli-bergsport.ch", "cotswoldoutdoor.com")
+
+
+def _needs_pdp_redirect_extraction(url: str) -> bool:
+    try:
+        host = urlparse(url).netloc.lower()
+    except Exception:
+        return False
+    return any(h in host for h in _PDP_REDIRECT_HOSTS)
+
+
+# Authoritative-no-results destination paths, by host substring. A redirect
+# landing here is a GENUINE zero, not a category/brand listing — even though
+# the page renders a "you might also like" recommendation carousel using the
+# identical product-tile markup as the real results grid. Caught when the
+# generic category-redirect fallback (added for the Arc'teryx brand-page case)
+# scraped this carousel as 10 fake "waterproof jacket under £100" results, none
+# of which were jackets or under £100 — same failure class as the
+# ahlens.se/manufactum.de/bergzeit.de "phantom recommendations on a no-hits
+# page" trap (see General silent-failure patterns). Must be checked BEFORE
+# falling back to `_try_site_specific` on a redirect destination.
+_NO_RESULTS_PATH_MARKERS = {
+    "cotswoldoutdoor.com": "/lister/no-results",
+}
+
+
+def _is_authoritative_no_results(final_url: str) -> bool:
+    try:
+        host = urlparse(final_url).netloc.lower()
+        path = urlparse(final_url).path.lower()
+    except Exception:
+        return False
+    for h, marker in _NO_RESULTS_PATH_MARKERS.items():
+        if h in host and marker in path:
+            return True
+    return False
+
+
+def _try_extract_pdp_as_result(html: str, final_url: str) -> list[SearchResult]:
+    """Extract a single product from a PDP that a unique-match search redirected to.
+
+    Bächli Bergsport (Rent-a-Shop platform) exposes the price via OpenGraph
+    `product:price:amount`/`product:price:currency` meta tags. Cotswold Outdoor's
+    PDP has no such meta tags, so falls back to its own `data-testid` price hook
+    (`product_price-actual-price`, e.g. "£999.99"; falls back to
+    `product_price-previous-price` i.e. RRP if no actual/sale price is present).
+
+    Guards against the OTHER kind of search redirect — a non-unique query (e.g. a
+    brand name) landing on a multi-product brand/category LISTING page rather than
+    a single PDP (seen on cotswoldoutdoor.com: an Arc'teryx brand search redirects
+    to /brands/arcteryx.html, a real results grid, not a unique-match product
+    page). Distinguish by the destination URL PATH, not by counting product
+    tiles on the page — a genuine PDP can ALSO render a "related products"/
+    recommendations grid using the identical tile markup (cotswoldoutdoor.com
+    appends `&rrec=true` to those recommendation links), so a tile-count check
+    would misfire and silently swap the real single-product answer for unrelated
+    recommended products. cotswoldoutdoor.com PDPs live at `/p/...html`; anything
+    else (e.g. `/brands/...html`, `/c/...html`) is a listing page — return []
+    so the caller falls back to the dedicated grid extractor on that destination
+    page instead.
+    """
+    pdp_path_hosts = ("cotswoldoutdoor.com",)
+    try:
+        host = urlparse(final_url).netloc.lower()
+        path = urlparse(final_url).path.lower()
+    except Exception:
+        host, path = "", ""
+    if any(h in host for h in pdp_path_hosts) and not path.startswith("/p/"):
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    h1 = soup.find("h1")
+    title = h1.get_text(" ", strip=True) if h1 else None
+    if not title:
+        return []
+
+    price = None
+    amount_tag = soup.find("meta", attrs={"property": "product:price:amount"})
+    currency_tag = soup.find("meta", attrs={"property": "product:price:currency"})
+    if amount_tag and amount_tag.get("content"):
+        amount = amount_tag["content"].strip()
+        currency = (currency_tag.get("content").strip() if currency_tag and currency_tag.get("content") else "")
+        price = f"{currency} {amount}".strip()
+
+    if not price:
+        price_el = soup.select_one('[data-testid="product_price-actual-price"]')
+        if not price_el:
+            price_el = soup.select_one('[data-testid="product_price-previous-price"]')
+        if price_el:
+            price = price_el.get_text(" ", strip=True)
+
+    return [SearchResult(rank=1, title=title[:120], url=final_url, price=price)]
+
+
+# Hosts that serve a Cloudflare "Just a moment..." JS challenge to headless
+# browsers but let a *headed* (non-headless) Chromium session through. For these
+# we launch headed, force Chromium (Firefox isn't reliably installed and the
+# challenge is Chromium-friendly), and wait for the challenge to clear before
+# classifying the response as blocked.
+_HEADED_CHROMIUM_HOSTS = ("huckberry.com",)
+
+
+def _has_dedicated_extractor(url: str) -> bool:
+    try:
+        host = urlparse(url).netloc.lower()
+    except Exception:
+        return False
+    return any(h in host for h in _DEDICATED_EXTRACTOR_HOSTS)
+
+
+def _needs_headed_chromium(url: str) -> bool:
+    try:
+        host = urlparse(url).netloc.lower()
+    except Exception:
+        return False
+    return any(h in host for h in _HEADED_CHROMIUM_HOSTS)
 
 
 def _try_site_specific(soup: BeautifulSoup, url: str, max_results: int) -> list[SearchResult]:
@@ -257,10 +406,543 @@ def _try_site_specific(soup: BeautifulSoup, url: str, max_results: int) -> list[
     if "lyko.com" in host:
         return _try_lyko(soup, max_results)
 
+    if "ahlens.se" in host:
+        return _try_ahlens(soup, max_results)
+
     if "bergzeit.de" in host:
         return _try_bergzeit(soup, max_results)
 
+    if "avoca.com" in host:
+        return _try_avoca(soup, max_results)
+
+    if "huckberry.com" in host:
+        return _try_huckberry(soup, max_results)
+
+    if "manufactum.de" in host:
+        return _try_manufactum(soup, max_results)
+
+    if "baechli-bergsport.ch" in host:
+        return _try_baechli(soup, max_results)
+
+    if "imerco.dk" in host:
+        return _try_imerco(soup, max_results)
+
+    if "cotswoldoutdoor.com" in host:
+        return _try_cotswoldoutdoor(soup, max_results)
+
     return []
+
+
+def _try_huckberry(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Extract product cards from Huckberry (huckberry.com) search results.
+
+    Huckberry is React-rendered behind a Cloudflare "Just a moment..." JS
+    challenge that only clears for a *headed* Chromium session (see
+    `_HEADED_CHROMIUM_HOSTS`). Once rendered, each product tile has a content
+    block with a brand link `a.ProductTileContent__brand-link`, a product name
+    anchor pointing at `/store/<brand>/category/p/<id>-<slug>`, and a price in
+    `span.ProductTileContent__price`. Products appear in multiple tiles (e.g. a
+    featured row + the main grid), so we dedupe by the numeric product id.
+
+    Scoping to these content blocks is authoritative: a genuine no-results page
+    ("We couldn't find …") renders ZERO brand links / price spans, so returning
+    `[]` correctly signals a search miss. The host is in
+    `_DEDICATED_EXTRACTOR_HOSTS` so an empty result short-circuits the
+    generic/LLM fallbacks (phantom-result guard).
+    """
+    prod_href_re = re.compile(r"/store/.+/p/(\d+)-")
+    price_re = re.compile(r"\$\s?\d[\d,]*(?:\.\d{2})?")
+
+    results: list[SearchResult] = []
+    seen_ids: set[str] = set()
+
+    for brand_link in soup.select("a.ProductTileContent__brand-link"):
+        # Climb to the tile container that holds this product's price.
+        cont = brand_link
+        for _ in range(6):
+            cont = cont.parent
+            if cont is None:
+                break
+            if cont.select_one("span.ProductTileContent__price"):
+                break
+        if cont is None:
+            continue
+
+        prod = cont.find("a", href=prod_href_re)
+        if not prod:
+            continue
+        href = (prod.get("href") or "").split("?")[0].split("#")[0].strip()
+        m = prod_href_re.search(href)
+        if not m:
+            continue
+        pid = m.group(1)
+        if pid in seen_ids:
+            continue
+        seen_ids.add(pid)
+
+        brand = brand_link.get_text(" ", strip=True)
+        name = prod.get_text(" ", strip=True)
+        if not name:
+            continue
+        # Title = brand + product name, unless the name already leads with the brand.
+        title = name if name.lower().startswith(brand.lower()) else f"{brand} {name}".strip()
+
+        price = None
+        price_el = cont.select_one("span.ProductTileContent__price")
+        if price_el:
+            pm = price_re.search(price_el.get_text(" ", strip=True))
+            if pm:
+                price = pm.group(0).replace(" ", "")
+        if price is None:
+            price = _extract_price(cont)
+
+        url_full = f"https://huckberry.com{href}" if href.startswith("/") else href
+        results.append(SearchResult(
+            rank=len(results) + 1,
+            title=title[:120],
+            url=url_full,
+            price=price,
+        ))
+        if len(results) >= max_results:
+            break
+
+    filtered = _filter_junk_results(results)
+    logger.debug(
+        "Strategy 0 (Huckberry site-specific): found %d raw results, %d after filtering",
+        len(results), len(filtered),
+    )
+    return filtered
+
+
+def _try_ahlens(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Extract product cards from Åhléns (ahlens.se) search results.
+
+    The real search grid lives in <section id="product-rain-section"> (inside the
+    "tab-products" tabpanel). Recommendation/cross-sell carousels — notably the
+    mini-cart "Du kanske också gillar" panel, which is full of unrelated skönhet
+    products — live OUTSIDE this section. Scoping extraction to the section is what
+    stops the fetcher from silently returning the cart drawer's beauty recommendations
+    instead of the actual search matches.
+
+    Each card (`div.group/product-card`) renders its text as brand / name / price,
+    with sale cards prepending a "-NN%" badge and adding "Rea" + a "Lägsta pris 30
+    dagar" original-price line. Title = brand + name; price = the current price.
+    """
+    section = soup.select_one("#product-rain-section") or soup.select_one("#tab-products")
+    if section is None:
+        return []
+
+    results: list[SearchResult] = []
+    seen: set[str] = set()
+    badge_re = re.compile(r"^-?\d+\s*%$")
+    # Lines that are card chrome, not part of the product name: sale labels,
+    # stock-status badges ("Endast i varuhus" = in-store only), and the variant
+    # swatch block ("Produkten finns i färgerna:" + colour names follow).
+    label_re = re.compile(
+        r"^(rea|lägsta pris|ord\.?\s*pris|nyhet|fler färger|finns i färgerna"
+        r"|produkten finns|endast (i varuhus|online)|finns i varuhus|köp online"
+        r"|slutsåld|fåtal kvar)",
+        re.I,
+    )
+    price_line_re = re.compile(r"\d[\d\s .,]*\s*kr", re.I)
+
+    def _is_price_line(ln: str) -> bool:
+        return bool(price_line_re.search(ln) or _PRICE_RE.search(ln))
+
+    for card in section.find_all(class_="group/product-card"):
+        link = card.find("a", href=re.compile(r"/produkter/"))
+        if not link:
+            continue
+        href = (link.get("href") or "").split("#")[0].strip()
+        if not href or href in seen:
+            continue
+        seen.add(href)
+
+        lines = [ln.strip() for ln in card.get_text("\n", strip=True).split("\n") if ln.strip()]
+
+        # Title = brand + product name: the lines BEFORE the first price line.
+        # Everything after the price (variant swatches, "Lägsta pris", the
+        # struck-through original price) is excluded by construction. Leading
+        # badges ("-40%", "Endast i varuhus", "Rea") are then stripped.
+        price_idx = next((i for i, ln in enumerate(lines) if _is_price_line(ln)), len(lines))
+        title_lines = [
+            ln for ln in lines[:price_idx]
+            if not badge_re.match(ln) and not label_re.match(ln)
+        ]
+        title = " ".join(title_lines).strip()
+        if not title or len(title) < 4:
+            continue
+
+        # Price: the first price-bearing line is the current (sale) price; the
+        # "Lägsta pris 30 dagar" original-price line is skipped via label_re.
+        # Normalise the Swedish non-breaking-space thousands separator ("1 000 kr")
+        # which the generic price regex would otherwise truncate to "000 kr".
+        price = None
+        for ln in lines:
+            if label_re.match(ln):
+                continue
+            m = re.search(r"\d[\d\s .,]*\s*kr", ln)
+            if m:
+                price = re.sub(r"[\s ]+", " ", m.group(0)).strip()
+                break
+        if price is None:
+            price = _extract_price(card)
+        url_full = f"https://www.ahlens.se{href}" if href.startswith("/") else href
+
+        results.append(SearchResult(
+            rank=len(results) + 1,
+            title=title[:120],
+            url=url_full,
+            price=price,
+        ))
+        if len(results) >= max_results:
+            break
+
+    raw_count = len(results)
+    filtered = _filter_junk_results(results)
+    logger.debug(
+        "Strategy 0 (Åhléns site-specific): found %d raw results, %d after filtering",
+        raw_count, len(filtered),
+    )
+    return filtered
+
+
+def _try_avoca(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Extract product cards from Avoca (avoca.com) search results.
+
+    Avoca is Shopify with the **Boost AI Search & Discovery** widget. The search
+    grid renders client-side as `div.boost-sd__product-item` cards, each with a
+    `.boost-sd__product-title`, a `.boost-sd__product-price` line (e.g. "Regular
+    price €59.99 €59.99", or a sale price under `--sale`), and a product link
+    `a.boost-sd__product-link` → `/products/<handle>`.
+
+    Scoping to `boost-sd__product-item` is authoritative: a genuine no-results
+    page ("0 results found for …") renders ZERO such items, so returning `[]` here
+    correctly signals a search miss instead of falling through to recommendation
+    carousels. The host is registered in `_DEDICATED_EXTRACTOR_HOSTS` so an empty
+    result short-circuits the generic/LLM fallbacks (phantom-result guard).
+    """
+    items = soup.select("div.boost-sd__product-item")
+    if not items:
+        return []
+
+    results: list[SearchResult] = []
+    seen: set[str] = set()
+    euro_re = re.compile(r"€\s?\d[\d.,]*")
+
+    for card in items:
+        link = card.select_one("a.boost-sd__product-link[href*='/products/']") \
+            or card.select_one("a[href*='/products/']")
+        if not link:
+            continue
+        href = (link.get("href") or "").split("?")[0].split("#")[0].strip()
+        if not href or href in seen:
+            continue
+        seen.add(href)
+
+        title_el = card.select_one(".boost-sd__product-title")
+        title = title_el.get_text(" ", strip=True) if title_el else ""
+        if not title or len(title) < 3:
+            continue
+
+        price = None
+        price_el = card.select_one(".boost-sd__product-price--sale") \
+            or card.select_one(".boost-sd__product-price")
+        if price_el:
+            m = euro_re.search(price_el.get_text(" ", strip=True))
+            if m:
+                price = m.group(0).replace(" ", "")
+        if price is None:
+            price = _extract_price(card)
+
+        url_full = f"https://avoca.com{href}" if href.startswith("/") else href
+        results.append(SearchResult(
+            rank=len(results) + 1,
+            title=title[:120],
+            url=url_full,
+            price=price,
+        ))
+        if len(results) >= max_results:
+            break
+
+    filtered = _filter_junk_results(results)
+    logger.debug(
+        "Strategy 0 (Avoca site-specific): found %d raw results, %d after filtering",
+        len(results), len(filtered),
+    )
+    return filtered
+
+
+def _try_baechli(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Extract product cards from Bächli Bergsport (baechli-bergsport.ch) search results.
+
+    Server-rendered (Rent-a-Shop platform) — works fully on a static fetch.
+    Results grid: `<div class="grid multiline products"><article>...</article></div>`.
+    Each card: `<p>Brand</p><h3><a href="...">Name</a></h3><span>CHF <span>99.00</span></span>`.
+
+    THE TRAP (caught at 4a): the generic price extractor looks for a class
+    containing "price"/"cost"/"amount"/"money", but the price span here has NO
+    class — it's a bare `<span>CHF <span>99.00</span></span>`. The generic
+    extractor falls through to its fallback price regex which doesn't recognize
+    "CHF", so every result silently loses its price. Parse "CHF" + amount
+    directly off the card text instead.
+
+    A SEPARATE, more serious trap: an exact-title query that uniquely matches
+    one product redirects straight to that product's detail page (no grid at
+    all) — handled upstream by `_try_extract_pdp_as_result` /
+    `_PDP_REDIRECT_HOSTS`, not here.
+
+    Title = product name only (brand lives in a separate `<p>` sibling, not
+    needed for DIRECT_MATCH/BRAND_SEARCH since brand is also a standalone query).
+    """
+    chf_re = re.compile(r"CHF\s*([\d.,]+)")
+    results: list[SearchResult] = []
+    seen: set[str] = set()
+
+    for article in soup.select("div.grid.products article"):
+        name_el = article.select_one("h3 a")
+        if not name_el:
+            continue
+        href = (name_el.get("href") or "").split("#")[0].strip()
+        if not href or href in seen:
+            continue
+        seen.add(href)
+
+        title = name_el.get_text(" ", strip=True)
+        if not title:
+            continue
+
+        price = None
+        m = chf_re.search(article.get_text(" ", strip=True))
+        if m:
+            price = f"CHF {m.group(1)}"
+
+        url_full = f"https://www.baechli-bergsport.ch{href}" if href.startswith("/") else href
+        results.append(SearchResult(rank=len(results) + 1, title=title[:120], url=url_full, price=price))
+        if len(results) >= max_results:
+            break
+
+    # Do NOT run the generic _filter_junk_results here: its `len(title) < 8`
+    # heuristic (meant to drop nav/chrome junk on unscoped strategies) silently
+    # dropped genuine short product names on this site (e.g. "Talon 6", 7 chars),
+    # producing a false ranking gap. This extractor is already scoped to the real
+    # results container, so every <h3><a> here is a genuine product — no filter needed.
+    logger.debug("Strategy 0 (Bächli site-specific): found %d results", len(results))
+    return results
+
+
+def _try_cotswoldoutdoor(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Extract product cards from Cotswold Outdoor (cotswoldoutdoor.com) search/listing pages.
+
+    THE TRAP (caught at 4a): the generic price extractor's fallback regex matches
+    the FIRST digit-then-currency-symbol pattern in the card's full text, but each
+    card also renders a star-rating review COUNT (e.g. "0", "7", "15") immediately
+    before the price block. On cards with a low review count the regex matches
+    "7 £" (count + symbol) instead of "£240.00" (the real price), silently
+    corrupting price data on a meaningful fraction of results.
+
+    Cotswold uses stable `data-testid` hooks (works on both the search/lister grid
+    and on a brand/category landing page, which share the same tile markup):
+      - card:  `div[data-testid="product-tile-vertical"]`
+      - link:  first `a[href*="/p/"]` inside the card
+      - title: `div[class*="product-tile__title"]` (brand `<strong>` + name span)
+      - price: `span[data-testid="product-tile-vertical-price-actual-price"]`
+               (current/sale price); falls back to
+               `span[data-testid="product-tile-vertical-price-previous-price"]`
+               (RRP) if no actual-price span is present.
+
+    Scoping to the data-testid price spans sidesteps the review-count collision
+    entirely — no full-text regex is needed.
+    """
+    results: list[SearchResult] = []
+    seen: set[str] = set()
+
+    for card in soup.select('div[data-testid="product-tile-vertical"]'):
+        link = card.select_one('a[href*="/p/"]')
+        if not link:
+            continue
+        href = (link.get("href") or "").split("#")[0].strip()
+        if not href or href in seen:
+            continue
+        seen.add(href)
+
+        title_el = card.select_one('div[class*="product-tile__title"]')
+        title = title_el.get_text(" ", strip=True) if title_el else link.get("href", "")
+        if not title:
+            continue
+
+        price = None
+        price_el = card.select_one('span[data-testid="product-tile-vertical-price-actual-price"]')
+        if not price_el:
+            price_el = card.select_one('span[data-testid="product-tile-vertical-price-previous-price"]')
+        if price_el:
+            price = price_el.get_text(" ", strip=True)
+
+        url_full = f"https://www.cotswoldoutdoor.com{href}" if href.startswith("/") else href
+        results.append(SearchResult(rank=len(results) + 1, title=title[:120], url=url_full, price=price))
+        if len(results) >= max_results:
+            break
+
+    logger.debug("Strategy 0 (Cotswold Outdoor site-specific): found %d results", len(results))
+    return results
+
+
+def _try_manufactum(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Extract product cards from Manufactum (manufactum.de) search results.
+
+    THE TRAP (caught at 4a): on a genuine no-results query Manufactum's search
+    header reads "Suchergebnis für »…« (0)" but the page is padded with a large
+    grid of fallback/recommendation products (oak furniture, shoes, …). The
+    generic strategy scrapes those phantoms and masks the search failure. So we
+    treat the header count as authoritative: when it is (0), return `[]`.
+
+    Manufactum exposes STABLE `data-test-*` hooks (the CSS module class names are
+    hashed and change per build, so we must NOT key off them):
+      - card:    `div[data-test-sell-product-tile="true"]`
+      - link:    `a[data-test-sell-product-link="true"]` → `/<slug>-a<id>/`
+      - name:    `span[data-test-sell-product-name="true"]` (self-contained title,
+                 brand usually embedded — no brand prefix needed)
+      - price:   `span[data-test-stelar-price-price="true"]` (e.g. "39,90 €")
+
+    Scoping to these tiles is authoritative: registered in
+    `_DEDICATED_EXTRACTOR_HOSTS` so `[]` short-circuits the generic/LLM fallbacks.
+    """
+    # Header count → authoritative zero (phantom-result guard).
+    header = soup.find("h1")
+    if header:
+        m = re.search(r"\((\d+)\)\s*$", header.get_text(" ", strip=True))
+        if m and int(m.group(1)) == 0:
+            logger.debug("Strategy 0 (Manufactum site-specific): header reports (0) -> authoritative empty")
+            return []
+
+    results: list[SearchResult] = []
+    seen: set[str] = set()
+
+    for tile in soup.select('div[data-test-sell-product-tile="true"]'):
+        link = tile.select_one('a[data-test-sell-product-link="true"]') \
+            or tile.select_one('a[href*="-a"]')
+        name_el = tile.select_one('span[data-test-sell-product-name="true"]')
+        if not link or not name_el:
+            continue
+        href = (link.get("href") or "").split("?")[0].split("#")[0].strip()
+        if not href or href in seen:
+            continue
+        seen.add(href)
+
+        name = name_el.get_text(" ", strip=True)
+        if not name or len(name) < 3:
+            continue
+        # Title = brand + name (unless the name already leads with the brand), same
+        # convention as _try_ahlens/_try_huckberry. The manufacturer lives in a
+        # separate span, NOT the title — without it, BRAND_SEARCH queries (e.g.
+        # "Armedangels") score as false misses because the brand never appears in
+        # the title. Composing brand+name keeps DIRECT_MATCH valid too (the judge
+        # does a containment check; exact product names stay a substring).
+        brand_el = tile.select_one('span[data-test-sell-product-manufacturer="true"]')
+        brand = brand_el.get_text(" ", strip=True) if brand_el else ""
+        if brand and not name.lower().startswith(brand.lower()):
+            title = f"{brand} {name}"
+        else:
+            title = name
+
+        price = None
+        price_el = tile.select_one('span[data-test-stelar-price-price="true"]')
+        if price_el:
+            price = price_el.get_text(" ", strip=True) or None
+        if price is None:
+            price = _extract_price(tile)
+
+        url_full = f"https://www.manufactum.de{href}" if href.startswith("/") else href
+        results.append(SearchResult(
+            rank=len(results) + 1,
+            title=title[:120],
+            url=url_full,
+            price=price,
+        ))
+        if len(results) >= max_results:
+            break
+
+    filtered = _filter_junk_results(results)
+    logger.debug(
+        "Strategy 0 (Manufactum site-specific): found %d raw results, %d after filtering",
+        len(results), len(filtered),
+    )
+    return filtered
+
+
+def _try_imerco(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Extract product cards from Imerco (imerco.dk) search results.
+
+    Imerco is a Next.js client-rendered site; the search grid renders into product
+    cards with CSS-module class names whose suffixes are hashed per build, so we key
+    off the STABLE class-name prefixes via substring match:
+      - card:   div[class*="ProductHit_wrapper"]
+      - link:   a[class*="ProductHit_card"] -> /<slug>?id=<id> (relative)
+      - brand:  span[class*="NewProductCard_brand"]
+      - name:   span[class*="NewProductCard_name"]
+      - price:  span[class*="ProductPrices_emphasized"] (first = displayed price;
+                member + non-member prices each render as an emphasized span)
+
+    Title = brand + name (e.g. "Eva Trio Stainless Steel Gryde") so BRAND_SEARCH and
+    DIRECT_MATCH queries (which include the brand) match; same convention as
+    _try_manufactum/_try_ahlens.
+
+    No-results page renders ZERO ProductHit cards and no recommendation carousel
+    using that class (header "0 resultater"), so scoping to the card class is
+    naturally authoritative — registered in _DEDICATED_EXTRACTOR_HOSTS.
+    """
+    results: list[SearchResult] = []
+    seen: set[str] = set()
+
+    for card in soup.select('div[class*="ProductHit_wrapper"]'):
+        link = card.select_one('a[class*="ProductHit_card"]') \
+            or card.select_one('a[href*="?id="]')
+        if not link:
+            continue
+        href = (link.get("href") or "").strip()
+        if not href:
+            continue
+        key = href.split("#")[0]
+        if key in seen:
+            continue
+        seen.add(key)
+
+        brand_el = card.select_one('[class*="NewProductCard_brand"]')
+        name_el = card.select_one('[class*="NewProductCard_name"]')
+        brand = brand_el.get_text(" ", strip=True) if brand_el else ""
+        name = name_el.get_text(" ", strip=True) if name_el else ""
+        if not name:
+            continue
+        if brand and not name.lower().startswith(brand.lower()):
+            title = f"{brand} {name}"
+        else:
+            title = name
+
+        price = None
+        price_el = card.select_one('[class*="ProductPrices_emphasized"]')
+        if price_el:
+            val = price_el.get_text(" ", strip=True)
+            if val:
+                price = f"{val} kr"
+        if price is None:
+            price = _extract_price(card)
+
+        url_full = f"https://www.imerco.dk{href}" if href.startswith("/") else href
+        results.append(SearchResult(
+            rank=len(results) + 1,
+            title=title[:120],
+            url=url_full,
+            price=price,
+        ))
+        if len(results) >= max_results:
+            break
+
+    filtered = _filter_junk_results(results)
+    logger.debug(
+        "Strategy 0 (Imerco site-specific): found %d raw results, %d after filtering",
+        len(results), len(filtered),
+    )
+    return filtered
 
 
 def _try_bergzeit(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
@@ -360,31 +1042,56 @@ def _try_lyko(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
     results: list[SearchResult] = []
     seen_urls: set[str] = set()
 
+    def _card_text(a) -> str:
+        """Text of the anchor's product-card container (climbs up to 2 levels for a kr price)."""
+        node = a.find_parent()
+        if node is None:
+            return a.get_text(separator=" ", strip=True)
+        t = node.get_text(separator=" ", strip=True)
+        if " kr" not in t.lower():
+            gp = node.find_parent()
+            if gp is not None:
+                t = gp.get_text(separator=" ", strip=True)
+        return t
+
     product_links = soup.find_all("a", class_=re.compile(r"link-product-page", re.I))
-    # Also try generic /sv/{brand}/{product} URL pattern as fallback
+    # Fallback: a search query can REDIRECT to a category page (e.g. "herrparfym"
+    # -> /sv/parfym/herrparfym), where products use a hashed class (not
+    # link-product-page) and deeper /sv/.../... URLs. The reliable discriminator
+    # between a real product card and a category-filter chip is that the product
+    # card's parent contains a "kr" price; chips do not.
     if not product_links:
         product_links = [
             a for a in soup.find_all("a", href=True)
-            if re.match(r"^/sv/[^/]+/[^/]+$", a.get("href", ""))
+            if a.get("href", "").startswith("/sv/")
+            and len([s for s in a.get("href", "").split("?")[0].split("/") if s]) >= 3
+            and " kr" in _card_text(a).lower()
         ]
 
     for link in product_links:
-        href = (link.get("href") or "").strip()
+        href = (link.get("href") or "").split("?")[0].strip()
         if not href or href in seen_urls:
             continue
         seen_urls.add(href)
 
         url_full = f"https://lyko.com{href}" if href.startswith("/") else href
 
-        # Title: strip Lyko promo boilerplate, keep brand + product name
+        # Title: prefer the anchor's own text (clean on search pages); fall back to
+        # the card text on category pages where the anchor wraps only the image.
         raw = link.get_text(separator=" ", strip=True)
+        if len(raw.strip()) < 8:
+            raw = _card_text(link)
         # Remove promo badges: "Combo Deal 20%", "Se villkor på produktsidan", "Reapris X kr", "Utan kampanj X kr"
         text = re.sub(r"Combo Deal\s*\d+%", "", raw, flags=re.I)
+        # Leading promo/badge labels that prefix the product name in the card.
+        text = re.sub(r"\b(WOW-pris|G[åa]va p[åa] k[öo]pet|Sponsrad|Nyhet|Rek\.?\s*pris|Rekommenderat\s*pris)\b", "", text, flags=re.I)
         text = re.sub(r"Se villkor p[åa] produktsidan", "", text, flags=re.I)
         text = re.sub(r"Reapris\s*[\d\s,.]+kr", "", text, flags=re.I)
         text = re.sub(r"Utan kampanj\s*[\d\s,.]+kr", "", text, flags=re.I)
         text = re.sub(r"Utan paketpris[:\s]*[\d\s,.]+kr", "", text, flags=re.I)
+        text = re.sub(r"Kampanj\s*\d+%", "", text, flags=re.I)
         text = re.sub(r"[\d][\d\s,.]*\s*kr", "", text)
+        text = re.sub(r"\bK[ÖO]P\b", "", text, flags=re.I)
         text = re.sub(r"\s{2,}", " ", text).strip()
 
         # Must look like a real product name (brand + name, at least 8 chars, not a nav link)
@@ -394,11 +1101,26 @@ def _try_lyko(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
         if any(skip in text.lower() for skip in ("se profilsida", "kontakta", "mina sidor", "kundservice", "villkor")):
             continue
 
-        # Price: find first kr price in raw text
+        # Price: the displayed price is NOT inside the anchor — it lives in the
+        # parent product-card container (a classless <span>, hydrated by JS).
+        # Read the card text and pick the CURRENT price:
+        #   - "Reapris N kr" (Combo Deal campaign price) wins if present;
+        #   - otherwise the first standalone "N kr" after stripping the
+        #     original-price lines ("Rek. pris N kr" / "Rekommenderat pris N kr"
+        #     / "Utan kampanj N kr").
         price = None
-        price_m = re.search(r"(\d[\d\s,.]*)\s*kr", raw)
-        if price_m:
-            price = price_m.group(0).strip()
+        card_text = _card_text(link)
+        reapris_m = re.search(r"Reapris\s*(\d[\d\s,.]*\s*kr)", card_text, flags=re.I)
+        if reapris_m:
+            price = reapris_m.group(1).strip()
+        else:
+            stripped = re.sub(
+                r"(Rek\.?\s*pris|Rekommenderat\s*pris|Utan\s*kampanj)\s*\d[\d\s,.]*\s*kr",
+                "", card_text, flags=re.I,
+            )
+            price_m = re.search(r"(\d[\d\s,.]*\s*kr)", stripped)
+            if price_m:
+                price = re.sub(r"\s+", " ", price_m.group(1)).strip()
 
         results.append(SearchResult(
             rank=len(results) + 1,
@@ -1181,6 +1903,15 @@ def _extract_results(html: str, max_results: int, url: str = "") -> list[SearchR
         logger.debug("Site-specific extractor matched: %d results", len(site_results))
         return site_results
 
+    # For hosts with a dedicated extractor, an empty result is AUTHORITATIVE: it
+    # means a genuine zero-results page (e.g. Åhléns "Inga träffar"). Do NOT fall
+    # through to the cached/generic/LLM strategies — on a no-results page those
+    # scrape the "you might also like" recommendation carousel and report phantom
+    # results, masking a real search failure.
+    if _has_dedicated_extractor(url):
+        logger.debug("Dedicated extractor returned 0 for known host — authoritative empty (no generic fallback)")
+        return []
+
     # Fast path: try cached LLM-generated selectors first
     if _site_extraction_profile is not None:
         cached_results = _extract_with_cached_selectors(html, _site_extraction_profile, max_results)
@@ -1572,6 +2303,150 @@ def _hydrate_lazy_prices(page, url: str) -> None:
         pass
 
 
+def _wait_for_ahlens_ready(page, url: str) -> None:
+    """Wait for Åhléns search to finish rendering before capturing the page.
+
+    Åhléns renders the results grid (`#product-rain-section`) and the
+    "X träffar" / "Inga träffar" header client-side after the search API responds.
+    If we read the page mid-render, the grid is absent and the dispatcher would
+    treat it as a no-results page. Wait until EITHER the results section OR the
+    no-hits marker is present so the captured HTML reflects the true result state.
+    No-op for other hosts.
+    """
+    try:
+        host = urlparse(url).netloc.lower()
+    except Exception:
+        return
+    if "ahlens.se" not in host:
+        return
+    try:
+        page.wait_for_function(
+            """() => {
+                if (document.querySelector('#product-rain-section')) return true;
+                const t = document.body ? document.body.innerText : '';
+                return /inga tr\\u00e4ffar/i.test(t);
+            }""",
+            timeout=15000,
+        )
+    except Exception:
+        logger.debug("Åhléns readiness wait timed out — capturing current state")
+    page.wait_for_timeout(800)
+
+
+def _wait_for_avoca_ready(page, url: str) -> None:
+    """Wait for Avoca's Boost AI Search grid to render before capturing.
+
+    Avoca's `boost-sd__product-item` cards are injected client-side after the
+    Boost search API responds. Capturing mid-render yields zero cards, which would
+    look like a (false) no-results page. Wait until EITHER a product card OR the
+    "0 results found" / "couldn't find results" no-hits marker is present.
+    No-op for other hosts.
+    """
+    try:
+        host = urlparse(url).netloc.lower()
+    except Exception:
+        return
+    if "avoca.com" not in host:
+        return
+    try:
+        page.wait_for_function(
+            """() => {
+                if (document.querySelector('.boost-sd__product-item')) return true;
+                const t = document.body ? document.body.innerText : '';
+                return /0 results found|couldn't find results|couldn\\u2019t find results/i.test(t);
+            }""",
+            timeout=15000,
+        )
+    except Exception:
+        logger.debug("Avoca readiness wait timed out — capturing current state")
+    page.wait_for_timeout(800)
+
+
+def _wait_for_cloudflare_clear(page, timeout_ms: int = 30000) -> bool:
+    """Wait for a Cloudflare "Just a moment..." JS challenge to auto-clear.
+
+    Headed Chromium passes Cloudflare's managed challenge on its own after a few
+    seconds; this polls the page title/marker until the real content replaces the
+    interstitial. Returns True if cleared, False if it timed out still on the
+    challenge. Used for `_HEADED_CHROMIUM_HOSTS` before block-classifying the
+    response (otherwise the still-rendering challenge looks like a hard block).
+    """
+    try:
+        page.wait_for_function(
+            """() => {
+                const t = (document.title || '');
+                if (/just a moment/i.test(t)) return false;
+                const b = document.body ? document.body.innerText : '';
+                return !/just a moment|checking your browser|verifying you are human/i.test(b);
+            }""",
+            timeout=timeout_ms,
+        )
+        return True
+    except Exception:
+        logger.debug("Cloudflare challenge did not clear within %dms", timeout_ms)
+        return False
+
+
+def _wait_for_cotswold_ready(page, url: str) -> None:
+    """Wait for Cotswold Outdoor's grid to render before capturing.
+
+    A keyword query often *redirects* from `/lister.html?q=…` to a curated
+    category page (e.g. `backpack` → `/c/equipment/rucksacks.html?q=…`). That
+    redirect is client-side: `page.goto` returns a ~6KB stub before the
+    destination's React product grid hydrates, so without waiting we capture
+    zero tiles. Wait until EITHER a product tile is present, OR the authoritative
+    no-results page has loaded. No-op for other hosts.
+    """
+    try:
+        host = urlparse(url).netloc.lower()
+    except Exception:
+        return
+    if "cotswoldoutdoor.com" not in host:
+        return
+    try:
+        page.wait_for_function(
+            """() => {
+                if (document.querySelector('div[data-testid="product-tile-vertical"]')) return true;
+                if (location.pathname.toLowerCase().includes('/lister/no-results')) return true;
+                const t = document.body ? document.body.innerText : '';
+                return /no results|0 results|couldn'?t find/i.test(t);
+            }""",
+            timeout=20000,
+        )
+    except Exception:
+        logger.debug("Cotswold readiness wait timed out — capturing current state")
+    page.wait_for_timeout(800)
+
+
+def _wait_for_huckberry_ready(page, url: str) -> None:
+    """Wait for Huckberry's React product grid to render before capturing.
+
+    Product tiles (`span.ProductTileContent__price` / brand links) are injected
+    client-side after the search API responds. Wait until EITHER a price span OR
+    the "We couldn't find …" / "no results" no-hits marker is present. No-op for
+    other hosts.
+    """
+    try:
+        host = urlparse(url).netloc.lower()
+    except Exception:
+        return
+    if "huckberry.com" not in host:
+        return
+    try:
+        page.wait_for_function(
+            """() => {
+                if (document.querySelector('span.ProductTileContent__price')) return true;
+                if (document.querySelector('a.ProductTileContent__brand-link')) return true;
+                const t = document.body ? document.body.innerText : '';
+                return /couldn'?t find|couldn\\u2019t find|no results|0 results/i.test(t);
+            }""",
+            timeout=20000,
+        )
+    except Exception:
+        logger.debug("Huckberry readiness wait timed out — capturing current state")
+    page.wait_for_timeout(800)
+
+
 def _fetch_with_playwright(
     url: str,
     quick_probe: bool = False,
@@ -1611,7 +2486,16 @@ def _fetch_with_playwright(
         with sync_playwright() as p:
             chromium_opts = {"args": ["--disable-blink-features=AutomationControlled", "--no-sandbox"]}
 
-            if force_browser == "chromium":
+            # Some hosts (Cloudflare "Just a moment...") only let a *headed*
+            # Chromium session through. Force headed Chromium for those.
+            headed_host = _needs_headed_chromium(url)
+            launch_headless = not headed_host
+
+            if headed_host:
+                browsers = [(p.chromium, "chromium", chromium_opts)]
+            elif _prefers_chromium(url):
+                browsers = [(p.chromium, "chromium", chromium_opts)]
+            elif force_browser == "chromium":
                 browsers = [(p.chromium, "chromium", chromium_opts)]
             elif force_browser == "firefox":
                 browsers = [(p.firefox, "firefox", {})]
@@ -1625,9 +2509,9 @@ def _fetch_with_playwright(
             browser_name = ""
             for browser_type, name, launch_kw in browsers:
                 try:
-                    browser = browser_type.launch(headless=True, **launch_kw)
+                    browser = browser_type.launch(headless=launch_headless, **launch_kw)
                     browser_name = name
-                    logger.debug("Playwright: launched %s", name)
+                    logger.debug("Playwright: launched %s (headless=%s)", name, launch_headless)
                 except Exception as e:
                     logger.debug("Playwright: %s unavailable (%s), trying next", name, e)
                     continue
@@ -1645,6 +2529,10 @@ def _fetch_with_playwright(
                 try:
                     page.goto(url, wait_until="domcontentloaded", timeout=20000)
                     page.wait_for_timeout(3000)
+                    # For headed Cloudflare hosts, give the JS challenge time to
+                    # auto-clear before deciding it's a block.
+                    if headed_host:
+                        _wait_for_cloudflare_clear(page)
                     probe_html = page.content()
                     block = _classify_response(probe_html)
                     if block in ("cloudflare", "imperva"):
@@ -1668,6 +2556,10 @@ def _fetch_with_playwright(
 
             used_browser = browser_name
             _dismiss_consent_banners(page)
+            _wait_for_ahlens_ready(page, url)
+            _wait_for_avoca_ready(page, url)
+            _wait_for_huckberry_ready(page, url)
+            _wait_for_cotswold_ready(page, url)
 
             if quick_probe:
                 page.wait_for_timeout(2000)
@@ -1704,6 +2596,10 @@ def _fetch_on_context(context, url: str, quick_probe: bool = False) -> tuple[str
             return "", "persistent", ""
 
         _dismiss_consent_banners(page)
+        _wait_for_ahlens_ready(page, url)
+        _wait_for_avoca_ready(page, url)
+        _wait_for_huckberry_ready(page, url)
+        _wait_for_cotswold_ready(page, url)
 
         if quick_probe:
             page.wait_for_timeout(2000)
@@ -2246,6 +3142,11 @@ def _probe_site(
         static_redirected = _is_search_redirect(url, resp.url, query)
         if static_redirected:
             logger.info("Probe: static redirected to %s for query '%s'", resp.url, query)
+            if _needs_pdp_redirect_extraction(url):
+                pdp_results = _try_extract_pdp_as_result(static_html, resp.url)
+                if pdp_results:
+                    logger.info("Probe: redirect was a unique-match PDP — extracted 1 result → STATIC mode")
+                    return SiteMode.STATIC, pdp_results, static_html, False
         else:
             logger.debug("Probe: static HTTP %d, %d bytes", static_code, len(static_html))
     except requests.RequestException as e:
@@ -2302,6 +3203,29 @@ def _probe_site(
 
     pw_redirected = _is_search_redirect(url, pw_final_url, query)
     if pw_redirected:
+        if _needs_pdp_redirect_extraction(url):
+            pdp_results = _try_extract_pdp_as_result(pw_html, pw_final_url)
+            if pdp_results:
+                logger.info("Probe: Playwright redirect was a unique-match PDP — extracted 1 result")
+                return mode, pdp_results, pw_html, False
+        if _has_dedicated_extractor(url) and not _is_authoritative_no_results(pw_final_url):
+            # Not a unique-match PDP — check whether it's a real multi-product
+            # category/brand listing page instead (e.g. a brand-name query
+            # redirecting to /brands/<brand>.html). That page reuses the same
+            # tile markup as the search grid, so the dedicated extractor still
+            # works on it directly. Skipped when the destination is a known
+            # authoritative-no-results page — those can render a "you might
+            # also like" carousel using the identical tile markup, which would
+            # otherwise be scraped as phantom results (see
+            # _NO_RESULTS_PATH_MARKERS).
+            redirect_soup = BeautifulSoup(pw_html, "html.parser")
+            cat_results = _try_site_specific(redirect_soup, pw_final_url, max_results)
+            if cat_results:
+                logger.info(
+                    "Probe: Playwright redirect was a real category/brand listing — extracted %d results",
+                    len(cat_results),
+                )
+                return mode, cat_results, pw_html, False
         logger.info(
             "Probe: Playwright also redirected to %s for query '%s' → was_redirected=True",
             pw_final_url, query,
@@ -2311,7 +3235,9 @@ def _probe_site(
     results = _extract_results(pw_html, max_results * 2, url=url)
     results = _validate_results_with_llm(results, query)
     results = results[:max_results]
-    if len(results) < 5:
+    # Dedicated-extractor hosts are authoritative — a thin/empty result is the
+    # real answer, so don't let the LLM fallback scrape recommendation chrome.
+    if len(results) < 5 and not _has_dedicated_extractor(url):
         llm_results = _extract_with_llm(pw_html, query, max_results, url=url)
         if len(llm_results) > len(results):
             results = llm_results
@@ -2396,13 +3322,29 @@ def _fetch_with_mode(
         return [], False
 
     if _is_search_redirect(url, final_url, query):
+        if _needs_pdp_redirect_extraction(url):
+            pdp_results = _try_extract_pdp_as_result(html, final_url)
+            if pdp_results:
+                logger.info("Query '%s' redirected to a unique-match PDP %s — extracted 1 result", query, final_url)
+                return pdp_results, False
+        if _has_dedicated_extractor(url) and not _is_authoritative_no_results(final_url):
+            redirect_soup = BeautifulSoup(html, "html.parser")
+            cat_results = _try_site_specific(redirect_soup, final_url, max_results)
+            if cat_results:
+                logger.info(
+                    "Query '%s' redirected to a real category/brand listing %s — extracted %d results",
+                    query, final_url, len(cat_results),
+                )
+                return cat_results, False
         logger.info("Query '%s' redirected to %s — skipping", query, final_url)
         return [], True
 
     results = _extract_results(html, max_results * 2, url=url)
     results = _validate_results_with_llm(results, query)
     results = results[:max_results]
-    if len(results) < 5:
+    # Dedicated-extractor hosts are authoritative — don't let the LLM fallback
+    # scrape recommendation chrome on top of a thin/empty (but real) result set.
+    if len(results) < 5 and not _has_dedicated_extractor(url):
         llm_results = _extract_with_llm(html, query, max_results, url=url)
         if len(llm_results) > len(results):
             results = llm_results
@@ -2617,6 +3559,42 @@ def fetch_all_results(
                 except Exception as e:
                     logger.warning("Unexpected error fetching '%s': %s", query_str, e)
                     results, was_redirected = [], False
+
+                # Retry-on-zero for dedicated-extractor hosts. These hosts are
+                # authoritative-empty (an empty result short-circuits fallbacks),
+                # so a transient client-render lapse during the batch looks
+                # identical to a genuine no-results page and would silently poison
+                # the audit with a false zero. One re-fetch distinguishes them: a
+                # genuine zero stays zero; a transient miss recovers.
+                if (not was_redirected and not results
+                        and _has_dedicated_extractor(url)):
+                    logger.info("[%d/%d] '%s' → 0 results; re-fetching once (transient-zero guard)", i, total, query_str)
+                    time.sleep(1.5)
+                    try:
+                        _retry_out: list = []
+                        _retry_err: list = []
+
+                        def _run_retry() -> None:
+                            try:
+                                _retry_out.extend(
+                                    _fetch_with_mode(
+                                        url, query_str, max_results, site_mode,
+                                        reuse_context=persistent_context,
+                                    )
+                                )
+                            except Exception as exc:
+                                _retry_err.append(exc)
+
+                        _rt = _threading.Thread(target=_run_retry, daemon=True)
+                        _rt.start()
+                        _rt.join(timeout=_PER_QUERY_TIMEOUT_S)
+                        if not _rt.is_alive() and not _retry_err and _retry_out:
+                            retry_results, retry_redirected = _retry_out[0], _retry_out[1]
+                            if not retry_redirected and retry_results:
+                                logger.info("[%d/%d] '%s' recovered %d results on retry", i, total, query_str, len(retry_results))
+                                results = retry_results
+                    except Exception as e:
+                        logger.warning("Retry-on-zero failed for '%s': %s", query_str, e)
 
             if was_redirected:
                 logger.info("[%d/%d] '%s' redirected — skipping", i, total, query_str)

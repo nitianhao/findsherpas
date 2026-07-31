@@ -20,7 +20,6 @@ sys.path.insert(0, str(AUDIT_ROOT))
 from src.judge import judge_all_queries
 from src.models import ScoredResult, SearchResult, SiteContext, TestQuery
 from src.report_generator import generate_report
-from src.sales_materials_generator import generate_sales_materials
 from src.scorer import score_results
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
@@ -83,10 +82,6 @@ def main() -> None:
     json_file.write_text(report.model_dump_json(indent=2), encoding="utf-8")
     print(f"  wrote: {md_file.name}")
     print(f"  wrote: {json_file.name}")
-
-    # Sales materials
-    print("\n== Phase 7b: Sales materials ==")
-    generate_sales_materials(report, RUN_DIR, slug)
 
     elapsed = time.time() - t0
     cap_scores = report.capability_scores

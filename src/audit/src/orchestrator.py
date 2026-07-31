@@ -198,7 +198,17 @@ def run_audit(
     # ── Phase 6/7: Analyzing Results ───────────────────────────────────
     _phase_header(6, "Analyzing Results")
     try:
-        judgments = judge_all_queries(queries, scored_results)
+        kb_provenance = {
+            "domain": _slugify_domain(target_url),
+            "url": target_url,
+            "judged_at": datetime.now().isoformat(),
+        }
+        judgments = judge_all_queries(
+            queries,
+            scored_results,
+            language=site_context.primary_language,
+            provenance=kb_provenance,
+        )
     except Exception as e:
         print(f"\n  [ERROR] Phase 6 failed: {e}")
         raise
@@ -260,7 +270,12 @@ def run_audit(
     report_url: str | None = None
     try:
         html_content = html_file.read_text(encoding="utf-8")
-        report_url = publish_report(html_content, domain_slug)
+        report_url = publish_report(
+            html_content,
+            domain_slug,
+            data_json=json_file.read_text(encoding="utf-8"),
+            report_md=md_file.read_text(encoding="utf-8"),
+        )
         access_file.write_text(
             json.dumps(
                 {

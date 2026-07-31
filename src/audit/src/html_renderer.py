@@ -6,6 +6,7 @@ import base64
 import hashlib
 import mimetypes
 import re
+import sys
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
@@ -104,6 +105,11 @@ def _build_stats(report: AuditReport, judgments: list[QueryJudgment]) -> dict:
         "pct_retrieval_ok": f"{pct_retrieval:.0f}",
         "retrieval_ok_count": poor_ranking_count,
         "num_categories": num_categories,
+        # Retrieval-health metrics (over ALL queries) for benchmarks / risk framing.
+        "pct_no_relevant_first": raw["pct_no_relevant_first"],
+        "pct_top3_relevant_all": raw["pct_top3_relevant_all"],
+        "zero_result_count": raw["zero_result_count"],
+        "pct_zero_result": raw["pct_zero_result"],
     }
 
 
@@ -228,9 +234,8 @@ def _build_short_version_fix(roadmap_items: list[dict]) -> str:
     if roadmap_items:
         top = roadmap_items[0]
         title = " ".join((top.get("title") or "").split()).rstrip(".")
-        description = " ".join((top.get("description") or "").split())
-        if title and description:
-            return f"The first fix to ship: {title} — {description}"
+        # One clear, actionable step — the roadmap title only. The full explanation lives in
+        # the Prioritized Roadmap section; this headline must stay short and scannable.
         if title:
             return f"The first fix to ship: {title}."
     return (
@@ -329,13 +334,20 @@ def _coverage_signal_summary(critical: int, moderate: int, minor: int, passed: i
     return f"{total} probes reviewed: {', '.join(parts)}."
 
 
-def _coverage_signal_note(critical: int, moderate: int, minor: int) -> str:
+def _coverage_signal_note(critical: int, moderate: int, minor: int, total: int) -> str:
+    # Reflect the actual number of failing probes (not a flat "at least one…"), so the line
+    # varies per row and reads specifically. Lead with the most severe issue present.
     if critical:
-        return "At least one probe showed a shopper-visible miss. The example below is the clearest case."
+        misses = "a shopper-visible miss" if critical == 1 else "shopper-visible misses"
+        return f"{critical} of {total} probes returned {misses}; the clearest case is below."
     if moderate:
-        return "The pattern works in places, but the experience is not consistently clean."
+        return (
+            f"{moderate} of {total} probes surfaced relevant products but not cleanly — "
+            f"friction the shopper would feel; the clearest case is below."
+        )
     if minor:
-        return "The pattern mostly surfaces relevant products; the remaining work is ranking polish."
+        verb = "needs" if minor == 1 else "need"
+        return f"{minor} of {total} probes {verb} only ranking polish; retrieval itself is fine."
     return "No immediate tuning signal appeared in this sample."
 
 
@@ -379,11 +391,67 @@ def _trim_evidence(text: str, limit: int = 200) -> str:
     return cleaned[:limit].rsplit(" ", 1)[0].rstrip(" ,;:") + "…"
 
 
+_FRICTION_SIGNAL = re.compile(
+    r"(#\s*\d+|\brank\b|\bposition\b|buried|shown first|displaced|duplicate|copies|"
+    r"wasting|not even|zero result|no result|returned no|irrelevant|\bnothing\b|\bempty\b)",
+    re.I,
+)
+_REASSURANCE_SIGNAL = re.compile(
+    r"(fully satisfied|on[- ]topic|legitimate|correctly mapped|right department|never saw|all 15)",
+    re.I,
+)
+
+
+def _friction_fragment(evidence: str, limit: int = 220) -> str:
+    """Return the sentence(s) of the judge's evidence that describe the actual friction.
+
+    A downgraded ranking judgment frequently opens with a reassurance or a setup
+    line ("All 15 results are on-topic …", "The query should surface … first") and
+    only later states the concrete problem ("the customer saw a hand wash at #1 …",
+    "three copies … wasting page real estate"). Showcasing the preamble under a card
+    that claims friction is self-contradictory. So skip to the first sentence that
+    concretely describes the miss (a rank/position, a buried/duplicate/irrelevant
+    signal), optionally include the next concrete sentence, and strip any leading
+    "However,/but" reassurance clause. Returns "" when the evidence has no concrete
+    friction sentence, so the caller can synthesise an honest line.
+    """
+    ev = " ".join((evidence or "").split())
+    if not ev:
+        return ""
+    sentences = re.split(r"(?<=[.!?])\s+", ev)
+    start = next((i for i, s in enumerate(sentences) if _FRICTION_SIGNAL.search(s)), None)
+    if start is None:
+        return ""
+    frag = sentences[start]
+    if (
+        start + 1 < len(sentences)
+        and len(frag) < limit - 40
+        and _FRICTION_SIGNAL.search(sentences[start + 1])
+    ):
+        frag = frag + " " + sentences[start + 1]
+    # Strip a leading reassurance clause within the fragment ("…, however <problem>").
+    for marker in ("However, ", "However ", " but ", "But "):
+        idx = frag.find(marker)
+        if idx > 0 and _REASSURANCE_SIGNAL.search(frag[:idx]):
+            frag = frag[idx:].lstrip()
+            break
+    # Drop a leading bare "However," so the fragment reads as a standalone statement.
+    frag = re.sub(r"^However,?\s+", "", frag)
+    if frag:
+        frag = frag[0].upper() + frag[1:]
+    return _trim_evidence(frag, limit)
+
+
 def _coverage_example(matching: list[QueryJudgment]) -> dict | None:
     """Pick the single most illustrative failing probe in a calibration row.
 
-    Worst-first: highest severity, then most buried best match, then lowest peak
-    relevance. Returns the real query string plus a one-line observation, or None
+    Worst-first by GENUINE customer-visible weakness: highest severity, then the
+    weakest results actually shown to the shopper (lowest top-3 average relevance),
+    then lowest peak relevance. We deliberately do NOT rank by positional
+    displacement — for broad/generic queries a large displacement among all-relevant
+    results is reranker-scoring noise (the discredited metric that used to surface a
+    "best item buried at #13" probe whose results were actually fine). Returns the
+    real query string plus a one-line observation focused on the friction, or None
     when nothing in the row failed.
     """
     failing = [j for j in matching if j.severity != Severity.PASS.value]
@@ -394,17 +462,22 @@ def _coverage_example(matching: list[QueryJudgment]) -> dict | None:
         failing,
         key=lambda j: (
             _SEVERITY_RANK.get(j.severity, 0),
-            j.displacement,
+            -j.top3_original_average,
             -j.max_relevance_score,
         ),
     )
 
-    detail = _trim_evidence(worst.evidence)
+    detail = _friction_fragment(worst.evidence)
     if not detail:
-        mode = _FAILURE_MODE_DISPLAY.get(worst.failure_mode, worst.failure_mode)
-        if worst.displacement:
-            detail = f"{mode}: best match buried at position {worst.displacement + 1}."
+        # No concrete friction sentence in the evidence — synthesise an honest line
+        # from structured data rather than echoing a reassurance/setup preamble.
+        if worst.severity != Severity.CRITICAL.value and worst.displacement:
+            detail = (
+                f'Relevant results appear, but the strongest match sits at position '
+                f'{worst.displacement + 1} instead of near the top.'
+            )
         else:
+            mode = _FAILURE_MODE_DISPLAY.get(worst.failure_mode, worst.failure_mode)
             detail = f"{mode}."
 
     return {"query": worst.test_query.query, "detail": detail}
@@ -435,6 +508,9 @@ def _build_coverage_summary(judgments: list[QueryJudgment]) -> dict:
             items.append({
                 "capability": _CAPABILITY_NAMES.get(cs.capability, cs.capability),
                 "query_type": _CATEGORY_DISPLAY.get(category, category),
+                # Stable rows (no issues) shouldn't pose the diagnostic question or a "next
+                # tuning move" — there's nothing to tune. The template gates both on this.
+                "has_issue": (critical + moderate + minor) > 0,
                 "meaning": _CATEGORY_EXPLANATIONS.get(
                     category,
                     "This probe checks whether search handles this customer query pattern predictably.",
@@ -445,7 +521,7 @@ def _build_coverage_summary(judgments: list[QueryJudgment]) -> dict:
                 ),
                 "status": _coverage_status(category, critical, moderate, minor),
                 "signal_summary": _coverage_signal_summary(critical, moderate, minor, passed, total),
-                "signal_note": _coverage_signal_note(critical, moderate, minor),
+                "signal_note": _coverage_signal_note(critical, moderate, minor, total),
                 "example": _coverage_example(matching),
                 "pass_rate": f"{pass_rate:.0f}",
                 "passed": passed,
@@ -608,14 +684,18 @@ def _fix_guidance(j: QueryJudgment) -> str:
         return "Extract this as a structured facet and use it as a ranking/filtering signal instead of treating it as loose text."
     if mode == "POOR_RANKING":
         return "Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set."
+    if mode == "DUPLICATE_FLOODING":
+        return "Collapse colour/size variants of the same product into a single result card so each model takes one slot and more distinct products are visible."
     return "Tune retrieval and ranking for this query pattern, then re-test it as part of the priority regression set."
 
 
 def _build_risk_cases(judgments: list[QueryJudgment]) -> list[dict]:
     failing = [j for j in judgments if j.severity != Severity.PASS.value]
+    # Worst severity first, then genuine customer-visible weakness (weakest results
+    # shown), then lowest peak relevance — not displacement (reranker noise).
     sorted_js = sorted(
         failing,
-        key=lambda j: (-_SEVERITY_RANK.get(j.severity, 0), -j.displacement, -j.max_relevance_score),
+        key=lambda j: (-_SEVERITY_RANK.get(j.severity, 0), j.top3_original_average, j.max_relevance_score),
     )
 
     cases = []
@@ -674,10 +754,19 @@ def _build_deep_dives(judgments: list[QueryJudgment]) -> list[dict]:
     for cs in failing:
         cap_name = _CAPABILITY_NAMES.get(cs.capability, cs.capability)
 
-        # Sort judgments: worst severity first, then highest displacement
+        # Only narrate actual failures — never include PASS queries, or a thin capability gets
+        # padded with passing queries reframed as problems. Sort worst severity first, then
+        # genuine customer-visible weakness (lowest results actually shown), then lowest peak
+        # relevance. NOT by displacement — large displacement among all-relevant results is
+        # reranker noise and would lead the section with a non-friction example.
+        failing_js = [j for j in cs.judgments if j.severity != Severity.PASS.value]
         sorted_js = sorted(
-            cs.judgments,
-            key=lambda j: (-_SEVERITY_RANK.get(j.severity, 0), -j.displacement),
+            failing_js,
+            key=lambda j: (
+                -_SEVERITY_RANK.get(j.severity, 0),
+                j.top3_original_average,
+                j.max_relevance_score,
+            ),
         )
         # Take up to 5 worst
         top_js = sorted_js[:5]
@@ -692,6 +781,9 @@ def _build_deep_dives(judgments: list[QueryJudgment]) -> list[dict]:
                 "category": _CATEGORY_DISPLAY.get(j.test_query.category, j.test_query.category),
                 "severity_class": _severity_class(j.severity),
                 "severity_short": _severity_short(j.severity),
+                # A zero-result query has no result list, so displacement (and the
+                # displacement+1 "position") is meaningless — never show a phantom position.
+                "no_results": not by_original,
                 "best_position": j.displacement + 1,
                 "displacement": j.displacement,
                 "evidence": j.evidence,
@@ -715,17 +807,34 @@ def _build_deep_dives(judgments: list[QueryJudgment]) -> list[dict]:
 
 
 def _build_whats_working(judgments: list[QueryJudgment]) -> list[str]:
-    """Return plain-text bullets for the What's Working section."""
+    """Return bullets for What's Working — at the QUERY-CATEGORY grain.
+
+    Mirrors build_whats_working_markdown: capability-level passes (worst-severity-wins) hide
+    real strengths, so surface query categories where EVERY test passed (>= 2 queries), with
+    an example each. Falls back to partial-wins only if no category passed cleanly.
+    """
+    by_cat: dict[str, list[QueryJudgment]] = defaultdict(list)
+    for j in judgments:
+        by_cat[getattr(j.test_query.category, "value", j.test_query.category)].append(j)
+
+    strong = []
+    for cat, js in by_cat.items():
+        passed = [j for j in js if j.severity == Severity.PASS.value]
+        if len(js) >= 2 and len(passed) == len(js):
+            strong.append((len(js), cat, passed))
+    strong.sort(reverse=True)
+
+    if strong:
+        bullets = []
+        for total, cat, passed in strong:
+            disp = _CATEGORY_DISPLAY.get(cat, cat)
+            example = passed[0].test_query.query
+            bullets.append(f"<strong>{disp}</strong> ({total}/{total} passed) — e.g. \"{example}\"")
+        return bullets
+
+    # Fallback: no category passed cleanly — surface partial wins.
     scores = build_capability_scores(judgments)
-    bullets: list[str] = []
-
-    # Minor capabilities
-    for cs in scores:
-        if cs.severity == Severity.MINOR.value:
-            cap_name = _CAPABILITY_NAMES.get(cs.capability, cs.capability)
-            bullets.append(f"<strong>{cap_name} is mostly functional</strong> — minor issues only. {cs.summary}")
-
-    # Retrieval worked
+    bullets = []
     poor_ranking = [j for j in judgments if j.failure_mode == "POOR_RANKING" and j.max_relevance_score >= 0.60]
     if poor_ranking:
         bullets.append(
@@ -733,8 +842,6 @@ def _build_whats_working(judgments: list[QueryJudgment]) -> list[str]:
             f"{len(judgments)} queries. The primary issue is ranking, not finding: the right results exist "
             f"in the result set but aren't being surfaced at the top."
         )
-
-    # Near misses
     near_miss = [j for j in judgments if j.displacement <= 2 and j.severity != Severity.PASS.value]
     if near_miss:
         examples = [f'"{j.test_query.query}"' for j in near_miss[:3]]
@@ -742,28 +849,11 @@ def _build_whats_working(judgments: list[QueryJudgment]) -> list[str]:
             f"<strong>Close to correct</strong> on {len(near_miss)} queries ({', '.join(examples)}): "
             f"the best result was within the top 3, just not at #1."
         )
-
-    # Typo recognition
-    typo_caps = [cs for cs in scores if cs.capability == "TYPO_TOLERANCE"]
-    for cs in typo_caps:
-        retrieval_ok = [
-            j for j in cs.judgments
-            if j.failure_mode != "NO_FUZZY_MATCHING" and j.failure_mode != "ZERO_RESULTS_OR_GARBAGE"
-        ]
-        if retrieval_ok and len(retrieval_ok) == len(cs.judgments):
-            bullets.append(
-                "<strong>Your search correctly interprets typos and spelling variations</strong> — "
-                "when we searched with misspellings, it recognized what customers meant. "
-                "The issue is ranking the corrected results, not recognising the typo."
-            )
-            break
-
     if not bullets:
         bullets.append(
-            "No capabilities passed all tests. However, the search engine does retrieve relevant "
+            "No category passed every test cleanly. However, the search engine does retrieve relevant "
             "results for most queries — the primary issue is ranking, not retrieval."
         )
-
     return bullets
 
 
@@ -870,28 +960,39 @@ def _parse_roadmap(roadmap_markdown: str) -> list[dict]:
 
 
 def _build_benchmarks(stats: dict) -> list[dict]:
-    pct_top3_relevant = 100 - float(stats["pct_top3_irrelevant"])
+    # Lead with the dead-end rate (the metric with a directly comparable published number),
+    # and use the ALL-search top-3 figure (zero-result queries count against it) \u2014 not the
+    # with-results-only number that inflates it. Last two rows are scoped to returned results.
+    pct_dead_end = float(stats["pct_no_relevant_first"])
+    pct_top3_relevant_all = float(stats["pct_top3_relevant_all"])
     return [
         {
-            "metric": "Relevant result in top 3",
-            "your_score": f"{pct_top3_relevant:.0f}%",
+            "metric": "Searches ending in a dead end (nothing usable / irrelevant first result)",
+            "your_score": f"{pct_dead_end:.0f}%",
+            "target": "<10% (avg ~31%)",
+            "source": "Baymard Institute",
+            "score_class": "below" if pct_dead_end > 10 else "meets",
+        },
+        {
+            "metric": "Relevant result in top 3 (all searches)",
+            "your_score": f"{pct_top3_relevant_all:.0f}%",
             "target": "80%+",
             "source": "Baymard Institute",
-            "score_class": "below" if pct_top3_relevant < 80 else "meets",
+            "score_class": "below" if pct_top3_relevant_all < 80 else "meets",
         },
         {
-            "metric": "Average best result position",
-            "your_score": f"#{stats['avg_best_position']}",
+            "metric": "Average best result position (when results returned)",
+            "your_score": f"#{float(stats['avg_best_position_num']):.1f}",
             "target": "#1\u20132",
             "source": "Industry best practice",
-            "score_class": "below" if float(stats["avg_best_position"]) > 2 else "meets",
+            "score_class": "below" if float(stats["avg_best_position_num"]) > 2 else "meets",
         },
         {
-            "metric": "Irrelevant #1 result",
-            "your_score": f"{stats['pct_top1_irrelevant']}%",
+            "metric": "Irrelevant #1 result (when results returned)",
+            "your_score": f"{float(stats['pct_top1_irrelevant_num']):.0f}%",
             "target": "<10%",
             "source": "Industry best practice",
-            "score_class": "below" if float(stats["pct_top1_irrelevant"]) > 10 else "meets",
+            "score_class": "below" if float(stats["pct_top1_irrelevant_num"]) > 10 else "meets",
         },
     ]
 
@@ -910,6 +1011,9 @@ def _build_appendix(judgments: list[QueryJudgment]) -> list[dict]:
         if j.severity == Severity.PASS.value:
             fm = "\u2014"
             best_pos = 1
+        elif not j.results:
+            # Zero-result query: no position exists; rendered as an em dash.
+            best_pos = None
         else:
             best_pos = j.displacement + 1
 
@@ -1048,9 +1152,44 @@ def render_html_report(report: AuditReport, screenshot_path: str | Path | None =
     return template.render(**context)
 
 
+# Filename patterns a cover screenshot is conventionally saved under, in priority order
+# (see REPORT_PLAYBOOK Phase 7: `reports/{slug}/{slug}_cover.png`).
+_COVER_PATTERNS = (
+    "*_cover.png", "*_cover.jpg", "*_cover.jpeg",
+    "*cover*.png", "*cover*.jpg", "*cover*.jpeg",
+    "*screenshot*.png", "*screenshot*.jpg", "*screenshot*.jpeg",
+)
+
+
+def find_cover_screenshot(directory: str | Path) -> Path | None:
+    """Locate an existing cover screenshot in a report directory. Lets a rerender pick the
+    cover back up automatically instead of silently dropping it when the caller forgets to
+    pass screenshot_path."""
+    d = Path(directory)
+    if not d.is_dir():
+        return None
+    for pattern in _COVER_PATTERNS:
+        hits = sorted(d.glob(pattern))
+        if hits:
+            return hits[0]
+    return None
+
+
 def save_html_report(report: AuditReport, output_path: str | Path, screenshot_path: str | Path | None = None) -> Path:
-    """Render and save the HTML report to a file. Returns the output path."""
-    html = render_html_report(report, screenshot_path=screenshot_path)
+    """Render and save the HTML report to a file. Returns the output path.
+
+    If no screenshot_path is given, auto-discovers a cover screenshot already sitting in the
+    output directory so rerenders never silently lose the cover (REPORT_PLAYBOOK Phase 7)."""
     path = Path(output_path)
+    if screenshot_path is None:
+        screenshot_path = find_cover_screenshot(path.parent)
+    html = render_html_report(report, screenshot_path=screenshot_path)
+    if "cover-screenshot" not in html:
+        print(
+            f"[html_renderer] WARNING: '{path.name}' was saved WITHOUT a cover screenshot. "
+            f"Capture the live search page into '{path.parent}/{path.stem.replace('_report', '')}_cover.png' "
+            "and re-save (see REPORT_PLAYBOOK Phase 7).",
+            file=sys.stderr,
+        )
     path.write_text(html, encoding="utf-8")
     return path

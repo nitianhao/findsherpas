@@ -14,7 +14,7 @@ load_dotenv(override=True)
 
 logger = logging.getLogger(__name__)
 
-_MODEL = "claude-sonnet-4-20250514"
+_MODEL = "claude-sonnet-4-6"
 MIN_QUERY_COUNT = 60
 MAX_QUERY_GENERATION_ATTEMPTS = 3
 
@@ -31,7 +31,7 @@ QUERY_COUNTS: dict[QueryCategory, int] = {
     QueryCategory.TYPO: _HIGH,
     QueryCategory.SYNONYM: _HIGH,
     QueryCategory.NATURAL_LANGUAGE: _HIGH,
-    QueryCategory.USE_CASE: _HIGH,
+    QueryCategory.OCCASION: _HIGH,
     QueryCategory.SEMANTIC_MEANING: _HIGH,
     # MEDIUM — still important, moderate coverage
     QueryCategory.MERGED_WORDS: _MEDIUM,
@@ -166,22 +166,21 @@ You MUST ground every query in the REAL site data above. Follow these rules stri
    - MERGED_WORDS: Take two real words from the context and merge them. Example: "runningshoes" from "Running" + "Shoes".
    - SPLIT_WORD: Take a real compound term and split it. Example: "ultra boost" for "Ultraboost".
    - SYNONYM: Take a real category/product term and use a natural alternative that a customer might type. Example: "sneakers" instead of "Running Shoes".
-   - BRAND_SEARCH: Use actual brand names from the brands list, alone or with a product type.
+   - BRAND_SEARCH: Use ONLY actual brand names from the brands list — never invent a brand the site doesn't carry. Alone or with a real product type.
    - SKU_MODEL_NUMBER: Use realistic model identifiers based on real product names in the context (e.g., "AM90" from "Air Max 90").
-   - DIRECT_MATCH: Use a FULL, specific product name from the featured items list (typically multi-word — e.g. a brand plus a product line or model). This tests whether a shopper who ALREADY KNOWS the exact product can find it. NEVER use a bare navigation category, a single generic noun, or a product *type* here — a category or type term (e.g. "perfume", "shoes") belongs in BROAD_CATEGORY / CATEGORY_MAPPING, not DIRECT_MATCH. If no specific product name is available in the context, use a real brand + product descriptor rather than a category label.
-   - USE_CASE / SEMANTIC_MEANING / NATURAL_LANGUAGE: Ground scenarios in what this site actually sells. Reference real categories and product types.
-   - MULTI_ATTRIBUTE: Combine real attributes visible in the context (category + brand, category + descriptor).
+   - DIRECT_MATCH: Use ONLY the EXACT product titles from the featured items list, verbatim — one query per featured item, copied character-for-character. These are real catalogue product names. Generate at most as many DIRECT_MATCH queries as there are featured items; if fewer featured items than requested, generate FEWER — do NOT pad with a brand+category phrase (e.g. "Jellycat soft toy"), a product type, a single noun, or any invented product. A brand+category phrase belongs in BRAND_SEARCH/CATEGORY_MAPPING, never DIRECT_MATCH. (The judge treats DIRECT_MATCH as an exact lookup and auto-fails if the #1 result title doesn't contain the exact query.)
+   - OCCASION / SEMANTIC_MEANING / NATURAL_LANGUAGE: Ground scenarios in what this site actually sells. Reference real categories and product types.
+   - MULTI_ATTRIBUTE: A real base product/category term plus EXACTLY ONE constraint attribute (one colour, OR one material, OR one size — not several). Single-constraint only. Prefer an attribute that would plausibly appear in a product title (colour, material) so the result is verifiable.
    - SUBJECTIVE_ATTRIBUTE: Apply subjective qualifiers to real product categories from the context.
    - PARTIAL_QUERY: Truncate a real product/brand name from the context.
-   - SPECIAL_CHARACTER: Use real terms that naturally contain special characters, or add common ones.
-   - BROAD_CATEGORY: Use real navigation category labels from the site.
-   - PLURAL_SINGULAR: Alternate singular/plural of real category terms.
+   - SPECIAL_CHARACTER: Take a real term and INSERT a special character somewhere inside it to test normalization (e.g. "Cr&aie Studio", "h*ats", "scar-ves"). The goal is a term the engine should still resolve once it strips the character.
+   - PLURAL_SINGULAR: Use the HARDER direction — give the PLURAL form, especially terms whose plural differs non-trivially from the singular (not a bare "+s"). Prefer "scarves" over "scarf", "knives" over "knife". Singular is usually the engine's default, so testing the dissimilar plural is the real test.
    - ABBREVIATION: Use common abbreviations of real terms on the site.
    - LOCALE_VARIATION: Use regional spelling variants of real terms.
-   - CATEGORY_MAPPING: Use colloquial terms that map to the site's real category labels.
-   - FACET_EXTRACTION: Embed real filter values (from categories, attributes) into a natural query.
-   - PRICE_ANCHORED: Reference real product types with a price constraint.
-   - NEGATIVE_INTENT: Reference real product types with an exclusion.
+   - CATEGORY_MAPPING: Use colloquial terms that map to the site's REAL category labels (the target category must actually exist on the site — never map to a category the site doesn't have).
+   - FACET_EXTRACTION: A real base product term plus EXACTLY ONE filter value (one colour, location, material, etc.). Single-constraint only.
+   - PRICE_ANCHORED: A real product type plus exactly one price constraint (e.g. "under €50"). Single-constraint only.
+   - NEGATIVE_INTENT: A real product type plus EXACTLY ONE exclusion after "not"/"without" (e.g. "knitwear not wool"). Single exclusion only.
    - UNIT_VARIATION: Reference real products with measurement variations.
    - SEASONAL_OCCASION: Reference real product types with a seasonal context.
    - STOP_WORD_HEAVY: Pad real product/category terms with natural stop words.

@@ -31,10 +31,6 @@ CATEGORY_DESCRIPTIONS: dict[QueryCategory, str] = {
         "Exact product or service name lookup — tests whether the engine returns "
         "the correct item when the user knows precisely what they want"
     ),
-    QueryCategory.BROAD_CATEGORY: (
-        "Generic category terms like 'shoes' or 'massages' — tests whether the "
-        "engine maps vague queries to the right department or listing group"
-    ),
     QueryCategory.SYNONYM: (
         "Alternative words for the same thing (e.g. 'sofa' vs 'couch') — tests "
         "whether the engine understands synonyms and returns equivalent results"
@@ -95,9 +91,9 @@ CATEGORY_DESCRIPTIONS: dict[QueryCategory, str] = {
         "Subjective qualifiers like 'cozy', 'luxury', or 'budget-friendly' — "
         "tests whether the engine understands qualitative descriptors"
     ),
-    QueryCategory.USE_CASE: (
-        "Queries describing a use case or occasion (e.g. 'gift for dad', "
-        "'office desk setup') — tests whether the engine infers products from context"
+    QueryCategory.OCCASION: (
+        "Queries describing an occasion or purpose (e.g. 'gift for dad', "
+        "'housewarming present') — tests whether the engine infers products from context"
     ),
     QueryCategory.SEASONAL_OCCASION: (
         "Season- or event-driven queries (e.g. 'Valentine gifts', 'summer sale') "

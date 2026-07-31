@@ -1,30 +1,21 @@
 from __future__ import annotations
 
 import re
-from collections import Counter
 
-from src.models import QueryJudgment, SiteContext
+from src.models import QueryJudgment, SiteContext, Severity
 
 
-RELEVANT_THRESHOLD = 0.60
-WEAK_THRESHOLD = 0.40
+def _is_pass(j: QueryJudgment) -> bool:
+    """A query whose calibrated verdict is PASS — search handled it acceptably. These
+    diagnostics are built on the judge's verdicts/failure-modes (not raw reranker scores), so
+    a PASS is always treated as 'search got this right' and never counted as a failure."""
+    sev = j.severity.value if hasattr(j.severity, "value") else j.severity
+    return sev == Severity.PASS.value
 
-_ATTRIBUTE_CATEGORIES = {
-    "MULTI_ATTRIBUTE",
-    "PRICE_ANCHORED",
-    "NEGATIVE_INTENT",
-    "FACET_EXTRACTION",
-    "UNIT_VARIATION",
-}
 
-_SPECIFICITY_CATEGORIES = {
-    "BROAD_CATEGORY",
-    "DIRECT_MATCH",
-    "MULTI_ATTRIBUTE",
-    "USE_CASE",
-    "SYNONYM",
-    "PLURAL_SINGULAR",
-}
+def _mode(j: QueryJudgment) -> str:
+    return j.failure_mode.value if hasattr(j.failure_mode, "value") else j.failure_mode
+
 
 _STOPWORDS = {
     "and", "or", "the", "with", "for", "not", "without", "under", "over",
@@ -32,22 +23,9 @@ _STOPWORDS = {
     "in", "on", "by", "to", "of", "a", "an",
 }
 
-_VARIANT_WORDS = {
-    "exclusive", "new", "fit", "hb", "lined", "lightweight", "classic",
-}
-
-_COLOR_WORDS = {
-    "black", "white", "blue", "navy", "green", "red", "brown", "tan",
-    "khaki", "grey", "gray", "olive", "natural", "stone", "cream",
-}
-
 
 def _by_original(judgment: QueryJudgment):
     return sorted(judgment.results, key=lambda r: r.original_rank)
-
-
-def _relevant_count(results, limit: int) -> int:
-    return sum(1 for r in results[:limit] if r.relevance_score >= RELEVANT_THRESHOLD)
 
 
 def _pct(part: float, total: float) -> float:
@@ -56,10 +34,8 @@ def _pct(part: float, total: float) -> float:
 
 def _query_terms(query: str) -> list[str]:
     terms = []
-    # Unicode-aware tokenization: ``[^\W_]+`` matches letters/digits in any
-    # language (incl. å, ä, ö, é, ü …) but excludes underscore. An ASCII-only
-    # regex shreds non-English words (e.g. "kläder" -> "kl","der") so every
-    # term then fails to match product titles and shows as falsely "dropped".
+    # Unicode-aware tokenization: ``[^\W_]+`` matches letters/digits in any language
+    # (incl. å, ä, ö, é, ü …). An ASCII-only regex shreds non-English words.
     for raw in re.findall(r"[^\W_]+", query.lower()):
         token = raw.rstrip("s") if len(raw) > 4 else raw
         if token in _STOPWORDS:
@@ -70,21 +46,11 @@ def _query_terms(query: str) -> list[str]:
     return list(dict.fromkeys(terms))
 
 
-def _title_text(result) -> str:
-    return f"{result.title or ''} {result.snippet or ''}".lower()
-
-
-def _family_key(title: str) -> str:
-    key = title.lower()
-    key = re.sub(r"\b\d+(?:\.\d+)?\b", " ", key)
-    key = re.sub(r"\b\d+(?:\.\d+)?\s*(?:in|inch|\"|oz|ml|g|kg|pack)\b", " ", key)
-    key = re.sub(r"[^\w\s-]", " ", key)  # keep Unicode letters/digits (non-ASCII safe)
-    tokens = [
-        t.rstrip("s") if len(t) > 4 else t
-        for t in key.split()
-        if t not in _COLOR_WORDS and t not in _VARIANT_WORDS
-    ]
-    return re.sub(r"\s+", " ", " ".join(tokens)).strip()
+def _trim(text: str | None, limit: int = 160) -> str:
+    text = (text or "").strip().replace("\n", " ")
+    if len(text) <= limit:
+        return text
+    return text[: limit - 1].rstrip() + "…"
 
 
 def _class_for_rate(rate: float, inverse: bool = False) -> str:
@@ -96,259 +62,349 @@ def _class_for_rate(rate: float, inverse: bool = False) -> str:
     return "bad"
 
 
-def _build_result_set_purity(judgments: list[QueryJudgment]) -> dict:
+# Human labels for failure modes, used in the substitution / wrong-product table.
+_MODE_LABEL = {
+    "NO_SEMANTIC_UNDERSTANDING": "wrong product type",
+    "CATEGORY_MAPPING_FAILURE": "couldn’t map to your category",
+    "PARTIAL_KEYWORD_MATCH": "matched only part of the query",
+    "BRAND_BLEED": "wrong brand",
+    "POOR_RANKING": "right type, mis-ordered",
+    "DUPLICATE_FLOODING": "flooded with duplicates",
+    "CONSTRAINT_DROPPED": "ignored a filter",
+    "FACET_NOT_EXTRACTED": "missed a filter",
+}
+
+# Modes where the engine returned a product, but the wrong one, at the top.
+_WRONG_PRODUCT_MODES = {
+    "NO_SEMANTIC_UNDERSTANDING",
+    "CATEGORY_MAPPING_FAILURE",
+    "PARTIAL_KEYWORD_MATCH",
+    "BRAND_BLEED",
+    "POOR_RANKING",
+    "DUPLICATE_FLOODING",
+}
+_WRONG_PRODUCT_ORDER = {
+    m: i for i, m in enumerate([
+        "NO_SEMANTIC_UNDERSTANDING",
+        "CATEGORY_MAPPING_FAILURE",
+        "PARTIAL_KEYWORD_MATCH",
+        "BRAND_BLEED",
+        "DUPLICATE_FLOODING",
+        "POOR_RANKING",
+    ])
+}
+
+# Categories that carry an explicit shopper-set constraint (price/colour/material/exclusion).
+_CONSTRAINT_CATEGORIES = {
+    "PRICE_ANCHORED",
+    "NEGATIVE_INTENT",
+    "MULTI_ATTRIBUTE",
+    "FACET_EXTRACTION",
+    "UNIT_VARIATION",
+}
+_CONSTRAINT_VIOLATION_MODES = {"CONSTRAINT_DROPPED", "FACET_NOT_EXTRACTED"}
+
+ORDERING_MIN_RESULTS = 2
+SPECIFICITY_MIN_PER_TIER = 3
+_TIER_ORDER = ["1 word", "2 words", "3+ words"]
+
+
+# ---------------------------------------------------------------------------
+# 1. Did the best match come first?  (ordering quality — uses judge displacement)
+# ---------------------------------------------------------------------------
+
+def _build_ordering(judgments: list[QueryJudgment]) -> dict:
     rows = []
-    totals = {3: 0, 5: 0, 10: 0}
-    denom = {3: 0, 5: 0, 10: 0}
-
-    for j in judgments:
-        results = _by_original(j)
-        if not results:
-            continue
-        row = {"query": j.test_query.query}
-        for limit in (3, 5, 10):
-            scoped = results[:limit]
-            relevant = _relevant_count(results, limit)
-            totals[limit] += relevant
-            denom[limit] += len(scoped)
-            row[f"top{limit}_relevant"] = relevant
-            row[f"top{limit}_total"] = len(scoped)
-            row[f"top{limit}_purity"] = _pct(relevant, len(scoped))
-        rows.append(row)
-
-    polluted = sorted(rows, key=lambda r: (r["top5_purity"], r["top3_purity"]))[:5]
-    return {
-        "top3": _pct(totals[3], denom[3]),
-        "top5": _pct(totals[5], denom[5]),
-        "top10": _pct(totals[10], denom[10]),
-        "polluted_queries": polluted,
-    }
-
-
-def _build_top_result_trust(judgments: list[QueryJudgment]) -> dict:
-    rows = []
-    failed = 0
     evaluated = 0
-
+    buried = 0
     for j in judgments:
         results = _by_original(j)
-        # Zero-result queries have no #1 result to assess for trustworthiness.
-        # That is a separate dead-end failure (ZERO_RESULTS_OR_GARBAGE) captured
-        # elsewhere; including them here both inflates the failure rate and
-        # produces nonsensical "#1 was 'No results'" evidence. Exclude them from
-        # this diagnostic entirely (matching Result Set Purity).
-        if not results:
-            continue
-
+        if len(results) < ORDERING_MIN_RESULTS:
+            continue  # ordering is only meaningful with ≥2 results
         evaluated += 1
-        top = results[0]
-        best_score = max(r.relevance_score for r in results)
-        reason = ""
-        if top.relevance_score < WEAK_THRESHOLD:
-            reason = "The first result is weakly related to the query."
-        elif top.relevance_score < RELEVANT_THRESHOLD:
-            reason = "The first result is only a partial answer."
-        elif best_score - top.relevance_score >= 0.20 and j.displacement > 2:
-            reason = "A much stronger result appears lower in the list."
-
-        if reason:
-            failed += 1
+        if _is_pass(j):
+            continue  # search led with an acceptable result
+        if j.displacement > 0:
+            buried += 1
+            first = results[0]
+            # The buried better match is the highest-scored result (displacement>0 means
+            # it is not at original rank 1). Score is used only to NAME it; the existence
+            # of a stronger result is asserted by the judge's displacement field.
+            best = max(results, key=lambda r: r.relevance_score)
             rows.append({
                 "query": j.test_query.query,
-                "top_result": top.title,
-                "top_score": top.relevance_score,
-                "best_score": best_score,
-                "reason": reason,
+                "first_title": first.title,
+                "better_title": best.title,
+                "buried_by": j.displacement,
             })
-
-    rows.sort(key=lambda r: (r["top_score"], -r["best_score"]))
+    rows.sort(key=lambda r: -r["buried_by"])
     return {
-        "failure_rate": _pct(failed, evaluated),
-        "failed": failed,
-        "total": evaluated,
-        "worst": rows[:5],
+        "evaluated": evaluated,
+        "buried": buried,
+        "rate": _pct(buried, evaluated),
+        "examples": rows[:4],
     }
 
 
-def _build_attribute_drift(judgments: list[QueryJudgment]) -> dict:
-    """Detect attribute drift using only *title-observable* terms.
+# ---------------------------------------------------------------------------
+# 2. The specificity cliff  (pass rate by query word count — uses judge verdicts)
+# ---------------------------------------------------------------------------
 
-    Title-substring matching cannot see attributes that live in facet metadata
-    (colour, size, gender, generic category words) — those never appear in
-    product titles, so naively treating them as "dropped" produces a false
-    failure for almost every multi-attribute query. We therefore classify each
-    query term by what the result set actually shows:
-
-      * observable in the TOP results          -> preserved
-      * observable elsewhere in the result set
-        but absent from the top                 -> dropped (genuine ranking drift)
-      * not present in ANY returned title       -> unverifiable (facet/metadata,
-                                                    or the engine returned no
-                                                    matching product — can't tell
-                                                    from titles, so we don't guess)
-
-    A query is reported as genuine drift only when it has BOTH a preserved
-    (title-observable) anchor and a dropped title-observable attribute: the
-    right product type is surfaced, but matching products for another attribute
-    are buried. Total misses (no preserved anchor) and zero-result queries are
-    handled by the failure-mode analysis, not here.
-    """
-    candidates = [
-        j for j in judgments
-        if j.test_query.category in _ATTRIBUTE_CATEGORIES
-        and len(_query_terms(j.test_query.query)) >= 2
-        and _by_original(j)
-    ]
-    rows = []
-    dropped_counter: Counter[str] = Counter()
-    unverifiable_queries = 0
-
-    for j in candidates:
-        terms = _query_terms(j.test_query.query)
-        results = _by_original(j)
-        top = results[:5]
-
-        preserved, dropped, unverifiable = [], [], []
-        for term in terms:
-            all_hits = sum(1 for r in results if term in _title_text(r))
-            top_hits = sum(1 for r in top if term in _title_text(r))
-            if all_hits == 0:
-                unverifiable.append(term)
-            elif top_hits == 0:
-                dropped.append(term)
-            else:
-                preserved.append(term)
-
-        if preserved and dropped:
-            dropped_counter.update(dropped)
-            rows.append({
-                "query": j.test_query.query,
-                "preserved": preserved,
-                "dropped": dropped,
-                "unverifiable": unverifiable,
-                # coverage over the title-observable terms only
-                "coverage": _pct(len(preserved), len(preserved) + len(dropped)),
-            })
-        elif unverifiable and not dropped:
-            # Attributes existed but none were title-observable, so drift could
-            # not be assessed from result text. Count it for honest reporting.
-            unverifiable_queries += 1
-
-    rows.sort(key=lambda r: (r["coverage"], -len(r["dropped"])))
-    return {
-        "queries": rows,
-        "worst": rows[:5],
-        "common_dropped": dropped_counter.most_common(8),
-        "unverifiable_queries": unverifiable_queries,
-        "candidate_count": len(candidates),
-    }
+def _specificity_tier(query: str) -> str:
+    n = len(_query_terms(query))
+    if n <= 1:
+        return "1 word"
+    if n == 2:
+        return "2 words"
+    return "3+ words"
 
 
-def _build_diversity(site_context: SiteContext, judgments: list[QueryJudgment]) -> dict:
-    applicable = site_context.site_type != "SERVICES_EXPERIENCES" and len(site_context.brands) > 1
-    if not applicable:
-        return {
-            "applicable": False,
-            "reason": "Skipped because this diagnostic is mainly useful for multi-brand or broad-catalog ecommerce.",
-            "queries": [],
-            "worst": [],
-        }
+def _build_specificity_cliff(judgments: list[QueryJudgment]) -> dict:
+    buckets = {t: {"total": 0, "passed": 0} for t in _TIER_ORDER}
+    for j in judgments:
+        tier = _specificity_tier(j.test_query.query)
+        buckets[tier]["total"] += 1
+        if _is_pass(j):
+            buckets[tier]["passed"] += 1
 
-    candidates = [
-        j for j in judgments
-        if j.test_query.category in {"BROAD_CATEGORY", "SYNONYM", "USE_CASE", "PLURAL_SINGULAR"}
-    ]
-    rows = []
-    for j in candidates:
-        results = _by_original(j)[:10]
-        if len(results) < 5:
+    tiers = []
+    for t in _TIER_ORDER:
+        b = buckets[t]
+        if b["total"] == 0:
             continue
-        keys = [_family_key(r.title) for r in results if _family_key(r.title)]
-        unique_count = len(set(keys))
-        duplicate_count = max(0, len(keys) - unique_count)
-        diversity_rate = _pct(unique_count, len(keys))
-        rows.append({
-            "query": j.test_query.query,
-            "unique_families": unique_count,
-            "result_count": len(keys),
-            "duplicate_count": duplicate_count,
-            "diversity_rate": diversity_rate,
+        tiers.append({
+            "tier": t,
+            "total": b["total"],
+            "passed": b["passed"],
+            "pass_rate": _pct(b["passed"], b["total"]),
         })
 
-    rows.sort(key=lambda r: (r["diversity_rate"], -r["duplicate_count"]))
+    # Only meaningful when at least two tiers each carry enough queries to compare.
+    populated = [t for t in tiers if t["total"] >= SPECIFICITY_MIN_PER_TIER]
+    applicable = len(populated) >= 2
+    broad = populated[0]["pass_rate"] if populated else 0.0
+    specific = populated[-1]["pass_rate"] if populated else 0.0
     return {
-        "applicable": True,
-        "queries": rows,
-        "worst": rows[:5],
+        "applicable": applicable,
+        "tiers": tiers,
+        "broad_rate": broad,
+        "specific_rate": specific,
+        "drop": broad - specific,
     }
 
 
-def _build_specificity_scaling(judgments: list[QueryJudgment]) -> dict:
-    candidates = [
-        j for j in judgments
-        if j.test_query.category in _SPECIFICITY_CATEGORIES
-    ]
-    sets = [(j, set(_query_terms(j.test_query.query))) for j in candidates]
-    ladders = []
+# ---------------------------------------------------------------------------
+# 3. When it misses, what shows up instead?  (wrong-product table — titles + mode)
+# ---------------------------------------------------------------------------
 
-    for base, base_terms in sets:
-        if not base_terms:
+def _build_substitutions(judgments: list[QueryJudgment]) -> dict:
+    rows = []
+    for j in judgments:
+        results = _by_original(j)
+        if not results:
+            continue  # zero-result dead ends are reported in the retrieval/exec sections
+        if _is_pass(j):
             continue
-        chain = [(base, base_terms)]
-        current_terms = base_terms
-        for other, other_terms in sorted(sets, key=lambda item: len(item[1])):
-            if other is base or len(other_terms) <= len(current_terms):
-                continue
-            if current_terms < other_terms:
-                chain.append((other, other_terms))
-                current_terms = other_terms
-        if len(chain) >= 3:
-            signature = tuple(j.test_query.query for j, _terms in chain)
-            if signature not in [tuple(item["queries"]) for item in ladders]:
-                scores = []
-                for j, _terms in chain:
-                    top = _by_original(j)[:3]
-                    top3_avg = sum(r.relevance_score for r in top) / len(top) if top else 0.0
-                    scores.append(top3_avg)
-                drop_index = None
-                for idx in range(1, len(scores)):
-                    if scores[idx] + 0.15 < scores[idx - 1]:
-                        drop_index = idx
-                        break
-                ladders.append({
-                    "queries": list(signature),
-                    "top3_scores": scores,
-                    "break_query": signature[drop_index] if drop_index is not None else "",
-                })
+        mode = _mode(j)
+        if mode not in _WRONG_PRODUCT_MODES:
+            continue
+        rows.append({
+            "query": j.test_query.query,
+            "got": results[0].title,
+            "why": _MODE_LABEL.get(mode, "wrong result"),
+            "mode": mode,
+        })
+    rows.sort(key=lambda r: _WRONG_PRODUCT_ORDER.get(r["mode"], 9))
+    return {"examples": rows[:6], "count": len(rows)}
 
+
+# ---------------------------------------------------------------------------
+# 4. Did it respect the filters?  (constraint obedience — category + judge mode)
+# ---------------------------------------------------------------------------
+
+def _build_constraint_obedience(judgments: list[QueryJudgment]) -> dict:
+    candidates = [j for j in judgments if j.test_query.category in _CONSTRAINT_CATEGORIES]
+    total = len(candidates)
+    honored = 0
+    violations = []
+    empty = 0
+    for j in candidates:
+        if _is_pass(j):
+            honored += 1
+            continue
+        mode = _mode(j)
+        if not _by_original(j):
+            empty += 1
+            continue
+        if mode in _CONSTRAINT_VIOLATION_MODES:
+            violations.append({
+                "query": j.test_query.query,
+                "detail": _trim(j.evidence),
+            })
     return {
-        "ladders": ladders[:3],
-        "detected": bool(ladders),
+        "applicable": total > 0,
+        "total": total,
+        "honored": honored,
+        "violated": len(violations),
+        "empty": empty,
+        "examples": violations[:4],
     }
 
+
+# ---------------------------------------------------------------------------
+# Result text
+# ---------------------------------------------------------------------------
+
+_STATUS_LABEL = {"good": "Healthy", "warn": "Worth a look", "bad": "Needs attention"}
+
+
+def _short(text: str, limit: int = 40) -> str:
+    text = (text or "").strip()
+    return text if len(text) <= limit else text[: limit - 1].rstrip() + "…"
+
+
+def _ordering_text(o: dict) -> str:
+    if o["buried"] == 0:
+        return "Every search that returned results led with its strongest match."
+    return (
+        f"A stronger product sat below the first result on {o['buried']} of "
+        f"{o['evaluated']} searches."
+    )
+
+
+def _specificity_text(s: dict) -> str:
+    return (
+        f"Pass rate slides from {s['broad_rate']:.0f}% on broad searches to "
+        f"{s['specific_rate']:.0f}% on the most specific — the shoppers closest to buying."
+    )
+
+
+def _substitutions_text(sub: dict) -> str:
+    return f"{sub['count']} searches led with the wrong type of product. What shoppers saw instead:"
+
+
+def _constraint_text(c: dict) -> str:
+    base = f"{c['honored']} of {c['total']} filtered searches kept the shopper's limit."
+    if c["violated"]:
+        base += f" {c['violated']} returned items that broke it."
+    return base
+
+
+# ---------------------------------------------------------------------------
+# Section assembly (shared by HTML + markdown renderers)
+# ---------------------------------------------------------------------------
 
 def build_advanced_diagnostics(site_context: SiteContext, judgments: list[QueryJudgment]) -> dict:
-    purity = _build_result_set_purity(judgments)
-    trust = _build_top_result_trust(judgments)
-    drift = _build_attribute_drift(judgments)
-    diversity = _build_diversity(site_context, judgments)
-    specificity = _build_specificity_scaling(judgments)
-
     return {
-        "purity": {
-            **purity,
-            "top3_class": _class_for_rate(purity["top3"]),
-            "top5_class": _class_for_rate(purity["top5"]),
-            "top10_class": _class_for_rate(purity["top10"]),
-        },
-        "top_result_trust": {
-            **trust,
-            "failure_class": _class_for_rate(trust["failure_rate"], inverse=True),
-        },
-        "attribute_drift": drift,
-        "diversity": diversity,
-        "specificity": specificity,
+        "ordering": _build_ordering(judgments),
+        "specificity": _build_specificity_cliff(judgments),
+        "substitutions": _build_substitutions(judgments),
+        "constraints": _build_constraint_obedience(judgments),
     }
+
+
+def build_advanced_diagnostics_sections(
+    site_context: SiteContext,
+    judgments: list[QueryJudgment],
+) -> list[dict]:
+    d = build_advanced_diagnostics(site_context, judgments)
+    ordering = d["ordering"]
+    spec = d["specificity"]
+    sub = d["substitutions"]
+    con = d["constraints"]
+
+    sections: list[dict] = []
+
+    # 1. Ordering — render whenever any search returned results.
+    if ordering["evaluated"]:
+        cls = _class_for_rate(ordering["rate"], inverse=True)
+        sections.append({
+            "key": "ordering",
+            "type": "rate_list",
+            "title": "Did the best match come first?",
+            "question": "Whether a stronger product was buried below the first result.",
+            "headline": f"{ordering['rate']:.0f}%",
+            "headline_label": "led with a weaker result",
+            "headline_class": cls,
+            "status_label": _STATUS_LABEL[cls],
+            "narrative": _ordering_text(ordering),
+            "examples": [
+                {
+                    "code": row["query"],
+                    "detail": (
+                        f"“{_short(row['first_title'])}” ranked first — the better "
+                        f"“{_short(row['better_title'])}” was {row['buried_by']} "
+                        f"spot{'s' if row['buried_by'] != 1 else ''} lower."
+                    ),
+                }
+                for row in ordering["examples"][:3]
+            ],
+        })
+
+    # 2. Specificity cliff — only when tiers are comparable.
+    if spec["applicable"]:
+        cls = _class_for_rate(spec["specific_rate"])
+        sections.append({
+            "key": "specificity",
+            "type": "bars",
+            "title": "The specificity cliff",
+            "question": "How search holds up as shoppers describe what they want more precisely.",
+            "headline": f"{spec['broad_rate']:.0f}% → {spec['specific_rate']:.0f}%",
+            "headline_label": "broad → most specific",
+            "headline_class": cls,
+            "status_label": _STATUS_LABEL[cls],
+            "narrative": _specificity_text(spec),
+            "bars": [
+                {
+                    "label": t["tier"],
+                    "pct": round(t["pass_rate"]),
+                    "pct_label": f"{t['pass_rate']:.0f}%",
+                    "detail": f"{t['passed']}/{t['total']}",
+                    "cls": _class_for_rate(t["pass_rate"]),
+                }
+                for t in spec["tiers"]
+            ],
+        })
+
+    # 3. Wrong-product substitutions — only when there are wrong-#1 results.
+    if sub["examples"]:
+        cls = "bad" if sub["count"] >= 5 else "warn"
+        sections.append({
+            "key": "substitutions",
+            "type": "table",
+            "title": "When it misses, what shows up instead",
+            "question": "The wrong-product pattern behind the failures.",
+            "headline": str(sub["count"]),
+            "headline_label": "wrong-product results",
+            "headline_class": cls,
+            "status_label": _STATUS_LABEL[cls],
+            "narrative": _substitutions_text(sub),
+            "rows": [
+                {"searched": r["query"], "got": _short(r["got"], 46), "why": r["why"]}
+                for r in sub["examples"][:5]
+            ],
+        })
+
+    # 4. Constraint obedience — only when constraint queries exist.
+    if con["applicable"]:
+        cls = _class_for_rate(_pct(con["honored"], con["total"]))
+        sections.append({
+            "key": "constraints",
+            "type": "rate_list",
+            "title": "Did it respect the filters?",
+            "question": "Whether hard limits (price, colour, material, “not X”) were honoured.",
+            "headline": f"{con['honored']}/{con['total']}",
+            "headline_label": "filters honoured",
+            "headline_class": cls,
+            "status_label": _STATUS_LABEL[cls],
+            "narrative": _constraint_text(con),
+            "examples": [
+                {"code": ex["query"], "detail": _short(ex["detail"], 96)}
+                for ex in con["examples"][:3]
+            ],
+        })
+
+    return sections
 
 
 def build_advanced_diagnostics_markdown(
@@ -357,199 +413,35 @@ def build_advanced_diagnostics_markdown(
 ) -> str:
     lines = [
         "## Advanced Query Diagnostics\n",
-        "These diagnostics look beyond the single best result and evaluate the quality of the visible result set.",
+        "Beyond pass/fail, these checks read the whole result page the way a shopper does — "
+        "and are built on the audited verdicts, not internal relevance scores.",
     ]
 
     for section in build_advanced_diagnostics_sections(site_context, judgments):
         lines.extend([
             "",
             f"### {section['title']}\n",
-            f"**What it means:** {section['meaning']}",
+            f"_{section['question']}_",
             "",
-            f"**Result:** {section['result']}",
+            f"**{section['headline']}** — {section['headline_label']}",
+            "",
+            section["narrative"],
         ])
-        if section["evidence"]:
+
+        if section["type"] == "bars":
             lines.append("")
-            lines.append("Evidence:")
-            for item in section["evidence"]:
-                lines.append(f"- {item}")
-        lines.extend([
-            "",
-            f"**How to remedy it:** {section['remedy']}",
-        ])
+            for bar in section["bars"]:
+                lines.append(f"- **{bar['label']}** — {bar['pct_label']} ({bar['detail']})")
+        elif section["type"] == "table":
+            lines.append("")
+            lines.append("| Shopper searched | Top result was | Why |")
+            lines.append("| --- | --- | --- |")
+            for row in section["rows"]:
+                lines.append(f"| `{row['searched']}` | {row['got']} | {row['why']} |")
+        else:  # rate_list
+            if section["examples"]:
+                lines.append("")
+                for ex in section["examples"]:
+                    lines.append(f"- `{ex['code']}` — {ex['detail']}")
 
     return "\n".join(lines)
-
-
-def _purity_result_text(purity: dict) -> str:
-    if purity["top5"] >= 70:
-        return (
-            f"The visible result set is fairly clean: {purity['top5']:.0f}% of top 5 "
-            "results were relevant on average."
-        )
-    return (
-        f"The visible result set is noisy: only {purity['top5']:.0f}% of top 5 "
-        f"results were relevant on average, and top 10 purity was {purity['top10']:.0f}%."
-    )
-
-
-def _trust_result_text(trust: dict) -> str:
-    if trust["failure_rate"] <= 20:
-        return (
-            f"The first result is generally defensible: {trust['failed']} of "
-            f"{trust['total']} queries had a weak or questionable #1 result."
-        )
-    return (
-        f"The first result is not reliable enough: {trust['failed']} of "
-        f"{trust['total']} queries ({trust['failure_rate']:.0f}%) had a weak, partial, "
-        "or clearly beaten #1 result."
-    )
-
-
-def _drift_result_text(drift: dict) -> str:
-    if not drift["queries"]:
-        unverifiable = drift.get("unverifiable_queries", 0)
-        if unverifiable:
-            return (
-                f"No title-observable attribute drift detected. In this catalog the constraint "
-                f"attributes (colour, size, gender, category) for {unverifiable} multi-attribute "
-                "quer" + ("y" if unverifiable == 1 else "ies") + " appear only in facet metadata, "
-                "not in product titles, so drift cannot be confirmed from result text — attribute "
-                "handling for these is assessed in the failure-mode analysis (e.g. FACET_NOT_EXTRACTED, "
-                "CONSTRAINT_DROPPED)."
-            )
-        return "No multi-attribute constraint queries were available for this diagnostic."
-    affected = len(drift["queries"])
-    return (
-        f"{affected} multi-attribute quer" + ("y" if affected == 1 else "ies") + " showed genuine "
-        "attribute drift: the product type was surfaced in the top results, but matching products "
-        "for another title-observable attribute were ranked below it. Only attributes that actually "
-        "appear in product titles are assessed; facet-only attributes are not guessed at."
-    )
-
-
-def _diversity_result_text(diversity: dict) -> str:
-    if not diversity["applicable"]:
-        return diversity["reason"]
-    if not diversity["worst"]:
-        return "No broad or exploratory result sets had enough results for this diagnostic."
-    worst = diversity["worst"][0]
-    return (
-        f"The most redundant broad result set was \"{worst['query']}\": "
-        f"{worst['unique_families']} unique product families across {worst['result_count']} top results."
-    )
-
-
-def _specificity_result_text(specificity: dict) -> str:
-    if not specificity["detected"]:
-        return (
-            "No three-step specificity ladder was detected in this query set. This diagnostic activates when generated queries include broad -> specific query chains."
-        )
-    broken = [ladder for ladder in specificity["ladders"] if ladder["break_query"]]
-    if broken:
-        return f"Specificity break points were detected, starting with \"{broken[0]['break_query']}\"."
-    return "Specificity ladders were detected, with no clear relevance drop across the tested chain."
-
-
-def build_advanced_diagnostics_sections(
-    site_context: SiteContext,
-    judgments: list[QueryJudgment],
-) -> list[dict]:
-    diagnostics = build_advanced_diagnostics(site_context, judgments)
-    purity = diagnostics["purity"]
-    trust = diagnostics["top_result_trust"]
-    drift = diagnostics["attribute_drift"]
-    diversity = diagnostics["diversity"]
-
-    sections = [
-        {
-            "key": "purity",
-            "title": "Result Set Purity",
-            "metric": f"{purity['top5']:.0f}%",
-            "metric_label": "top 5 relevant",
-            "metric_class": purity["top5_class"],
-            "meaning": (
-                "This checks how much of the visible result set is actually relevant, not just whether one good result exists somewhere. "
-                "A noisy top 5 means customers must visually filter around weak results even when search technically found a match."
-            ),
-            "result": _purity_result_text(purity),
-            "evidence": [
-                f"\"{row['query']}\": {row['top5_relevant']}/{row['top5_total']} relevant in top 5"
-                for row in purity["polluted_queries"][:4]
-            ],
-            "remedy": (
-                "Tune ranking to demote low-relevance partial matches once a strong intent match exists. Add a top-N quality guardrail: "
-                "for each important query class, require a minimum share of relevant results in the top 5, not only a good best-result position."
-            ),
-        },
-        {
-            "key": "top_result_trust",
-            "title": "Top Result Trust",
-            "metric": f"{trust['failure_rate']:.0f}%",
-            "metric_label": "questionable #1 results",
-            "metric_class": trust["failure_class"],
-            "meaning": (
-                "This asks whether the first result is defensible as the best thing to show a customer. "
-                "A bad #1 is the clearest search failure because it shapes the shopper's first impression."
-            ),
-            "result": _trust_result_text(trust),
-            "evidence": [
-                f"\"{row['query']}\": #1 was \"{row['top_result']}\" (score {row['top_score']:.2f}). {row['reason']}"
-                for row in trust["worst"][:4]
-            ],
-            "remedy": (
-                "Add a stricter first-result threshold for high-intent queries. If the top result is weak and a stronger result exists lower, "
-                "boost the stronger exact/category/brand match or suppress the weak partial match from rank #1."
-            ),
-        },
-        {
-            "key": "attribute_drift",
-            "title": "Attribute Drift",
-            "metric": str(len(drift["queries"])),
-            "metric_label": "queries with attribute drift",
-            "metric_class": "warn" if drift["queries"] else "good",
-            "meaning": (
-                "This decomposes multi-attribute queries to see which terms survive into the top results. "
-                "It distinguishes right-category-but-wrong-attribute failures from total search failures. "
-                "Only attributes that appear in product titles can be checked here; attributes carried in facet "
-                "metadata (colour, size, gender) are assessed in the failure-mode analysis instead."
-            ),
-            "result": _drift_result_text(drift),
-            "evidence": [
-                f"\"{row['query']}\": kept {', '.join(row['preserved'])}; "
-                f"buried below the top results: {', '.join(row['dropped'])}"
-                + (f"; not verifiable from titles: {', '.join(row['unverifiable'])}" if row['unverifiable'] else "")
-                for row in drift["worst"][:4]
-            ],
-            "remedy": (
-                "Extract query attributes before ranking and give required attributes explicit weight. For brand, size, material, activity, and style terms, "
-                "penalize results that match the product type but omit or contradict the attribute."
-            ),
-        },
-        {
-            "key": "diversity",
-            "title": "Diversity vs Redundancy",
-            "metric": (
-                str(diversity["worst"][0]["unique_families"])
-                if diversity.get("applicable") and diversity["worst"]
-                else "N/A"
-            ),
-            "metric_label": "unique families in worst broad top 10",
-            "metric_class": "bad" if diversity.get("applicable") and diversity["worst"] and diversity["worst"][0]["unique_families"] <= 3 else "warn",
-            "meaning": (
-                "This checks whether broad or exploratory queries show useful choice, or whether the top results are flooded by repeated variants. "
-                "It is most useful for multi-brand or broad-catalog ecommerce, and less useful for true single-brand stores."
-            ),
-            "result": _diversity_result_text(diversity),
-            "evidence": [
-                f"\"{row['query']}\": {row['unique_families']} unique product families across {row['result_count']} top results"
-                for row in diversity.get("worst", [])[:4]
-            ],
-            "remedy": (
-                "Group color/size/variant duplicates under a product-family cap for broad queries. Keep exact product searches variant-rich, "
-                "but diversify broad discovery queries across families, brands, styles, and use cases."
-            ),
-        },
-    ]
-
-    return sections

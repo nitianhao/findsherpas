@@ -29,7 +29,7 @@ class QueryCategory(str, Enum):
     LOCALE_VARIATION = "LOCALE_VARIATION"
     SKU_MODEL_NUMBER = "SKU_MODEL_NUMBER"
     SUBJECTIVE_ATTRIBUTE = "SUBJECTIVE_ATTRIBUTE"
-    USE_CASE = "USE_CASE"
+    OCCASION = "OCCASION"
     SEASONAL_OCCASION = "SEASONAL_OCCASION"
     MULTI_ATTRIBUTE = "MULTI_ATTRIBUTE"
     STOP_WORD_HEAVY = "STOP_WORD_HEAVY"
@@ -64,6 +64,7 @@ class FailureMode(str, Enum):
     NO_FUZZY_MATCHING = "NO_FUZZY_MATCHING"
     NO_SEMANTIC_UNDERSTANDING = "NO_SEMANTIC_UNDERSTANDING"
     POOR_RANKING = "POOR_RANKING"
+    DUPLICATE_FLOODING = "DUPLICATE_FLOODING"
     ZERO_RESULTS_OR_GARBAGE = "ZERO_RESULTS_OR_GARBAGE"
     OTHER = "OTHER"
 
@@ -96,7 +97,6 @@ CAPABILITY_CATEGORY_MAP: dict[CapabilityGroup, list[QueryCategory]] = {
     ],
     CapabilityGroup.PRODUCT_DISCOVERY: [
         QueryCategory.DIRECT_MATCH,
-        QueryCategory.BROAD_CATEGORY,
         QueryCategory.CATEGORY_MAPPING,
     ],
     CapabilityGroup.BRAND_MODEL_SEARCH: [
@@ -112,7 +112,7 @@ CAPABILITY_CATEGORY_MAP: dict[CapabilityGroup, list[QueryCategory]] = {
         QueryCategory.UNIT_VARIATION,
     ],
     CapabilityGroup.SHOPPING_CONTEXT: [
-        QueryCategory.USE_CASE,
+        QueryCategory.OCCASION,
         QueryCategory.SUBJECTIVE_ATTRIBUTE,
         QueryCategory.SEASONAL_OCCASION,
         QueryCategory.LOCALE_VARIATION,
@@ -140,9 +140,8 @@ SITE_TYPE_DEFAULTS: dict[SiteType, list[QueryCategory]] = {
         QueryCategory.PARTIAL_QUERY,
     ],
     SiteType.SERVICES_EXPERIENCES: [
-        QueryCategory.BROAD_CATEGORY,
         QueryCategory.NATURAL_LANGUAGE,
-        QueryCategory.USE_CASE,
+        QueryCategory.OCCASION,
         QueryCategory.SUBJECTIVE_ATTRIBUTE,
         QueryCategory.SEASONAL_OCCASION,
         QueryCategory.TYPO,
@@ -155,12 +154,11 @@ SITE_TYPE_DEFAULTS: dict[SiteType, list[QueryCategory]] = {
     ],
     SiteType.MARKETPLACE_MIXED: [
         QueryCategory.DIRECT_MATCH,
-        QueryCategory.BROAD_CATEGORY,
         QueryCategory.TYPO,
         QueryCategory.SYNONYM,
         QueryCategory.BRAND_SEARCH,
         QueryCategory.NATURAL_LANGUAGE,
-        QueryCategory.USE_CASE,
+        QueryCategory.OCCASION,
         QueryCategory.CATEGORY_MAPPING,
         QueryCategory.FACET_EXTRACTION,
         QueryCategory.NEGATIVE_INTENT,
