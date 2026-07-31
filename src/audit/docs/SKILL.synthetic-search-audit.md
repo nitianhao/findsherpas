@@ -26,7 +26,7 @@ For how the code is built (models, modules, sales-materials internals, publishin
 | 5 | Score | `score_results(queries, scraped_results)` | `src.scorer` |
 | 6 | Judge | `judge_all_queries(queries, scored_results)` | `src.judge` |
 | 7 | Report | `generate_report(site_context, judgments)` | `src.report_generator` |
-| 8 | Publish | `publish_report(html_content, domain_slug)` | `src.github_publisher` |
+| 8 | Publish | `publish_report(html_content, domain_slug, data_json=..., report_md=...)` | `src.github_publisher` |
 
 ## Rules
 
@@ -191,13 +191,18 @@ Run from `src.github_publisher`:
 ```python
 from src.github_publisher import publish_report
 html = open('reports/{domain_slug}/{slug}_report.html', encoding='utf-8').read()
-url = publish_report(html, '{domain_slug}')   # e.g. 'manufactum_de'
+data_json = open('reports/{domain_slug}/{slug}_data.json', encoding='utf-8').read()
+report_md = open('reports/{domain_slug}/{slug}_report.md', encoding='utf-8').read()
+url = publish_report(html, '{domain_slug}', data_json=data_json, report_md=report_md)   # e.g. 'manufactum_de'
 print(url)
 ```
 
-What this does (single call covers BOTH deliverables — it pushes TWO files to the repo):
+Always pass `data_json` and `report_md` — they archive the raw audit data to the repo so it survives a local wipe (the per-run `reports/` artifacts are gitignored and live nowhere else otherwise).
+
+What this does (single call covers all deliverables — it pushes up to FOUR files to the repo):
 - **findsherpas.com page** — uploads the HTML to the `nitianhao/findsherpas` repo at `public/report/{report_slug}/index.html`, served at `https://findsherpas.com/report/{report_slug}/`. Requires `gh` authed as the repo owner (`gh auth status`).
 - **CRM Reports section** — updates the local `find-sherpas/reports/report_slugs.json` (company key = domain slug minus `www_`/TLD) **and pushes that file to the repo**. The deployed CRM page `app/crm/(protected)/reports/page.tsx` reads `report_slugs.json` **from the repo**, so a local-only update is NOT enough — the file must be committed to the repo or the report stays invisible in the CRM. The push triggers a Vercel redeploy (~1–2 min) after which the row appears. (`publish_report` handles both files; if you ever update the registry by hand, you must also `gh api PUT` it to `reports/report_slugs.json`.)
+- **Raw data archive** — when `data_json`/`report_md` are passed, pushes them to `audit-data/{report_slug}/{report_slug}_data.json` and `_report.md`. Version-controlled, not under `public/` (never web-served), so the underlying judgements survive a local delete.
 
 Verify before reporting done (check the REPO copy, not just local):
 - `gh api /repos/nitianhao/findsherpas/contents/reports/report_slugs.json --jq '.content' | base64 -d` contains the `{company}` entry.

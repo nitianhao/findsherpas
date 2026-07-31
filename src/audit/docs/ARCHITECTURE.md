@@ -9,15 +9,14 @@
 > - **How the code works** → this document
 >
 > All facts below are verified against the code as of 2026-06-08
-> (`src/orchestrator.py`, `src/github_publisher.py`, `src/sales_materials_generator.py`).
+> (`src/orchestrator.py`, `src/github_publisher.py`).
 
 ---
 
 ## What it does
 
 A search-quality audit for any ecommerce/marketplace site. Given a search-results URL, it
-produces: a deep-dive narrative report (Markdown + JSON), a styled HTML report, and three
-sales derivative documents (Executive Summary, Forwardable Brief, Cold Email Snippet).
+produces: a deep-dive narrative report (Markdown + JSON) and a styled HTML report.
 All output lands in `reports/{domain_slug}/`.
 
 ## Two run modes
@@ -25,7 +24,7 @@ All output lands in `reports/{domain_slug}/`.
 | Mode | How | When |
 |------|-----|------|
 | **A — gated manual (default)** | Call individual `src.*` phase functions via `python3 -c`, stopping for approval between phases. See the skill. | Default. Quality-first; lets you correct categories/queries before they poison the report. |
-| **C — automated orchestrator (fast)** | `python -m src.orchestrator "<search-url>"` runs all phases through publish in one shot (sales materials removed — see note below). | When you trust the inputs and want speed/volume. |
+| **C — automated orchestrator (fast)** | `python -m src.orchestrator "<search-url>"` runs all phases through publish in one shot. | When you trust the inputs and want speed/volume. |
 
 ```bash
 # Fast mode (orchestrator)
@@ -49,10 +48,9 @@ python -m src.orchestrator "https://www.example.com" --output-dir my_reports
 | 3 | `src/query_generator.py` | Generates ~20–30 test queries via Claude; validates category fit (rejects miscategorized queries, e.g. a nav-category label filed under `DIRECT_MATCH` — see note below) |
 | 4 | `src/fetcher.py` | Fetches search results per query (requests + BeautifulSoup) |
 | 5 | `src/scorer.py` | Scores relevance via Voyage AI `rerank-2-5` |
-| 6 | `src/judge.py` | Assigns `FailureMode`, `Severity`, `displacement`, `evidence` per query via Claude, then applies a deterministic severity cap for immaterial displacement (see note below) |
+| 6 | `src/judge.py` | Assigns `FailureMode`, `Severity`, `displacement`, `evidence` per query via Claude, then applies a deterministic severity cap for immaterial displacement (see note below). Injects per-language calibration examples from past audits and harvests this run's verdicts back (`src/judge_kb.py`, see note below) |
 | 7 | `src/report_generator.py` | Builds `AuditReport` with `CapabilityScore` groups + narrative |
 | Publish | `src/github_publisher.py` | Uploads HTML + registers report (see below) |
-| Post | `src/sales_materials_generator.py` | Generates the 3 sales docs from the completed report |
 
 ---
 
@@ -65,9 +63,6 @@ Common slug prefix: `{domain_slug}_{YYYYMMDD_HHMMSS}`
 | `{slug}_report.md` | Deep-dive narrative (Markdown) |
 | `{slug}_data.json` | Complete `AuditReport` as JSON |
 | `{slug}_report.html` | Styled HTML report (from `templates/master_report.html`) |
-| `{slug}_exec_summary.docx` | 2-page Executive Summary |
-| `{slug}_brief.docx` | 1-page Forwardable Brief |
-| `{slug}_cold_email.txt` | Cold email opener, 3 versions |
 | `{slug}_access.json` | Written by the orchestrator: `company_slug`, `report_url`, `published_at` |
 | `findsherpas.com/report/{company}-NNNN/` | Live published report URL (unlisted) |
 
@@ -75,13 +70,19 @@ Common slug prefix: `{domain_slug}_{YYYYMMDD_HHMMSS}`
 
 ## GitHub publishing (verified vs `github_publisher.py`)
 
-`publish_report(html_content, domain_slug) -> url` does two things, pushing **two files** to
-the `nitianhao/findsherpas` repo:
+`publish_report(html_content, domain_slug, data_json=None, report_md=None) -> url` pushes up to
+**four files** to the `nitianhao/findsherpas` repo (all via the GitHub contents API, which
+commits server-side and so bypasses the local `reports/*` gitignore):
 
 1. **`public/report/{slug}/index.html`** → the live findsherpas.com page.
 2. **`reports/report_slugs.json`** → the registry the CRM Reports page reads. The registry
    **must** be committed to the repo (not just updated locally) or the report stays invisible
-   in the deployed CRM. `publish_report` pushes both.
+   in the deployed CRM.
+3. **`audit-data/{slug}/{slug}_data.json`** and **`{slug}_report.md`** (when `data_json` /
+   `report_md` are passed) → a version-controlled archive of the raw audit data so the
+   underlying judgements survive a local wipe. Not under `public/` — never web-served. The
+   orchestrator and the Phase 8 skill step always pass these; callers re-publishing by hand
+   should too.
 
 - **Slug format:** `{company}-{4-digit}` (e.g. `huckberry-6746`). TLD suffixes stripped:
   `huckberry_com` → `huckberry`, `www_zalando_de` → `zalando`. Stored in `report_slugs.json`
@@ -151,54 +152,6 @@ intentionally cautious and currently renders `Looks fixable without replatformin
 
 ---
 
-## Sales materials generation
-
-> **Removed from the workflow (2026-06-15).** The audit ends at publish (Phase 8). The orchestrator no longer calls `generate_sales_materials`, and the gated skill no longer includes a sales-materials phase. The `src/sales_materials_generator.py` module is retained for reference/manual use only — the section below documents its internals but it is **not** part of any standard audit run.
-
-```python
-from src.sales_materials_generator import generate_sales_materials
-generate_sales_materials(report, out_dir, slug)
-```
-
-Called automatically at the end of `run_audit()`. Takes the `AuditReport` from `generate_report()`.
-
-**Executive Summary** (`_exec_summary.docx`) — 2 pages, 4 sections (What We Found / The
-Findings That Matter / The Revenue Picture / Next Step). Opens with pass rate + avg best
-position. Soft CTA: 30-minute walkthrough of top 3 fixes by effort-to-impact.
-
-**Forwardable Brief** (`_brief.docx`) — 1 page memo (`TO/FROM/RE/DATE`), 4 short paragraphs
-(headline stat → example → pattern + fix → CTA). Readable in 90 seconds.
-
-**Cold Email Snippet** (`_cold_email.txt`) — 3 versions (A/B/C), 2–4 sentences. A and B each
-use a specific finding; C uses aggregate stats. No intro, no sign-off.
-
-**Branding:** Calibri; teal `#009BA3`; header `Find Sherpas | {doc_type} | {site_name}`;
-footer `findsherpas.com`. `FROM:` reads `[Name], Find Sherpas` — set `AGENCY_SENDER_NAME` in
-`.env` (not yet wired).
-
-### Internal logic
-
-`_extract_sales_context(report)` computes: `capabilities_passed`/`total_capabilities`,
-`avg_best_position` (mean of `displacement + 1`), `pct_in_top3` (`displacement <= 2`),
-`ranking_failures` (`failure_mode == "POOR_RANKING"`), `critical_caps`, `top_findings`
-(top 4 non-pass judgments by severity then effective displacement).
-
-`NO_FUZZY_MATCHING` and `ZERO_RESULTS_OR_GARBAGE` have `displacement = 0` (garbage sits at #1)
-but are worse than a ranking miss, so `_effective_displacement()` maps them to `9999` to float
-them to the top:
-
-```python
-_EGREGIOUS_MODES = {"NO_FUZZY_MATCHING", "ZERO_RESULTS_OR_GARBAGE"}
-def _effective_displacement(j) -> int:
-    return 9999 if j.failure_mode in _EGREGIOUS_MODES else j.displacement
-```
-
-`_write_docx()` parses Claude's Markdown output line by line: `## heading` → teal bold 12pt;
-`### heading` → dark bold 11pt (named findings); `TO:/FROM:/RE:/DATE:` → bold label + value;
-else → body 10pt.
-
----
-
 ## Key models (`src/models.py`)
 
 ```
@@ -235,6 +188,17 @@ AuditReport
 
 This prevents broad/generic queries with tightly clustered, all-relevant results (e.g. a category term where every hit is on-topic) from being over-reported as severe ranking failures. The LLM judge still owns nuance; the cap is a deterministic floor on over-severity.
 
+### Calibration knowledge base (`judge_kb.py`)
+
+A per-language store of past judgements that anchors the judge for **consistency** and lets it reuse strong fix/evidence phrasing. It is **advisory anchoring, not a cache** — every query is still judged fresh against its own results; a past verdict is never reused as this query's verdict (results differ per site).
+
+- **Storage:** `src/audit/kb/{lang}.jsonl`, one record per line, language slugged from `site_context.primary_language` (e.g. `german.jsonl`). Each record holds the query, category, `severity`/`failure_mode`/`evidence`/`recommended_fix`, a Voyage embedding, `provenance` (domain, url, `judged_at`), and `status` (`active`/`pruned`). The `kb/` dir is created on first harvest.
+- **Step A — retrieval (before each LLM call):** filter to `active` + same language, prefer same `category` (widen to any-category when <2 matches), Voyage-embed the live query, cosine-rank, take **top 3**. Injected as a "Calibration Examples" section of the judge prompt. Degrades to recency ranking if embeddings are unavailable, and to a silent no-op if the KB file is missing or anything errors — so judging behaves exactly as before when the KB is empty.
+- **Step B — harvest (after the whole audit):** appends this run's verdicts to `kb/{lang}.jsonl`. Skips LLM-fallback verdicts (`"LLM analysis failed"` in evidence) and unclassified non-PASS verdicts (`OTHER` failure mode that isn't a PASS); PASS examples are kept as "what good looks like."
+- **Wiring & safety:** `judge_all_queries(..., language=None, provenance=None)` — both args optional; with `language=None` the KB is bypassed entirely (existing callers/tests unchanged). The orchestrator passes `site_context.primary_language` + provenance at Phase 6. All KB reads/writes/embeds are wrapped so a KB failure logs a warning and never breaks an audit. Reuses the existing `voyageai` client (embedding model `voyage-3.5`, overridable via `VOYAGE_EMBED_MODEL`); no new dependencies.
+- **Pruning:** `scripts/kb_prune.py list <lang>` / `prune <lang> <id-or-query-substring>` flips `status` to `pruned` (kept for audit trail, excluded from retrieval). This plus the Step B noise filter are the drift guards for the auto-harvest model.
+- **First-run caveat:** the first audit in a new language writes to an empty KB and gets no calibration benefit; the payoff compounds from audit #2 onward per language.
+
 ### Category-fit validation (`query_generator.py`)
 
 `_category_mismatch_reason()` rejects queries that definitionally don't fit their category before they enter the audit. The high-precision check in place: a `DIRECT_MATCH` query (which must reference a *specific product the shopper already knows by name*) whose text exactly equals one of the site's real navigation-category labels is rejected — the generation loop then regenerates to refill that category's target count. This stops generic category terms (e.g. "parfym") from producing misleading "direct match buried at #N" findings.
@@ -266,7 +230,6 @@ anthropic          # Claude API
 beautifulsoup4     # HTML scraping
 jinja2             # Templating (report generation)
 pydantic           # Data models
-python-docx        # .docx writing (exec summary + brief)
 python-dotenv      # .env loading
 requests           # HTTP fetching
 voyageai           # Relevance scoring (rerank-2-5)
@@ -276,48 +239,10 @@ Install: `pip install -r requirements.txt`
 
 ---
 
-## Common tasks
-
-### Add a new sales output type
-1. Add a prompt builder `_new_prompt(ctx: dict) -> str` in `sales_materials_generator.py`
-2. Call `_call_claude(_new_prompt(ctx))` in `generate_sales_materials()`
-3. Write output with `_write_docx()` or `Path.write_text()`
-
-### Modify prompt copy
-All three prompts are fully parameterized — no hardcoded site names. Edit
-`_exec_summary_prompt()`, `_brief_prompt()`, or `_cold_email_prompt()`. Available `ctx` keys:
-
-```python
-ctx = {
-    "site_name", "site_url",
-    "capabilities_passed", "total_capabilities", "total_queries",
-    "avg_best_position", "pct_in_top3", "pct_outside_top3",
-    "ranking_failures", "pct_ranking_failure",
-    "critical_caps",   # list[str]
-    "top_findings",    # list[dict]: query, severity, best_position, displacement,
-                       #             failure_mode, evidence, customer_saw, best_match
-}
-```
-
-### Re-run sales materials on an existing data.json
-```python
-import json
-from pathlib import Path
-from src.models import AuditReport
-from src.sales_materials_generator import generate_sales_materials
-data = json.loads(Path("reports/example_com/example_com_20260410_data.json").read_text())
-report = AuditReport.model_validate(data)
-generate_sales_materials(report, Path("reports/example_com"), "example_com_20260410_rerun")
-```
-
----
-
 ## Brand voice (when editing prompts)
 
 - Short sentences. Direct assertions. No hedging.
 - Forbidden: "leverage," "synergy," "optimize," "robust," "exciting," "deep dive,"
   "fascinating," "powerful," "unique"
-- No methodology section in exec summary
-- Cold email: starts mid-thought, no "hope this finds you well," no sign-off
 - Tone: peer-to-peer, consultative — the reader is smart and has seen plenty of agency pitches
 - Do not name the site's own language repeatedly. The reader is a native speaker, so qualifying every fix as "[Language] …" reads as templated. The narrative prompt forbids it, and `_limit_language_mentions()` in `report_generator.py` deterministically enforces a cap of one mention across deep dives + roadmap combined (using `site_context.primary_language`), stripping the rest. Let the quoted query examples convey the language instead.
