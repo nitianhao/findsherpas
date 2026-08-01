@@ -240,9 +240,11 @@ In `.gitignore`, find the line `*.csv` and replace that single line with:
 
 ```
 *.csv
-# Keyword research: ignore intermediate data, keep the final backlog
-!src/keyword-research/data/backlog.csv
-src/keyword-research/data/
+# Keyword research: ignore intermediate data, keep the final backlog.
+# Note: the pattern must exclude the directory *contents* (`data/*`), not the
+# directory itself. Git cannot re-include a file whose parent directory is
+# excluded, so `data/` followed by `!data/backlog.csv` would silently fail.
+src/keyword-research/data/*
 !src/keyword-research/data/backlog.csv
 ```
 
@@ -618,7 +620,15 @@ describe('rejectionReason — company trivia', () => {
 describe('rejectionReason — topic token requirement', () => {
   it('rejects terms with no topic token at all', () => {
     expect(rejectionReason('premio the best')).toBe('NO_TOPIC_TOKEN');
-    expect(rejectionReason('tennessee ecommerce filing search')).not.toBeNull();
+  });
+});
+
+describe('rejectionReason — registry contamination', () => {
+  it('rejects business-registry queries that carry a topic token', () => {
+    // These contain "search"/"ecommerce" so the topic-token check passes them.
+    // They need an explicit rule.
+    expect(rejectionReason('tennessee ecommerce filing search')).toBe('REGISTRY');
+    expect(rejectionReason('site search llc')).toBe('REGISTRY');
   });
 });
 
@@ -678,6 +688,10 @@ const RULES: { reason: string; pattern: RegExp }[] = [
   { reason: 'BRAND_ASSET', pattern: /\b(logo|icon|png|svg|wallpaper|font)\b/ },
   { reason: 'NAVIGATIONAL', pattern: /\b(login|log in|sign in|dashboard|status|outage|down|support|contact|phone number|address|office)\b/ },
   { reason: 'TRIVIA', pattern: /\b(meaning|pronunciation|pronounce|wiki|wikipedia|que es|ne demek|definition|psychiatry)\b/ },
+  // Business-registry contamination: "tennessee ecommerce filing search",
+  // "site search llc". These carry topic tokens, so the TOPIC_TOKEN check
+  // below will not catch them — they need an explicit rule.
+  { reason: 'REGISTRY', pattern: /\b(filing|registry|incorporation|llc|business entity|secretary of state|tngov|mstc|find a grave|dns|ip lookup)\b/ },
 ];
 
 /**
@@ -726,7 +740,7 @@ export function filterKeywords(keywords: Keyword[]): {
 - [ ] **Step 4: Run test to verify it passes**
 
 Run: `npx vitest run src/keyword-research/filter/contamination.test.ts`
-Expected: PASS, 9 tests
+Expected: PASS, 11 tests
 
 - [ ] **Step 5: Write the runner script**
 
@@ -969,8 +983,11 @@ export function serpWeakness(results: SerpResult[]): number {
   const thinFraction =
     results.filter((r) => r.wordCount < THIN_WORDS).length / results.length;
 
-  // Owner identity dominates; depth is a secondary adjustment.
-  const score = ownerScore * 0.75 + thinFraction * 0.25;
+  // Owner identity sets the level; depth nudges it +/-0.1. Deliberately an
+  // adjustment rather than a weighted average — averaging in thinness would
+  // cap an all-vendor SERP of deep pages at 0.75, understating how winnable
+  // it is. Who owns page one matters more than how long their pages are.
+  const score = ownerScore + (thinFraction - 0.5) * 0.2;
   return Math.min(1, Math.max(0, score));
 }
 
@@ -1510,7 +1527,10 @@ const STOPWORDS = new Set([
 
 function singularize(token: string): string {
   if (token.endsWith('ies') && token.length > 4) return `${token.slice(0, -3)}y`;
-  if (token.endsWith('es') && token.length > 3) return token.slice(0, -2);
+  // Only strip "es" after a sibilant (boxes, matches). A blanket "es" rule
+  // over-strips: "alternatives" would become "alternativ", which no longer
+  // matches the singular "alternative".
+  if (/(s|x|z|ch|sh)es$/.test(token) && token.length > 4) return token.slice(0, -2);
   if (token.endsWith('s') && !token.endsWith('ss') && token.length > 3) return token.slice(0, -1);
   return token;
 }
