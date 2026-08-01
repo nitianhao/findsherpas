@@ -32,8 +32,21 @@ const TRACK_VALUE: Record<Track, number> = {
   practitioner: 0.5,
 };
 
-/** Bids above this are treated as equivalently commercial. */
-const BID_CAP = 20;
+/**
+ * Bids at or above this are treated as equivalently commercial.
+ *
+ * CURRENCY-DEPENDENT, and that is a trap. Keyword Planner reports bids in the
+ * Ads account's billing currency, not a fixed one. This was 20, which suited
+ * EUR or USD — but a real export came back in CZK where the median low-range
+ * bid is 191.9, so every bid exceeded the cap and normalizeBid returned 1.0 for
+ * all of them. Bid silently collapsed from a graded signal into a binary
+ * has/hasn't flag, with no error and a plausible-looking ranking.
+ *
+ * Set from the observed distribution of the currency actually in use. For CZK,
+ * roughly the 90th percentile of low-range bids. Re-derive it if the Ads
+ * account's currency changes.
+ */
+const BID_CAP = 800;
 /** Volumes above this are treated as equivalently large. */
 const VOLUME_CAP = 5000;
 

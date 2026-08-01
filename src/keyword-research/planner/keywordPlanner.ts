@@ -70,7 +70,17 @@ export function parseVolumeRange(raw: string): number {
 
 const KEYWORD_COLUMNS = ['Keyword', 'Keyword (by relevance)', 'keyword'];
 const VOLUME_COLUMNS = ['Avg. monthly searches', 'Avg monthly searches'];
-const BID_COLUMNS = ['Top of page bid (high range)', 'Top of page bid (low range)'];
+/**
+ * LOW range first, deliberately.
+ *
+ * The high range clusters on a sentinel: in a real 994-keyword export the value
+ * 21000.25 appeared 17 times while the next most common appeared twice — a
+ * ceiling, not a bid, and 32x the median. Because a cluster's bid is the MAX
+ * across its terms, one sentinel would dominate an entire cluster. The low
+ * range showed no such clustering (21.6 to 2463.6, median 191.9) and is the
+ * conservative read on what advertisers actually pay.
+ */
+const BID_COLUMNS = ['Top of page bid (low range)', 'Top of page bid (high range)'];
 
 /**
  * Real Keyword Planner exports are inconsistent about surrounding whitespace
