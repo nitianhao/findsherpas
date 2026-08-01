@@ -10,19 +10,28 @@ import type { Cluster, Keyword, ScoredArticle, SerpSnapshot, Track } from '../ty
 // ---------------------------------------------------------------------------
 
 /**
- * PROVISIONAL WEIGHTS — tune these against the first real run.
+ * TUNED against the first full run (351 SERPs, 4,269 keywords, US-targeted
+ * Keyword Planner data). These were provisional; this is the evidence.
  *
- * Bid is weighted above volume deliberately. On zero-spend Ads accounts volume
- * arrives as wide buckets that carry little information at this scale, whereas
- * bid is a direct read on commercial intent.
+ * Bid was 0.35, the heaviest weight, on the theory that it reads commercial
+ * intent more directly than bucketed volume. Real coverage killed that: only
+ * 10% of keywords and 22% of clusters carry any bid, yet those 22% occupied 23
+ * of the top 30 rows. Average score with bid was 0.479 against 0.274 without,
+ * while average weakness barely differed (0.632 vs 0.596) — so bid PRESENCE,
+ * not bid VALUE, was driving the ranking. A missing bid means Google has no
+ * advertiser data for the term, not that the term lacks commercial value, and
+ * the highest-weakness cluster in the whole set was being buried by it.
  *
- * If runPlannerMerge reports that very few terms carry a non-zero bid, that
- * assumption has failed for this niche: move weight from `bid` to `weakness`.
+ * Weakness now leads: it is the only signal with complete coverage across all
+ * 351 SERPs, and it answers the question the backlog exists to answer — can an
+ * independent voice win this page. Volume rises on real US data at 57%
+ * coverage. Bid stays as a genuine positive signal where present, but can no
+ * longer decide the ordering on its own.
  */
 export const WEIGHTS = {
-  bid: 0.35,
-  weakness: 0.30,
-  volume: 0.15,
+  bid: 0.15,
+  weakness: 0.45,
+  volume: 0.20,
   track: 0.20,
 };
 

@@ -18,7 +18,14 @@ import type { Keyword, SerpSnapshot } from '../types';
 // in their own column rather than blending into the ranking.
 // ---------------------------------------------------------------------------
 
-const KEYWORDS_IN = 'src/keyword-research/data/stage2-filtered.csv';
+/**
+ * Prefer the Stage 4 output, which carries volume and bid. Falling back to
+ * Stage 2 silently would score every row with volume 0 and bid 0 — a plausible
+ * ranking built on two of four signals being absent by accident rather than by
+ * evidence. The fallback is therefore announced, not silent.
+ */
+const KEYWORDS_ENRICHED = 'src/keyword-research/data/stage4-with-volume.csv';
+const KEYWORDS_BASE = 'src/keyword-research/data/stage2-filtered.csv';
 const SERPS_IN = 'src/keyword-research/data/stage3-serps.json';
 const OUT = 'src/keyword-research/data/backlog.csv';
 
@@ -54,14 +61,25 @@ export function loadSerps(path: string): Record<string, SerpSnapshot> {
 }
 
 function main() {
-  for (const [label, path] of [['keywords', KEYWORDS_IN], ['SERPs', SERPS_IN]] as const) {
-    if (!existsSync(path)) {
-      console.error(`Missing ${label} at ${path}. Run the earlier stages first.`);
-      process.exit(1);
-    }
+  if (!existsSync(SERPS_IN)) {
+    console.error(`Missing SERPs at ${SERPS_IN}. Run npm run kw:serp first.`);
+    process.exit(1);
   }
 
-  const keywords: Keyword[] = readKeywords(KEYWORDS_IN);
+  const useEnriched = existsSync(KEYWORDS_ENRICHED);
+  const keywordsPath = useEnriched ? KEYWORDS_ENRICHED : KEYWORDS_BASE;
+  if (!existsSync(keywordsPath)) {
+    console.error(`Missing keywords at ${keywordsPath}. Run the earlier stages first.`);
+    process.exit(1);
+  }
+  if (!useEnriched) {
+    console.warn(
+      `NOTE: ${KEYWORDS_ENRICHED} not found, using ${KEYWORDS_BASE}.\n` +
+        `      Volume and bid will be 0 for every row. Run npm run kw:planner-merge.\n`,
+    );
+  }
+
+  const keywords: Keyword[] = readKeywords(keywordsPath);
   const keywordsByTerm = new Map(keywords.map((k) => [k.term, k]));
 
   const snapshots = loadSerps(SERPS_IN);
