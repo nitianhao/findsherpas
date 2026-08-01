@@ -1,5 +1,5 @@
-import { readdirSync, readFileSync } from 'node:fs';
-import { writeCsv, fromCsv } from '../io/csv';
+import { readdirSync } from 'node:fs';
+import { writeCsv, fromCsv, readGoogleExport, isTabDelimited, tabsToCommas } from '../io/csv';
 import { readKeywords } from '../io/keywordRows';
 import { parsePlannerCsv, mergePlannerData, stripPlannerPreamble } from '../planner/keywordPlanner';
 import { pathToFileURL } from 'node:url';
@@ -25,11 +25,12 @@ function main() {
   }
 
   for (const f of files) {
-    // Keyword Planner CSVs carry preamble lines (report title, date range,
-    // location) before the real header row, and are CRLF-terminated.
-    // `readCsv` always treats the first row as the header, so the preamble
-    // must be stripped first or the whole file misparses.
-    const text = readFileSync(`${PLANNER_DIR}/${f}`, 'utf8');
+    // A real Keyword Planner download is not the CSV its extension claims: it
+    // is UTF-16 little-endian with a BOM, and TAB-delimited. It also carries
+    // preamble lines (report title, date range) before the header, which must
+    // be stripped or fromCsv treats the title as the header row.
+    let text = readGoogleExport(`${PLANNER_DIR}/${f}`);
+    if (isTabDelimited(text)) text = tabsToCommas(text);
     const rows = fromCsv(stripPlannerPreamble(text));
     for (const [term, data] of parsePlannerCsv(rows)) merged.set(term, data);
     console.log(`Read ${f}`);

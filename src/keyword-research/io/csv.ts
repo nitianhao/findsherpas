@@ -106,3 +106,55 @@ export function writeCsv(path: string, rows: Record<string, unknown>[]): void {
 export function readCsv(path: string): Record<string, string>[] {
   return fromCsv(readFileSync(path, 'utf8'));
 }
+
+/**
+ * Read a Google export, which is not the CSV its extension claims.
+ *
+ * A real Keyword Planner download is UTF-16 little-endian with a BOM and is
+ * TAB-delimited despite the .csv name. Read as UTF-8 and split on commas, it
+ * yields one garbage column and every downstream lookup silently misses.
+ *
+ * Detects the BOM for encoding and picks the delimiter by counting occurrences
+ * in the header line, so a genuinely comma-separated export still works.
+ */
+export function readGoogleExport(path: string): string {
+  const buf = readFileSync(path);
+
+  let text: string;
+  if (buf.length >= 2 && buf[0] === 0xff && buf[1] === 0xfe) {
+    text = buf.toString('utf16le').slice(1); // slice off the BOM code unit
+  } else if (buf.length >= 2 && buf[0] === 0xfe && buf[1] === 0xff) {
+    // UTF-16 big-endian: swap byte pairs, then decode as little-endian.
+    const swapped = Buffer.from(buf);
+    for (let i = 0; i + 1 < swapped.length; i += 2) {
+      const t = swapped[i];
+      swapped[i] = swapped[i + 1];
+      swapped[i + 1] = t;
+    }
+    text = swapped.toString('utf16le').slice(1);
+  } else {
+    text = buf.toString('utf8').replace(/^\uFEFF/, '');
+  }
+
+  return text;
+}
+
+/** Convert a tab-delimited body to comma-delimited so `fromCsv` can read it. */
+export function tabsToCommas(text: string): string {
+  return text
+    .split(/\r\n|\n/)
+    .map((line) =>
+      line
+        .split('\t')
+        .map((cell) => (/[",\n]/.test(cell) ? `"${cell.replace(/"/g, '""')}"` : cell))
+        .join(','),
+    )
+    .join('\n');
+}
+
+/** True when the header line has more tabs than commas. */
+export function isTabDelimited(text: string): boolean {
+  const firstReal = text.split(/\r\n|\n/).find((l) => l.trim() !== '') ?? '';
+  const sample = text.split(/\r\n|\n/).slice(0, 6).join('\n') || firstReal;
+  return (sample.match(/\t/g) ?? []).length > (sample.match(/,/g) ?? []).length;
+}
