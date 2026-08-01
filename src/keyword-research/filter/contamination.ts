@@ -9,10 +9,42 @@ import type { Keyword } from '../types';
  *
  * Order matters — the first matching rule wins, so specific patterns must
  * precede general ones.
+ *
+ * SEARCH_OPERATOR was narrowed after a manual review of real Stage 1 output
+ * found the original bare `operator`/`boolean`/`extension`/browser-name
+ * tokens catching unrelated senses of the same words: `elasticsearch
+ * operator` / `opensearch operator` (Kubernetes operators — some of the
+ * most valuable practitioner keywords in the set), `typesense boolean`
+ * (a real filter-syntax feature), and `coveo explorer extension` (a
+ * product feature, not a browser extension). `boolean` was dropped
+ * entirely — it has a legitimate search-syntax sense and no
+ * operator-specific one. The operator/command and browser/extension senses
+ * now require adjacent context instead of matching bare anywhere in the
+ * term.
  */
 const RULES: { reason: string; pattern: RegExp }[] = [
-  { reason: 'SEARCH_OPERATOR', pattern: /\b(dork|operator|command|shortcut|keybind|boolean|extension|chrome|firefox|edge|brave|duckduckgo)\b/ },
+  // "operator" and "command" are only contamination in the Google/site
+  // search-operator sense (e.g. "search operator", "google command").
+  // Bare, they also mean a real Kubernetes/Elasticsearch "operator" or a
+  // shell "command" — both legitimate practitioner terms — so they must
+  // co-occur with search/site/google, not match anywhere in the term.
+  { reason: 'SEARCH_OPERATOR', pattern: /\b(search|site|google) operator\b/ },
+  { reason: 'SEARCH_OPERATOR', pattern: /\b(search|google) command\b/ },
   { reason: 'SEARCH_OPERATOR', pattern: /\bsearch q site\b|\bsite search (google|bing|command)\b/ },
+  // These have no legitimate sense in this domain — safe as bare tokens.
+  { reason: 'SEARCH_OPERATOR', pattern: /\b(dork|shortcut|keybind)\b/ },
+  // "extension" alone also means a real vendor product feature (e.g.
+  // "coveo explorer extension"), so require a browser name to co-occur,
+  // in either order.
+  { reason: 'SEARCH_OPERATOR', pattern: /(?=.*\bextension\b)(?=.*\b(chrome|firefox|edge|brave|safari|duckduckgo)\b)/ },
+  // These browser names have no other common sense in this domain, so
+  // they're safe as bare tokens.
+  { reason: 'SEARCH_OPERATOR', pattern: /\b(chrome|firefox|brave|safari|duckduckgo)\b/ },
+  // "edge" alone also means edge computing/edge cases — require an
+  // explicit browser context (the extension rule above already covers
+  // "edge extension"; this catches bare browser mentions like "microsoft
+  // edge" or "edge browser").
+  { reason: 'SEARCH_OPERATOR', pattern: /\bmicrosoft edge\b|\bedge browser\b/ },
   { reason: 'JOBS', pattern: /\b(job|jobs|career|careers|hiring|salary|recruit|vacanc|glassdoor|internship)\b/ },
   { reason: 'CORPORATE', pattern: /\b(valuation|revenue|funding|investor|crunchbase|ipo|stock|market cap|net worth|ceo|founder|headquarters|employees|layoffs|board of directors|acquisition)\b/ },
   { reason: 'BRAND_ASSET', pattern: /\b(logo|icon|png|svg|wallpaper|font)\b/ },

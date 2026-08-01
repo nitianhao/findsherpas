@@ -12,6 +12,26 @@ describe('rejectionReason — the site: operator trap', () => {
   });
 });
 
+describe('rejectionReason — narrowed operator/browser context, not bare tokens', () => {
+  it('still rejects genuine search-operator and browser-extension noise', () => {
+    for (const t of [
+      'site search command google', 'site search google dork', 'search q site',
+      'site search chrome extension',
+    ]) {
+      expect(rejectionReason(t)).toBe('SEARCH_OPERATOR');
+    }
+  });
+
+  it('keeps legitimate Kubernetes-operator, boolean-syntax, and product-extension terms', () => {
+    for (const t of [
+      'elasticsearch operator', 'opensearch operator', 'typesense boolean',
+      'coveo explorer extension',
+    ]) {
+      expect(rejectionReason(t)).toBeNull();
+    }
+  });
+});
+
 describe('rejectionReason — job board contamination', () => {
   it('rejects job and career queries', () => {
     for (const t of ['best site to search jobs in india', 'job site search engines', 'algolia careers']) {
