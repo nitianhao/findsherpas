@@ -46,4 +46,18 @@ describe('fromCsv', () => {
     const rows = [{ term: 'a,b', note: 'say "hi"' }];
     expect(fromCsv(toCsv(rows))).toEqual(rows);
   });
+
+  it('parses a CRLF-terminated document without leaking \\r into fields', () => {
+    expect(fromCsv('term,volume\r\nalgolia pricing,100\r\n'))
+      .toEqual([{ term: 'algolia pricing', volume: '100' }]);
+  });
+
+  it('round-trips a field containing an embedded newline', () => {
+    const rows = [{ term: 'line1\nline2', source: 'x' }];
+    expect(fromCsv(toCsv(rows))).toEqual(rows);
+  });
+
+  it('skips a blank line in the middle of a document instead of emitting a phantom row', () => {
+    expect(fromCsv('term\na\n\nb')).toEqual([{ term: 'a' }, { term: 'b' }]);
+  });
 });

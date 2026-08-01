@@ -18,35 +18,65 @@ export function toCsv(rows: Record<string, unknown>[]): string {
   return lines.join('\n');
 }
 
-/** Splits one CSV line, honouring quoted fields and doubled quotes. */
-function parseLine(line: string): string[] {
-  const out: string[] = [];
+/**
+ * Parses the whole CSV text into rows of raw string fields in a single pass,
+ * tracking quote state across line boundaries. This must not split on line
+ * terminators before parsing quotes: a quoted field can legitimately contain
+ * a literal newline, and splitting first would break it apart. It also
+ * handles both `\n` and `\r\n` line terminators (Google Keyword Planner and
+ * Search Console CSV exports are CRLF-terminated), and skips lines that are
+ * entirely blank rather than emitting a phantom all-empty row.
+ */
+function parseRows(text: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
   let field = '';
   let inQuotes = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
+
+  const endLine = () => {
+    row.push(field);
+    field = '';
+    // A genuinely blank line parses to a single empty field; drop it instead
+    // of emitting a phantom row of empty values.
+    if (!(row.length === 1 && row[0] === '')) rows.push(row);
+    row = [];
+  };
+
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
     if (inQuotes) {
       if (c === '"') {
-        if (line[i + 1] === '"') { field += '"'; i++; }
+        if (text[i + 1] === '"') { field += '"'; i++; }
         else inQuotes = false;
-      } else field += c;
-    } else if (c === '"') inQuotes = true;
-    else if (c === ',') { out.push(field); field = ''; }
-    else field += c;
+      } else {
+        field += c;
+      }
+    } else if (c === '"') {
+      inQuotes = true;
+    } else if (c === ',') {
+      row.push(field);
+      field = '';
+    } else if (c === '\r') {
+      if (text[i + 1] === '\n') i++;
+      endLine();
+    } else if (c === '\n') {
+      endLine();
+    } else {
+      field += c;
+    }
   }
-  out.push(field);
-  return out;
+  if (field !== '' || row.length > 0) endLine();
+
+  return rows;
 }
 
 export function fromCsv(text: string): Record<string, string>[] {
-  const trimmed = text.trim();
-  if (trimmed === '') return [];
-  const lines = trimmed.split('\n');
-  const headers = parseLine(lines[0]);
-  return lines.slice(1).map((line) => {
-    const values = parseLine(line);
-    return Object.fromEntries(headers.map((h, i) => [h, values[i] ?? ''])) as Record<string, string>;
-  });
+  const rows = parseRows(text);
+  if (rows.length === 0) return [];
+  const [headers, ...dataRows] = rows;
+  return dataRows.map((values) =>
+    Object.fromEntries(headers.map((h, i) => [h, values[i] ?? ''])) as Record<string, string>
+  );
 }
 
 export function writeCsv(path: string, rows: Record<string, unknown>[]): void {
