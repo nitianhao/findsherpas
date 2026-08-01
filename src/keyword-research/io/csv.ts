@@ -8,9 +8,28 @@ function escapeField(value: unknown): string {
   return s;
 }
 
+/**
+ * Serialise rows to CSV.
+ *
+ * Headers are the UNION of keys across every row, not just the first row's.
+ * Taking them from `rows[0]` silently drops any column that row happens to
+ * lack — and several producers here populate fields conditionally. `joinGscData`
+ * only sets `gscPosition`/`gscImpressions` on terms that actually rank, and
+ * findsherpas ranks for almost nothing, so the first row would nearly always
+ * miss and the columns would vanish from the entire file without an error.
+ */
 export function toCsv(rows: Record<string, unknown>[]): string {
   if (rows.length === 0) return '';
-  const headers = Object.keys(rows[0]);
+  const headers: string[] = [];
+  const seen = new Set<string>();
+  for (const row of rows) {
+    for (const k of Object.keys(row)) {
+      if (!seen.has(k)) {
+        seen.add(k);
+        headers.push(k);
+      }
+    }
+  }
   const lines = [headers.join(',')];
   for (const row of rows) {
     lines.push(headers.map((h) => escapeField(row[h])).join(','));

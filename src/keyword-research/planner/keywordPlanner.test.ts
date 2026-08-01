@@ -5,6 +5,7 @@ import {
   parsePlannerCsv,
   mergePlannerData,
   stripPlannerPreamble,
+  parseMoney,
 } from './keywordPlanner';
 import type { Keyword } from '../types';
 
@@ -52,8 +53,15 @@ describe('parsePlannerCsv', () => {
     expect(map.get('algolia pricing')).toEqual({ avgMonthlySearches: 55, topOfPageBid: 4.5 });
   });
 
-  it('ignores rows with no keyword column', () => {
-    expect(parsePlannerCsv([{ foo: 'bar' }]).size).toBe(0);
+  it('throws on rows with no recognisable keyword column rather than returning empty', () => {
+    // A localised export previously yielded an empty map with no error, and the
+    // merge script then reported "0% have a bid" and advised moving scoring
+    // weight off bid — arguing the operator into the wrong conclusion.
+    expect(() => parsePlannerCsv([{ foo: 'bar' }])).toThrow(/keyword column/i);
+  });
+
+  it('still returns an empty map for a genuinely empty export', () => {
+    expect(parsePlannerCsv([]).size).toBe(0);
   });
 });
 
@@ -70,9 +78,10 @@ describe('stripPlannerPreamble', () => {
     expect(stripped).not.toContain('Location(s)');
   });
 
-  it('returns the input unchanged when no recognizable header line is found', () => {
-    const raw = 'foo,bar\r\n1,2';
-    expect(stripPlannerPreamble(raw)).toBe(raw);
+  it('throws when no header line is found anywhere', () => {
+    // Returning the input would hand the preamble to the CSV parser as the
+    // header row and corrupt every column mapping, silently.
+    expect(() => stripPlannerPreamble('junk line\nanother junk line')).toThrow(/header row/i);
   });
 });
 
@@ -88,5 +97,29 @@ describe('mergePlannerData', () => {
     const out = mergePlannerData([kw('algolia units')], new Map());
     expect(out[0].avgMonthlySearches).toBe(0);
     expect(out[0].topOfPageBid).toBe(0);
+  });
+});
+
+describe('parseMoney — EU formats', () => {
+  it('reads comma-decimal as a decimal, not a 100x overstatement', () => {
+    // A German export renders a bid as "1,23". Stripping to digits gave "123",
+    // which exceeds BID_CAP=20 and pinned normalizeBid at 1.0 for every row,
+    // turning the model's heaviest weight into a constant.
+    expect(parseMoney('€1,23')).toBeCloseTo(1.23, 5);
+    expect(parseMoney('1,23')).toBeCloseTo(1.23, 5);
+  });
+
+  it('still reads US formats correctly', () => {
+    expect(parseMoney('$4.50')).toBeCloseTo(4.5, 5);
+    expect(parseMoney('1,234.56')).toBeCloseTo(1234.56, 5);
+  });
+
+  it('reads EU thousands-plus-decimal', () => {
+    expect(parseMoney('1.234,56')).toBeCloseTo(1234.56, 5);
+  });
+
+  it('returns 0 for empty or unparseable cells', () => {
+    expect(parseMoney('')).toBe(0);
+    expect(parseMoney('—')).toBe(0);
   });
 });

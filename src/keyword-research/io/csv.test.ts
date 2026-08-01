@@ -66,3 +66,20 @@ describe('fromCsv', () => {
     expect(fromCsv('term\na\n\nb')).toEqual([{ term: 'a' }, { term: 'b' }]);
   });
 });
+
+describe('toCsv header union', () => {
+  it('takes headers from the union of all rows, not just the first', () => {
+    // joinGscData only sets gscPosition on terms that actually rank, and
+    // findsherpas ranks for almost nothing — so row 0 will usually lack it.
+    // Deriving headers from row 0 alone would drop the column from the whole
+    // file with no error.
+    expect(toCsv([{ a: 1 }, { a: 2, b: 3 }])).toBe('a,b\n1,\n2,3');
+  });
+
+  it('round-trips a partially-populated column', () => {
+    const rows = [{ term: 'x' }, { term: 'y', gscPosition: 12 }];
+    const back = fromCsv(toCsv(rows));
+    expect(back[1].gscPosition).toBe('12');
+    expect(back[0].gscPosition).toBe('');
+  });
+});

@@ -1,3 +1,4 @@
+import { pick } from '../io/columns';
 import type { Keyword } from '../types';
 
 // ---------------------------------------------------------------------------
@@ -26,16 +27,6 @@ const IMPRESSIONS_COLUMNS = ['Impressions', 'impressions'];
  * `pick` in ../planner/keywordPlanner.ts rather than inventing a second
  * column-matching pattern.
  */
-function pick(row: Record<string, string>, candidates: string[]): string {
-  const normalized = new Map<string, string>();
-  for (const [key, value] of Object.entries(row)) normalized.set(key.trim(), value);
-  for (const c of candidates) {
-    const v = normalized.get(c.trim());
-    if (v !== undefined) return v;
-  }
-  return '';
-}
-
 export function parseGscCsv(
   rows: Record<string, string>[],
 ): Map<string, { position: number; impressions: number }> {

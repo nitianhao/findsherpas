@@ -1,3 +1,4 @@
+import { pick, pickOrThrow } from '../io/columns';
 import type { Keyword } from '../types';
 
 // ---------------------------------------------------------------------------
@@ -20,6 +21,30 @@ export function batchForPlanner(terms: string[], size = PLANNER_BATCH_SIZE): str
 
 function toNumber(raw: string): number {
   const n = Number(raw.replace(/[,\s]/g, '').replace(/K$/i, '000').replace(/M$/i, '000000'));
+  return Number.isFinite(n) ? n : 0;
+}
+
+/**
+ * Parse a money cell, tolerating EU formatting.
+ *
+ * Stripping everything but digits and dots corrupts EU output badly and
+ * silently: German/Czech exports render a bid as "1,23", which becomes "123" —
+ * a 100x overstatement. Since BID_CAP is 20, normalizeBid then returns 1.0 for
+ * every keyword and bid, the heaviest weight in the model, becomes a constant.
+ *
+ * Comma-as-decimal is detected by shape: a comma with exactly two digits after
+ * it and no dot is a decimal separator, not a thousands separator.
+ */
+export function parseMoney(raw: string): number {
+  const cleaned = raw.replace(/[^0-9.,]/g, '').trim();
+  if (cleaned === '') return 0;
+
+  const isEuDecimal = /^\d{1,3}(\.\d{3})*,\d{1,2}$/.test(cleaned) || /^\d+,\d{1,2}$/.test(cleaned);
+  const normalized = isEuDecimal
+    ? cleaned.replace(/\./g, '').replace(',', '.')
+    : cleaned.replace(/,/g, '');
+
+  const n = Number(normalized);
   return Number.isFinite(n) ? n : 0;
 }
 
@@ -54,28 +79,31 @@ const BID_COLUMNS = ['Top of page bid (high range)', 'Top of page bid (low range
  * trimming both the row's keys and the candidates themselves so a header
  * like `" Keyword "` still resolves.
  */
-function pick(row: Record<string, string>, candidates: string[]): string {
-  const normalized = new Map<string, string>();
-  for (const [key, value] of Object.entries(row)) normalized.set(key.trim(), value);
-  for (const c of candidates) {
-    const v = normalized.get(c.trim());
-    if (v !== undefined) return v;
-  }
-  return '';
-}
-
 export function parsePlannerCsv(
   rows: Record<string, string>[],
 ): Map<string, { avgMonthlySearches: number; topOfPageBid: number }> {
   const map = new Map<string, { avgMonthlySearches: number; topOfPageBid: number }>();
   for (const row of rows) {
-    const term = pick(row, KEYWORD_COLUMNS).toLowerCase().trim();
+    const term = pickOrThrow(row, KEYWORD_COLUMNS, 'keyword').toLowerCase().trim();
     if (term === '') continue;
     map.set(term, {
       avgMonthlySearches: parseVolumeRange(pick(row, VOLUME_COLUMNS)),
-      topOfPageBid: toNumber(pick(row, BID_COLUMNS).replace(/[^0-9.]/g, '')),
+      topOfPageBid: parseMoney(pick(row, BID_COLUMNS)),
     });
   }
+
+  // A non-empty export that yields no rows means the columns were not
+  // recognised — a localised or restructured file. Failing here beats
+  // returning an empty map, which downstream reports as "0% have a bid" and
+  // then advises moving scoring weight off bid: the tool arguing you into the
+  // wrong conclusion.
+  if (rows.length > 0 && map.size === 0) {
+    throw new Error(
+      `Parsed ${rows.length} rows from the Keyword Planner export but matched none. ` +
+        `The keyword column was not recognised. Re-export in English.`,
+    );
+  }
+
   return map;
 }
 
@@ -97,7 +125,16 @@ export function stripPlannerPreamble(raw: string): string {
     const first = line.split(',')[0]?.trim().replace(/^"|"$/g, '').toLowerCase();
     return KEYWORD_COLUMNS.some((c) => c.toLowerCase() === first);
   });
-  if (idx <= 0) return raw;
+  // idx === 0 means there was no preamble, which is fine. idx === -1 means no
+  // header was found anywhere — returning `raw` there would hand the preamble
+  // to the CSV parser as the header row and corrupt every column mapping.
+  if (idx === 0) return raw;
+  if (idx < 0) {
+    throw new Error(
+      `No Keyword Planner header row found. Looked for a line starting with one of: ` +
+        `${KEYWORD_COLUMNS.join(', ')}. Is this a Keyword Planner export, and is it in English?`,
+    );
+  }
   return lines.slice(idx).join('\r\n');
 }
 
