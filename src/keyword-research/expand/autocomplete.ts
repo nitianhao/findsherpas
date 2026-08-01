@@ -9,7 +9,18 @@ const SUFFIX_MODIFIERS = ['vs', 'alternatives', 'pricing', 'for'];
 const PREFIX_MODIFIERS = ['best', 'how', 'why'];
 
 /** Delay between requests. The endpoint is undocumented; do not parallelise. */
-const REQUEST_DELAY_MS = 50;
+export const REQUEST_DELAY_MS = 50;
+
+/**
+ * Mutable counter a caller can pass to `expandSeed` to observe how many of
+ * the seed's queries failed. A fully-failed seed returns `[]`, which is
+ * otherwise indistinguishable from the endpoint legitimately having no
+ * suggestions -- this is how a caller (e.g. the runner script) tells the
+ * difference and detects an outage or IP block.
+ */
+export interface ExpandStats {
+  failures: number;
+}
 
 export type FetchFn = (url: string) => Promise<string>;
 
@@ -50,25 +61,35 @@ export async function expandSeed(
   track: Track,
   locale: string,
   fetchFn: FetchFn = defaultFetch,
+  stats?: ExpandStats,
 ): Promise<Keyword[]> {
   const seen = new Set<string>();
   const out: Keyword[] = [];
 
   for (const query of expansionQueries(seed)) {
-    let body: string;
+    let body: string | undefined;
     try {
       body = await fetchFn(buildSuggestUrl(query, locale));
-    } catch {
-      // One failed query must not abort the seed. Skip and continue.
-      continue;
+    } catch (err) {
+      // One failed query must not abort the seed, but a failure is the
+      // leading indicator of the exact condition the delay exists to
+      // prevent (e.g. a soft IP block starting mid-run). Count it and log
+      // it so an outage is detectable instead of silently looking like an
+      // empty result, and let the `finally` below pay the delay exactly as
+      // it would on success -- the delay must never be skippable via this
+      // path.
+      if (stats) stats.failures++;
+      console.error(`[autocomplete] request failed for "${query}" [${locale}]:`, err);
+    } finally {
+      await sleep(REQUEST_DELAY_MS);
     }
+    if (body === undefined) continue;
     for (const suggestion of parseSuggestResponse(body)) {
       const term = suggestion.toLowerCase().trim();
       if (term === '' || seen.has(term)) continue;
       seen.add(term);
       out.push({ term, seed, track, locale });
     }
-    await sleep(REQUEST_DELAY_MS);
   }
 
   return out;
