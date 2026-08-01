@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { normalizeBid, normalizeVolume, scoreArticle, buildBacklog } from './scoring';
+import { normalizeBid, normalizeVolume, normalizeWeakness, scoreArticle, buildBacklog } from './scoring';
 import type { Cluster, Keyword, SerpSnapshot } from '../types';
 
 describe('normalizeBid', () => {
@@ -81,5 +81,46 @@ describe('buildBacklog', () => {
     const clusters: Cluster[] = [{ id: 'c1', primaryTerm: 'ghost', terms: ['ghost'], peopleAlsoAsk: [] }];
     const backlog = buildBacklog(clusters, new Map(), new Map());
     expect(backlog[0].score).toBeGreaterThanOrEqual(0);
+  });
+});
+
+describe('normalizeWeakness', () => {
+  it('rescales the observed range onto 0..1', () => {
+    // Measured across 82 real SERPs: min 0.520, max 0.850.
+    expect(normalizeWeakness(0.5)).toBe(0);
+    expect(normalizeWeakness(0.85)).toBe(1);
+    expect(normalizeWeakness(0.675)).toBeCloseTo(0.5, 5);
+  });
+
+  it('clamps outside the observed range rather than going negative or above 1', () => {
+    expect(normalizeWeakness(0)).toBe(0);
+    expect(normalizeWeakness(1)).toBe(1);
+  });
+
+  it('restores discriminating power that raw weakness lacked', () => {
+    // Raw, these two differ by 0.33. Weighted at 0.30 that was under 0.1 of
+    // score spread, making the most actionable signal the weakest one.
+    const spread = normalizeWeakness(0.85) - normalizeWeakness(0.52);
+    expect(spread).toBeGreaterThan(0.9);
+  });
+});
+
+describe('buildBacklog hasData flag', () => {
+  it('marks a row false when the cluster has neither keyword nor SERP data', () => {
+    const backlog = buildBacklog(
+      [{ id: 'c1', primaryTerm: 'ghost', terms: ['ghost'], peopleAlsoAsk: [] }],
+      new Map(),
+      new Map(),
+    );
+    expect(backlog[0].hasData).toBe(false);
+  });
+
+  it('marks a row true only when both lookups hit', () => {
+    const clusters = [{ id: 'c1', primaryTerm: 'algolia units', terms: ['algolia units'], peopleAlsoAsk: [] }];
+    const kws = new Map([['algolia units', { term: 'algolia units', seed: 'algolia', track: 'buyer' as const, locale: 'us' }]]);
+    const snaps = new Map([['algolia units', { term: 'algolia units', results: [], peopleAlsoAsk: [], weakness: 0.7 }]]);
+    expect(buildBacklog(clusters, kws, snaps)[0].hasData).toBe(true);
+    // Keyword present, SERP missing -> still resting on a default.
+    expect(buildBacklog(clusters, kws, new Map())[0].hasData).toBe(false);
   });
 });

@@ -47,6 +47,28 @@ export function normalizeVolume(volume: number): number {
   return Math.min(1, Math.log10(volume + 1) / Math.log10(VOLUME_CAP + 1));
 }
 
+/**
+ * Observed bounds of `serpWeakness` on real data, used to rescale it.
+ *
+ * Weakness is nominally 0..1 but does not use that range in practice. Measured
+ * across 82 real SERPs: min 0.520, median 0.640, max 0.850 — a span of 0.33.
+ * Fed in raw it contributed at most 0.33 x 0.30 = 0.099 of score spread, while
+ * bid contributed up to 1.0 x 0.35 = 0.35. That made the most actionable signal
+ * the weakest discriminator, purely as an artifact of the range it occupies.
+ *
+ * Rescaling restores the discriminating power the weight implies, and makes
+ * weakness symmetric with bid and volume, which were already normalized.
+ * Revisit these bounds when the SERP set grows — they are measured, not
+ * theoretical.
+ */
+const WEAKNESS_OBSERVED_MIN = 0.5;
+const WEAKNESS_OBSERVED_MAX = 0.85;
+
+export function normalizeWeakness(weakness: number): number {
+  const span = WEAKNESS_OBSERVED_MAX - WEAKNESS_OBSERVED_MIN;
+  return Math.min(1, Math.max(0, (weakness - WEAKNESS_OBSERVED_MIN) / span));
+}
+
 export function scoreArticle(input: {
   bid: number;
   volume: number;
@@ -55,7 +77,7 @@ export function scoreArticle(input: {
 }): number {
   const score =
     normalizeBid(input.bid) * WEIGHTS.bid +
-    input.weakness * WEIGHTS.weakness +
+    normalizeWeakness(input.weakness) * WEIGHTS.weakness +
     normalizeVolume(input.volume) * WEIGHTS.volume +
     TRACK_VALUE[input.track] * WEIGHTS.track;
   return Math.min(1, Math.max(0, score));
@@ -83,6 +105,14 @@ export function buildBacklog(
       const track: Track = kw?.track ?? 'practitioner';
       const weakness = snap?.weakness ?? 0.5;
 
+      // Whether this row rests on real data or on defaults. A cluster missing
+      // both lookups still scores mid-table, and in the output CSV that is
+      // otherwise indistinguishable from a genuinely researched thin topic —
+      // so a data-join gap can outrank real signal. Surfacing it as its own
+      // column lets a reader filter those rows out without distorting the
+      // score formula or the provisional weights.
+      const hasData = kw !== undefined && snap !== undefined;
+
       return {
         clusterId: cluster.id,
         primaryTerm: cluster.primaryTerm,
@@ -92,6 +122,7 @@ export function buildBacklog(
         avgMonthlySearches: volume,
         topOfPageBid: bid,
         serpWeakness: weakness,
+        hasData,
         peopleAlsoAsk: cluster.peopleAlsoAsk.join('|'),
       };
     })

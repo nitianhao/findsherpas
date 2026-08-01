@@ -64,5 +64,12 @@ export interface ScoredArticle {
   avgMonthlySearches: number;
   topOfPageBid: number;
   serpWeakness: number;
+  /**
+   * False when the cluster's keyword or SERP lookup missed and the row rests on
+   * defaults. Such a row still scores mid-table, so without this flag it is
+   * indistinguishable from a researched thin topic and a data-join gap can
+   * outrank real signal.
+   */
+  hasData: boolean;
   peopleAlsoAsk: string;
 }
