@@ -17,8 +17,11 @@ function main() {
 
   mkdirSync(OUT_DIR, { recursive: true });
   batches.forEach((batch, i) => {
-    const path = `${OUT_DIR}/seeds-batch-${i + 1}.txt`;
-    writeFileSync(path, batch.join('\n'), 'utf8');
+    // CSV with a header, not a bare .txt list: Keyword Planner's uploader
+    // rejects plain text. Terms are quoted so any containing a comma survive.
+    const path = `${OUT_DIR}/seeds-batch-${i + 1}.csv`;
+    const body = ['Keyword', ...batch.map((t) => `"${t.replace(/"/g, '""')}"`)].join('\n');
+    writeFileSync(path, body, 'utf8');
     console.log(`Wrote ${batch.length} terms to ${path}`);
   });
 
@@ -28,7 +31,7 @@ function main() {
     2. Choose "Get search volume and forecasts".
        NOT "Discover new keywords" — that treats your input as seeds and
        returns different keywords. You want metrics for exactly this list.
-    3. Paste one batch file's contents (or upload the .txt). Get started.
+    3. Upload the .csv, or open it and paste the terms. Get started.
     4. Open the "Historical metrics" tab — it lands on "Forecasts" first.
     5. Set the date range to the last 12 months.
     6. Download > .csv into ${OUT_DIR}/ as planner-results-1.csv (etc)

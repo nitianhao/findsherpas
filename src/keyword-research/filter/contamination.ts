@@ -102,6 +102,15 @@ export const TOPIC_TOKENS = [
 
 export function rejectionReason(term: string): string | null {
   const t = term.toLowerCase();
+
+  // The pipeline expands with hl=en/gl=us, so a non-ASCII term is foreign-
+  // language noise that rode in on a brand name that is also an ordinary word
+  // elsewhere. `nosto` is Finnish for "lift", which pulled in gym and cosmetic
+  // surgery queries ("ylahuulen nosto" is an upper-lip lift); `luigi's box`
+  // pulled in Greek and Slovak. All of them satisfy the topic-token check
+  // because they literally contain the brand name.
+  if (/[^\x00-\x7F]/.test(term)) return 'NON_ASCII';
+
   for (const { reason, pattern } of RULES) {
     if (pattern.test(t)) return reason;
   }
