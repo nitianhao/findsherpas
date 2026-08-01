@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { normalizeBid, normalizeVolume, normalizeWeakness, scoreArticle, buildBacklog } from './scoring';
+import { normalizeBid, normalizeVolume, normalizeWeakness, scoreArticle, buildBacklog, isPlatformQualifiedQuery } from './scoring';
 import type { Cluster, Keyword, SerpSnapshot } from '../types';
 
 describe('normalizeBid', () => {
@@ -122,5 +122,21 @@ describe('buildBacklog hasData flag', () => {
     expect(buildBacklog(clusters, kws, snaps)[0].hasData).toBe(true);
     // Keyword present, SERP missing -> still resting on a default.
     expect(buildBacklog(clusters, kws, new Map())[0].hasData).toBe(false);
+  });
+});
+
+describe('isPlatformQualifiedQuery', () => {
+  it('flags queries that name a platform, which no article can win', () => {
+    // These score highest without the filter: a 10/10 forum SERP reads as easy
+    // to displace, but the searcher wants Reddit and Reddit is the right answer.
+    for (const t of ['algolia pricing reddit', 'algolia alternatives reddit', 'coveo review quora']) {
+      expect(isPlatformQualifiedQuery(t)).toBe(true);
+    }
+  });
+
+  it('leaves ordinary commercial queries alone', () => {
+    for (const t of ['coveo pricing', 'algolia vs elasticsearch', 'best algolia alternatives']) {
+      expect(isPlatformQualifiedQuery(t)).toBe(false);
+    }
   });
 });

@@ -83,6 +83,23 @@ export function scoreArticle(input: {
   return Math.min(1, Math.max(0, score));
 }
 
+/**
+ * Queries that name a platform are asking for that platform's content, and no
+ * article can win them. `algolia pricing reddit` returns a 10/10 forum SERP,
+ * which serpWeakness correctly reads as "easy to displace" — but the user wants
+ * Reddit, and Reddit is the right answer. Left in, these rank top precisely
+ * because they are unwinnable.
+ *
+ * They remain useful demand evidence (people explicitly seeking non-vendor
+ * opinion on pricing), which is why they are excluded from the backlog rather
+ * than dropped from the pipeline.
+ */
+const PLATFORM_QUALIFIERS = /\b(reddit|quora|youtube|linkedin|twitter|hacker\s*news|stackoverflow|github)\b/i;
+
+export function isPlatformQualifiedQuery(term: string): boolean {
+  return PLATFORM_QUALIFIERS.test(term);
+}
+
 export function buildBacklog(
   clusters: Cluster[],
   keywordsByTerm: Map<string, Keyword>,
