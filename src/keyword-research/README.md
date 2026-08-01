@@ -1,26 +1,28 @@
 # Keyword research pipeline
 
-Replaces Ahrefs with free sources. Each stage writes a CSV the next one reads,
+Replaces Ahrefs with free sources. Each stage writes a file the next one reads,
 so any stage can be inspected or hand-edited before the next runs.
 
 Design spec: `docs/superpowers/specs/2026-07-31-content-keyword-program-design.md`
 
 ## What works today
 
-Stages 1, 2 and 4 are runnable end to end. Stages 3, 5 and 6 exist as tested
-logic but have **no runner script and no live data source yet** — see
-[Not built yet](#not-built-yet).
-
 ```bash
-npm run kw:expand          # Stage 1: autocomplete expansion (~8 min, ~950 requests)
+npm run kw:expand          # Stage 1: autocomplete expansion (~3 min, ~950 requests)
 npm run kw:filter          # Stage 2: contamination filter — THEN READ THE REJECTS
+npm run kw:serp            # Stage 3: DuckDuckGo SERPs (headful browser, resumable)
+npm run kw:reclassify      # Stage 3: recompute owners/weakness offline, no refetch
 npm run kw:planner-emit    # Stage 4a: write batch files for Keyword Planner
 # ... manual: paste each batch into Keyword Planner, download CSVs into data/planner/
 npm run kw:planner-merge   # Stage 4b: merge volume and bid back in
 ```
 
-Those four are the only `kw:` scripts that exist. There is deliberately no
-`kw:serp`, `kw:gsc`, `kw:cluster` or `kw:score`.
+Those six are the only `kw:` scripts. Stages 5 and 6 have tested logic but no
+runner — see [Not built yet](#not-built-yet).
+
+`kw:serp` accepts `--limit=N` (or `--limit N`). It opens a **visible browser
+window**; headless is blocked. It is resumable — re-running skips terms already
+fetched.
 
 ## Stages
 
@@ -29,13 +31,15 @@ Those four are the only `kw:` scripts that exist. There is deliberately no
 | 0 | `config/seeds.ts` | ✅ | 28 hand-curated seeds tagged by track |
 | 1 | `expand/autocomplete.ts` | ✅ runnable | Google autocomplete, alphabet soup + intent modifiers |
 | 2 | `filter/contamination.ts` | ✅ runnable | Strips operator / jobs / corporate / registry noise |
-| 3 | `serp/ownerClassifier.ts`, `serp/serpRecon.ts` | ⚠️ logic only | Classifies who owns page one, scores winnability |
+| 3 | `serp/duckduckgoSerp.ts`, `serp/ownerClassifier.ts`, `serp/serpRecon.ts` | ✅ runnable | Fetches SERPs, classifies who owns page one, scores winnability |
 | 4 | `planner/keywordPlanner.ts` | ✅ runnable | Keyword Planner batch emit and CSV merge |
-| 5 | `gsc/gscJoin.ts` | ⚠️ logic only | Search Console join, striking-distance report |
-| 6 | `cluster/prefilter.ts`, `cluster/serpOverlap.ts`, `score/scoring.ts` | ⚠️ logic only | Groups by SERP overlap, scores, builds backlog |
+| 5 | `gsc/gscJoin.ts` | ⚠️ logic only, no runner | Search Console join, striking-distance report |
+| 6 | `cluster/serpOverlap.ts`, `score/scoring.ts` | ⚠️ logic only, no runner | Groups by SERP overlap, scores, builds backlog |
 
-Shared: `types/index.ts`, `io/csv.ts` (hand-rolled CSV, handles CRLF and quoted
-fields containing commas and newlines — real Google exports need both).
+Shared: `types/index.ts`, `io/csv.ts` (hand-rolled, handles CRLF and quoted
+fields containing commas and newlines), `io/columns.ts` (matches Google's
+inconsistent column names), `io/keywordRows.ts` (**the only correct way to read
+a keyword CSV** — see below).
 
 ## Results from the first real run
 
@@ -53,89 +57,113 @@ rejected**:
 | REGISTRY | 8 |
 | SEARCH_OPERATOR | 3 |
 
-## Three things that will bite you
+Stage 3 targets only the **351 commercial-intent terms** of those 4,286 (those
+carrying `vs`, `alternatives`, `pricing`, `cost`, `review`, `compare`, `best`,
+`competitor`). **84 are fetched; 267 remain.**
 
-### 1. Always read the rejects. This is not optional.
+Across 820 results from the first 82 SERPs, **not one came from a credible
+independent authority**: 45.7% unknown (content farms, small blogs), 28.9%
+review aggregators, 17.6% vendor blogs, 6.1% forums, 1.7% vendor docs.
+
+## Four things that will bite you
+
+### 1. Always read the rejects.
 
 `data/stage2-rejected.csv` is where the filter's mistakes hide, and the
-histogram above will look perfectly healthy while it quietly deletes your best
-keywords. This is not hypothetical — it happened twice during the build, and
-both times the histogram gave no hint:
+histogram looks healthy while it deletes your best keywords. This happened
+twice during the build, and the histogram gave no hint either time:
 
 - A bare `operator` token was killing **`elasticsearch operator`** and
-  **`opensearch operator`**. Those are Kubernetes operators — among the most
-  valuable practitioner keywords in the whole set. The token was written to
-  catch Google's `site:` search operator.
+  **`opensearch operator`** — Kubernetes operators, among the most valuable
+  practitioner keywords in the set. The token was written to catch Google's
+  `site:` operator.
 - Bare `support` and `dashboard` were killing **`opensearch extended support`**
-  (a real version-lifecycle policy) and **`elasticsearch grafana dashboard`**
-  (a real devops topic).
+  (a version-lifecycle policy) and **`elasticsearch grafana dashboard`**.
 
-Both were found only by reading the actual rejected terms. Between them they
-were destroying ~28 legitimate keywords. When you add a seed, its contamination
-patterns are new — re-read the rejects.
+`kw:filter` now refuses to run if any seed's own term would be rejected, which
+closes the worst case. It cannot catch a wrongly-rejected expansion. Read them.
 
-### 2. Bid matters more than volume here, and that assumption is unverified.
+### 2. Re-run `kw:reclassify` after touching the classifier.
 
-On a zero-spend Google Ads account, Keyword Planner returns bucketed ranges like
-`10 – 100` (note: an EN DASH, not a hyphen). At this niche's scale that carries
-almost no information, so `score/scoring.ts` weights **top-of-page bid** above
-volume.
+`ownerType` and `weakness` are computed at fetch time and frozen into
+`stage3-serps.json`, and `kw:serp` skips terms already present. A classifier
+change therefore does **not** reach cached data, and re-running the fetcher
+prints "Nothing to do" and exits 0. This already happened once: a fix corrected
+64.5% of stored classifications in code while the cache kept the old values.
 
-That is the single most load-bearing and least verified assumption in the model.
-`kw:planner-merge` prints what fraction of terms carry a non-zero bid. **If that
-fraction is low, the assumption has failed for this niche** — move weight from
-`bid` to `weakness` in `WEIGHTS`.
+The cache now carries a `classifierVersion` and `kw:serp` throws on a mismatch.
+`kw:reclassify` recomputes offline — no network, no browser.
 
-### 3. Locales are deliberately just `us`.
+### 3. Never cast a CSV row to `Keyword`.
 
-The plan originally expanded across `us`, `gb` and `de`. A measured run showed
-all three return an identical 5,155-term set; the union was 5,157, so `gb` and
-`de` contributed 2 terms, both German grammar fragments.
+`readCsv` returns `Record<string, string>`. Casting that to `Keyword[]`
+type-checks and lies: `avgMonthlySearches` is a string, so `volume +=` performs
+string concatenation. Summing two rows of 100 produced `"0100100"`, which
+`normalizeVolume` then coerced to 100100 and pinned at its cap, silently.
 
-Root cause: `buildSuggestUrl` sends `hl=en`. For this endpoint the **host
-language** dominates and the geo parameter `gl` barely moves results. To target
-DACH properly you must vary `hl` (`hl=de&gl=de`), not add entries to `LOCALES` —
-and expect to write German articles to match.
+Use `readKeywords()` from `io/keywordRows.ts`.
+
+### 4. Export from Google in English.
+
+Both Google parsers tolerate inconsistent whitespace in header names. Neither
+tolerates **localised column names** — a French export naming the column
+`Mot clé` now throws rather than producing an all-zero merge whose own
+diagnostic then advised moving scoring weight off bid.
+
+Cell formats are handled: `parseMoney` reads EU comma-decimals correctly
+(`1,23` is 1.23, not 123 — the latter exceeded `BID_CAP` and turned the model's
+heaviest weight into a constant).
+
+## Scoring notes
+
+`WEIGHTS` in `score/scoring.ts` is **provisional** — set before any real run.
+Bid is weighted above volume because zero-spend Ads accounts return bucketed
+volume ranges that carry little information. `kw:planner-merge` prints what
+fraction of terms have a non-zero bid; if that is low, move weight from `bid` to
+`weakness`.
+
+`serpWeakness` is nominally 0..1 but occupies 0.52–0.85 on real data, so
+`normalizeWeakness` rescales it against those measured bounds. Without that,
+weakness contributed under 0.1 of score spread against bid's 0.35 — making the
+most actionable signal the weakest discriminator. **Re-derive those bounds when
+the SERP set grows.**
+
+`ScoredArticle.hasData` is false when a row rests on defaults rather than real
+lookups. Such rows still score mid-table, so filter on this column before
+trusting a ranking.
 
 ## Manual inputs
 
-Two stages take CSV exports rather than API calls, deliberately — neither is
-worth an OAuth build:
-
 - **Stage 4**: Keyword Planner → Discover new keywords → Download
   → `data/planner/planner-results-*.csv`. Exports carry preamble lines before
-  the real header; `stripPlannerPreamble` handles this.
+  the header; `stripPlannerPreamble` handles them and throws if it finds none.
 - **Stage 5**: Search Console → Performance → Queries → Export
   → `data/gsc-queries.csv`
 
-Both parsers tolerate inconsistent whitespace in header names. **Neither
-tolerates non-English column names** — a localised export produces an empty
-merge with no error, and `kw:planner-merge`'s low-bid warning will then
-misattribute it to a bid-signal problem. Export in English.
-
 ## Not built yet
 
-- **The live SERP fetcher.** Stage 3 classifies and scores a SERP but nothing
-  fetches one. Wiring it is the next real piece of work, and it needs a decision
-  first: 4,286 keywords is far too many to fetch individually, so clustering
-  must run on a scored subset.
-- **Runner scripts for stages 3, 5 and 6.** They depend on the fetcher.
+- **Runners for stages 5 and 6.** The logic is tested; nothing wires
+  clustering → scoring → `backlog.csv`.
+- **267 of 351 SERPs.** Run `npm run kw:serp` to continue.
 - **Two-level autocomplete recursion.** Level one already yields thousands of
   terms; add depth only if the backlog proves thin.
 
 ## Known limitations
 
-- `cluster/prefilter.ts` normalisation drops stopwords and sorts tokens, so
-  `search for products` and `product search` collapse together. Harmless **only
-  if** Stage 3 fetches a SERP per distinct term and lets `serpOverlap` re-decide.
-  If you wire Stage 3 to fetch one SERP per prefilter group, this becomes a real
-  over-merge — the discarded term never gets a chance to be re-separated.
-- Aggregator domains (G2, Capterra, TrustRadius) place multiple pages across
-  unrelated vendor queries and could produce 3 coincidental URL overlaps,
-  chaining unrelated terms into one cluster via transitivity. Consider an
-  aggregator denylist or a top-5 overlap window once you see real SERP data.
-- `WEIGHTS` in `score/scoring.ts` is provisional — set before any real run. It is
-  the tuning surface, not a tuned result.
-- A cluster with no keyword or SERP data scores ~0.25, which is mid-table rather
-  than bottom, and looks identical in the output to a genuinely researched thin
-  topic. Watch for data-join gaps outranking real signal.
+- **These are DuckDuckGo results, not Google's.** A sound proxy for whether page
+  one is owned by vendors grading their own homework; not a proxy for rank
+  position. Brave and Bing were both measured and rejected — Brave burns a paid
+  quota shared with the enrichment pipeline, Bing returns an empty shell even
+  headful.
+- **`peopleAlsoAsk` is always empty.** DuckDuckGo has no PAA equivalent, so
+  `Cluster.peopleAlsoAsk` and `ScoredArticle.peopleAlsoAsk` are dead columns.
+  The design spec lists PAA as a Stage 3 deliverable; it is not delivered.
+- **The SERP extractor takes every anchor** and filters DuckDuckGo's own hosts,
+  rather than depending on a class name that would break silently. A layout
+  change could still promote non-organic URLs into result positions.
+  `selectOrganicResults` is pure and tested; the browser call around it is not.
+- **Aggregator domains** (G2, Capterra, Gartner) appear across unrelated vendor
+  queries and could in principle chain unrelated terms into one cluster. Checked
+  against the first 82 SERPs: 17 of 99 overlap edges touch listicles, and
+  removing them entirely only splits 47 clusters into 52. Not occurring — recheck
+  as the set grows.

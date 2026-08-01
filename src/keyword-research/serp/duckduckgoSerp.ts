@@ -67,6 +67,30 @@ function toSerpResult(raw: { url: string; title: string }): SerpResult {
   };
 }
 
+/**
+ * Reduce raw page anchors to organic results.
+ *
+ * Extracted from the page-evaluation callback so it is testable without a
+ * browser. The extraction is deliberately structure-agnostic — it takes every
+ * anchor rather than depending on a DuckDuckGo class name that will change —
+ * which means this filter is the only thing standing between the pipeline and
+ * DuckDuckGo's own navigation appearing as search results.
+ */
+export function selectOrganicResults(
+  raw: { url: string; title: string }[],
+): SerpResult[] {
+  const seen = new Set<string>();
+  const results: SerpResult[] = [];
+  for (const r of raw) {
+    if (CHROME_HOSTS.test(r.url)) continue;
+    if (seen.has(r.url)) continue;
+    seen.add(r.url);
+    results.push(toSerpResult(r));
+    if (results.length >= RESULTS_PER_SERP) break;
+  }
+  return results;
+}
+
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function extractResults(
@@ -93,18 +117,8 @@ export async function fetchDdgSerp(page: Page, term: string): Promise<SerpSnapsh
 
   const raw = await extractResults(page);
 
-  const seen = new Set<string>();
-  const results: SerpResult[] = [];
-  for (const r of raw) {
-    if (CHROME_HOSTS.test(r.url)) continue;
-    if (seen.has(r.url)) continue;
-    seen.add(r.url);
-    results.push(toSerpResult(r));
-    if (results.length >= RESULTS_PER_SERP) break;
-  }
-
+  const results = selectOrganicResults(raw);
   if (results.length === 0) throw new DdgBlockedError(term);
-
   return buildSnapshot(term, results, []);
 }
 

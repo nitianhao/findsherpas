@@ -3,8 +3,14 @@ import type { Cluster, SerpSnapshot } from '../types';
 // ---------------------------------------------------------------------------
 // Real clustering on SERP evidence. Terms sharing this many top-10 URLs are
 // treated as one article, because Google is already treating them as one
-// intent. This is intentionally separate from the string-similarity
-// prefilter (see prefilter.ts) — string similarity gets intent wrong.
+// intent.
+//
+// A string-similarity prefilter was built to cut SERP fetch cost by collapsing
+// obvious variants first. It was measured and deleted: it collapsed 4,286 terms
+// to 4,011, only 6.4%, because autocomplete already returns distinct
+// suggestions. That saving did not justify its risk of merging different
+// intents (it treated "search for products" and "product search" as one) before
+// SERP evidence could separate them. Clustering runs on distinct terms.
 // ---------------------------------------------------------------------------
 
 const MIN_SHARED_URLS = 3;
