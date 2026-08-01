@@ -57,6 +57,11 @@ describe('fromCsv', () => {
     expect(fromCsv(toCsv(rows))).toEqual(rows);
   });
 
+  it('round-trips a field containing a bare carriage return', () => {
+    const rows = [{ term: 'a\rb', other: 'x' }];
+    expect(fromCsv(toCsv(rows))).toEqual(rows);
+  });
+
   it('skips a blank line in the middle of a document instead of emitting a phantom row', () => {
     expect(fromCsv('term\na\n\nb')).toEqual([{ term: 'a' }, { term: 'b' }]);
   });
