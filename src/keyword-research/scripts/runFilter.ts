@@ -2,7 +2,6 @@ import { writeCsv } from '../io/csv';
 import { readKeywords } from '../io/keywordRows';
 import { filterKeywords, rejectionReason } from '../filter/contamination';
 import { SEEDS } from '../config/seeds';
-import type { Keyword } from '../types';
 import { pathToFileURL } from 'node:url';
 
 function main() {

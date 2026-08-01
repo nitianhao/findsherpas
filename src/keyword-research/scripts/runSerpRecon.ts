@@ -8,7 +8,7 @@ import {
   DDG_REQUEST_DELAY_MS,
 } from '../serp/duckduckgoSerp';
 import { CLASSIFIER_VERSION } from '../serp/serpRecon';
-import type { Keyword, SerpSnapshot } from '../types';
+import type { SerpSnapshot } from '../types';
 
 // ---------------------------------------------------------------------------
 // Keyword research pipeline - Stage 3 runner (live SERP fetch via DuckDuckGo)

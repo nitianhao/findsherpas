@@ -1,7 +1,6 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { readKeywords } from '../io/keywordRows';
 import { batchForPlanner } from '../planner/keywordPlanner';
-import type { Keyword } from '../types';
 import { pathToFileURL } from 'node:url';
 
 function main() {

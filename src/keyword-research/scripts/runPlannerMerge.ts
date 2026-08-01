@@ -1,8 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
-import { readCsv, writeCsv, fromCsv } from '../io/csv';
+import { writeCsv, fromCsv } from '../io/csv';
 import { readKeywords } from '../io/keywordRows';
 import { parsePlannerCsv, mergePlannerData, stripPlannerPreamble } from '../planner/keywordPlanner';
-import type { Keyword } from '../types';
 import { pathToFileURL } from 'node:url';
 
 function main() {
