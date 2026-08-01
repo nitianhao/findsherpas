@@ -47,4 +47,19 @@ export const SEEDS: { term: string; track: Track }[] = [
 ];
 
 /** Locales to expand across. */
-export const LOCALES = ['us', 'gb', 'de'];
+/**
+ * Locales to expand across.
+ *
+ * Deliberately just `us`. The plan originally specified ['us','gb','de'], but a
+ * full measured run showed all three return an identical 5,155-term set — the
+ * union across all three is 5,157, so gb and de together contributed 2 terms,
+ * both German grammar fragments that Stage 2 filters anyway.
+ *
+ * Root cause: `buildSuggestUrl` sends `hl=en`. For this endpoint the host
+ * language (`hl`) dominates and the geo parameter (`gl`) barely moves results,
+ * so varying `gl` alone was never going to surface non-English suggestions.
+ *
+ * To genuinely target DACH later, vary `hl` (e.g. `hl=de&gl=de`) rather than
+ * adding entries here — and expect to write German articles to match.
+ */
+export const LOCALES = ['us'];
