@@ -54,8 +54,17 @@ describe('rejectionReason — company trivia', () => {
   });
 
   it('rejects navigational queries', () => {
-    for (const t of ['algolia login', 'algolia status', 'algolia dashboard login']) {
+    for (const t of ['algolia login', 'algolia status', 'algolia dashboard login', 'algolia support']) {
       expect(rejectionReason(t)).toBe('NAVIGATIONAL');
+    }
+  });
+
+  it('keeps capability/lifecycle/analytics-artifact terms that share navigational bare tokens', () => {
+    for (const t of [
+      'opensearch extended support', 'typesense language support',
+      'elasticsearch grafana dashboard', 'opensearch grafana dashboard',
+    ]) {
+      expect(rejectionReason(t)).toBeNull();
     }
   });
 

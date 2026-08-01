@@ -21,6 +21,14 @@ import type { Keyword } from '../types';
  * operator-specific one. The operator/command and browser/extension senses
  * now require adjacent context instead of matching bare anywhere in the
  * term.
+ *
+ * NAVIGATIONAL had the identical defect, found on a follow-up audit:
+ * `status`, `support`, and `dashboard` each have a legitimate
+ * technical/product sense (cluster health status, product-capability
+ * support, an analytics dashboard) alongside the navigational one (is the
+ * vendor's service down, customer-service support, the vendor's account
+ * dashboard). Those three now exclude their known capability/artifact
+ * qualifiers via negative lookbehind rather than matching bare.
  */
 const RULES: { reason: string; pattern: RegExp }[] = [
   // "operator" and "command" are only contamination in the Google/site
@@ -48,7 +56,27 @@ const RULES: { reason: string; pattern: RegExp }[] = [
   { reason: 'JOBS', pattern: /\b(job|jobs|career|careers|hiring|salary|recruit|vacanc|glassdoor|internship)\b/ },
   { reason: 'CORPORATE', pattern: /\b(valuation|revenue|funding|investor|crunchbase|ipo|stock|market cap|net worth|ceo|founder|headquarters|employees|layoffs|board of directors|acquisition)\b/ },
   { reason: 'BRAND_ASSET', pattern: /\b(logo|icon|png|svg|wallpaper|font)\b/ },
-  { reason: 'NAVIGATIONAL', pattern: /\b(login|log in|sign in|dashboard|status|outage|down|support|contact|phone number|address|office)\b/ },
+  // These have no capability/lifecycle sense in this domain — audited
+  // against real Stage 1 output and found safe as bare tokens.
+  { reason: 'NAVIGATIONAL', pattern: /\b(login|log in|sign in|outage|down|contact|phone number|address|office)\b/ },
+  // "status" is contamination only in the vendor-uptime sense ("is X
+  // down"). Cluster health ("elasticsearch/opensearch yellow status")
+  // and task-queue state ("meilisearch task status") are real
+  // product/practitioner concepts, not an uptime check — require it not
+  // be preceded by those qualifiers.
+  { reason: 'NAVIGATIONAL', pattern: /(?<!yellow )(?<!green )(?<!red )(?<!task )\bstatus\b/ },
+  // "support" is contamination only in the customer-service sense
+  // ("algolia support", "contact support"). Capability ("typesense
+  // language support") and lifecycle ("opensearch extended support")
+  // senses are real vendor-evaluation content, not a request for help —
+  // require it not be preceded by those qualifiers.
+  { reason: 'NAVIGATIONAL', pattern: /(?<!language )(?<!extended )(?<!browser )\bsupport\b/ },
+  // "dashboard" is contamination only in the vendor-account sense
+  // ("algolia dashboard login", "typesense admin dashboard"). Analytics-
+  // artifact senses ("elasticsearch/opensearch grafana dashboard",
+  // "search analytics dashboard") are real devops/reporting content, not
+  // an account login — require it not be preceded by those qualifiers.
+  { reason: 'NAVIGATIONAL', pattern: /(?<!grafana )(?<!analytics )\bdashboard\b/ },
   { reason: 'TRIVIA', pattern: /\b(meaning|pronunciation|pronounce|wiki|wikipedia|que es|ne demek|definition|psychiatry)\b/ },
   // Business-registry contamination: "tennessee ecommerce filing search",
   // "site search llc". These carry topic tokens, so the TOPIC_TOKEN check
