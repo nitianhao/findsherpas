@@ -34,8 +34,21 @@ export function serpWeakness(results: SerpResult[]): number {
   const ownerScore =
     results.reduce((sum, r) => sum + OWNER_WEAKNESS[r.ownerType], 0) / results.length;
 
+  // Page depth is only known when the fetcher can retrieve full page content
+  // (e.g. a crawler that renders the body). Brave and most SERP APIs return
+  // just title/url/description, so `wordCount` is frequently absent — and a
+  // description is not a stand-in for it; estimating depth from snippet
+  // length would fabricate a signal the source data doesn't provide. When
+  // NO result carries a known word count, skip the thinness adjustment
+  // entirely rather than silently treating "unknown" as "not thin" (which
+  // dividing by results.length would otherwise do). When SOME results carry
+  // a known word count, compute thinFraction only over that known subset so
+  // the unknown ones don't dilute or bias the signal either way.
+  const known = results.filter((r) => r.wordCount !== undefined);
+  if (known.length === 0) return Math.min(1, Math.max(0, ownerScore));
+
   const thinFraction =
-    results.filter((r) => r.wordCount < THIN_WORDS).length / results.length;
+    known.filter((r) => (r.wordCount as number) < THIN_WORDS).length / known.length;
 
   // Owner identity sets the level; depth nudges it +/-0.1. Deliberately an
   // adjustment rather than a weighted average — averaging in thinness would

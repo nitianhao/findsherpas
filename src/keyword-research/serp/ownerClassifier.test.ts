@@ -18,6 +18,11 @@ describe('classifyOwner', () => {
     expect(classifyOwner('https://news.ycombinator.com/item?id=1')).toBe('forum');
   });
 
+  it('identifies community publishing platforms as forums', () => {
+    expect(classifyOwner('https://dev.to/someuser/algolia-vs-elasticsearch-123')).toBe('forum');
+    expect(classifyOwner('https://medium.com/@someuser/algolia-pricing-guide')).toBe('forum');
+  });
+
   it('identifies review-site listicles', () => {
     expect(classifyOwner('https://www.g2.com/products/algolia/reviews')).toBe('listicle');
     expect(classifyOwner('https://www.capterra.com/p/1/algolia/')).toBe('listicle');

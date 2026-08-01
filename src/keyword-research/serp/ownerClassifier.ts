@@ -20,6 +20,11 @@ const VENDOR_DOMAINS = [
 const FORUM_DOMAINS = [
   'stackoverflow.com', 'reddit.com', 'news.ycombinator.com', 'quora.com',
   'discuss.elastic.co', 'stackexchange.com', 'github.com',
+  // Community publishing platforms: anyone can post, so a result here
+  // reflects the platform's moderation and SEO weight, not one author's
+  // independent expertise — the same reasoning that puts stackoverflow.com
+  // and reddit.com in this bucket rather than being read as independent.
+  'dev.to', 'medium.com',
 ];
 
 const LISTICLE_DOMAINS = [

@@ -31,7 +31,13 @@ export interface SerpResult {
   url: string;
   title: string;
   ownerType: SerpOwnerType;
-  wordCount: number;
+  /**
+   * Page word count, when known. Brave (and most SERP APIs) return only
+   * title/url/description — not page body content — so this is genuinely
+   * optional rather than a value to estimate from the snippet. See
+   * `serpWeakness` in `serp/serpRecon.ts` for how absence is handled.
+   */
+  wordCount?: number;
 }
 
 export interface SerpSnapshot {
