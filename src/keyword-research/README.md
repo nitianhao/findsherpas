@@ -13,7 +13,7 @@ npm run kw:filter          # Stage 2: contamination filter — THEN READ THE REJ
 npm run kw:serp            # Stage 3: DuckDuckGo SERPs (headful browser, resumable)
 npm run kw:reclassify      # Stage 3: recompute owners/weakness offline, no refetch
 npm run kw:planner-emit    # Stage 4a: write batch files for Keyword Planner
-# ... manual: paste each batch into Keyword Planner, download CSVs into data/planner/
+# ... manual: "Get search volume and forecasts", download CSVs into data/planner/
 npm run kw:planner-merge   # Stage 4b: merge volume and bid back in
 ```
 
@@ -134,7 +134,9 @@ trusting a ranking.
 
 ## Manual inputs
 
-- **Stage 4**: Keyword Planner → Discover new keywords → Download
+- **Stage 4**: Keyword Planner → **Get search volume and forecasts** (not
+  "Discover new keywords", which treats the input as seeds and returns
+  different terms) → Historical metrics tab → Download
   → `data/planner/planner-results-*.csv`. Exports carry preamble lines before
   the header; `stripPlannerPreamble` handles them and throws if it finds none.
 - **Stage 5**: Search Console → Performance → Queries → Export
