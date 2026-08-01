@@ -19,6 +19,20 @@ describe('sharedUrlCount', () => {
   it('returns 0 for disjoint SERPs', () => {
     expect(sharedUrlCount(snap('a', ['u1']), snap('b', ['u2']))).toBe(0);
   });
+
+  it('counts distinct URLs only, so repeats within one SERP cannot inflate it', () => {
+    // Without deduping this returns 3 and would merge two unrelated terms on
+    // the strength of a single shared URL repeated by a fetch artifact.
+    expect(sharedUrlCount(snap('a', ['u1', 'u1', 'u1']), snap('b', ['u1', 'u2']))).toBe(1);
+  });
+
+  it('does not let repeats on either side cross the merge threshold', () => {
+    const clusters = clusterBySerpOverlap([
+      snap('unrelated one', ['u1', 'u1', 'u1']),
+      snap('unrelated two', ['u1', 'u1', 'u1']),
+    ]);
+    expect(clusters).toHaveLength(2);
+  });
 });
 
 describe('clusterBySerpOverlap', () => {

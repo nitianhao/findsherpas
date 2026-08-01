@@ -9,9 +9,21 @@ import type { Cluster, SerpSnapshot } from '../types';
 
 const MIN_SHARED_URLS = 3;
 
+/**
+ * Count of DISTINCT URLs appearing in both SERPs.
+ *
+ * Both sides are deduped deliberately. A single SERP snapshot can repeat a URL
+ * (sitelink artifacts, a flaky fetch merging pages), and without deduping those
+ * repeats count individually — three copies of one URL would cross
+ * MIN_SHARED_URLS on their own and merge two unrelated terms into one article.
+ * The threshold means three distinct URLs, so the count must be distinct too.
+ */
 export function sharedUrlCount(a: SerpSnapshot, b: SerpSnapshot): number {
+  const urlsA = new Set(a.results.map((r) => r.url));
   const urlsB = new Set(b.results.map((r) => r.url));
-  return a.results.filter((r) => urlsB.has(r.url)).length;
+  let shared = 0;
+  for (const url of urlsA) if (urlsB.has(url)) shared++;
+  return shared;
 }
 
 /** Union-find so overlap merges transitively: a~b and b~c puts a, b, c together. */
