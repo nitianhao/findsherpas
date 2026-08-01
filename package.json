@@ -38,7 +38,8 @@
     "kw:expand": "tsx src/keyword-research/scripts/runExpand.ts",
     "kw:filter": "tsx src/keyword-research/scripts/runFilter.ts",
     "kw:planner-emit": "tsx src/keyword-research/scripts/runPlannerEmit.ts",
-    "kw:planner-merge": "tsx src/keyword-research/scripts/runPlannerMerge.ts"
+    "kw:planner-merge": "tsx src/keyword-research/scripts/runPlannerMerge.ts",
+    "kw:serp": "tsx src/keyword-research/scripts/runSerpRecon.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
