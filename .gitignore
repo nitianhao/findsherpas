@@ -40,12 +40,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-data/
+/data/
 
 # Local data files
 .cache/
 *.xlsx
 *.csv
+# Keyword research: ignore intermediate data, keep the final backlog.
+# Note: the pattern must exclude the directory *contents* (`data/*`), not the
+# directory itself. Git cannot re-include a file whose parent directory is
+# excluded, so `data/` followed by `!data/backlog.csv` would silently fail.
+src/keyword-research/data/*
+!src/keyword-research/data/backlog.csv
 
 # Find Sherpas audit local runtime artifacts
 reports/*
