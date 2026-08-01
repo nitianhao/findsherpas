@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { readCsv, writeCsv, fromCsv } from '../io/csv';
+import { readKeywords } from '../io/keywordRows';
 import { parsePlannerCsv, mergePlannerData, stripPlannerPreamble } from '../planner/keywordPlanner';
 import type { Keyword } from '../types';
 
@@ -11,7 +12,7 @@ const IN = 'src/keyword-research/data/stage2-filtered.csv';
 const PLANNER_DIR = 'src/keyword-research/data/planner';
 const OUT = 'src/keyword-research/data/stage4-with-volume.csv';
 
-const keywords = readCsv(IN) as unknown as Keyword[];
+const keywords = readKeywords(IN);
 
 const merged = new Map<string, { avgMonthlySearches: number; topOfPageBid: number }>();
 const files = readdirSync(PLANNER_DIR).filter((f) => f.startsWith('planner-results') && f.endsWith('.csv'));

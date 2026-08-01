@@ -1,4 +1,5 @@
 import type { SerpResult, SerpSnapshot } from '../types';
+import { classifyOwner } from './ownerClassifier';
 
 // ---------------------------------------------------------------------------
 // Stage 3: SERP recon
@@ -56,6 +57,29 @@ export function serpWeakness(results: SerpResult[]): number {
   // it is. Who owns page one matters more than how long their pages are.
   const score = ownerScore + (thinFraction - 0.5) * 0.2;
   return Math.min(1, Math.max(0, score));
+}
+
+/**
+ * Bump when classifyOwner's rules or serpWeakness's formula change. Stored
+ * snapshots carry the version they were computed under, so a stale cache is
+ * detected instead of silently reused.
+ *
+ * Why this exists: ownerType and weakness are computed at fetch time and
+ * frozen into stage3-serps.json. A later classifier fix corrected 64.5% of
+ * stored classifications in code — but the cached file kept the old values,
+ * and the fetcher skips terms already present, so re-running printed
+ * "Nothing to do" and exited 0. The fix was inert against the only data that
+ * existed.
+ */
+export const CLASSIFIER_VERSION = 2;
+
+/**
+ * Recompute ownerType and weakness for a stored snapshot using today's rules.
+ * Pure and offline — the URLs are already on disk, so no refetch is needed.
+ */
+export function reclassifySnapshot(snapshot: SerpSnapshot): SerpSnapshot {
+  const results = snapshot.results.map((r) => ({ ...r, ownerType: classifyOwner(r.url) }));
+  return { ...snapshot, results, weakness: serpWeakness(results) };
 }
 
 export function buildSnapshot(

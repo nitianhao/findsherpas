@@ -1,5 +1,5 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
-import { readCsv } from '../io/csv';
+import { readKeywords } from '../io/keywordRows';
 import { batchForPlanner } from '../planner/keywordPlanner';
 import type { Keyword } from '../types';
 
@@ -10,7 +10,7 @@ import type { Keyword } from '../types';
 const IN = 'src/keyword-research/data/stage2-filtered.csv';
 const OUT_DIR = 'src/keyword-research/data/planner';
 
-const terms = (readCsv(IN) as unknown as Keyword[]).map((k) => k.term);
+const terms = readKeywords(IN).map((k) => k.term);
 const batches = batchForPlanner(terms);
 
 mkdirSync(OUT_DIR, { recursive: true });

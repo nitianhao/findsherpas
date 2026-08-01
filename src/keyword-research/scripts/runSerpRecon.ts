@@ -1,12 +1,13 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { readCsv } from '../io/csv';
+import { readKeywords } from '../io/keywordRows';
 import {
   fetchSerpsSequentially,
   DdgBlockedError,
   DDG_REQUEST_DELAY_MS,
 } from '../serp/duckduckgoSerp';
+import { CLASSIFIER_VERSION } from '../serp/serpRecon';
 import type { Keyword, SerpSnapshot } from '../types';
 
 // ---------------------------------------------------------------------------
@@ -71,25 +72,54 @@ function parseLimit(argv: string[]): number | undefined {
   return n;
 }
 
+/**
+ * Load the cache, refusing to resume onto snapshots classified under older
+ * rules. ownerType and weakness are frozen at fetch time, and this script skips
+ * terms already present — so without this check a classifier change never
+ * reaches cached data and a re-run reports "Nothing to do" while the stale
+ * values quietly feed clustering and scoring.
+ */
 function loadExisting(path: string): Record<string, SerpSnapshot> {
   if (!existsSync(path)) return {};
+  let parsed: unknown;
   try {
-    return JSON.parse(readFileSync(path, 'utf8')) as Record<string, SerpSnapshot>;
+    parsed = JSON.parse(readFileSync(path, 'utf8'));
   } catch {
     console.warn(`Warning: ${path} exists but is not valid JSON — starting fresh.`);
     return {};
   }
+
+  const isVersioned =
+    !!parsed && typeof parsed === 'object' && 'snapshots' in (parsed as object);
+  const version = isVersioned
+    ? ((parsed as { classifierVersion?: number }).classifierVersion ?? 1)
+    : 1;
+  const snapshots = isVersioned
+    ? (parsed as { snapshots: Record<string, SerpSnapshot> }).snapshots
+    : (parsed as Record<string, SerpSnapshot>);
+
+  if (version !== CLASSIFIER_VERSION) {
+    throw new Error(
+      `${path} was classified under v${version} but the current classifier is ` +
+        `v${CLASSIFIER_VERSION}. Its stored ownerType and weakness are stale. ` +
+        `Run: npm run kw:reclassify (offline, no refetch), then re-run this.`,
+    );
+  }
+
+  return snapshots;
 }
 
 function save(path: string, data: Record<string, SerpSnapshot>): void {
   mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, JSON.stringify(data, null, 2), 'utf8');
+  // Always stamp the version so a later classifier change is detected.
+  const payload = { classifierVersion: CLASSIFIER_VERSION, snapshots: data };
+  writeFileSync(path, JSON.stringify(payload, null, 2), 'utf8');
 }
 
 async function main() {
   const limit = parseLimit(process.argv.slice(2));
 
-  const allTerms = (readCsv(IN) as unknown as Keyword[]).map((k) => k.term);
+  const allTerms = readKeywords(IN).map((k) => k.term);
   const distinctCommercialTerms = [...new Set(allTerms.filter(hasCommercialIntent))];
 
   const results = loadExisting(OUT);
