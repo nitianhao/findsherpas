@@ -26,7 +26,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/frameworks/search-failure-modes"
-                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Failure modes
                 </Link>
@@ -34,7 +34,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/frameworks/query-interpretation"
-                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Query interpretation
                 </Link>
@@ -42,7 +42,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/search-check"
-                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Search check
                 </Link>
@@ -50,7 +50,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/about"
-                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
                 >
                   About
                 </Link>
@@ -67,7 +67,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/#what-we-do"
-                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Approach
                 </Link>
@@ -75,7 +75,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/book-a-call"
-                  className="inline-block py-1 -my-1 text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Contact
                 </Link>
@@ -114,7 +114,7 @@ export function SiteFooter() {
           <div className="mt-3 text-sm text-muted-foreground">
             <a
               href="mailto:michal@findsherpas.com"
-              className="inline-block py-1 transition-colors hover:text-foreground"
+              className="inline-flex min-h-11 items-center transition-colors hover:text-foreground"
             >
               michal@findsherpas.com
             </a>

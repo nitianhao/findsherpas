@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities -- Editorial examples intentionally preserve literal search-query punctuation. */
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -29,10 +30,10 @@ function Pill({
   variant?: "default" | "highlight" | "danger" | "muted" | "success";
 }) {
   const styles = {
-    default:   "border-gray-200   bg-gray-50    text-gray-800",
+    default:   "border-border   bg-muted/40    text-foreground/90",
     highlight: "border-blue-200   bg-blue-50    text-blue-800",
     danger:    "border-red-200    bg-red-50     text-red-700",
-    muted:     "border-gray-100   bg-white      text-gray-400",
+    muted:     "border-border/50   bg-card      text-muted-foreground/70",
     success:   "border-emerald-200 bg-emerald-50 text-emerald-800",
   };
   return (
@@ -44,7 +45,7 @@ function Pill({
 
 function Arrow({ dir = "down" }: { dir?: "down" | "right" }) {
   return (
-    <span className={`select-none text-gray-300 ${dir === "right" ? "text-base" : "text-lg"}`}>
+    <span className={`select-none text-border ${dir === "right" ? "text-base" : "text-lg"}`}>
       {dir === "down" ? "↓" : "→"}
     </span>
   );
@@ -60,14 +61,14 @@ function Box({
   label?: string;
 }) {
   const styles = {
-    default:   "border-gray-200 bg-gray-50   text-gray-800",
+    default:   "border-border bg-muted/40   text-foreground/90",
     danger:    "border-red-200  bg-red-50    text-red-700",
     highlight: "border-blue-200 bg-blue-50   text-blue-800",
     success:   "border-emerald-200 bg-emerald-50 text-emerald-700",
   };
   return (
     <div className="flex flex-col items-center gap-1">
-      {label && <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-400">{label}</span>}
+      {label && <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground/70">{label}</span>}
       <div className={`rounded-lg border px-4 py-2.5 text-sm font-medium ${styles[variant]}`}>
         {children}
       </div>
@@ -122,8 +123,8 @@ export default function SearchFailureModesPage() {
       {/* ── System pipeline diagram ── */}
       <section className="pb-8 sm:pb-12">
         <div className="mx-auto max-w-3xl">
-          <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          <div className="rounded-xl border border-border bg-muted/40 p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Search system pipeline
             </p>
 
@@ -139,12 +140,12 @@ export default function SearchFailureModesPage() {
                 <div key={stage} className="flex flex-col items-center gap-1">
                   <span className={`rounded-full border px-3 py-1.5 text-sm font-medium ${
                     i === 0 || i === 4
-                      ? "border-gray-300 bg-white text-gray-700"
+                      ? "border-input bg-card text-foreground/80"
                       : "border-blue-200 bg-blue-50 text-blue-800"
                   }`}>
                     {stage}
                   </span>
-                  {i < 4 && <span className="text-gray-300 text-base">↓</span>}
+                  {i < 4 && <span className="text-border text-base">↓</span>}
                 </div>
               ))}
             </div>
@@ -161,7 +162,7 @@ export default function SearchFailureModesPage() {
                 <div key={stage} className="flex items-center gap-2">
                   <span className={`rounded-full border px-3 py-1.5 text-sm font-medium ${
                     i === 0 || i === 4
-                      ? "border-gray-300 bg-white text-gray-700"
+                      ? "border-input bg-card text-foreground/80"
                       : "border-blue-200 bg-blue-50 text-blue-800"
                   }`}>
                     {stage}
@@ -172,8 +173,8 @@ export default function SearchFailureModesPage() {
             </div>
 
             {/* Failure modes mapped to pipeline */}
-            <div className="mt-6 border-t border-gray-200 pt-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            <div className="mt-6 border-t border-border pt-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground/70">
                 Where failures occur
               </p>
               <div className="mt-3 grid gap-2 sm:grid-cols-2">
@@ -183,11 +184,11 @@ export default function SearchFailureModesPage() {
                     <a
                       key={item.id}
                       href={`#${item.id}`}
-                      className="flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm transition-colors hover:border-gray-400"
+                      className="flex min-h-11 items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5 text-sm transition-colors hover:border-muted-foreground/70"
                     >
-                      <Icon size={14} strokeWidth={1.5} className="shrink-0 text-gray-400" />
-                      <span className="font-medium text-gray-700">{item.title}</span>
-                      <span className="ml-auto text-xs text-gray-400">{item.pipeline}</span>
+                      <Icon size={14} strokeWidth={1.5} className="shrink-0 text-muted-foreground/70" />
+                      <span className="font-medium text-foreground/80">{item.title}</span>
+                      <span className="ml-auto text-xs text-muted-foreground/70">{item.pipeline}</span>
                     </a>
                   );
                 })}
@@ -205,13 +206,13 @@ export default function SearchFailureModesPage() {
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tabular-nums text-muted-foreground/50">01</p>
           <div className="mt-2 flex items-center gap-2">
-            <MessageSquare size={18} strokeWidth={1.5} className="shrink-0 text-gray-500" />
+            <MessageSquare size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
             <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">Query understanding failures</h2>
           </div>
 
           {/* Diagram */}
-          <div className="mt-6 rounded-xl border border-gray-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Parsing pipeline</p>
+          <div className="mt-6 rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Parsing pipeline</p>
             <div className="mt-5 flex flex-col items-center gap-1.5">
               <Pill>red dress size 38</Pill>
               <Arrow />
@@ -231,7 +232,7 @@ export default function SearchFailureModesPage() {
                 <Box variant="danger">Keyword scatter</Box>
               </div>
             </div>
-            <p className="mt-5 text-xs text-gray-500 text-center">
+            <p className="mt-5 text-xs text-muted-foreground text-center">
               When queries are not decomposed, attribute intent is lost at the ranking stage.
             </p>
           </div>
@@ -241,7 +242,7 @@ export default function SearchFailureModesPage() {
           </p>
 
           <div className="mt-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Symptoms</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Symptoms</p>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
               {[
                 'Compound queries like "red running shoes size 42" split into unrelated fragments',
@@ -249,16 +250,16 @@ export default function SearchFailureModesPage() {
                 'Synonyms incomplete — "sneakers" and "trainers" return different result sets',
                 "Misspellings and regional variants return zero results",
               ].map((s) => (
-                <div key={s} className="rounded-lg border border-gray-200 p-4 text-sm text-gray-700">
+                <div key={s} className="rounded-lg border border-border p-4 text-sm text-foreground/80">
                   <span className="mr-1.5 font-semibold text-red-400">—</span>{s}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 px-5 py-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Why teams miss it</p>
-            <p className="mt-2 text-sm text-gray-600">Teams test with queries they already know work. Real user queries are more varied, misspelled, and structurally complex than internal test cases.</p>
+          <div className="mt-6 rounded-lg border border-border bg-muted/40 px-5 py-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Why teams miss it</p>
+            <p className="mt-2 text-sm text-muted-foreground">Teams test with queries they already know work. Real user queries are more varied, misspelled, and structurally complex than internal test cases.</p>
           </div>
 
           <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-5 py-4">
@@ -275,13 +276,13 @@ export default function SearchFailureModesPage() {
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tabular-nums text-muted-foreground/50">02</p>
           <div className="mt-2 flex items-center gap-2">
-            <ArrowUpDown size={18} strokeWidth={1.5} className="shrink-0 text-gray-500" />
+            <ArrowUpDown size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
             <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">Ranking failures</h2>
           </div>
 
           {/* Diagram */}
-          <div className="mt-6 rounded-xl border border-gray-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Ranking pipeline</p>
+          <div className="mt-6 rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Ranking pipeline</p>
             <div className="mt-5 flex flex-col items-center gap-1.5">
               <Box>Candidate products</Box>
               <Arrow />
@@ -298,7 +299,7 @@ export default function SearchFailureModesPage() {
                   <div key={pos} className={`flex items-center gap-3 rounded-md border px-3 py-2 text-sm ${
                     good  ? "border-emerald-200 bg-emerald-50 text-emerald-800" :
                     bad   ? "border-red-100 bg-red-50 text-red-600" :
-                            "border-gray-100 text-gray-400"
+                            "border-border/50 text-muted-foreground/70"
                   }`}>
                     <span className="w-8 shrink-0 font-mono text-xs font-bold">{pos}</span>
                     <span>{label}</span>
@@ -306,7 +307,7 @@ export default function SearchFailureModesPage() {
                 ))}
               </div>
             </div>
-            <p className="mt-5 text-xs text-center text-gray-500">
+            <p className="mt-5 text-xs text-center text-muted-foreground">
               The right product exists — it just never surfaces where users can find it.
             </p>
           </div>
@@ -316,7 +317,7 @@ export default function SearchFailureModesPage() {
           </p>
 
           <div className="mt-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Symptoms</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Symptoms</p>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
               {[
                 "Bestselling products for a given query buried below position 10",
@@ -324,16 +325,16 @@ export default function SearchFailureModesPage() {
                 "Category-level ranking weights produce inconsistent ordering across product types",
                 "Result order changes after config updates, but no one evaluates the difference",
               ].map((s) => (
-                <div key={s} className="rounded-lg border border-gray-200 p-4 text-sm text-gray-700">
+                <div key={s} className="rounded-lg border border-border p-4 text-sm text-foreground/80">
                   <span className="mr-1.5 font-semibold text-red-400">—</span>{s}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 px-5 py-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Why teams miss it</p>
-            <p className="mt-2 text-sm text-gray-600">Ranking problems are invisible in aggregate metrics. Without query-level result inspection, ranking degradation goes unnoticed.</p>
+          <div className="mt-6 rounded-lg border border-border bg-muted/40 px-5 py-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Why teams miss it</p>
+            <p className="mt-2 text-sm text-muted-foreground">Ranking problems are invisible in aggregate metrics. Without query-level result inspection, ranking degradation goes unnoticed.</p>
           </div>
 
           <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-5 py-4">
@@ -350,20 +351,20 @@ export default function SearchFailureModesPage() {
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tabular-nums text-muted-foreground/50">03</p>
           <div className="mt-2 flex items-center gap-2">
-            <PackageSearch size={18} strokeWidth={1.5} className="shrink-0 text-gray-500" />
+            <PackageSearch size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
             <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">Coverage failures</h2>
           </div>
 
           {/* Diagram */}
-          <div className="mt-6 rounded-xl border border-gray-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Catalog vs. visible results</p>
+          <div className="mt-6 rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Catalog vs. visible results</p>
             <div className="mt-5 flex flex-col items-center gap-1.5">
               <div className="grid grid-cols-3 gap-2 w-full">
                 {["Product A", "Product B", "Product C", "Product D", "Product E", "Product F"].map((p) => (
-                  <div key={p} className="rounded border border-gray-200 bg-gray-50 p-2 text-center text-xs text-gray-600">{p}</div>
+                  <div key={p} className="rounded border border-border bg-muted/40 p-2 text-center text-xs text-muted-foreground">{p}</div>
                 ))}
               </div>
-              <p className="text-xs text-gray-400">Full catalog (6 products)</p>
+              <p className="text-xs text-muted-foreground/70">Full catalog (6 products)</p>
               <Arrow />
               <Box variant="highlight">Filtering / indexing</Box>
               <Arrow />
@@ -379,9 +380,9 @@ export default function SearchFailureModesPage() {
                   <div key={p} className={`rounded border p-2 text-center text-xs ${ok ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-red-200 bg-red-50 text-red-400 line-through"}`}>{p}</div>
                 ))}
               </div>
-              <p className="text-xs text-gray-400">Visible in search (3 of 6)</p>
+              <p className="text-xs text-muted-foreground/70">Visible in search (3 of 6)</p>
             </div>
-            <p className="mt-5 text-xs text-center text-gray-500">
+            <p className="mt-5 text-xs text-center text-muted-foreground">
               Products B, D, E exist in the catalog but never appear in results.
             </p>
           </div>
@@ -391,7 +392,7 @@ export default function SearchFailureModesPage() {
           </p>
 
           <div className="mt-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Symptoms</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Symptoms</p>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
               {[
                 "Long-tail queries return zero results despite matching products existing in the catalog",
@@ -399,16 +400,16 @@ export default function SearchFailureModesPage() {
                 "Filters and facets exclude valid products due to missing or inconsistent attribute data",
                 "Category-specific terminology doesn't map to how users actually search",
               ].map((s) => (
-                <div key={s} className="rounded-lg border border-gray-200 p-4 text-sm text-gray-700">
+                <div key={s} className="rounded-lg border border-border p-4 text-sm text-foreground/80">
                   <span className="mr-1.5 font-semibold text-red-400">—</span>{s}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 px-5 py-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Why teams miss it</p>
-            <p className="mt-2 text-sm text-gray-600">Zero-result rates are rarely monitored at the query level. Teams see a low overall zero-result percentage and assume coverage is fine.</p>
+          <div className="mt-6 rounded-lg border border-border bg-muted/40 px-5 py-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Why teams miss it</p>
+            <p className="mt-2 text-sm text-muted-foreground">Zero-result rates are rarely monitored at the query level. Teams see a low overall zero-result percentage and assume coverage is fine.</p>
           </div>
 
           <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-5 py-4">
@@ -425,13 +426,13 @@ export default function SearchFailureModesPage() {
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tabular-nums text-muted-foreground/50">04</p>
           <div className="mt-2 flex items-center gap-2">
-            <BarChart2 size={18} strokeWidth={1.5} className="shrink-0 text-gray-500" />
+            <BarChart2 size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
             <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">Evaluation failures</h2>
           </div>
 
           {/* Diagram */}
-          <div className="mt-6 rounded-xl border border-gray-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Broken feedback loop</p>
+          <div className="mt-6 rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Broken feedback loop</p>
             <div className="mt-5 flex flex-col items-center gap-1.5">
               <Box variant="highlight">Search change</Box>
               <Arrow />
@@ -441,8 +442,8 @@ export default function SearchFailureModesPage() {
               <Arrow />
               <Box variant="danger">Next change based on bad signal</Box>
             </div>
-            <div className="mt-5 border-t border-dashed border-gray-200 pt-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Healthy loop</p>
+            <div className="mt-5 border-t border-dashed border-border pt-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Healthy loop</p>
               <div className="mt-3 flex flex-col items-center gap-1.5">
                 <Box variant="success">Search change</Box>
                 <Arrow />
@@ -458,7 +459,7 @@ export default function SearchFailureModesPage() {
           </p>
 
           <div className="mt-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Symptoms</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Symptoms</p>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
               {[
                 "No representative query test set exists for the catalog",
@@ -466,16 +467,16 @@ export default function SearchFailureModesPage() {
                 "Ranking changes deployed without before/after comparison",
                 "Search quality metrics (nDCG, precision, recall) not tracked or not understood",
               ].map((s) => (
-                <div key={s} className="rounded-lg border border-gray-200 p-4 text-sm text-gray-700">
+                <div key={s} className="rounded-lg border border-border p-4 text-sm text-foreground/80">
                   <span className="mr-1.5 font-semibold text-red-400">—</span>{s}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 px-5 py-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Why teams miss it</p>
-            <p className="mt-2 text-sm text-gray-600">Search evaluation requires deliberate setup: curated query sets, relevance judgments, comparison tooling. Without it, teams rely on anecdotal checks and aggregate analytics that mask individual query failures.</p>
+          <div className="mt-6 rounded-lg border border-border bg-muted/40 px-5 py-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Why teams miss it</p>
+            <p className="mt-2 text-sm text-muted-foreground">Search evaluation requires deliberate setup: curated query sets, relevance judgments, comparison tooling. Without it, teams rely on anecdotal checks and aggregate analytics that mask individual query failures.</p>
           </div>
 
           <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-5 py-4">
@@ -492,23 +493,23 @@ export default function SearchFailureModesPage() {
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tabular-nums text-muted-foreground/50">05</p>
           <div className="mt-2 flex items-center gap-2">
-            <Tag size={18} strokeWidth={1.5} className="shrink-0 text-gray-500" />
+            <Tag size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
             <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">Merchandising distortions</h2>
           </div>
 
           {/* Diagram */}
-          <div className="mt-6 rounded-xl border border-gray-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Ranking override model</p>
+          <div className="mt-6 rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Ranking override model</p>
             <div className="mt-5 flex flex-col items-center gap-1.5">
               <div className="flex gap-4 items-end">
                 <div className="flex flex-col items-center gap-1">
                   <Box variant="success">Relevance score</Box>
-                  <span className="text-xs text-gray-400">from query match</span>
+                  <span className="text-xs text-muted-foreground/70">from query match</span>
                 </div>
-                <span className="mb-3 text-gray-300 text-xl font-light">+</span>
+                <span className="mb-3 text-border text-xl font-light">+</span>
                 <div className="flex flex-col items-center gap-1">
                   <Box variant="danger">Business rules</Box>
-                  <span className="text-xs text-gray-400">pins, boosts, buries</span>
+                  <span className="text-xs text-muted-foreground/70">pins, boosts, buries</span>
                 </div>
               </div>
               <Arrow />
@@ -522,7 +523,7 @@ export default function SearchFailureModesPage() {
                   <div key={rank} className={`flex items-center gap-3 rounded-md border px-3 py-2 text-sm ${
                     good ? "border-emerald-200 bg-emerald-50 text-emerald-800" :
                     bad  ? "border-red-100 bg-red-50 text-red-600" :
-                           "border-gray-100 text-gray-400"
+                           "border-border/50 text-muted-foreground/70"
                   }`}>
                     <span className="w-8 shrink-0 font-mono text-xs font-bold">{rank}</span>
                     <span>{label}</span>
@@ -537,7 +538,7 @@ export default function SearchFailureModesPage() {
           </p>
 
           <div className="mt-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Symptoms</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Symptoms</p>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
               {[
                 "Pinned products remain at the top long after promotions end",
@@ -545,16 +546,16 @@ export default function SearchFailureModesPage() {
                 "Seasonal merchandising rules not removed after the season",
                 "Competing rules across teams create inconsistent result behavior",
               ].map((s) => (
-                <div key={s} className="rounded-lg border border-gray-200 p-4 text-sm text-gray-700">
+                <div key={s} className="rounded-lg border border-border p-4 text-sm text-foreground/80">
                   <span className="mr-1.5 font-semibold text-red-400">—</span>{s}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 px-5 py-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Why teams miss it</p>
-            <p className="mt-2 text-sm text-gray-600">Merchandising rules are managed by different people at different times. There is rarely a single view of all active rules, their interactions, or their cumulative effect on ranking.</p>
+          <div className="mt-6 rounded-lg border border-border bg-muted/40 px-5 py-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Why teams miss it</p>
+            <p className="mt-2 text-sm text-muted-foreground">Merchandising rules are managed by different people at different times. There is rarely a single view of all active rules, their interactions, or their cumulative effect on ranking.</p>
           </div>
 
           <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-5 py-4">
@@ -571,13 +572,13 @@ export default function SearchFailureModesPage() {
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tabular-nums text-muted-foreground/50">06</p>
           <div className="mt-2 flex items-center gap-2">
-            <Timer size={18} strokeWidth={1.5} className="shrink-0 text-gray-500" />
+            <Timer size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
             <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">Operational drift</h2>
           </div>
 
           {/* Diagram */}
-          <div className="mt-6 rounded-xl border border-gray-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Configuration timeline</p>
+          <div className="mt-6 rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Configuration timeline</p>
             <div className="mt-5 flex flex-col items-center gap-1.5">
               {[
                 { label: "Initial configuration",  note: "Clean, intentional setup",                variant: "success"   as const },
@@ -591,17 +592,17 @@ export default function SearchFailureModesPage() {
                     step.variant === "success"   ? "border-emerald-200 bg-emerald-50"  :
                     step.variant === "highlight" ? "border-blue-200   bg-blue-50"     :
                     step.variant === "danger"    ? "border-red-200    bg-red-50"      :
-                                                   "border-gray-200   bg-gray-50"
+                                                   "border-border   bg-muted/40"
                   }`}>
                     <span className={`text-sm font-medium ${
                       step.variant === "success"   ? "text-emerald-800" :
                       step.variant === "highlight" ? "text-blue-800"    :
                       step.variant === "danger"    ? "text-red-700"     :
-                                                     "text-gray-700"
+                                                     "text-foreground/80"
                     }`}>{step.label}</span>
-                    <span className="text-xs text-gray-400">{step.note}</span>
+                    <span className="text-xs text-muted-foreground/70">{step.note}</span>
                   </div>
-                  {i < 4 && <span className="my-1 text-gray-300">↓</span>}
+                  {i < 4 && <span className="my-1 text-border">↓</span>}
                 </div>
               ))}
             </div>
@@ -612,7 +613,7 @@ export default function SearchFailureModesPage() {
           </p>
 
           <div className="mt-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Symptoms</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Symptoms</p>
             <div className="mt-3 grid gap-3 md:grid-cols-2">
               {[
                 "Synonym lists reference discontinued product lines or outdated terminology",
@@ -620,16 +621,16 @@ export default function SearchFailureModesPage() {
                 "Query rules written for a previous catalog structure produce unexpected results",
                 "Search platform upgrades introduce behavior changes that aren't reviewed",
               ].map((s) => (
-                <div key={s} className="rounded-lg border border-gray-200 p-4 text-sm text-gray-700">
+                <div key={s} className="rounded-lg border border-border p-4 text-sm text-foreground/80">
                   <span className="mr-1.5 font-semibold text-red-400">—</span>{s}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 px-5 py-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Why teams miss it</p>
-            <p className="mt-2 text-sm text-gray-600">Search is treated as infrastructure rather than a product. After initial setup, it receives attention only when something visibly breaks. Gradual degradation doesn't trigger alerts.</p>
+          <div className="mt-6 rounded-lg border border-border bg-muted/40 px-5 py-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Why teams miss it</p>
+            <p className="mt-2 text-sm text-muted-foreground">Search is treated as infrastructure rather than a product. After initial setup, it receives attention only when something visibly breaks. Gradual degradation doesn't trigger alerts.</p>
           </div>
 
           <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-5 py-4">
@@ -690,7 +691,7 @@ export default function SearchFailureModesPage() {
 
               <Link
                 href="/frameworks/query-interpretation"
-                className="group flex flex-col rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-gray-400"
+                className="group flex flex-col rounded-lg border border-border bg-card p-4 transition-colors hover:border-muted-foreground/70"
               >
                 <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/50">
                   Related framework
@@ -703,7 +704,7 @@ export default function SearchFailureModesPage() {
 
               <Link
                 href="/book-a-call"
-                className="group flex flex-col rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-gray-400"
+                className="group flex flex-col rounded-lg border border-border bg-card p-4 transition-colors hover:border-muted-foreground/70"
               >
                 <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/50">
                   Get help

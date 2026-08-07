@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities -- Editorial examples intentionally preserve literal search-query punctuation. */
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Layers, Tag, RefreshCw, Cpu, HelpCircle } from "lucide-react";
@@ -58,8 +59,8 @@ export default function QueryInterpretationPage() {
       {/* ── Interpretation map ── */}
       <section className="pb-8 sm:pb-12">
         <div className="mx-auto max-w-3xl">
-          <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          <div className="rounded-xl border border-border bg-muted/40 p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Five interpretation challenges
             </p>
 
@@ -71,14 +72,14 @@ export default function QueryInterpretationPage() {
                   <div key={item.id} className="flex flex-col items-center gap-1">
                     <a
                       href={`#${item.id}`}
-                      className="inline-flex w-full items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:border-gray-400 hover:text-gray-900"
+                      className="inline-flex min-h-11 w-full items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground/80 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:border-muted-foreground/70 hover:text-foreground"
                     >
-                      <Icon size={13} strokeWidth={1.5} className="shrink-0 text-gray-500" />
+                      <Icon size={13} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
                       <span className="mr-auto">{item.label}</span>
-                      <span className="text-xs text-gray-400">{i + 1}</span>
+                      <span className="text-xs text-muted-foreground/70">{i + 1}</span>
                     </a>
                     {i < overviewItems.length - 1 && (
-                      <span className="select-none text-sm text-gray-300">↓</span>
+                      <span className="select-none text-sm text-border">↓</span>
                     )}
                   </div>
                 );
@@ -93,20 +94,20 @@ export default function QueryInterpretationPage() {
                   <div key={item.id} className="flex items-center gap-2">
                     <a
                       href={`#${item.id}`}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:border-gray-400 hover:text-gray-900"
+                      className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-foreground/80 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:border-muted-foreground/70 hover:text-foreground"
                     >
-                      <Icon size={13} strokeWidth={1.5} className="text-gray-500" />
+                      <Icon size={13} strokeWidth={1.5} className="text-muted-foreground" />
                       {item.label}
                     </a>
                     {i < overviewItems.length - 1 && (
-                      <span className="select-none text-gray-300">→</span>
+                      <span className="select-none text-border">→</span>
                     )}
                   </div>
                 );
               })}
             </div>
 
-            <p className="mt-4 text-xs text-gray-500">
+            <p className="mt-4 text-xs text-muted-foreground">
               Each challenge compounds the others. Scroll to explore each one.
             </p>
           </div>
@@ -131,20 +132,20 @@ export default function QueryInterpretationPage() {
           </p>
 
           {/* Diagram */}
-          <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Query decomposition
             </p>
 
             {/* Query pill */}
             <div className="mt-5 flex justify-center">
-              <span className="rounded-full border border-gray-300 bg-gray-50 px-5 py-2 font-mono text-sm font-semibold text-gray-800">
+              <span className="rounded-full border border-input bg-muted/40 px-5 py-2 font-mono text-sm font-semibold text-foreground/90">
                 "red dress size 38"
               </span>
             </div>
 
             {/* Arrow */}
-            <div className="my-3 flex justify-center text-gray-300 text-lg">↓</div>
+            <div className="my-3 flex justify-center text-border text-lg">↓</div>
 
             {/* Good decomposition */}
             <div className="flex flex-wrap justify-center gap-3">
@@ -157,15 +158,15 @@ export default function QueryInterpretationPage() {
                   <span className="rounded-md border border-blue-200 bg-blue-50 px-3 py-1.5 text-sm font-semibold text-blue-800">
                     {token}
                   </span>
-                  <span className="flex items-center gap-1 text-xs text-gray-400">
-                    <span className="text-gray-300">→</span>
+                  <span className="flex items-center gap-1 text-xs text-muted-foreground/70">
+                    <span className="text-border">→</span>
                     {label}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="my-6 border-t border-dashed border-gray-200" />
+            <div className="my-6 border-t border-dashed border-border" />
 
             {/* Bad interpretation */}
             <p className="text-center text-xs font-semibold uppercase tracking-wide text-red-500">
@@ -178,14 +179,14 @@ export default function QueryInterpretationPage() {
                 </span>
               </div>
             </div>
-            <p className="mt-3 text-center text-xs text-gray-400">
+            <p className="mt-3 text-center text-xs text-muted-foreground/70">
               Partial keyword overlap only — attributes are ignored
             </p>
           </div>
 
           <div className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Example</p>
-            <p className="mt-2 text-sm leading-relaxed text-gray-600">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Example</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
               "red dress size 38" — the engine matches on partial keyword
               overlap instead of filtering by color and size as distinct attributes.
             </p>
@@ -213,18 +214,18 @@ export default function QueryInterpretationPage() {
           </p>
 
           {/* Diagram */}
-          <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Attribute mapping
             </p>
 
             <div className="mt-5 flex justify-center">
-              <span className="rounded-full border border-gray-300 bg-gray-50 px-5 py-2 font-mono text-sm font-semibold text-gray-800">
+              <span className="rounded-full border border-input bg-muted/40 px-5 py-2 font-mono text-sm font-semibold text-foreground/90">
                 "waterproof hiking jacket men"
               </span>
             </div>
 
-            <div className="my-5 flex justify-center text-gray-300 text-lg">↓</div>
+            <div className="my-5 flex justify-center text-border text-lg">↓</div>
 
             <div className="mx-auto max-w-xs space-y-2">
               {[
@@ -234,10 +235,10 @@ export default function QueryInterpretationPage() {
                 { word: "men",        attr: "gender",       ok: true  },
               ].map(({ word, attr }) => (
                 <div key={word} className="flex items-center gap-3">
-                  <span className="w-28 shrink-0 rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-center font-mono text-sm font-medium text-gray-800">
+                  <span className="w-28 shrink-0 rounded-md border border-border bg-muted/40 px-3 py-1.5 text-center font-mono text-sm font-medium text-foreground/90">
                     {word}
                   </span>
-                  <span className="text-gray-300">→</span>
+                  <span className="text-border">→</span>
                   <span className="rounded-md border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-sm text-emerald-700">
                     {attr}
                   </span>
@@ -245,19 +246,19 @@ export default function QueryInterpretationPage() {
               ))}
             </div>
 
-            <div className="my-6 border-t border-dashed border-gray-200" />
+            <div className="my-6 border-t border-dashed border-border" />
 
             <p className="text-center text-xs font-semibold uppercase tracking-wide text-red-500">
               Without attribute mapping
             </p>
-            <p className="mt-2 text-center text-xs text-gray-400">
+            <p className="mt-2 text-center text-xs text-muted-foreground/70">
               All four words matched against product description text → noisy results
             </p>
           </div>
 
           <div className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Example</p>
-            <p className="mt-2 text-sm leading-relaxed text-gray-600">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Example</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
               "waterproof hiking jacket men" — "waterproof" is a product
               property, "men" is a gender filter, but both are matched against
               description text instead of faceted attributes.
@@ -284,18 +285,18 @@ export default function QueryInterpretationPage() {
           </p>
 
           {/* Diagram */}
-          <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Synonym expansion
             </p>
 
             <div className="mt-5 flex justify-center">
-              <span className="rounded-full border border-gray-300 bg-gray-50 px-5 py-2 font-mono text-sm font-semibold text-gray-800">
+              <span className="rounded-full border border-input bg-muted/40 px-5 py-2 font-mono text-sm font-semibold text-foreground/90">
                 sneakers
               </span>
             </div>
 
-            <div className="my-5 flex justify-center text-gray-300 text-lg">↓</div>
+            <div className="my-5 flex justify-center text-border text-lg">↓</div>
 
             <div className="flex flex-wrap justify-center gap-3">
               {[
@@ -311,12 +312,12 @@ export default function QueryInterpretationPage() {
                   }`}>
                     {term}
                   </span>
-                  <span className="text-xs text-gray-400">{note}</span>
+                  <span className="text-xs text-muted-foreground/70">{note}</span>
                 </div>
               ))}
             </div>
 
-            <div className="my-6 border-t border-dashed border-gray-200" />
+            <div className="my-6 border-t border-dashed border-border" />
 
             <div className="rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-800">
               <span className="font-semibold">The limit of synonyms: </span>
@@ -326,8 +327,8 @@ export default function QueryInterpretationPage() {
           </div>
 
           <div className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Example</p>
-            <p className="mt-2 text-sm leading-relaxed text-gray-600">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Example</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
               "sneakers" mapped to "trainers" works. But "running shoes" mapped
               to "sneakers" may surface casual shoes instead of performance
               footwear. The synonym is correct; the interpretation is wrong.
@@ -357,8 +358,8 @@ export default function QueryInterpretationPage() {
           </p>
 
           {/* Diagram */}
-          <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Processing pipeline
             </p>
 
@@ -374,15 +375,15 @@ export default function QueryInterpretationPage() {
                   <div className={`flex w-full max-w-sm items-center justify-between gap-3 rounded-lg border px-4 py-3 ${
                     step.highlight
                       ? "border-red-200 bg-red-50"
-                      : "border-gray-200 bg-gray-50"
+                      : "border-border bg-muted/40"
                   }`}>
-                    <span className="shrink-0 text-xs font-semibold text-gray-500">{step.label}</span>
-                    <span className={`overflow-x-auto font-mono text-sm ${step.highlight ? "text-red-700" : "text-gray-800"}`}>
+                    <span className="shrink-0 text-xs font-semibold text-muted-foreground">{step.label}</span>
+                    <span className={`overflow-x-auto font-mono text-sm ${step.highlight ? "text-red-700" : "text-foreground/90"}`}>
                       {step.value}
                     </span>
                   </div>
                   {i < 4 && (
-                    <span className="my-1 text-gray-300">↓</span>
+                    <span className="my-1 text-border">↓</span>
                   )}
                 </div>
               ))}
@@ -396,8 +397,8 @@ export default function QueryInterpretationPage() {
           </div>
 
           <div className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Example</p>
-            <p className="mt-2 text-sm leading-relaxed text-gray-600">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Example</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
               "t-shirt" tokenized as ["t", "shirt"] matches any product
               containing the word "shirt." Hyphenated terms, model numbers,
               and SKU-like queries are especially fragile.
@@ -425,27 +426,27 @@ export default function QueryInterpretationPage() {
           </p>
 
           {/* Diagram */}
-          <div className="mt-8 rounded-xl border border-gray-200 bg-white p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Intent branching
             </p>
 
             <div className="mt-5 flex justify-center">
-              <span className="rounded-full border border-gray-300 bg-gray-50 px-5 py-2 font-mono text-sm font-semibold text-gray-800">
+              <span className="rounded-full border border-input bg-muted/40 px-5 py-2 font-mono text-sm font-semibold text-foreground/90">
                 apple
               </span>
             </div>
 
             <div className="my-5 grid grid-cols-2 gap-4">
               <div className="flex flex-col items-center gap-2">
-                <span className="text-gray-300 text-sm">↙</span>
+                <span className="text-border text-sm">↙</span>
                 <div className="w-full rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-center">
                   <p className="text-sm font-semibold text-emerald-800">🍎 apple fruit</p>
                   <p className="mt-1 text-xs text-emerald-600">grocery / produce intent</p>
                 </div>
               </div>
               <div className="flex flex-col items-center gap-2">
-                <span className="text-gray-300 text-sm">↘</span>
+                <span className="text-border text-sm">↘</span>
                 <div className="w-full rounded-lg border border-blue-200 bg-blue-50 p-3 text-center">
                   <p className="text-sm font-semibold text-blue-800"> Apple brand</p>
                   <p className="mt-1 text-xs text-blue-600">electronics / brand intent</p>
@@ -460,8 +461,8 @@ export default function QueryInterpretationPage() {
           </div>
 
           <div className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Example</p>
-            <p className="mt-2 text-sm leading-relaxed text-gray-600">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Example</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
               "apple" on a marketplace that sells both groceries and
               electronics — results fill with Apple-branded devices while actual
               produce is buried far below. A shopper looking for fruit assumes
@@ -485,9 +486,9 @@ export default function QueryInterpretationPage() {
             {failurePatterns.map((pattern) => (
               <div
                 key={pattern}
-                className="rounded-lg border border-gray-200 bg-white p-4 text-sm text-gray-700"
+                className="rounded-lg border border-border bg-card p-4 text-sm text-foreground/80"
               >
-                <span className="mr-2 font-semibold text-gray-400">—</span>
+                <span className="mr-2 font-semibold text-muted-foreground/70">—</span>
                 {pattern}
               </div>
             ))}
@@ -515,7 +516,7 @@ export default function QueryInterpretationPage() {
             matching — receives far less attention. Yet it determines what the
             ranking model actually works with.
           </p>
-          <p className="mt-4 rounded-lg border border-gray-200 bg-gray-50 px-5 py-4 text-sm font-medium text-gray-700">
+          <p className="mt-4 rounded-lg border border-border bg-muted/40 px-5 py-4 text-sm font-medium text-foreground/80">
             A well-ranked set of wrong candidates is still a failed search.
           </p>
         </div>
@@ -565,7 +566,7 @@ export default function QueryInterpretationPage() {
 
               <Link
                 href="/frameworks/search-failure-modes"
-                className="group flex flex-col rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-gray-400"
+                className="group flex flex-col rounded-lg border border-border bg-card p-4 transition-colors hover:border-muted-foreground/70"
               >
                 <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/50">
                   Related framework
@@ -578,7 +579,7 @@ export default function QueryInterpretationPage() {
 
               <Link
                 href="/book-a-call"
-                className="group flex flex-col rounded-lg border border-gray-200 bg-white p-4 transition-colors hover:border-gray-400"
+                className="group flex flex-col rounded-lg border border-border bg-card p-4 transition-colors hover:border-muted-foreground/70"
               >
                 <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/50">
                   Get help

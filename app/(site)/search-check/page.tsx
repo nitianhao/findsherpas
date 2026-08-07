@@ -148,9 +148,9 @@ export default function SearchCheckPage() {
           HOW TO USE THIS STRIP
           ================================================================ */}
       <div className="mx-auto mt-8 max-w-4xl px-0">
-        <div className="rounded-xl border border-gray-200 bg-white px-6 py-4">
-          <span className="text-sm font-semibold text-gray-900">How to use this &nbsp;&middot;&nbsp; </span>
-          <span className="text-sm text-gray-600">
+        <div className="rounded-xl border border-border bg-card px-6 py-4">
+          <span className="text-sm font-semibold text-foreground">How to use this &nbsp;&middot;&nbsp; </span>
+          <span className="text-sm text-muted-foreground">
             Run these checks on your own site. If you notice repeated warning
             signs, your search likely needs closer evaluation.
           </span>
@@ -166,32 +166,32 @@ export default function SearchCheckPage() {
             {checks.map((check) => (
               <div
                 key={check.number}
-                className="flex flex-col rounded-2xl border border-gray-200 bg-white p-4 sm:p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+                className="flex flex-col rounded-2xl border border-border bg-card p-4 sm:p-6 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
               >
                 {/* Top row: number + category */}
                 <div className="flex items-center gap-3">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-600 text-sm font-semibold text-white">
                     {check.number}
                   </span>
-                  <span className="text-[11px] uppercase tracking-[0.14em] text-gray-500">
+                  <span className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
                     {check.category}
                   </span>
                 </div>
 
                 {/* Title */}
                 <div className="mt-3 flex items-center gap-2">
-                  <check.icon size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
-                  <h3 className="text-lg font-semibold text-gray-900 sm:text-xl">{check.title}</h3>
+                  <check.icon size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
+                  <h3 className="text-lg font-semibold text-foreground sm:text-xl">{check.title}</h3>
                 </div>
 
                 {/* Instruction */}
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-muted-foreground">
                   {check.instruction}
                 </p>
 
                 {/* Example */}
                 <div className="mt-2">
-                  <span className="inline-flex rounded-full border border-gray-200 bg-gray-50 px-3 py-1 font-mono text-sm text-gray-800">
+                  <span className="inline-flex rounded-full border border-border bg-muted/40 px-3 py-1 font-mono text-sm text-foreground/90">
                     {check.example}
                   </span>
                 </div>
@@ -200,16 +200,16 @@ export default function SearchCheckPage() {
                 <ul className="mt-3 space-y-1.5">
                   {check.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-2">
-                      <span className="mt-[5px] inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-gray-400" />
-                      <span className="text-sm text-gray-700">{bullet}</span>
+                      <span className="mt-[5px] inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground/70" />
+                      <span className="text-sm text-foreground/80">{bullet}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* Bottom signal strip */}
                 <div className="mt-4 flex-1 content-end">
-                  <div className="rounded-lg bg-amber-50 px-3 py-2.5 text-sm text-gray-700 sm:px-4 sm:py-3">
-                    <span className="font-semibold text-amber-700">{check.signalLabel}</span>{" "}
+                  <div className="rounded-lg bg-warning px-3 py-2.5 text-sm text-warning-foreground sm:px-4 sm:py-3">
+                    <span className="font-semibold text-warning-strong">{check.signalLabel}</span>{" "}
                     {check.signal}
                   </div>
                 </div>
@@ -222,16 +222,16 @@ export default function SearchCheckPage() {
       {/* ================================================================
           INTERPRETATION
           ================================================================ */}
-      <section id="interpretation" className="-mx-4 scroll-mt-24 border-y border-gray-200 px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-16">
+      <section id="interpretation" className="-mx-4 scroll-mt-24 border-y border-border px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-xl font-semibold tracking-tight text-gray-900 sm:text-2xl">
+          <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
             How to interpret what you found
           </h2>
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-2 text-sm text-muted-foreground">
             Count how many checks showed meaningful warning signs.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-gray-200 bg-[#f7fbfb] p-4 sm:p-6">
+          <div className="mt-6 rounded-2xl border border-border bg-accent/30 p-4 sm:p-6">
             <div className="space-y-3">
               {/* Tier 1 */}
               <div className="flex items-start gap-4 rounded-lg border border-emerald-200 bg-emerald-50 px-5 py-4">

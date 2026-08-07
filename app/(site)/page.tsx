@@ -57,7 +57,7 @@ export default async function Home() {
             3. WHAT FIND SHERPAS DOES
             ============================================================ */}
         <section id="what-we-do" className="py-8 sm:py-12 lg:py-24">
-          <div className="border-t border-gray-200 pt-8">
+          <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
                 Diagnostic patterns
@@ -110,7 +110,7 @@ export default async function Home() {
             SEARCH CHECK PROMO
             ============================================================ */}
         <section id="search-check-promo" className="-mx-4 border-y border-primary/10 bg-gradient-to-br from-primary/[0.06] via-primary/[0.03] to-transparent px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-24">
-          <div className="border-t border-gray-200 pt-8">
+          <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-primary">
                 Quick diagnostic
@@ -216,13 +216,13 @@ export default async function Home() {
             4. HOW WE AUDIT SEARCH
             ============================================================ */}
         <section id="how-we-diagnose" className="-mx-4 bg-primary/[0.04] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-24">
-          <div className="border-t border-gray-200 pt-8">
+          <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
                 Diagnostic methodology
               </p>
               <div className="mt-3 flex items-center gap-2">
-                <Workflow size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
+                <Workflow size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
                 <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
                   How we diagnose search
                 </h2>
@@ -347,7 +347,7 @@ export default async function Home() {
             5. SEARCH FRAMEWORKS
             ============================================================ */}
         <section id="frameworks" className="-mx-4 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-24">
-          <div className="border-t border-gray-200 pt-8">
+          <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
                 Frameworks
@@ -438,7 +438,7 @@ export default async function Home() {
             6. OUR EXPERTISE
             ============================================================ */}
         <section id="expertise" className="py-8 sm:py-12 lg:py-24">
-          <div className="border-t border-gray-200 pt-8">
+          <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
               <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
                 Deep, narrow expertise
@@ -494,7 +494,7 @@ export default async function Home() {
         <section className="-mx-4 border-t border-border/30 bg-primary/[0.04] px-4 py-6 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-10 lg:-mx-8 lg:px-8 lg:py-14">
           <div className="mx-auto max-w-[1120px]">
             <div className="flex items-center gap-2">
-              <Database size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
+              <Database size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
               <h2 className="text-base font-semibold tracking-tight">
                 Search environments we&apos;ve worked in
               </h2>
@@ -531,10 +531,10 @@ export default async function Home() {
             WHAT TEAMS RECEIVE
             ============================================================ */}
         <section id="diagnostic-output" className="py-8 sm:py-12 lg:py-24">
-          <div className="border-t border-gray-200 pt-8">
+          <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
               <div className="flex items-center gap-2">
-                <CheckCircle size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
+                <CheckCircle size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
                 <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
                   What the diagnostic produces
                 </h2>
@@ -579,7 +579,7 @@ export default async function Home() {
             DIAGNOSTIC EXAMPLE
             ============================================================ */}
         <section className="-mx-4 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-24">
-          <div className="border-t border-gray-200 pt-8">
+          <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
                 Example diagnosis
@@ -646,7 +646,7 @@ export default async function Home() {
             CLOSING CTA
             ============================================================ */}
         <section id="homepage-cta" className="py-10 sm:py-16 lg:py-24">
-          <div className="border-t border-gray-200 pt-8">
+          <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-xl text-center">
               <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
                 If search feels hard to evaluate, that&apos;s usually a signal
