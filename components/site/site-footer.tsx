@@ -41,6 +41,14 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
+                  href="/blog"
+                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/search-check"
                   className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
                 >

@@ -1,0 +1,158 @@
+---
+title: "Faceted search best practices: it's a UX problem before it's a data problem"
+excerpt: "Most facet advice starts with cleaning up values. Start with whether anyone can find, read, or trust the filters at all."
+date: "2026-08-08"
+tags: ["faceted search", "ux", "ecommerce search", "filters"]
+featured: true
+seoTitle: "Faceted search best practices: fix discoverability before data"
+seoDescription: "Faceted search advice usually starts with data quality. That's the wrong order. Here's what actually breaks filters, and what to fix first."
+---
+
+A pharmacy client of mine had a category where the filters were built straight
+off the underlying regulatory data — ISO codes and the classification values
+the source system used internally. Every value was accurate. None of them
+meant anything to a shopper. You'd need to be the domain expert who wrote the
+taxonomy to know what selecting one would actually get you.
+
+Nobody had done anything wrong, technically. The data was clean, correctly
+mapped, faithfully displayed. And it was useless, because nobody had
+translated it into the vocabulary of the person using it.
+
+That's the pattern behind almost every faceted search problem I get asked to
+fix. The instinct is to treat facets as a data problem — get the values clean,
+get the taxonomy right — and the data can be perfect and the filters still
+fail, because the failure was never really about the data. It was about
+whether a human could find the filters, read them, and trust what would happen
+when they clicked.
+
+People who use filters convert at roughly 19% higher rates than people who
+don't, in my own experience across ecommerce sites. That gap is sitting there
+on most catalogues, unclaimed, because the filters are invisible, confusing, or
+untrustworthy before anyone gets the chance to benefit from them.
+
+## Discoverability comes before everything else
+
+If nobody can find the filters, nothing else in this article matters, so it
+has to be first.
+
+Most review and QA happens on a laptop, where a sidebar of filters is sitting
+there in plain view. Most real traffic is mobile, where filters are not visible
+by default — they're behind a button, and if that button doesn't clearly say
+what it does, a large share of visitors never discover that filtering exists
+at all. Whoever reviewed the desktop build saw working filters and signed off.
+Most sessions never saw them.
+
+The fix is not subtle: a clearly labeled filters button, or a sticky button
+pinned to the bottom of the screen so it survives scrolling. This is not a
+design nicety. It's the difference between a faceting system that exists and
+one that doesn't, for most of your traffic.
+
+<ArticleCtaMidway />
+
+## Order by what people actually use, not what seems obvious
+
+Once someone can find the filters, what's at the top of the list matters more
+than almost anything else about how they're built.
+
+The rule is to order by measured usage, not by intuition or by the order the
+schema happened to be written in. And there's a specific, checkable diagnostic
+for getting this wrong: look at facet-usage data and find filters that get used
+heavily but sit low on the page, buried under things nobody touches. That
+mismatch is the finding. It isn't a hunch — it's visible the moment you look.
+
+For most ecommerce catalogues, price is the filter people reach for first. If
+it isn't near the top of your list, that's usually the first thing worth
+fixing.
+
+Reordering by usage isn't a silver bullet. In my experience it moves
+conversion by something like 1–2% — small, real, and worth doing, but not the
+thing that turns a broken faceting system into a working one. Discoverability
+is that thing. Ordering is what you tune once people can actually get in.
+
+## Metafilters: the group most catalogues forget
+
+Search results are not the same shape as a category page, and the filters
+should reflect that. A category page is already narrowed to one type of
+product. A search result almost never is — someone searching "waterproof
+jacket" is pulling results from across your whole catalogue structure, so a
+genuine category facet belongs in search results in a way it doesn't need to
+on a browse page that's already inside one category.
+
+Alongside it, a group I'd call metafilters, and it's the one teams consistently
+skip: new, on sale, best sellers, and in stock versus out of stock. These
+complement sorting rather than replace it — sorting reorders what's there,
+metafilters cut the set down to what's actually relevant to how someone is
+shopping right now.
+
+## Clean up values, and translate the ones that aren't in plain language
+
+Two separate problems get lumped together here, and they need separate fixes.
+
+**Duplicate and near-duplicate values are the obvious one.** Several worded
+variants of the same value clogging one facet kills conversion fast — nothing
+makes a filter list look untrustworthy faster than five options that all mean
+the same thing. Colour is the clearest case, and it wants a two-level
+structure: group by the primary colour first, and let shades fall out
+underneath it as a secondary breakdown, rather than every individual shade
+sitting flat as its own top-level option.
+
+**Vocabulary mismatch is the one people miss, and it's what happened at the
+pharmacy.** The values can be perfectly deduplicated and still fail, because
+they were written for the system that manages the data rather than the person
+using the storefront. If a value requires domain expertise to interpret, it
+doesn't matter how clean it is. Somebody has to do the work of translating it
+into the words a shopper would actually use.
+
+## Never let a filter combination lead nowhere
+
+This one is a principle more than a specific incident, and I hold it firmly:
+people stop using filters once this happens to them, and they don't come back
+to try again.
+
+The naive fix is showing a result count before someone commits to a filter,
+which matters especially on mobile, where the filter panel is a modal sitting
+on top of the result grid the user can no longer see. But the real fix goes
+further than disclosure. Every other facet's available options should already
+be constrained to whatever is actually reachable given what's selected so far.
+If a value in another facet would produce zero results in combination with the
+current selection, it shouldn't be offered as a live option at all — it should
+be visibly disabled, not clickable and then broken.
+
+Get this wrong and the cost isn't one bad interaction. It's someone deciding
+your filters can't be trusted, and never touching them again.
+
+## Dynamic filters: the one thing that's genuinely specific to search
+
+Everything above applies broadly to faceted navigation, browse pages included.
+This one is different, and it's the most useful idea for search results
+specifically.
+
+The static, global facet list is never going to be the right list for every
+query. Someone searching "shoes" on a fashion site should see a shoe size
+filter. That filter would make no sense as a default across every other search
+on the site — most result sets aren't shoes, and cluttering every query with a
+facet that only matters for one category is its own discoverability problem in
+reverse.
+
+This does not need to be automated to be worth doing. You don't need a system
+that infers the right facets live for every query that's ever typed. Hardcode
+the mapping for your top 100 to 200 queries — the ones that already carry most
+of your search volume — and you've covered the cases that matter without
+building infrastructure to solve the long tail on day one.
+
+## The order of operations
+
+1. Make the filters discoverable, especially on mobile, before anything else
+2. Order by measured usage, and let price lead unless your data says otherwise
+3. Add category and metafilters — new, sale, best sellers, in stock — as a
+   distinct group, not an afterthought to sorting
+4. Deduplicate messy values, and separately, translate any value that requires
+   domain expertise to understand
+5. Constrain every facet's options to what's still reachable, so no
+   combination of filters ever dead-ends
+6. Hardcode query-specific facets for your highest-volume searches
+
+Most faceted search advice starts at step four, because step four is the one
+that looks like a data project. The 19% is sitting behind step one.
+
+<ArticleCtaClosing />

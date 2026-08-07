@@ -2,6 +2,9 @@ import type { ComponentProps } from "react";
 
 import Link from "next/link";
 
+import { ArticleHero } from "./article-hero";
+import { ArticleCtaMidway, ArticleCtaClosing } from "./article-cta";
+
 function H2(props: ComponentProps<"h2">) {
   return (
     <h2
@@ -112,5 +115,9 @@ export const mdxComponents = {
   ol: Ol,
   li: Li,
   a: A,
+  // Available to any post without an import in the MDX itself.
+  ArticleHero,
+  ArticleCtaMidway,
+  ArticleCtaClosing,
 };
 

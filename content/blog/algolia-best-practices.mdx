@@ -1,0 +1,218 @@
+---
+title: "Algolia best practices: you're probably tuning the wrong layer"
+excerpt: "Most Algolia relevance problems aren't Algolia problems. They're data problems wearing a ranking costume."
+date: "2026-08-01"
+tags: ["algolia", "relevance", "ecommerce search", "search tuning"]
+featured: true
+seoTitle: "Algolia best practices: fix the data before the ranking"
+seoDescription: "Most Algolia best-practice advice starts with ranking config. That's the wrong layer. Here's the order of operations that actually improves relevance."
+---
+<ArticleHero />
+
+A catalogue I worked on had a brand field. It just wasn't in
+`searchableAttributes`.
+
+The effect was that any product which didn't happen to repeat its brand name
+inside the title was invisible to a brand search. Not ranked badly — invisible.
+The data was sitting right there in the record, correctly populated, and the
+engine had never been told it could look at it. From the outside this reads as a
+ranking failure, and every instinct says go and tune the ranking. The ranking
+was fine.
+
+It was costing between 7 and 10% of purchases. One line of configuration.
+
+That is the shape of most Algolia relevance work I get called into, and it is
+why almost all the advice out there misses. Search for Algolia best practices
+and you get the vendor's documentation on securing API keys, their academy, and
+a wall of videos of someone clicking through the dashboard. It's all about which
+settings exist.
+
+To be fair to Algolia, the documentation isn't wrong. It just doesn't educate.
+It tells you what each control does; it doesn't tell you what value to give it
+for your catalogue, and that gap is where the calibration work lives.
+
+## You cannot rank what you never indexed
+
+Nearly every relevance problem I get called in for looks like a ranking problem
+and turns out to be a data problem. The symptom is always the same: someone has
+spent weeks tuning custom ranking, layering rules, adjusting weights — and the
+results are still wrong. They are still wrong because the signal needed to get
+them right was never in the record.
+
+If a product's index entry is a title and a price, then a title and a price is
+everything the engine has to reason with. No amount of attribute tuning
+reconstructs information that isn't there. You are asking the ranker to make a
+judgment it has no evidence for.
+
+So before you touch a single ranking setting, look at what a record actually
+contains.
+
+**A short description, at minimum.** Not the marketing long-form — a compact
+description that states what the thing is. If you don't have one for every
+product, generate them. This is one of the few places where an LLM summarising
+your existing long descriptions is straightforwardly useful, because the output
+is doing a job that doesn't require it to be interesting.
+
+**As much structured data as you can extract.** Most catalogues are sitting on
+far more structure than they index. It's in the attached spec sheets and PDFs.
+It's buried in the long description as prose that was never parsed into fields.
+It's in the FAQ section. And it's in customer reviews, which is the source
+people most consistently overlook — reviews are where the vocabulary your
+customers actually use shows up, as opposed to the vocabulary your merchandising
+team uses.
+
+That last point matters more than it sounds. The gap between what a customer
+types and what the catalogue says is exactly where search fails, and reviews are
+a free, already-written bridge across it.
+
+One distinction to keep straight, because it prevents an obvious objection.
+Getting data **into the record** and making it **searchable** are two different
+decisions. Index everything you can get — it costs you almost nothing and it's
+available for faceting, filtering, and ranking whether or not it's matchable.
+Which of those fields belong in `searchableAttributes` is a separate question,
+with a real cost to getting it wrong, and I'll come back to how to answer it
+rather than guess.
+
+## Then configure — in that order
+
+Only once the record is worth ranking does the Algolia configuration start to
+earn attention. Two decisions carry most of the weight.
+
+The order of `searchableAttributes` is itself a ranking signal. Algolia treats a
+match in the first attribute as stronger than a match in the third, so the list
+is not an inventory of searchable fields — it's a statement of what matters. The
+common failure is treating it as the inventory: everything dumped in, in
+whatever order the schema happened to be written.
+
+Then, per attribute, whether it is `ordered` or `unordered`. `ordered` means
+position inside the field counts, so a match on the first word outranks a match
+on the eighth. `unordered` means it doesn't.
+
+Here is the rule I use.
+
+**Title: ordered.** Titles are written most-important-word-first, near enough
+universally. That convention is free signal, and `ordered` is how you collect
+it.
+
+**Short description or summary: unordered.** Prose has no positional
+convention. A word appearing early in a sentence tells you nothing about its
+importance, so treating position as signal there is just noise with extra steps.
+
+**Structured attributes: ordered.** They're short and their word order is
+meaningful, so the same logic as titles applies.
+
+**Brand and category: high in the list** — though how high is the one genuinely
+context-dependent call here, and it depends on how customers of that particular
+catalogue shop. On some sites brand is the primary axis people navigate by; on
+others it's nearly irrelevant. What is not optional is that they are in the list
+at all, which is the mistake this article opened with.
+
+And the heuristic that governs the whole list: **the longer the field, the
+further down it goes.** A long description will match almost any query
+eventually, which makes a match there weak evidence. A match in a title is
+strong evidence. Ordering the list by field length, roughly, is ordering it by
+how much a match is worth — and that is what the attribute order is expressing
+in the first place.
+
+<ArticleCtaMidway />
+
+## The merchandising trap
+
+Promotion is where relevance work usually goes to die, and the argument about it
+is usually framed badly. "Does promoting products hurt conversion" is the wrong
+question, because it collapses two situations that behave nothing alike.
+
+**Case one: the promoted product would have ranked anyway, just lower.** You are
+moving something from position six to position two. The customer was plausibly
+going to consider it regardless; you have changed the order of a set of
+reasonable answers. This is close to harmless, and often genuinely useful.
+
+**Case two: the promoted product does not match the query, or barely does.** You
+are not reordering results, you are injecting one. A slot that would have held a
+relevant answer now holds an irrelevant one, and the customer pays for it —
+either by scrolling past it, or by not finding what they came for.
+
+Those get discussed as one thing, which is how case two survives. It hides
+inside the reasonable-sounding version of the argument.
+
+So the useful question about any promotion rule is not whether it lifts the
+promoted product's numbers. It's **whether the promoted product would have
+earned a place on merit.** If yes, you're merchandising. If no, you're
+substituting, and the cost lands somewhere your promotion dashboard isn't
+looking.
+
+The reason case two is expensive is that it spends the most valuable inventory
+you have. In on-site search the top three positions take roughly 80% of clicks,
+and that concentration is sharper on mobile, where three results is most of what
+fits on the screen before a scroll. Those aren't three slots out of ten. They
+are effectively the whole result set for most sessions.
+
+Put an irrelevant sponsored product into one of them and you haven't diluted the
+page by ten percent — you've taken out a third of what most customers will ever
+see. In my experience that lands somewhere around a 20–30% hit to conversion on
+the affected queries. I'd treat that as a practitioner's estimate rather than a
+published figure, but the direction isn't in doubt and the magnitude is large
+enough that it should not be running unmeasured.
+
+So: **A/B test sponsored placement, and split the test by whether the sponsored
+product would have appeared organically.** That split is the whole point. Tested
+as one undifferentiated thing, case one's harmlessness averages against case
+two's damage and the result comes out looking survivable. Almost nobody runs it
+this way, which is why sponsored placement keeps passing review.
+
+## Validate before real users see it
+
+The mistake at the end is as common as the one at the start: you fix the data,
+you get the configuration right, and then you push it all live and watch the
+dashboard.
+
+Don't. A large change to what's in the index changes ranking everywhere at once,
+including for queries nobody thought to check. Two things are worth doing first,
+both offline.
+
+**Score the new ranking with a relevance model.** Run the variation's results
+through a reranker — Cohere or Voyage AI both work — and let it score how well
+each result actually answers its query. This gives you a relevance read on
+thousands of queries without a single customer being exposed to a regression.
+
+**Simulate real users at volume.** Build a small number of synthetic personas —
+five is enough — but build them properly. Not demographic sketches: personas
+detailed to the point of having internal monologues, because what you need to
+model is how someone decides a result is wrong and what they do next.
+
+Then run them against **your real query log**, not invented queries. Made-up
+queries test the search you imagine you have. Your own logs test the one you
+actually have, including the messy, misspelled, half-formed queries that are
+where relevance really breaks.
+
+What comes out is shifting behaviour across configurations, and that is the
+point. Here's the question I most often can't answer any other way: is it better
+to make only colour, size and price searchable — or to push every attribute you
+have into `searchableAttributes`? More signal sounds strictly better. It isn't
+necessarily: every additional searchable field is another way for a query to
+match something weakly, and dilution is real. Nobody can tell you which way that
+resolves for a specific catalogue by reasoning about it.
+
+Which is also the reason to simulate rather than just test. You can run dozens of
+configurations against synthetic users. You cannot run dozens of configurations
+against real customers — not because it's technically hard, but because most of
+those configurations are bad and you'd be charging real people to find out.
+Simulation narrows a large space of options down to the two or three worth
+putting in front of an A/B test.
+
+Simulation doesn't replace the A/B test. It earns you the right to run a good
+one.
+
+## The order of operations
+
+1. Get real signal into the record — description, structured attributes, and
+   everything minable from documents, FAQs, and reviews
+2. Order `searchableAttributes` deliberately, and set ordered/unordered per
+   attribute
+3. Resist merchandising pressure, and make sponsored placement prove itself
+4. Validate offline with a reranker and simulated traffic before shipping
+
+Most teams start at step two, because step two is the one with a settings
+screen. That's why so much Algolia tuning produces so little.
+
+<ArticleCtaClosing />
