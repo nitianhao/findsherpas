@@ -85,7 +85,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased text-base md:text-lg leading-relaxed`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased text-base md:text-lg leading-relaxed`}>
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-M8D3D607D7"

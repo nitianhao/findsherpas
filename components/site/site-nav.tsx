@@ -4,14 +4,19 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { DropdownMenu } from "radix-ui";
+import { ChevronDown } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 const navItems = [
   { href: "/#what-we-do", label: "Approach" },
+  { href: "/search-check", label: "Search check" },
+] as const;
+
+const frameworkItems = [
   { href: "/frameworks/search-failure-modes", label: "Failure modes" },
   { href: "/frameworks/query-interpretation", label: "Query interpretation" },
-  { href: "/search-check", label: "Search check" },
-  { href: "/about", label: "About" },
-  { href: "/book-a-call", label: "Book a call" },
 ] as const;
 
 export function SiteNav() {
@@ -34,6 +39,8 @@ export function SiteNav() {
     },
     [pathname],
   );
+
+  const frameworksActive = frameworkItems.some((item) => isActive(item.href));
 
   /* Manage focus while the mobile navigation is open. */
   useEffect(() => {
@@ -121,12 +128,52 @@ export function SiteNav() {
                 {item.label}
               </Link>
             ))}
+
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger
+                id="frameworks-menu-trigger"
+                className={`${navLinkClass(frameworksActive)} gap-1 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2`}
+              >
+                Frameworks
+                <ChevronDown size={14} strokeWidth={2} aria-hidden />
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Portal>
+                <DropdownMenu.Content
+                  align="start"
+                  sideOffset={10}
+                  className="z-50 min-w-56 rounded-xl border border-border bg-card p-1.5 shadow-md"
+                >
+                  {frameworkItems.map((item) => (
+                    <DropdownMenu.Item key={item.href} asChild>
+                      <Link
+                        href={item.href}
+                        className={`block rounded-lg px-3 py-2 text-sm outline-none transition-colors data-[highlighted]:bg-muted data-[highlighted]:text-foreground ${
+                          isActive(item.href)
+                            ? "font-medium text-foreground"
+                            : "text-muted-foreground"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    </DropdownMenu.Item>
+                  ))}
+                </DropdownMenu.Content>
+              </DropdownMenu.Portal>
+            </DropdownMenu.Root>
+
+            <Button asChild size="sm" className="ml-3">
+              <Link href="/book-a-call">Book a call</Link>
+            </Button>
           </nav>
 
-          {/* Mobile hamburger */}
-          <button
-            ref={menuButtonRef}
-            type="button"
+          {/* Mobile: compact CTA + hamburger */}
+          <div className="flex items-center gap-2 md:hidden">
+            <Button asChild size="sm">
+              <Link href="/book-a-call">Book a call</Link>
+            </Button>
+            <button
+              ref={menuButtonRef}
+              type="button"
             className="inline-flex h-11 w-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground md:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -162,7 +209,8 @@ export function SiteNav() {
                 />
               </svg>
             )}
-          </button>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -226,6 +274,24 @@ export function SiteNav() {
           >
             <div className="space-y-1">
               {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`block rounded-lg px-3 py-3 text-base transition-colors ${
+                    isActive(item.href)
+                      ? "font-medium text-foreground"
+                      : "text-muted-foreground"
+                  }`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+
+              <p className="px-3 pt-4 pb-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
+                Frameworks
+              </p>
+              {frameworkItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}

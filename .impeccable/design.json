@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-07T00:00:00Z",
+  "title": "Design System: Find Sherpas",
+  "extensions": {
+    "colorMeta": {
+      "neutral-canvas": {
+        "role": "background",
+        "displayName": "Canvas",
+        "canonical": "oklch(1 0 0)",
+        "tonalRamp": ["oklch(0.145 0 0)", "oklch(0.26 0 0)", "oklch(0.38 0 0)", "oklch(0.50 0 0)", "oklch(0.62 0 0)", "oklch(0.75 0 0)", "oklch(0.88 0 0)", "oklch(1 0 0)"]
+      },
+      "neutral-ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(0.145 0 0)",
+        "tonalRamp": ["oklch(0.145 0 0)", "oklch(0.26 0 0)", "oklch(0.38 0 0)", "oklch(0.50 0 0)", "oklch(0.62 0 0)", "oklch(0.75 0 0)", "oklch(0.88 0 0)", "oklch(1 0 0)"]
+      },
+      "signal-teal": {
+        "role": "primary",
+        "displayName": "Signal Teal",
+        "canonical": "oklch(0.50 0.14 200)",
+        "tonalRamp": ["oklch(0.15 0.14 200)", "oklch(0.28 0.14 200)", "oklch(0.40 0.14 200)", "oklch(0.44 0.14 200)", "oklch(0.50 0.14 200)", "oklch(0.72 0.14 200)", "oklch(0.84 0.10 200)", "oklch(0.95 0.04 200)"]
+      },
+      "warning-amber-strong": {
+        "role": "warning",
+        "displayName": "Warning Amber",
+        "canonical": "oklch(0.43 0.11 65)",
+        "tonalRamp": ["oklch(0.20 0.06 70)", "oklch(0.30 0.08 70)", "oklch(0.43 0.11 65)", "oklch(0.55 0.08 75)", "oklch(0.68 0.06 80)", "oklch(0.80 0.05 82)", "oklch(0.90 0.05 85)", "oklch(0.96 0.045 85)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines only, one per page." },
+      "headline": { "displayName": "Headline", "purpose": "Section headers, always preceded by an eyebrow label." },
+      "title": { "displayName": "Title", "purpose": "Card and finding-block titles." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy." },
+      "label": { "displayName": "Label", "purpose": "Uppercase section eyebrows and micro-labels." },
+      "data": { "displayName": "Data", "purpose": "Query strings, rank positions, stat figures — measured values, never prose." }
+    },
+    "shadows": [
+      { "name": "resting", "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)", "purpose": "Default state for cards, inputs, and the outline button." },
+      { "name": "interactive-md", "value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)", "purpose": "Primary button resting elevation." },
+      { "name": "interactive-lg", "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)", "purpose": "Primary button hover elevation." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for color, shadow, and transform transitions." },
+      { "name": "duration-state", "value": "200ms", "purpose": "Button background/shadow state changes." },
+      { "name": "duration-hover", "value": "150ms", "purpose": "Spine nav dot hover scale." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call-to-action. One accent-colored control per screen.",
+      "html": "<button class=\"ds-btn-primary\">Book a call</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 10px 24px; background: oklch(0.50 0.14 200); color: oklch(0.985 0 0); font-size: 16px; font-weight: 600; border: none; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); transition: background 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s cubic-bezier(0.4,0,0.2,1), transform 0.2s; } .ds-btn-primary:hover { background: color-mix(in oklch, oklch(0.50 0.14 200) 90%, black); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px oklch(0.50 0.14 200 / 0.5); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action, neutral weight.",
+      "html": "<button class=\"ds-btn-outline\">See our approach</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 10px 24px; background: oklch(1 0 0); color: oklch(0.145 0 0); font-size: 16px; font-weight: 500; border: 1px solid oklch(0.922 0 0); border-radius: 12px; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); transition: background 0.2s cubic-bezier(0.4,0,0.2,1); } .ds-btn-outline:hover { background: oklch(0.97 0 0); }"
+    },
+    {
+      "name": "Default Badge",
+      "kind": "chip",
+      "refersTo": "badge-default",
+      "description": "Accent-colored pill tag, used sparingly.",
+      "html": "<span class=\"ds-badge\">Ecommerce</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; justify-content: center; padding: 2px 8px; background: oklch(0.50 0.14 200); color: oklch(0.985 0 0); font-size: 12px; font-weight: 500; border-radius: 9999px; white-space: nowrap; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat content container, hairline border, resting shadow.",
+      "html": "<div class=\"ds-card\"><p class=\"ds-card-eyebrow\">Relevance</p><h3 class=\"ds-card-title\">Results look right. They're not.</h3><p class=\"ds-card-body\">Top queries return plausible products, but bestsellers are buried and weak matches surface first.</p></div>",
+      "css": ".ds-card { background: oklch(1 0 0); color: oklch(0.145 0 0); border: 1px solid oklch(0.922 0 0 / 0.5); border-radius: 16px; padding: 24px; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); } .ds-card-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.556 0 0 / 0.5); margin: 0; } .ds-card-title { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin: 8px 0 0; } .ds-card-body { font-size: 14px; color: oklch(0.556 0 0); margin: 8px 0 0; line-height: 1.6; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Text input, hairline border, ring focus state.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"you@company.com\" />",
+      "css": ".ds-input { height: 36px; width: 100%; padding: 4px 12px; background: transparent; color: oklch(0.145 0 0); font-size: 14px; border: 1px solid oklch(0.922 0 0); border-radius: 10px; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); outline: none; transition: box-shadow 0.15s, border-color 0.15s; } .ds-input::placeholder { color: oklch(0.556 0 0); } .ds-input:focus-visible { border-color: oklch(0.50 0.14 200); box-shadow: 0 0 0 3px oklch(0.50 0.14 200 / 0.5); }"
+    },
+    {
+      "name": "Spine Nav",
+      "kind": "custom",
+      "refersTo": "spine-nav",
+      "description": "Signature vertical scroll-spy rail: a hairline connecting line with dot markers, one per page section.",
+      "html": "<div class=\"ds-spine\"><div class=\"ds-spine-line\"></div><a class=\"ds-spine-dot ds-spine-dot--active\" href=\"#hero\" aria-label=\"Overview\"><span></span></a><a class=\"ds-spine-dot\" href=\"#what-we-do\" aria-label=\"What we find\"><span></span></a><a class=\"ds-spine-dot\" href=\"#methodology\" aria-label=\"Methodology\"><span></span></a></div>",
+      "css": ".ds-spine { position: relative; display: flex; flex-direction: column; align-items: center; } .ds-spine-line { position: absolute; left: 50%; top: 6px; bottom: 6px; width: 1px; transform: translateX(-50%); background: oklch(0.922 0 0); } .ds-spine-dot { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; height: 44px; width: 44px; transition: transform 0.15s cubic-bezier(0.4,0,0.2,1); } .ds-spine-dot:hover { transform: scale(1.1); } .ds-spine-dot span { display: block; height: 12px; width: 12px; border-radius: 9999px; border: 1px solid oklch(0.556 0 0 / 0.7); background: oklch(1 0 0); transition: all 0.2s; } .ds-spine-dot--active span { background: oklch(0.145 0 0); border-color: oklch(0.145 0 0); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Instrument Panel",
+    "overview": "Find Sherpas reads a search system the way an instrument reads a signal: calmly, precisely, without editorializing. The surface is quiet by default — a near-white canvas, hairline borders, restrained type — so that when something needs attention (a CTA, a finding, a live data figure) it registers as a genuine signal rather than one more loud element competing for the eye. A single narrow \"spine\" rail tracks position down the page like a gauge, and raw data — queries, rankings, stats — switches into a monospace register that visually separates measurement from narrative prose.\n\nThe voice is diagnostic and evidence-led: short declarative sentences, uppercase micro-labels as section eyebrows, findings stated plainly before any pitch. Confidence comes from clarity and restraint, not decoration. Explicitly rejected: the generic SaaS look — gradient meshes, glassmorphism, glowing blob backgrounds, purple-to-blue washes. This system stays flat, hairline-bordered, and typographically led.",
+    "keyCharacteristics": [
+      "Near-white canvas with a single sparing teal accent",
+      "A narrow scroll-spy \"spine\" rail as the signature navigation device",
+      "Monospace type reserved for data/query figures, never for prose",
+      "Uppercase, wide-tracked micro-labels as section eyebrows",
+      "Flat surfaces at rest; shadow appears only as a response to interaction"
+    ],
+    "rules": [
+      { "name": "The One Signal Rule", "body": "Signal Teal appears on at most one element per screen at rest — the primary action. Everything else stays neutral so the accent keeps its meaning as \"the thing to do here,\" not decoration. Scoped exception: the sticky header's Book a call button is exempt, since persistent navigation chrome is expected to keep its own affordance visible through scroll.", "section": "colors" },
+      { "name": "The Mono-for-Data Rule", "body": "Any figure that represents a measured or literal value — a search query, a rank position, a stat — is set in Geist Mono. Sentences, headlines, and labels never are.", "section": "typography" },
+      { "name": "The Ambient-on-Interaction Rule", "body": "Nothing is elevated by default. Shadow only appears, or deepens, in direct response to hover/focus/state change.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do hold Signal Teal for one element per screen — the primary action or an active-state indicator.",
+      "Do set any measured/literal figure (query, rank, stat) in Geist Mono; keep all prose in Geist Sans.",
+      "Do keep surfaces flat at rest and let shadow communicate interactivity, not decoration.",
+      "Do center content in reading-width containers (576–1120px) rather than stretching full-bleed."
+    ],
+    "donts": [
+      "Don't introduce gradients, glassmorphism, or glow effects — the explicit anti-reference for this system is the generic SaaS template look.",
+      "Don't add a second accent color; route additional emphasis through Ink weight/size or the Teal Wash tint instead.",
+      "Don't collapse the spine into a hamburger menu on mobile — hide it and let the page scroll normally."
+    ]
+  }
+}

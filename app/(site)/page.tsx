@@ -39,8 +39,13 @@ export default async function Home() {
               Ranking, relevance, query understanding, and search
               analytics — evaluated and refined, independent of your search vendor.
             </p>
-            <p className="mt-4 text-sm text-muted-foreground/70">
+            <p className="mt-4 text-sm text-muted-foreground">
               Experience with large-scale ecommerce search systems — Algolia, Elasticsearch, OpenSearch, Typesense, Luigi&apos;s Box.
+            </p>
+            <p className="mt-6 font-mono text-sm text-foreground/70">
+              &ldquo;black running shoes&rdquo;{" "}
+              <span className="text-muted-foreground/40">&rarr;</span> bestseller
+              ranked #14, weak match ranked #1
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button asChild size="lg" className="h-12 w-full text-base font-semibold sm:w-auto px-8">
@@ -59,7 +64,7 @@ export default async function Home() {
         <section id="what-we-do" className="py-8 sm:py-12 lg:py-24">
           <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                 Diagnostic patterns
               </p>
               <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -71,7 +76,7 @@ export default async function Home() {
 
               <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2">
                 <div className="rounded-xl border border-border/50 p-6">
-                  <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Relevance</p>
+                  <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Relevance</p>
                   <h3 className="mt-2 text-base font-bold tracking-tight">Results look right. They&apos;re not.</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
                     Top queries return plausible products, but bestsellers are buried and weak matches surface first. The search appears functional — the ranking is wrong.
@@ -79,7 +84,7 @@ export default async function Home() {
                 </div>
 
                 <div className="rounded-xl border border-border/50 p-6">
-                  <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Query interpretation</p>
+                  <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Query interpretation</p>
                   <h3 className="mt-2 text-base font-bold tracking-tight">Queries break without anyone noticing</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
                     How the engine reads the query fails quietly. Synonyms missing. Compound queries split wrong. Attribute searches like &ldquo;red dress size 38&rdquo; treated as free text. No alerts, no fallback.
@@ -87,7 +92,7 @@ export default async function Home() {
                 </div>
 
                 <div className="rounded-xl border border-border/50 p-6">
-                  <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Ranking</p>
+                  <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Ranking</p>
                   <h3 className="mt-2 text-base font-bold tracking-tight">Ranking rules nobody owns</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
                     Boosting rules (manual ranking overrides) layered over months. Conflicting weights across categories. Result order changes and no one evaluates the impact.
@@ -95,7 +100,7 @@ export default async function Home() {
                 </div>
 
                 <div className="rounded-xl border border-border/50 p-6">
-                  <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Zero results</p>
+                  <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Zero results</p>
                   <h3 className="mt-2 text-base font-bold tracking-tight">Silent dead ends</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
                     Queries return nothing — no redirect, no suggestion, no signal. Users leave. It happens most on long-tail and misspelled queries.
@@ -109,10 +114,10 @@ export default async function Home() {
         {/* ============================================================
             SEARCH CHECK PROMO
             ============================================================ */}
-        <section id="search-check-promo" className="-mx-4 border-y border-primary/10 bg-gradient-to-br from-primary/[0.06] via-primary/[0.03] to-transparent px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-24">
+        <section id="search-check-promo" className="-mx-4 border-y border-border bg-muted/30 px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-24">
           <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-primary">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                 Quick diagnostic
               </p>
               <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -128,7 +133,7 @@ export default async function Home() {
                 <Button asChild size="lg" className="w-full font-semibold">
                   <Link href="/search-check">Run the quick search check &rarr;</Link>
                 </Button>
-                <p className="mt-2 text-center text-xs text-muted-foreground/60">6 checks &middot; ~5 min &middot; no setup</p>
+                <p className="mt-2 text-center text-xs text-muted-foreground">6 checks &middot; ~5 min &middot; no setup</p>
               </div>
 
               {/* lg+: full card layout */}
@@ -142,35 +147,35 @@ export default async function Home() {
                   </p>
                   <ul className="mt-5 space-y-2 text-sm text-foreground/70">
                     <li className="flex items-baseline gap-2">
-                      <span className="text-primary/50">&bull;</span>
+                      <span className="text-muted-foreground/50">&bull;</span>
                       Check your most important query
                     </li>
                     <li className="flex items-baseline gap-2">
-                      <span className="text-primary/50">&bull;</span>
+                      <span className="text-muted-foreground/50">&bull;</span>
                       Test a compound attribute search
                     </li>
                     <li className="flex items-baseline gap-2">
-                      <span className="text-primary/50">&bull;</span>
+                      <span className="text-muted-foreground/50">&bull;</span>
                       Look at zero-result queries
                     </li>
                     <li className="flex items-baseline gap-2">
-                      <span className="text-primary/50">&bull;</span>
+                      <span className="text-muted-foreground/50">&bull;</span>
                       Try the ranking and sorting controls
                     </li>
                     <li className="flex items-baseline gap-2">
-                      <span className="text-primary/50">&bull;</span>
+                      <span className="text-muted-foreground/50">&bull;</span>
                       Review autocomplete and typo recovery
                     </li>
                     <li className="flex items-baseline gap-2">
-                      <span className="text-primary/50">&bull;</span>
+                      <span className="text-muted-foreground/50">&bull;</span>
                       Combine a few facets and refresh
                     </li>
                   </ul>
                 </div>
 
                 {/* Right: diagnostic card */}
-                <div className="w-full overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-background to-primary/[0.04] shadow-md lg:w-[340px]">
-                  <div className="border-b border-primary/10 bg-primary/[0.04] px-6 py-3">
+                <div className="w-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm lg:w-[340px]">
+                  <div className="border-b border-border bg-muted/40 px-6 py-3">
                     <p className="text-sm font-bold text-foreground">
                       Internal search quick check
                     </p>
@@ -189,7 +194,7 @@ export default async function Home() {
                         "Facet check",
                       ].map((label, i) => (
                         <div key={label} className="flex items-center gap-3">
-                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full border border-foreground/25 text-[11px] font-bold text-foreground/70">
                             {i + 1}
                           </span>
                           <span className="text-sm font-medium text-foreground/80">
@@ -218,7 +223,7 @@ export default async function Home() {
         <section id="how-we-diagnose" className="-mx-4 bg-primary/[0.04] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-24">
           <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                 Diagnostic methodology
               </p>
               <div className="mt-3 flex items-center gap-2">
@@ -231,9 +236,8 @@ export default async function Home() {
                 A structured process applied to every search system we evaluate.
               </p>
 
-              {/* Desktop: 5 cards in a row */}
-              <div className="mt-10 hidden lg:grid lg:grid-cols-6 lg:gap-3">
-                {[
+              {(() => {
+                const discoverySteps = [
                   {
                     number: "01",
                     title: "Real queries",
@@ -249,6 +253,8 @@ export default async function Home() {
                     title: "Result quality",
                     desc: "Whether results match intent. Position accuracy, dead ends, coverage gaps.",
                   },
+                ];
+                const deliverySteps = [
                   {
                     number: "04",
                     title: "Ranking logic",
@@ -264,79 +270,78 @@ export default async function Home() {
                     title: "Improvement roadmap",
                     desc: "Prioritized, actionable changes your team can implement. No dependency on us.",
                   },
-                ].map((step, i) => (
-                  <div key={step.number} className="relative flex flex-col">
-                    {i > 0 && (
-                      <div className="absolute -left-[10px] top-[22px] text-border" aria-hidden>
-                        <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
-                          <path d="M1 1l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                    )}
-                    <div className="rounded-lg border border-border/50 bg-background p-4">
-                      <span className="text-[11px] font-bold tabular-nums text-primary/60">
-                        {step.number}
-                      </span>
-                      <h3 className="mt-1.5 text-sm font-bold tracking-tight">
-                        {step.title}
-                      </h3>
-                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                        {step.desc}
-                      </p>
+                ];
+                const phases = [
+                  { label: "Discovery", steps: discoverySteps },
+                  { label: "Delivery", steps: deliverySteps },
+                ];
+                return (
+                  <>
+                    {/* Desktop: each phase is its own labeled row of 3 */}
+                    <div className="mt-10 hidden lg:block">
+                      {phases.map((phase, phaseIndex) => (
+                        <div key={phase.label} className={phaseIndex > 0 ? "mt-8" : ""}>
+                          <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                            {phase.label}
+                          </p>
+                          <div className="mt-3 grid grid-cols-3 gap-x-3">
+                            {phase.steps.map((step, i) => (
+                              <div key={step.number} className="relative flex flex-col">
+                                {i > 0 && (
+                                  <div className="absolute -left-[10px] top-[22px] text-border" aria-hidden>
+                                    <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+                                      <path d="M1 1l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                  </div>
+                                )}
+                                <div className="rounded-lg border border-border/50 bg-background p-4">
+                                  <span className="text-[11px] font-bold tabular-nums text-primary/60">
+                                    {step.number}
+                                  </span>
+                                  <h3 className="mt-1.5 text-sm font-bold tracking-tight">
+                                    {step.title}
+                                  </h3>
+                                  <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                                    {step.desc}
+                                  </p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                ))}
-              </div>
 
-              {/* Mobile / Tablet: vertical cards */}
-              <div className="mt-8 space-y-3 lg:hidden">
-                {[
-                  {
-                    number: "01",
-                    title: "Real queries",
-                    desc: "Analyze actual user queries — high-volume, high-intent, long-tail, and failure patterns.",
-                  },
-                  {
-                    number: "02",
-                    title: "Query interpretation",
-                    desc: "How the system reads the input. Tokenization (how words are split), synonyms, compound handling, attribute mapping.",
-                  },
-                  {
-                    number: "03",
-                    title: "Result quality",
-                    desc: "Whether results match intent. Position accuracy, dead ends, coverage gaps.",
-                  },
-                  {
-                    number: "04",
-                    title: "Ranking logic",
-                    desc: "Boosting rules, attribute weights, merchandising overrides (manual ranking adjustments), and their cumulative effect.",
-                  },
-                  {
-                    number: "05",
-                    title: "Search analytics",
-                    desc: "What's being measured — and what isn't. Events, funnels, zero-result tracking, and quality signals.",
-                  },
-                  {
-                    number: "06",
-                    title: "Improvement roadmap",
-                    desc: "Prioritized, actionable changes your team can implement. No dependency on us.",
-                  },
-                ].map((step) => (
-                  <div key={step.number} className="flex gap-4 rounded-lg border border-border/50 bg-background p-4">
-                    <span className="text-[11px] font-bold tabular-nums text-primary/60">
-                      {step.number}
-                    </span>
-                    <div>
-                      <h3 className="text-sm font-bold tracking-tight">{step.title}</h3>
-                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                        {step.desc}
-                      </p>
+                    {/* Mobile / Tablet: each phase is its own labeled stack */}
+                    <div className="mt-8 lg:hidden">
+                      {phases.map((phase, phaseIndex) => (
+                        <div key={phase.label} className={phaseIndex > 0 ? "mt-6" : ""}>
+                          <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                            {phase.label}
+                          </p>
+                          <div className="mt-3 space-y-3">
+                            {phase.steps.map((step) => (
+                              <div key={step.number} className="flex gap-4 rounded-lg border border-border/50 bg-background p-4">
+                                <span className="text-[11px] font-bold tabular-nums text-primary/60">
+                                  {step.number}
+                                </span>
+                                <div>
+                                  <h3 className="text-sm font-bold tracking-tight">{step.title}</h3>
+                                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                                    {step.desc}
+                                  </p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                ))}
-              </div>
+                  </>
+                );
+              })()}
 
-              <p className="mt-6 text-xs text-muted-foreground/50">
+              <p className="mt-6 max-w-md text-xs text-muted-foreground">
                 Each step informs the next. The process repeats as the system evolves.
               </p>
             </div>
@@ -349,7 +354,7 @@ export default async function Home() {
         <section id="frameworks" className="-mx-4 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-24">
           <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                 Frameworks
               </p>
               <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -361,28 +366,28 @@ export default async function Home() {
 
               <div className="mt-10 grid gap-10 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-border/30">
                 <div className="border-t border-border/40 pt-6 sm:pr-8 lg:pr-10">
-                  <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/70">
-                    Framework 01
+                  <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                    Try it
                   </p>
                   <h3 className="mt-3 text-base font-bold tracking-tight sm:text-lg">
                     <Link href="/search-check" className="inline-block py-2 -my-2 hover:text-primary hover:underline">
-                      Relevance evaluation
+                      Run a relevance check
                     </Link>
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    A structured method for measuring whether search results match user intent — beyond click-through rates and conversion proxies.
+                    A self-guided checklist for spotting relevance issues in your own search — no setup, run it yourself.
                   </p>
-                  <p className="mt-3 text-xs font-medium text-muted-foreground/70">Inputs:</p>
+                  <p className="mt-3 text-xs font-medium text-muted-foreground">What you&apos;ll need:</p>
                   <ul className="mt-1 space-y-0.5 text-sm text-muted-foreground">
-                    <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Representative query test sets</li>
-                    <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Human relevance judgments</li>
-                    <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Before/after result comparison</li>
+                    <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Your site&apos;s search bar</li>
+                    <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Your most important query</li>
+                    <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>About 5 minutes</li>
                   </ul>
                 </div>
 
                 <div className="border-t border-border/40 pt-6 sm:border-t-0 sm:px-8 lg:px-10">
-                  <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/70">
-                    Framework 02
+                  <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                    Framework 01
                   </p>
                   <h3 className="mt-3 text-base font-bold tracking-tight sm:text-lg">
                     <Link href="/frameworks/query-interpretation" className="inline-block py-2 -my-2 hover:text-primary hover:underline">
@@ -392,7 +397,7 @@ export default async function Home() {
                   <p className="mt-2 text-sm text-muted-foreground">
                     A classification system for query types. Each type has different failure modes and requires different ranking logic.
                   </p>
-                  <p className="mt-3 text-xs font-medium text-muted-foreground/70">Types:</p>
+                  <p className="mt-3 text-xs font-medium text-muted-foreground">Types:</p>
                   <ul className="mt-1 space-y-0.5 text-sm text-muted-foreground">
                     <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Navigational (exact product)</li>
                     <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Attribute (color, size, material)</li>
@@ -402,8 +407,8 @@ export default async function Home() {
                 </div>
 
                 <div className="border-t border-border/40 pt-6 sm:border-t-0 sm:pl-8 lg:pl-10">
-                  <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/70">
-                    Framework 03
+                  <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                    Framework 02
                   </p>
                   <h3 className="mt-3 text-base font-bold tracking-tight sm:text-lg">
                     <Link href="/frameworks/search-failure-modes" className="inline-block py-2 -my-2 hover:text-primary hover:underline">
@@ -413,7 +418,7 @@ export default async function Home() {
                   <p className="mt-2 text-sm text-muted-foreground">
                     A diagnostic checklist for identifying why result ordering breaks down. Used to trace ranking problems to their configuration root cause.
                   </p>
-                  <p className="mt-3 text-xs font-medium text-muted-foreground/70">Common modes:</p>
+                  <p className="mt-3 text-xs font-medium text-muted-foreground">Common modes:</p>
                   <ul className="mt-1 space-y-0.5 text-sm text-muted-foreground">
                     <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Boosting rule distortions</li>
                     <li className="flex items-baseline gap-2"><span className="text-muted-foreground/40">&bull;</span>Synonym and tokenization gaps</li>
@@ -499,29 +504,31 @@ export default async function Home() {
                 Search environments we&apos;ve worked in
               </h2>
             </div>
-            <div className="mt-6 grid gap-x-12 gap-y-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-6 grid gap-x-12 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
               <div>
-                <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Catalog scale</p>
+                <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Catalog scale</p>
                 <p className="mt-1 text-sm text-foreground">10k&ndash;10M+ products</p>
               </div>
               <div>
-                <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Query volume</p>
+                <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Query volume</p>
                 <p className="mt-1 text-sm text-foreground">High-traffic ecommerce</p>
               </div>
               <div>
-                <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Ranking complexity</p>
+                <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Ranking complexity</p>
                 <p className="mt-1 text-sm text-foreground">Boosting, weighting, rewriting</p>
               </div>
+            </div>
+            <div className="mt-6 grid gap-x-12 gap-y-4 border-t border-border/30 pt-6 sm:grid-cols-2">
               <div>
-                <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Platforms</p>
+                <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Platforms</p>
                 <p className="mt-1 text-sm text-foreground">Algolia, Elasticsearch, OpenSearch, Typesense</p>
               </div>
               <div>
-                <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">Languages</p>
+                <p className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Languages</p>
                 <p className="mt-1 text-sm text-foreground">Multilingual European markets</p>
               </div>
             </div>
-            <p className="mt-6 text-xs text-muted-foreground/50">
+            <p className="mt-6 max-w-2xl text-xs text-muted-foreground">
               Also Doofinder, Luigi&apos;s Box, Coveo, Bloomreach, and other platforms. The diagnostic methodology applies regardless of vendor.
             </p>
           </div>
@@ -581,7 +588,7 @@ export default async function Home() {
         <section className="-mx-4 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-24">
           <div className="border-t border-border pt-8">
             <div className="mx-auto max-w-[1120px]">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                 Example diagnosis
               </p>
               <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -635,7 +642,7 @@ export default async function Home() {
                 </div>
               </div>
 
-              <p className="mt-10 border-t border-border/40 pt-6 text-sm text-muted-foreground">
+              <p className="mt-10 max-w-md border-t border-border/40 pt-6 text-sm text-muted-foreground">
                 Different query. Same diagnostic structure.
               </p>
             </div>
@@ -655,7 +662,7 @@ export default async function Home() {
                 Results look acceptable. Confidence is low. Something feels off but
                 there&apos;s no clear evidence yet.
               </p>
-              <p className="mt-3 text-sm text-muted-foreground/70">
+              <p className="mt-3 text-sm text-muted-foreground">
                 That&apos;s exactly the kind of system we diagnose. We examine real
                 queries, ranking behavior, and evaluation gaps — then give your team
                 a clear picture of what&apos;s happening and what to fix first.
