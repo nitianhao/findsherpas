@@ -1,3 +1,5 @@
+import { listBlogPosts } from "@/lib/content";
+
 function xmlEscape(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -12,6 +14,9 @@ export async function GET() {
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
     "https://findsherpas.com";
 
+  // Static routes plus /blog itself, which was missing entirely — this file
+  // was a hand-maintained list that nobody updated when the blog section was
+  // added, so every post published so far was invisible to it.
   const staticUrls = [
     "/",
     "/about",
@@ -19,17 +24,28 @@ export async function GET() {
     "/frameworks/query-interpretation",
     "/search-check",
     "/book-a-call",
+    "/blog",
   ];
 
-  const urls = staticUrls.map((pathname) => {
+  const staticEntries = staticUrls.map((pathname) => {
     const loc = `${siteUrl}${pathname}`;
     return `<url><loc>${xmlEscape(loc)}</loc></url>`;
+  });
+
+  // Blog posts are sourced from the same listBlogPosts() the /blog index uses,
+  // so a new post can never again go live without appearing here.
+  const posts = await listBlogPosts();
+  const postEntries = posts.map((post) => {
+    const loc = `${siteUrl}/blog/${post.slug}`;
+    const lastmod = new Date(post.frontmatter.date).toISOString().slice(0, 10);
+    return `<url><loc>${xmlEscape(loc)}</loc><lastmod>${lastmod}</lastmod></url>`;
   });
 
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...urls,
+    ...staticEntries,
+    ...postEntries,
     "</urlset>",
   ].join("\n");
 
