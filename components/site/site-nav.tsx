@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -17,6 +17,9 @@ const navItems = [
 export function SiteNav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuDialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const isActive = useCallback(
     (href: string) => {
@@ -32,14 +35,41 @@ export function SiteNav() {
     [pathname],
   );
 
-  /* Close on Escape */
+  /* Manage focus while the mobile navigation is open. */
   useEffect(() => {
+    if (!mobileOpen) return;
+
+    closeButtonRef.current?.focus();
+
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setMobileOpen(false);
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (e.key !== "Tab" || !menuDialogRef.current) return;
+
+      const focusable = Array.from(
+        menuDialogRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+      const first = focusable[0];
+      const last = focusable.at(-1);
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
     }
+
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, []);
+  }, [mobileOpen]);
 
   /* Lock scroll when mobile menu is open */
   useEffect(() => {
@@ -49,13 +79,8 @@ export function SiteNav() {
     };
   }, [mobileOpen]);
 
-  /* Close mobile menu on route change */
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
   const navLinkClass = (active: boolean) =>
-    `text-sm transition-colors ${
+    `inline-flex min-h-11 items-center text-sm transition-colors ${
       active
         ? "font-medium text-foreground"
         : "text-muted-foreground hover:text-foreground"
@@ -69,7 +94,7 @@ export function SiteNav() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 transition-opacity hover:opacity-90"
+            className="flex min-h-11 items-center gap-3 transition-opacity hover:opacity-90"
           >
             <div className="relative size-9 shrink-0 overflow-hidden rounded-xl border bg-card shadow-sm">
               <Image
@@ -100,9 +125,12 @@ export function SiteNav() {
 
           {/* Mobile hamburger */}
           <button
+            ref={menuButtonRef}
             type="button"
             className="inline-flex h-11 w-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground md:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setMobileOpen((v) => !v)}
           >
             {mobileOpen ? (
@@ -140,7 +168,14 @@ export function SiteNav() {
 
       {/* MOBILE MENU OVERLAY */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-background md:hidden">
+        <div
+          ref={menuDialogRef}
+          id="mobile-navigation"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Main navigation"
+          className="fixed inset-0 z-50 flex flex-col bg-background md:hidden"
+        >
           {/* Mirror header */}
           <div className="flex h-14 shrink-0 items-center justify-between border-b px-4">
             <Link
@@ -162,6 +197,7 @@ export function SiteNav() {
               </span>
             </Link>
             <button
+              ref={closeButtonRef}
               type="button"
               className="inline-flex h-11 w-11 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
               aria-label="Close menu"
@@ -210,7 +246,7 @@ export function SiteNav() {
           <div className="shrink-0 border-t px-4 py-4">
             <a
               href="mailto:michal@findsherpas.com"
-              className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex min-h-11 items-center text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
               michal@findsherpas.com
             </a>

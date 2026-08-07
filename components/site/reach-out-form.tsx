@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const inputClass =
-  "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-200";
+  "w-full rounded-lg border border-input bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30";
 
 export function ReachOutForm() {
   const [form, setForm] = useState({
@@ -52,14 +52,14 @@ export function ReachOutForm() {
 
   if (status === "success") {
     return (
-      <p className="rounded-lg border border-border/50 bg-primary/[0.03] px-5 py-4 text-sm text-muted-foreground">
+      <p role="status" tabIndex={-1} className="rounded-lg border border-border/50 bg-primary/[0.03] px-5 py-4 text-sm text-muted-foreground">
         Message received. We&apos;ll be in touch within 1–2 business days.
       </p>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} aria-busy={status === "loading"} className="space-y-4">
       {/* Honeypot — hidden from real users, catches bots */}
       <input
         type="text"
@@ -74,8 +74,8 @@ export function ReachOutForm() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="name" className="text-sm font-medium text-gray-900">
-            Name <span className="text-gray-500">*</span>
+          <label htmlFor="name" className="text-sm font-medium text-foreground">
+            Name <span className="text-muted-foreground">*</span>
           </label>
           <input
             id="name"
@@ -89,8 +89,8 @@ export function ReachOutForm() {
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="email" className="text-sm font-medium text-gray-900">
-            Email <span className="text-gray-500">*</span>
+          <label htmlFor="email" className="text-sm font-medium text-foreground">
+            Email <span className="text-muted-foreground">*</span>
           </label>
           <input
             id="email"
@@ -106,9 +106,9 @@ export function ReachOutForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="company" className="text-sm font-medium text-gray-900">
+        <label htmlFor="company" className="text-sm font-medium text-foreground">
           Website or company{" "}
-          <span className="text-sm text-gray-500">(optional)</span>
+          <span className="text-sm text-muted-foreground">(optional)</span>
         </label>
         <input
           id="company"
@@ -122,8 +122,8 @@ export function ReachOutForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="message" className="text-sm font-medium text-gray-900">
-          Message <span className="text-gray-500">*</span>
+        <label htmlFor="message" className="text-sm font-medium text-foreground">
+          Message <span className="text-muted-foreground">*</span>
         </label>
         <textarea
           id="message"
@@ -138,7 +138,7 @@ export function ReachOutForm() {
       </div>
 
       {status === "error" && (
-        <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <p role="alert" className="rounded-lg border border-destructive/20 bg-destructive/5 px-4 py-3 text-sm text-destructive">
           {errorMsg}
         </p>
       )}

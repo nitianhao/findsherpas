@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 
 const CAL_URL = "https://cal.eu/michal-pekarcik-r6j8fb";
@@ -8,7 +6,7 @@ export function CalEmbed() {
   return (
     <>
       {/* Mobile: link out instead of embedding */}
-      <div className="sm:hidden rounded-xl border border-gray-200 bg-gray-50 p-6 text-center">
+      <div className="sm:hidden rounded-xl border border-border bg-muted/40 p-6 text-center">
         <p className="text-sm text-muted-foreground">
           Booking works better in the full calendar view on mobile.
         </p>

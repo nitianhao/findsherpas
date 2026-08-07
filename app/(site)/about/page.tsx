@@ -77,38 +77,38 @@ export default function AboutPage() {
       {/* ── 2. What we do / What we don't ───────────────────── */}
       <section id="what-we-do" className="mt-10 scroll-mt-24">
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+          <div className="rounded-xl border border-border bg-muted/40 p-5">
             <div className="flex items-center gap-2">
-              <Search size={18} strokeWidth={1.5} className="shrink-0 text-gray-500" />
-              <h2 className="text-sm font-bold uppercase tracking-wide text-gray-500">We do</h2>
+              <Search size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
+              <h2 className="text-sm font-bold uppercase tracking-wide text-muted-foreground">We do</h2>
             </div>
-            <ul className="mt-3 space-y-1.5 text-sm text-gray-800">
+            <ul className="mt-3 space-y-1.5 text-sm text-foreground/90">
               <li className="flex items-baseline gap-2">
-                <span className="text-gray-300">&bull;</span>
+                <span className="text-border">&bull;</span>
                 Diagnose ranking, query interpretation, and dead ends
               </li>
               <li className="flex items-baseline gap-2">
-                <span className="text-gray-300">&bull;</span>
+                <span className="text-border">&bull;</span>
                 Deliver a prioritized roadmap your team can act on
               </li>
             </ul>
           </div>
-          <div className="rounded-xl border border-gray-200 bg-white p-5">
+          <div className="rounded-xl border border-border bg-card p-5">
             <div className="flex items-center gap-2">
-              <Slash size={18} strokeWidth={1.5} className="shrink-0 text-gray-500" />
-              <h2 className="text-sm font-bold uppercase tracking-wide text-gray-500">We don&apos;t do</h2>
+              <Slash size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
+              <h2 className="text-sm font-bold uppercase tracking-wide text-muted-foreground">We don&apos;t do</h2>
             </div>
-            <ul className="mt-3 space-y-1.5 text-sm text-gray-500">
+            <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
               <li className="flex items-baseline gap-2">
-                <span className="text-gray-300">&bull;</span>
+                <span className="text-border">&bull;</span>
                 SEO or marketing work
               </li>
               <li className="flex items-baseline gap-2">
-                <span className="text-gray-300">&bull;</span>
+                <span className="text-border">&bull;</span>
                 Ongoing embedded consulting
               </li>
               <li className="flex items-baseline gap-2">
-                <span className="text-gray-300">&bull;</span>
+                <span className="text-border">&bull;</span>
                 Reselling or implementing a platform
               </li>
             </ul>
@@ -129,8 +129,8 @@ export default function AboutPage() {
         </p>
 
         <div className="mt-6 flex items-center gap-2">
-          <Database size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
-          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          <Database size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             Search environments we&apos;ve worked in
           </p>
         </div>
@@ -138,10 +138,10 @@ export default function AboutPage() {
           {environmentCards.map((card) => (
             <div
               key={card.value}
-              className="rounded-xl border border-gray-200 bg-white p-5"
+              className="rounded-xl border border-border bg-card p-5"
             >
-              <p className="text-lg font-semibold text-gray-900">{card.value}</p>
-              <p className="mt-0.5 text-sm text-gray-600">{card.label}</p>
+              <p className="text-lg font-semibold text-foreground">{card.value}</p>
+              <p className="mt-0.5 text-sm text-muted-foreground">{card.label}</p>
             </div>
           ))}
         </div>
@@ -150,7 +150,7 @@ export default function AboutPage() {
       {/* ── 4. Vendor-agnostic expertise ────────────────────── */}
       <section id="vendor-agnostic" className="mt-10 scroll-mt-24 sm:mt-14">
         <div className="flex items-center gap-2">
-          <Layers size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
+          <Layers size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
           <h2 className="text-xl font-semibold tracking-tight">Vendor-agnostic</h2>
         </div>
         <p className="mt-3 max-w-xl text-muted-foreground">
@@ -188,7 +188,7 @@ export default function AboutPage() {
       {/* ── 5. How we audit search — vertical timeline ──────── */}
       <section id="how-we-audit" className="mt-10 scroll-mt-24 sm:mt-14">
         <div className="flex items-center gap-2">
-          <GitBranch size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
+          <GitBranch size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
           <h2 className="text-xl font-semibold tracking-tight">How we audit search</h2>
         </div>
         <p className="mt-3 max-w-xl text-muted-foreground">
@@ -199,11 +199,11 @@ export default function AboutPage() {
         <div className="mt-8 space-y-6">
           {auditSteps.map((step) => (
             <div key={step.number} className="flex items-start gap-6">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-900 text-sm font-semibold text-white">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-foreground text-sm font-semibold text-white">
                 {step.number}
               </div>
               <div className="pt-0.5">
-                <h3 className="text-sm font-bold tracking-tight text-gray-900">
+                <h3 className="text-sm font-bold tracking-tight text-foreground">
                   {step.title}
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">
@@ -218,7 +218,7 @@ export default function AboutPage() {
       {/* ── 6. What you get — card grid ─────────────────────── */}
       <section id="what-you-get" className="mt-10 scroll-mt-24 sm:mt-14">
         <div className="flex items-center gap-2">
-          <CheckCircle size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
+          <CheckCircle size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
           <h2 className="text-xl font-semibold tracking-tight">What you get</h2>
         </div>
         <p className="mt-3 max-w-xl text-muted-foreground">
@@ -228,15 +228,15 @@ export default function AboutPage() {
           {deliverables.map((item) => (
             <div
               key={item}
-              className="flex items-start gap-3 rounded-lg border border-gray-200 bg-white p-4"
+              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
             >
-              <span className="mt-px text-sm font-bold text-gray-900">✓</span>
-              <span className="text-sm text-gray-700">{item}</span>
+              <span className="mt-px text-sm font-bold text-foreground">✓</span>
+              <span className="text-sm text-foreground/80">{item}</span>
             </div>
           ))}
-          <div className="flex items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 p-4">
-            <span className="mt-px text-sm text-gray-400">+</span>
-            <span className="text-sm text-gray-500">
+          <div className="flex items-start gap-3 rounded-lg border border-border bg-muted/40 p-4">
+            <span className="mt-px text-sm text-muted-foreground/70">+</span>
+            <span className="text-sm text-muted-foreground">
               Optional: evaluation framework and monitoring plan
             </span>
           </div>
@@ -246,7 +246,7 @@ export default function AboutPage() {
       {/* ── 7. Who we work with ───────────────────────────── */}
       <section id="who-we-work-with" className="mt-10 scroll-mt-24 sm:mt-14">
         <div className="flex items-center gap-2">
-          <Users size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
+          <Users size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
           <h2 className="text-xl font-semibold tracking-tight">Who we work with</h2>
         </div>
         <p className="mt-3 text-sm text-muted-foreground">
@@ -262,7 +262,7 @@ export default function AboutPage() {
           ].map((role) => (
             <span
               key={role}
-              className="rounded-md border border-gray-200 px-3 py-1 text-sm text-gray-600"
+              className="rounded-md border border-border px-3 py-1 text-sm text-muted-foreground"
             >
               {role}
             </span>
@@ -270,7 +270,7 @@ export default function AboutPage() {
         </div>
 
         <div id="typical-situations" className="mt-8 flex scroll-mt-24 items-center gap-2">
-          <AlertCircle size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
+          <AlertCircle size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
           <h3 className="text-base font-semibold tracking-tight">Typical situations</h3>
         </div>
         <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
@@ -281,7 +281,7 @@ export default function AboutPage() {
             "You need a test set or evaluation method before making changes",
           ].map((item) => (
             <li key={item} className="flex items-baseline gap-2">
-              <span className="text-gray-300">&bull;</span>
+              <span className="text-border">&bull;</span>
               {item}
             </li>
           ))}
@@ -289,8 +289,8 @@ export default function AboutPage() {
       </section>
 
       {/* ── 8. Insight callout ──────────────────────────────── */}
-      <div className="mt-10 sm:mt-14 rounded-xl border border-gray-200 bg-gray-50 p-6">
-        <p className="max-w-2xl text-base leading-relaxed text-gray-700">
+      <div className="mt-10 sm:mt-14 rounded-xl border border-border bg-muted/40 p-6">
+        <p className="max-w-2xl text-base leading-relaxed text-foreground/80">
           Search engines almost always return something. That makes ranking
           failures difficult to detect until they quietly start hurting
           conversion.
@@ -312,7 +312,7 @@ export default function AboutPage() {
       {/* ── 10. Languages ───────────────────────────────────── */}
       <section id="languages" className="mt-10 scroll-mt-24 sm:mt-14">
         <div className="flex items-center gap-2">
-          <Globe size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
+          <Globe size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
           <h2 className="text-xl font-semibold tracking-tight">Languages</h2>
         </div>
         <p className="mt-3 text-sm text-muted-foreground">
@@ -339,15 +339,15 @@ export default function AboutPage() {
       {/* ── 11. Where to find us ────────────────────────────── */}
       <section id="where-to-find-us" className="mt-10 scroll-mt-24 sm:mt-14">
         <div className="flex items-center gap-2">
-          <MapPin size={18} strokeWidth={1.5} className="shrink-0 text-gray-600" />
+          <MapPin size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
           <h2 className="text-xl font-semibold tracking-tight">Where to find us</h2>
         </div>
-        <div className="mt-5 grid gap-4 overflow-hidden rounded-xl border border-gray-200 bg-white sm:grid-cols-[1fr_1.4fr]">
+        <div className="mt-5 grid gap-4 overflow-hidden rounded-xl border border-border bg-card sm:grid-cols-[1fr_1.4fr]">
           <div className="p-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Studio
             </p>
-            <address className="mt-3 not-italic text-sm leading-relaxed text-gray-800">
+            <address className="mt-3 not-italic text-sm leading-relaxed text-foreground/90">
               Find Sherpas
               <br />
               Luční 17
@@ -365,7 +365,7 @@ export default function AboutPage() {
               Open in maps
             </a>
           </div>
-          <div className="min-h-[240px] border-t border-gray-200 sm:border-l sm:border-t-0">
+          <div className="min-h-[240px] border-t border-border sm:border-l sm:border-t-0">
             <iframe
               title="Find Sherpas studio location — Luční 17, Prague"
               src="https://www.openstreetmap.org/export/embed.html?bbox=14.4592%2C50.0803%2C14.4772%2C50.0893&layer=mapnik&marker=50.0848%2C14.4682"

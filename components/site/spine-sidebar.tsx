@@ -37,10 +37,10 @@ export function SpineSidebar({ sections }: SpineSidebarProps) {
 
   return (
     <div className="sticky top-32 hidden self-start md:flex md:flex-col md:items-center">
-      <div className="relative flex flex-col items-center gap-8">
+      <div className="relative flex flex-col items-center">
         {/* Vertical connecting line */}
         <div
-          className="absolute left-1/2 top-1.5 -translate-x-1/2 bg-gray-200"
+          className="absolute left-1/2 top-1.5 -translate-x-1/2 bg-border"
           style={{ width: "1px", bottom: "6px" }}
         />
         {sections.map(({ id, label }) => {
@@ -51,12 +51,12 @@ export function SpineSidebar({ sections }: SpineSidebarProps) {
               href={`#${id}`}
               aria-label={label}
               title={label}
-              className="relative z-10 transition-transform duration-150 hover:scale-125"
+              className="relative z-10 flex h-11 w-11 items-center justify-center transition-transform duration-150 hover:scale-110 focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
             >
               {isActive ? (
-                <span className="block h-3 w-3 rounded-full bg-gray-900 transition-all duration-200" />
+                <span className="block h-3 w-3 rounded-full bg-foreground transition-all duration-200" />
               ) : (
-                <span className="block h-3 w-3 rounded-full border border-gray-400 bg-white transition-all duration-200" />
+                <span className="block h-3 w-3 rounded-full border border-muted-foreground/70 bg-card transition-all duration-200 motion-reduce:transition-none" />
               )}
             </a>
           );
