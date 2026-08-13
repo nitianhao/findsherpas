@@ -64,3 +64,10 @@ __pycache__/
 
 # Report passwords — local only, never committed
 reports/passwords.json
+
+# Source photography for the NORTHAM animation — build input for the
+# northam-video repo, never needed by the site (only public/video/ is).
+/Product Photos/
+
+# SDD scratch: briefs, reports, review packages
+/.superpowers/
