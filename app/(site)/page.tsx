@@ -4,6 +4,7 @@ import { Workflow, Database, CheckCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { HomeSidebar } from "@/components/site/home-sidebar";
+import { SearchLoopVideo } from "@/components/site/search-loop-video";
 
 export const metadata: Metadata = {
   title: { absolute: "Internal search audit and optimization for ecommerce | Find Sherpas" },
@@ -42,11 +43,6 @@ export default async function Home() {
             <p className="mt-4 text-sm text-muted-foreground">
               Experience with large-scale ecommerce search systems — Algolia, Elasticsearch, OpenSearch, Typesense, Luigi&apos;s Box.
             </p>
-            <p className="mt-6 font-mono text-sm text-foreground/70">
-              &ldquo;black running shoes&rdquo;{" "}
-              <span className="text-muted-foreground/40">&rarr;</span> bestseller
-              ranked #14, weak match ranked #1
-            </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button asChild size="lg" className="h-12 w-full text-base font-semibold sm:w-auto px-8">
                 <Link href="/book-a-call">Book a call</Link>
@@ -55,6 +51,10 @@ export default async function Home() {
                 <Link href="/#what-we-do">See our approach</Link>
               </Button>
             </div>
+          </div>
+
+          <div className="mx-auto mt-14 max-w-[1120px]">
+            <SearchLoopVideo />
           </div>
         </section>
 
