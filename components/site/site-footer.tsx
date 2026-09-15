@@ -1,132 +1,49 @@
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
+import { FocusMark } from "./focus-mark";
+import { AnalyticsSettingsButton } from "./analytics-consent";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t">
-      <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <div className="text-sm font-semibold tracking-tight">
-              Find Sherpas
-            </div>
-            <p className="mt-2 max-w-xs text-sm text-muted-foreground">
-              On-site search optimization for e-commerce teams. Not SEO.
-            </p>
-          </div>
-
-          {/* Explore */}
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              Explore
-            </div>
-            <ul className="mt-3 space-y-3 text-sm">
-              <li>
-                <Link
-                  href="/frameworks/search-failure-modes"
-                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Failure modes
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/frameworks/query-interpretation"
-                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Query interpretation
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/search-check"
-                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Search check
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  About
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              Company
-            </div>
-            <ul className="mt-3 space-y-3 text-sm">
-              <li>
-                <Link
-                  href="/#what-we-do"
-                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Approach
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/book-a-call"
-                  className="inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Get started */}
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              Get started
-            </div>
-            <div className="mt-4">
-              <Button asChild size="sm">
-                <Link href="/book-a-call">Book a call</Link>
-              </Button>
-            </div>
-          </div>
+    <footer className="fs-footer">
+      <div className="fs-footer-top">
+        <div className="fs-footer-brand">
+          <Link href="/" className="fs-wordmark">
+            find sherpas
+            <FocusMark />
+          </Link>
+          <p>
+            On-site search, understood.
+            <br />A boutique search optimization agency.
+          </p>
         </div>
-
-        {/* Bottom bar */}
-        <div className="mt-10 border-t border-border/50 pt-6">
-          <div className="flex flex-col gap-4 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              &copy; {new Date().getFullYear()} Find Sherpas. All rights
-              reserved.
-            </div>
-            <div className="flex items-center gap-3">
-              <span>
-                Languages: EN&nbsp;&middot; DE&nbsp;&middot;
-                FR&nbsp;&middot; ES&nbsp;&middot; IT&nbsp;&middot;
-                NL&nbsp;&middot; SV
-              </span>
-            </div>
-          </div>
-          <div className="mt-3 text-sm text-muted-foreground">
-            <a
-              href="mailto:michal@findsherpas.com"
-              className="inline-flex min-h-11 items-center transition-colors hover:text-foreground"
-            >
-              michal@findsherpas.com
-            </a>
-          </div>
+        <nav aria-labelledby="footer-company">
+          <h2 id="footer-company">Company</h2>
+          <Link href="/expertise">What we do</Link>
+          <Link href="/approach">How we work</Link>
+          <Link href="/about">About</Link>
+        </nav>
+        <nav aria-labelledby="footer-resources">
+          <h2 id="footer-resources">Resources</h2>
+          <Link href="/resources">All resources</Link>
+          <Link href="/blog">Articles</Link>
+          <Link href="/search-check">Search self-assessment</Link>
+          <Link href="/frameworks/search-failure-modes">Search failure modes</Link>
+          <Link href="/frameworks/query-interpretation">Query interpretation</Link>
+        </nav>
+        <div className="fs-footer-contact">
+          <Link href="/contact">
+            Discuss your search <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
+          <a href="mailto:michal@findsherpas.com">michal@findsherpas.com</a>
+        </div>
+      </div>
+      <div className="fs-footer-bottom">
+        <span>© {new Date().getFullYear()} Find Sherpas</span>
+        <span>For ecommerce teams across Europe &amp; the UK.</span>
+        <div className="fs-footer-legal">
+          <Link href="/privacy">Privacy</Link>
+          <AnalyticsSettingsButton />
         </div>
       </div>
     </footer>

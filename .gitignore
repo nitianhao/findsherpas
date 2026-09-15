@@ -71,3 +71,9 @@ reports/passwords.json
 
 # SDD scratch: briefs, reports, review packages
 /.superpowers/
+
+# Local redesign references and recoverable snapshots
+/.impeccable/backups/
+/.impeccable/screenshots/
+/.impeccable/mocks/
+/.impeccable-before.png

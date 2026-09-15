@@ -1,6 +1,11 @@
-import Script from "next/script";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import {
+  DEFAULT_SOCIAL_IMAGE,
+  SITE_AUTHOR,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,26 +20,35 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Find Sherpas",
-    template: "%s | Find Sherpas",
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Internal search audits for ecommerce teams: diagnose ranking, query interpretation, relevance, and search UX issues across your on-site search experience.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://findsherpas.com"),
+    "A boutique agency for ecommerce on-site search optimization: query analysis, relevance tuning, search UX and ongoing experimentation.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? SITE_URL,
+  ),
   openGraph: {
     type: "website",
-    title: "Find Sherpas",
+    title: SITE_NAME,
     description:
-      "Internal search audits for ecommerce teams: diagnose ranking, query interpretation, relevance, and search UX issues.",
-    siteName: "Find Sherpas",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+      "Ecommerce on-site search optimization. From the first fixes to the finer details of relevance, analytics and search UX.",
+    siteName: SITE_NAME,
+    images: [
+      {
+        url: DEFAULT_SOCIAL_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} — ecommerce search optimization`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Find Sherpas",
+    title: SITE_NAME,
     description:
-      "Internal search audits for ecommerce teams: diagnose ranking, query interpretation, relevance, and search UX issues.",
-    images: ["/og-image.png"],
+      "Ecommerce on-site search optimization. From the first fixes to the finer details of relevance, analytics and search UX.",
+    images: [DEFAULT_SOCIAL_IMAGE],
   },
   icons: {
     icon: [
@@ -52,28 +66,55 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Find Sherpas",
-    url: "https://findsherpas.com",
-    email: "michal@findsherpas.com",
-    description:
-      "Internal search audits for ecommerce teams: diagnosing ranking, query interpretation, relevance, and search UX issues across on-site search, independent of the search vendor.",
-    areaServed: "Worldwide",
-    serviceType: [
-      "Ecommerce site search audit",
-      "Search relevance consulting",
-      "Query interpretation analysis",
-      "Search UX optimization",
-    ],
-    knowsAbout: [
-      "On-site search",
-      "Search relevance",
-      "Ranking",
-      "Query understanding",
-      "Algolia",
-      "Elasticsearch",
-      "OpenSearch",
-      "Typesense",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#organization`,
+        name: SITE_NAME,
+        url: SITE_URL,
+        logo: `${SITE_URL}/icon.svg`,
+        email: "michal@findsherpas.com",
+        founder: {
+          "@type": "Person",
+          name: SITE_AUTHOR,
+          url: `${SITE_URL}/about`,
+        },
+        areaServed: ["Europe", "United Kingdom"],
+        knowsAbout: [
+          "On-site search",
+          "Search relevance",
+          "Ranking",
+          "Query understanding",
+          "Algolia",
+          "Elasticsearch",
+          "Luigi's Box",
+          "Constructor",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: SITE_NAME,
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        inLanguage: "en",
+      },
+      {
+        "@type": "Service",
+        "@id": `${SITE_URL}/#service`,
+        name: "Ecommerce on-site search optimization",
+        description:
+          "Search audits and ongoing optimization covering query analysis, relevance, search UX and experimentation.",
+        provider: { "@id": `${SITE_URL}/#organization` },
+        areaServed: ["Europe", "United Kingdom"],
+        serviceType: [
+          "Ecommerce site search audit",
+          "Ongoing search optimization",
+          "Search relevance consulting",
+          "Query interpretation analysis",
+          "Search UX optimization",
+        ],
+      },
     ],
   };
 
@@ -85,20 +126,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased text-base md:text-lg leading-relaxed`}>
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-M8D3D607D7"
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased text-base md:text-lg leading-relaxed`}
+      >
+        <template
+          dangerouslySetInnerHTML={{
+            __html:
+              "<!-- PUBLIC SITE DIRECTION — THESIS: Customer language reveals the decisions behind search; refuse generic agency card grids. OWN-WORLD: Deep ink, soft white, humanist typography, restrained blue-grey meaning highlights, bracket mark and flat controls. STORY: Understand the service, explore a query, see how work begins and continues, discuss your search. FIRST VIEWPORT: 53/47 split; large headline and explicit offer left, annotated multilingual query right, primary action below the offer. FORM: Language reference, candidate 4, seed c85c00a9; composition-a.png. Scope: public marketing routes, not CRM. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md -->",
+          }}
         />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-M8D3D607D7');
-          `}
-        </Script>
         {children}
       </body>
     </html>

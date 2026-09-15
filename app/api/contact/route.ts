@@ -23,19 +23,19 @@ export async function POST(req: Request) {
     body = null;
   }
 
-  if (!body) {
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
   // Basic spam protection: honeypot must stay empty
-  if (body.website && body.website.trim().length > 0) {
+  if (typeof body.website === "string" && body.website.trim().length > 0) {
     return NextResponse.json({ ok: true });
   }
 
-  const name = (body.name ?? "").trim();
-  const email = (body.email ?? "").trim();
-  const company = (body.company ?? "").trim();
-  const message = (body.message ?? "").trim();
+  const name = typeof body.name === "string" ? body.name.trim() : "";
+  const email = typeof body.email === "string" ? body.email.trim() : "";
+  const company = typeof body.company === "string" ? body.company.trim() : "";
+  const message = typeof body.message === "string" ? body.message.trim() : "";
   const interestedIn = body.interestedIn ?? "other";
 
   if (!name || !email || !message) {
@@ -47,20 +47,30 @@ export async function POST(req: Request) {
   if (!isEmail(email)) {
     return NextResponse.json({ error: "Invalid email" }, { status: 400 });
   }
+  if (
+    name.length > 200 ||
+    email.length > 254 ||
+    company.length > 500 ||
+    message.length > 10000
+  ) {
+    return NextResponse.json(
+      { error: "Please shorten your message and try again." },
+      { status: 400 },
+    );
+  }
 
   const toEmail = process.env.CONTACT_TO_EMAIL ?? "michal.pekarcik@gmail.com";
 
-  // If Resend is not configured yet, fall back to logging.
+  // A successful response must mean the provider accepted the message.
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey || resendKey === "re_...") {
-    console.log("Contact form submission (no valid RESEND_API_KEY configured)", {
-      name,
-      email,
-      company,
-      interestedIn,
-      message,
-    });
-    return NextResponse.json({ ok: true, delivery: "log" });
+    return NextResponse.json(
+      {
+        error:
+          "The form is temporarily unavailable. Please email michal@findsherpas.com directly.",
+      },
+      { status: 503 },
+    );
   }
 
   const resend = new Resend(resendKey);
@@ -77,7 +87,9 @@ export async function POST(req: Request) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL ?? "Find Sherpas <onboarding@resend.dev>",
+      from:
+        process.env.CONTACT_FROM_EMAIL ??
+        "Find Sherpas <onboarding@resend.dev>",
       to: [toEmail],
       replyTo: email,
       subject,
@@ -86,11 +98,17 @@ export async function POST(req: Request) {
 
     if (error) {
       console.error("Resend error:", error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      return NextResponse.json(
+        {
+          error:
+            "Your message could not be sent. Please try again or email michal@findsherpas.com.",
+        },
+        { status: 502 },
+      );
     }
 
     return NextResponse.json({ ok: true, delivery: "email", id: data?.id });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("Unexpected error sending email:", err);
     return NextResponse.json(
       { error: "Failed to send email. Please try again later." },
@@ -98,4 +116,3 @@ export async function POST(req: Request) {
     );
   }
 }
-

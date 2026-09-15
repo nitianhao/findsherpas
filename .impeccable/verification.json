@@ -1,0 +1,332 @@
+{
+  "pages": [
+    {
+      "route": "/",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "On-site search optimization for ecommerce | Find Sherpas"
+    },
+    {
+      "route": "/approach",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "How we work | Find Sherpas"
+    },
+    {
+      "route": "/expertise",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "Search expertise | Find Sherpas"
+    },
+    {
+      "route": "/about",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "About Find Sherpas"
+    },
+    {
+      "route": "/contact",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "Discuss your search | Find Sherpas"
+    },
+    {
+      "route": "/blog",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "Writing on search | Find Sherpas"
+    },
+    {
+      "route": "/blog/algolia-best-practices",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "Algolia best practices: fix the data before the ranking | Find Sherpas"
+    },
+    {
+      "route": "/blog/faceted-search-best-practices",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "Faceted search best practices: fix discoverability before data | Find Sherpas"
+    },
+    {
+      "route": "/frameworks/query-interpretation",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "Query interpretation in search systems | Find Sherpas"
+    },
+    {
+      "route": "/frameworks/search-failure-modes",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "Search failure modes | Find Sherpas"
+    },
+    {
+      "route": "/search-check",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "Internal search self-assessment — Is your ecommerce search working? | Find Sherpas"
+    },
+    {
+      "route": "/case-studies",
+      "device": "desktop",
+      "status": 200,
+      "h1": 1,
+      "title": "Case studies | Find Sherpas"
+    },
+    {
+      "route": "/",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "On-site search optimization for ecommerce | Find Sherpas"
+    },
+    {
+      "route": "/approach",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "How we work | Find Sherpas"
+    },
+    {
+      "route": "/expertise",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "Search expertise | Find Sherpas"
+    },
+    {
+      "route": "/about",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "About Find Sherpas"
+    },
+    {
+      "route": "/contact",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "Discuss your search | Find Sherpas"
+    },
+    {
+      "route": "/blog",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "Writing on search | Find Sherpas"
+    },
+    {
+      "route": "/blog/algolia-best-practices",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "Algolia best practices: fix the data before the ranking | Find Sherpas"
+    },
+    {
+      "route": "/blog/faceted-search-best-practices",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "Faceted search best practices: fix discoverability before data | Find Sherpas"
+    },
+    {
+      "route": "/frameworks/query-interpretation",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "Query interpretation in search systems | Find Sherpas"
+    },
+    {
+      "route": "/frameworks/search-failure-modes",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "Search failure modes | Find Sherpas"
+    },
+    {
+      "route": "/search-check",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "Internal search self-assessment — Is your ecommerce search working? | Find Sherpas"
+    },
+    {
+      "route": "/case-studies",
+      "device": "mobile",
+      "status": 200,
+      "h1": 1,
+      "title": "Case studies | Find Sherpas"
+    }
+  ],
+  "interactions": [
+    {
+      "name": "320-English",
+      "pressed": "true"
+    },
+    {
+      "name": "320-Deutsch",
+      "pressed": "true"
+    },
+    {
+      "name": "320-Français",
+      "pressed": "true"
+    },
+    {
+      "name": "320-Nederlands",
+      "pressed": "true"
+    },
+    {
+      "name": "390-English",
+      "pressed": "true"
+    },
+    {
+      "name": "390-Deutsch",
+      "pressed": "true"
+    },
+    {
+      "name": "390-Français",
+      "pressed": "true"
+    },
+    {
+      "name": "390-Nederlands",
+      "pressed": "true"
+    },
+    {
+      "name": "768-English",
+      "pressed": "true"
+    },
+    {
+      "name": "768-Deutsch",
+      "pressed": "true"
+    },
+    {
+      "name": "768-Français",
+      "pressed": "true"
+    },
+    {
+      "name": "768-Nederlands",
+      "pressed": "true"
+    },
+    {
+      "name": "1024-English",
+      "pressed": "true"
+    },
+    {
+      "name": "1024-Deutsch",
+      "pressed": "true"
+    },
+    {
+      "name": "1024-Français",
+      "pressed": "true"
+    },
+    {
+      "name": "1024-Nederlands",
+      "pressed": "true"
+    },
+    {
+      "name": "1280-English",
+      "pressed": "true"
+    },
+    {
+      "name": "1280-Deutsch",
+      "pressed": "true"
+    },
+    {
+      "name": "1280-Français",
+      "pressed": "true"
+    },
+    {
+      "name": "1280-Nederlands",
+      "pressed": "true"
+    },
+    {
+      "name": "1440-English",
+      "pressed": "true"
+    },
+    {
+      "name": "1440-Deutsch",
+      "pressed": "true"
+    },
+    {
+      "name": "1440-Français",
+      "pressed": "true"
+    },
+    {
+      "name": "1440-Nederlands",
+      "pressed": "true"
+    },
+    {
+      "name": "menu open focus",
+      "active": "Close menu"
+    },
+    {
+      "name": "menu focus trap",
+      "active": "michal@findsherpas.com"
+    },
+    {
+      "name": "menu escape",
+      "closed": true,
+      "focus": true
+    },
+    {
+      "name": "mobile navigation",
+      "url": "http://127.0.0.1:3001/approach",
+      "overflow": ""
+    },
+    {
+      "name": "scenario A typo",
+      "source": "/video/search-loop-typo-mobile.mp4",
+      "status": 200
+    },
+    {
+      "name": "scenario A local expression",
+      "source": "/video/search-loop-synonym-mobile.mp4",
+      "status": 200
+    },
+    {
+      "name": "scenario A product type",
+      "source": "/video/search-loop-availability-mobile.mp4",
+      "status": 200
+    },
+    {
+      "name": "scenario An occasion",
+      "source": "/video/search-loop-mobile.mp4",
+      "status": 200
+    },
+    {
+      "name": "form loading",
+      "disabled": true
+    },
+    {
+      "name": "form error retains message",
+      "value": "Test enquiry. This submission is intercepted and never delivered.",
+      "focused": true
+    },
+    {
+      "name": "form success",
+      "text": "Thank you for the context.Your message has been sent. We will be in touch at visitor@example.test."
+    },
+    {
+      "name": "old contact redirect",
+      "url": "http://127.0.0.1:3001/contact"
+    },
+    {
+      "name": "sitemap",
+      "newRoutes": true,
+      "noDrafts": true
+    }
+  ],
+  "errors": [],
+  "overflow": []
+}

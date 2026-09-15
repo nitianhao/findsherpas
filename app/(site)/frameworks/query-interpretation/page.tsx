@@ -1,599 +1,254 @@
-/* eslint-disable react/no-unescaped-entities -- Editorial examples intentionally preserve literal search-query punctuation. */
-import type { Metadata } from "next";
-import Link from "next/link";
-import { Layers, Tag, RefreshCw, Cpu, HelpCircle } from "lucide-react";
-import { QueryInterpretationSidebar } from "@/components/site/query-interpretation-sidebar";
+import { FrameworkArticle, type FrameworkStage } from "@/components/site/framework-article";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: { absolute: "Query interpretation in search systems | Find Sherpas" },
+export const metadata = createPageMetadata({
+  title: "Query interpretation in ecommerce search | Find Sherpas",
   description:
-    "A framework for understanding how search engines interpret user queries and why query understanding failures are among the most common causes of poor search quality.",
-  alternates: { canonical: "https://findsherpas.com/frameworks/query-interpretation" },
-};
+    "A practical framework for turning ecommerce search queries into product types, attributes, brands, constraints and contextual intent.",
+  path: "/frameworks/query-interpretation",
+  absoluteTitle: true,
+});
 
-const failurePatterns = [
-  "Compound queries treated as unstructured text instead of decomposed into attribute filters",
-  "Attribute values like color, size, and material matched against descriptions rather than faceted fields",
-  "Synonym lists creating false equivalences that mask deeper interpretation problems",
-  "Misspellings and regional variants returning zero results instead of fuzzy-matched alternatives",
-  "Multi-word brand names split across tokens and matched incorrectly",
-  'Queries with implicit intent ("gift for dad") returning literal keyword matches',
-  'Negation and exclusion queries ("dress not black") ignored entirely by the search engine',
+const stages: FrameworkStage[] = [
+  {
+    id: "compound-queries",
+    title: "Decompose compound queries",
+    summary: "Separate the product the customer wants from the conditions it must satisfy.",
+    detail:
+      "Compound searches compress several decisions into a few words. The safest interpretation identifies the head product concept first, then attaches attributes, brand, audience, use case and exclusions. Treating every token as equal text often rewards products that match many words while missing the requested product type.",
+    example: {
+      query: "women’s red waterproof hiking jacket size M",
+      weak: "Seven independent keywords competing across titles and descriptions.",
+      useful: "Jacket = product; women’s = audience; red, waterproof and M = constraints; hiking = activity context.",
+    },
+    questions: [
+      "What is the head product concept?",
+      "Which words narrow eligibility and which only add preference or context?",
+      "Can one token belong to more than one field in this catalogue?",
+    ],
+    evidence: [
+      "Parsed tokens, detected entities and generated filters",
+      "Result composition when each term is added or removed",
+      "Reformulations that simplify a long query into shorter searches",
+    ],
+    actions: [
+      "Define an entity schema that matches the catalogue’s strongest fields",
+      "Test compositional queries rather than only single product terms",
+      "Keep soft preferences distinct from filters that can cause zero results",
+    ],
+    decisionRule:
+      "Make a term a hard constraint only when its meaning and catalogue coverage are reliable enough to exclude products.",
+  },
+  {
+    id: "attribute-queries",
+    title: "Map attributes to catalogue truth",
+    summary: "Customer vocabulary and product data must meet in the same field.",
+    detail:
+      "Shoppers rarely use the exact labels in a product information system. They search for ‘navy’, ‘midnight’ or ‘dark blue’; ‘sofa bed’ or ‘sleeper sofa’. Interpretation should connect those terms to controlled catalogue values without pretending that weak or missing data is precise.",
+    example: {
+      query: "oak dining table for six",
+      weak: "Matches ‘oak effect’ copy and any page mentioning six, including sets of six chairs.",
+      useful: "Dining table = product; oak = material requirement; six = seating-capacity intent, verified against structured fields.",
+    },
+    questions: [
+      "Is this value stored consistently and completely for the category?",
+      "Is the shopper expressing a strict requirement or a preference?",
+      "Do local-language terms map to the same controlled value?",
+    ],
+    evidence: [
+      "Attribute completeness and value distributions by category",
+      "Examples of customer terms that lead to the same product family",
+      "False positives caused by matching descriptions instead of attributes",
+    ],
+    actions: [
+      "Normalise high-value attribute families and their customer vocabulary",
+      "Use category-aware mappings so a term keeps the right meaning",
+      "Fall back gracefully when structured data is incomplete",
+    ],
+    decisionRule:
+      "An attribute filter is only as trustworthy as the data behind it. When coverage is weak, prefer a scored signal and expose the limitation.",
+  },
+  {
+    id: "tokenization",
+    title: "Normalise without erasing meaning",
+    summary: "Small text-processing choices can split brands, sizes and product codes into the wrong pieces.",
+    detail:
+      "Case folding, punctuation removal, stemming, typo tolerance and token boundaries shape every later match. The right behaviour depends on the catalogue: a hyphen may be noise in one query and essential in a model number; a short token may be a stop word in prose but a clothing size in retail.",
+    example: {
+      query: "New Balance 530 / EU 39.5",
+      weak: "Drops ‘new’, splits the decimal size and fuzzily matches unrelated model numbers.",
+      useful: "Preserves the multi-word brand, identifies 530 as a model and normalises 39.5 within the EU size system.",
+    },
+    questions: [
+      "Which punctuation and token boundaries carry meaning in this category?",
+      "When should typo tolerance be reduced for brands, SKUs or short queries?",
+      "Are stemming and stop-word rules appropriate for every supported language?",
+    ],
+    evidence: [
+      "Raw and analysed token streams for representative queries",
+      "False matches around short terms, codes, units and multi-word brands",
+      "Zero-result queries differing only by punctuation, accents or inflection",
+    ],
+    actions: [
+      "Create field-specific analysis instead of one analyser for every value",
+      "Protect product codes, model names, units and known multi-word brands",
+      "Test each language with native examples rather than translated English probes",
+    ],
+    decisionRule:
+      "Normalisation should remove variation, not information. If two forms mean the same thing, converge them; if the distinction changes the product, preserve it.",
+  },
+  {
+    id: "synonyms-vs-meaning",
+    title: "Use vocabulary, not synonym sprawl",
+    summary: "Equivalence, relatedness and substitution are different relationships.",
+    detail:
+      "Synonyms are useful when two expressions genuinely denote the same concept in context. They are dangerous when used as a general rescue tool. Related categories, accessories, broader terms and style associations can widen retrieval without being interchangeable—and should be represented differently.",
+    example: {
+      query: "trainers",
+      weak: "A global synonym equates trainers, shoes, running shoes and sneakers in every market and category.",
+      useful: "Trainers and sneakers are market-aware vocabulary for a product family; running is an activity refinement, not a universal equivalent.",
+    },
+    questions: [
+      "Are the terms interchangeable in this market and category?",
+      "Should expansion work in both directions?",
+      "Could the rule introduce accessories, substitutes or broader categories?",
+    ],
+    evidence: [
+      "Results with each expansion enabled separately",
+      "Query pairs customers use before and after reformulation",
+      "Synonym rules ranked by traffic reach and number of affected categories",
+    ],
+    actions: [
+      "Label vocabulary relationships: equivalent, broader, narrower or related",
+      "Scope expansions by category, locale and direction",
+      "Retire rules that solve isolated examples but create broad false positives",
+    ],
+    decisionRule:
+      "If substituting term A for term B changes what the shopper could reasonably receive, they are not unconditional synonyms.",
+  },
+  {
+    id: "ambiguous-queries",
+    title: "Resolve ambiguity with context",
+    summary: "Some queries have more than one valid interpretation; choosing silently is still a product decision.",
+    detail:
+      "Ambiguity can come from language, catalogue overlap or missing context. Behavioural popularity may provide a prior, but it does not make the minority intent invalid. The interface can preserve useful branches through mixed results, suggestions, categories or clarifying controls instead of forcing one brittle interpretation.",
+    example: {
+      query: "apple",
+      weak: "Assumes the globally popular brand even in a catalogue that also sells groceries.",
+      useful: "Uses catalogue and market context, preserves both credible branches and helps the shopper choose when confidence is low.",
+    },
+    questions: [
+      "What are the credible intents in this catalogue and market?",
+      "Which signals change the probability: category, session, locale or season?",
+      "Can the results page expose both intents without becoming confusing?",
+    ],
+    evidence: [
+      "Click distribution and refinements for the ambiguous query",
+      "Previous browsing context, selected category and current market",
+      "Abandonment after one interpretation dominates the first page",
+    ],
+    actions: [
+      "Use confidence thresholds rather than forcing a single intent every time",
+      "Offer category suggestions or balanced result groups where useful",
+      "Review ambiguous high-volume queries as a distinct evaluation class",
+    ],
+    decisionRule:
+      "When confidence is low and the cost of a wrong branch is high, help the shopper disambiguate instead of hiding the uncertainty.",
+  },
+  {
+    id: "interpretation-evaluation",
+    title: "Evaluate the interpretation layer",
+    summary: "Judge the meaning produced by the system before judging the ranked list.",
+    detail:
+      "Result relevance alone cannot reveal whether the system understood the query or merely produced an acceptable answer by accident. A durable evaluation records the expected entities and constraints, the system’s interpretation, candidate-set effects and final results separately.",
+    example: {
+      query: "green dress not silk",
+      weak: "Marks the search as successful because several green dresses appear, even though silk products dominate.",
+      useful: "Checks product=dress, colour=green and material exclusion=silk before reviewing candidate coverage and order.",
+    },
+    questions: [
+      "What interpretation would a reviewer expect before seeing results?",
+      "Which extracted parts should filter, boost, exclude or remain contextual?",
+      "Did the right result appear for the right reason?",
+    ],
+    evidence: [
+      "A labelled set of queries with expected entities and relationships",
+      "Per-stage traces from raw query to filters and candidates",
+      "Error rates by interpretation pattern, language and category",
+    ],
+    actions: [
+      "Score entity detection and relation handling separately from ranking",
+      "Add real production failures to a versioned regression set",
+      "Review changes across query classes, not only the examples they target",
+    ],
+    decisionRule:
+      "Do not approve an interpretation change because one result page improved. Confirm the intended meaning, the affected candidate set and the regressions it could introduce.",
+  },
 ];
 
-const overviewItems = [
-  { id: "compound-queries",      label: "Compound queries",    icon: Layers    },
-  { id: "attribute-queries",     label: "Attribute queries",   icon: Tag       },
-  { id: "synonyms-vs-meaning",   label: "Synonyms vs meaning", icon: RefreshCw },
-  { id: "tokenization",          label: "Tokenization",        icon: Cpu       },
-  { id: "ambiguous-queries",     label: "Ambiguous queries",   icon: HelpCircle},
+const method = [
+  {
+    title: "Create a query grammar",
+    description:
+      "List the concepts customers combine in your catalogue: product types, brands, attributes, audiences, use cases, quantities, units and exclusions. Add market-specific language.",
+    output: "A practical taxonomy of query parts grounded in the catalogue.",
+  },
+  {
+    title: "Label real and deliberate queries",
+    description:
+      "Sample production searches, then add probes that exercise composition, ambiguity, typos, punctuation and local inflection. Label expected entities before looking at the result page.",
+    output: "A balanced interpretation set instead of a list of favourite examples.",
+  },
+  {
+    title: "Trace meaning into retrieval",
+    description:
+      "Compare expected and observed tokens, entities, filters, expansions and exclusions. Then inspect how each choice changes candidate coverage.",
+    output: "An error map connecting language failures to catalogue consequences.",
+  },
+  {
+    title: "Choose the least brittle intervention",
+    description:
+      "Prefer improvements that generalise across a query class: cleaner attributes, scoped vocabulary, better analysis or explicit parsing. Treat one-off rules as temporary and owned.",
+    output: "A prioritised backlog with a test, owner and rollback path for each change.",
+  },
+];
+
+const worksheetRows = [
+  { field: "Raw query", capture: "Exact text, language, market and any session context", reason: "Interpretation begins with what the system actually received." },
+  { field: "Expected structure", capture: "Product, brand, attributes, constraints, context and relationships", reason: "Separates human expectation from the current implementation." },
+  { field: "Observed structure", capture: "Tokens, entities, expansions, filters, exclusions and confidence", reason: "Shows precisely where meaning changed." },
+  { field: "Candidate effect", capture: "Products added, removed or unexpectedly retained", reason: "Connects a language decision to a shopper-visible consequence." },
+  { field: "Intervention", capture: "Data, analyser, vocabulary, parser, UI or ranking change", reason: "Points the fix at the layer that created the error." },
 ];
 
 export default function QueryInterpretationPage() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[80px_1fr]">
-      <QueryInterpretationSidebar />
-
-      <div>
-      {/* ── Hero ── */}
-      <section id="overview" className="scroll-mt-24 pb-8 pt-12 sm:pb-12 sm:pt-20 lg:pt-28">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/60">
-            Framework
-          </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-            Query interpretation in search systems
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Search quality depends on how queries are interpreted before ranking
-            begins. If the system misunderstands what the user is looking for,
-            no amount of ranking tuning will fix the results.
-          </p>
-          <p className="mt-4 text-sm text-muted-foreground/70">
-            These patterns are vendor-agnostic. They apply to Algolia,
-            Elasticsearch, OpenSearch, Typesense, and other search platforms.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Interpretation map ── */}
-      <section className="pb-8 sm:pb-12">
-        <div className="mx-auto max-w-3xl">
-          <div className="rounded-xl border border-border bg-muted/40 p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Five interpretation challenges
-            </p>
-
-            {/* Mobile: vertical stack */}
-            <div className="mt-4 flex flex-col gap-2 md:hidden">
-              {overviewItems.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.id} className="flex flex-col items-center gap-1">
-                    <a
-                      href={`#${item.id}`}
-                      className="inline-flex min-h-11 w-full items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground/80 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:border-muted-foreground/70 hover:text-foreground"
-                    >
-                      <Icon size={13} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
-                      <span className="mr-auto">{item.label}</span>
-                      <span className="text-xs text-muted-foreground/70">{i + 1}</span>
-                    </a>
-                    {i < overviewItems.length - 1 && (
-                      <span className="select-none text-sm text-border">↓</span>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* md+: horizontal connected pills */}
-            <div className="mt-5 hidden flex-wrap items-center gap-2 md:flex">
-              {overviewItems.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.id} className="flex items-center gap-2">
-                    <a
-                      href={`#${item.id}`}
-                      className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-foreground/80 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:border-muted-foreground/70 hover:text-foreground"
-                    >
-                      <Icon size={13} strokeWidth={1.5} className="text-muted-foreground" />
-                      {item.label}
-                    </a>
-                    {i < overviewItems.length - 1 && (
-                      <span className="select-none text-border">→</span>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            <p className="mt-4 text-xs text-muted-foreground">
-              Each challenge compounds the others. Scroll to explore each one.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════
-          01 — COMPOUND QUERIES
-          ═══════════════════════════════════════════ */}
-      <section id="compound-queries" className="scroll-mt-24 py-8 sm:py-12 lg:py-20">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-bold tabular-nums text-muted-foreground/50">01</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Compound queries
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Users frequently combine multiple concepts in a single search:
-            product type, color, size, material, gender. Most search engines
-            treat the entire input as a single text string and attempt to match
-            it against indexed fields. When the system cannot decompose the
-            query into structured components, results degrade sharply.
-          </p>
-
-          {/* Diagram */}
-          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Query decomposition
-            </p>
-
-            {/* Query pill */}
-            <div className="mt-5 flex justify-center">
-              <span className="rounded-full border border-input bg-muted/40 px-5 py-2 font-mono text-sm font-semibold text-foreground/90">
-                "red dress size 38"
-              </span>
-            </div>
-
-            {/* Arrow */}
-            <div className="my-3 flex justify-center text-border text-lg">↓</div>
-
-            {/* Good decomposition */}
-            <div className="flex flex-wrap justify-center gap-3">
-              {[
-                { token: "red",     label: "color" },
-                { token: "dress",   label: "product type" },
-                { token: "size 38", label: "size" },
-              ].map(({ token, label }) => (
-                <div key={token} className="flex flex-col items-center gap-1.5">
-                  <span className="rounded-md border border-blue-200 bg-blue-50 px-3 py-1.5 text-sm font-semibold text-blue-800">
-                    {token}
-                  </span>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground/70">
-                    <span className="text-border">→</span>
-                    {label}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div className="my-6 border-t border-dashed border-border" />
-
-            {/* Bad interpretation */}
-            <p className="text-center text-xs font-semibold uppercase tracking-wide text-red-500">
-              Without decomposition
-            </p>
-            <div className="mt-3 overflow-x-auto">
-              <div className="flex justify-center">
-                <span className="rounded-md border border-red-200 bg-red-50 px-5 py-2 font-mono text-sm text-red-700 whitespace-nowrap">
-                  "red dress size 38" → matched as one string
-                </span>
-              </div>
-            </div>
-            <p className="mt-3 text-center text-xs text-muted-foreground/70">
-              Partial keyword overlap only — attributes are ignored
-            </p>
-          </div>
-
-          <div className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Example</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              "red dress size 38" — the engine matches on partial keyword
-              overlap instead of filtering by color and size as distinct attributes.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════
-          02 — ATTRIBUTE QUERIES
-          ═══════════════════════════════════════════ */}
-      <section
-        id="attribute-queries"
-        className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20"
-      >
-        <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-bold tabular-nums text-muted-foreground/50">02</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Attribute queries
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Some queries express a specific product attribute: a color, a
-            material, a brand, a size. If these values are not mapped to
-            structured product fields, the search engine falls back to full-text
-            matching — which produces noisy, unreliable results.
-          </p>
-
-          {/* Diagram */}
-          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Attribute mapping
-            </p>
-
-            <div className="mt-5 flex justify-center">
-              <span className="rounded-full border border-input bg-muted/40 px-5 py-2 font-mono text-sm font-semibold text-foreground/90">
-                "waterproof hiking jacket men"
-              </span>
-            </div>
-
-            <div className="my-5 flex justify-center text-border text-lg">↓</div>
-
-            <div className="mx-auto max-w-xs space-y-2">
-              {[
-                { word: "waterproof", attr: "feature",      ok: true  },
-                { word: "hiking",     attr: "activity",     ok: true  },
-                { word: "jacket",     attr: "product type", ok: true  },
-                { word: "men",        attr: "gender",       ok: true  },
-              ].map(({ word, attr }) => (
-                <div key={word} className="flex items-center gap-3">
-                  <span className="w-28 shrink-0 rounded-md border border-border bg-muted/40 px-3 py-1.5 text-center font-mono text-sm font-medium text-foreground/90">
-                    {word}
-                  </span>
-                  <span className="text-border">→</span>
-                  <span className="rounded-md border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-sm text-emerald-700">
-                    {attr}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div className="my-6 border-t border-dashed border-border" />
-
-            <p className="text-center text-xs font-semibold uppercase tracking-wide text-red-500">
-              Without attribute mapping
-            </p>
-            <p className="mt-2 text-center text-xs text-muted-foreground/70">
-              All four words matched against product description text → noisy results
-            </p>
-          </div>
-
-          <div className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Example</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              "waterproof hiking jacket men" — "waterproof" is a product
-              property, "men" is a gender filter, but both are matched against
-              description text instead of faceted attributes.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════
-          03 — SYNONYMS VS MEANING
-          ═══════════════════════════════════════════ */}
-      <section id="synonyms-vs-meaning" className="scroll-mt-24 py-8 sm:py-12 lg:py-20">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-bold tabular-nums text-muted-foreground/50">03</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Synonyms vs. meaning
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Synonym lists are the most common attempt at improving query
-            understanding. They help in narrow cases, but they don't solve the
-            underlying problem: the search engine doesn't understand what the
-            user means. Synonyms map strings to strings. They cannot distinguish
-            intent, context, or the relationship between terms.
-          </p>
-
-          {/* Diagram */}
-          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Synonym expansion
-            </p>
-
-            <div className="mt-5 flex justify-center">
-              <span className="rounded-full border border-input bg-muted/40 px-5 py-2 font-mono text-sm font-semibold text-foreground/90">
-                sneakers
-              </span>
-            </div>
-
-            <div className="my-5 flex justify-center text-border text-lg">↓</div>
-
-            <div className="flex flex-wrap justify-center gap-3">
-              {[
-                { term: "trainers",      ok: true,  note: "correct" },
-                { term: "running shoes", ok: true,  note: "correct" },
-                { term: "sport shoes",   ok: false, note: "may surface casual shoes" },
-              ].map(({ term, ok, note }) => (
-                <div key={term} className="flex flex-col items-center gap-1">
-                  <span className={`rounded-full border px-3 py-1.5 text-sm font-medium ${
-                    ok
-                      ? "border-emerald-200 bg-emerald-50 text-emerald-800"
-                      : "border-amber-200 bg-amber-50 text-amber-800"
-                  }`}>
-                    {term}
-                  </span>
-                  <span className="text-xs text-muted-foreground/70">{note}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="my-6 border-t border-dashed border-border" />
-
-            <div className="rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-800">
-              <span className="font-semibold">The limit of synonyms: </span>
-              "running shoes" → "sneakers" may surface casual footwear.
-              The synonym string is correct; the user intent is not served.
-            </div>
-          </div>
-
-          <div className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Example</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              "sneakers" mapped to "trainers" works. But "running shoes" mapped
-              to "sneakers" may surface casual shoes instead of performance
-              footwear. The synonym is correct; the interpretation is wrong.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════
-          04 — TOKENIZATION
-          ═══════════════════════════════════════════ */}
-      <section
-        id="tokenization"
-        className="-mx-4 scroll-mt-24 bg-primary/[0.02] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8 lg:py-20"
-      >
-        <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-bold tabular-nums text-muted-foreground/50">04</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Tokenization and normalization
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Before matching, queries are split into tokens and normalized:
-            lowercased, stripped of punctuation, sometimes stemmed. These
-            transformations are invisible to users and to most teams — but they
-            determine what the search engine actually looks for. Misconfigured
-            tokenization silently distorts query meaning.
-          </p>
-
-          {/* Diagram */}
-          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Processing pipeline
-            </p>
-
-            <div className="mt-6 flex flex-col items-center gap-0">
-              {[
-                { label: "Raw query",      value: '"t-shirt"',          highlight: false },
-                { label: "Lowercase",      value: '"t-shirt"',          highlight: false },
-                { label: "Tokenize",       value: '["t", "shirt"]',     highlight: true  },
-                { label: "Normalize",      value: '["t", "shirt"]',     highlight: false },
-                { label: "Search tokens",  value: 'matches any "shirt"',highlight: true  },
-              ].map((step, i) => (
-                <div key={step.label} className="flex w-full flex-col items-center">
-                  <div className={`flex w-full max-w-sm items-center justify-between gap-3 rounded-lg border px-4 py-3 ${
-                    step.highlight
-                      ? "border-red-200 bg-red-50"
-                      : "border-border bg-muted/40"
-                  }`}>
-                    <span className="shrink-0 text-xs font-semibold text-muted-foreground">{step.label}</span>
-                    <span className={`overflow-x-auto font-mono text-sm ${step.highlight ? "text-red-700" : "text-foreground/90"}`}>
-                      {step.value}
-                    </span>
-                  </div>
-                  {i < 4 && (
-                    <span className="my-1 text-border">↓</span>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
-              <span className="font-semibold">Problem: </span>
-              "t-shirt" splits into ["t", "shirt"] — now matches all products containing "shirt",
-              including dress shirts, workshirts, and unrelated items.
-            </div>
-          </div>
-
-          <div className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Example</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              "t-shirt" tokenized as ["t", "shirt"] matches any product
-              containing the word "shirt." Hyphenated terms, model numbers,
-              and SKU-like queries are especially fragile.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════
-          05 — AMBIGUOUS QUERIES
-          ═══════════════════════════════════════════ */}
-      <section id="ambiguous-queries" className="scroll-mt-24 py-8 sm:py-12 lg:py-20">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-bold tabular-nums text-muted-foreground/50">05</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Ambiguous queries
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Many queries are genuinely ambiguous. "apple" could be a fruit or a
-            brand. "coach" could be a brand or a product type. Search systems
-            rarely have mechanisms to handle ambiguity explicitly — they pick
-            one interpretation based on whatever the ranking model favors, often
-            producing results that are correct for one intent and invisible for
-            the other.
-          </p>
-
-          {/* Diagram */}
-          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Intent branching
-            </p>
-
-            <div className="mt-5 flex justify-center">
-              <span className="rounded-full border border-input bg-muted/40 px-5 py-2 font-mono text-sm font-semibold text-foreground/90">
-                apple
-              </span>
-            </div>
-
-            <div className="my-5 grid grid-cols-2 gap-4">
-              <div className="flex flex-col items-center gap-2">
-                <span className="text-border text-sm">↙</span>
-                <div className="w-full rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-center">
-                  <p className="text-sm font-semibold text-emerald-800">🍎 apple fruit</p>
-                  <p className="mt-1 text-xs text-emerald-600">grocery / produce intent</p>
-                </div>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <span className="text-border text-sm">↘</span>
-                <div className="w-full rounded-lg border border-blue-200 bg-blue-50 p-3 text-center">
-                  <p className="text-sm font-semibold text-blue-800"> Apple brand</p>
-                  <p className="mt-1 text-xs text-blue-600">electronics / brand intent</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-lg bg-amber-50 border border-amber-200 px-4 py-3 text-sm text-amber-800">
-              <span className="font-semibold">Ranking must resolve the ambiguity. </span>
-              Without explicit signals, the system picks one branch and silently ignores the other.
-            </div>
-          </div>
-
-          <div className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Example</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              "apple" on a marketplace that sells both groceries and
-              electronics — results fill with Apple-branded devices while actual
-              produce is buried far below. A shopper looking for fruit assumes
-              it's out of stock. The query is valid for both intents; ranking
-              silently serves only one.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Failure patterns ── */}
-      <section className="-mx-4 bg-primary/[0.04] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-            Common failure patterns
-          </h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Specific interpretation failures we encounter during search audits.
-          </p>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {failurePatterns.map((pattern) => (
-              <div
-                key={pattern}
-                className="rounded-lg border border-border bg-card p-4 text-sm text-foreground/80"
-              >
-                <span className="mr-2 font-semibold text-muted-foreground/70">—</span>
-                {pattern}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Why teams underestimate ── */}
-      <section className="py-8 sm:py-12 lg:py-20">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-            Why teams underestimate query interpretation
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Ranking tuning is visible and measurable. Teams can change a boost
-            value and see the result order shift immediately. Query
-            interpretation problems are harder to see: the system returns
-            results, they look plausible, and no alert fires. The failure is
-            silent.
-          </p>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Most search optimization effort goes into ranking configuration,
-            synonyms, and merchandising rules. Query understanding — how the
-            system decomposes, normalizes, and maps the raw input before
-            matching — receives far less attention. Yet it determines what the
-            ranking model actually works with.
-          </p>
-          <p className="mt-4 rounded-lg border border-border bg-muted/40 px-5 py-4 text-sm font-medium text-foreground/80">
-            A well-ranked set of wrong candidates is still a failed search.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Closing ── */}
-      <section className="-mx-4 border-t border-border/30 bg-primary/[0.04] px-4 py-8 md:-ml-20 md:pl-20 sm:-mx-6 sm:px-6 sm:py-12 lg:-mx-8 lg:px-8">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-            Diagnosis starts with the query
-          </h2>
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Every search audit we conduct begins with query interpretation.
-            Before examining{" "}
-            <Link href="/frameworks/search-failure-modes#ranking" className="font-medium text-foreground hover:underline">
-              ranking behavior
-            </Link>
-            , coverage gaps, or evaluation frameworks, we look at how the
-            system reads the input. If queries are misunderstood at this stage,
-            everything downstream inherits the error.
-          </p>
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Running a few structured tests on your own system often reveals whether query interpretation is working as expected. The{" "}
-            <Link href="/search-check" className="font-medium text-foreground hover:underline">
-              internal search self-assessment
-            </Link>{" "}
-            includes checks designed to surface exactly these gaps.
-          </p>
-          {/* Next steps */}
-          <div className="mt-10 border-t border-border/40 pt-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground/50">
-              Next steps
-            </p>
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              <Link
-                href="/search-check"
-                className="group flex flex-col rounded-lg border border-primary/20 bg-primary/[0.03] p-4 transition-colors hover:border-primary/40 hover:bg-primary/[0.06]"
-              >
-                <span className="text-[11px] font-semibold uppercase tracking-wide text-primary/70">
-                  Self-check
-                </span>
-                <span className="mt-1.5 text-sm font-medium text-foreground group-hover:underline">
-                  Run these checks on your own search system →
-                </span>
-                <span className="mt-1 text-xs text-muted-foreground">6 checks · 5 min · no setup</span>
-              </Link>
-
-              <Link
-                href="/frameworks/search-failure-modes"
-                className="group flex flex-col rounded-lg border border-border bg-card p-4 transition-colors hover:border-muted-foreground/70"
-              >
-                <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/50">
-                  Related framework
-                </span>
-                <span className="mt-1.5 text-sm font-medium text-foreground group-hover:underline">
-                  Six categories of search failure modes
-                </span>
-                <span className="mt-1 text-xs text-muted-foreground">Search failure modes framework</span>
-              </Link>
-
-              <Link
-                href="/book-a-call"
-                className="group flex flex-col rounded-lg border border-border bg-card p-4 transition-colors hover:border-muted-foreground/70"
-              >
-                <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/50">
-                  Get help
-                </span>
-                <span className="mt-1.5 text-sm font-medium text-foreground group-hover:underline">
-                  Talk to us about your search system
-                </span>
-                <span className="mt-1 text-xs text-muted-foreground">Short intro call · no commitment</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      </div>{/* end main content */}
-    </div>
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Resources", path: "/resources" },
+          { name: "Query interpretation", path: "/frameworks/query-interpretation" },
+        ])}
+      />
+      <FrameworkArticle
+        title="Turn customer language into searchable meaning."
+        introduction="Ranking can only order the candidates it receives. This framework shows how to decompose ecommerce queries, connect them to catalogue data and preserve uncertainty when more than one interpretation is credible."
+        principle="Interpret first, retrieve second, rank third. A perfectly ordered list of products for the wrong meaning is still a failed search."
+        scope="Use it with lexical, semantic or hybrid search. The concepts stay the same even when the implementation changes."
+        flow={["Raw query", "Normalise", "Identify", "Relate", "Retrieve", "Verify"]}
+        stages={stages}
+        methodTitle="Build interpretation as an observable layer."
+        methodIntroduction="The aim is not an ever-growing rule list. It is a small, explicit model of customer language that can be tested against catalogue truth and improved without hiding regressions."
+        method={method}
+        worksheetRows={worksheetRows}
+        related={{
+          href: "/frameworks/search-failure-modes",
+          title: "Search failure modes",
+          description: "Place interpretation inside the wider search system diagnosis.",
+        }}
+      />
+    </>
   );
 }

@@ -1,424 +1,128 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { Search, Slash, Database, Layers, GitBranch, CheckCircle, Users, AlertCircle, Globe, MapPin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { ContactBand } from "@/components/site/contact-band";
+import { createPageMetadata } from "@/lib/seo";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { AboutSidebar } from "@/components/site/about-sidebar";
-import { LANGUAGES_EXCLUDED, SUPPORTED_LANGUAGES } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: { absolute: "About Find Sherpas — ecommerce internal search specialists" },
+export const metadata = createPageMetadata({
+  title: "About Find Sherpas",
   description:
-    "Find Sherpas is a specialist studio focused on diagnosing and improving internal search for ecommerce and marketplaces.",
-  alternates: { canonical: "https://findsherpas.com/about" },
-};
-
-const environmentCards = [
-  { value: "10k–10M+", label: "Catalog scale" },
-  { value: "High-traffic", label: "Search queries" },
-  { value: "Complex ranking", label: "Boosting and weighting" },
-  { value: "Vendor agnostic", label: "Algolia, Elasticsearch, Typesense" },
-  { value: "Multilingual", label: "European markets" },
-];
-
-const auditSteps = [
-  {
-    number: "01",
-    title: "Query reality",
-    description: "Analyze real queries and patterns.",
-  },
-  {
-    number: "02",
-    title: "Relevance evaluation",
-    description: "Structured test sets reveal ranking failures.",
-  },
-  {
-    number: "03",
-    title: "Ranking logic",
-    description: "Synonyms, boosts, filters.",
-  },
-  {
-    number: "04",
-    title: "Improvement roadmap",
-    description: "Prioritized changes and measurement plan.",
-  },
-];
-
-const deliverables = [
-  "Query classes and broken queries",
-  "Failure-mode summary",
-  "Ranking recommendations with examples",
-  "UX findings (facets, sorting, zero results)",
-  "Prioritized improvement roadmap",
-];
+    "A boutique agency focused on ecommerce search, informed by in-house experience at businesses serving millions of customers across European markets.",
+  path: "/about",
+  absoluteTitle: true,
+});
 
 export default function AboutPage() {
   return (
-    <div className="py-4 sm:py-10">
-      <div className="grid grid-cols-1 gap-0 md:grid-cols-[60px_1fr]">
-        <AboutSidebar />
-
+    <>
+      <section className="fs-page-hero">
+        <h1>
+          Search is
+          <br />
+          our whole focus.
+        </h1>
+        <p>
+          Find Sherpas is a boutique agency for ecommerce teams that want more
+          from on-site search. We bring analysis, product judgment and practical
+          delivery into the same conversation.
+        </p>
+      </section>
+      <section className="fs-section fs-about-statement">
+        <h2>
+          The experience of owning search.
+          <br />
+          Applied to yours.
+        </h2>
+        <p>
+          A search problem rarely belongs to one setting or one team. Product
+          data, ranking rules, analytics and interface decisions all play a
+          part. Understanding the connections is what lets us turn a broad
+          problem into work your team can act on.
+        </p>
+        <p>
+          We work with the search you already run, from the first assessment to
+          recurring improvements. The depth of our involvement follows your
+          priorities and your team’s capacity to deliver.
+        </p>
+      </section>
+      <section className="fs-section fs-history">
         <div>
-      {/* ── 1. Headline ─────────────────────────────────────── */}
-      <section id="focus" className="scroll-mt-24">
-      <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-        Focused on internal search.
-      </h1>
-      <p className="mt-4 max-w-xl text-muted-foreground">
-        Find Sherpas diagnoses why search returns the wrong results — and maps a
-        clear path to fixing it. Ecommerce and marketplace sites only.
-      </p>
-      <p className="mt-2 text-sm text-muted-foreground/60">
-        Not SEO. Not CRO. Not a vendor implementation partner.
-      </p>
-      </section>
-
-      {/* ── 2. What we do / What we don't ───────────────────── */}
-      <section id="what-we-do" className="mt-10 scroll-mt-24">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-border bg-muted/40 p-5">
-            <div className="flex items-center gap-2">
-              <Search size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
-              <h2 className="text-sm font-bold uppercase tracking-wide text-muted-foreground">We do</h2>
-            </div>
-            <ul className="mt-3 space-y-1.5 text-sm text-foreground/90">
-              <li className="flex items-baseline gap-2">
-                <span className="text-border">&bull;</span>
-                Diagnose ranking, query interpretation, and dead ends
-              </li>
-              <li className="flex items-baseline gap-2">
-                <span className="text-border">&bull;</span>
-                Deliver a prioritized roadmap your team can act on
-              </li>
-            </ul>
-          </div>
-          <div className="rounded-xl border border-border bg-card p-5">
-            <div className="flex items-center gap-2">
-              <Slash size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
-              <h2 className="text-sm font-bold uppercase tracking-wide text-muted-foreground">We don&apos;t do</h2>
-            </div>
-            <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-              <li className="flex items-baseline gap-2">
-                <span className="text-border">&bull;</span>
-                SEO or marketing work
-              </li>
-              <li className="flex items-baseline gap-2">
-                <span className="text-border">&bull;</span>
-                Ongoing embedded consulting
-              </li>
-              <li className="flex items-baseline gap-2">
-                <span className="text-border">&bull;</span>
-                Reselling or implementing a platform
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 3. Background + Search environments ─────────────── */}
-      <section id="background" className="mt-10 scroll-mt-24 sm:mt-14">
-        <h2 className="text-xl font-semibold tracking-tight">
-          Background in search systems
-        </h2>
-        <p className="mt-3 max-w-2xl text-muted-foreground">
-          The work behind Find Sherpas comes from years inside large-scale
-          search environments — catalogs with millions of products, multilingual
-          query handling, complex ranking configurations, and search analytics
-          built to measure what actually matters.
-        </p>
-
-        <div className="mt-6 flex items-center gap-2">
-          <Database size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
-          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            Search environments we&apos;ve worked in
+          <h2>
+            Experience behind
+            <br />
+            the agency.
+          </h2>
+          <p className="fs-history-note">
+            Find Sherpas draws on founder Michal Pekarcik’s prior in-house
+            experience. These are the environments behind the practice, rather
+            than agency client projects.
           </p>
         </div>
-        <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-3">
-          {environmentCards.map((card) => (
-            <div
-              key={card.value}
-              className="rounded-xl border border-border bg-card p-5"
-            >
-              <p className="text-lg font-semibold text-foreground">{card.value}</p>
-              <p className="mt-0.5 text-sm text-muted-foreground">{card.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 4. Vendor-agnostic expertise ────────────────────── */}
-      <section id="vendor-agnostic" className="mt-10 scroll-mt-24 sm:mt-14">
-        <div className="flex items-center gap-2">
-          <Layers size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
-          <h2 className="text-xl font-semibold tracking-tight">Vendor-agnostic</h2>
-        </div>
-        <p className="mt-3 max-w-xl text-muted-foreground">
-          We work across platforms, not for them. The method stays the same
-          regardless of which engine you run: evaluate with real queries and a
-          structured test set.
-        </p>
-        <details className="mt-5">
-          <summary className="cursor-pointer text-sm font-medium text-primary hover:underline">
-            Platforms we&apos;ve worked with
-          </summary>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {[
-              "Algolia",
-              "Elasticsearch",
-              "OpenSearch",
-              "Doofinder",
-              "Luigi's Box",
-              "Coveo",
-              "Bloomreach",
-              "Typesense",
-            ].map((platform) => (
-              <Badge key={platform} variant="secondary">
-                {platform}
-              </Badge>
-            ))}
-          </div>
-          <p className="mt-3 text-xs text-muted-foreground/60">
-            And others. If your search engine returns results, we can evaluate
-            it.
+        <div className="fs-prose">
+          <p>
+            That experience spans businesses with approximately €50M, €200M and
+            €1.2B in annual revenue, serving millions of customers across 25+
+            European countries.
           </p>
-        </details>
-      </section>
-
-      {/* ── 5. How we audit search — vertical timeline ──────── */}
-      <section id="how-we-audit" className="mt-10 scroll-mt-24 sm:mt-14">
-        <div className="flex items-center gap-2">
-          <GitBranch size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
-          <h2 className="text-xl font-semibold tracking-tight">How we audit search</h2>
-        </div>
-        <p className="mt-3 max-w-xl text-muted-foreground">
-          Grounded in real queries and structured relevance evaluation — not
-          sample checks or assumptions.
-        </p>
-
-        <div className="mt-8 space-y-6">
-          {auditSteps.map((step) => (
-            <div key={step.number} className="flex items-start gap-6">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-foreground text-sm font-semibold text-white">
-                {step.number}
-              </div>
-              <div className="pt-0.5">
-                <h3 className="text-sm font-bold tracking-tight text-foreground">
-                  {step.title}
-                </h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {step.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 6. What you get — card grid ─────────────────────── */}
-      <section id="what-you-get" className="mt-10 scroll-mt-24 sm:mt-14">
-        <div className="flex items-center gap-2">
-          <CheckCircle size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
-          <h2 className="text-xl font-semibold tracking-tight">What you get</h2>
-        </div>
-        <p className="mt-3 max-w-xl text-muted-foreground">
-          Concrete deliverables your team can act on immediately.
-        </p>
-        <div className="mt-5 grid gap-3 md:grid-cols-2">
-          {deliverables.map((item) => (
-            <div
-              key={item}
-              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-            >
-              <span className="mt-px text-sm font-bold text-foreground">✓</span>
-              <span className="text-sm text-foreground/80">{item}</span>
-            </div>
-          ))}
-          <div className="flex items-start gap-3 rounded-lg border border-border bg-muted/40 p-4">
-            <span className="mt-px text-sm text-muted-foreground/70">+</span>
-            <span className="text-sm text-muted-foreground">
-              Optional: evaluation framework and monitoring plan
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 7. Who we work with ───────────────────────────── */}
-      <section id="who-we-work-with" className="mt-10 scroll-mt-24 sm:mt-14">
-        <div className="flex items-center gap-2">
-          <Users size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
-          <h2 className="text-xl font-semibold tracking-tight">Who we work with</h2>
-        </div>
-        <p className="mt-3 text-sm text-muted-foreground">
-          Most often: ecommerce teams, marketplaces, and large-catalog sites.
-          Typically product or engineering leads who own search quality.
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {[
-            "Head of Product",
-            "Search / Discovery teams",
-            "Growth teams",
-            "Engineering leads",
-          ].map((role) => (
-            <span
-              key={role}
-              className="rounded-md border border-border px-3 py-1 text-sm text-muted-foreground"
-            >
-              {role}
-            </span>
-          ))}
-        </div>
-
-        <div id="typical-situations" className="mt-8 flex scroll-mt-24 items-center gap-2">
-          <AlertCircle size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
-          <h3 className="text-base font-semibold tracking-tight">Typical situations</h3>
-        </div>
-        <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-          {[
-            'Search "works", but conversion from search feels low',
-            "Merch rules and boosts have accumulated — relevance is inconsistent",
-            "Zero-results are rare, but results still feel wrong",
-            "You need a test set or evaluation method before making changes",
-          ].map((item) => (
-            <li key={item} className="flex items-baseline gap-2">
-              <span className="text-border">&bull;</span>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* ── 8. Insight callout ──────────────────────────────── */}
-      <div className="mt-10 sm:mt-14 rounded-xl border border-border bg-muted/40 p-6">
-        <p className="max-w-2xl text-base leading-relaxed text-foreground/80">
-          Search engines almost always return something. That makes ranking
-          failures difficult to detect until they quietly start hurting
-          conversion.
-        </p>
-      </div>
-
-      {/* ── 9. Why this studio exists ───────────────────────── */}
-      <section id="why-this-studio" className="mt-10 scroll-mt-24">
-        <h2 className="text-xl font-semibold tracking-tight">
-          Why this studio exists
-        </h2>
-        <p className="mt-3 max-w-xl text-muted-foreground">
-          Find Sherpas exists because diagnosing search quality is a specific
-          skill that sits between product, engineering, and data, and rarely
-          gets the focused attention it needs.
-        </p>
-      </section>
-
-      {/* ── 10. Languages ───────────────────────────────────── */}
-      <section id="languages" className="mt-10 scroll-mt-24 sm:mt-14">
-        <div className="flex items-center gap-2">
-          <Globe size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
-          <h2 className="text-xl font-semibold tracking-tight">Languages</h2>
-        </div>
-        <p className="mt-3 text-sm text-muted-foreground">
-          Audits and query analysis can be conducted in most major European
-          languages.
-        </p>
-        <details className="group mt-4">
-          <summary className="cursor-pointer text-sm font-medium text-primary hover:underline">
-            View all {SUPPORTED_LANGUAGES.length} supported languages
-          </summary>
-          <div className="mt-3 columns-2 gap-x-8 sm:columns-3 lg:columns-4">
-            {SUPPORTED_LANGUAGES.map((lang) => (
-              <p key={lang} className="py-0.5 text-sm text-muted-foreground">
-                {lang}
-              </p>
-            ))}
-          </div>
-          <p className="mt-3 text-xs text-muted-foreground/60">
-            Excludes {LANGUAGES_EXCLUDED.join(", ")}.
+          <p>
+            It includes work at Footshop, Dr. Max and Groupon, with search
+            technologies including Elasticsearch, Algolia, Luigi’s Box,
+            Constructor, Bloomreach Discovery, Nosto, Athos Commerce, Coveo
+            and in-house engines.
           </p>
-        </details>
-      </section>
-
-      {/* ── 11. Where to find us ────────────────────────────── */}
-      <section id="where-to-find-us" className="mt-10 scroll-mt-24 sm:mt-14">
-        <div className="flex items-center gap-2">
-          <MapPin size={18} strokeWidth={1.5} className="shrink-0 text-muted-foreground" />
-          <h2 className="text-xl font-semibold tracking-tight">Where to find us</h2>
-        </div>
-        <div className="mt-5 grid gap-4 overflow-hidden rounded-xl border border-border bg-card sm:grid-cols-[1fr_1.4fr]">
-          <div className="p-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Studio
-            </p>
-            <address className="mt-3 not-italic text-sm leading-relaxed text-foreground/90">
-              Find Sherpas
-              <br />
-              Luční 17
-              <br />
-              130 00 Praha 3
-              <br />
-              Czech Republic
-            </address>
-            <a
-              href="https://www.openstreetmap.org/?mlat=50.0848&mlon=14.4682#map=17/50.0848/14.4682"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-block text-sm font-medium text-primary hover:underline"
-            >
-              Open in maps
-            </a>
-          </div>
-          <div className="min-h-[240px] border-t border-border sm:border-l sm:border-t-0">
-            <iframe
-              title="Find Sherpas studio location — Luční 17, Prague"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=14.4592%2C50.0803%2C14.4772%2C50.0893&layer=mapnik&marker=50.0848%2C14.4682"
-              loading="lazy"
-              className="h-full min-h-[240px] w-full border-0"
-            />
-          </div>
+          <p>
+            Different catalogues, languages and commercial contexts call for
+            different decisions. We bring that perspective to the search
+            challenges of a growing ecommerce business.
+          </p>
+          <p className="fs-history-note">
+            The revenue figures describe the scale of those businesses during
+            that experience. They are not revenue generated by Find Sherpas or
+            current financial figures.
+          </p>
         </div>
       </section>
-
-      {/* ── 12. CTA ─────────────────────────────────────────── */}
-      <section
-        id="contact"
-        className="mt-10 scroll-mt-24 border-t border-border/40 pt-8 sm:mt-14 sm:pt-10"
-      >
-        <h2 className="text-xl font-semibold tracking-tight">
-          See something off in your search results?
+      <section className="fs-section fs-intro fs-about-fit">
+        <h2>
+          A specialist partner
+          <br />
+          for your next stage.
         </h2>
-        <p className="mt-3 max-w-2xl text-muted-foreground">
-          Send us 3-5 queries that feel wrong and what you expected to see.
-          We&apos;ll reply with what we&apos;d investigate.
-        </p>
-        <p className="mt-3 text-sm text-muted-foreground/70">
-          Not ready to reach out yet?{" "}
-          <Link href="/search-check" className="font-medium text-foreground hover:underline">
-            Run the quick search self-assessment
-          </Link>{" "}
-          first — it takes five minutes and gives you a clearer picture of where issues might be.
-        </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
-          <Button
-            asChild
-            size="lg"
-            className="h-12 w-full px-8 text-base font-semibold sm:w-auto"
-          >
-            <Link href="/book-a-call">Start a conversation</Link>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="h-12 w-full px-8 text-base font-medium sm:w-auto"
-          >
-            <a
-              href={`mailto:michal@findsherpas.com?subject=${encodeURIComponent("Search looks off — query examples")}&body=${encodeURIComponent("Site:\n\nSearch platform (if known):\n\n3–5 queries:\n\nWhat I expected:\n\nWhat I got:\n\nAnything else:\n")}`}
-            >
-              Email 3-5 queries
-            </a>
-          </Button>
+        <div className="fs-prose">
+          <p>
+            We typically work with ecommerce businesses around $10–100M in
+            annual revenue, primarily in Europe and the UK. Our conversations
+            often start with the person responsible for product, technology or
+            ecommerce performance.
+          </p>
+          <p>
+            You may already have a capable engine and a strong engineering team.
+            We help them identify which search problems deserve attention,
+            specify the changes and evaluate the result.
+          </p>
+          <Link href="/approach" className="fs-text-link">
+            How we work together <ArrowUpRight size={20} aria-hidden="true" />
+          </Link>
         </div>
+        <dl className="fs-about-range" aria-label="The scale we work across">
+          <div>
+            <dt>Typical annual company revenue, USD</dt>
+            <dd>$10–100M</dd>
+          </div>
+          <div>
+            <dt>Languages worked across</dt>
+            <dd>15</dd>
+          </div>
+          <div>
+            <dt>Users per business</dt>
+            <dd>100K–50M</dd>
+          </div>
+          <div>
+            <dt>Search platforms &amp; engines</dt>
+            <dd>9</dd>
+          </div>
+        </dl>
       </section>
-        </div>{/* end main content */}
-      </div>{/* end grid */}
-    </div>
+      <ContactBand />
+    </>
   );
 }

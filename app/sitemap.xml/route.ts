@@ -20,10 +20,14 @@ export async function GET() {
   const staticUrls = [
     "/",
     "/about",
+    "/approach",
+    "/expertise",
+    "/contact",
+    "/resources",
+    "/privacy",
     "/frameworks/search-failure-modes",
     "/frameworks/query-interpretation",
     "/search-check",
-    "/book-a-call",
     "/blog",
   ];
 
@@ -37,7 +41,11 @@ export async function GET() {
   const posts = await listBlogPosts();
   const postEntries = posts.map((post) => {
     const loc = `${siteUrl}/blog/${post.slug}`;
-    const lastmod = new Date(post.frontmatter.date).toISOString().slice(0, 10);
+    const lastmod = new Date(
+      post.frontmatter.updated ?? post.frontmatter.date,
+    )
+      .toISOString()
+      .slice(0, 10);
     return `<url><loc>${xmlEscape(loc)}</loc><lastmod>${lastmod}</lastmod></url>`;
   });
 
@@ -55,4 +63,3 @@ export async function GET() {
     },
   });
 }
-

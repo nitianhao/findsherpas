@@ -1,206 +1,220 @@
 ---
 name: Find Sherpas
-description: Internal search audit and optimization for ecommerce — diagnosed and improved
+description: Boutique ecommerce search optimization
 colors:
-  neutral-canvas: "oklch(1 0 0)"
-  neutral-ink: "oklch(0.145 0 0)"
-  neutral-mist: "oklch(0.97 0 0)"
-  neutral-graphite: "oklch(0.556 0 0)"
-  hairline-gray: "oklch(0.922 0 0)"
-  signal-teal: "oklch(0.50 0.14 200)"
-  signal-teal-foreground: "oklch(0.985 0 0)"
-  teal-wash: "oklch(0.96 0.03 200)"
-  alert-red: "oklch(0.577 0.245 27.325)"
-  warning-amber: "oklch(0.96 0.045 85)"
-  warning-amber-foreground: "oklch(0.34 0.055 70)"
-  warning-amber-strong: "oklch(0.43 0.11 65)"
+  deep-ink: "#293b44"
+  deep-ink-hover: "#1d2b32"
+  reading-ink: "#1c272d"
+  soft-white: "#f5f6f4"
+  white: "#ffffff"
+  context-grey: "#dce5e8"
+  muted-ink: "#56636b"
+  divider: "#d8dedf"
+  annotation: "#aabdc5"
+  inverse-secondary-text: "#d3dfe3"
+  ongoing-surface: "#e5ebed"
+  note-surface: "#edf1f2"
+  field-border: "#7d8b92"
+  error-ink: "#8b2025"
+  error-surface: "#fff0ed"
 typography:
   display:
-    fontFamily: "Geist, ui-sans-serif, system-ui"
-    fontSize: "clamp(2.25rem, 4vw, 3.5rem)"
-    fontWeight: 600
-    lineHeight: 1.1
-    letterSpacing: "-0.01em"
+    fontFamily: "Hanken Grotesk, sans-serif"
+    fontSize: "clamp(3.3rem, 6.5vw, 6rem)"
+    fontWeight: 850
+    lineHeight: 0.98
+    letterSpacing: "-0.035em"
+  page-display:
+    fontFamily: "Hanken Grotesk, sans-serif"
+    fontSize: "clamp(3rem, 5.8vw, 5.6rem)"
+    fontWeight: 750
+    lineHeight: 0.98
+    letterSpacing: "-0.035em"
   headline:
-    fontFamily: "Geist, ui-sans-serif, system-ui"
-    fontSize: "1.875rem"
-    fontWeight: 600
-    lineHeight: 1.2
-    letterSpacing: "-0.01em"
+    fontFamily: "Hanken Grotesk, sans-serif"
+    fontSize: "clamp(2.35rem, 3.8vw, 3.6rem)"
+    fontWeight: 650
+    lineHeight: 1.08
+    letterSpacing: "-0.035em"
   title:
-    fontFamily: "Geist, ui-sans-serif, system-ui"
-    fontSize: "1rem"
-    fontWeight: 700
-    lineHeight: 1.3
-    letterSpacing: "-0.01em"
+    fontFamily: "Hanken Grotesk, sans-serif"
+    fontSize: "1.7rem"
+    fontWeight: 650
+    lineHeight: 1.17
+    letterSpacing: "-0.035em"
   body:
-    fontFamily: "Geist, ui-sans-serif, system-ui"
-    fontSize: "1rem"
+    fontFamily: "Hanken Grotesk, sans-serif"
+    fontSize: "18px"
     fontWeight: 400
-    lineHeight: 1.75
+    lineHeight: 1.55
+  compact-body:
+    fontFamily: "Hanken Grotesk, sans-serif"
+    fontSize: "17px"
+    fontWeight: 400
+    lineHeight: 1.6
   label:
-    fontFamily: "Geist, ui-sans-serif, system-ui"
-    fontSize: "0.6875rem"
+    fontFamily: "Hanken Grotesk, sans-serif"
+    fontSize: "16px"
     fontWeight: 600
-    letterSpacing: "0.08em"
-  data:
-    fontFamily: "Geist Mono, ui-monospace, monospace"
-    fontSize: "0.875rem"
-    fontWeight: 500
+  small:
+    fontFamily: "Hanken Grotesk, sans-serif"
+    fontSize: "15px"
+    lineHeight: 1.6
 rounded:
-  sm: "8px"
-  md: "10px"
-  lg: "12px"
-  xl: "16px"
-  full: "9999px"
+  control: "4px"
 spacing:
-  sm: "8px"
-  md: "16px"
-  lg: "24px"
+  small: "8px"
+  medium: "16px"
+  group: "24px"
+  panel: "32px"
+  section-mobile: "56px"
+  section-tablet: "72px"
+  section-desktop: "96px"
 components:
   button-primary:
-    backgroundColor: "{colors.signal-teal}"
-    textColor: "{colors.signal-teal-foreground}"
-    rounded: "{rounded.lg}"
-    padding: "10px 24px"
+    backgroundColor: "{colors.deep-ink}"
+    textColor: "{colors.white}"
+    rounded: "{rounded.control}"
+    padding: "15px 24px"
   button-primary-hover:
-    backgroundColor: "{colors.signal-teal}"
-    textColor: "{colors.signal-teal-foreground}"
-  button-outline:
-    backgroundColor: "{colors.neutral-canvas}"
-    textColor: "{colors.neutral-ink}"
-    rounded: "{rounded.lg}"
-    padding: "10px 24px"
-  badge-default:
-    backgroundColor: "{colors.signal-teal}"
-    textColor: "{colors.signal-teal-foreground}"
-    rounded: "{rounded.full}"
-    padding: "2px 8px"
-  card:
-    backgroundColor: "{colors.neutral-canvas}"
-    textColor: "{colors.neutral-ink}"
-    rounded: "{rounded.xl}"
-    padding: "24px"
-  input:
-    backgroundColor: "{colors.neutral-canvas}"
-    textColor: "{colors.neutral-ink}"
-    rounded: "{rounded.md}"
-    padding: "4px 12px"
+    backgroundColor: "{colors.deep-ink-hover}"
+    textColor: "{colors.white}"
+  button-light:
+    backgroundColor: "{colors.context-grey}"
+    textColor: "{colors.reading-ink}"
+    rounded: "{rounded.control}"
+    padding: "15px 24px"
+  field:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.reading-ink}"
+    rounded: "{rounded.control}"
+    padding: "13px 14px"
+  contact-panel:
+    backgroundColor: "{colors.soft-white}"
+    textColor: "{colors.reading-ink}"
+    padding: "36px"
 ---
 
 # Design System: Find Sherpas
 
 ## Overview
 
-**Creative North Star: "The Instrument Panel"**
+**Creative North Star: "Customer language, understood"**
 
-Find Sherpas reads a search system the way an instrument reads a signal: calmly, precisely, without editorializing. The surface is quiet by default — a near-white canvas, hairline borders, restrained type — so that when something needs attention (a CTA, a finding, a live data figure) it registers as a genuine signal rather than one more loud element competing for the eye. A single narrow "spine" rail tracks position down the page like a gauge, and raw data — queries, rankings, stats — switches into a monospace register that visually separates measurement from narrative prose.
+The public site uses confident humanist typography, broad fields of deep ink and soft white, and restrained blue-grey highlights to make the interpretation of a search query visible. The work feels specific through real explanations and interactive examples. Flat surfaces and generous space keep the content readable.
 
-The voice is diagnostic and evidence-led: short declarative sentences, uppercase micro-labels as section eyebrows, findings stated plainly before any pitch. Confidence comes from clarity and restraint, not decoration. Explicitly rejected: the generic SaaS look — gradient meshes, glassmorphism, glowing blob backgrounds, purple-to-blue washes. This system stays flat, hairline-bordered, and typographically led.
+This system replaces the former teal/Geist marketing identity under the September 2026 redesign. Its authority covers `app/(site)` and the public components. The CRM, private reports and audit tooling keep their existing styles. Existing articles and technical resources retain their content and diagrams; their older decorative treatments are not a template for new marketing pages.
 
 **Key Characteristics:**
-- Near-white canvas with a single sparing teal accent
-- A narrow scroll-spy "spine" rail as the signature navigation device
-- Monospace type reserved for data/query figures, never for prose
-- Uppercase, wide-tracked micro-labels as section eyebrows
-- Flat surfaces at rest; shadow appears only as a response to interaction
+
+- Broad, heavy Hanken Grotesk headlines with clear supporting copy.
+- Deep-ink fields, soft-white sections and contextual blue-grey highlights.
+- Flat panels, fine dividers, bracket geometry and consistent SVG arrows.
+- Specific search examples with explicit illustration labels.
+- Responsive layouts and visible keyboard focus.
 
 ## Colors
 
-Overwhelmingly neutral — near-white canvas, near-black ink, hairline gray dividers — with one accent held in reserve for the moment it's needed.
-
 ### Primary
-- **Signal Teal** (oklch(0.50 0.14 200)): the single accent color in the system. Used almost exclusively on the primary call-to-action button and focus rings — the color that tells the eye "act here."
+
+Deep Ink carries the query demonstration, closing invitation and primary controls. Its darker hover value provides state feedback without introducing another accent.
+
+### Secondary
+
+Context Grey marks interpreted context and provides a contrasting action on ink. Inverse Secondary Text and Annotation are the lighter blue-grey values used within the dark field.
 
 ### Neutral
-- **Canvas** (oklch(1 0 0)): page and card background.
-- **Ink** (oklch(0.145 0 0)): primary text color.
-- **Mist** (oklch(0.97 0 0)): secondary surfaces (secondary buttons, muted backgrounds).
-- **Graphite** (oklch(0.556 0 0)): muted/secondary text — body copy under headlines, captions.
-- **Hairline Gray** (oklch(0.922 0 0)): borders, dividers, input strokes.
-- **Teal Wash** (oklch(0.96 0.03 200)): the accent's tinted background form, used only where a soft highlight is needed (e.g. active nav state background), never as a substitute for the full accent.
 
-### Named Rules (optional, powerful)
-**The One Signal Rule.** Signal Teal appears on at most one element per screen at rest — the primary action. Everything else stays neutral so the accent keeps its meaning as "the thing to do here," not decoration. Scoped exception: the sticky header's "Book a call" button is exempt, since persistent navigation chrome is expected to keep its own affordance visible through scroll. If a page's in-flow content adds a second teal element while the header CTA is on screen, that in-flow element is the violation to fix, not the header.
+Reading Ink is the primary reading colour; Muted Ink is supporting text. Soft White and White separate sections. Divider and Field Border distinguish structural lines from interactive fields. Ongoing Surface and Note Surface are the low-chroma blue-grey panel fills used for explanatory passages.
+
+Error Ink on Error Surface is reserved for form feedback.
+
+**The Surface Contrast Rule.** Focus outlines and supporting copy follow the surface underneath them: ink on paper; blue-grey or white on ink.
 
 ## Typography
 
-**Display/Body Font:** Geist (with ui-sans-serif, system-ui fallback)
-**Data/Label Font:** Geist Mono (with ui-monospace, monospace fallback) — reserved for figures, not prose
+Hanken Grotesk is the public display and body face, self-hosted through Next font with Latin and Latin Extended subsets. Geist remains available to the separate application and older technical figures.
 
-**Character:** A single grotesque sans carries every weight of narrative content; Geist Mono is switched in only where raw data appears, so a reader can tell "measurement" from "explanation" at a glance without being told.
+The headline hierarchy is deliberately pronounced. Display is the largest and heaviest role; section headlines are lighter; body copy remains regular and comfortably spaced. Headings use balanced wrapping. Small labels are sentence case.
 
-### Hierarchy
-- **Display** (600, clamp(2.25rem, 4vw, 3.5rem), 1.1 line-height, -0.01em tracking): hero headlines only, one per page.
-- **Headline** (600, 1.875rem/30px, 1.2 line-height): section headers, always preceded by an eyebrow label.
-- **Title** (700, 1rem/16px, 1.3 line-height): card and finding-block titles.
-- **Body** (400, 1rem/16px, 1.75 line-height, ~65–75ch max width): paragraph copy, set in Graphite when secondary to a headline.
-- **Label** (600, 0.6875rem/11px, 0.08em tracking, uppercase): section eyebrows and micro-labels ("Diagnostic patterns", "Relevance").
-- **Data** (Geist Mono, 500, 0.875rem/14px): query strings, rankings, stat figures — anything that is a measurement rather than a sentence.
+The homepage display contracts on mobile to `clamp(2.3rem, 11.8vw, 5.2rem)`. Ordinary page displays use their own fluid scale. Prose is generally constrained to about 65 characters per line; article content has a dedicated reading-width wrapper.
 
-### Named Rules (optional)
-**The Mono-for-Data Rule.** Any figure that represents a measured or literal value — a search query, a rank position, a stat — is set in Geist Mono. Sentences, headlines, and labels never are. The switch itself is the signal that "this is raw."
+**The Meaning Before Decoration Rule.** Query words and their semantic annotations carry the visual idea. Typography does not require a decorative eyebrow to introduce a heading.
 
 ## Layout
 
-Content sits in narrow, reading-width containers rather than full-bleed sections: a 768px column for hero copy, a 576px column for lead paragraphs, and a 1120px column for multi-card sections — all centered. A persistent 80px left rail carries the spine navigation on desktop; it collapses away on mobile rather than becoming a hamburger menu, since the marketing pages are meant to be scrolled and read, not navigated like an app. Section rhythm runs large (64–128px of vertical padding between major sections, tightening on mobile) with a hairline top border marking each new section start.
+The public site uses full-width sections with shared horizontal gutters. Desktop section padding is 4.2% horizontally, with the documented section spacing vertically. Two-column introductions pair a heading with supporting copy; detail rows pair the topic with the explanation. The engagement comparison uses adjacent contrasting panels.
+
+At 760px and below, layouts become a single reading column with 24px gutters. The header becomes a keyboard-accessible menu. At 1100px the desktop density tightens; below 1281px the homepage header uses a single paper field to keep navigation on a consistent background. Above 1600px the content uses calculated gutters around a 1480px reference width.
+
+The homepage's split opening and route strategy belong to its surface brief. They are not compulsory templates for other pages.
+
+Framework field guides are the deliberate long-form exception. They open with a broad split editorial hero, then use a full-width Deep Ink principle and sequence to orient the reader before the detailed material. A numbered index leads into open, divider-led diagnostic stages: the stage title remains alongside evidence, actions and a decision rule on wide screens, then returns to normal document flow below 760px. The guide closes with a working method, a horizontally scrollable worksheet and two plain continuation links. Preserve that locate → inspect → act → record → continue reading order when extending the pattern.
 
 ## Elevation & Depth
 
-Flat at rest, ambient on interaction. Cards and default buttons carry only the faintest resting shadow (`shadow-sm` / `shadow-xs`); the primary button's shadow visibly deepens on hover (`shadow-md` → `shadow-lg`). Depth is not a static decoration — it's feedback that something is interactive or has just changed state.
-
-### Shadow Vocabulary
-- **Resting** (`box-shadow: 0 1px 2px rgba(0,0,0,0.05)` / Tailwind `shadow-xs`/`shadow-sm`): default state for cards, inputs, and the outline button.
-- **Interactive** (`shadow-md` → `shadow-lg` on hover): reserved for the primary button, signaling "this is the action."
-
-### Named Rules (optional)
-**The Ambient-on-Interaction Rule.** Nothing is elevated by default. Shadow only appears, or deepens, in direct response to hover/focus/state change.
+The new marketing system is flat. Surface colour, whitespace and fine borders establish hierarchy; shadows are not part of its component vocabulary. Legacy resource diagrams may retain older container treatments without making them normative.
 
 ## Shapes
 
-Corners are soft but not rounded-to-the-point-of-playful: buttons and inputs sit at 10–12px radius, cards at 16px, pills (badges, the search-check query chip) go fully rounded. Borders are single hairline strokes in Hairline Gray, never doubled or colored except for destructive/warning states. No clipping, masking, or decorative geometry — the form language stays functional.
+Controls have a small corner radius. Section panels have square corners. The wordmark uses four precise open brackets, rendered as an SVG. Arrows use Lucide's consistent stroke grammar.
+
+**The Flat Form Rule.** Use an open layout, a tonal panel or a fine divider to group content. Do not add nested card shells to ordinary prose.
 
 ## Components
 
 ### Buttons
-- **Shape:** rounded-lg by default (12px), rounded-xl (16px) at the `lg` size, rounded-md (10px) at `sm`/`xs`.
-- **Primary:** Signal Teal background, Canvas text, resting `shadow-sm`, hover deepens to `shadow-lg` and background dims to 90% opacity.
-- **Outline:** transparent/canvas background, hairline border, `shadow-xs` at rest, fills with Mist on hover.
-- **Secondary/Ghost/Link:** Secondary uses Mist background with no shadow; Ghost is borderless until hover (Mist fill); Link is text-only in Signal Teal with an underline on hover.
 
-### Badges
-- **Style:** fully rounded (pill), `px-2 py-0.5`, `text-xs font-medium`.
-- **Default:** Signal Teal background — used sparingly, same rarity discipline as the primary button.
-- **Outline/Secondary/Ghost:** neutral variants for non-emphasis tags.
-
-### Cards / Containers
-- **Corner Style:** 16px radius (`rounded-xl`).
-- **Background:** Canvas.
-- **Shadow Strategy:** resting `shadow-sm`; see Elevation.
-- **Border:** hairline, often at reduced opacity (`border-border/50`) for a quieter grid of cards.
-- **Internal Padding:** 24px (`py-6`, `px-6` in header/content/footer slots).
+Primary controls use Deep Ink and white text. On a deep-ink closing section the action uses Context Grey; the homepage header uses a white variant. Buttons have a minimum height of 56px on desktop and 54px on mobile, with inline SVG arrows. Hover changes colour and moves the arrow slightly. Disabled submission controls remain visible with reduced opacity.
 
 ### Inputs / Fields
-- **Style:** hairline border, transparent-to-canvas background, `rounded-md` (10px), `shadow-xs` at rest.
-- **Focus:** border shifts to the ring color plus a 3px soft ring (`focus-visible:ring-ring/50`) — no glow or color fill.
-- **Error/Disabled:** invalid state rings in destructive/20%; disabled drops to 50% opacity and blocks pointer events.
 
-### Navigation — The Spine
-- **Style:** an 80px sticky left rail, visible from `md` breakpoint up. A single 1px vertical hairline connects a column of dot markers, one per page section (11×11px hit target, 12px dot). The active section's dot fills solid Ink; inactive dots are outlined in Graphite over a Canvas fill. Driven by scroll-spy (IntersectionObserver), not click-only state.
-- **Mobile treatment:** the rail is hidden entirely below `md`; no collapsed/hamburger equivalent — mobile relies on normal in-page scroll and content order.
+White fields have a distinct fine border, small corner radius, persistent visible labels and regular body typography. The contact form displays loading, error and success states; errors retain the entered message and receive focus. Successful submission is announced through a status region.
 
-### The Spine (signature component)
-The defining visual device of the system: it reframes in-page navigation as an instrument readout rather than a menu, reinforcing the Instrument Panel north star. New long-scrolling marketing pages should default to reusing it rather than inventing a new wayfinding pattern.
+### Contact location
+
+The contact route pairs a Deep Ink address field with an edge-to-edge live OpenStreetMap embed in a 36/64 desktop split. Below 760px, the address precedes a 390px-tall map. Keep the external OpenStreetMap link visibly underlined, the iframe titled and lazy-loaded, and the map attribution visible.
+
+### Navigation
+
+The desktop navigation is text-based with underline feedback for hover and the current route. A compact menu replaces it on mobile. The menu moves focus inside, contains Tab navigation, closes on Escape and restores focus to the trigger. The public layout includes a skip-to-content link.
+
+### Query interpretation
+
+Large query words sit in a deep-ink field. Fine horizontal connectors name product and colour; a blue-grey phrase and vertical connectors expose seasonal and occasion context. Language buttons use pressed states and update the explanatory text. The highlighted phrase reveals through a short clip animation; reduced-motion preferences disable animation and transitions.
+
+### Search schematics
+
+Small search concepts use a shared framed pictogram grammar: inline 136×80 SVGs with 1.5px non-scaling current-colour strokes, restrained muted structure and Context Grey signal fills. They diagram search mechanics rather than act as decorative icons. At mobile widths they reduce to 72px while preserving their aspect ratio and legibility.
+
+### Search demonstration
+
+Scenario controls select an illustrative shop recording. A responsive poster and explicit Play example button provide the idle preview. On activation, the video starts with native controls. Poster and video variants follow the mobile breakpoint together. The fiction label and textual explanation remain visible outside the media.
+
+### Text links and reading lists
+
+Text links pair an underlined action with an SVG arrow. Writing and expertise lists use spacious rows and dividers instead of decorative cards. Articles keep their source content in a reading-width wrapper.
+
+### Framework field guides
+
+Framework pages turn an abstract method into an operational reading sequence. Use the large split hero, Deep Ink principle band, numbered sequence and stage index once at the top; do not repeat them as decorative section furniture. Each diagnostic stage combines explanatory prose with one clearly labelled example, compact question/evidence/action lists and a tonal decision rule. Keep stages, working method, worksheet and related routes as open editorial regions separated by surface changes and fine rules, not nested cards.
+
+On these unusually long guides, the floating “To the top” control appears only after the reader has passed the greater of 0.75 viewport or 520px. While analytics consent is visible, the control moves 12px above it to avoid a collision. Before then it stays outside pointer, keyboard and accessibility navigation; activation scrolls smoothly unless reduced motion is preferred, and its dual white-and-Deep-Ink focus ring must remain legible while crossing light and dark sections.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** hold Signal Teal for one element per screen — the primary action or an active-state indicator.
-- **Do** set any measured/literal figure (query, rank, stat) in Geist Mono; keep all prose in Geist Sans.
-- **Do** keep surfaces flat at rest and let shadow communicate interactivity, not decoration.
-- **Do** center content in reading-width containers (576–1120px) rather than stretching full-bleed.
+
+- Do use deep ink as a substantial field where it supports the subject.
+- Do label fictional demonstrations and distinguish prior experience from agency results.
+- Do match focus colour to the underlying surface.
+- Do use the public font and token scope without changing the CRM.
+- Do retain clear reading order and useful controls at mobile widths.
+- Do make every framework stage resolve from symptom to evidence, decision and next action.
 
 ### Don't:
-- **Don't** introduce gradients, glassmorphism, or glow effects — the explicit anti-reference for this system is the generic SaaS template look.
-- **Don't** add a second accent color; route additional emphasis through Ink weight/size or the Teal Wash tint instead.
-- **Don't** collapse the spine into a hamburger menu on mobile — hide it and let the page scroll normally.
+
+- Don't invent clients, performance numbers or team biographies to fill a layout.
+- Don't revive the former teal marketing identity inside the redesigned routes.
+- Don't add gradients, decorative shadows, eyebrow labels or glyph substitutes for icons to new marketing content.
+- Don't promote legacy resource styling into the new component system.

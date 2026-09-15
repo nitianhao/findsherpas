@@ -36,32 +36,43 @@ export function SpineSidebar({ sections }: SpineSidebarProps) {
   }, [sections]);
 
   return (
-    <div className="sticky top-32 hidden self-start md:flex md:flex-col md:items-center">
-      <div className="relative flex flex-col items-center">
-        {/* Vertical connecting line */}
-        <div
-          className="absolute left-1/2 top-1.5 -translate-x-1/2 bg-border"
-          style={{ width: "1px", bottom: "6px" }}
-        />
-        {sections.map(({ id, label }) => {
-          const isActive = activeId === id;
-          return (
-            <a
-              key={id}
-              href={`#${id}`}
-              aria-label={label}
-              title={label}
-              className="relative z-10 flex h-11 w-11 items-center justify-center transition-transform duration-150 hover:scale-110 focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
-            >
-              {isActive ? (
-                <span className="block h-3 w-3 rounded-full bg-foreground transition-all duration-200" />
-              ) : (
-                <span className="block h-3 w-3 rounded-full border border-muted-foreground/70 bg-card transition-all duration-200 motion-reduce:transition-none" />
-              )}
+    <>
+      <details className="mx-4 mt-6 border-y border-border sm:mx-6 lg:hidden">
+        <summary className="flex min-h-11 cursor-pointer items-center justify-between py-3 text-sm font-semibold">
+          On this page
+          <span className="text-xs font-normal text-muted-foreground">{sections.find(({ id }) => id === activeId)?.label}</span>
+        </summary>
+        <nav aria-label="On this page" className="pb-3">
+          {sections.map(({ id, label }) => (
+            <a key={id} href={`#${id}`} className="flex min-h-11 items-center border-t border-border/60 py-2 text-sm">
+              {label}
             </a>
-          );
-        })}
-      </div>
-    </div>
+          ))}
+        </nav>
+      </details>
+      <nav aria-label="On this page" className="sticky top-28 z-10 hidden self-start px-5 py-12 lg:block">
+        <p className="mb-4 text-sm font-semibold">On this page</p>
+        <ol className="border-l border-border">
+          {sections.map(({ id, label }) => {
+            const isActive = activeId === id;
+            return (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  aria-current={isActive ? "location" : undefined}
+                  className={`block min-h-11 border-l-2 px-4 py-2 text-sm leading-6 transition-colors ${
+                    isActive
+                      ? "-ml-px border-foreground font-semibold text-foreground"
+                      : "border-transparent text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {label}
+                </a>
+              </li>
+            );
+          })}
+        </ol>
+      </nav>
+    </>
   );
 }

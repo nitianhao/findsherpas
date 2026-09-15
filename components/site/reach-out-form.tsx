@@ -1,10 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-
-const inputClass =
-  "w-full rounded-lg border border-input bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 export function ReachOutForm() {
   const [form, setForm] = useState({
@@ -12,55 +9,75 @@ export function ReachOutForm() {
     email: "",
     company: "",
     message: "",
-    website: "", // honeypot — must stay empty
+    website: "",
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const statusRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (status === "success" || status === "error") statusRef.current?.focus();
+  }, [status]);
 
   function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    if (status === "loading") return;
     setStatus("loading");
     setErrorMsg("");
-
     try {
-      const res = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
+        signal: AbortSignal.timeout(20000),
       });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setErrorMsg(data.error ?? "Something went wrong. Please try again.");
+      const data = await response.json().catch(() => null);
+      if (!response.ok) {
+        setErrorMsg(
+          typeof data?.error === "string"
+            ? data.error
+            : "Your message could not be sent. Please try again or email us directly.",
+        );
         setStatus("error");
         return;
       }
-
       setStatus("success");
     } catch {
-      setErrorMsg("Network error. Please check your connection and try again.");
+      setErrorMsg(
+        "We could not confirm that your message was sent. Check your connection and try again, or email michal@findsherpas.com.",
+      );
       setStatus("error");
     }
   }
 
   if (status === "success") {
     return (
-      <p role="status" tabIndex={-1} className="rounded-lg border border-border/50 bg-primary/[0.03] px-5 py-4 text-sm text-muted-foreground">
-        Message received. We&apos;ll be in touch within 1–2 business days.
-      </p>
+      <div
+        ref={statusRef}
+        role="status"
+        tabIndex={-1}
+        className="fs-form-status"
+      >
+        <h3>Thank you for the context.</h3>
+        <p>Your message has been sent. We will be in touch at {form.email}.</p>
+      </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} aria-busy={status === "loading"} className="space-y-4">
-      {/* Honeypot — hidden from real users, catches bots */}
+    <form
+      onSubmit={handleSubmit}
+      aria-busy={status === "loading"}
+      className="fs-form"
+    >
       <input
         type="text"
         name="website"
@@ -69,87 +86,85 @@ export function ReachOutForm() {
         autoComplete="off"
         tabIndex={-1}
         aria-hidden="true"
-        className="absolute -left-[9999px] opacity-0"
+        className="fs-honeypot"
       />
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="name" className="text-sm font-medium text-foreground">
-            Name <span className="text-muted-foreground">*</span>
-          </label>
+      <div className="fs-form-pair">
+        <div className="fs-field">
+          <label htmlFor="contact-name">Name</label>
           <input
-            id="name"
+            id="contact-name"
             name="name"
-            type="text"
+            autoComplete="name"
             required
+            maxLength={200}
             value={form.name}
             onChange={handleChange}
-            placeholder="Your name"
-            className={inputClass}
           />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="email" className="text-sm font-medium text-foreground">
-            Email <span className="text-muted-foreground">*</span>
-          </label>
+        <div className="fs-field">
+          <label htmlFor="contact-email">Email</label>
           <input
-            id="email"
+            id="contact-email"
             name="email"
             type="email"
+            autoComplete="email"
             required
+            maxLength={254}
             value={form.email}
             onChange={handleChange}
-            placeholder="you@company.com"
-            className={inputClass}
           />
         </div>
       </div>
-
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="company" className="text-sm font-medium text-foreground">
-          Website or company{" "}
-          <span className="text-sm text-muted-foreground">(optional)</span>
+      <div className="fs-field">
+        <label htmlFor="contact-company">
+          Store or company <span>(optional)</span>
         </label>
         <input
-          id="company"
+          id="contact-company"
           name="company"
-          type="text"
+          autoComplete="organization"
+          maxLength={500}
           value={form.company}
           onChange={handleChange}
-          placeholder="yourshop.com"
-          className={inputClass}
+          placeholder="Your store’s name or website"
         />
       </div>
-
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="message" className="text-sm font-medium text-foreground">
-          Message <span className="text-muted-foreground">*</span>
-        </label>
+      <div className="fs-field">
+        <label htmlFor="contact-message">What would you like to improve?</label>
         <textarea
-          id="message"
+          id="contact-message"
           name="message"
           required
-          rows={5}
+          minLength={1}
+          maxLength={10000}
+          rows={6}
           value={form.message}
           onChange={handleChange}
-          placeholder="Briefly describe your search system and what you're trying to improve."
-          className={`${inputClass} min-h-[140px]`}
+          placeholder="A few sentences about your search and what you have in mind."
         />
       </div>
-
       {status === "error" && (
-        <p role="alert" className="rounded-lg border border-destructive/20 bg-destructive/5 px-4 py-3 text-sm text-destructive">
+        <div
+          ref={statusRef}
+          role="alert"
+          tabIndex={-1}
+          className="fs-form-error"
+        >
           {errorMsg}
-        </p>
+        </div>
       )}
-
-      <Button
+      <button
         type="submit"
         disabled={status === "loading"}
-        className="font-semibold text-white disabled:opacity-60"
+        className="fs-button"
       >
         {status === "loading" ? "Sending…" : "Send message"}
-      </Button>
+        <ArrowRight size={20} aria-hidden="true" />
+      </button>
+      <p className="fs-form-note">
+        We use these details to respond to your enquiry. Please do not include
+        customer records or confidential search data.
+      </p>
     </form>
   );
 }

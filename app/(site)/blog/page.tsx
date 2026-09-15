@@ -1,63 +1,59 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowUpRight } from "lucide-react";
 import { listBlogPosts } from "@/lib/content";
+import { ContactBand } from "@/components/site/contact-band";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Blog",
+export const metadata = createPageMetadata({
+  title: "Ecommerce search articles",
   description:
-    "Articles about on-site search UX, relevance, and analytics—written for humans and search engines.",
-  alternates: { canonical: "https://findsherpas.com/blog" },
-};
+    "Practical articles on ecommerce search, relevance, product discovery and search UX.",
+  path: "/blog",
+});
 
 export default async function BlogIndexPage() {
   const posts = await listBlogPosts();
-
   return (
-    <div className="py-10">
-      <h1 className="text-3xl font-semibold tracking-tight">Blog</h1>
-      <p className="mt-3 max-w-2xl text-muted-foreground">
-        Articles on on-site search UX, relevance, and analytics.
-      </p>
-
-      <div className="mt-10 grid gap-6 md:grid-cols-2">
-        {posts.map((post) => (
-          <Card key={post.slug} className="overflow-hidden">
-            <CardHeader>
-              <div className="flex items-center justify-between gap-4">
-                <CardTitle className="text-lg">
-                  <Link href={`/blog/${post.slug}`} className="hover:underline">
-                    {post.frontmatter.title}
-                  </Link>
-                </CardTitle>
-                {post.frontmatter.featured ? <Badge>Featured</Badge> : null}
-              </div>
-              <div className="text-xs text-muted-foreground">
-                {new Date(post.frontmatter.date).toLocaleDateString(undefined, {
+    <>
+      <section className="fs-page-hero">
+        <h1>
+          Articles about
+          <br />
+          ecommerce search.
+        </h1>
+        <p>
+          Detailed, practical guidance on relevance, product discovery and the
+          decisions that shape the on-site search experience.
+        </p>
+      </section>
+      <section className="fs-section fs-writing-list" aria-label="Articles">
+        {posts.length ? (
+          posts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="fs-writing-item"
+            >
+              <time dateTime={post.frontmatter.date}>
+                {new Date(post.frontmatter.date).toLocaleDateString("en-GB", {
                   year: "numeric",
                   month: "short",
                   day: "numeric",
+                  timeZone: "UTC",
                 })}
+              </time>
+              <div>
+                <h2>{post.frontmatter.title}</h2>
+                <p>{post.frontmatter.excerpt}</p>
               </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                {post.frontmatter.excerpt}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {(post.frontmatter.tags ?? []).slice(0, 4).map((tag) => (
-                  <Badge key={tag} variant="secondary">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </div>
+              <ArrowUpRight aria-hidden="true" />
+            </Link>
+          ))
+        ) : (
+          <p>New articles are on their way.</p>
+        )}
+      </section>
+      <ContactBand />
+    </>
   );
 }
-

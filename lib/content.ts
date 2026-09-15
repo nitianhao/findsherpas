@@ -9,6 +9,7 @@ export type BlogFrontmatter = {
   title: string;
   excerpt: string;
   date: string; // ISO date string
+  updated?: string; // ISO date string
   tags?: string[];
   featured?: boolean;
   seoTitle?: string;
@@ -29,6 +30,7 @@ export type CaseStudyFrontmatter = {
   approach?: string;
   outcome?: string;
   stack?: string[];
+  reportUrl?: string;
 };
 
 export type ContentKind = "blog" | "case-studies";
@@ -147,4 +149,3 @@ export async function listCaseStudies() {
     items.filter((p): p is ContentItem<CaseStudyFrontmatter> => p !== null),
   ).map(({ content: _content, ...rest }) => rest);
 }
-

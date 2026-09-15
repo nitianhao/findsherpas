@@ -4,124 +4,78 @@ export const runtime = "edge";
 
 export function GET() {
   return new ImageResponse(
-    (
+    <div
+      style={{
+        display: "flex",
+        width: 1200,
+        height: 630,
+        background: "#f5f6f4",
+        color: "#1c272d",
+        fontFamily: "sans-serif",
+      }}
+    >
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          width: "1200px",
-          height: "630px",
-          backgroundColor: "#09090b",
-          padding: "80px",
-          fontFamily: "sans-serif",
-          position: "relative",
+          width: "58%",
+          padding: "48px",
         }}
       >
-        {/* Top accent line */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "4px",
-            background: "linear-gradient(90deg, #0891b2, #06b6d4)",
-          }}
-        />
-
-        {/* Brand mark */}
-        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-          <div
-            style={{
-              width: "36px",
-              height: "36px",
-              backgroundColor: "#ffffff",
-              borderRadius: "10px",
-            }}
-          />
-          <span
-            style={{
-              color: "#ffffff",
-              fontSize: "22px",
-              fontWeight: "600",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            Find Sherpas
-          </span>
-        </div>
-
-        {/* Main content */}
+        <div style={{ fontSize: 28, fontWeight: 700 }}>find sherpas</div>
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            flexGrow: 1,
-            justifyContent: "center",
+            marginTop: 62,
+            fontSize: 61,
+            lineHeight: 1.04,
+            fontWeight: 700,
+            letterSpacing: "-2px",
           }}
         >
-          <div
-            style={{
-              color: "#0891b2",
-              fontSize: "16px",
-              fontWeight: "600",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              marginBottom: "28px",
-            }}
-          >
-            Internal search audit
-          </div>
-
-          <div
-            style={{
-              color: "#ffffff",
-              fontSize: "60px",
-              fontWeight: "700",
-              letterSpacing: "-0.03em",
-              lineHeight: "1.1",
-              maxWidth: "860px",
-            }}
-          >
-            Internal search audits for ecommerce
-          </div>
-
-          <div
-            style={{
-              color: "#71717a",
-              fontSize: "24px",
-              fontWeight: "400",
-              marginTop: "28px",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            Ranking · Relevance · Query interpretation
-          </div>
+          <span>They know</span>
+          <span>what they want.</span>
+          <span>Does your search?</span>
         </div>
-
-        {/* Bottom right: URL */}
+        <div style={{ fontSize: 25, marginTop: 35, maxWidth: 470 }}>
+          On-site search optimization for ecommerce.
+        </div>
+        <div style={{ fontSize: 18, marginTop: "auto" }}>findsherpas.com</div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: 12,
+          width: "42%",
+          padding: 38,
+          background: "#293b44",
+          color: "white",
+          fontSize: 68,
+          lineHeight: 1.1,
+        }}
+      >
+        <span>black</span>
+        <span>dress</span>
+        <span>for a</span>
         <div
           style={{
             display: "flex",
-            justifyContent: "flex-end",
+            flexDirection: "column",
+            background: "#dce5e8",
+            color: "#1c272d",
+            padding: "8px 12px",
+            fontSize: 56,
+            fontWeight: 700,
           }}
         >
-          <span
-            style={{
-              color: "#3f3f46",
-              fontSize: "16px",
-              fontWeight: "400",
-              letterSpacing: "0.02em",
-            }}
-          >
-            findsherpas.com
-          </span>
+          <span>winter</span>
+          <span>wedding</span>
         </div>
       </div>
-    ),
-    {
-      width: 1200,
-      height: 630,
-    },
+    </div>,
+    { width: 1200, height: 630 },
   );
 }
