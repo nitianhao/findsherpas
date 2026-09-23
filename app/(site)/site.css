@@ -1908,6 +1908,31 @@
   max-width: 100%;
   height: auto;
 }
+.fs-article-body ul,
+.fs-article .tiptap ul {
+  list-style: disc;
+  margin: 20px 0;
+  padding-left: 1.6em;
+}
+.fs-article-body ol,
+.fs-article .tiptap ol {
+  list-style: decimal;
+  margin: 20px 0;
+  padding-left: 1.6em;
+}
+.fs-article-body li,
+.fs-article .tiptap li { padding-left: .2em; margin: 6px 0; }
+.fs-article-body a,
+.fs-article .tiptap a { text-decoration: underline; text-underline-offset: 3px; }
+.fs-article-body blockquote,
+.fs-article .tiptap blockquote { margin: 28px 0; padding-left: 20px; border-left: 3px solid var(--fs-accent); color: var(--fs-muted); }
+.fs-article-body pre,
+.fs-article .tiptap pre { margin: 24px 0; padding: 18px; border-radius: 8px; background: var(--fs-paper); }
+.fs-article-body hr,
+.fs-article .tiptap hr { margin: 36px 0; border-color: var(--border); }
+.article-editor-canvas .fs-article { padding-top: 35px; padding-bottom: 50px; }
+.article-editor-canvas .tiptap { min-height: 420px; outline: none; }
+.article-editor-canvas .tiptap p:first-child { margin-top: 0; }
 .fs-legacy p {
   margin-top: 20px;
 }

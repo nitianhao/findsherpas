@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic';
 
 import { CrmSidebar } from "@/components/crm/layout/sidebar";
 import { Toaster } from "@/components/crm/ui/sonner";
+import "@/app/(site)/site.css";
 
 export default function CrmLayout({
   children,

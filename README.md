@@ -44,6 +44,12 @@ Source of truth: `.env.local` (local) and Vercel project env vars (prod). Use `.
 - Blog posts: `content/blog/*.mdx`
 - Case studies: `content/case-studies/*.mdx`
 
+## Article CMS
+
+Open `/crm/articles` after signing in to the CRM. The editor supports formatted text, headings, lists, quotes, links, images by URL, drafts, a site-styled preview, and publishing. Published articles appear at `/blog/[slug]` and in the sitemap. Saving edits to an existing article keeps its published version live until Publish is clicked again. Existing MDX blog posts remain available.
+
+Article data is stored in the existing InstantDB app. The CRM needs `NEXT_PUBLIC_INSTANT_APP_ID`, `INSTANT_APP_ADMIN_TOKEN`, `AUTH_SECRET`, and `CRM_PASSWORD`. Apply the checked-in schema and permissions to a new InstantDB app with `npx instant-cli@latest push schema` and `npx instant-cli@latest push perms`. The article namespace denies client SDK access; the protected server routes use the Admin SDK.
+
 ## Search audit pipeline
 
 The audit pipeline is a self-contained project under `src/audit/`. Its documentation lives there, not in this website README.

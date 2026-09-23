@@ -4,6 +4,8 @@ import { listBlogPosts } from "@/lib/content";
 import { ContactBand } from "@/components/site/contact-band";
 import { createPageMetadata } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = createPageMetadata({
   title: "Ecommerce search articles",
   description:

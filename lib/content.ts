@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 import matter from "gray-matter";
+import { getPublishedArticleBySlug, listPublishedArticles } from "@/lib/articles";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -40,6 +41,7 @@ export type ContentItem<TFrontmatter> = {
   slug: string;
   frontmatter: TFrontmatter;
   content: string;
+  format?: "html" | "mdx";
 };
 
 export type ContentListItem<TFrontmatter> = Omit<
@@ -126,7 +128,20 @@ export async function getCaseStudySlugs() {
   return await listSlugs("case-studies");
 }
 
-export async function getBlogPostBySlug(slug: string) {
+export async function getBlogPostBySlug(slug: string): Promise<ContentItem<BlogFrontmatter> | null> {
+  const article = await getPublishedArticleBySlug(slug);
+  if (article) return {
+    kind: "blog" as const,
+    slug,
+    frontmatter: {
+      title: article.published_title!,
+      excerpt: article.published_excerpt!,
+      date: article.published_at!,
+      updated: article.published_updated_at ?? article.published_at,
+    },
+    content: article.published_body_html!,
+    format: "html" as const,
+  };
   return await readMdxBySlug<BlogFrontmatter>("blog", slug);
 }
 
@@ -135,7 +150,7 @@ export async function getCaseStudyBySlug(slug: string) {
 }
 
 export async function listBlogPosts() {
-  const slugs = await getBlogPostSlugs();
+  const slugs = [...await getBlogPostSlugs(), ...(await listPublishedArticles()).map((article) => article.slug)];
   const posts = await Promise.all(slugs.map((s) => getBlogPostBySlug(s)));
   return sortByDateDesc(
     posts.filter((p): p is ContentItem<BlogFrontmatter> => p !== null),

@@ -23,6 +23,7 @@ const navigation = [
   { name: "Dashboard", href: "/crm/dashboard", icon: LayoutDashboard },
   { name: "Companies", href: "/crm/companies", icon: Building2 },
   { name: "Reports", href: "/crm/reports", icon: FileText },
+  { name: "Articles", href: "/crm/articles", icon: FileText },
   { name: "Contacts", href: "/crm/contacts", icon: Users },
   { name: "Unsubscribed", href: "/crm/unsubscribed", icon: UserX },
   { name: "Sequences", href: "/crm/sequences", icon: Mail },

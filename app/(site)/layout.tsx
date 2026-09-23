@@ -1,14 +1,8 @@
-import { Hanken_Grotesk } from "next/font/google";
+import { hanken } from "@/lib/site-font";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteNav } from "@/components/site/site-nav";
 import { AnalyticsConsent } from "@/components/site/analytics-consent";
 import "./site.css";
-
-const hanken = Hanken_Grotesk({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-site",
-  display: "swap",
-});
 
 export default function SiteLayout({
   children,

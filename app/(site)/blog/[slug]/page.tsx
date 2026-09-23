@@ -9,7 +9,6 @@ import { mdxComponents } from "@/components/mdx/mdx-components";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
   getBlogPostBySlug,
-  getBlogPostSlugs,
   listBlogPosts,
 } from "@/lib/content";
 import {
@@ -21,10 +20,7 @@ import {
   SITE_URL,
 } from "@/lib/seo";
 
-export async function generateStaticParams() {
-  const slugs = await getBlogPostSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -151,7 +147,11 @@ export default async function BlogPostPage({
       </div>
 
       <div className="mt-10 max-w-3xl">
-        <MDXRemote source={post.content} components={mdxComponents} />
+        {post.format === "html" ? (
+          <div className="fs-article-body" dangerouslySetInnerHTML={{ __html: post.content }} />
+        ) : (
+          <MDXRemote source={post.content} components={mdxComponents} />
+        )}
       </div>
 
       {relatedPosts.length > 0 ? (

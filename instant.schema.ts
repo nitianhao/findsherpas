@@ -2,6 +2,19 @@ import { i } from '@instantdb/admin';
 
 const _schema = i.schema({
   entities: {
+    articles: i.entity({
+      title: i.string(),
+      slug: i.string().unique(),
+      excerpt: i.string(),
+      body_html: i.string(),
+      published_title: i.string().optional(),
+      published_excerpt: i.string().optional(),
+      published_body_html: i.string().optional(),
+      published_at: i.string().optional(),
+      published_updated_at: i.string().optional(),
+      created_at: i.string(),
+      updated_at: i.string(),
+    }),
     companies: i.entity({
       name: i.string().indexed(),
       website: i.any().optional(),
