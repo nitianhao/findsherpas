@@ -46,7 +46,7 @@ Source of truth: `.env.local` (local) and Vercel project env vars (prod). Use `.
 
 ## Article CMS
 
-Open `/crm/articles` after signing in to the CRM. The editor supports formatted text, headings, lists, quotes, links, images by URL, drafts, a site-styled preview, and publishing. Published articles appear at `/blog/[slug]` and in the sitemap. Saving edits to an existing article keeps its published version live until Publish is clicked again. Existing MDX blog posts remain available.
+Open `/crm/articles` after signing in to the CRM. The editor supports headings, fonts, colors, alignment, lists, checklists, quotes, code, tables, links, and images, video, audio, YouTube, Vimeo, and PDF attachments. Media can be inserted from a URL or uploaded to the existing Vercel Blob store; supported files can also be pasted or dropped into the editor. Uploads are limited to 100 MB. It supports drafts, a site-styled preview, and publishing. Published articles appear at `/blog/[slug]` and in the sitemap. Saving edits to an existing article keeps its published version live until Publish is clicked again. Existing MDX blog posts remain available.
 
 Article data is stored in the existing InstantDB app. The CRM needs `NEXT_PUBLIC_INSTANT_APP_ID`, `INSTANT_APP_ADMIN_TOKEN`, `AUTH_SECRET`, and `CRM_PASSWORD`. Apply the checked-in schema and permissions to a new InstantDB app with `npx instant-cli@latest push schema` and `npx instant-cli@latest push perms`. The article namespace denies client SDK access; the protected server routes use the Admin SDK.
 

@@ -1933,6 +1933,33 @@
 .article-editor-canvas .fs-article { padding-top: 35px; padding-bottom: 50px; }
 .article-editor-canvas .tiptap { min-height: 420px; outline: none; }
 .article-editor-canvas .tiptap p:first-child { margin-top: 0; }
+.fs-article h4 { margin-top: 26px; font-size: 21px; line-height: 1.3; }
+.fs-article h5 { margin-top: 22px; font-size: 18px; font-weight: 700; }
+.fs-article h6 { margin-top: 20px; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.fs-article-body table,
+.fs-article .tiptap table { width: 100%; border-collapse: collapse; margin: 26px 0; font-size: 16px; }
+.fs-article-body th, .fs-article-body td,
+.fs-article .tiptap th, .fs-article .tiptap td { border: 1px solid var(--border); padding: 10px 12px; vertical-align: top; }
+.fs-article-body th,
+.fs-article .tiptap th { background: var(--fs-paper); font-weight: 700; }
+.fs-article .tiptap .selectedCell { background: var(--fs-highlight); }
+.fs-article-body ul[data-type="taskList"],
+.fs-article .tiptap ul[data-type="taskList"] { list-style: none; padding-left: 0; }
+.fs-article-body li[data-type="taskItem"],
+.fs-article .tiptap li[data-type="taskItem"] { display: flex; align-items: flex-start; gap: 10px; padding-left: 0; }
+.fs-article-body li[data-type="taskItem"] > label,
+.fs-article .tiptap li[data-type="taskItem"] > label { margin-top: 5px; }
+.fs-article-body li[data-type="taskItem"] > div,
+.fs-article .tiptap li[data-type="taskItem"] > div { flex: 1; }
+.fs-article-body li[data-type="taskItem"] p,
+.fs-article .tiptap li[data-type="taskItem"] p { margin-top: 0; }
+.fs-article-body video, .fs-article-body audio, .fs-article-body iframe,
+.fs-article .tiptap video, .fs-article .tiptap audio, .fs-article .tiptap iframe { display: block; max-width: 100%; margin: 28px 0; }
+.fs-article-body video, .fs-article .tiptap video { width: 100%; height: auto; }
+.fs-article-body audio, .fs-article .tiptap audio { width: 100%; }
+.fs-article-body iframe, .fs-article .tiptap iframe { width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0; }
+.fs-article-body code, .fs-article .tiptap code { border-radius: 4px; background: var(--fs-paper); padding: 2px 4px; font-size: .88em; }
+.fs-article-body pre code, .fs-article .tiptap pre code { padding: 0; background: transparent; }
 .fs-legacy p {
   margin-top: 20px;
 }

@@ -1,5 +1,6 @@
 import sanitizeHtml from "sanitize-html";
 import { adminDb, id } from "@/lib/crm/instant-db";
+import { cleanArticleHtml } from "@/lib/article-html";
 
 export type Article = {
   id: string;
@@ -30,18 +31,6 @@ export function normalizeSlug(value: string) {
   return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-export function cleanArticleHtml(value: string) {
-  return sanitizeHtml(value, {
-    allowedTags: ["p", "h2", "h3", "h4", "strong", "em", "s", "u", "ul", "ol", "li", "blockquote", "a", "img", "br", "hr", "pre", "code"],
-    allowedAttributes: { a: ["href", "target", "rel"], img: ["src", "alt", "title"] },
-    allowedSchemes: ["http", "https", "mailto"],
-    allowedSchemesByTag: { img: ["http", "https"] },
-    transformTags: {
-      a: (_tag, attrs) => ({ tagName: "a", attribs: { href: attrs.href ?? "", rel: "noopener noreferrer", ...(attrs.target === "_blank" ? { target: "_blank" } : {}) } }),
-    },
-  });
-}
-
 export async function listArticles(): Promise<Article[]> {
   const data = await adminDb.query({ articles: {} });
   return [...data.articles].sort((a, b) => b.updated_at.localeCompare(a.updated_at)) as Article[];
@@ -68,7 +57,7 @@ export async function saveArticle(input: ArticleInput, articleId?: string, publi
   const slug = normalizeSlug(input.slug || title);
   if (!title || !slug || !excerpt) throw new Error("Title, slug, and summary are required.");
   const body_html = cleanArticleHtml(input.body_html);
-  if (publish && !sanitizeHtml(body_html, { allowedTags: [], allowedAttributes: {} }).trim()) {
+  if (publish && !sanitizeHtml(body_html, { allowedTags: [], allowedAttributes: {} }).trim() && !/<(?:img|video|audio|iframe|table)\b/.test(body_html)) {
     throw new Error("Add article content before publishing.");
   }
 
