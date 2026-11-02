@@ -32,8 +32,23 @@
 | **brands** | Discovery invents brands the site does not carry, or misses house brands. | Verify against a real brand/`/brands` page when one exists. Drop hallucinated brands; they cause hallucinated queries in Phase 3. |
 | **nav_categories** | Pulls marketing nav ("New", "Sale", "Gift Guide") instead of real product departments. | Prefer real catalog departments over promotional nav entries. |
 | **featured_items** | Misses signature/hero products that make the best test queries. | Add the site's signature products if the user names them — they anchor realistic queries. |
-| **Haiku refinement is now the default** | The rule-based extractors are noisy: brand names land in `nav_categories`, `featured_items` fills with nav/legal/cart junk, and `site_type` is wrong (see next row). | A Haiku pass (`_refine_with_haiku`, `claude-haiku-4-5-20251001`) runs automatically at the end of `discover_from_search_url`: it re-derives `site_type`, splits brands out of nav, cleans nav to real departments, and keeps only real products in `featured_items`. Fails safe to heuristic values. Still review its output; it can miss user-known signature products. |
+| **LLM refinement is the default (both entry points)** | The rule-based extractors are noisy: brand names land in `nav_categories`, `featured_items` fills with nav/legal/cart junk, and `site_type` is wrong (see next row). | `_refine_with_llm` (`AUDIT_MODEL_DISCOVERY`, default `claude-haiku-4-5-20251001`) runs at the end of **both** `discover_from_search_url` and `discover_site` (shared `_build_site_context`): it re-derives `site_type`, splits brands out of nav, cleans nav to real departments, and keeps only real products in `featured_items`. Since 2026-10-30 it is a structured call (no JSON parsing, 4000 max tokens) and every returned brand/nav/item must appear in the scraped lists or page text — anything else is dropped and listed in `provenance['refine_dropped']`. **No silent fallback:** a failure sets `provenance['refine'] = 'fallback: <error>'`, and with `AUDIT_STRICT_LLM=1` (default) discovery raises instead. Set `AUDIT_STRICT_LLM=0` to accept heuristic fields. Still review its output; it can miss user-known signature products. |
 | **`_detect_site_type` experiential-noun bias** | The heuristic counts distinct substring hits over the scraped **homepage**. It over-weights experiential nouns (experience/heritage/café/visit/events/gifting) and can't see purchase signals — prices and add-to-cart live on **product pages**, not the homepage — so goods retailers with lifestyle/café/visitor framing score `service≥3 & goods≤1` and get misclassified as SERVICES_EXPERIENCES. English-only literal substrings also zero out non-English sites. | A goods retailer that *also* runs cafés/experiences is still a goods retailer → MARKETPLACE_MIXED or PHYSICAL_GOODS. The Haiku pass now corrects this; the heuristic is only the fallback. |
+
+
+### Discovery behaviour as of 2026-10-30 (code changes — read before Phase 1)
+
+| Area | Behaviour | Why |
+|---|---|---|
+| **Language / locale** | `_detect_language` returns `(language, BCP-47 locale, source)`. Order: `<html lang>` (English included) → `og:locale` → the hreflang entry whose href **is this page** (canonical/current URL) → locale path segment (`/sv/`, `/de-ch/`) → single-language ccTLD → multilingual ccTLD (.ch/.be/.ca/.lu) narrowed by the page's function words → function words alone → English. `SiteContext.locale` is filled (e.g. `de-CH`); `provenance['language']` names the source. | The old order skipped `lang="en"` and took the first non-English hreflang (en-GB page with a de-DE alternate → German), counted ä/ö as Nordic before checking German (German pages → Swedish), and hard-mapped .ch→German, .be→French. |
+| **Currency** | `SiteContext.currency` (ISO-4217) from JSON-LD `priceCurrency`, then price meta tags, then price text (€, £, $, ¥, zł, Kč, CHF, SEK, DKK, NOK, PLN, CZK, `kr` resolved by locale: sv→SEK, da→DKK, nb→NOK; `$` by region). Unknown stays empty. Sampled result prices are a last resort. | Query generation writes price queries with the market's currency word. |
+| **Catalog sample** | `catalog_sample` (~150 titles) = homepage titles + 5–8 seed searches built from the top nav departments (promo/editorial labels like Sale/Neu/Marken skipped; brands top up a thin nav) + the seed page, merged round-robin and deduped. Seeds go through the fetcher's public API (`fetch_all_outcomes`, untrusted outcomes ignored; falls back to `fetch_all_results`). Pass `sample_catalog=False` for a fast run; `fetch_fn=` to stub. `provenance['catalog_sample']` says how many seeds returned titles. | The seed query's results page alone biased every downstream phase (Zalando ~70% footwear, lyko all "Fresh", douglas all mascara). |
+| **SKU codes** | JSON-LD `sku` / `mpn` / `gtin*` on Product/Offer nodes (seed page + homepage) are stored as JSON in `provenance['catalog_codes']`. SKU_MODEL_NUMBER queries are built only from these. | Generator-invented model numbers ("AM90", "NB 574") were plausible, not real. |
+| **Fetch fallback** | `_fetch_html`: static fetch first; Playwright on any `requests.RequestException`, a bot-challenge marker (Cloudflare/Imperva/PerimeterX; weak markers like "captcha" only on near-textless pages), or a near-empty page (<200 chars of visible text). | Only `HTTPError` used to fall back; timeouts, resets and 200-status challenge pages went straight to parsing. |
+| **`parse_search_url`** | Known search params are accepted with an empty value (`?utm_source=news&q=` → `q`); `utm_*`/`gclid`/`fbclid` are dropped from the template; `lang`, `sort`, `currency`, `page`, `country`… are never guessed as the search term; path-based search (`/search/<term>`, `/suche/<term>`, `/sok/<term>`…) yields `/search/{}`. | `?utm_source=news&q=` used to return `utm_source={}`, which sent every query into a tracking param. |
+| **Site-type heuristic** | Keyword hits are whole-word (`book` no longer matches `facebook`, `spa`/`space`, `rent`/`current`); the price signal counts kr, zł, Kč, CHF, SEK etc. | Substring hits inflated the services score. |
+
+The per-site "refinement fails to parse" notes below (manufactum.de, baechli-bergsport.ch, bergzeit.de) describe the pre-2026-10-30 JSON-text call. They are kept as history; with the structured call a failure now raises (strict) or is recorded in `provenance['refine']`.
 
 ---
 
@@ -95,6 +110,48 @@
 - **featured_items (verified live, double as exact-match queries):** `COSRX Advanced Snail 96 Mucin Power Essence 100 ml`, `Beauty of Joseon Glow Serum Propolis + Niacinamide 30 ml`, `The Ordinary Niacinamide 10% + Zinc 1%`, `Skin1004 Madagascar Centella Ampoule 55 ml`. Lyko's signature strength is cult K-beauty/skincare — these anchor the most realistic exact-match queries.
 - **brands (verified carried, live):** Beauty of Joseon, COSRX, The Ordinary, Skin1004, Purito, Medicube, Klairs, Milk Makeup, Kérastase, ACO, Wella Professionals, Garnier, NIVEA, L'Oréal Paris, By Lyko (house). Many more carried.
 - **Product page slug pattern:** `/sv/{brand-slug}/{product-slug}` (no `/p/`). When extracting from search results, match `a[href^="/sv/"]` with a two-segment path, not a `/p/` pattern.
+
+### douglas.de (Douglas — German/European beauty & lifestyle retailer)
+- **site_type:** `MARKETPLACE_MIXED` — discovery got this right unaided. Beauty is the core
+  (fragrance, make-up, face, body, hair) but the **Lifestyle** department carries electronics,
+  luggage, bags, jewellery and wellness devices, so it is genuinely mixed, not pure beauty.
+- **search_url_template:** `https://www.douglas.de/de/search?q={}` (correct as derived; verified
+  live — `?q=mascara` → "677 ERGEBNISSE FÜR „MASCARA“" with real products).
+- **Static fetch is blocked at the edge.** Plain `requests`/`curl` with a desktop UA returns
+  **HTTP 400 "Bad Request - Request Too Long / The size of the request headers is too long"** —
+  on the search URL *and* on the bare homepage. This is a WAF signature, not a real header
+  problem (identical curl against other hosts returns 200). Discovery auto-fell back to
+  Playwright and succeeded. Assume Playwright mode for every phase on this host.
+- **Refinement pass returns empty `nav_categories`, `brands`, `featured_items`** (same failure
+  family as manufactum.de / baechli-bergsport.ch / bergzeit.de) while still producing correct
+  `site_name`, `site_type`, `search_url_template` and `primary_language`. Fill the three empty
+  fields manually.
+- **nav_categories (real departments, verified from header links):** Parfum, Make-up, Gesicht,
+  Körper, Haare, Gesundheit & Wellness, Lifestyle, Männer, Geschenke, Luxus. Drop the
+  promotional nav: Beauty Services, Goodies, Beauty Card, Filialen, Angebote, Neu & Trends,
+  Sale, Adventskalender, Preis-Tipp, Outlet, Nachhaltigkeit, New Season New Beauty. `Marken`
+  is the brand index, not a department; `Douglas Collection` is a brand, not a department.
+- **brands: ~1,829 carried.** Full list at `https://www.douglas.de/de/brands`; scrape
+  `a[href*="/b/"]` link text. Far too many to enumerate — curate a representative spread
+  (prestige fragrance, mass beauty, haircare, K-beauty, house label) rather than the whole set.
+- **BRAND-CATEGORY MISMATCH TRAP (important, cf. the baechli-bergsport lesson).** Because of the
+  Lifestyle department, the brand list contains many **non-beauty** names: Apple, adidas, Mammut,
+  Dakine, Travelite, American Tourister, Pinqponq, The Chesterfield Brand, Braun Büffel,
+  Liebeskind, LLOYD, Strellson, Mockberg, Purelei, Valero Pearls, Elli, Heideman, Therabody,
+  Medela, waterpik, 24Bottles, Ania Haie, Bentley, Porsche Design, Cartier. Pairing any of these
+  with a beauty term in Phase 3 (`Mammut Mascara`, `Apple Parfum`) produces a query that
+  legitimately returns 0 — a catalog fact, NOT a search defect. Verify a brand's actual product
+  category before combining it with a category term.
+- **Seed-query bias confirmed again** (cf. lyko.com): seeding discovery with `?q=mascara` skewed
+  the candidate `featured_items` toward mascaras. Treat a seed query as a URL-pattern example only.
+- **featured_items (verified live, double as exact-match queries):**
+  `Beauty of Joseon Glow Serum Propolis + Niacinamide 30 ml`, `The Ordinary Niacinamide 10% + Zinc 1%`,
+  `Biodance Bio Collagen-Real Deep Mask`, `Douglas Collection EXEPTION'EYES SUMMER Mascara`,
+  `Lancôme Lash Idôle Volumen-Mascara`.
+- **Result cards are unusually rich** — each carries brand, product line, variant name, product
+  category, UVP vs. actual price, unit price, colour/size-variant count, and a `Gesponsert` flag.
+- **Sponsored results are interleaved into organic** (observed at ranks 6–7 on `mascara`).
+- **Language:** German. **Locale:** DE.
 
 ## When you learn something new
 

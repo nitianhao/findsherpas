@@ -66,6 +66,76 @@ _(refine these rows as the user teaches the real distinctions)_
 - Base selection (14): DIRECT_MATCH, TYPO, SYNONYM, MERGED_WORDS, SPLIT_WORD, BRAND_SEARCH, SKU_MODEL_NUMBER, PLURAL_SINGULAR, MULTI_ATTRIBUTE, ABBREVIATION, SPECIAL_CHARACTER, PARTIAL_QUERY, SEASONAL_OCCASION, SEMANTIC_MEANING.
 - User asked to add more broadly ("add more", then "add all of them" from the suggested list). Added CATEGORY_MAPPING, PRICE_ANCHORED, SUBJECTIVE_ATTRIBUTE, NATURAL_LANGUAGE, OCCASION, FACET_EXTRACTION. Final count: 20 — above the usual 12-16 target, but user explicitly wanted full breadth for this audit.
 
+### zalando.co.uk (Zalando UK, MARKETPLACE_MIXED)
+- Base `select_categories` output (16): DIRECT_MATCH, TYPO, SYNONYM, BRAND_SEARCH,
+  NATURAL_LANGUAGE, CATEGORY_MAPPING, FACET_EXTRACTION, NEGATIVE_INTENT, MULTI_ATTRIBUTE,
+  PLURAL_SINGULAR, PARTIAL_QUERY, SUBJECTIVE_ATTRIBUTE, PRICE_ANCHORED, SPECIAL_CHARACTER,
+  MERGED_WORDS, SEASONAL_OCCASION.
+- User asked for an **exhaustive** audit. Added all 9 remaining enum values:
+  SKU_MODEL_NUMBER, LOCALE_VARIATION, ABBREVIATION, UNIT_VARIATION, OCCASION,
+  SEMANTIC_MEANING, LONG_VERBOSE_QUERY, STOP_WORD_HEAVY, SPLIT_WORD.
+  **Final count: 25 — every category except retired BROAD_CATEGORY.** Well above the
+  12-16 target, deliberately, same as cotswoldoutdoor.com.
+- Highest-signal picks for this host specifically:
+  - **LOCALE_VARIATION** — German-run marketplace on a `.co.uk` domain, so UK/US term
+    splits (trainers/sneakers, jumper/sweater, trousers/pants, pyjamas/pajamas) are the
+    sharpest Zalando-specific test.
+  - **SKU_MODEL_NUMBER** — Zalando prints an article number (`NI114D0A1-Q11` format) on
+    every PDP; customers paste it back into search.
+  - **UNIT_VARIATION** — UK vs EU shoe sizing ("size 9" vs "size 43").
+
+## General learnings addendum
+- **There is no way to add a site-specific *category*.** `QueryCategory` is a fixed enum in
+  `src/models.py`; new values would ripple into the query generator, judge, and report
+  renderer. When a user asks for "site-specific categories", express the site-specific
+  character as **query content within existing categories** at Phase 3 instead (e.g.
+  Zalando's article-number format inside SKU_MODEL_NUMBER, the site's own taxonomy wording
+  like "Tracksuit bottoms"/"Print T-shirt" inside CATEGORY_MAPPING and DIRECT_MATCH).
+
+## GIBBERISH — new category added 2026-09-16 (operator request, douglas.de audit)
+
+`QueryCategory.GIBBERISH` was ADDED to the enum in `src/models.py` and mapped to
+`CapabilityGroup.TYPO_TOLERANCE`. This is the first genuine addition to the enum —
+previously the playbook said site-specific categories were impossible, and that stands:
+GIBBERISH is not site-specific, it is a universal capability test, which is why it
+earned an enum value rather than being filed inside TYPO.
+
+**What it tests:** pure keyboard mash. **The correct answer is ZERO results.** A search
+engine that returns a populated grid for gibberish has no no-results state at all. Two
+consequences worth stating in any report: a badly-mistyping customer gets a dead end
+dressed up as a result page, and the retailer's own search analytics cannot separate
+real demand from noise or bot traffic.
+
+**How to write the queries** (4 is enough; since 2026-10-30 `query_generator.build_gibberish` writes them in code — no LLM — and caps the category at 4, reallocating any extra budget):
+1. A long mash, 50+ chars — e.g. `sfjhdshdssjhdfdsshsdhgsddgshdghshdksghskgdhgshkhkghkskhksdnsidssi`.
+2. A keyboard-row run in the site's locale — `qwertzuiop` for a DE/AT/CH site (also CZ/SK/HU, and fr-CH: Swiss keyboards are QWERTZ), `azertyuiop` for FR/BE, `qwertyuiop` elsewhere. Region in `SiteContext.locale` decides first, then language.
+3. A mixed consonant mash — `xkvbnmqwertzasdfg`. (Code uses `xkvbnmwrtsdfg`: the original example shares x/q/z with (4), which defeats the no-shared-characters pairing.)
+4. A repeated-letter mash **sharing no characters with (3)** — `zzzqqqxxxyyy` (code: `zzzqqqjjjyyy`).
+   Pairing (3) and (4) is the sharp test: if two inputs with no characters in common return
+   the SAME products, the engine is serving a generic fallback list rather than matching
+   anything. On douglas.de they shared 2 of the top 6.
+
+**douglas.de result (2026-09-16): 0/4 correct.** All four returned 98-100 results, no
+"Meintest du", no zero state. The count clustering at ~98-100 across unrelated inputs is
+itself the tell of a capped default list.
+
+## Selector behaviour as of 2026-10-30 (code changes)
+
+- **Structured call** (`_call_llm`, phase `categories`, `AUDIT_MODEL_CATEGORIES`). Static rules and the
+  category library live in the system prompt; the library count is computed (26 offerable = every enum
+  value except retired BROAD_CATEGORY). `CATEGORY_DESCRIPTIONS` now covers every enum value including
+  GIBBERISH (the CLI demo used to KeyError).
+- **Site-type override is real now.** When the LLM corrects `site_type`, `site_context.site_type` is
+  updated and the selection is re-asked against the NEW type's defaults (a second call); the first
+  round's adds/removes were reasoned against the wrong defaults and are discarded. The change is
+  recorded in `provenance['categories_site_type_override']`.
+- **Bounds enforced in code: 10–18.** Too many → the latest additions are dropped first; too few → removed
+  defaults are restored first. BROAD_CATEGORY is rejected in code even if the LLM adds it. An operator who
+  wants 20–25 (cotswold, zalando) edits the list after Phase 2 as before.
+- **No silent fallback.** `provenance['categories']` = `llm` or `fallback: <error>`; with
+  `AUDIT_STRICT_LLM=1` (default) a failed call raises. Also recorded: `categories_model`,
+  `categories_prompt_sha256`, `categories_generated_at`, `categories_adjustments` (each add/remove with its reason).
+
 ## When you learn something new
 
 After every Phase 2 edit, append a per-site profile (which categories to force-include or

@@ -4,14 +4,16 @@ from __future__ import annotations
 
 import base64
 import hashlib
+import io
+import logging
 import mimetypes
 import re
 import sys
 from collections import Counter, defaultdict
-from datetime import date
 from pathlib import Path
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+from markupsafe import Markup
 
 from src.advanced_diagnostics import build_advanced_diagnostics_sections
 from src.models import (
@@ -19,17 +21,55 @@ from src.models import (
     QueryJudgment,
     Severity,
 )
-from src.report_generator import (
-    PIPELINE_NAME,
-    _CAPABILITY_NAMES,
-    _CATEGORY_DISPLAY,
-    _CATEGORY_TO_CAPABILITY,
-    _FAILURE_MODE_DISPLAY,
-    _SEVERITY_RANK,
-    _SEVERITY_SHORT,
+from src.report_generator import audit_date_text, report_content, roadmap_reach_text
+from src.report_stats import (
+    BENCHMARK_NOTE,
+    CAPABILITY_NAMES as _CAPABILITY_NAMES,
+    CATEGORY_DISPLAY as _CATEGORY_DISPLAY,
+    EXCLUDED_REASON_TEXT,
+    FAILURE_MODE_DISPLAY as _FAILURE_MODE_DISPLAY,
+    FOUND_BUT_WRONG_LABEL,
+    SAMPLE_NOTE,
+    SEVERITY_RANK as _SEVERITY_RANK,
+    SEVERITY_SHORT as _SEVERITY_SHORT,
+    ZERO_RESULT_FOOTNOTE,
+    ZERO_RESULT_LABEL,
+    benchmark_rows,
+    better_matches,
     build_capability_scores,
-    compute_aggregate_stats,
+    by_original,
+    capability_rows,
+    client_observation,
+    compute_stats,
+    whats_working_items,
+    excluded,
+    formatted_stats,
+    peer_label,
+    root_causes,
+    sanitize_client_text,
+    scope_line,
+    scored,
+    search_url,
 )
+
+logger = logging.getLogger(__name__)
+
+# Rendered HTML must stay under GitHub's 1 MB contents-API limit, with headroom.
+HTML_SIZE_BUDGET = 900_000
+# Cover screenshot re-encode: wide enough for a sharp cover, small enough for the budget.
+_COVER_MAX_WIDTH = 1400
+_COVER_QUALITY = 80
+_COVER_MAX_BYTES = 350_000
+
+# ISO-639-1 codes for the language of queries/titles (the report prose itself is English).
+_LANG_CODES = {
+    "english": "en", "german": "de", "swedish": "sv", "danish": "da", "norwegian": "no",
+    "finnish": "fi", "french": "fr", "dutch": "nl", "italian": "it", "spanish": "es",
+    "polish": "pl", "czech": "cs", "slovak": "sk", "portuguese": "pt", "hungarian": "hu",
+    "romanian": "ro", "greek": "el", "turkish": "tr", "arabic": "ar", "hebrew": "he",
+    "japanese": "ja", "chinese": "zh", "korean": "ko", "lithuanian": "lt", "latvian": "lv",
+    "estonian": "et", "croatian": "hr", "slovenian": "sl", "bulgarian": "bg", "ukrainian": "uk",
+}
 
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 _TEMPLATE_DIR = _PROJECT_ROOT / "templates"
@@ -50,67 +90,14 @@ def _severity_short(severity_value: str) -> str:
     return _SEVERITY_SHORT.get(severity_value, severity_value)
 
 
-def _priority_label(severity_value: str) -> str:
-    return {
-        Severity.CRITICAL.value: "Focus area",
-        Severity.MODERATE.value: "Watch",
-        Severity.MINOR.value: "Fine-tune",
-        Severity.PASS.value: "Working well",
-    }.get(severity_value, _severity_short(severity_value))
-
-
 # ---------------------------------------------------------------------------
 # Data builders
 # ---------------------------------------------------------------------------
 
 def _build_stats(report: AuditReport, judgments: list[QueryJudgment]) -> dict:
-    raw = compute_aggregate_stats(judgments)
-    cap_scores = build_capability_scores(judgments)
-    total_cap = len(cap_scores)
-    pass_cap = sum(1 for cs in cap_scores if cs.severity == Severity.PASS.value)
-    num_categories = len({j.test_query.category for j in judgments})
-
-    poor_ranking_count = sum(1 for j in judgments if j.failure_mode == "POOR_RANKING")
-    pct_retrieval = (poor_ranking_count / raw["total_queries"] * 100) if raw["total_queries"] else 0
-    critical_count = raw["critical_count"]
-    friction_count = raw["moderate_count"] + raw["minor_count"]
-    working_count = raw["pass_count"]
-    risk_pct = (critical_count / raw["total_queries"] * 100) if raw["total_queries"] else 0
-
-    avg_pos = raw["avg_best_position"]
-    pct_top3 = raw["pct_top3_irrelevant"]
-    pct_top1 = raw["pct_top1_irrelevant"]
-
-    return {
-        "total_capabilities": total_cap,
-        "pass_count": pass_cap,
-        "total_queries": raw["total_queries"],
-        "critical_count": critical_count,
-        "moderate_count": raw["moderate_count"],
-        "minor_count": raw["minor_count"],
-        "pass_count_queries": raw["pass_count"],
-        "friction_count": friction_count,
-        "working_count": working_count,
-        "risk_pct": f"{risk_pct:.0f}",
-        "risk_pct_num": risk_pct,
-        "avg_best_position": f"{avg_pos:.0f}",
-        "avg_best_position_num": avg_pos,
-        "pct_top3_irrelevant": f"{pct_top3:.0f}",
-        "pct_top3_irrelevant_num": pct_top3,
-        "pct_top1_irrelevant": f"{pct_top1:.0f}",
-        "pct_top1_irrelevant_num": pct_top1,
-        "worst_query": raw["worst_example_query"],
-        "worst_displacement": raw["worst_example_displacement"] + 1,
-        "worst_example": raw.get("worst_example", ""),
-        "pct_retrieval_ok": f"{pct_retrieval:.0f}",
-        "retrieval_ok_count": poor_ranking_count,
-        "num_categories": num_categories,
-        # Retrieval-health metrics (over ALL queries) for benchmarks / risk framing.
-        "pct_no_relevant_first": raw["pct_no_relevant_first"],
-        "pct_top3_relevant_all": raw["pct_top3_relevant_all"],
-        "zero_result_count": raw["zero_result_count"],
-        "pct_zero_result": raw["pct_zero_result"],
-    }
+    """The shared stats (src.report_stats) plus the exact strings the template prints."""
+    raw = compute_stats(judgments, report.site_context.nav_categories)
+    return {**raw, "fmt": formatted_stats(raw)}
 
 
 _TITLE_STOPWORDS = {
@@ -190,11 +177,11 @@ def _build_title_themes(judgments: list[QueryJudgment]) -> list[str]:
     return themes
 
 
-def _build_report_title(site_name: str, stats: dict, judgments: list[QueryJudgment]) -> str:
+def _build_report_title(site_name: str, stats: dict) -> str:
     if stats["critical_count"] > 0:
         return (
             f"{stats['total_queries']} {site_name} Searches. "
-            f"{stats['critical_count']} Revenue-Risk Moments."
+            f"{stats['critical_count']} That Fail the Shopper."
         )
     if stats["friction_count"] > 0:
         return (
@@ -212,47 +199,47 @@ def _build_report_subtitle(site_name: str) -> str:
 
 
 def _build_short_version(site_name: str, stats: dict, roadmap_items: list[dict]) -> dict:
+    n, crit, friction = stats["total_queries"], stats["critical_count"], stats["friction_count"]
+    if crit:
+        risk = (
+            f"This report focuses on the {crit} {'search' if crit == 1 else 'searches'} where a shopper "
+            "likely hits a dead end: no usable result, an off-topic first result, a dropped constraint, "
+            "or the right product buried too far down."
+        )
+    elif friction:
+        risk = (
+            f"No tested search failed outright. This report focuses on the {friction} "
+            f"{'search' if friction == 1 else 'searches'} where the shopper still has to work too hard."
+        )
+    else:
+        risk = "Every scored search returned a relevant result first."
     return {
         "intro": (
-            f"We tested {stats['total_queries']} realistic customer queries against {site_name}'s search, "
-            "live on site. The audit checks whether customers see a relevant top result, not just whether "
-            "the search engine returns something."
+            f"We tested {n} realistic customer searches against {site_name}'s search, live on site. The "
+            "audit checks whether shoppers see a relevant top result, not just whether the search returns "
+            "something."
         ),
-        "risk": (
-            f"This report focuses on the {stats['critical_count']} queries where a customer likely hits a dead end: "
-            "an off-topic result, a missing interpretation, a dropped constraint, or a relevant product buried too far down."
-        ),
+        "risk": risk,
         "fix": _build_short_version_fix(roadmap_items),
     }
 
 
 def _build_short_version_fix(roadmap_items: list[dict]) -> str:
-    """Derive the headline 'first fix to ship' line from the site's top roadmap item.
-
-    Falls back to a generic recommendation only when no roadmap is available.
-    """
+    """The headline 'first fix to ship' line: the top roadmap item's TITLE only ("" if none)."""
     if roadmap_items:
-        top = roadmap_items[0]
-        title = " ".join((top.get("title") or "").split()).rstrip(".")
-        # One clear, actionable step — the roadmap title only. The full explanation lives in
-        # the Prioritized Roadmap section; this headline must stay short and scannable.
+        title = " ".join((roadmap_items[0].get("title") or "").split()).rstrip(".")
         if title:
             return f"The first fix to ship: {title}."
-    return (
-        "The first fix to ship: add an intent layer before ranking, so sale, bestseller, price, "
-        "negative, and brand terms act as filters or boosts before generic keyword matches take over."
-    )
+    return ""
 
 
-def _coverage_class(critical: int, moderate: int, minor: int, pass_rate: float) -> str:
+def _coverage_class(critical: int, moderate: int, minor: int) -> str:
     if critical:
         return "hm-gap"
     if moderate:
         return "hm-mixed"
     if minor:
         return "hm-developing"
-    if pass_rate >= 75:
-        return "hm-good"
     return "hm-good"
 
 
@@ -349,14 +336,6 @@ def _coverage_signal_note(critical: int, moderate: int, minor: int, total: int) 
         verb = "needs" if minor == 1 else "need"
         return f"{minor} of {total} probes {verb} only ranking polish; retrieval itself is fine."
     return "No immediate tuning signal appeared in this sample."
-
-
-_SEVERITY_RANK: dict[str, int] = {
-    Severity.CRITICAL.value: 3,
-    Severity.MODERATE.value: 2,
-    Severity.MINOR.value: 1,
-    Severity.PASS.value: 0,
-}
 
 
 def _trim_evidence(text: str, limit: int = 200) -> str:
@@ -467,7 +446,7 @@ def _coverage_example(matching: list[QueryJudgment]) -> dict | None:
         ),
     )
 
-    detail = _friction_fragment(worst.evidence)
+    detail = _friction_fragment(sanitize_client_text(worst.evidence))
     if not detail:
         # No concrete friction sentence in the evidence — synthesise an honest line
         # from structured data rather than echoing a reassurance/setup preamble.
@@ -529,139 +508,46 @@ def _build_coverage_summary(judgments: list[QueryJudgment]) -> dict:
                 "moderate": moderate,
                 "critical": critical,
                 "total": total,
-                "class": _coverage_class(critical, moderate, minor, pass_rate),
+                "class": _coverage_class(critical, moderate, minor),
             })
 
     return {"coverage_items": items}
 
 
-def _build_capability_scores_ctx(judgments: list[QueryJudgment]) -> list[dict]:
-    scores = build_capability_scores(judgments)
-    return [
-        {
-            "capability_name": _CAPABILITY_NAMES.get(cs.capability, cs.capability),
-            "severity_class": _severity_class(cs.severity),
-            "priority_label": _priority_label(cs.severity),
-            "summary": cs.summary,
-        }
-        for cs in scores
-    ]
-
-
-def _improvement_headline(critical: int, moderate: int, minor: int) -> tuple[str, str]:
-    """The row's priority chip: the count that actually drives its ranking.
-
-    Returns (label, css_class). Distinct per row (it's a count) and consistent
-    with the sort, instead of a share-based grade that clumps every row together.
-    """
-    if critical:
-        return f"{critical} at risk", "r-critical"
-    if moderate:
-        return f"{moderate} friction", "r-moderate"
-    if minor:
-        return f"{minor} to polish", "r-minor"
-    return "clean", "r-clean"
-
-
 def _build_improvement_map(judgments: list[QueryJudgment]) -> list[dict]:
-    """Capability-level overview as proportional severity bars, most-urgent first."""
+    """Capability overview as proportional severity bars. Same order and priority label as the
+    markdown scorecard (report_stats.capability_rows)."""
     rows = []
-    for cs in build_capability_scores(judgments):
-        critical = sum(1 for j in cs.judgments if j.severity == Severity.CRITICAL.value)
-        moderate = sum(1 for j in cs.judgments if j.severity == Severity.MODERATE.value)
-        minor = sum(1 for j in cs.judgments if j.severity == Severity.MINOR.value)
-        passed = sum(1 for j in cs.judgments if j.severity == Severity.PASS.value)
-        total = len(cs.judgments)
-
-        # dominant failure mode among the non-passing probes
-        fail_modes = Counter(
-            _FAILURE_MODE_DISPLAY.get(j.failure_mode, j.failure_mode)
-            for j in cs.judgments
-            if j.severity != Severity.PASS.value
-        )
-        top_issue = fail_modes.most_common(1)[0][0] if fail_modes else ""
-
-        # human-readable counts for the non-zero issue segments
+    for r in capability_rows(judgments):
         parts = []
-        if critical:
-            parts.append(f"{critical} critical")
-        if moderate:
-            parts.append(f"{moderate} friction")
-        if minor:
-            parts.append(f"{minor} minor")
-        counts_label = " · ".join(parts) if parts else "no issues in sample"
-
-        headline, headline_class = _improvement_headline(critical, moderate, minor)
-
+        if r["critical"]:
+            parts.append(f"{r['critical']} critical")
+        if r["moderate"]:
+            parts.append(f"{r['moderate']} friction")
+        if r["minor"]:
+            parts.append(f"{r['minor']} minor")
         rows.append({
-            "capability": _CAPABILITY_NAMES.get(cs.capability, cs.capability),
-            "total": total,
-            "critical": critical,
-            "moderate": moderate,
-            "minor": minor,
-            "passed": passed,
-            "counts_label": counts_label,
-            "clean_pct": round((passed / total) * 100) if total else 0,
-            "top_issue": top_issue,
-            "headline": headline,
-            "headline_class": headline_class,
+            "capability": r["capability"],
+            "total": r["total"],
+            "critical": r["critical"],
+            "moderate": r["moderate"],
+            "minor": r["minor"],
+            "passed": r["passed"],
+            "counts_label": " · ".join(parts) if parts else "no issues in sample",
+            "clean_pct": round((r["passed"] / r["total"]) * 100) if r["total"] else 0,
+            "top_issue": r["top_issue"],
+            "headline": r["priority"],
+            "headline_class": _PRIORITY_CLASS.get(r["severity"], "r-clean"),
         })
-
-    rows.sort(
-        key=lambda r: (r["critical"], r["moderate"], r["minor"], -r["passed"]),
-        reverse=True,
-    )
     return rows
 
 
-def _build_failure_modes(judgments: list[QueryJudgment]) -> list[dict]:
-    counts = Counter(
-        j.failure_mode for j in judgments if j.severity != Severity.PASS.value
-    )
-    return [
-        {"name": _FAILURE_MODE_DISPLAY.get(mode, mode), "count": count}
-        for mode, count in counts.most_common()
-    ]
-
-
-def _build_critical_failures(judgments: list[QueryJudgment]) -> list[dict]:
-    """Extract the 3-5 most severe query failures for the Critical Failure Examples section."""
-    critical = [
-        j for j in judgments if j.severity == Severity.CRITICAL.value
-    ]
-    # Sort by displacement descending (worst buried results first)
-    critical.sort(key=lambda j: -j.displacement)
-    top = critical[:5] if len(critical) >= 3 else sorted(
-        [j for j in judgments if j.severity != Severity.PASS.value],
-        key=lambda j: (-_SEVERITY_RANK.get(j.severity, 0), -j.displacement),
-    )[:5]
-
-    results = []
-    for j in top:
-        by_original = sorted(j.results, key=lambda r: r.original_rank)
-        actual_top_title = by_original[0].title if by_original else "N/A"
-        cap_name = _CAPABILITY_NAMES.get(
-            _CATEGORY_TO_CAPABILITY.get(j.test_query.category, ""),
-            _CATEGORY_DISPLAY.get(j.test_query.category, j.test_query.category),
-        )
-        results.append({
-            "query": j.test_query.query,
-            "expected_intent": cap_name,
-            "actual_result": actual_top_title,
-            "explanation": j.evidence,
-            "severity_class": _severity_class(j.severity),
-            "severity_short": _severity_short(j.severity),
-            "best_position": j.displacement + 1,
-        })
-    return results
-
-
-def _score_class(score: float) -> str:
-    if score >= 0.70:
-        return "rel-good"
-    if score >= 0.50:
-        return "rel-warn"
-    return "rel-bad"
+_PRIORITY_CLASS = {
+    Severity.CRITICAL.value: "r-critical",
+    Severity.MODERATE.value: "r-moderate",
+    Severity.MINOR.value: "r-minor",
+    Severity.PASS.value: "r-clean",
+}
 
 
 def _fix_guidance(j: QueryJudgment) -> str:
@@ -683,349 +569,191 @@ def _fix_guidance(j: QueryJudgment) -> str:
     if mode == "FACET_NOT_EXTRACTED":
         return "Extract this as a structured facet and use it as a ranking/filtering signal instead of treating it as loose text."
     if mode == "POOR_RANKING":
-        return "Re-rank returned products so the strongest intent matches appear first, especially when the right products already exist in the result set."
+        return "Boost the products that match the full intent of the query so the strongest matches appear first, especially when they are already in the result set."
     if mode == "DUPLICATE_FLOODING":
         return "Collapse colour/size variants of the same product into a single result card so each model takes one slot and more distinct products are visible."
     return "Tune retrieval and ranking for this query pattern, then re-test it as part of the priority regression set."
 
 
-def _build_risk_cases(judgments: list[QueryJudgment]) -> list[dict]:
+def _result_rows(results) -> list[dict]:
+    return [{"rank": r.original_rank, "title": r.title, "price": r.price} for r in results]
+
+
+def _query_ctx(j: QueryJudgment, template: str, narratives: dict[str, str]) -> dict:
+    """Everything the template shows about one failing search. Text is client-safe: the reviewed
+    narrative when there is one, else sanitised evidence — never raw evidence or internal notes."""
+    shown = by_original(j)[:5]
+    q = j.test_query.query
+    return {
+        "query": q,
+        "url": search_url(template, q),
+        "category": _CATEGORY_DISPLAY.get(j.test_query.category, j.test_query.category),
+        "severity_class": _severity_class(j.severity),
+        "severity_short": _severity_short(j.severity),
+        "failure_label": _FAILURE_MODE_DISPLAY.get(j.failure_mode, j.failure_mode),
+        # A zero-result query has no positions — never show a phantom "#N".
+        "no_results": not shown,
+        "best_position": j.displacement + 1,
+        "displacement": j.displacement,
+        "text": narratives.get(q) or client_observation(j),
+        "fix": _fix_guidance(j),
+        "actual_top": _result_rows(shown),
+        "ideal_top": _result_rows(better_matches(j)),
+    }
+
+
+def _narratives_by_query(content: dict) -> dict[str, str]:
+    return {
+        e["query"]: e["narrative"]
+        for s in content.get("deep_dives") or []
+        for e in s.get("examples", [])
+        if e.get("narrative")
+    }
+
+
+def _build_risk_cases(judgments: list[QueryJudgment], template: str, narratives: dict[str, str]) -> list[dict]:
     failing = [j for j in judgments if j.severity != Severity.PASS.value]
-    # Worst severity first, then genuine customer-visible weakness (weakest results
-    # shown), then lowest peak relevance — not displacement (reranker noise).
-    sorted_js = sorted(
-        failing,
-        key=lambda j: (-_SEVERITY_RANK.get(j.severity, 0), j.top3_original_average, j.max_relevance_score),
-    )
-
+    # Worst severity first, then genuine customer-visible weakness (weakest results shown).
+    failing.sort(key=lambda j: (-_SEVERITY_RANK.get(j.severity, 0), j.top3_original_average, j.max_relevance_score))
     cases = []
-    for j in sorted_js[:6]:
-        by_original = sorted(j.results, key=lambda r: r.original_rank)[:5]
-        by_relevance = sorted(j.results, key=lambda r: r.relevance_score, reverse=True)[:5]
-        failure_label = _FAILURE_MODE_DISPLAY.get(j.failure_mode, j.failure_mode)
-        best_position = j.displacement + 1
-        no_results = not by_original
-        if no_results:
-            fail = "The search returned zero results — the customer reached a dead end."
-        elif best_position <= 1:
-            fail = "The best matching result was not surfaced cleanly."
+    for j in failing[:6]:
+        ctx = _query_ctx(j, template, narratives)
+        if ctx["no_results"]:
+            ctx["fail"] = "The search returned zero results — the customer reached a dead end."
+        elif j.displacement <= 0:
+            ctx["fail"] = "The first result shown wasn't what the shopper asked for."
         else:
-            fail = f"The best matching result appeared at position #{best_position}, after weaker results."
-
-        cases.append({
-            "query": j.test_query.query,
-            "failure_label": failure_label,
-            "fail": fail,
-            "no_results": no_results,
-            "evidence_text": j.evidence,
-            "fix": _fix_guidance(j),
-            "actual_results": [
-                {
-                    "rank": r.original_rank,
-                    "title": r.title,
-                    "price": r.price,
-                    "score": f"{r.relevance_score:.2f}",
-                    "score_pct": round(r.relevance_score * 100),
-                    "score_class": _score_class(r.relevance_score),
-                }
-                for r in by_original
-            ],
-            "ideal_results": [
-                {
-                    "rank": r.original_rank,
-                    "title": r.title,
-                    "price": r.price,
-                    "score": f"{r.relevance_score:.2f}",
-                    "score_pct": round(r.relevance_score * 100),
-                    "score_class": _score_class(r.relevance_score),
-                }
-                for r in by_relevance
-            ],
-        })
+            ctx["fail"] = f"The best matching result appeared at position #{j.displacement + 1}, after weaker results."
+        cases.append(ctx)
     return cases
 
 
-def _build_deep_dives(judgments: list[QueryJudgment]) -> list[dict]:
-    """Build structured deep-dive data for each failing capability."""
-    scores = build_capability_scores(judgments)
-    failing = [cs for cs in scores if cs.severity != Severity.PASS.value]
-
+def _build_deep_dives(judgments: list[QueryJudgment], content: dict, template: str) -> list[dict]:
+    """Deep dives for the HTML: the reviewed narratives stored on the report when present
+    (same text as the .md), else a deterministic version built from sanitised evidence."""
+    by_q = {j.test_query.query: j for j in judgments}
+    narratives = _narratives_by_query(content)
+    sections = content.get("deep_dives")
     caps = []
-    for cs in failing:
-        cap_name = _CAPABILITY_NAMES.get(cs.capability, cs.capability)
+    if sections:
+        for s in sections:
+            queries = [_query_ctx(by_q[e["query"]], template, narratives)
+                       for e in s.get("examples", []) if e.get("query") in by_q]
+            caps.append({"capability_name": s.get("capability_name") or _CAPABILITY_NAMES.get(s.get("capability"), ""),
+                         "intro": s.get("intro", ""), "queries": queries})
+        return caps
 
-        # Only narrate actual failures — never include PASS queries, or a thin capability gets
-        # padded with passing queries reframed as problems. Sort worst severity first, then
-        # genuine customer-visible weakness (lowest results actually shown), then lowest peak
-        # relevance. NOT by displacement — large displacement among all-relevant results is
-        # reranker noise and would lead the section with a non-friction example.
+    for cs in build_capability_scores(judgments):
         failing_js = [j for j in cs.judgments if j.severity != Severity.PASS.value]
-        sorted_js = sorted(
-            failing_js,
-            key=lambda j: (
-                -_SEVERITY_RANK.get(j.severity, 0),
-                j.top3_original_average,
-                j.max_relevance_score,
-            ),
-        )
-        # Take up to 5 worst
-        top_js = sorted_js[:5]
-
-        queries = []
-        for j in top_js:
-            by_original = sorted(j.results, key=lambda r: r.original_rank)[:5]
-            by_relevance = sorted(j.results, key=lambda r: r.relevance_score, reverse=True)[:3]
-
-            queries.append({
-                "query": j.test_query.query,
-                "category": _CATEGORY_DISPLAY.get(j.test_query.category, j.test_query.category),
-                "severity_class": _severity_class(j.severity),
-                "severity_short": _severity_short(j.severity),
-                # A zero-result query has no result list, so displacement (and the
-                # displacement+1 "position") is meaningless — never show a phantom position.
-                "no_results": not by_original,
-                "best_position": j.displacement + 1,
-                "displacement": j.displacement,
-                "evidence": j.evidence,
-                "actual_top": [
-                    {"title": r.title, "price": r.price}
-                    for r in by_original
-                ],
-                "ideal_top": [
-                    {"title": r.title, "price": r.price}
-                    for r in by_relevance
-                ],
-            })
-
+        if not failing_js:
+            continue
+        failing_js.sort(key=lambda j: (-_SEVERITY_RANK.get(j.severity, 0), j.top3_original_average, j.max_relevance_score))
         caps.append({
-            "capability_name": cap_name,
-            "severity_class": _severity_class(cs.severity),
-            "queries": queries,
+            "capability_name": _CAPABILITY_NAMES.get(cs.capability, cs.capability),
+            "intro": "",
+            "queries": [_query_ctx(j, template, narratives) for j in failing_js[:5]],
         })
-
     return caps
 
 
-def _build_whats_working(judgments: list[QueryJudgment]) -> list[str]:
-    """Return bullets for What's Working — at the QUERY-CATEGORY grain.
-
-    Mirrors build_whats_working_markdown: capability-level passes (worst-severity-wins) hide
-    real strengths, so surface query categories where EVERY test passed (>= 2 queries), with
-    an example each. Falls back to partial-wins only if no category passed cleanly.
-    """
-    by_cat: dict[str, list[QueryJudgment]] = defaultdict(list)
-    for j in judgments:
-        by_cat[getattr(j.test_query.category, "value", j.test_query.category)].append(j)
-
-    strong = []
-    for cat, js in by_cat.items():
-        passed = [j for j in js if j.severity == Severity.PASS.value]
-        if len(js) >= 2 and len(passed) == len(js):
-            strong.append((len(js), cat, passed))
-    strong.sort(reverse=True)
-
-    if strong:
-        bullets = []
-        for total, cat, passed in strong:
-            disp = _CATEGORY_DISPLAY.get(cat, cat)
-            example = passed[0].test_query.query
-            bullets.append(f"<strong>{disp}</strong> ({total}/{total} passed) — e.g. \"{example}\"")
-        return bullets
-
-    # Fallback: no category passed cleanly — surface partial wins.
-    scores = build_capability_scores(judgments)
-    bullets = []
-    poor_ranking = [j for j in judgments if j.failure_mode == "POOR_RANKING" and j.max_relevance_score >= 0.60]
-    if poor_ranking:
-        bullets.append(
-            f"<strong>Retrieval is working</strong> — relevant results were found in {len(poor_ranking)} of "
-            f"{len(judgments)} queries. The primary issue is ranking, not finding: the right results exist "
-            f"in the result set but aren't being surfaced at the top."
+def _build_roadmap(content: dict, judgments: list[QueryJudgment]) -> list[dict]:
+    """Structured roadmap stored on the report. Missing = report predates grounded roadmaps:
+    fail loudly instead of rendering placeholder text."""
+    items = content.get("roadmap")
+    if items is None:
+        raise ValueError(
+            "report has no structured roadmap (run_metadata['report_content']['roadmap']); "
+            "regenerate it with src.report_generator.generate_report before rendering"
         )
-    near_miss = [j for j in judgments if j.displacement <= 2 and j.severity != Severity.PASS.value]
-    if near_miss:
-        examples = [f'"{j.test_query.query}"' for j in near_miss[:3]]
-        bullets.append(
-            f"<strong>Close to correct</strong> on {len(near_miss)} queries ({', '.join(examples)}): "
-            f"the best result was within the top 3, just not at #1."
-        )
-    if not bullets:
-        bullets.append(
-            "No category passed every test cleanly. However, the search engine does retrieve relevant "
-            "results for most queries — the primary issue is ranking, not retrieval."
-        )
-    return bullets
-
-
-# Concrete intent terms that make a "ranking" title acceptable (not vague).
-_INTENT_TERMS = (
-    "intent", "boost", "price", "brand", "bestseller", "best seller", "sale",
-    "product-type", "product type", "filter", "negative", "facet", "constraint",
-    "synonym", "typo", "fuzzy",
-)
-
-# Canonical concrete title used when a roadmap item is relevance/ranking-vague.
-_REFRAMED_RANKING_TITLE = (
-    "Add an intent & boost layer before keyword ranking "
-    "(brand, product-type, price, and bestseller signals)"
-)
-
-
-def _is_relevance_vague_title(title: str) -> bool:
-    """True when a roadmap title leads with generic 'relevance/ranking' framing.
-
-    Per product decision, the headline fix must never be 'fix relevance scoring'
-    or 'fix the ranking algorithm' — it must name a concrete search behavior.
-    A title mentioning 'ranking' is allowed only if it also names a concrete
-    intent signal (brand, price, bestseller, etc.).
-    """
-    t = title.lower()
-    if "relevance" in t:
-        return True
-    if "ranking algorithm" in t or "sort order" in t or "re-rank" in t or "rerank" in t:
-        return True
-    if "ranking" in t and not any(term in t for term in _INTENT_TERMS):
-        return True
-    return False
-
-
-def _reframe_roadmap_titles(items: list[dict]) -> list[dict]:
-    """Rewrite relevance/ranking-vague titles to a concrete intent-layer title.
-
-    Deterministic guard so a generation slip can never put 'fix relevance
-    ranking' as the first fix to ship. Descriptions are preserved.
-    """
-    for item in items:
-        if _is_relevance_vague_title(item.get("title", "")):
-            item["title"] = _REFRAMED_RANKING_TITLE
-    return items
-
-
-def _parse_roadmap(roadmap_markdown: str) -> list[dict]:
-    """Parse the LLM-generated roadmap markdown into structured items."""
-    items = []
-    # Match numbered items: "1. **Title**\n   Description\n   Impact: X | Effort: Y"
-    pattern = re.compile(
-        r"^\d+\.\s+\*\*(.+?)\*\*\s*\n\s+(.+?)(?:\n\s+Impact:\s*(\w+).*?\|\s*Effort:\s*(.+?))?$",
-        re.MULTILINE,
-    )
-
-    # Simpler approach: split on numbered items
-    chunks = re.split(r"\n(?=\d+\.\s+\*\*)", roadmap_markdown.strip())
-    for chunk in chunks:
-        chunk = chunk.strip()
-        if not chunk:
-            continue
-
-        # Extract title
-        title_match = re.search(r"\*\*(.+?)\*\*", chunk)
-        title = title_match.group(1) if title_match else chunk[:80]
-
-        # Extract impact/effort from the last line
-        impact = effort = ""
-        impact_match = re.search(r"Impact:\s*(\w+)", chunk)
-        effort_match = re.search(r"Effort:\s*(.+?)(?:\n|$)", chunk)
-        if impact_match:
-            impact = impact_match.group(1)
-        if effort_match:
-            effort = effort_match.group(1).strip()
-
-        # Description: everything between title and impact line
-        desc_text = chunk
-        desc_text = re.sub(r"^\d+\.\s+\*\*.+?\*\*\s*", "", desc_text).strip()
-        desc_text = re.sub(r"\s*Impact:.*$", "", desc_text, flags=re.MULTILINE).strip()
-
-        impact_class = {
-            "Critical": "critical",
-            "High": "high",
-            "Moderate": "moderate",
-        }.get(impact, "moderate")
-
-        effort_class = "quick"
-        if "Medium" in effort:
-            effort_class = "medium"
-        elif "Major" in effort:
-            effort_class = "major"
-
-        items.append({
-            "title": title,
-            "description": desc_text,
-            "impact": impact,
+    out = []
+    for it in items:
+        effort = it.get("effort", "")
+        out.append({
+            "title": it.get("title", ""),
+            "description": it.get("description", ""),
+            "impact": it.get("impact", ""),
             "effort": effort,
-            "impact_class": impact_class,
-            "effort_class": effort_class,
+            "owner": {"merch": "Merchandising", "dev": "Development"}.get(it.get("owner"), ""),
+            "reach": roadmap_reach_text(it, judgments),
+            "impact_class": {"Critical": "critical", "High": "high"}.get(it.get("impact"), "moderate"),
+            "effort_class": "medium" if "Medium" in effort else "major" if "Major" in effort else "quick",
         })
-
-    return _reframe_roadmap_titles(items)
-
-
-def _build_benchmarks(stats: dict) -> list[dict]:
-    # Lead with the dead-end rate (the metric with a directly comparable published number),
-    # and use the ALL-search top-3 figure (zero-result queries count against it) \u2014 not the
-    # with-results-only number that inflates it. Last two rows are scoped to returned results.
-    pct_dead_end = float(stats["pct_no_relevant_first"])
-    pct_top3_relevant_all = float(stats["pct_top3_relevant_all"])
-    return [
-        {
-            "metric": "Searches ending in a dead end (nothing usable / irrelevant first result)",
-            "your_score": f"{pct_dead_end:.0f}%",
-            "target": "<10% (avg ~31%)",
-            "source": "Baymard Institute",
-            "score_class": "below" if pct_dead_end > 10 else "meets",
-        },
-        {
-            "metric": "Relevant result in top 3 (all searches)",
-            "your_score": f"{pct_top3_relevant_all:.0f}%",
-            "target": "80%+",
-            "source": "Baymard Institute",
-            "score_class": "below" if pct_top3_relevant_all < 80 else "meets",
-        },
-        {
-            "metric": "Average best result position (when results returned)",
-            "your_score": f"#{float(stats['avg_best_position_num']):.1f}",
-            "target": "#1\u20132",
-            "source": "Industry best practice",
-            "score_class": "below" if float(stats["avg_best_position_num"]) > 2 else "meets",
-        },
-        {
-            "metric": "Irrelevant #1 result (when results returned)",
-            "your_score": f"{float(stats['pct_top1_irrelevant_num']):.0f}%",
-            "target": "<10%",
-            "source": "Industry best practice",
-            "score_class": "below" if float(stats["pct_top1_irrelevant_num"]) > 10 else "meets",
-        },
-    ]
+    return out
 
 
-def _build_appendix(judgments: list[QueryJudgment]) -> list[dict]:
-    sorted_js = sorted(
-        judgments,
-        key=lambda j: (-_SEVERITY_RANK.get(j.severity, 0), -j.displacement),
-    )
+def _build_appendix(judgments: list[QueryJudgment], template: str) -> list[dict]:
     rows = []
-    for j in sorted_js:
-        sev_class = _severity_class(j.severity)
-        sev_short = _severity_short(j.severity)
-        fm = _FAILURE_MODE_DISPLAY.get(j.failure_mode, j.failure_mode)
-
+    for j in sorted(judgments, key=lambda j: (-_SEVERITY_RANK.get(j.severity, 0), -j.displacement)):
         if j.severity == Severity.PASS.value:
-            fm = "\u2014"
-            best_pos = 1
-        elif not j.results:
-            # Zero-result query: no position exists; rendered as an em dash.
-            best_pos = None
+            fm, best_pos = "—", 1
         else:
-            best_pos = j.displacement + 1
-
+            fm = _FAILURE_MODE_DISPLAY.get(j.failure_mode, j.failure_mode)
+            best_pos = j.displacement + 1 if j.results else None  # None renders as an em dash
         rows.append({
             "query": j.test_query.query,
+            "url": search_url(template, j.test_query.query),
             "category": _CATEGORY_DISPLAY.get(j.test_query.category, j.test_query.category),
-            "severity_class": sev_class,
-            "severity_short": sev_short,
+            "severity_class": _severity_class(j.severity),
+            "severity_short": _severity_short(j.severity),
             "best_position": best_pos,
             "failure_mode": fm,
         })
     return rows
+
+
+def _build_not_scored(judgments: list[QueryJudgment], template: str) -> list[dict]:
+    return [
+        {"query": j.test_query.query, "url": search_url(template, j.test_query.query),
+         "reason": EXCLUDED_REASON_TEXT.get(j.excluded_reason, "Left out of scoring.")}
+        for j in excluded(judgments)
+    ]
+
+
+def _site_lang(site_context) -> str:
+    locale = (getattr(site_context, "locale", "") or "").strip()
+    if locale:
+        return locale.replace("_", "-")
+    return _LANG_CODES.get((site_context.primary_language or "").strip().lower(), "")
+
+
+# ---------------------------------------------------------------------------
+# Cover screenshot
+# ---------------------------------------------------------------------------
+
+def encode_cover_screenshot(path: str | Path) -> tuple[str, str] | None:
+    """Downscale + recompress the cover screenshot for embedding. Returns (base64, mime).
+
+    Max ``_COVER_MAX_WIDTH`` px wide, JPEG at ``_COVER_QUALITY``; quality steps down until the
+    image is under ``_COVER_MAX_BYTES`` so the whole page stays under HTML_SIZE_BUDGET.
+    """
+    sp = Path(path)
+    if not sp.exists():
+        return None
+    try:
+        from PIL import Image
+    except ImportError:  # pragma: no cover - Pillow is a declared dependency of the venv
+        logger.warning("Pillow not installed — embedding the cover screenshot uncompressed")
+        mime = mimetypes.guess_type(sp.name)[0] or "image/png"
+        return base64.b64encode(sp.read_bytes()).decode("ascii"), mime
+
+    with Image.open(sp) as im:
+        im = im.convert("RGB")
+        if im.width > _COVER_MAX_WIDTH:
+            im = im.resize((_COVER_MAX_WIDTH, round(im.height * _COVER_MAX_WIDTH / im.width)), Image.LANCZOS)
+        data = b""
+        for quality in (_COVER_QUALITY, 70, 60, 50, 40):
+            buf = io.BytesIO()
+            im.save(buf, format="JPEG", quality=quality, optimize=True, progressive=True)
+            data = buf.getvalue()
+            if len(data) <= _COVER_MAX_BYTES:
+                break
+    return base64.b64encode(data).decode("ascii"), "image/jpeg"
+
+
+def html_size_bytes(html: str) -> int:
+    """Size of the rendered page as published (UTF-8). The publish gate compares it to
+    HTML_SIZE_BUDGET."""
+    return len(html.encode("utf-8"))
 
 
 # ---------------------------------------------------------------------------
@@ -1094,61 +822,76 @@ def _build_query_cloud(report: AuditReport, limit: int = 26) -> list[dict]:
     return items
 
 
-def render_html_report(report: AuditReport, screenshot_path: str | Path | None = None) -> str:
-    """Render an AuditReport into a self-contained HTML string."""
-    # Reconstruct judgments from capability_scores
-    judgments: list[QueryJudgment] = []
-    for cs in report.capability_scores:
-        judgments.extend(cs.judgments)
+def render_html_report(
+    report: AuditReport,
+    screenshot_path: str | Path | None = None,
+    peer_benchmark: dict | None = None,
+) -> str:
+    """Render an AuditReport into a self-contained HTML string.
 
-    # If no judgments in capability_scores, the report has no data
-    if not judgments:
+    Every figure comes from src.report_stats over SCORED judgments; excluded ones appear only in
+    the "Not scored" list. All template variables are autoescaped; only the logo SVG (a trusted
+    asset file) is marked safe.
+    """
+    all_judgments: list[QueryJudgment] = [j for cs in report.capability_scores for j in cs.judgments]
+    if not all_judgments:
         return "<html><body><p>No audit data available.</p></body></html>"
-
-    site_name = report.site_context.site_name or report.site_context.url
-    stats = _build_stats(report, judgments)
-    roadmap_items = _parse_roadmap(report.roadmap_narrative)
+    judgments = scored(all_judgments)
+    ctx_site = report.site_context
+    template_url = ctx_site.search_url_template
+    site_name = ctx_site.site_name or ctx_site.url
+    content = report_content(report)
+    stats = _build_stats(report, all_judgments)
+    roadmap_items = _build_roadmap(content, judgments)
+    narratives = _narratives_by_query(content)
+    peer = peer_benchmark or (report.run_metadata or {}).get("peer_benchmark")
+    audit_date = audit_date_text(report.run_metadata)
 
     env = Environment(
         loader=FileSystemLoader(str(_TEMPLATE_DIR)),
-        autoescape=False,  # we control the HTML
+        autoescape=select_autoescape(["html"]),
     )
     template = env.get_template("master_report.html")
 
-    screenshot_b64 = None
-    screenshot_mime = "image/png"
+    screenshot_b64, screenshot_mime = None, "image/jpeg"
     if screenshot_path:
-        sp = Path(screenshot_path)
-        if sp.exists():
-            screenshot_b64 = base64.b64encode(sp.read_bytes()).decode("ascii")
-            screenshot_mime = mimetypes.guess_type(sp.name)[0] or screenshot_mime
+        encoded = encode_cover_screenshot(screenshot_path)
+        if encoded:
+            screenshot_b64, screenshot_mime = encoded
 
     context = {
         "site_name": site_name,
-        "report_title": _build_report_title(site_name, stats, judgments),
+        "site_lang": _site_lang(ctx_site),
+        "report_title": _build_report_title(site_name, stats),
         "report_subtitle": _build_report_subtitle(site_name),
-        "date": date.today().strftime("%B %d, %Y"),
-        "pipeline_name": PIPELINE_NAME,
-        "logo_svg": _load_logo_svg(),
+        "audit_date": audit_date,
+        "scope_line": scope_line(stats, audit_date, getattr(ctx_site, "locale", "") or ctx_site.primary_language),
+        "logo_svg": Markup(_load_logo_svg()),
         "screenshot_b64": screenshot_b64,
         "screenshot_mime": screenshot_mime,
         "query_cloud": _build_query_cloud(report),
         "stats": stats,
+        "labels": {
+            "zero_result": ZERO_RESULT_LABEL,
+            "zero_result_footnote": ZERO_RESULT_FOOTNOTE,
+            "found_but_wrong": FOUND_BUT_WRONG_LABEL,
+            "sample_note": SAMPLE_NOTE,
+            "benchmark_note": BENCHMARK_NOTE,
+        },
         "short_version": _build_short_version(site_name, stats, roadmap_items),
         "coverage_summary": _build_coverage_summary(judgments),
-        "capability_scores": _build_capability_scores_ctx(judgments),
         "improvement_map": _build_improvement_map(judgments),
-        "failure_modes": _build_failure_modes(judgments),
-        "advanced_diagnostics": build_advanced_diagnostics_sections(report.site_context, judgments),
-        "deep_dives": _build_deep_dives(judgments),
-        "critical_failures": _build_critical_failures(judgments),
-        "risk_cases": _build_risk_cases(judgments),
-        "whats_working": _build_whats_working(judgments),
+        "root_causes": root_causes(judgments),
+        "advanced_diagnostics": build_advanced_diagnostics_sections(ctx_site, judgments),
+        "deep_dives": _build_deep_dives(judgments, content, template_url),
+        "risk_cases": _build_risk_cases(judgments, template_url, narratives),
+        "whats_working": whats_working_items(judgments),
         "roadmap_items": roadmap_items,
-        "benchmarks": _build_benchmarks(stats),
-        "appendix": _build_appendix(judgments),
+        "benchmarks": benchmark_rows(stats, peer),
+        "peer_label": peer_label(peer),
+        "appendix": _build_appendix(judgments, template_url),
+        "not_scored": _build_not_scored(all_judgments, template_url),
     }
-
     return template.render(**context)
 
 
@@ -1184,6 +927,13 @@ def save_html_report(report: AuditReport, output_path: str | Path, screenshot_pa
     if screenshot_path is None:
         screenshot_path = find_cover_screenshot(path.parent)
     html = render_html_report(report, screenshot_path=screenshot_path)
+    size = html_size_bytes(html)
+    if size > HTML_SIZE_BUDGET:
+        print(
+            f"[html_renderer] WARNING: '{path.name}' is {size / 1e6:.2f} MB, over the "
+            f"{HTML_SIZE_BUDGET / 1e6:.1f} MB budget (GitHub's contents API rejects files over 1 MB).",
+            file=sys.stderr,
+        )
     if "cover-screenshot" not in html:
         print(
             f"[html_renderer] WARNING: '{path.name}' was saved WITHOUT a cover screenshot. "

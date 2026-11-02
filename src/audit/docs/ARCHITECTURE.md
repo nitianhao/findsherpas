@@ -7,35 +7,53 @@
 > Single sources of truth:
 > - **How to run an audit** → `synthetic-search-audit` skill (default: gated manual mode)
 > - **How the code works** → this document
+> - **Per-phase lessons and site profiles** → `docs/<PHASE>_PLAYBOOK.md`
+> - **Product roadmap ideas** → `docs/IMPROVEMENT_PROPOSALS.md`
 >
-> All facts below are verified against the code as of 2026-06-08
-> (`src/orchestrator.py`, `src/github_publisher.py`).
+> Verified against the code as of 2026-10-30 (judge rules version `2026-10-30`).
 
 ---
 
 ## What it does
 
 A search-quality audit for any ecommerce/marketplace site. Given a search-results URL, it
-produces: a deep-dive narrative report (Markdown + JSON) and a styled HTML report.
-All output lands in `reports/{domain_slug}/`.
+produces a deep-dive narrative report (Markdown + JSON) and a styled HTML report. Output lands
+in `src/audit/reports/{domain_slug}/`, with per-phase checkpoints in a `run_<timestamp>/`
+subfolder.
+
+Two principles run through the whole pipeline:
+
+1. **Never score what was not observed.** A page the fetcher could not see (bot wall, timeout,
+   error) carries a `FetchStatus` and is excluded from scoring. An empty result list is only a
+   "zero results" finding when the page itself showed a no-results state.
+2. **Never fail silently.** LLM calls go through `src/llm_compat.py`, which raises on refused,
+   truncated or empty output. Any fallback a phase still takes is recorded (`SiteContext.provenance`,
+   `QueryJudgment.judge_status`), and the publish gate blocks reports that contain one.
 
 ## Two run modes
 
 | Mode | How | When |
 |------|-----|------|
-| **A — gated manual (default)** | Call individual `src.*` phase functions via `python3 -c`, stopping for approval between phases. See the skill. | Default. Quality-first; lets you correct categories/queries before they poison the report. |
-| **C — automated orchestrator (fast)** | `python -m src.orchestrator "<search-url>"` runs all phases through publish in one shot. | When you trust the inputs and want speed/volume. |
+| **A — gated manual (default)** | Call individual `src.*` phase functions, stopping for approval between phases. See the skill. | Default. Quality-first; lets you correct categories/queries before they poison the report. |
+| **C — automated orchestrator (fast)** | `python -m src.orchestrator "<search-url>"` runs every phase, renders the report and runs the publish gate. Publishing is opt-in (`--publish`). | When you trust the inputs and want speed/volume. |
+
+Run from `src/audit/` with the 3.12 venv (system python 3.9/LibreSSL fails TLS on modern sites):
 
 ```bash
-# Fast mode (orchestrator)
-python -m src.orchestrator "https://www.example.com/search?q=shoes"
-python -m src.orchestrator "https://www.example.com" --search-url "https://www.example.com/search?q={}"
-python -m src.orchestrator "https://www.example.com" --crm-company-id <instantdb-company-id>
-python -m src.orchestrator "https://www.example.com" --output-dir my_reports
+.venv312/bin/python -m src.orchestrator "https://www.example.com/search?q=shoes"
+.venv312/bin/python -m src.orchestrator "https://www.example.com" --search-url "https://www.example.com/search?q={}"
+.venv312/bin/python -m src.orchestrator "<url>" --resume reports/example_com/run_20261030_120000   # skip completed phases
+.venv312/bin/python -m src.orchestrator "<url>" --publish --crm-company-id <instantdb-company-id>
 ```
 
-> **Mac only** — `.env` contains a SOCKS proxy (`ALL_PROXY`). Sandboxed shells fail with a
-> `socksio` import error. Always run on the Mac terminal.
+Flags: `--allow-unverified` (continue when >20% of pages could not be observed; those queries
+are excluded), `--no-controls` (skip control searches), `--output-dir`.
+
+Run the offline test suite (no network, no paid calls) after any change:
+
+```bash
+.venv312/bin/python -m unittest discover -s tests -t .
+```
 
 ---
 
@@ -43,14 +61,39 @@ python -m src.orchestrator "https://www.example.com" --output-dir my_reports
 
 | Phase | Module | What it does |
 |-------|--------|--------------|
-| 1 | `src/discovery.py` | Scrapes nav categories, brands, featured items, search URL template |
-| 2 | `src/category_selector.py` | Picks which `QueryCategory` types to test based on `SiteType` |
-| 3 | `src/query_generator.py` | Generates ~20–30 test queries via Claude; validates category fit (rejects miscategorized queries, e.g. a nav-category label filed under `DIRECT_MATCH` — see note below) |
-| 4 | `src/fetcher.py` | Fetches search results per query (requests + BeautifulSoup) |
-| 5 | `src/scorer.py` | Scores relevance via Voyage AI `rerank-2-5` |
-| 6 | `src/judge.py` | Assigns `FailureMode`, `Severity`, `displacement`, `evidence` per query via Claude, then applies a deterministic severity cap for immaterial displacement (see note below). Injects per-language calibration examples from past audits and harvests this run's verdicts back (`src/judge_kb.py`, see note below) |
-| 7 | `src/report_generator.py` | Builds `AuditReport` with `CapabilityScore` groups + narrative |
-| Publish | `src/github_publisher.py` | Uploads HTML + registers report (see below) |
+| 1 | `src/discovery.py` | Nav categories, brands, featured items, search URL template, language + BCP-47 `locale`, `currency`, and a `catalog_sample` of ~150 real titles (homepage + 5–8 seed searches from the nav). LLM refinement via structured output; hallucinated items dropped; fallbacks recorded in `provenance`. |
+| 2 | `src/category_selector.py` | Picks 10–18 `QueryCategory` types for the `SiteType` (structured output; bounds enforced in code). |
+| 3 | `src/query_generator.py` | 60 test queries. DIRECT_MATCH, GIBBERISH and SKU queries are built deterministically from real titles/codes; the rest via structured output, each with a `target_term` and (for constraint categories) `constraints`. Deterministic validators reject typo collisions, invented items and base-word reuse. |
+| 4 | `src/fetcher.py` | `fetch_all_outcomes()` → one `FetchOutcome` per query with a `FetchStatus` (ok, zero_confirmed, zero_unverified, partial, redirect, blocked, timeout, error), the page's own hit count, and optional HTML/screenshot evidence. Playwright-first; per-site extractors plus generic strategies. |
+| 4b | `src/orchestrator.py` | **Control searches**: every trusted zero-result query is re-searched with its plain `target_term`. Control also empty → `catalog_gap` (not scored). Control has products → the zero result is a proven search failure, and evidence may say the store carries the item. |
+| 5 | `src/scorer.py` | Voyage `rerank-2.5` relevance per result (titles cleaned of badges/prefixes; price not in the document). Retries only transient errors; resumable. |
+| 6 | `src/judge.py` | One structured verdict per query on the judge model, then deterministic guards (ranking materiality cap, multilingual constraint checks, price parsing, flooding rule, DIRECT_MATCH tolerance). Zero-result, gibberish and untrusted-fetch cases are decided in code. Client-facing `evidence` is kept separate from `internal_notes`. |
+| 7 | `src/report_generator.py`, `src/report_stats.py`, `src/html_renderer.py` | Capability groups, stats from one module, deep dives + roadmap as structured output checked against the data (grounding validator). HTML via `templates/master_report.html` with autoescape on. |
+| Gate | `src/publish_gate.py` | Blocks publishing on untrusted fetches, scraped fallback widgets, judge fallbacks, unresolved manual checks, stale rules version, and internal details in client-visible text. CLI: `python -m src.publish_gate <data.json> --html <report.html>`. |
+| Publish | `src/github_publisher.py` | Uploads HTML + registry + raw data archive (see below). |
+
+### LLM plumbing (`src/llm_compat.py`)
+
+- `structured_call(model, system, user, schema, max_tokens, phase)` uses `messages.parse` with a
+  Pydantic schema, sends the static rules as a cached system block, records token usage per
+  phase (`usage_summary()` → `run_metadata.llm_usage`), and raises `LLMResponseError` on refusal,
+  truncation or invalid output.
+- `response_text()` joins all text blocks and raises instead of returning `""`.
+- `AUDIT_STRICT_LLM=1` (default) makes discovery/category/query phases raise instead of falling back.
+- Models are env-overridable per phase (`AUDIT_MODEL_DISCOVERY`, `_CATEGORIES`, `_QUERIES`,
+  `_FETCHER`, `_JUDGE`, `_REPORT`). Defaults: Haiku 4.5 for discovery/categories/fetcher,
+  Sonnet 4.6 for queries/judge/report.
+- `temperature` is sent only to 4-series models. **Before upgrading the Anthropic SDK to 1.x**
+  (API version `2026-10-21` rejects sampling params on every model), make
+  `supports_temperature()` return False.
+
+### Run directory and reproducibility
+
+`reports/<site>/run_<timestamp>/` holds `01_site_context.json`, `02_categories.json`,
+`03_queries.json`, `04_fetch.json`, `04b_controls.json`, `05_scored.json`, `06_judgments.json`
+(atomic writes) and `evidence/`. `--resume` skips completed phases and re-fetches only queries
+whose fetch was not trusted. `AuditReport.run_metadata` records source revision, model per
+phase, `judge_rules_version`, fetch status counts, control count and token usage.
 
 ---
 
@@ -61,49 +104,52 @@ Common slug prefix: `{domain_slug}_{YYYYMMDD_HHMMSS}`
 | File | Description |
 |------|-------------|
 | `{slug}_report.md` | Deep-dive narrative (Markdown) |
-| `{slug}_data.json` | Complete `AuditReport` as JSON |
-| `{slug}_report.html` | Styled HTML report (from `templates/master_report.html`) |
-| `{slug}_access.json` | Written by the orchestrator: `company_slug`, `report_url`, `published_at` |
+| `{slug}_data.json` | Complete `AuditReport` as JSON (incl. `run_metadata`, accepted narratives) |
+| `{slug}_report.html` | Styled HTML report (from `templates/master_report.html`), target < 900 KB |
+| `{slug}_access.json` | Written after a publish: `company_slug`, `report_slug`, `report_url`, `published_at` |
 | `findsherpas.com/report/{company}-NNNN/` | Live published report URL (unlisted) |
 
 ---
 
 ## GitHub publishing (verified vs `github_publisher.py`)
 
-`publish_report(html_content, domain_slug, data_json=None, report_md=None) -> url` pushes up to
-**four files** to the `nitianhao/findsherpas` repo (all via the GitHub contents API, which
-commits server-side and so bypasses the local `reports/*` gitignore):
+`publish_report_full(html_content, domain_slug, data_json=None, report_md=None) -> PublishResult`
+(`publish_report` returns just the URL) pushes up to **four files** to the
+`nitianhao/findsherpas` repo via the GitHub contents API:
 
 1. **`public/report/{slug}/index.html`** → the live findsherpas.com page.
-2. **`reports/report_slugs.json`** → the registry the CRM Reports page reads. The registry
-   **must** be committed to the repo (not just updated locally) or the report stays invisible
-   in the deployed CRM.
-3. **`audit-data/{slug}/{slug}_data.json`** and **`{slug}_report.md`** (when `data_json` /
-   `report_md` are passed) → a version-controlled archive of the raw audit data so the
-   underlying judgements survive a local wipe. Not under `public/` — never web-served. The
-   orchestrator and the Phase 8 skill step always pass these; callers re-publishing by hand
-   should too.
+2. **`reports/report_slugs.json`** → the registry the CRM Reports page reads. The remote
+   registry is fetched and merged with the local one first (remote wins), pushed, and only
+   then mirrored locally — a stale local copy can no longer clobber repo-only entries.
+3. **`audit-data/{slug}/{slug}_data.json`** and **`{slug}_report.md`** (when passed) → archive
+   of the raw audit data. Not under `public/`, never web-served. Check that the repo is private.
 
-- **Slug format:** `{company}-{4-digit}` (e.g. `huckberry-6746`). TLD suffixes stripped:
-  `huckberry_com` → `huckberry`, `www_zalando_de` → `zalando`. Stored in `report_slugs.json`
-  as `{company: {slug, url}}`; re-publishes reuse the existing slug.
-- **No password gate.** The HTML is unlisted (non-guessable slug) and `noindex`. There is no
-  password generation and no `passwords.json` — that system was removed. (Any stray
-  `passwords.json` on disk is a relic.)
+- **Slug format:** `{company}-{4-digit}` (e.g. `huckberry-6746`). TLD suffixes stripped
+  (`co_uk`, `com_au`, ccTLDs), hyphens normalised to underscores. Registry entries record the
+  `domain` they were published for; a second market of the same company (`zalando_ie` after
+  `zalando_de`) gets a domain-qualified key instead of overwriting the first market's page.
+- GETs use the `object` media type, so re-publishing reports over 1 MB gets the file `sha`.
+- **No password gate.** The HTML is unlisted and `noindex`. 4-digit suffixes are enumerable —
+  see IMPROVEMENT_PROPOSALS if that matters.
 - **Requires** `gh` CLI authenticated as the repo owner (`gh auth status`).
 
 ```python
-# Re-publish an existing report
+# Re-publish an existing report (run the publish gate first)
 from pathlib import Path
-from src.github_publisher import publish_report
-html = Path("reports/huckberry_com/huckberry_com_20260506_report.html").read_text()
-url = publish_report(html, "huckberry_com")
-print(url)
+from src.github_publisher import publish_report_full
+d = Path("reports/huckberry_com")
+res = publish_report_full(
+    (d / "huckberry_com_20260622_154614_report.html").read_text(),
+    "huckberry_com",
+    data_json=(d / "huckberry_com_20260622_154614_data.json").read_text(),
+    report_md=(d / "huckberry_com_20260622_154614_report.md").read_text(),
+)
+print(res.url)
 ```
 
 **Verify a publish (check the REPO copy, not just local):**
-- `gh api /repos/nitianhao/findsherpas/contents/reports/report_slugs.json --jq '.content' | base64 -d` contains the `{company}` entry.
-- `gh api /repos/nitianhao/findsherpas/contents/public/report/{slug}/index.html --jq '.size'` matches the local HTML byte size.
+- `gh api -H "Accept: application/vnd.github.object" /repos/nitianhao/findsherpas/contents/reports/report_slugs.json --jq '.content' | base64 -d` contains the entry.
+- `gh api -H "Accept: application/vnd.github.object" /repos/nitianhao/findsherpas/contents/public/report/{slug}/index.html --jq '.size'` matches the local HTML byte size.
 
 The CRM row appears after the Vercel redeploy (~1–2 min).
 
@@ -115,8 +161,8 @@ If the audited company exists in the CRM, pass its InstantDB id so the report UR
 personalization variables are written immediately:
 
 ```bash
-python3 src/audit/src/orchestrator.py "https://example.com/search?q=shoes" \
-  --crm-company-id <instantdb-company-id>
+cd src/audit && .venv312/bin/python -m src.orchestrator "https://example.com/search?q=shoes" \
+  --publish --crm-company-id <instantdb-company-id>
 ```
 
 For an existing report artifact, write the same fields manually:
@@ -125,7 +171,7 @@ For an existing report artifact, write the same fields manually:
 npx tsx --tsconfig tsconfig.json src/enrichment/scripts/writeAuditToCRM.ts \
   --company-id <instantdb-company-id> \
   --report reports/example/example_YYYYMMDD_HHMMSS_data.json \
-  --report-url https://findsherpas.com/report/example/
+  --report-url https://findsherpas.com/report/example-1234/
 ```
 
 CRM email sequences use company-level audit variables from this writeback: `{{score}}`,
@@ -184,19 +230,22 @@ AuditReport
 
 ### Materiality cap on ranking severity (`judge.py`)
 
-`displacement` (original rank of the best-scoring result − 1) is **not** a sufficient basis for a `CRITICAL` `POOR_RANKING` call on its own. After the LLM verdict (and in the stats-only fallback), `_ranking_materially_broken()` checks whether reordering by relevance would *materially* change what the shopper sees: if the result the customer saw at original rank #1 is already within `MATERIAL_RANK_GAP` (0.20) of the best available result, the misordering is cosmetic and the severity is capped at `MODERATE`. The judge prompt also surfaces this gap and instructs Claude not to flag immaterial displacement as critical.
+`displacement` (original rank of the best-scoring result − 1) is **not** a sufficient basis for a `CRITICAL` `POOR_RANKING` call on its own. `_apply_guards()` runs after every verdict — LLM *and* fallback:
 
-This prevents broad/generic queries with tightly clustered, all-relevant results (e.g. a category term where every hit is on-topic) from being over-reported as severe ranking failures. The LLM judge still owns nuance; the cap is a deterministic floor on over-severity.
+- A reorder is **cosmetic** only when the gap between the customer's #1 and the best result is < `MATERIAL_RANK_GAP` (0.20) **and** #1 is on-topic (≥ `ON_TOPIC_TOP1_FLOOR`, 0.30) **and** the set is not weak (best ≥ 0.25). A weak, off-topic set is never eased.
+- `POOR_RANKING` may be CRITICAL only when the customer's first result is off-topic (top1 < 0.30).
+- Any label: a CRITICAL with an on-topic #1, no deterministic violation, outside NEGATIVE_INTENT / DIRECT_MATCH / BRAND_SEARCH, and no off-topic title cited in the top 3 is capped at MODERATE.
+- `CONSTRAINT_DROPPED` needs a violating title (cited by the judge or found by the price/exclusion/colour checks); otherwise the verdict carries a `MANUAL CHECK:` note in `internal_notes`, which the publish gate blocks until the operator resolves it (`judge_status="manual"`).
+- Sponsored tiles are excluded from every ranking statistic.
 
 ### Calibration knowledge base (`judge_kb.py`)
 
 A per-language store of past judgements that anchors the judge for **consistency** and lets it reuse strong fix/evidence phrasing. It is **advisory anchoring, not a cache** — every query is still judged fresh against its own results; a past verdict is never reused as this query's verdict (results differ per site).
 
-- **Storage:** `src/audit/kb/{lang}.jsonl`, one record per line, language slugged from `site_context.primary_language` (e.g. `german.jsonl`). Each record holds the query, category, `severity`/`failure_mode`/`evidence`/`recommended_fix`, a Voyage embedding, `provenance` (domain, url, `judged_at`), and `status` (`active`/`pruned`). The `kb/` dir is created on first harvest.
-- **Step A — retrieval (before each LLM call):** filter to `active` + same language, prefer same `category` (widen to any-category when <2 matches), Voyage-embed the live query, cosine-rank, take **top 3**. Injected as a "Calibration Examples" section of the judge prompt. Degrades to recency ranking if embeddings are unavailable, and to a silent no-op if the KB file is missing or anything errors — so judging behaves exactly as before when the KB is empty.
-- **Step B — harvest (after the whole audit):** appends this run's verdicts to `kb/{lang}.jsonl`. Skips LLM-fallback verdicts (`"LLM analysis failed"` in evidence) and unclassified non-PASS verdicts (`OTHER` failure mode that isn't a PASS); PASS examples are kept as "what good looks like."
-- **Wiring & safety:** `judge_all_queries(..., language=None, provenance=None)` — both args optional; with `language=None` the KB is bypassed entirely (existing callers/tests unchanged). The orchestrator passes `site_context.primary_language` + provenance at Phase 6. All KB reads/writes/embeds are wrapped so a KB failure logs a warning and never breaks an audit. Reuses the existing `voyageai` client (embedding model `voyage-3.5`, overridable via `VOYAGE_EMBED_MODEL`); no new dependencies.
-- **Pruning:** `scripts/kb_prune.py list <lang>` / `prune <lang> <id-or-query-substring>` flips `status` to `pruned` (kept for audit trail, excluded from retrieval). This plus the Step B noise filter are the drift guards for the auto-harvest model.
+- **Storage:** `src/audit/kb/{iso}.jsonl` — language normalised to ISO-639-1 (`German`/`de`/`Deutsch` → `de.jsonl`, Swedish → `sv.jsonl`). Each record holds query, category, verdict fields, a Voyage embedding, `domain`, `model`, `rules_version`, `human_reviewed`, a result digest (top1, max, n_results, 3 titles) and `status` (`active` / `pending` / `retired` / `pruned`). Pre-migration originals are kept as `*.jsonl.pre-migration`.
+- **Step A — retrieval (before each LLM call):** only records that are `active`, match the current `JUDGE_RULES_VERSION` (or are `human_reviewed`), and come from a *different* domain than the one being audited. Prefer same category, cosine-rank, top 3, scores stripped. Injected at the end of the user message, after the per-query data.
+- **Step B — harvest (after the whole audit):** new verdicts land as `pending` — never retrieved until an operator promotes them, so the judge cannot feed its own mistakes back. Skips fallback, deterministic and excluded verdicts; dedups on (domain, query); refuses to harvest when the judge model is not the default.
+- **Curation:** `scripts/kb_prune.py list <lang>`, `promote <lang> <match> | --all-pending | --domain d`, `retire <lang> <match> --reason "…"`, `prune`. Promote after the operator has reviewed (and corrected) a run's verdicts.
 - **First-run caveat:** the first audit in a new language writes to an empty KB and gets no calibration benefit; the payoff compounds from audit #2 onward per language.
 
 ### Category-fit validation (`query_generator.py`)
@@ -211,7 +260,7 @@ A per-language store of past judgements that anchors the judge for **consistency
 
 These diagnostics assess the quality of the *visible* result set, so queries that returned **no results** are excluded from them entirely — `Result Set Purity`, `Top Result Trust`, and `Attribute Drift` all skip zero-result queries. A dead-end query has no #1 result to trust and no products to inspect for attribute coverage; counting it here inflates failure rates and emits nonsensical evidence (`#1 was "No results"`, or "every term dropped"). Dead ends are captured separately by the `ZERO_RESULTS_OR_GARBAGE` failure mode and reflected in the purity denominator. Failure rates are therefore computed over *evaluated* (result-bearing) queries, not all queries. (See also the `feedback_zero_result_stats` rule for executive-summary position stats.)
 
-Tokenization (`_query_terms`) and family-key extraction (`_family_key`) are **Unicode-aware** (`[^\W_]+` / `[^\w\s-]`), not ASCII-only. An ASCII-only regex shreds non-English query words (e.g. Swedish "kläder" → "kl","der"), which then never match product titles and surface as falsely "dropped" attributes. This matters for any non-English site. Note that `Attribute Drift` matches query terms against result **titles** by substring, so attributes expressed only in facets/variants (color, size) or as compound/plural forms ("väskor" vs "axelväska") can legitimately read as low coverage — it is a directional title-coverage signal, not a semantic relevance measure.
+Tokenization (`_query_terms`) is **Unicode-aware** (`[^\W_]+` / `[^\w\s-]`), not ASCII-only. An ASCII-only regex shreds non-English query words (e.g. Swedish "kläder" → "kl","der"), which then never match product titles and surface as falsely "dropped" attributes. This matters for any non-English site. Note that `Attribute Drift` matches query terms against result **titles** by substring, so attributes expressed only in facets/variants (color, size) or as compound/plural forms ("väskor" vs "axelväska") can legitimately read as low coverage — it is a directional title-coverage signal, not a semantic relevance measure.
 
 **`Attribute Drift` only assesses title-observable terms.** Title-substring matching cannot see attributes carried in facet metadata — colour, size, gender, generic category words almost never appear in product titles — so naively treating them as "dropped" produced a false failure for nearly every multi-attribute query (the original bug). The diagnostic now classifies each query term against the actual result set:
 
@@ -232,10 +281,13 @@ jinja2             # Templating (report generation)
 pydantic           # Data models
 python-dotenv      # .env loading
 requests           # HTTP fetching
-voyageai           # Relevance scoring (rerank-2-5)
+voyageai           # Relevance scoring (rerank-2.5) + KB embeddings (voyage-3.5)
+markupsafe         # Escaping trusted fragments in the HTML template
+pillow             # Re-encodes the embedded cover screenshot
+playwright         # Default fetch path for most sites (+ playwright-stealth)
 ```
 
-Install: `pip install -r requirements.txt`
+Install: `.venv312/bin/pip install -r requirements.txt && .venv312/bin/python -m playwright install chromium`
 
 ---
 

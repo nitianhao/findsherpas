@@ -53,6 +53,69 @@ only changed queries, never the whole set.
 
 ---
 
+## Scorer design constraints (apply to every site)
+
+**`score_results` uses Voyage AI `rerank-2.5` — it is a PAID API call per query, not a
+local pass.** Needs `VOYAGE_API_KEY` in the local `.env` (not stored in Vercel).
+
+**`.rank` is OVERWRITTEN with the reranked position; the site's real order is in
+`.original_rank`.** Any analysis of "what the customer saw first" MUST filter on
+`original_rank == 1`. Filtering on `rank == 1` silently gives you the best-scoring result
+instead, i.e. the same number as `max(relevance_score)` under a misleading label. (Caught
+on zalando.ie: reported "0 of 63 queries below 0.30" when the true answer was 1 of 63.)
+`judge.py` does this correctly — `_top1_seen_relevance` and displacement both use
+`original_rank`.
+
+**Fixed 2026-09: scoring failures no longer masquerade as zero results.** `score_results`
+used to `except Exception: all_scored[q] = []`. Because `_compute_stats([])` returns
+max_relevance=0.0 / displacement=15 and the judge treats "no results" as an automatic
+failure, a single Voyage timeout or 429 could MANUFACTURE a CRITICAL finding in a
+published report — the same false-zero class the fetcher playbook exists to prevent, one
+layer down. Now: 4 attempts with exponential backoff, then raise `ScoringError`; a missing
+document index also raises instead of defaulting to 0.0. Do not reintroduce the swallow.
+
+**What the reranker CANNOT measure — do not let these be scored away:**
+- **Constraint violations / negation.** It scores topical similarity only. `running shoes
+  not Nike` returning a Nike shoe scores 0.424 (correctly on-topic, completely wrong
+  answer). NEGATIVE_INTENT can never trip a low-score threshold; it must be caught at
+  judge time.
+- **Occasion/gift intent.** `gift for a runner` -> a keyring scores 0.555.
+- **Identifier queries.** Article codes share no tokens with product titles, so
+  SKU_MODEL_NUMBER scores structurally low (0.41-0.46 on zalando.ie) even when the engine
+  did the IDEAL thing and redirected to the exact PDP. Never read a low SKU score as a defect.
+- **Variant flooding.** 15 colour variants of one product each score high while being poor
+  discovery. The judge's variant-flooding thresholds handle this; relevance alone will not.
+
+**Do NOT report per-category score averages as findings.** Rerank scores are relative to
+each query and its own candidate set; Voyage does not guarantee cross-query calibration, so
+averaging per category and ranking categories by it is unsound. On zalando.ie it produced
+the actively misleading headline "SKU_MODEL_NUMBER is the worst category (0.438)" when that
+category contained two of the best-behaved queries in the whole audit. Findings come from
+per-query judgments.
+
+**Fixed 2026-10-30: price is no longer part of the reranked document.** `_build_document`
+used to concatenate price, so PRICE_ANCHORED queries scored on lexical proximity between
+"under 30 euro" and "EUR29.99" rather than on the product. The document is now cleaned title +
+snippet; price limits are checked in code by the judge (`judge.parse_price`). Scores for
+priced queries shift slightly versus pre-2026-10-30 runs — don't compare them directly.
+
+**Titles are cleaned before reranking (`clean_title_for_rerank`); the stored title is not.**
+Stripped: merchandising badges ("Pre Sale", "Samarbetsföretag", "Medlemspris", "Sponsrad",
+"-20%"; ambiguous ones like "New"/"Sale" only when a separator follows, so "New Balance"
+survives), "+2" more-colours counters, rating counts ("(3343)", stars, "4.5 out of 5"), and
+Bergzeit-style category labels: "Brand | Category Gender Product" → "Brand Gender Product"
+(the gender is kept — it is intent). Without a gender marker only the pipe is dropped. Extend
+the badge lists per locale as new storefront chrome shows up.
+
+**Retries are transient-only; failures keep paid work.** Only Voyage rate-limit / 5xx /
+timeout / connection errors are retried (4 attempts, exponential backoff). Auth (401) and bad
+requests fail fast. A `ScoringError` carries `.partial` (every query scored so far); resume
+with `score_results(queries, scraped, already_scored=err.partial)` — already-scored queries are
+copied through without a second paid call. `sponsored` is carried onto `ScoredResult` so the
+judge can leave ads out of ranking.
+
+---
+
 ## Per-site profiles
 
 ### huckberry.com (Huckberry)

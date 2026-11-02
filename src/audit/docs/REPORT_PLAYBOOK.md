@@ -21,6 +21,77 @@
 
 ---
 
+## Current contract (Oct 2026 upgrade — read first; supersedes older notes below where they conflict)
+
+- **One stats module.** Every number in the .md AND the .html comes from `src/report_stats.py`
+  (`compute_stats`, `formatted_stats`, `capability_rows`, `root_causes`, `whats_working_items`,
+  `pick_worst_example`, `benchmark_rows`). Never compute a rate inside a renderer. Avg best
+  position is always `#x.y` (`fmt_pos`); "past the first three results" only when avg > 3
+  (`position_context`). The md scorecard and the HTML improvement map share one priority rule
+  (`capability_rows`: capability severity, then critical/moderate/minor counts).
+- **Excluded judgments never count.** `excluded_reason` set ⇒ left out of every rate, listed in
+  the "Not scored" appendix (md + html) with the reason in plain words. Persisted
+  `capability_scores` keep every judgment but compute severity over scored ones only.
+- **Narratives are structured + grounded.** Deep dives (`generate_deep_dives`) and roadmap
+  (`generate_roadmap`) are SEPARATE `structured_call`s (8000 / 3000 tokens). Static rules live
+  in the cached system prompt; site data (incl. `site_context.currency`) in the user turn; ids
+  index `failing_judgments()`. No other client's examples or budgets in the prompt.
+  `grounding_violations` checks every quoted string (must be a tested query, or a title/target
+  term/proof from that search's results, a nav category or brand; single plain words allowed),
+  every `#N` (must be a real `original_rank` of that search) and every carry/stock claim (needs
+  `proof_of_stock`). Violations ⇒ one regeneration with the problems fed back ⇒ `GroundingError`.
+  `LLMResponseError` propagates. **No placeholder text can be rendered** — the old
+  "Roadmap section was not generated…" path, the regex roadmap parser and the title-rewrite
+  hack (which turned item 6 into a copy of item 1) are gone; item #1's concrete framing is a
+  prompt rule plus a soft retry check.
+- **Accepted narratives are stored on the report** in `run_metadata["report_content"]`
+  (`{"deep_dives": [{capability, capability_name, intro, examples:[{query, narrative}]}],
+  "roadmap": [{title, description, impact, effort, owner, queries}]}`), query-keyed. The HTML
+  renders the same reviewed deep-dive text as the .md, and roadmap items show "Fixes N tested
+  searches (K critical)" from `queries`. To re-use a reviewed version, pass these lists back as
+  `generate_report(..., deep_dives=, roadmap=)` — they are validated, never regenerated.
+  **Callers must merge into `run_metadata`, never overwrite it**; `render_html_report` raises
+  if the structured roadmap is missing (a legacy `_data.json` must be regenerated first).
+- **"The store carries X" only with proof:** a control search for `target_term` that returned
+  products (judge evidence: `searching '<term>' returns products such as '<title>'`) or a title
+  from another tested query's results (Unicode-aware token match). A category claim in the
+  "most severe example" also requires the category to be a real `nav_categories` entry.
+- **Client text is sanitised.** `sanitize_client_text` strips score parentheticals, workflow
+  markers ("User override:", "[Override: …]", "per calibration", "[MANUAL VERIFICATION
+  REQUIRED]", "[Severity escalated…]") and any sentence still mentioning scores/thresholds/tools.
+  `internal_notes` is never rendered. Score bars are gone from risk cases; "Should have come
+  first" lists only appear for ordering failures with a clearly on-topic better match
+  (`show_better_matches`).
+- **Headline = share of tested searches that fail the shopper**, with the sample size and the
+  adversarial-sample note (`SAMPLE_NOTE`) — never "% revenue risk". No revenue numbers unless
+  from an explicit, labelled model. "Products returned, but the wrong ones or in the wrong
+  order" is the ONE found-but-wrong metric in both outputs (replaces the HTML-only "Right
+  products found, ranked too low", which was a bare POOR_RANKING count). The "returned nothing
+  usable" figure is footnoted (`ZERO_RESULT_FOOTNOTE`) against the smaller failure-mode row.
+- **No unverifiable citations.** The Baymard/Econsultancy/"55–60% of clicks" callouts are
+  removed. The comparison table shows Find Sherpas working targets (labelled as ours) and an
+  optional `peer_benchmark` column (`{"label", "sample_size", "values": {stat_key: float}}`,
+  passed to `generate_report`/`render_html_report` or stored in `run_metadata`).
+- **Language cap.** `_limit_language_mentions` never edits inside quotes/backticks, removes only
+  adjectival uses ("German synonym mapping"), keeps noun uses ("in German"), and re-capitalises
+  only a sentence it edited (the old version corrupted text after closing `**`).
+- **HTML safety + presentation.** Jinja autoescape is ON; only the logo SVG is `Markup`.
+  Queries/titles carry `lang` (site locale) + `dir="auto"`; document `lang` stays `en` (the
+  prose is English). `<details>` expand in print (CSS + `beforeprint`). Cover shows the scope
+  line (N searches tested · date · locale · desktop). Each tested query links to the live
+  search (`search_url`, `rel="noopener nofollow"`). Markdown tables escape `|` (`md_cell`).
+- **Size.** The cover screenshot is re-encoded (`encode_cover_screenshot`: ≤1400px, JPEG q80,
+  stepping down to stay ≤350KB). Reports land at ~160–280KB; `html_size_bytes()` vs
+  `HTML_SIZE_BUDGET` (900KB) is what the publish gate should check.
+- **Root causes.** `root_causes()` groups failing searches by (failure mode, category family) so
+  one mechanism ("Price limits in the query are ignored") is shown once with its N searches —
+  rendered in both outputs and fed to the roadmap prompt for consolidation.
+- **Advanced diagnostics.** Substitutions count only wrong-KIND modes (no POOR_RANKING /
+  DUPLICATE_FLOODING); the ordering example names "the better X" only when it is clearly on-topic
+  and the verdict is POOR_RANKING; constraint buckets (honoured/violated/empty/other) sum to the
+  total; the specificity sentence follows the sign of the change.
+- `templates/report.html` is legacy and unused (kept, not deleted).
+
 ## General learnings (apply to every site)
 
 - **Audience determines emphasis.** Internal/monobrand recipients care about customer
@@ -52,6 +123,8 @@
   then reports position metrics as "among queries that did return results". The worst example
   prefers a CRITICAL zero-result on a provably-stocked item (`worst_zero_query`) over a
   displacement example — never describe a zero/constraint failure as "scroll to position #N".
+  *(Oct 2026: the md and html now both use `pick_worst_example`; the causes sentence is derived
+  from the zero-result failure-mode counts, not four hard-coded causes.)*
 - **Report is unbranded.** `PIPELINE_NAME` is empty — no "Prism" (or other tool name) in
   section headers, methodology, or appendix. Client reports carry the site's name, not ours.
 - **Test Results Summary — Key Metrics.** Lead with retrieval health, parallel to the exec
@@ -74,7 +147,7 @@
   Sonnet prompt — never let it pad a thin capability with passing queries reframed as problems
   (e.g. a PASS partial-match query shown as "ranked poorly"). Show fewer than 5 if there are
   fewer failures. (2) Match the narrative to the failure type: RETRIEVAL failures (zero/semantic/
-  category-mapping/fuzzy) → "returned nothing, even though the store carries {type}", NO fabricated
+  category-mapping/fuzzy) → "returned nothing" (+ "even though…" ONLY with proof of stock, Oct 2026), NO fabricated
   "Should have seen" product list, NO "position #X"; CONSTRAINT_DROPPED → lead with the violation
   across the set; only POOR_RANKING/PARTIAL (results exist) use before/after + displacement.
 - **What's Working surfaces strengths at the QUERY-CATEGORY grain, not capability grain.**
@@ -84,7 +157,9 @@
   with an example each. (Avoca: surfaces Synonym, Brand search, Special character,
   Plural/singular, Partial query, Multi-attribute — vs the old output that showed only the one
   fully-passing capability, "Brand & Model Search".) Keeps the partial-wins fallback when no
-  category passes cleanly.
+  category passes cleanly. *(Oct 2026: every fallback statement is now verified against data —
+  the old "relevant results found in {POOR_RANKING count} of {total}" and unconditional
+  "correctly interprets typos" lines stated false facts; if nothing holds, the section is omitted.)*
 - **Roadmap — consolidate the product-type/head-noun fix.** The "product type / head noun
   under-weighted vs a modifier" defect (outerwear→throws, woollen throws→sweaters, throws
   grey→socks, winter coat sale→socks, grey accessories→t-shirts) is ONE fix — the prompt now
@@ -96,6 +171,8 @@
   No standalone "fix ranking / relevance order / surface highest-scoring first" item either —
   all ordering-of-retrieved-results cases are the product-type/head-noun fix and fold into it
   (the model repeatedly tries to manufacture a 7th item by re-splitting this defect).
+- *(Oct 2026: external citations removed — see Current contract. The all-search vs
+  with-results distinction below still holds.)*
 - **Benchmarks lead with the dead-end comparison, all-search metrics honest.** The table's
   headline row is the **dead-end rate** (`pct_no_relevant_first`) vs Baymard's ~31% industry
   average / <10% target — the one metric with a directly comparable published number, and where
@@ -133,6 +210,9 @@
   off-topic — a full page to discard" — and frame the average (e.g. 77%) as "most pages clean,
   but the misses are total". Evidence lines (`_purity_evidence_line`) say "not one of the 5
   visible results matched…" / "only N of 5 were relevant", never "0/5".
+- *(Oct 2026: largely resolved — both renderers read `src/report_stats.py`, and the HTML renders
+  the stored reviewed narratives. Still true: layout lives in two places — md builders in
+  `report_generator.py`, `_build_*` + `master_report.html` for HTML.)*
 - **The HTML deliverable is a PARALLEL renderer — tune both paths.** `report_generator.py`
   markdown builders feed the `.md` file; `src/html_renderer.py` + `templates/master_report.html`
   render the HTML independently. Shared (fixes propagate automatically): `compute_aggregate_stats`,

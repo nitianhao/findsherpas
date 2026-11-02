@@ -25,6 +25,159 @@
 
 ---
 
+## Fetch outcomes — every query gets a status (2026-10)
+
+An empty result list used to mean five different things (blocked, timed out, crashed,
+redirected, genuinely zero) and downstream every one of them scored as an automatic
+CRITICAL "your search returns nothing". `fetch_all_outcomes(queries, template,
+max_results=15, evidence_dir=None, on_outcome=None)` now returns
+`{query: FetchOutcome}`; `fetch_all_results` is a thin legacy wrapper (`{q: results}`)
+for the old runner scripts. **Read the status, never the list length.**
+
+| Status | Meaning | Trusted for scoring? |
+|---|---|---|
+| `ok` | Results extracted from the search page. | yes |
+| `partial` | Page reports N hits, we read fewer than min(N, k). Usually page size (12 tiles shown of 384), sometimes a render lapse. | yes |
+| `redirect` | Search left the results page: one product (PDP) → 1 result; category/brand landing → that page's grid. | yes |
+| `zero_confirmed` | The page itself says "no results" (or a known no-results path / the search API says 0). `results=[]`, `total_hits=0`. | yes |
+| `zero_unverified` | Nothing extracted and no no-results message. Render lapse, unknown layout, stale SSR, silent bot wall. | **no** |
+| `blocked` | Bot wall / WAF / rate limit (Akamai, DataDome, PerimeterX, Cloudflare, Imperva, AWS WAF, captcha, Shopify `/challenge`, HTTP 400/401/403/405/429/5xx on a near-empty page, a <5 KB body with no product links). | **no** |
+| `timeout` | Fetch or readiness wait exceeded its limit and nothing usable was read. | **no** |
+| `error` | Transport failure / exception / nothing loaded. | **no** |
+
+Untrusted outcomes are excluded from scoring (`excluded_reason='fetch_unverified'`)
+and listed in the report's "Not scored" appendix. `attempts` = fetches made (0 = never
+fetched because the site probe failed or the site kept blocking). `evidence` is a short
+reason, plus `[evidence: <path>.html.gz, <path>.png]` when `evidence_dir` was given
+(gzipped HTML for every attempt; with Playwright also a viewport screenshot taken
+after scrolling back to the top; filenames are a slug of the query + a short hash).
+
+**How a page is read (`_analyse_page`, in this order):**
+1. Known no-results destination path (cotswold `/lister/no-results`) → `zero_confirmed`.
+2. Block signatures, WAF status codes, tiny product-less body → `blocked`. Classified on
+   every path: static responses, every browser in the Playwright loop (signature-only
+   there, because a SPA shell is tiny for the first seconds), and the final capture.
+   The Playwright `goto` status is recorded; a 403 whose rendered page shows ≥3 product
+   links is NOT a block (headed-challenge hosts).
+3. Redirected (token comparison, below) onto a product page → `redirect`, 1 result.
+4. `page_state()` finds a no-results marker → `zero_confirmed`, `[]`, **even if a carousel
+   was extracted** (phantoms). All extraction is skipped, cached selectors included.
+5. Extract (dedicated extractor, else cached selectors → generic sweep → grounded LLM).
+6. Nothing extracted and no marker → `zero_unverified` (or `timeout` if the readiness
+   wait timed out). There is no longer any "authoritative empty list" — a dedicated
+   extractor returning `[]` is a zero only when the page also shows its marker.
+
+**`page_state(html, url, visible_text, query)` — generic, every host:**
+- Marker = multilingual no-results regex over `<title>` + visible text outside
+  header/nav/footer/autocomplete/minicart overlays and outside `hidden` /
+  `display:none` nodes (Playwright passes the browser's own `innerText`, which also
+  honours CSS). EN/DE/SV/NO/DA/NL/FR/IT/ES/PT/PL/CS/FI: "no results", "we couldn't find
+  any", "keine Treffer", "keine Ergebnisse", "inga träffar", "ingen resultater",
+  "geen resultaten", "aucun résultat", "nessun risultato", "brak wyników",
+  "žádné výsledky", "ei tuloksia", "Suchergebnis für »x« (0)", …
+- **Zero counts are word-bounded: `\b0\s+results\b`.** "10 results" / "100 Treffer"
+  never read as zero (the old `/0 results/` waits did). End-of-list messages
+  ("Keine weiteren Ergebnisse", "No more results") are not markers.
+- Hit count (`total_hits`) from the title, h1–h3 and count/result/total elements:
+  `384 results`, `1.234 Artikel`, `Products (12)`. "Strong" words (results, Treffer,
+  Ergebnisse, träffar, resultater, …) count anywhere; "weak" ones (items, Artikel,
+  products) only in the title/h1/count elements — product names contain them. The
+  query text is blanked first ("pack of 6 items" ≠ 6 hits). A strong count smaller
+  than the tiles read trims the padding ("3 results" + 12 tiles → 3).
+- Marker **and** an applied spelling correction ("Showing results for …", "Wir zeigen
+  dir Ergebnisse für …", "stattdessen") with tiles → `ok`, results kept, evidence says
+  so. Marker **and** a positive strong hit count without that → `zero_unverified`
+  (ambiguous; verify by hand). A "Did you mean …?" suggestion alone does not undo a zero.
+- Host profiles (`_HOST_PROFILES`) add markers, a hit-count regex, a PDP path rule and
+  the readiness selectors. `douglas.de` disables the generic markers entirely (stale SSR
+  "0 Ergebnisse" headings) and confirms a zero only by the title.
+
+**Redirects (`_redirect_kind`)** compare the query's word tokens after `parse_qs` +
+`unquote` + casefold (and ’ → ') against the destination's parameters (or path, when
+the template puts the query in the path). `+` vs `%20`, `Arc'teryx` vs `Arc%27teryx`
+and percent-encoded umlauts compare equal; the old `quote_plus` substring test did not.
+`away` = query gone (PDP, brand page); `landing` = query kept as a parameter on a
+non-search path (cotswold `?q=…&sred=1`, bergzeit `?bzsearch=…`, lyko `?fromsearch=…`).
+Both are extracted on the destination on **every** host. A page is a PDP only on
+positive evidence: `og:type=product`, a `product:price:amount` meta, exactly one
+top-level JSON-LD Product with no ItemList, or the host's PDP path rule — a brand page's
+`<h1>` never becomes a fake single result.
+
+**Retries (`_fetch_with_retries`):** zero_unverified / timeout / error / thin (<3
+results without a hit count that explains it) are re-fetched up to 3 attempts with
+2 s / 5 s backoff on every host. A `zero_confirmed` is re-checked once (manufactum.de and
+bergzeit.de flip between a no-hits page and real results for one URL). The best attempt
+wins and `attempts` records the count. `blocked` is never retried (polling a WAF
+escalates it, see douglas.de), and 3 blocked queries in a row stop the run — the rest
+are marked `blocked` with `attempts=0`. Per-attempt cap 300 s, probe cap 600 s.
+**Deferred:** a timed-out Playwright fetch keeps running in its daemon thread until the
+process exits (threads cannot be killed). A subprocess-per-fetch model would fix it; not
+done because it changes every Playwright call path.
+
+**Readiness waits** are one table-driven `_wait_for_host_ready` returning
+`grid | no_results | timeout` (no longer fail-open). A timeout with an empty capture
+becomes `timeout`, never a zero.
+
+**Ranking fidelity:** results stay in DOM order everywhere (the old `_card_score` sort in
+`_try_product_cards` moved price-less real results below priced chrome). Repeated card
+groups with the same signature under sibling parents are merged in DOM order (a grid
+split around editorial blocks starts at its real rank 1, not at rank 25). Groups and
+strategies are scored by mean quality × min(n, k), carousels/recommendation containers
+(class or preceding heading: "Recommended for you", "Das könnte dir auch gefallen", "Du
+kanske också gillar", …) are discounted, and among near-equal candidates the one
+nearest the top of `<main>` wins — a 15-tile carousel no longer beats a 4-tile grid.
+
+**Junk filter:** only unscoped strategies (generic sweep, LLM) use it. Dedicated
+extractors and JSON-LD never do (short real names: "Talon 6", "Topf"). Cookie-banner
+junk is matched by URL (`javascript:`, cookie/consent/privacy links) or exact banner
+phrases, never by the word "cookie" in a title (cookie cutters are products). Dutch
+"voor"/"binnen" title prefixes are no longer junk.
+
+**Prices:** struck-through (`<del>/<s>/<strike>`, `line-through`), old/was/RRP/UVP/
+compare/unit/per/instalment nodes are skipped; sale/current/final nodes are preferred;
+`itemprop=price` first. The currency must sit against its amount — the symbol-after
+form refuses a symbol followed by digits, so "(7) £240.00" is £240.00, not "7 £".
+
+**JSON-LD:** ItemLists are walked once and sorted by `ListItem.position`; a Product's
+children (`hasVariant`, `isRelatedTo`, `offers.itemOffered`, …) are never collected;
+odd `@type`s (lists, IRIs, `schema:Product`), dict/list names and non-dict offers no
+longer crash or duplicate.
+
+**Sponsored tiles:** labels "Sponsored / Anzeige / Gesponsert / Sponsrad / Annonse /
+Annonce / Werbung / Ad", `data-sponsored`, `*-sponsored` classes →
+`SearchResult.sponsored=True`. The tile is kept at its rank (customers see it) and the
+label is stripped from the title. "sponsored" is no longer a chrome class.
+
+**LLM fallback (Haiku, `phase="fetcher"`, structured outputs via `llm_compat`):** the
+query is no longer sent to the extraction or validation prompts (knowing it invited the
+model to drop off-topic items, which makes a bad search look good). Every LLM item is
+grounded: its normalised title must appear in the page's visible text and its URL in
+the HTML, or it is dropped. The LLM container is chosen by product-link density (the
+old "first div matching items?|grid" picked Tailwind `items-center` in the header).
+
+**Search-engine API capture:** Playwright records responses from Algolia
+(`*/1/indexes/*/queries`, `nbHits`), Klevu (ksearchnet), Constructor (cnstrc),
+Bloomreach (dxpapi), Doofinder, Searchspring, Boost (mybcapps) and Nosto. The entry whose
+own query equals ours supplies `total_hits` when the page shows none, confirms an empty
+page as `zero_confirmed` when it reports 0 hits, and notes a top-hit mismatch in
+`evidence`. Autocomplete/recommendation calls carry other queries and are ignored.
+
+**Checkpointing:** `scripts/chunked_fetch.py` writes the checkpoint after every query
+(tmp file + `os.replace`), stores the full outcome (`status`, `results`, …), probes once
+per run, and on resume re-fetches everything not `ok`/`zero_confirmed` — including
+legacy list-only entries. `MAX_RESULTS=15`. Usage:
+`.venv312/bin/python scripts/chunked_fetch.py [phase1.json phase3.json out.json] [--evidence DIR]`.
+
+**Drift fixed in this file (2026-10):** "dedicated extractor `[]` is authoritative" →
+now only with a marker; "retries once on zero for dedicated hosts" → every host, up to
+3; "drive `_fetch_with_mode` in a loop to checkpoint" → `fetch_all_outcomes(on_outcome=…)`
+/ `chunked_fetch.py`; bergzeit "category-redirect TODO" and "no-hits title TODO" → done;
+cotswold "PDP guard counts tiles" → it was a path rule, now the host profile's
+`pdp_path`; manufactum "title = name span alone" → code prepends the manufacturer when
+the name does not already start with it (BRAND_SEARCH needs it).
+
+---
+
 ## General silent-failure patterns (apply to every site)
 
 These are the ways the fetcher confidently returns junk. The 4a gate exists to catch them.
@@ -32,13 +185,13 @@ These are the ways the fetcher confidently returns junk. The 4a gate exists to c
 | Pattern | Symptom | Fix |
 |---|---|---|
 | **Wrong container — recommendations/cart** | Coherent set of products that are all off-topic vs the query (e.g. all beauty for a kids query). They come from a "You might also like" / mini-cart / cross-sell carousel, not the search grid. | Scope extraction to the real search-results container by id/class; exclude drawer/carousel containers. Add a site-specific extractor. |
-| **Phantom results on a no-results page** | A query that returns "no hits" on the live site comes back with several results in the fetch — they're the no-results page's recommendation carousel ("Du kanske också gillar" / "Våra avdelningar"). Masks a real search failure (the most damaging audit error — a critical finding shown as a pass). | (1) Make the site-specific extractor AUTHORITATIVE: when it returns `[]` for a known host, the dispatcher must return `[]` and NOT fall through to cached/generic/LLM strategies (see `_has_dedicated_extractor` / `_DEDICATED_EXTRACTOR_HOSTS` in `_extract_results`). (2) Add a readiness wait so the real grid OR the no-hits marker is present before capture, else a slow render looks like zero AND triggers the junk fallback. |
+| **Phantom results on a no-results page** | A query that returns "no hits" on the live site comes back with several results in the fetch — they're the no-results page's recommendation carousel ("Du kanske också gillar" / "Våra avdelningar"). Masks a real search failure (the most damaging audit error — a critical finding shown as a pass). | (1) Never fall through to cached/generic/LLM strategies on a dedicated host (`_DEDICATED_EXTRACTOR_HOSTS`), and let `page_state()` see the no-results marker first: marker → `zero_confirmed` with `[]` even when a carousel is present; no marker → `zero_unverified`, never an "authoritative" empty list. (2) Add a readiness wait so the real grid OR the no-hits marker is present before capture, else a slow render looks like zero AND triggers the junk fallback. |
 | **JS-rendered site, static fetch returns 0/garbage** | Static probe returns 0 results or only chrome; site clearly has results in a browser. | Force Playwright. Confirm `playwright` + `playwright install chromium` are installed in `.venv312`. |
 | **Nav/footer/cookie scraped as results** | Titles like "Logga in", "Visa fler", cookie text; URLs are `#` or policy links. | Junk filter + scope to results container. Verify titles look like products. |
 | **Result order differs from the user's browser** | Fetched top-N order doesn't match what the user sees, even though each is internally consistent. | Verify empirically before blaming the site. Order can be deterministic-and-stable yet still differ from the user because of (a) the live catalog/ranking shifting over time, or (b) geo/IP-based ranking or stock-availability filters between the fetch host's egress IP and the user's. Do NOT assume "non-deterministic / personalized" without proof — sample the order over time in one session AND across headless/headed/real-UA configs first. (ahlens.se: tested identical across all four browser configs — see profile.) |
 | **Locale price formats** | Prices truncated or missing — e.g. Swedish "1 000 kr" (non-breaking-space thousands separator) parsed as "000 kr". | Normalize `\xa0`/spaces before the price regex; parse price from the card's price line directly. |
 | **Stale model id** | `404 not_found_error: model: claude-...` from `query_generator` / `judge` / `report_generator`. | These modules hardcode `_MODEL`. Keep them on the current Sonnet id (`claude-sonnet-4-6`). See also project memory "Audit LLM transport migration". |
-| **Transient false zero on a client-rendered (dedicated-extractor) host** | A query that has real results returns 0 in the full batch run, while the same query returns results when re-fetched alone. The client-side grid (e.g. Boost) didn't finish rendering before capture during sequential Playwright runs (resource contention), and the readiness wait lapsed. On authoritative-empty hosts this silently scores as a search failure. | `fetch_all_results` now **retries once on zero for `_DEDICATED_EXTRACTOR_HOSTS`** (genuine zero stays zero; transient recovers). Still: when reviewing Phase 4, spot-check any zero on a *known-present* item (esp. exact-match `featured_items`) before judging — a known product returning 0 is a false-zero suspect. (Avoca: the Shea Verbena soap exact-match returned a false 0 in the first full run; real answer is 10 with the exact product at rank 1.) |
+| **Transient false zero on a client-rendered (dedicated-extractor) host** | A query that has real results returns 0 in the full batch run, while the same query returns results when re-fetched alone. The client-side grid (e.g. Boost) didn't finish rendering before capture during sequential Playwright runs (resource contention), and the readiness wait lapsed. On authoritative-empty hosts this silently scores as a search failure. | Every host now **retries zero_unverified / timeout / thin results up to 3× with backoff**, and re-checks a confirmed zero once (see "Fetch outcomes" above). Still: when reviewing Phase 4, spot-check any zero on a *known-present* item (esp. exact-match `featured_items`) before judging — a known product returning 0 is a false-zero suspect. (Avoca: the Shea Verbena soap exact-match returned a false 0 in the first full run; real answer is 10 with the exact product at rank 1.) |
 
 **Always verify the 4a gate against a live browser load**, not just the fetcher's own
 output. The fetcher can return a self-consistent set of wrong products.
@@ -68,8 +221,9 @@ not once at the end of the batch (hard rule).** The full fetch is long (esp. hea
 Cloudflare hosts at ~20–30s/query × ~60 queries), and a mid-list failure or an
 externally-killed process must not throw away the work already done. Do NOT call
 `fetch_all_results(...)` and only `json.dump` the whole dict at the end — if it dies at
-query 45 you lose all 44. Instead drive the fetch query-by-query (e.g. `_fetch_with_mode`
-in a loop) and `json.dump` the accumulating dict after each one. Make the runner
+query 45 you lose all 44. Use `fetch_all_outcomes(..., on_outcome=save)` (the callback
+fires after every query) or `scripts/chunked_fetch.py`, which does exactly this with an
+atomic write. Make the runner
 **resumable**: load the existing checkpoint at startup and skip queries already present,
 so a restart picks up where it left off instead of refetching. (For per-host fetch mode,
 hosts like Huckberry force their mode internally so a fixed `SiteMode.PLAYWRIGHT_CHROMIUM`
@@ -78,6 +232,150 @@ in the loop is fine; otherwise probe once, then loop with the proven mode.)
 ---
 
 ## Per-site profiles
+
+### douglas.de (Douglas — German beauty & lifestyle retailer)
+
+**Fetch mode: NONE of the Python modes work. Transport is the in-app browser.**
+
+- **What the Python fetcher now reports (2026-10):** the Akamai `Access Denied` page is
+  classified `blocked` (`errors.edgesuite.net` / `Reference #`), and a page with no
+  `.product-tile` is `zero_unverified` — never an empty "zero". Only
+  `document.title == "Keine Ergebnisse gefunden | DOUGLAS"` makes a `zero_confirmed`
+  (host profile; the generic "0 Ergebnisse" marker is disabled here because the SSR
+  heading is a stale placeholder). Sponsored tiles ("Gesponsert") are flagged
+  `sponsored=True`, kept at their rank.
+
+- Akamai Bot Manager fronts the site. Every Python transport returns a 300-byte
+  `Access Denied` page (`errors.edgesuite.net`, `Reference #18...`): plain
+  `requests`/`curl` (which returns HTTP **400 "Request Too Long"** — a WAF
+  signature, not a real header problem), headless Playwright Firefox/Chromium,
+  **headed** Chromium, Playwright with `channel="chrome"`, and UA/locale spoofing.
+  Adding `douglas.de` to `_HEADED_CHROMIUM_HOSTS` does NOT fix it.
+- **What works:** same-origin `fetch()` executed inside a real browser session
+  (the in-app browser), i.e. `fetch('/de/search?q=...', {credentials:'include'})`
+  from a page already on `douglas.de`. Returns HTTP 200, ~2.3 MB of
+  **server-rendered** HTML containing the full results grid — no client render
+  needed, so `DOMParser` + the selectors below extract directly.
+
+**RATE LIMIT — a ~45-REQUEST CEILING, NOT A PACING PROBLEM (confirmed twice).**
+Two independent sessions were cut off at ~45 requests: the first at 700 ms spacing,
+the second through a real Chrome profile at ~2-4 s spacing with a mix of navigations
+and same-origin fetches. Slowing down did NOT raise the ceiling. Treat it as a
+per-session/per-fingerprint request quota that resets after a cooldown.
+- **Cooldown is long:** the first block outlasted 4, 9 and 10-minute checks and only
+  cleared somewhere between 10 and 25 minutes.
+- **Do NOT poll while blocked.** Repeated probes during the first block escalated the
+  penalty — afterwards it re-triggered after a single request, whereas a clean
+  ~25-minute wait restored full behaviour. Wait untouched, then probe ONCE.
+- **Plan for it:** a 77-query audit takes at least two sessions with a ~25 min gap.
+  Persist after every batch (see below) so a block costs nothing.
+
+**TRANSPORT — Akamai blocks headless automation but not a real Chrome profile.**
+Escalate in this order:
+1. `fetch()` from the in-app browser on a douglas.de page — worked for ~45 queries,
+   then returned 403 for the rest of the session even after the block lifted.
+2. **Claude-in-Chrome (the user's real Chrome profile) — the reliable transport.**
+   It sailed through when the in-app browser was still 403'd, which proves the block
+   is **session/fingerprint-based, not IP-based** (both share one egress IP).
+   Top-level `navigate` works; same-origin `fetch()` from a loaded douglas.de page
+   also works and is cheaper (no page render).
+   - The Chrome extension **blocks scripts that touch `sessionStorage`/cookies**, so
+     you cannot accumulate results in storage there. Return each result instead.
+   - `javascript_tool` output is capped at ~1.2 KB, which fits only ~8 compact result
+     rows. To get all 15, keep the parsed document on `window` (`window.__d`) and make
+     TWO extraction calls (rows 0-8, then 8-15) against that one fetch — do not refetch.
+   - Compress titles by stripping Douglas's repeated noise: ` für Unisex|Weiblich|Männlich`
+     and `Default Brand Line `. This is what makes 8 rows fit per call.
+   - `decodeURIComponent` on `location.search` mangles `+` and `%` in the query, so key
+     stored results by the ORIGINAL query string, never by the round-tripped one.
+
+**Structure (verified live 2026-09-14):**
+- Results grid: `.product-grid` — but there are **4 `.product-grid` blocks per
+  page**, not one. Douglas chunks the result list around editorial/CMS components
+  (e.g. 8 + 4 + 12 + 28 = 52 tiles). Concatenating them **in DOM order reproduces
+  the customer's visual order** — verified against the rendered page.
+- Tiles: `.product-grid .product-tile`. Dedupe by `a[href*="/p/"]` href.
+- **SEO-footer trap:** a naive `a[href*="/p/"]` sweep finds ~72 links but only ~52
+  are products; ~20 sit in `.seo-footer__column`. Scoping to `.product-grid`
+  excludes them.
+- **Title has no stable selector.** Inner nodes use hashed CSS-module classes
+  (`_2e4ccc17b7339b01`), so `.product-tile__brand`/`__name` do not exist. The title
+  lives in a visually-hidden leaf `<span>`. Extract structurally: **first childless
+  descendant whose text is >15 chars, does not start with a digit, and contains no
+  `€`**. Do NOT hardcode the hashed class — it changes on deploy.
+  (`innerText` gives the title as line 1 on a *rendered* page, but `DOMParser`
+  documents have no layout, so `textContent` concatenates everything — hence the
+  structural rule.)
+- **Price:** strip parenthesised unit prices (`(123,24 € / 1 kg)`) first, then take
+  the **last** remaining `\d{1,3}(?:\.\d{3})*,\d{2} €` — with a UVP present the
+  order is [UVP, selling price]; without one there is a single amount.
+- **Sponsored:** tile text contains `Gesponsert`. Paid slots are interleaved into
+  organic (seen at ranks 5–6).
+- **PDP redirect:** a query matching one product redirects to `/de/p/<id>`; the
+  destination IS the answer, extract as a 1-result list. `douglas.de` is registered
+  in `_PDP_REDIRECT_HOSTS`. Both own-retail Art-Nr. (`687121`) and the internal URL
+  id (`5009013008`) redirect; partner Art-Nr. (`M4078160`) returns a 1-result grid.
+
+**Determinism:** organic ranking is stable — 3 SSR fetches and 2 rendered loads gave
+identical ids at every position EXCEPT position 6, which is a rotating **sponsored**
+slot. Do not report position-6 churn as ranking instability.
+
+**THE RESULT HEADING IS CLIENT-RENDERED — NEVER TRUST IT FROM `fetch()` + `DOMParser`.**
+This produced a false headline finding in the first Douglas run and had to be fully
+re-collected. The `<h1>` result count and the "Meintest du" (did-you-mean) line are
+populated during **client-side hydration**. Server HTML contains only i18n TEMPLATE
+strings (`"Meintest du"`, `"Leider keine Treffer"`, `"{0} Treffer"`) from the JS bundle,
+plus a stale/placeholder `0 Ergebnisse` heading. Consequences:
+- A `fetch()`-derived heading of `0 Ergebnisse` means NOTHING. On re-check, `anastas`
+  was really `101 Ergebnisse`, `feuchtigkeitsse` `157`, `sham#poo` `1394`, `abh brow` `97`.
+- On those same queries the **product grid from `fetch()` was stale too** — `abh brow`
+  returned 1 irrelevant Catrice lipgloss via fetch but 15 correct Anastasia Beverly Hills
+  brow products when rendered. So a wrong heading is a reliable tell that the whole
+  record is stale.
+- **Rule: capture the heading, the did-you-mean line and the grid from a RENDERED page**
+  (navigate + wait), not from `fetch()`. Use `fetch()` only where you have verified for
+  that query that rendered and fetched agree.
+
+**DOUGLAS HAS A REAL DID-YOU-MEAN, AND IT WORKS.** `0 Ergebnisse für „X"` followed by
+`Meintest du: "Y" (N Treffer)` and N corrected results is CORRECT behaviour, not a defect
+— do not report it as "claims zero while showing results". Verified working on
+`lankome maskara` -> `"lancome mascara"` (30), `schampoo gegen schuppn` ->
+`"shampoo gegen schuppen"` (27), `masca ra` -> `"mascara"` (678).
+The real defect in this area is that the correction sometimes **inserts a spurious space**
+and suggests nonsense: `shampoo 250 milliliter` -> `"shampoo 2 50 milliliter"` (4 junk hits),
+`geschenk für meine mutter zum geburtstag` -> `"geschenk für m eine mutter zum geburtstag"`.
+
+**SOME QUERIES ARE NON-DETERMINISTIC — SAMPLE BEFORE CALLING A ZERO.** The identical URL
+returned a populated grid on some loads and `Keine Ergebnisse gefunden` on others, in the
+same session, with 6-7s waits: `ich suche eine mascara die meine wimpern verlängert ohne zu
+klumpen` gave ZERO,RESULTS,ZERO,ZERO,RESULTS,ZERO across 6 loads (4/6 zero). A control
+(`mascara`) was stable at 52 tiles throughout, so this is query-specific, not a load race in
+the harness. **Load any zero-result query at least 3x before recording it as a dead end**,
+and record the observed rate rather than a single verdict.
+
+**A genuine no-results page has: no `<h1>`, zero `.product-tile`, and `document.title` ==
+`"Keine Ergebnisse gefunden | DOUGLAS"`.** Use the title as the positive marker.
+
+**THE OLD `<h1>`-vs-grid NOTE (superseded, kept for context).**
+Douglas has no conventional no-results page. Always capture the `<h1>` text
+alongside the results; result count alone is meaningless on this host.
+- `lankome maskara` → h1 says **"0 Ergebnisse"**, grid shows **15 correct Lancôme
+  mascaras**. Same for `the ordianry niacinamid` (0 → 5 correct) and
+  `schampoo gegen schuppn` (0 → 15 correct anti-dandruff shampoos). The engine finds
+  the right products and tells the customer it found nothing.
+- `qwertzuiop` (keyboard mash) → h1 says **"99 Ergebnisse"**, grid shows 99
+  unrelated products (powder puff, JOOP! EdT, lash extensions, a bracelet).
+- Consequence for the audit: a non-empty result list is NOT evidence of a hit, and
+  a "0 results" heading is NOT evidence of a miss. **Relevance scoring, plus the h1
+  text, are the signal — never the count.**
+
+**Store results to disk after EVERY batch.** Keeping them only in page memory
+(`window.__dgStore`) loses everything when the tab navigates or the pane closes —
+this cost ~45 fetched queries once. Seed the in-page store from the on-disk
+checkpoint at session start so the run is genuinely resumable, and never navigate
+the tab mid-run (use `fetch()` for diagnostics too).
+
+
 
 ### baechli-bergsport.ch (Bächli Bergsport — Swiss mountain/outdoor-sports gear retailer)
 - **Site type:** PHYSICAL_GOODS. Platform: **Rent-a-Shop** (Swiss ecommerce platform, server-rendered).
@@ -131,7 +429,7 @@ in the loop is fine; otherwise probe once, then loop with the proven mode.)
 - **THE TRAP (caught at 4a, before any report):** on a genuine no-results query the header reads `Suchergebnis für »…« (0)` but the page is padded with a large fallback/recommendation grid (oak furniture, shoes, …). The generic strategy scraped 5 of those phantoms — masking a real search failure as a poor non-zero result. The NL query `ich suche eine schöne Lampe für das Wohnzimmer` reproduces it: header `(0)`, ~92 phantom tiles, zero lamps.
 - **Authoritative signal = the header count.** The h1 is `Suchergebnis für »<q>« (N)`. `_try_manufactum` parses `(N)` and returns `[]` when `N==0`. Host added to `_DEDICATED_EXTRACTOR_HOSTS` so the empty short-circuits generic/LLM fallbacks.
 - **STABLE selectors are `data-test-*` attrs** (CSS-module class names like `mf-SVlBJ1YF` are hashed per build — do NOT use them): card `div[data-test-sell-product-tile="true"]`, link `a[data-test-sell-product-link="true"]` (`/<slug>-a<id>/`), name `span[data-test-sell-product-name="true"]`, price `span[data-test-stelar-price-price="true"]`.
-- **Title = product-name span alone** (e.g. `Tischleuchte Sonnenglas®`, `Damen-Baumwollshirt, Hellblau`). It's self-contained and the brand is usually embedded — do NOT prepend the separate manufacturer span (would duplicate, e.g. "Sonnenglas Tischleuchte Sonnenglas®"). Dedup by href path (strips `?v=` variant params; distinct colour SKUs have distinct `-a<id>` paths and are kept).
+- **Title = manufacturer + product name** unless the name already starts with the manufacturer (code, since the Armedangels BRAND_SEARCH false misses; this line used to say "name span alone"). The header `(N)` now caps the tiles read at N, and an unparseable header returns `[]` → `zero_unverified` — the extractor never scrapes "all tiles" without a count. Dedup by href path (strips `?v=` variant params; distinct colour SKUs have distinct `-a<id>` paths and are kept).
 - **Price:** German format `39,90 €` / `1.099,00 €`, taken verbatim from the price span. Sale items show two prices; the price span carries the current/regular price (sale price not separately captured — fine for relevance scoring).
 - **Fix in code:** `_try_manufactum` in `src/fetcher.py`, registered in `_try_site_specific()` and `_DEDICATED_EXTRACTOR_HOSTS`.
 - **Verified at 4a:** `Armedangels` → 15 (order+prices match live; those shirts/caps really are all 39,90 €), `Tischleuchte schwarz` → 15 real lamps (varied prices), no-results NL query → 0 (was 5 phantoms before the fix).
@@ -157,8 +455,8 @@ in the loop is fine; otherwise probe once, then loop with the proven mode.)
 - **Site type:** PHYSICAL_GOODS (German outdoor/mountain-sports gear retailer). Already had a dedicated extractor (`_try_bergzeit`), registered in `_DEDICATED_EXTRACTOR_HOSTS`, `_CLIENT_RENDERED_PRICE_HOSTS` (Playwright required for prices).
 - **THE TRAP (caught reviewing the post-fetch thin/zero list, before judging) — search redirects to a FILTERED CATEGORY PAGE, not a PDP:** 4 multi-word German queries (`Regenjacke Herren`, `Regenhose Damen`, `Arc'teryx Herren`, `günstige Fahrradhelme Kinder`) all fetched as **0 results**, surviving the dedicated-host retry-on-zero unchanged (4/4 retries still 0). Live-header check confirmed real, large result counts (70–508 "Artikel"). Root cause: Bergzeit's search engine semantically resolves these queries by **redirecting from `/search/?q=...` to a filtered taxonomy page** (e.g. `/bekleidung/jacken/hardshelljacken-regenjacken/?bzsearch=...&filter.gender=Herren`, `/marken/arcteryx/?bzsearch=...&filter.gender=Herren`) — a real, on-topic category+filter landing page with the matching products, NOT a no-results page and NOT a unique-product PDP. The generic `_is_search_redirect` handling treats ANY redirect away from `/search/` as "no results, skip", discarding a perfectly good answer.
 - **Distinguish from the baechli-bergsport.ch PDP-redirect trap:** that case redirects to a single product page (unique match); this case redirects to a multi-product CATEGORY listing page (broader semantic match). Both are "redirect ≠ zero", but the extraction differs — a category-page redirect should be run back through the same `_try_bergzeit` card extractor (the destination page has the identical product-card markup as the search grid), not a PDP-specific parser.
-- **Fix (manual, not yet wired into `_try_site_specific`):** for a redirected URL, re-run `_try_bergzeit(soup, max_results)` against the redirected page's HTML directly — it extracts cleanly (15/15 results, correct titles/prices) because the category page reuses the same card markup as `/search/`. **TODO for next bergzeit audit:** wire this into `_fetch_with_mode`/`_is_search_redirect` as a general case (any redirect for a `_DEDICATED_EXTRACTOR_HOSTS` host should retry the SAME extractor against the destination page before concluding "no results", not just the PDP-specific path).
-- **SECOND TRAP (caught at judge time, NOT at 4a) — phantom recommendation results on a genuine no-results page.** `was soll ich beim Wandern im Winter anziehen` (NATURAL_LANGUAGE) fetched as 12 results in the full Phase 4 run, but the live page title is literally `Deine Suche ergab leider keine Treffer` (no results) — a genuine zero. The 12 phantom results (a tank top, summer T-shirts, a Patagonia trucker cap, short cycling bibs — nothing winter-hiking-relevant) were a recommendation carousel scraped by the generic/fallback path on the no-hits page, not real search results. This masked a real CRITICAL search failure as a passable moderate-relevance result. **The 4a gate did not catch this because the probe queries used at 4a (an exact product title + a brand) both had real results** — conversational/NL queries are exactly the kind of query likely to genuinely return zero on this engine, and weren't probed. **Lesson:** for NATURAL_LANGUAGE/SEMANTIC_MEANING/conversational queries specifically, spot-check any non-trivial result count against the live page's title/header text (`Deine Suche ergab leider keine Treffer` is the authoritative no-hits marker for this host) — don't trust a non-empty result list at face value for this query type, since the 4a probe doesn't exercise it. **TODO for code:** add bergzeit.de's no-hits title string to the authoritative-empty detection in `_try_bergzeit`/`_extract_results` so the dedicated extractor returns `[]` instead of falling through to a generic/LLM scrape on this state.
+- **DONE (2026-10):** every redirect, on every host, is now extracted on the destination (`_redirect_kind` = `landing` → REDIRECT with the grid). Original manual fix, kept for context: for a redirected URL, re-run `_try_bergzeit(soup, max_results)` against the redirected page's HTML directly — it extracts cleanly (15/15 results, correct titles/prices) because the category page reuses the same card markup as `/search/`. **TODO for next bergzeit audit:** wire this into `_fetch_with_mode`/`_is_search_redirect` as a general case (any redirect for a `_DEDICATED_EXTRACTOR_HOSTS` host should retry the SAME extractor against the destination page before concluding "no results", not just the PDP-specific path).
+- **SECOND TRAP (caught at judge time, NOT at 4a) — phantom recommendation results on a genuine no-results page.** `was soll ich beim Wandern im Winter anziehen` (NATURAL_LANGUAGE) fetched as 12 results in the full Phase 4 run, but the live page title is literally `Deine Suche ergab leider keine Treffer` (no results) — a genuine zero. The 12 phantom results (a tank top, summer T-shirts, a Patagonia trucker cap, short cycling bibs — nothing winter-hiking-relevant) were a recommendation carousel scraped by the generic/fallback path on the no-hits page, not real search results. This masked a real CRITICAL search failure as a passable moderate-relevance result. **The 4a gate did not catch this because the probe queries used at 4a (an exact product title + a brand) both had real results** — conversational/NL queries are exactly the kind of query likely to genuinely return zero on this engine, and weren't probed. **Lesson:** for NATURAL_LANGUAGE/SEMANTIC_MEANING/conversational queries specifically, spot-check any non-trivial result count against the live page's title/header text (`Deine Suche ergab leider keine Treffer` is the authoritative no-hits marker for this host) — don't trust a non-empty result list at face value for this query type, since the 4a probe doesn't exercise it. **DONE (2026-10):** "keine Treffer" is a generic `page_state` marker (plus a bergzeit profile marker) → `zero_confirmed` with `[]`; `_try_bergzeit` no longer falls back to whole-page `/p/` anchors (that fallback was where the carousel came from) — no results wrapper → `[]` → `zero_unverified`.
 - **THIRD TRAP — genuine search-backend flakiness, not a fetch bug (caught when the user manually checked the live URL after a judge override).** `Wanderjacke unter 100 Euro` (PRICE_ANCHORED) was independently re-fetched 3 times in a row: attempts 1-2 showed the no-hits page (phantom carousel), attempt 3 showed a real, correct result (4 genuine CMP Wanderjacken, all priced 53,95-69,95 €, satisfying the price constraint). The user saw the correct 4-result state live and flagged the CRITICAL/zero verdict as wrong; re-fetching confirmed the backend itself is non-deterministic for this query — same flakiness class as manufactum.de's "Tasche nicht Leder" false-zero (see that entry), but here on bergzeit.de and on a query that legitimately has BOTH a real-result state and a no-hits state depending on which backend instance/cache answers. **Lesson:** when a user disputes a zero/CRITICAL verdict with a specific live observation, don't just re-verify once — retry the live fetch 3-5x before concluding either way, since the live "ground truth" itself may be flaky, not just the local fetch.
 - **General lesson (extends the baechli lesson):** "redirected away from search" is not always "no results" in EITHER direction — it can be a unique-PDP shortcut (baechli) or a semantic-category-page shortcut (bergzeit). Always inspect the destination page content before discarding a redirect as a search failure; if the destination renders real product cards, extract from it.
 - **Verified fix:** `Regenjacke Herren` → 15 (Hardshelljacken & Regenjacken Herren grid), `Regenhose Damen` → 15, `Arc'teryx Herren` → 15 (brand page filtered to Herren), `günstige Fahrradhelme Kinder` → 15 (Fahrradhelme filtered to Kinder).
@@ -196,10 +494,23 @@ in the loop is fine; otherwise probe once, then loop with the proven mode.)
 - **Special-character normalization is strong:** `niac*inamide` (mid-word `*`) returned The Ordinary Niacinamide at rank 1 — the engine strips the injected char. Good sign for SPECIAL_CHARACTER scoring.
 - **Verified at 4a (post-fix):** exact `COSRX Advanced Snail 96 Mucin Power Essence 100 ml` → 15, exact at rank 1 (120 kr Combo Deal), ranks 1–2 match live; `NIVEA` → 15 priced NIVEA products; `niac*inamide` → 15 niacinamide products, clean titles. Live header for the COSRX query was "22 produkter".
 
+### zalando.* (Zalando — every market)
+- **Fetch mode:** headed Chromium on every `zalando.*` host (`_HEADED_CHROMIUM_HOSTS` matches `"zalando."`): headless gets a 403 / soft "Not Found" with zero products.
+- **No-results marker:** `Try a different search term or check the spelling.` (host profile) → `zero_confirmed`. The no-results page pads itself with "Recommended for you" / "Most popular - Our customers bought" carousels in the same `<article>` markup — the phantom set rotates between runs.
+- **Grid scope (2026-10):** `<article>`s from `[data-testid="product-count"]` down to the first carousel heading. No count header → `[]` → `zero_unverified` (never the whole page's articles). Readiness waits for the count header or the marker (20 s).
+- **PDP:** an exact article code redirects to the PDP (`og:type=product`); now caught generically by `_extract_pdp` → 1 result, `redirect`.
+- **Titles:** card text is line-structured; brand + name = last two lines before the first `€` line. Hashed class names — never select on them.
+
+### colourpop.com (ColourPop — Shopify, US beauty)
+- **Fetch mode:** headed Chromium with `channel="chrome"` (real Chrome binary).
+- **Grid:** `#product-grid main-product`, title `h2 a[href*="/products/"]`, price from "Regular price $N". Hidden recommendation blocks live outside `#product-grid`.
+- **No-results marker:** `0 items` (host profile, word-bounded); readiness waits for the grid or that text.
+
 ### Existing site-specific extractors (see `src/fetcher.py`)
 - **groupon** — `_try_groupon`: deal cards via `/deals/` anchors; title from `<h3>`.
 - **lyko.com** — `_try_lyko`: see full profile above (Playwright for prices; price from parent card; badge-stripped titles).
 - **bergzeit.de** — `_try_bergzeit`: `/p/<slug>/<id>/` anchors scoped to the results list (excludes footer voucher teasers); client-rendered prices → must use Playwright (`_CLIENT_RENDERED_PRICE_HOSTS`).
+- **zalando.*** / **douglas.de** / **colourpop.com** / **manufactum.de** / **imerco.dk** / **avoca.com** / **huckberry.com** / **ahlens.se** / **baechli-bergsport.ch** / **cotswoldoutdoor.com** — see their profiles above. Per-host markers, hit-count regexes, PDP path rules and readiness selectors live in `_HOST_PROFILES`.
 
 ---
 

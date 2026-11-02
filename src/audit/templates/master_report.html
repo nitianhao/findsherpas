@@ -1,3 +1,6 @@
+{#- Report prose is English (html lang="en"); queries and product titles are in the site's
+    language, so they carry their own lang + dir="auto" via la(). -#}
+{%- macro la() %}{% if site_lang %} lang="{{ site_lang }}"{% endif %} dir="auto"{% endmacro -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -918,7 +921,7 @@ strong { font-weight: 600; }
 /* ---- Stat cards ---- */
 .stat-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
   margin: 24px 0;
 }
@@ -1640,6 +1643,31 @@ strong { font-weight: 600; }
 .scroll-top-btn.is-visible{opacity:1;visibility:visible;transform:translateY(0)}
 .scroll-top-btn:hover{filter:brightness(.93)}
 .scroll-top-btn:focus-visible{outline:2px solid var(--primary,#009ba3);outline-offset:2px}
+/* Scope line, reproduction links, root causes, not-scored list */
+.cover-scope{margin-top:10px;font-size:.85rem;color:var(--muted)}
+.repro-link{font-size:.8rem;color:var(--primary);text-decoration:none;white-space:nowrap}
+.repro-link:hover{text-decoration:underline}
+.query-col a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--muted)}
+.sample-note{font-size:.85rem;color:var(--muted);margin-top:12px}
+.footnote{font-size:.8rem;color:var(--muted);margin-top:8px}
+.root-cause-list{list-style:none;padding:0;margin:16px 0 0}
+.root-cause-list li{padding:12px 0;border-top:1px solid var(--border)}
+.root-cause-list li:first-child{border-top:none}
+.root-cause-head{display:flex;gap:12px;justify-content:space-between;align-items:baseline;flex-wrap:wrap}
+.root-cause-name{font-weight:600}
+.root-cause-count{font-size:.85rem;color:var(--muted)}
+.root-cause-examples{font-size:.85rem;color:var(--muted);margin-top:4px}
+.roadmap-reach{font-size:.85rem;color:var(--muted);margin-top:6px}
+.capability-intro{margin:0 0 16px;color:var(--fg)}
+.not-scored-table{width:100%;border-collapse:collapse;font-size:.875rem}
+.not-scored-table td,.not-scored-table th{padding:8px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+@media print{
+  /* Closed <details> must print expanded (PDF export). The beforeprint handler also opens them. */
+  details{display:block}
+  details>*:not(summary){display:block!important}
+  details::details-content{display:block!important;content-visibility:visible!important}
+  .repro-link{display:none}
+}
 @media print{.scroll-top-btn{display:none!important}}
 @media print{.report-spine{display:none!important}}
 </style>
@@ -1653,7 +1681,7 @@ strong { font-weight: 600; }
   <a class="report-spine-dot" href="#improvement-map" data-target="improvement-map" aria-label="Improvement map" title="Improvement map"></a>
   <a class="report-spine-dot" href="#advanced-diagnostics" data-target="advanced-diagnostics" aria-label="Advanced diagnostics" title="Advanced diagnostics"></a>
   <a class="report-spine-dot" href="#roadmap" data-target="roadmap" aria-label="Prioritized roadmap" title="Prioritized roadmap"></a>
-  <a class="report-spine-dot" href="#risk-failures" data-target="risk-failures" aria-label="Revenue-risk failures" title="Revenue-risk failures"></a>
+  <a class="report-spine-dot" href="#risk-failures" data-target="risk-failures" aria-label="Searches that fail the shopper" title="Searches that fail the shopper"></a>
   <a class="report-spine-dot" href="#deep-dives" data-target="deep-dives" aria-label="Detailed analysis" title="Detailed analysis"></a>
   <a class="report-spine-dot" href="#appendix" data-target="appendix" aria-label="Complete test results" title="Complete test results"></a>
   <a class="report-spine-dot" href="#scope" data-target="scope" aria-label="Scope and boundaries" title="Scope and boundaries"></a>
@@ -1679,6 +1707,7 @@ strong { font-weight: 600; }
       <span class="cover-byline-separator">&middot;</span>
       <a href="https://findsherpas.com" target="_blank" rel="noopener noreferrer">Find Sherpas</a>
     </div>
+    <div class="cover-scope">{{ scope_line }}</div>
     {% if screenshot_b64 %}
     <div class="cover-screenshot" style="margin-top: 24px;">
       <img src="data:{{ screenshot_mime }};base64,{{ screenshot_b64 }}" alt="Screenshot of {{ site_name }}" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.10);" />
@@ -1690,7 +1719,7 @@ strong { font-weight: 600; }
       <p class="query-cloud-label">A sample of the {{ stats.total_queries }} real customer queries we tested</p>
       <div class="query-cloud">
         {% for q in query_cloud %}
-        <span class="qc qc-{{ q.size }}">{{ q.text }}</span>
+        <span class="qc qc-{{ q.size }}"{{ la() }}>{{ q.text }}</span>
         {% endfor %}
       </div>
     </div>
@@ -1707,7 +1736,7 @@ strong { font-weight: 600; }
       <a class="crossroads-link" href="#improvement-map">Improvement map <span>&rarr;</span></a>
       <a class="crossroads-link" href="#advanced-diagnostics">Advanced diagnostics <span>&rarr;</span></a>
       <a class="crossroads-link" href="#roadmap">Prioritized roadmap <span>&rarr;</span></a>
-      <a class="crossroads-link" href="#risk-failures">Revenue-risk failures <span>&rarr;</span></a>
+      <a class="crossroads-link" href="#risk-failures">Searches that fail the shopper <span>&rarr;</span></a>
       <a class="crossroads-link" href="#deep-dives">Detailed analysis <span>&rarr;</span></a>
       <a class="crossroads-link" href="#appendix">Complete test results <span>&rarr;</span></a>
       <a class="crossroads-link" href="#scope">Scope and boundaries <span>&rarr;</span></a>
@@ -1723,23 +1752,24 @@ strong { font-weight: 600; }
       <h3>The short version</h3>
       <p>{{ short_version.intro }}</p>
       <p>{{ short_version.risk }}</p>
-      <p><strong>{{ short_version.fix }}</strong></p>
+      {% if short_version.fix %}<p><strong>{{ short_version.fix }}</strong></p>{% endif %}
     </div>
 
     <div class="hero-stat">
-      <div class="n">{{ stats.risk_pct }}%</div>
+      <div class="n">{{ stats.fmt.pct_critical }}</div>
       <div class="txt">
-        <strong>revenue risk.</strong>
-        {{ stats.critical_count }} of {{ stats.total_queries }} tested queries cause a likely customer bounce today.
-        <em>These are queries where a customer sees a dead end: no relevant top result, wrong interpretation, or the right product buried too far down.</em>
+        <strong>of tested searches fail the shopper.</strong>
+        {{ stats.fmt.critical_of_total }} tested searches lead to a likely dead end today.
+        <em>No relevant result first, a wrong interpretation, or the right product buried too far down.</em>
       </div>
     </div>
+    <p class="sample-note">{{ labels.sample_note }}</p>
 
     <div class="tier-row">
       <div class="tier t-bad">
         <div class="tv">{{ stats.critical_count }}</div>
-        <div class="tl">Revenue risk</div>
-        <div class="td">Off-topic top result, missing interpretation, or severe ranking failure. The customer leaves.</div>
+        <div class="tl">Fails the shopper</div>
+        <div class="td">Nothing usable, an off-topic top result, or a missing interpretation. The shopper is likely to leave.</div>
       </div>
       <div class="tier t-warn">
         <div class="tv">{{ stats.friction_count }}</div>
@@ -1747,7 +1777,7 @@ strong { font-weight: 600; }
         <div class="td">The query is close, but still creates work: the best match is not surfaced cleanly enough.</div>
       </div>
       <div class="tier t-good">
-        <div class="tv">{{ stats.working_count }}</div>
+        <div class="tv">{{ stats.pass_count }}</div>
         <div class="tl">Working well</div>
         <div class="td">Top result is relevant and ranking is near-optimal. No immediate attention needed.</div>
       </div>
@@ -1755,22 +1785,27 @@ strong { font-weight: 600; }
 
     <div class="stat-row">
       <div class="stat-card">
-        <div class="stat-value warn">{{ stats.pct_retrieval_ok }}%</div>
-        <div class="stat-label">Right products found, ranked too low</div>
+        <div class="stat-value {% if stats.pct_zero_result > 20 %}bad{% elif stats.pct_zero_result > 10 %}warn{% else %}good{% endif %}">{{ stats.fmt.pct_zero_result }}</div>
+        <div class="stat-label">{{ labels.zero_result }}<sup>1</sup> ({{ stats.fmt.zero_of_total }})</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value {% if stats.avg_best_position_num > 3 %}bad{% elif stats.avg_best_position_num > 2 %}warn{% else %}good{% endif %}">#{{ stats.avg_best_position }}</div>
-        <div class="stat-label">Avg. best result position</div>
+        <div class="stat-value warn">{{ stats.fmt.pct_found_but_wrong }}</div>
+        <div class="stat-label">{{ labels.found_but_wrong }} ({{ stats.fmt.found_wrong_of_total }})</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value {% if stats.pct_top3_irrelevant_num > 30 %}bad{% elif stats.pct_top3_irrelevant_num > 15 %}warn{% else %}good{% endif %}">{{ stats.pct_top3_irrelevant }}%</div>
-        <div class="stat-label">Best result outside top 3</div>
+        <div class="stat-value {% if stats.avg_best_position > 3 %}bad{% elif stats.avg_best_position > 2 %}warn{% else %}good{% endif %}">{{ stats.fmt.avg_best_position }}</div>
+        <div class="stat-label">Avg. best result position (searches that returned products)</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value {% if stats.pct_top1_irrelevant_num > 20 %}bad{% elif stats.pct_top1_irrelevant_num > 10 %}warn{% else %}good{% endif %}">{{ stats.pct_top1_irrelevant }}%</div>
-        <div class="stat-label">Irrelevant #1 result</div>
+        <div class="stat-value {% if stats.pct_top3_irrelevant > 30 %}bad{% elif stats.pct_top3_irrelevant > 15 %}warn{% else %}good{% endif %}">{{ stats.fmt.pct_top3_irrelevant }}</div>
+        <div class="stat-label">Best match outside the top 3 (searches that returned products)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value {% if stats.pct_top1_irrelevant > 20 %}bad{% elif stats.pct_top1_irrelevant > 10 %}warn{% else %}good{% endif %}">{{ stats.fmt.pct_top1_irrelevant }}</div>
+        <div class="stat-label">Irrelevant #1 result (searches that returned products)</div>
       </div>
     </div>
+    <p class="footnote"><sup>1</sup> {{ labels.zero_result_footnote }}</p>
 
     {% if stats.worst_example %}
     <blockquote class="worst-example">
@@ -1800,7 +1835,7 @@ strong { font-weight: 600; }
           {% if item.example %}
           <div class="coverage-example">
             <span class="coverage-example-label">Example</span>
-            <span class="coverage-example-query">&ldquo;{{ item.example.query }}&rdquo;</span>
+            <span class="coverage-example-query"{{ la() }}>&ldquo;{{ item.example.query }}&rdquo;</span>
             <span class="coverage-example-detail">&mdash; {{ item.example.detail }}</span>
           </div>
           {% endif %}
@@ -1861,11 +1896,31 @@ strong { font-weight: 600; }
     </div>
   </section>
 
+  {% if root_causes %}
+  <!-- ================ ROOT CAUSES ================ -->
+  <section id="root-causes">
+    <div class="section-label">Root Causes</div>
+    <h2>One fix, many searches</h2>
+    <p>Many failures share one mechanism. Fix the mechanism once and every search below it improves.</p>
+    <ul class="root-cause-list">
+      {% for rc in root_causes %}
+      <li>
+        <div class="root-cause-head">
+          <span class="root-cause-name">{{ rc.mechanism }}</span>
+          <span class="root-cause-count">{{ rc.count }} {{ 'search' if rc.count == 1 else 'searches' }}{% if rc.critical %} &middot; {{ rc.critical }} critical{% endif %}</span>
+        </div>
+        <div class="root-cause-examples">e.g. {% for q in rc.queries[:3] %}<code{{ la() }}>{{ q }}</code>{% if not loop.last %}, {% endif %}{% endfor %}</div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
   <!-- ================ ADVANCED QUERY DIAGNOSTICS ================ -->
   <section id="advanced-diagnostics">
     <div class="section-label">Advanced Diagnostics</div>
     <h2>How the result page actually behaves</h2>
-    <p>Beyond pass/fail, these read the whole page the way a shopper does &mdash; and are drawn from the audited verdicts, not internal relevance scores.</p>
+    <p>Beyond pass/fail, these read the whole page the way a shopper does &mdash; and are drawn from the reviewed verdict for each search.</p>
 
     {% for diagnostic in advanced_diagnostics %}
     <div class="diagnostic-section sev-{{ diagnostic.headline_class }}">
@@ -1900,8 +1955,8 @@ strong { font-weight: 600; }
         <tbody>
           {% for row in diagnostic.rows %}
           <tr>
-            <td><code>{{ row.searched }}</code></td>
-            <td class="diag-got">{{ row.got }}</td>
+            <td><code{{ la() }}>{{ row.searched }}</code></td>
+            <td class="diag-got"{{ la() }}>{{ row.got }}</td>
             <td class="diag-why"><span class="diag-why-pill">{{ row.why }}</span></td>
           </tr>
           {% endfor %}
@@ -1911,7 +1966,7 @@ strong { font-weight: 600; }
       {% elif diagnostic.examples %}
       <ul class="diagnostic-list">
         {% for item in diagnostic.examples %}
-        <li><code>{{ item.code }}</code> &mdash; {{ item.detail }}</li>
+        <li><code{{ la() }}>{{ item.code }}</code> &mdash; {{ item.detail }}</li>
         {% endfor %}
       </ul>
       {% endif %}
@@ -1923,6 +1978,7 @@ strong { font-weight: 600; }
   <section id="roadmap" class="section-break-before">
     <div class="section-label">Recommendations</div>
     <h2>Prioritized Roadmap</h2>
+    {% if not roadmap_items %}<p>Every scored search passed &mdash; no fixes needed.</p>{% endif %}
 
     {% for item in roadmap_items %}
     <div class="roadmap-item">
@@ -1937,7 +1993,11 @@ strong { font-weight: 600; }
           {% if item.effort %}
           <span class="badge effort-{{ item.effort_class }}">{{ item.effort }}</span>
           {% endif %}
+          {% if item.owner %}
+          <span class="badge">{{ item.owner }}</span>
+          {% endif %}
         </div>
+        <p class="roadmap-reach">{{ item.reach }}</p>
       </div>
     </div>
     {% endfor %}
@@ -1946,15 +2006,16 @@ strong { font-weight: 600; }
   <!-- ================ BENCHMARKS ================ -->
   <section id="benchmarks" class="section-break-before">
     <div class="section-label">Industry Context</div>
-    <h2>How You Compare</h2>
+    <h2>How to Read These Numbers</h2>
+    <p style="color: var(--muted);">{{ labels.benchmark_note }}</p>
 
     <table class="benchmark-table">
       <thead>
         <tr>
           <th>Metric</th>
-          <th>Your Score</th>
-          <th>Industry Target</th>
-          <th>Source</th>
+          <th>Your Result</th>
+          <th>Target</th>
+          {% if peer_label %}<th>{{ peer_label }}</th>{% endif %}
         </tr>
       </thead>
       <tbody>
@@ -1963,39 +2024,35 @@ strong { font-weight: 600; }
           <td>{{ b.metric }}</td>
           <td class="your-score {{ b.score_class }}">{{ b.your_score }}</td>
           <td class="target">{{ b.target }}</td>
-          <td class="source">{{ b.source }}</td>
+          {% if peer_label %}<td class="source">{{ b.peer or '—' }}</td>{% endif %}
         </tr>
         {% endfor %}
       </tbody>
     </table>
 
-    <div class="callout">
-      <p><strong>70% of ecommerce sites cannot handle typos</strong> in their site search (Baymard Institute). Sites that do handle them gain a significant edge.</p>
-      <p><strong>~30% of ecommerce visitors use site search</strong>, but they generate a disproportionate share of revenue &mdash; search users convert at <strong>1.8&ndash;3x the rate</strong> of browse-only visitors (Econsultancy, Algolia).</p>
-      <p><strong>31% of site searches end at a dead end</strong> &mdash; irrelevant results or zero results &mdash; across the average ecommerce site (Baymard Institute).</p>
-      <p>The top 3 results capture <strong>~55&ndash;60% of all clicks</strong>. Results below position 3 are seen by a rapidly shrinking share of customers.</p>
-    </div>
+    <p class="sample-note">{{ labels.sample_note }}</p>
   </section>
 
   <!-- ================ REVENUE-RISK FAILURES ================ -->
   <section id="risk-failures" class="section-break-before">
-    <div class="section-label">Revenue-Risk Failures</div>
-    <h2>The queries most likely to cost sales</h2>
+    <div class="section-label">Searches That Fail the Shopper</div>
+    <h2>The searches most likely to lose the shopper</h2>
     <p class="section-intro">These examples show where the customer either sees no useful result, sees the wrong intent first, or has to dig past weaker results to find the right product.</p>
 
-    <div class="load-more-scope" data-visible-count="3" data-more-label="Load more revenue-risk failures">
+    <div class="load-more-scope" data-visible-count="3" data-more-label="Load more failing searches">
     {% for case in risk_cases %}
     <div class="risk-case load-more-item">
       <div class="case-topline">
         <span class="case-num">#{{ loop.index }}</span>
-        <code>{{ case.query }}</code>
+        <code{{ la() }}>{{ case.query }}</code>
         <span class="failure-badge">{{ case.failure_label }}</span>
+        {% if case.url %}<a class="repro-link" href="{{ case.url }}" target="_blank" rel="noopener nofollow">Try this search &rarr;</a>{% endif %}
       </div>
       <p class="case-fail">{{ case.fail }}</p>
       <div class="case-grid">
         <div>
-          <p class="case-label">Evidence</p>
-          <p class="case-copy">{{ case.evidence_text }}</p>
+          <p class="case-label">What happened</p>
+          <p class="case-copy">{{ case.text }}</p>
           <div class="case-fix"><p class="case-label">Fix</p><p>{{ case.fix }}</p></div>
         </div>
 
@@ -2015,31 +2072,25 @@ strong { font-weight: 600; }
         {% else %}
         <div class="results-panel">
           <p class="case-label">Customer saw</p>
-          {% for r in case.actual_results %}
+          {% for r in case.actual_top %}
           <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#{{ r.rank }}</span>
-              <span class="rel-track"><span class="rel-fill {{ r.score_class }}" style="width:{{ r.score_pct }}%"></span></span>
-              <span class="rel-score {{ r.score_class }}">{{ r.score }}</span>
-            </div>
-            <p>{{ r.title }}{% if r.price %} <span class="result-price">{{ r.price }}</span>{% endif %}</p>
+            <div class="rel-line"><span class="rel-rank">#{{ r.rank }}</span></div>
+            <p{{ la() }}>{{ r.title }}{% if r.price %} <span class="result-price">{{ r.price }}</span>{% endif %}</p>
           </div>
           {% endfor %}
         </div>
 
+        {% if case.ideal_top %}
         <div class="results-panel ideal-panel">
-          <p class="case-label">Should have seen</p>
-          {% for r in case.ideal_results %}
+          <p class="case-label">Should have come first</p>
+          {% for r in case.ideal_top %}
           <div class="result-row">
-            <div class="rel-line">
-              <span class="rel-rank">#{{ r.rank }}</span>
-              <span class="rel-track"><span class="rel-fill {{ r.score_class }}" style="width:{{ r.score_pct }}%"></span></span>
-              <span class="rel-score {{ r.score_class }}">{{ r.score }}</span>
-            </div>
-            <p>{{ r.title }}{% if r.price %} <span class="result-price">{{ r.price }}</span>{% endif %}</p>
+            <div class="rel-line"><span class="rel-rank">shown at #{{ r.rank }}</span></div>
+            <p{{ la() }}>{{ r.title }}{% if r.price %} <span class="result-price">{{ r.price }}</span>{% endif %}</p>
           </div>
           {% endfor %}
         </div>
+        {% endif %}
         {% endif %}
       </div>
     </div>
@@ -2060,18 +2111,19 @@ strong { font-weight: 600; }
       </summary>
 
       <div class="capability-accordion-body">
+      {% if cap.intro %}<p class="capability-intro">{{ cap.intro }}</p>{% endif %}
       {% for query in cap.queries %}
       <div class="query-example">
         <div class="query-header">
-          <div class="query-text">"{{ query.query }}"</div>
+          <div class="query-text"{{ la() }}>&ldquo;{{ query.query }}&rdquo;{% if query.url %} <a class="repro-link" href="{{ query.url }}" target="_blank" rel="noopener nofollow">Try it &rarr;</a>{% endif %}</div>
           <div class="query-category">{{ query.category }} &middot;
             <span class="severity-label {{ query.severity_class }}">{{ query.severity_short }}</span>
             {% if query.no_results %}&middot; No results returned{% else %}&middot; Best result at position #{{ query.best_position }}{% endif %}
           </div>
         </div>
         <div class="query-body">
-          {% if query.evidence %}
-          <p class="narrative">{{ query.evidence }}</p>
+          {% if query.text %}
+          <p class="narrative">{{ query.text }}</p>
           {% endif %}
           {% if query.actual_top %}
           <div class="comparison">
@@ -2079,18 +2131,20 @@ strong { font-weight: 600; }
               <h4>Customer Saw</h4>
               <ol>
                 {% for r in query.actual_top %}
-                <li>{{ r.title }}{% if r.price %} <span style="color: var(--muted);">({{ r.price }})</span>{% endif %}</li>
+                <li{{ la() }}>{{ r.title }}{% if r.price %} <span style="color: var(--muted);">({{ r.price }})</span>{% endif %}</li>
                 {% endfor %}
               </ol>
             </div>
+            {% if query.ideal_top %}
             <div class="comparison-col ideal">
-              <h4>Should Have Seen</h4>
+              <h4>Should Have Come First</h4>
               <ol>
                 {% for r in query.ideal_top %}
-                <li>{{ r.title }}{% if r.price %} <span style="color: var(--muted);">({{ r.price }})</span>{% endif %}</li>
+                <li{{ la() }}>{{ r.title }}{% if r.price %} <span style="color: var(--muted);">({{ r.price }})</span>{% endif %} <span style="color: var(--muted);">&middot; shown at #{{ r.rank }}</span></li>
                 {% endfor %}
               </ol>
             </div>
+            {% endif %}
           </div>
           {% else %}
           <p class="deadend-inline">No results returned &mdash; the customer saw an empty results page.</p>
@@ -2107,21 +2161,23 @@ strong { font-weight: 600; }
   </section>
 
   <!-- ================ WHAT'S WORKING ================ -->
+  {% if whats_working %}
   <section id="whats-working">
     <div class="section-label">Positive Findings</div>
     <h2>What's Working</h2>
     <ul class="whats-working-list">
       {% for item in whats_working %}
-      <li>{{ item }}</li>
+      <li><strong>{{ item.label }}</strong> {{ item.text }}</li>
       {% endfor %}
     </ul>
   </section>
+  {% endif %}
 
   <!-- ================ APPENDIX ================ -->
   <section id="appendix" class="section-break-before">
     <div class="section-label">Full Data</div>
     <h2>Appendix: Complete Test Results</h2>
-    <p style="color: var(--muted); margin-bottom: 16px;">All {{ appendix|length }} queries evaluated in this audit.</p>
+    <p style="color: var(--muted); margin-bottom: 16px;">All {{ appendix|length }} scored searches in this audit. Each search links to the live results page.</p>
 
     <div class="load-more-scope" data-visible-count="3" data-more-label="Load more test results">
     <table class="appendix-table">
@@ -2139,7 +2195,7 @@ strong { font-weight: 600; }
         {% for q in appendix %}
         <tr class="load-more-item">
           <td>{{ loop.index }}</td>
-          <td class="query-col">{{ q.query }}</td>
+          <td class="query-col"{{ la() }}>{% if q.url %}<a href="{{ q.url }}" target="_blank" rel="noopener nofollow">{{ q.query }}</a>{% else %}{{ q.query }}{% endif %}</td>
           <td>{{ q.category }}</td>
           <td><span class="severity-dot {{ q.severity_class }}"></span> {{ q.severity_short }}</td>
           <td>{% if q.best_position %}#{{ q.best_position }}{% else %}&mdash;{% endif %}</td>
@@ -2149,6 +2205,19 @@ strong { font-weight: 600; }
       </tbody>
     </table>
     </div>
+
+    {% if not_scored %}
+    <h3 style="margin-top: 32px;">Not scored</h3>
+    <p style="color: var(--muted);">These searches were tested but left out of every figure in this report.</p>
+    <table class="not-scored-table">
+      <thead><tr><th>Search</th><th>Why it isn't scored</th></tr></thead>
+      <tbody>
+        {% for q in not_scored %}
+        <tr><td{{ la() }}>{% if q.url %}<a href="{{ q.url }}" target="_blank" rel="noopener nofollow">{{ q.query }}</a>{% else %}{{ q.query }}{% endif %}</td><td>{{ q.reason }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
   </section>
 
   <!-- ================ SCOPE ================ -->
@@ -2158,7 +2227,7 @@ strong { font-weight: 600; }
     <div class="scope-grid">
       <div>
         <h4>Included</h4>
-        <p>Search relevance, ranking quality, retrieval gaps, query interpretation failures, visible result ordering, and prioritized fixes based on the tested query set.</p>
+        <p>Search relevance, ranking quality, retrieval gaps, query interpretation failures, visible result ordering, and prioritized fixes based on the tested query set ({{ scope_line }}).</p>
       </div>
       <div>
         <h4>Not included</h4>
@@ -2205,6 +2274,21 @@ document.addEventListener("DOMContentLoaded", function () {
     scope.appendChild(button);
   });
 });
+</script>
+
+<!-- print: expand every accordion and load-more list for PDF export -->
+<script>
+(function(){
+  var opened=[];
+  window.addEventListener("beforeprint",function(){
+    opened=[];
+    document.querySelectorAll("details:not([open])").forEach(function(d){ d.setAttribute("open",""); opened.push(d); });
+  });
+  window.addEventListener("afterprint",function(){
+    opened.forEach(function(d){ d.removeAttribute("open"); });
+    opened=[];
+  });
+})();
 </script>
 
 <!-- scroll-top-button -->

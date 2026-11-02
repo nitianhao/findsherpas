@@ -5,6 +5,9 @@ pydantic
 python-dotenv
 requests
 voyageai
-# Optional: uncomment for JS-rendered page support
-# playwright
-# playwright-stealth  # Enhanced anti-detection for Playwright (recommended with playwright)
+markupsafe
+pillow              # re-encodes the embedded cover screenshot (keeps report HTML under ~900KB)
+# Playwright renders most audited sites (it is the default fetch path, not optional).
+# After install: python -m playwright install chromium
+playwright
+playwright-stealth  # anti-detection for Playwright

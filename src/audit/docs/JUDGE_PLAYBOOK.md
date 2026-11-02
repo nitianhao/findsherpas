@@ -21,6 +21,88 @@
 
 ---
 
+## Rules version `2026-10-30` (`JUDGE_RULES_VERSION` in `src/judge.py`)
+
+Bump `JUDGE_RULES_VERSION` whenever a prompt rule or deterministic guard changes a verdict. It
+is written to the run manifest and to every KB record, and KB retrieval only serves records
+graded under the CURRENT version (or `human_reviewed`) — so stale anchors stop dragging new
+verdicts back. What this version changed:
+
+- **Structured verdicts.** The judge calls `llm_compat.structured_call` with the `JudgeVerdict`
+  schema (generation order: `observations` → `cited_results` → `evidence` → `recommended_fix`
+  → `failure_mode` → `severity`). All static rules live in the cached system prompt; per-query
+  data (results in the engine's ORIGINAL order, page hit count, deterministic checks, control
+  search, KB examples last) in the user message. Unknown/unparseable severity or failure mode
+  is a failed call (never defaulted to MODERATE / OTHER); `poor_ranking` normalises correctly.
+- **LLM failure is never silent.** One retry on `LLMResponseError`, then a stats-only verdict
+  with `judge_status='fallback'` that STILL runs every deterministic guard, is flagged in
+  `internal_notes` and is never harvested. `needs_manual_check(j)` lists fallbacks and
+  MANUAL CHECK notes for the operator.
+- **Client text vs internal notes.** `evidence` / `recommended_fix` are client-facing: no
+  scores, no reranker/LLM/calibration/override wording. Scores, judge observations, guard
+  decisions and `MANUAL CHECK:` flags go to `internal_notes` (never rendered). The old
+  `[MANUAL VERIFICATION REQUIRED]` evidence prefix is now a `MANUAL CHECK:` internal note —
+  surface those to the user exactly as before.
+- **Excluded judgments.** Untrusted fetch (`FetchStatus` not trusted) → `excluded_reason=
+  'fetch_unverified'`, no LLM call. Zero results whose control search (the query's
+  `target_term`) is also zero → `'catalog_gap'`. Excluded judgments count toward nothing.
+- **Zero-result pages are judged deterministically** (no LLM, `judge_status='deterministic'`),
+  severity CRITICAL, failure mode by category: TYPO / SPLIT_WORD / MERGED_WORDS /
+  SPECIAL_CHARACTER / PARTIAL_QUERY / PLURAL_SINGULAR / UNIT_VARIATION → NO_FUZZY_MATCHING;
+  NATURAL_LANGUAGE / SEMANTIC_MEANING / SUBJECTIVE_ATTRIBUTE / OCCASION / SEASONAL_OCCASION /
+  LONG_VERBOSE / STOP_WORD_HEAVY / SYNONYM / ABBREVIATION → NO_SEMANTIC_UNDERSTANDING;
+  CATEGORY_MAPPING / LOCALE_VARIATION / BROAD_CATEGORY → CATEGORY_MAPPING_FAILURE;
+  PRICE_ANCHORED / MULTI_ATTRIBUTE / FACET_EXTRACTION → FACET_NOT_EXTRACTED (filter words read as
+  keywords); NEGATIVE_INTENT → CONSTRAINT_DROPPED (negation word read as a keyword); everything
+  else → ZERO_RESULTS_OR_GARBAGE. Evidence never claims the store stocks the item unless the
+  control search returned products (then it cites them). No control → internal note "catalog gap
+  not ruled out". (Past data: 116/142 CRITICALs were zero pages; 54/122 zero evidences asserted
+  unverified inventory.)
+- **GIBBERISH:** zero results → PASS (correct behaviour); populated grid → CRITICAL /
+  ZERO_RESULTS_OR_GARBAGE. Both deterministic.
+- **Ranking caps.** Cosmetic only when gap < 0.20 AND first organic result >= 0.30 AND best >=
+  0.25. A set whose best result is < 0.25 is never eased (top1 0.05 / best 0.22 used to go
+  CRITICAL → MINOR → PASS). POOR_RANKING/MINOR → PASS only with an on-topic first result.
+- **Generic CRITICAL cap.** Any label: first organic result >= 0.30, no deterministic violation,
+  category not NEGATIVE_INTENT / DIRECT_MATCH / BRAND_SEARCH, and no off-topic top-3 title in
+  `cited_results` → MODERATE.
+- **CONSTRAINT_DROPPED needs a violating title** (cited by the judge, or found by the price /
+  exclusion / colour checks). Otherwise → PASS with neutral client text + MANUAL CHECK note.
+  Exception: NEGATIVE_INTENT with ≤ 3 results (negation read as an AND-keyword; nothing to cite).
+- **Multilingual, Unicode guards.** Tokens are casefolded + NFKD-folded `[^\W_]+` (kök, skål,
+  Größe stay whole). Negation: not/without/no, nicht/ohne/kein(e), utan/inte/ej, uden/ikke/uten,
+  zonder/geen, sans, … plus "X free"/"parfymfri". `TestQuery.constraints.exclude` wins when set.
+  Word-boundary + compound-head matching ("Lederjacke" violates "ohne Leder"; "laceless",
+  "lederfrei", "perfume free" do not); compounds only for DE/SV/DA/NO/NL ("Woolrich" ≠ wool).
+  Colour/material lexicons for EN/DE/SV/DA/NO/NL/FR with synonyms (GTX/Gore-Tex → waterproof;
+  merino/lambswool/Fair Isle → wool). Price limits from `constraints.price_max/min` (else parsed
+  from PRICE_ANCHORED text) are checked in code with a locale-aware parser ("1.299,00 €",
+  "kr 499", "£45"): ≥ 80 % violating or #1 violating → CRITICAL, any violation → MODERATE.
+- **Category-resemblance reclassifier** requires covering ≥ ceil(0.6 × category tokens), never
+  fires for PRICE_ANCHORED / NEGATIVE_INTENT / GIBBERISH, and only reclassifies zero-result
+  CATEGORY_MAPPING / LOCALE_VARIATION queries of ≤ 3 distinctive words ("new home present" no
+  longer maps to "House & Home").
+- **Sponsored tiles** (`SearchResult.sponsored`) are excluded from every ranking stat,
+  flooding count and constraint check (they are shown to the judge marked [SPONSORED]).
+- **Flooding-only → PASS now enforced** for TYPO / SYNONYM / ABBREVIATION / PLURAL_SINGULAR,
+  and for FACET_EXTRACTION when no title conflicts with the facet and at least half confirm it
+  (the rest get a MANUAL CHECK note).
+- **DIRECT_MATCH** title check ignores punctuation and word order ("Serum: Propolis+Niacinamide"
+  = "Serum Propolis + Niacinamide"; Douglas product-first titles) but prefers an in-order match,
+  so "Mojito Wrap GTX" is not taken for "Mojito GTX". Exact product at #2 behind a sibling
+  sharing ≥ half the query tokens → MINOR; behind a different product → MODERATE; deeper or
+  absent → at least MODERATE.
+- **Duplicate queries** in one run are judged once.
+- **KB:** files are ISO-639-1 (`kb/de.jsonl`, `kb/sv.jsonl`); new verdicts are harvested as
+  `pending` (promote with `scripts/kb_prune.py promote`), only from the default judge model,
+  never fallback/deterministic/excluded verdicts, deduped on (domain, query), and a site's own
+  records are never served while auditing it. Migration retired 41 stale records (Swedish: all
+  8 CRITICAL and all 20 MINOR POOR_RANKING, 9 MODERATE POOR_RANKING with gap < 0.20, the
+  remaining USE_CASE records; German: DIRECT_MATCH "Tischleuchte Sonnenglas®" PASS in German) — originals kept
+  as `*.jsonl.pre-migration`.
+
+---
+
 ## Calibration rules (apply to every site)
 
 - **A DIRECT_MATCH query that redirects straight to the matching product's PDP is a PASS,
@@ -139,8 +221,8 @@
   (MINOR or MODERATE). Keep the flooding as a merchandising note. (Imerco: "Le Crueset gryder"
   → Le Creuset Signature Gryde 6×; "Holmegaad vase" → Cocoon Vase 7×; "kasserolle" → Le Creuset
   Kasserolle 3×; "dækkeservietter" → RAW by Aida variants — all overridden MODERATE/MINOR
-  DUPLICATE_FLOODING → PASS.) NOT yet enforced deterministically — apply as a manual override
-  when reviewing TYPO/SYNONYM queries. Contrast with BRAND_SEARCH, where variant flooding stays MINOR.
+  DUPLICATE_FLOODING → PASS.) Enforced deterministically since rules 2026-10-30 (TYPO / SYNONYM /
+  ABBREVIATION / PLURAL_SINGULAR, and FACET_EXTRACTION when the facet is met). Contrast with BRAND_SEARCH, where variant flooding stays MINOR.
   - **Extends to ABBREVIATION when the abbreviation IS resolved (user calibration, Cotswold).**
     Same logic: an ABBREVIATION query tests whether the engine expands the short form (e.g.
     "TNF" → "The North Face"). When it does — all results on-brand/on-type — and the only
@@ -227,11 +309,13 @@
 - **Synonym-equivalent product NAMES depress reranker scores without a real relevance miss → don't read the gap as POOR_RANKING (user calibration, Cotswold).** When the query term and the catalogue's title term are exact synonyms for the SAME garment/product (e.g. "gilets" vs titles that say "Vest" — a vest *is* a gilet; same family as the bächli "Hemden"→"Shirt" loanword case), Voyage rewards the literal token match, so the few items literally titled with the query word score high (~0.75) and the synonym-titled items score low (~0.47) — but BOTH are the correct product type. The auto-judge reads the resulting score gap (here 0.289) as a material POOR_RANKING and the synonym item at #1 as a miss. It isn't: the #1 is a correct answer, the whole page is on-type, and the plural/term resolved fine → PASS (note the cosmetic "literal-term items rank below synonyms" as merchandising). **Check whether the query word and the title word are synonyms for the identical product before treating a reranker score gap as a ranking failure** — applies to PLURAL_SINGULAR/SYNONYM/CATEGORY queries in any language, not just loanwords.
 
 - **PRICE_ANCHORED zero → NO_SEMANTIC_UNDERSTANDING (price-parse failure), not CATEGORY_MAPPING_FAILURE (user calibration, Cotswold).** When a price-anchored query ("waterproof jacket under £100", "day hiking pack under £50", "walking boots over £150") returns zero, the auto-judge tends to reclassify it CATEGORY_MAPPING_FAILURE because the product-term half ("waterproof jacket") resembles a real site category. That's the wrong root cause: the product term alone returns plenty of stock — it's the price clause ("under £100") that kills the query, because the engine matches "under"/"£100" as literal AND-keywords no title contains. The real, more fixable finding is that search has no price-range parsing → NO_SEMANTIC_UNDERSTANDING (CRITICAL). Same as the SEMANTIC/NATURAL_LANGUAGE exemptions from the category-mapping reclassifier: a price clause is a constraint the engine can't interpret, not a taxonomy-mapping gap. (Confirm by testing the product term alone — if it returns results, the price clause is the AND-killer.)
+  - **Superseded 2026-10-30:** zero-result PRICE_ANCHORED is now mapped deterministically to FACET_NOT_EXTRACTED (the price clause is a filter read as keywords). The lesson above stands — it is never CATEGORY_MAPPING_FAILURE; PRICE_ANCHORED is exempt from the category reclassifier.
 
 - **A SPLIT_WORD "success" can be FAKED by a brand/word collision — verify the FULL category returned, not just that a couple of on-type items appear (user calibration, Cotswold).** `jack et` (split of "jacket") auto-PASSed with the judge asserting "the engine rejoined jack+et into jacket." It did NOT: it matched the token "jack" → the **Jack Wolfskin** brand and returned only 3 Jack Wolfskin items — with a Kids Pompom **Beanie** at #1. The two jackets at #2/#3 were coincidence (the brand makes jackets), not rejoining. The tell: a real rejoin to "jacket" returns the site-wide multi-brand jacket assortment (hundreds, as the bare word does); a thin single-brand set whose #1 is off-type means the split was never normalized — a token collided with a brand/other word. **Before passing a SPLIT_WORD/MERGED_WORDS query, check (a) is the result set the full expected category or a thin brand-coincidence set, and (b) is rank #1 actually the target product type.** If thin + off-type #1, it's failed normalization (MODERATE/NO_FUZZY_MATCHING), not a pass. Distinct from the legit bergzeit "Wandaschuhe→Handschuhe" PASS, where the garbled word was genuinely closer to a real word and the engine returned a CLEAN, FULL set of that word's products.
 
 > **CRITICAL — playbook ≠ judge prompt.** The judge LLM does NOT read these `.md` playbooks.
-> At runtime it only sees the prompt hard-coded in `_build_prompt` (`src/judge.py`) plus
+> At runtime it only sees the system prompt in `_build_system_prompt` + the per-query message
+> from `_build_prompt` (`src/judge.py`) plus
 > calibration examples harvested into the per-language KB (`judge_kb`). A calibration rule
 > only changes the verdict once it is written into the **prompt** (and/or harvested into the
 > KB). When you add a rule here, you MUST also encode it in `_build_prompt`, or the judge
@@ -274,7 +358,8 @@
   when the brand name appears in the result titles. If the brand is absent from ALL titles
   (e.g. "Never Fully Dressed dress", "Jellycat soft toy" — titles carry product names, not
   the brand), the automated verdict is a guess that could mask brand-bleed. **Do NOT
-  auto-pass.** The judge flags these `[MANUAL VERIFICATION REQUIRED]` (deterministic guard
+  auto-pass.** The judge flags these with a `MANUAL CHECK:` internal note (was a
+  `[MANUAL VERIFICATION REQUIRED]` evidence prefix before 2026-10-30; deterministic guard
   `_brand_search_unverifiable` in `_judge_single_query`), and during the workflow you MUST
   surface them to the user for manual brand confirmation before finalizing. A correct-looking
   PASS here is luck, not verification.
@@ -323,7 +408,8 @@ title rules** (now enforced in the judge prompt):
   MULTI_ATTRIBUTE / FACET colour or material constraint appears in NONE of the result titles
   (e.g. "black boots" → boot titles rarely state colour), the automated PASS is a guess —
   the engine may or may not have honoured the constraint, and we can't tell from titles. Do
-  NOT silently pass these: the judge now appends `[MANUAL VERIFICATION REQUIRED]` (deterministic
+  NOT silently pass these: the judge adds a `MANUAL CHECK:` internal note (formerly the
+  `[MANUAL VERIFICATION REQUIRED]` evidence prefix; deterministic
   guard `_unverifiable_constraint_token` in `_judge_single_query`, using the `_MA_COLOURS` /
   `_MA_MATERIALS` vocab), mirroring the BRAND_SEARCH unverifiable gate. During the workflow,
   **surface these to the user for manual confirmation** before finalizing. (Skipped when a
@@ -334,6 +420,33 @@ title rules** (now enforced in the judge prompt):
 ---
 
 ## Per-site profiles
+
+### zalando.ie (Zalando — IE marketplace, English)
+
+- **DIRECT_MATCH: the named product must be at position #1 — line present but buried/off-colour
+  is CRITICAL, not MODERATE (user calibration, Zalando).** The auto-judge holds a DIRECT_MATCH
+  miss at MODERATE whenever the product *line* appears somewhere on the page. Override up to
+  CRITICAL when the exact product (name + colourway) is absent from the whole result set AND
+  rank #1 is a different model. (`FIREBIRD BARREL PANTS - Tracksuit bottoms - aurora coffee` →
+  #1 CHECKS TROUSER LOOSE PANTS matched on the colour token alone; BARREL PANTS present only in
+  black at #4; the aurora-coffee FIREBIRD LOOSE, top relevance 0.867, buried at #13.) The bar is
+  position, not presence: "it's on the page at #4" is not a mitigation.
+
+- **DIRECT_MATCH keyword leakage stays MODERATE — the fixed 15-slot grid is NOT an excuse
+  (user calibration, Zalando).** Zalando always pads a query to 15 result slots, so an honest
+  short result set is architecturally unavailable. Do NOT downgrade DIRECT_MATCH leakage to
+  MINOR on that basis: on an exact product-title query the shopper named one precise item, and
+  filling the remaining slots with *different product lines* (JORJUPITOR / JJTUNE / JORTOAST /
+  JOROMBRE for a JORATOCHA query) and *different brands* (Only & Sons) is still a real defect.
+  MODERATE minimum. The correct fix is a title-exact-match mode (product + its colour/size
+  variants pinned, everything else visually separated as "related products"), not a shorter page.
+- **Zalando titles carry the colour explicitly (`Brand NAME - Type - colour`), so colour
+  constraints are ALWAYS title-verifiable here.** Never fall back to
+  `[MANUAL VERIFICATION REQUIRED]` for a colour constraint on this host, and always check the
+  colour clause even on non-FACET categories: the JORATOCHA DIRECT_MATCH query named "black"
+  yet returned ice water / buttercream / periscope / antique white / bright white — colour
+  dropped as a soft keyword. Cite the specific off-colour titles in the evidence.
+
 
 ### baechli-bergsport.ch (Bächli Bergsport)
 - **Off-category filler at ranks #2-6 overridden PASS → MODERATE/POOR_RANKING (user calibration).** `Regenjacke` (SYNONYM) → #1 correct rain jacket (0.80, verified against live screenshot — this IS the real site ranking, not a fetch artifact), but #3-6 are a hip pack, two backpacks, and a repair kit — none of which belong on a rain-jacket query at all. The LLM judge defaulted to PASS via the "cosmetic reorder among near-equal results" rule because displacement=0 (the customer's #1 was already best). User overrode: those off-category items have no legitimate reason to occupy top-of-page real estate just because the customer's #1 happened to be correct — applies the existing "thin match padded with off-category filler → POOR_RANKING/MODERATE" calibration rule even though it wasn't an exact case match (the match here isn't "thin" — 15 results — but several of them are flatly wrong product types). **Generalizes:** don't let a correct #1 alone justify PASS when several of the next handful of slots are off-category filler; check the WHOLE visible page, not just whether displacement is 0.
@@ -368,6 +481,11 @@ title rules** (now enforced in the judge prompt):
 - **Swedish gender token `herr` (men) collides with English "her" (women) — real PARTIAL_KEYWORD_MATCH (user calibration).** `doft herr` (men's scent) returned an organic top of Gosh **"For Her"** (women's) fragrances/deodorants; men's fragrances buried at #12-14. The engine matched `doft` + the English word "her" inside the product names and inverted the gender intent. Rate MODERATE/PARTIAL_KEYWORD_MATCH (gender token dropped, majority of page matches only the secondary term). Watch other Swedish gender/loanword tokens for the same substring collision (`herr`, `dam`) on this multilingual catalog.
 - **Gender/recipient intent is dropped systemically (user calibration) — MODERATE/PARTIAL_KEYWORD_MATCH.** Confirmed twice: `doft herr` (men → women's Gosh "For Her") and `present till pojkvän parfym` (boyfriend/male → majority women's fragrances: Women'secret ×4, Narciso For Her, Prada Donna). The engine matches the product/occasion tokens but ignores the recipient-gender token (`herr`, `pojkvän`). Even when a couple of correct-gender items rank at #1-2 (pojkvän case: Hugo Boss men's at #1-2), if the MAJORITY of the page is the wrong gender it's PARTIAL_KEYWORD_MATCH (correct top-2 keeps it MODERATE, not CRITICAL). Recurring theme worth a report callout.
 - **DIRECT_MATCH on Lyko returns the full brand-related grid, and that's fine.** An exact-title query returns the exact product at #1 then the rest of that brand's related line (variants, other serums/creams) — normal e-commerce behavior, not leakage. PASS as long as the exact product leads. (Query 1: COSRX Snail 96 Essence → exact #1, all 15 COSRX → PASS.)
+
+### douglas.de (Douglas — German multi-brand beauty)
+- **DIRECT_MATCH false-fail from title WORD ORDER (user calibration).** Douglas renders product titles **product-first** (`Glow Serum Beauty of Joseon Propolis + Niacinamide 30 ml`), while Phase-1 `featured_items` captured them **brand-first** (`Beauty of Joseon Glow Serum Propolis + Niacinamide 30 ml`). The deterministic DIRECT_MATCH guard does a literal substring check on the #1 title, so every Douglas exact-title query auto-fails MODERATE/PARTIAL_KEYWORD_MATCH even when the single returned result IS the exact product (rel 0.95, one result, no leakage). User overrode → **PASS**. Same class as the Lyko punctuation false-fail, extended to word order. **Before failing a Douglas DIRECT_MATCH, compare TOKENS (brand + product + variant + size), not substring order** — if the same tokens are present in the #1 title, it's a PASS. **Fix at source:** Phase-1 `featured_items` for douglas.de must use the exact on-site title spelling and word order (product-first).
+
+---
 
 ## When you learn something new
 

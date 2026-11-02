@@ -1,12 +1,15 @@
 from __future__ import annotations
 
-import json
+import hashlib
 import logging
-import sys
+import os
+from datetime import datetime, timezone
+from typing import Optional
 
-import anthropic
 from dotenv import load_dotenv
+from pydantic import BaseModel
 
+from src.llm_compat import structured_call
 from src.models import (
     CAPABILITY_CATEGORY_MAP,
     SITE_TYPE_DEFAULTS,
@@ -20,7 +23,8 @@ load_dotenv(override=True)
 
 logger = logging.getLogger(__name__)
 
-_MODEL = "claude-haiku-4-5-20251001"
+# Overridable per-run; unset env = unchanged default. See docs/CASE_STUDY_PLAYBOOK.md.
+_MODEL = os.environ.get("AUDIT_MODEL_CATEGORIES", "claude-haiku-4-5-20251001")
 
 # ---------------------------------------------------------------------------
 # Human-readable description for every QueryCategory
@@ -128,7 +132,23 @@ CATEGORY_DESCRIPTIONS: dict[QueryCategory, str] = {
         "Queries where a word is a filter value (e.g. location, colour) not a "
         "keyword — tests whether the engine parses facets from free text"
     ),
+    QueryCategory.GIBBERISH: (
+        "Pure keyboard mash (e.g. 'qwertzuiop', 'xkvbnmwrtsdfg') — the correct answer is "
+        "ZERO results; tests whether the engine has a no-results state at all"
+    ),
+    # Retired: kept only so old reports render. Never offered or selected.
+    QueryCategory.BROAD_CATEGORY: (
+        "(Retired) The site's own category term typed as-is — superseded by CATEGORY_MAPPING"
+    ),
 }
+
+# Categories the selector may offer / return. BROAD_CATEGORY is retired (CATEGORIES_PLAYBOOK).
+RETIRED_CATEGORIES: frozenset[QueryCategory] = frozenset({QueryCategory.BROAD_CATEGORY})
+OFFERABLE_CATEGORIES: list[QueryCategory] = [c for c in QueryCategory if c not in RETIRED_CATEGORIES]
+
+# Bounds stated in the prompt and the playbook; enforced in code, not just requested.
+MIN_CATEGORIES = 10
+MAX_CATEGORIES = 18
 
 
 # ---------------------------------------------------------------------------
@@ -136,64 +156,57 @@ CATEGORY_DESCRIPTIONS: dict[QueryCategory, str] = {
 # ---------------------------------------------------------------------------
 
 
-def _build_prompt(site_context: SiteContext, default_categories: list[QueryCategory]) -> str:
-    """Build the prompt for Haiku to adjust category selection."""
+def _strict_llm() -> bool:
+    """AUDIT_STRICT_LLM (default on): raise instead of falling back when an LLM step fails."""
+    return os.environ.get("AUDIT_STRICT_LLM", "1").strip().lower() not in ("0", "false", "no", "off", "")
 
-    defaults_block = "\n".join(
-        f"  - {cat}: {CATEGORY_DESCRIPTIONS[QueryCategory(cat)]}"
-        for cat in default_categories
-    )
 
-    all_categories_block = "\n".join(
-        f"  - {cat.value}: {desc}"
-        for cat, desc in CATEGORY_DESCRIPTIONS.items()
-    )
-
-    nav_list = ", ".join(site_context.nav_categories[:30]) if site_context.nav_categories else "(none detected)"
-    brands_list = ", ".join(site_context.brands[:20]) if site_context.brands else "(none detected)"
-    items_list = ", ".join(site_context.featured_items[:20]) if site_context.featured_items else "(none detected)"
-
+def _system_prompt() -> str:
+    """Static rules + the full category library (cached across calls)."""
+    library = "\n".join(f"  - {cat.value}: {CATEGORY_DESCRIPTIONS[cat]}" for cat in OFFERABLE_CATEGORIES)
     return f"""You are helping select which search-quality test categories to run for an ecommerce site audit.
 
-## Site Information
+## Full Library of Available Categories ({len(OFFERABLE_CATEGORIES)} total)
+{library}
+
+## Your Task
+Review the site information and decide whether the default category selection for the detected site type should be adjusted.
+
+Rules:
+- First decide the site type. Set site_type_override to PHYSICAL_GOODS, SERVICES_EXPERIENCES or MARKETPLACE_MIXED ONLY if the detected type is clearly wrong based on the site data; otherwise leave it null. Explain in site_type_reason either way.
+- Only ADD categories that are clearly relevant based on the site context. Only use names from the library above.
+- Only REMOVE categories that clearly don't apply (e.g. SKU_MODEL_NUMBER for a pure services site with no model numbers).
+- Keep changes minimal. The defaults are well-chosen; only adjust when there's a clear reason from the site data.
+- The final set should contain 12-16 categories. Never go below {MIN_CATEGORIES} or above {MAX_CATEGORIES}.
+- Each add/remove must include a brief reason tied to something specific you see in the site data."""
+
+
+def _build_prompt(site_context: SiteContext, default_categories: list[QueryCategory]) -> str:
+    """Per-call user prompt: site data + the defaults for its site type."""
+
+    defaults_block = "\n".join(
+        f"  - {QueryCategory(cat).value}: {CATEGORY_DESCRIPTIONS[QueryCategory(cat)]}"
+        for cat in default_categories
+    )
+    nav_list = ", ".join(site_context.nav_categories[:30]) if site_context.nav_categories else "(none detected)"
+    brands_list = ", ".join(site_context.brands[:20]) if site_context.brands else "(none detected)"
+    items_list = " | ".join(site_context.featured_items[:20]) if site_context.featured_items else "(none detected)"
+    sample = site_context.catalog_sample or []
+    sample_list = " | ".join(sample[:40]) if sample else "(none sampled)"
+
+    return f"""## Site Information
 - **URL**: {site_context.url}
 - **Site name**: {site_context.site_name or "(unknown)"}
 - **Detected site type**: {site_context.site_type}
+- **Language / locale**: {site_context.primary_language} / {site_context.locale or "(unknown)"}
 - **Meta description**: {site_context.raw_meta_description or "(none)"}
 - **Navigation categories**: {nav_list}
 - **Brands found**: {brands_list}
 - **Featured items**: {items_list}
+- **Sampled catalog titles ({len(sample)})**: {sample_list}
 
 ## Current Default Categories for {site_context.site_type}
-{defaults_block}
-
-## Full Library of Available Categories (26 total)
-{all_categories_block}
-
-## Your Task
-Review the site information and decide whether the default category selection should be adjusted.
-
-Rules:
-- Only ADD categories that are clearly relevant based on the homepage context you see above.
-- Only REMOVE categories that clearly don't apply (e.g. SKU_MODEL_NUMBER for a pure services site with no model numbers).
-- Keep changes minimal. The defaults are well-chosen; only adjust when there's a clear reason from the site data.
-- The final set should contain 12-16 categories. Don't go below 10 or above 18.
-- Each add/remove must include a brief reason tied to something specific you see in the site data.
-
-Return ONLY a JSON object (no markdown fences, no commentary) with this exact structure:
-{{
-  "add": [
-    {{"category": "CATEGORY_NAME", "reason": "one-line reason"}},
-    ...
-  ],
-  "remove": [
-    {{"category": "CATEGORY_NAME", "reason": "one-line reason"}},
-    ...
-  ],
-  "site_type_override": null
-}}
-
-Set site_type_override to "PHYSICAL_GOODS", "SERVICES_EXPERIENCES", or "MARKETPLACE_MIXED" ONLY if the detected type is clearly wrong based on the site data. Otherwise leave it null."""
+{defaults_block}"""
 
 
 # ---------------------------------------------------------------------------
@@ -201,85 +214,110 @@ Set site_type_override to "PHYSICAL_GOODS", "SERVICES_EXPERIENCES", or "MARKETPL
 # ---------------------------------------------------------------------------
 
 
-def _call_haiku(prompt: str) -> dict | None:
-    """Call Claude Haiku and return parsed JSON, or None on any failure."""
-    try:
-        client = anthropic.Anthropic()
-        response = client.messages.create(
-            model=_MODEL,
-            max_tokens=1000,
-            temperature=0.2,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        raw = response.content[0].text.strip()
-        # Strip markdown fences if Haiku wraps anyway
-        if raw.startswith("```"):
-            raw = raw.split("\n", 1)[1] if "\n" in raw else raw[3:]
-            if raw.endswith("```"):
-                raw = raw[:-3]
-            raw = raw.strip()
-        return json.loads(raw)
-    except anthropic.APIError as e:
-        logger.warning("Haiku API error: %s", e)
-        return None
-    except (json.JSONDecodeError, IndexError, KeyError) as e:
-        logger.warning("Failed to parse Haiku response: %s", e)
-        return None
-    except Exception as e:
-        logger.warning("Unexpected error calling Haiku: %s", e)
-        return None
+class CategoryChange(BaseModel):
+    category: QueryCategory
+    reason: str
+
+
+class CategoryAdjustments(BaseModel):
+    """Structured output. Site type is settled first, so the add/remove list is reasoned
+    against the right defaults."""
+
+    site_type_reason: str
+    site_type_override: Optional[SiteType] = None
+    add: list[CategoryChange]
+    remove: list[CategoryChange]
+
+
+def _call_llm(system: str, user: str, client=None) -> CategoryAdjustments:
+    """One structured call (phase="categories"). Raises on any failure."""
+    return structured_call(
+        model=_MODEL, system=system, user=user, schema=CategoryAdjustments,
+        max_tokens=2000, phase="categories", temperature=0.2, client=client,
+    )
+
+
+def _as_dict(resp) -> dict:
+    if isinstance(resp, BaseModel):
+        return resp.model_dump(mode="json")
+    return dict(resp or {})
 
 
 def _apply_adjustments(
     base: list[QueryCategory],
-    haiku_response: dict,
+    llm_response: dict | BaseModel,
     site_context: SiteContext,
 ) -> list[QueryCategory]:
-    """Apply Haiku's add/remove/override to the base category list."""
+    """Apply the LLM's add/remove to ``base`` and enforce the 10-18 bounds.
 
-    # Handle site_type_override — swap base defaults first
-    override = haiku_response.get("site_type_override")
-    if override and override in {e.value for e in SiteType}:
-        new_type = SiteType(override)
-        if new_type.value != site_context.site_type:
-            logger.info(
-                "Haiku overrode site_type: %s -> %s",
-                site_context.site_type,
-                new_type.value,
-            )
-            base = list(SITE_TYPE_DEFAULTS.get(new_type, base))
-
+    ``site_type_override`` is handled by :func:`select_categories` (it changes which defaults
+    the adjustments are reasoned against); it is ignored here.
+    """
+    data = _as_dict(llm_response)
     current = list(base)
-    valid_names = {e.value for e in QueryCategory}
+    valid_names = {e.value for e in OFFERABLE_CATEGORIES}
+    removed: list[QueryCategory] = []
+    added: list[QueryCategory] = []
 
     # Removals
-    for entry in haiku_response.get("remove", []):
-        cat_name = entry.get("category", "")
+    for entry in data.get("remove", []) or []:
+        if not isinstance(entry, dict):
+            continue
+        cat_name = str(entry.get("category") or "")
         reason = entry.get("reason", "")
         if cat_name not in valid_names:
-            logger.warning("Haiku tried to remove invalid category: %s", cat_name)
+            logger.warning("LLM tried to remove invalid/retired category: %s", cat_name)
             continue
         cat = QueryCategory(cat_name)
         if cat in current:
             current.remove(cat)
+            removed.append(cat)
             logger.info("Removed %s — %s", cat_name, reason)
-        else:
-            logger.debug("Haiku wanted to remove %s but it was not in the list", cat_name)
 
     # Additions
-    for entry in haiku_response.get("add", []):
-        cat_name = entry.get("category", "")
+    for entry in data.get("add", []) or []:
+        if not isinstance(entry, dict):
+            continue
+        cat_name = str(entry.get("category") or "")
         reason = entry.get("reason", "")
         if cat_name not in valid_names:
-            logger.warning("Haiku tried to add invalid category: %s", cat_name)
+            logger.warning("LLM tried to add invalid/retired category: %s", cat_name)
             continue
         cat = QueryCategory(cat_name)
         if cat not in current:
             current.append(cat)
+            added.append(cat)
             logger.info("Added %s — %s", cat_name, reason)
-        else:
-            logger.debug("Haiku wanted to add %s but it was already present", cat_name)
 
+    return _enforce_bounds(current, base, removed, added)
+
+
+def _enforce_bounds(
+    current: list[QueryCategory],
+    base: list[QueryCategory],
+    removed: list[QueryCategory] | None = None,
+    added: list[QueryCategory] | None = None,
+) -> list[QueryCategory]:
+    """Drop retired categories; keep the set within MIN_CATEGORIES..MAX_CATEGORIES."""
+    current = [c for c in current if c not in RETIRED_CATEGORIES]
+    # Too many: drop the latest additions first, then trailing entries.
+    for cat in reversed(list(added or [])):
+        if len(current) <= MAX_CATEGORIES:
+            break
+        if cat in current:
+            current.remove(cat)
+            logger.warning("Category cap %d: dropped added %s", MAX_CATEGORIES, cat.value)
+    while len(current) > MAX_CATEGORIES:
+        logger.warning("Category cap %d: dropped %s", MAX_CATEGORIES, current[-1].value)
+        current.pop()
+    # Too few: restore removed defaults, then other defaults, then the library in order.
+    refill = [*(removed or []), *base, *OFFERABLE_CATEGORIES]
+    for cat in refill:
+        if len(current) >= MIN_CATEGORIES:
+            break
+        if cat not in current and cat not in RETIRED_CATEGORIES:
+            current.append(cat)
+            logger.warning("Category floor %d: restored %s", MIN_CATEGORIES, cat.value)
     return current
 
 
@@ -288,29 +326,60 @@ def _apply_adjustments(
 # ---------------------------------------------------------------------------
 
 
-def select_categories(site_context: SiteContext) -> list[QueryCategory]:
+def _defaults_for(site_type: SiteType) -> list[QueryCategory]:
+    return list(SITE_TYPE_DEFAULTS.get(site_type, SITE_TYPE_DEFAULTS[SiteType.MARKETPLACE_MIXED]))
+
+
+def select_categories(site_context: SiteContext, *, client=None) -> list[QueryCategory]:
     """Select which query categories to test for a given site.
 
-    Starts from hardcoded defaults per site type, then uses a cheap Haiku call
-    to adjust the selection based on actual homepage context.  Falls back to
-    unmodified defaults if the LLM call fails.
+    Starts from hardcoded defaults per site type, then one structured LLM call adjusts the
+    selection from the site context. If the LLM corrects the site type, ``site_context.site_type``
+    is updated and the adjustment is re-asked against the new type's defaults (adjustments
+    reasoned against the wrong defaults are discarded).
+
+    Provenance lands in ``site_context.provenance``: ``categories`` ('llm' or
+    'fallback: <error>'), ``categories_model``, ``categories_prompt_sha256``,
+    ``categories_generated_at``, ``categories_adjustments``. With ``AUDIT_STRICT_LLM`` on (the
+    default) an LLM failure raises instead of falling back to the unmodified defaults.
     """
+    prov = site_context.provenance
     site_type = SiteType(site_context.site_type)
-    default_categories = list(SITE_TYPE_DEFAULTS.get(site_type, SITE_TYPE_DEFAULTS[SiteType.MARKETPLACE_MIXED]))
+    system = _system_prompt()
+    prov["categories_model"] = _MODEL
+    prov["categories_generated_at"] = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
-    prompt = _build_prompt(site_context, default_categories)
-    haiku_response = _call_haiku(prompt)
+    response: CategoryAdjustments | None = None
+    default_categories = _defaults_for(site_type)
+    for round_no in (1, 2):
+        user = _build_prompt(site_context, default_categories)
+        prov["categories_prompt_sha256"] = hashlib.sha256(f"{system}\n\n{user}".encode()).hexdigest()
+        try:
+            response = _call_llm(system, user, client=client)
+        except Exception as e:
+            prov["categories"] = f"fallback: {type(e).__name__}: {e}"[:500]
+            logger.error("Category selection LLM call FAILED — using unmodified defaults for %s: %s",
+                         site_type.value, prov["categories"])
+            if _strict_llm():
+                raise
+            return _enforce_bounds(default_categories, default_categories)
 
-    if haiku_response is None:
-        logger.warning("Haiku call failed; using unmodified defaults for %s", site_type.value)
-        return default_categories
+        override = response.site_type_override
+        override = SiteType(override) if override else None
+        if override is None or override == site_type or round_no == 2:
+            break
+        logger.warning("LLM corrected site_type: %s -> %s (%s)", site_type.value, override.value,
+                       response.site_type_reason)
+        prov["categories_site_type_override"] = f"{site_type.value} -> {override.value}: {response.site_type_reason}"[:500]
+        site_type = override
+        site_context.site_type = override.value
+        default_categories = _defaults_for(site_type)
 
-    adjusted = _apply_adjustments(default_categories, haiku_response, site_context)
-
-    if not adjusted:
-        logger.warning("Adjustment resulted in empty list; falling back to defaults")
-        return default_categories
-
+    adjusted = _apply_adjustments(default_categories, response, site_context)
+    prov["categories"] = "llm"
+    changes = [f"+{c.category.value if hasattr(c.category, 'value') else c.category} ({c.reason})" for c in response.add]
+    changes += [f"-{c.category.value if hasattr(c.category, 'value') else c.category} ({c.reason})" for c in response.remove]
+    prov["categories_adjustments"] = "; ".join(changes)[:1000] or "none"
     return adjusted
 
 
@@ -353,3 +422,4 @@ if __name__ == "__main__":
     print(f"Selected {len(categories)} categories:")
     for cat in categories:
         print(f"  - {cat.value}: {CATEGORY_DESCRIPTIONS[cat]}")
+    print(f"Provenance: {demo_context.provenance}")

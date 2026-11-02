@@ -38,6 +38,11 @@ class QueryCategory(str, Enum):
     SEMANTIC_MEANING = "SEMANTIC_MEANING"
     CATEGORY_MAPPING = "CATEGORY_MAPPING"
     FACET_EXTRACTION = "FACET_EXTRACTION"
+    # Pure keyboard-mash. The CORRECT behaviour is ZERO results: a search engine
+    # that returns a populated grid for gibberish has no no-results state, which
+    # means a mistyping customer hits a dead end dressed as a result page, and the
+    # retailer's own search analytics cannot separate real demand from noise.
+    GIBBERISH = "GIBBERISH"
 
 
 class CapabilityGroup(str, Enum):
@@ -87,6 +92,7 @@ CAPABILITY_CATEGORY_MAP: dict[CapabilityGroup, list[QueryCategory]] = {
         QueryCategory.SPLIT_WORD,
         QueryCategory.SPECIAL_CHARACTER,
         QueryCategory.PARTIAL_QUERY,
+        QueryCategory.GIBBERISH,
     ],
     CapabilityGroup.LANGUAGE_UNDERSTANDING: [
         QueryCategory.SYNONYM,
@@ -205,6 +211,31 @@ class SiteContext(BaseModel):
         default="English",
         description="Primary language customers use to search this site (e.g. 'Swedish', 'English', 'German'). Used to ensure test queries are generated in the correct language.",
     )
+    locale: str = Field(
+        default="",
+        description="BCP-47 locale of the audited storefront, e.g. 'en-GB', 'de-CH'. Empty when unknown.",
+    )
+    currency: str = Field(
+        default="",
+        description="ISO-4217 currency of displayed prices (from JSON-LD priceCurrency or price text). Empty when unknown.",
+    )
+    catalog_sample: list[str] = Field(
+        default_factory=list,
+        description="Real product titles sampled from the homepage and several seed searches. Grounds query generation in what the catalog actually stocks.",
+    )
+    provenance: dict[str, str] = Field(
+        default_factory=dict,
+        description="How each discovery field was produced, e.g. {'refine': 'llm'} or {'refine': 'fallback: <error>'}. A fallback is never silent.",
+    )
+
+
+class QueryConstraints(BaseModel):
+    """Structured constraints a query carries, so they can be checked in code instead of guessed."""
+
+    price_max: Optional[float] = Field(default=None, description="Upper price bound, in the site's currency.")
+    price_min: Optional[float] = Field(default=None, description="Lower price bound, in the site's currency.")
+    exclude: list[str] = Field(default_factory=list, description="Terms the shopper explicitly excluded ('without X').")
+    attributes: list[str] = Field(default_factory=list, description="Required attributes (colour, material, gender, size).")
 
 
 class TestQuery(BaseModel):
@@ -213,6 +244,15 @@ class TestQuery(BaseModel):
     category: QueryCategory = Field(description="The query category this test case exercises.")
     query: str = Field(description="The exact search string to submit.")
     rationale: str = Field(description="Why this query is a meaningful test for the site and category.")
+    target_term: Optional[str] = Field(
+        default=None,
+        description="The clean term the shopper meant (e.g. the correctly spelled word behind a TYPO query). "
+        "Also run as a control query: if the control fails too, the test measures the catalog, not the engine.",
+    )
+    constraints: Optional["QueryConstraints"] = Field(
+        default=None,
+        description="Machine-checkable constraints the query expresses (price ceiling, exclusions, attributes).",
+    )
 
 
 class SearchResult(BaseModel):
@@ -223,6 +263,48 @@ class SearchResult(BaseModel):
     price: Optional[str] = Field(default=None, description="Displayed price string, if present.")
     snippet: Optional[str] = Field(default=None, description="Short description or excerpt shown in results.")
     url: Optional[str] = Field(default=None, description="URL of the result page.")
+    sponsored: bool = Field(default=False, description="True when the tile is labelled as an ad / sponsored placement.")
+
+
+class FetchStatus(str, Enum):
+    """Why a query's result list looks the way it does.
+
+    Only OK and ZERO_CONFIRMED are trustworthy evidence about the search engine. Every other
+    status means the *audit* failed to observe the page; those queries must never be scored as
+    a search failure (an empty list is otherwise read downstream as a CRITICAL zero-result).
+    """
+
+    OK = "ok"
+    ZERO_CONFIRMED = "zero_confirmed"      # page shows an explicit no-results state
+    ZERO_UNVERIFIED = "zero_unverified"    # nothing extracted, no no-results marker seen
+    PARTIAL = "partial"                    # page claims N hits, we extracted fewer than min(N, k)
+    REDIRECT = "redirect"                  # search redirected to a category/brand/product page
+    BLOCKED = "blocked"                    # bot wall / WAF / rate-limit page
+    TIMEOUT = "timeout"
+    ERROR = "error"
+
+
+TRUSTED_FETCH_STATUSES = frozenset({FetchStatus.OK.value, FetchStatus.ZERO_CONFIRMED.value,
+                                    FetchStatus.PARTIAL.value, FetchStatus.REDIRECT.value})
+
+
+class FetchOutcome(BaseModel):
+    model_config = ConfigDict(use_enum_values=True)
+
+    query: str
+    status: FetchStatus
+    results: list[SearchResult] = Field(default_factory=list)
+    final_url: Optional[str] = None
+    http_status: Optional[int] = None
+    page_title: Optional[str] = None
+    total_hits: Optional[int] = Field(default=None, description="Hit count the page itself reports, when parseable.")
+    strategy: Optional[str] = Field(default=None, description="Extraction strategy that produced the results.")
+    attempts: int = 1
+    evidence: str = Field(default="", description="Short human-readable reason for the status.")
+
+    @property
+    def trusted(self) -> bool:
+        return self.status in TRUSTED_FETCH_STATUSES
 
 
 class ScoredResult(SearchResult):
@@ -265,6 +347,22 @@ class QueryJudgment(BaseModel):
         ge=0.0,
         le=1.0,
     )
+    judge_status: str = Field(
+        default="llm",
+        description="'llm' (model verdict), 'deterministic' (rule-decided), 'fallback' (model call failed; "
+        "stats-only verdict, must be reviewed before publishing) or 'manual' (operator override).",
+    )
+    excluded_reason: Optional[str] = Field(
+        default=None,
+        description="Set when this query must not count toward scores: 'catalog_gap', 'invalid_test', "
+        "'fetch_unverified'. Excluded judgments stay in the data for transparency but are left out of every rate.",
+    )
+    internal_notes: Optional[str] = Field(
+        default=None,
+        description="Operator/judge workflow notes (overrides, calibration references). Never rendered to clients.",
+    )
+    fetch_status: Optional[str] = Field(default=None, description="FetchStatus of the page this judgment is based on.")
+    total_hits: Optional[int] = Field(default=None, description="Hit count reported by the page, when known.")
 
 
 class CapabilityScore(BaseModel):
@@ -299,3 +397,10 @@ class AuditReport(BaseModel):
         default="",
         description="Prioritised remediation roadmap narrative, filled by the model.",
     )
+    run_metadata: dict = Field(
+        default_factory=dict,
+        description="Reproducibility record: model ids per phase, judge rules version, token usage, fetch status counts.",
+    )
+
+
+TestQuery.model_rebuild()

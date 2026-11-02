@@ -1,1136 +1,870 @@
+"""Phase 7 — assemble the audit report: deterministic scoring + two grounded LLM narratives.
+
+Numbers come from :mod:`src.report_stats` (shared with the HTML renderer). The two narratives —
+per-capability deep dives and the prioritised roadmap — are separate structured calls
+(:func:`generate_deep_dives`, :func:`generate_roadmap`). Both are checked by
+:func:`grounding_violations` before they are accepted: every quoted search must be a tested
+query, every quoted product title must appear in that search's results, every "#N" must be a
+real result position, and "the store carries X" needs proof. A failed check regenerates once,
+then raises — no placeholder text can ever reach a rendered report.
+
+The accepted narratives are stored, query-keyed, in
+``report.run_metadata["report_content"]`` so the HTML renders the same reviewed text as the .md.
+"""
+
 from __future__ import annotations
 
 import logging
+import os
 import re
-from collections import Counter, defaultdict
 from datetime import date
+from enum import Enum
 
-import anthropic
 from dotenv import load_dotenv
+from pydantic import BaseModel, Field
 
 from src.advanced_diagnostics import build_advanced_diagnostics_markdown
-from src.category_selector import CATEGORY_DESCRIPTIONS
+from src.llm_compat import LLMResponseError, structured_call
 from src.models import (
-    CAPABILITY_CATEGORY_MAP,
     AuditReport,
-    CapabilityGroup,
     CapabilityScore,
-    FailureMode,
     QueryCategory,
     QueryJudgment,
     Severity,
     SiteContext,
+)
+from src.report_stats import (
+    CAPABILITY_NAMES,
+    CATEGORY_DISPLAY,
+    CATEGORY_TO_CAPABILITY,
+    EXCLUDED_REASON_TEXT,
+    FAILURE_MODE_DISPLAY,
+    FOUND_BUT_WRONG_LABEL,
+    SAMPLE_NOTE,
+    SEVERITY_RANK,
+    SEVERITY_SHORT,
+    ZERO_RESULT_FOOTNOTE,
+    ZERO_RESULT_LABEL,
+    BENCHMARK_NOTE,
+    benchmark_rows,
+    better_matches,
+    build_capability_scores,
+    by_original,
+    capability_rows,
+    category,
+    client_observation,
+    compute_stats,
+    excluded,
+    formatted_stats,
+    is_pass,
+    md_cell,
+    mode,
+    peer_label,
+    pick_worst_example,  # noqa: F401 — re-exported for callers of the old location
+    position_context,
+    proof_of_stock,
+    root_causes,
+    scope_line,
+    scored,
+    search_url,
+    sev,
+    whats_working_items,
 )
 
 load_dotenv(override=True)
 
 logger = logging.getLogger(__name__)
 
-_MODEL = "claude-sonnet-4-6"
+# Overridable per-run; unset env = unchanged default. See docs/CASE_STUDY_PLAYBOOK.md.
+_MODEL = os.environ.get("AUDIT_MODEL_REPORT", "claude-sonnet-4-6")
 
-# Severity ordering for comparisons (higher index = worse)
-_SEVERITY_RANK: dict[str, int] = {
-    Severity.PASS.value: 0,
-    Severity.MINOR.value: 1,
-    Severity.MODERATE.value: 2,
-    Severity.CRITICAL.value: 3,
-}
+# Back-compat names (orchestrator / runner scripts import these from here).
+_SEVERITY_RANK = SEVERITY_RANK
+_SEVERITY_SHORT = SEVERITY_SHORT
+_CAPABILITY_NAMES = CAPABILITY_NAMES
+_FAILURE_MODE_DISPLAY = FAILURE_MODE_DISPLAY
+_CATEGORY_DISPLAY = CATEGORY_DISPLAY
+_CATEGORY_TO_CAPABILITY = CATEGORY_TO_CAPABILITY
+compute_aggregate_stats = compute_stats
 
-# Human-readable capability names
-_CAPABILITY_NAMES: dict[str, str] = {
-    CapabilityGroup.TYPO_TOLERANCE.value: "Typo Tolerance",
-    CapabilityGroup.LANGUAGE_UNDERSTANDING.value: "Language Understanding",
-    CapabilityGroup.PRODUCT_DISCOVERY.value: "Product Discovery",
-    CapabilityGroup.BRAND_MODEL_SEARCH.value: "Brand & Model Search",
-    CapabilityGroup.FILTERS_CONSTRAINTS.value: "Filters & Constraints",
-    CapabilityGroup.SHOPPING_CONTEXT.value: "Shopping Context",
-}
+# Report is unbranded; kept for backward-compat references.
+PIPELINE_NAME = ""
 
-# Scorecard emoji
 _SEVERITY_EMOJI: dict[str, str] = {
-    Severity.CRITICAL.value: "\U0001f534",   # red circle
-    Severity.MODERATE.value: "\U0001f7e1",   # yellow circle
-    Severity.MINOR.value: "\U0001f7e2",      # green circle
-    Severity.PASS.value: "\u2705",           # white check mark
+    Severity.CRITICAL.value: "\U0001f534",
+    Severity.MODERATE.value: "\U0001f7e1",
+    Severity.MINOR.value: "\U0001f7e2",
+    Severity.PASS.value: "✅",
 }
 
-# Short severity labels for the scorecard table
-_SEVERITY_SHORT: dict[str, str] = {
-    Severity.CRITICAL.value: "Critical",
-    Severity.MODERATE.value: "Moderate",
-    Severity.MINOR.value: "Minor",
-    Severity.PASS.value: "Pass",
-}
+_OWNER_LABELS = {"merch": "Merchandising team", "dev": "Development team"}
 
-# Pipeline brand name — used in methodology, headers, executive summary
-PIPELINE_NAME = ""  # report is unbranded; kept for backward-compat references
 
-# Human-readable failure mode labels
-_FAILURE_MODE_DISPLAY: dict[str, str] = {
-    "PARTIAL_KEYWORD_MATCH": "Partial keyword match",
-    "BRAND_BLEED": "Brand bleed",
-    "CONSTRAINT_DROPPED": "Constraint dropped",
-    "CATEGORY_MAPPING_FAILURE": "Category mapping failure",
-    "FACET_NOT_EXTRACTED": "Facet not extracted",
-    "NO_FUZZY_MATCHING": "No fuzzy matching",
-    "NO_SEMANTIC_UNDERSTANDING": "No semantic understanding",
-    "POOR_RANKING": "Poor ranking",
-    "DUPLICATE_FLOODING": "Duplicate flooding",
-    "ZERO_RESULTS_OR_GARBAGE": "Zero results",
-    "OTHER": "Other",
-}
-
-# Human-readable query category labels
-_CATEGORY_DISPLAY: dict[str, str] = {
-    "DIRECT_MATCH": "Direct match",
-    "BROAD_CATEGORY": "Broad category",
-    "SYNONYM": "Synonym",
-    "TYPO": "Typo",
-    "SPECIAL_CHARACTER": "Special character",
-    "MERGED_WORDS": "Merged words",
-    "BRAND_SEARCH": "Brand search",
-    "SPLIT_WORD": "Split word",
-    "NATURAL_LANGUAGE": "Natural language",
-    "PRICE_ANCHORED": "Price anchored",
-    "NEGATIVE_INTENT": "Negative intent",
-    "UNIT_VARIATION": "Unit variation",
-    "PLURAL_SINGULAR": "Plural / singular",
-    "ABBREVIATION": "Abbreviation",
-    "LOCALE_VARIATION": "Locale variation",
-    "SKU_MODEL_NUMBER": "SKU / model number",
-    "SUBJECTIVE_ATTRIBUTE": "Subjective attribute",
-    "OCCASION": "Occasion",
-    "SEASONAL_OCCASION": "Seasonal / occasion",
-    "MULTI_ATTRIBUTE": "Multi-attribute",
-    "STOP_WORD_HEAVY": "Stop-word heavy",
-    "PARTIAL_QUERY": "Partial query",
-    "LONG_VERBOSE_QUERY": "Long verbose query",
-    "SEMANTIC_MEANING": "Semantic meaning",
-    "CATEGORY_MAPPING": "Category mapping",
-    "FACET_EXTRACTION": "Facet extraction",
-}
-
-# Reverse lookup: QueryCategory value -> CapabilityGroup value
-_CATEGORY_TO_CAPABILITY: dict[str, str] = {}
-for _cap, _cats in CAPABILITY_CATEGORY_MAP.items():
-    for _cat in _cats:
-        _CATEGORY_TO_CAPABILITY[_cat.value] = _cap.value
+class GroundingError(LLMResponseError):
+    """A narrative quoted a search, product title or position that isn't in the audit data."""
 
 
 # ---------------------------------------------------------------------------
-# PART 1 — Deterministic capability scoring
+# PART 1 — Deterministic markdown sections
 # ---------------------------------------------------------------------------
 
 
-def build_capability_scores(judgments: list[QueryJudgment]) -> list[CapabilityScore]:
-    """Group judgments by capability and compute the worst severity per group."""
-
-    # Group judgments by capability
-    grouped: dict[str, list[QueryJudgment]] = defaultdict(list)
-    for j in judgments:
-        cat_value = j.test_query.category
-        cap_value = _CATEGORY_TO_CAPABILITY.get(cat_value)
-        if cap_value:
-            grouped[cap_value].append(j)
-        else:
-            logger.warning("Category %s not mapped to any capability group", cat_value)
-
-    scores: list[CapabilityScore] = []
-
-    for cap_value, cap_judgments in grouped.items():
-        # Worst severity wins
-        worst_sev_value = max(
-            (j.severity for j in cap_judgments),
-            key=lambda s: _SEVERITY_RANK.get(s, 0),
-        )
-
-        cap_name = _CAPABILITY_NAMES.get(cap_value, cap_value)
-        total = len(cap_judgments)
-        non_pass = sum(1 for j in cap_judgments if j.severity != Severity.PASS.value)
-        pass_count = total - non_pass
-
-        # Ease-up rule: worst-severity-wins overstates a capability where MOST queries pass.
-        # If more than half the queries in the group passed, a single critical query should not
-        # mark the whole capability critical — downgrade CRITICAL to MODERATE.
-        if worst_sev_value == Severity.CRITICAL.value and pass_count > total / 2:
-            worst_sev_value = Severity.MODERATE.value
-
-        if worst_sev_value == Severity.CRITICAL.value:
-            summary = f"{non_pass} of {total} query patterns show improvement room. This is a practical place to start for {cap_name}."
-        elif worst_sev_value == Severity.MODERATE.value:
-            summary = f"{non_pass} of {total} query patterns showed friction. {cap_name} has a focused optimization opportunity."
-        elif worst_sev_value == Severity.MINOR.value:
-            summary = f"{cap_name} is mostly working, with smaller refinements found in {non_pass} of {total} query patterns."
-        else:
-            summary = f"All {total} queries passed. {cap_name} is performing well in this sample."
-
-        scores.append(CapabilityScore(
-            capability=CapabilityGroup(cap_value),
-            severity=Severity(worst_sev_value),
-            summary=summary,
-            judgments=cap_judgments,
-        ))
-
-    # Sort: CRITICAL first, then MODERATE, MINOR, PASS
-    scores.sort(key=lambda s: _SEVERITY_RANK.get(s.severity, 0), reverse=True)
-    return scores
-
-
-def build_scorecard_markdown(capability_scores: list[CapabilityScore]) -> str:
-    """Build the scorecard summary as a markdown table."""
-    total = len(capability_scores)
+def build_scorecard_markdown(judgments_or_scores) -> str:
+    """Capability priority table. Same order and labels as the HTML improvement map."""
+    rows = capability_rows(_as_judgments(judgments_or_scores))
     lines = [
-        f"## Search Improvement Focus Map\n",
-        f"We tested your site's search across {total} core capabilities and grouped the results by where improvements are likely to help most.\n",
+        "## Search Improvement Focus Map\n",
+        f"We tested your site's search across {len(rows)} core capabilities and grouped the results "
+        "by where improvements are likely to help most.\n",
         "",
         "| Priority | Capability | What it means |",
         "|----------|-----------|---------------|",
     ]
-
-    priority_labels = {
-        Severity.CRITICAL.value: "Focus area",
-        Severity.MODERATE.value: "Watch",
-        Severity.MINOR.value: "Fine-tune",
-        Severity.PASS.value: "Working well",
-    }
-    for cs in capability_scores:
-        priority = priority_labels.get(cs.severity, _SEVERITY_SHORT.get(cs.severity, str(cs.severity)))
-        cap_name = _CAPABILITY_NAMES.get(cs.capability, cs.capability)
-        lines.append(f"| {priority} | {cap_name} | {cs.summary} |")
-
+    for r in rows:
+        lines.append(f"| {md_cell(r['priority'])} | {md_cell(r['capability'])} | {md_cell(r['summary'])} |")
     lines.append("")
-    lines.append("**Use this as an improvement map: the focus areas are where changes are likely to help the most customer journeys.**")
+    lines.append("**Use this as an improvement map: the focus areas are where changes are likely to help "
+                 "the most customer journeys.**")
     return "\n".join(lines)
 
 
-def build_whats_working_markdown(capability_scores: list[CapabilityScore]) -> str:
-    """List what's working — at the QUERY-CATEGORY grain, not capability grain.
-
-    Capability-level passes (worst-severity-wins) hide genuine strengths: a capability with
-    one failing query is "not passing" even when several of its query types passed 100%. So we
-    surface query categories that fully passed (with an example each), which gives a fair,
-    fuller picture. Falls back to partial-wins only if no category passed cleanly.
-    """
-    all_judgments: list[QueryJudgment] = []
-    for cs in capability_scores:
-        all_judgments.extend(cs.judgments)
-
-    # Group by query category; find categories where EVERY query passed (>= 2 queries tested).
-    by_cat: dict[str, list[QueryJudgment]] = defaultdict(list)
-    for j in all_judgments:
-        by_cat[getattr(j.test_query.category, "value", j.test_query.category)].append(j)
-
-    strong = []
-    for cat, js in by_cat.items():
-        passed = [j for j in js if j.severity == Severity.PASS.value]
-        if len(js) >= 2 and len(passed) == len(js):
-            strong.append((len(js), cat, passed))
-    strong.sort(reverse=True)  # most-tested first
-
-    if strong:
-        lines = [
-            "## What's Working\n",
-            "Several query types were handled reliably — every test in these categories returned "
-            "relevant results:\n",
-        ]
-        for total, cat, passed in strong:
-            disp = _CATEGORY_DISPLAY.get(cat, cat)
-            example = passed[0].test_query.query
-            lines.append(f"- **{disp}** ({total}/{total} passed) — e.g. \"{example}\"")
-        return "\n".join(lines)
-
-    # No category passed cleanly — look for partial wins across all judgments
-    lines = ["## What's Working\n"]
-    bullets: list[str] = []
-
-    # Collect all judgments from all capability scores
-    all_judgments: list[QueryJudgment] = []
-    for cs in capability_scores:
-        all_judgments.extend(cs.judgments)
-
-    # 1. MINOR capabilities — mostly functional
-    minor_caps = [cs for cs in capability_scores if cs.severity == Severity.MINOR.value]
-    for cs in minor_caps:
-        cap_name = _CAPABILITY_NAMES.get(cs.capability, cs.capability)
-        bullets.append(f"**{cap_name} is mostly functional** — minor issues only. {cs.summary}")
-
-    # 2. Retrieval worked (POOR_RANKING) vs recognition/retrieval failed
-    poor_ranking_queries = [
-        j for j in all_judgments
-        if j.failure_mode == "POOR_RANKING" and j.max_relevance_score >= 0.60
-    ]
-    if poor_ranking_queries:
-        count = len(poor_ranking_queries)
-        total = len(all_judgments)
-        bullets.append(
-            f"**Retrieval is working** — relevant results were found in {count} of {total} queries. "
-            f"The primary issue is ranking, not finding: the right results exist in the result set "
-            f"but aren't being surfaced at the top."
-        )
-
-    # 3. Any query where best result was within top 3 (displacement <= 2)
-    near_miss_queries = [
-        j for j in all_judgments
-        if j.displacement <= 2 and j.severity != Severity.PASS.value
-    ]
-    if near_miss_queries:
-        examples = [f'"{j.test_query.query}"' for j in near_miss_queries[:3]]
-        bullets.append(
-            f"**Close to correct** on {len(near_miss_queries)} quer{'y' if len(near_miss_queries) == 1 else 'ies'} "
-            f"({', '.join(examples)}): the best result was within the top 3, just not at #1."
-        )
-
-    # 4. Typo/merged queries where retrieval succeeded (failure mode is POOR_RANKING, not NO_FUZZY_MATCHING)
-    typo_caps = [cs for cs in capability_scores if cs.capability == "TYPO_TOLERANCE"]
-    for cs in typo_caps:
-        retrieval_ok = [
-            j for j in cs.judgments
-            if j.failure_mode != "NO_FUZZY_MATCHING" and j.failure_mode != "ZERO_RESULTS_OR_GARBAGE"
-        ]
-        if retrieval_ok and len(retrieval_ok) == len(cs.judgments):
-            bullets.append(
-                f"**Your search correctly interprets typos and spelling variations** — "
-                f"when we searched with misspellings, it recognized what customers meant. "
-                f"The issue is ranking the corrected results, not recognising the typo."
-            )
-            break
-
-    if not bullets:
-        bullets.append(
-            "No capabilities passed all tests. However, the search engine does retrieve relevant "
-            "results for most queries — the primary issue is ranking, not retrieval."
-        )
-
-    lines.extend(f"- {b}" for b in bullets)
-    return "\n".join(lines)
-
-
-# ---------------------------------------------------------------------------
-# PART 2 — LLM-generated deep dives and roadmap
-# ---------------------------------------------------------------------------
-
-_SECTION_DELIMITER = "---SECTION_BREAK---"
-
-
-def _build_narrative_prompt(
-    site_context: SiteContext,
-    capability_scores: list[CapabilityScore],
-) -> str:
-    """Build the Sonnet prompt for deep dives and roadmap."""
-
-    failing = [cs for cs in capability_scores if cs.severity != Severity.PASS.value]
-
-    if not failing:
+def build_whats_working_markdown(judgments_or_scores) -> str:
+    """Strengths at the query-category grain, every statement checked against data ("" if none)."""
+    items = whats_working_items(_as_judgments(judgments_or_scores))
+    if not items:
         return ""
-
-    capability_blocks = []
-    for cs in failing:
-        cap_name = _CAPABILITY_NAMES.get(cs.capability, cs.capability)
-        sev_short = _SEVERITY_SHORT.get(cs.severity, cs.severity)
-
-        judgment_blocks = []
-        for j in cs.judgments:
-            # Only narrate actual failures — never feed PASS queries into the deep dives, or
-            # the model pads a thin capability with passing queries reframed as problems
-            # (e.g. a partial-match query that passed shown as "ranked poorly").
-            if j.severity == Severity.PASS.value:
-                continue
-            # Top 5 by original rank
-            by_original = sorted(j.results, key=lambda r: r.original_rank)[:5]
-            original_lines = []
-            for r in by_original:
-                original_lines.append(
-                    f"      #{r.original_rank} {r.title} (relevance: {r.relevance_score:.2f})"
-                )
-
-            # Top 3 by relevance
-            by_relevance = sorted(j.results, key=lambda r: r.relevance_score, reverse=True)[:3]
-            ideal_lines = []
-            for r in by_relevance:
-                ideal_lines.append(
-                    f"      {r.title} (relevance: {r.relevance_score:.2f})"
-                )
-
-            fm_value = j.failure_mode
-            j_sev_short = _SEVERITY_SHORT.get(j.severity, j.severity)
-
-            judgment_blocks.append(
-                f"    Query: \"{j.test_query.query}\"\n"
-                f"    Category: {j.test_query.category}\n"
-                f"    Failure mode: {fm_value}\n"
-                f"    Severity: {j_sev_short}\n"
-                f"    Displacement: {j.displacement}\n"
-                f"    Evidence: {j.evidence}\n"
-                f"    Recommended fix: {j.recommended_fix}\n"
-                f"    What customer saw (top 5):\n" +
-                "\n".join(original_lines) + "\n"
-                f"    Ideal order (top 3):\n" +
-                "\n".join(ideal_lines)
-            )
-
-        capability_blocks.append(
-            f"### {cap_name} (Overall: {sev_short})\n\n" +
-            "\n\n".join(judgment_blocks)
-        )
-
-    return f"""You are writing a search audit report for a business stakeholder. Write in plain language — no technical jargon. Be specific and reference actual product titles and query examples from the data below.
-
-Use neutral, professional product terminology throughout: say "results", "items", or "products" — never site-specific terms like "deals", "listings", or "offers" unless directly quoting an actual product title.
-
-Do NOT name or qualify the site's own language in your prose. The reader is a native speaker who already knows the site operates in that language, so tagging terms, queries, or fixes with the language name (e.g. "[Language] category terms", "[Language] character normalization", "[Language] synonym mapping", "conversational [Language] queries") is redundant and reads as robotic, templated output. Refer to the customers' searches, terms, and the specific quoted examples directly — the examples already make the language self-evident. Only reference a language when you are explicitly contrasting two different languages.
-HARD CAP: the site's language name may appear AT MOST ONCE across the entire report (deep dives + roadmap combined), and only if a fix is genuinely language-specific in a way the quoted examples cannot convey on their own. Default to zero uses. Never repeat it across multiple roadmap items.
-
-## Site
-- **Name**: {site_context.site_name or "(unknown)"}
-- **URL**: {site_context.url}
-
-## Failing Capabilities
-
-{chr(10).join(capability_blocks)}
-
----
-
-Write TWO clearly separated sections.
-
-SECTION 1 — DEEP_DIVES:
-Do NOT include a report title or any top-level heading (no "# Search Audit Report" or similar). Start directly with the first capability heading.
-
-For each failing capability above, write a subsection:
-- A heading (## capability name)
-- 2-3 sentences explaining what this capability means and why it matters for their business. Do NOT use technical jargon like "fuzzy matching" or "tokenization". Write as if explaining to a smart business person.
-- Then cover the FAILING queries in that capability (up to 5, worst first by severity then displacement). Only queries listed below are failures — NEVER introduce or invent a query, and if a capability has fewer than 5 failures, show only those (do not pad with passing queries):
-  - Show the query the customer typed
-  - 1-2 sentences in plain language referencing specific product titles from the results
-  - MATCH THE NARRATIVE TO THE FAILURE TYPE — do NOT force a before/after or a position number onto every query:
-    * RETRIEVAL failures (failure mode ZERO_RESULTS_OR_GARBAGE, NO_SEMANTIC_UNDERSTANDING, CATEGORY_MAPPING_FAILURE, NO_FUZZY_MATCHING — typically the query returned NOTHING): state plainly that the search returned no usable results. If the evidence says the store stocks matching items, say so ("…even though the store carries {{product type}}"). Do NOT write a "Should have seen:" list of specific product titles — you have no result data for these; instead name the TYPE of product that should have appeared. NEVER cite "buried at position #X" — there is no position when nothing was returned.
-    * CONSTRAINT failures (CONSTRAINT_DROPPED): lead with the violation across the set ("every result was wool", "every result contained leather", "all results were jewellery") and quote 2-3 offending titles. No position number.
-    * RANKING / PARTIAL failures (POOR_RANKING, PARTIAL_KEYWORD_MATCH, where results DO exist): use the before/after — label "Customer saw:" and "Should have seen:" — and only here state "The best match was buried at position #X." Show as many items as make the point (sometimes 1, sometimes all 5).
-  - Do NOT add any phrase like "Most customers never scroll past position 3" or similar visibility warnings — that is already in the Executive Summary.
-- Vary your lead-in style for each capability. Do NOT use the same opening structure twice in a row. Options:
-  * Lead with the dead end: "When customers searched for [query], the search returned nothing at all — even though the store carries [product type]."
-  * Lead with the most absurd result: "When customers searched for [query], [irrelevant thing] ranked #1."
-  * Lead with the displacement: "The best [thing] was buried at position #X out of #Y results."
-  * Lead with the constraint violation: "Every single result exceeded the $50 budget — the cheapest was $X."
-  * Lead with what worked, then what failed: "Your search correctly recognized the typo — but then ranked the corrected results poorly."
-- Show up to 5 failing examples per capability to demonstrate the breadth of testing. Pick the most compelling ones; show fewer if the capability has fewer failures.
-
-SECTION 2 — ROADMAP:
-Do NOT add any heading like "## Roadmap" or "## ROADMAP" — the heading is added by the report assembly code. Start directly with the numbered list.
-
-A prioritized numbered list of fixes, ordered by business impact (Critical capabilities first). For each fix:
-- One clear action item title (bold)
-- One sentence describing what it fixes, referencing the capability name
-- Impact level AND effort estimate on the same line, formatted as: "Impact: Critical | Effort: Quick Win"
-  * Quick Win — configuration change or parameter tuning, days not weeks
-  * Medium Effort — requires development work, 2-4 weeks
-  * Major Project — significant engineering effort, 1-3 months
-- Group related fixes — don't list the same fix twice for different queries. In particular, the "product type / head noun is under-weighted versus a modifier" defect (e.g. "outerwear"→throws, "woollen throws"→sweaters, "throws grey"→socks, "winter coat sale"→socks, "grey accessories"→t-shirts) is ONE fix — consolidate it into a SINGLE roadmap item covering both the requirement (the product-type noun must match) and the ranking boost (it ranks above items sharing only a colour/material/season word). Do NOT split the "require the head noun" and "boost the product type" framings into two separate items. This item ALSO absorbs every ordering problem within a correctly-retrieved set (the right product scored highest but ranked low) — do NOT create any separate item about "fixing ranking", "relevance order", "surfacing the highest-scoring product first", or "a popularity/recency signal overriding relevance". There is no standalone ranking item: all such cases are the product-type/head-noun fix. If you find yourself writing a roadmap item whose title is about ranking or relevance order in the abstract, fold it into this product-type item instead. Likewise, ALL category-mapping failures — colloquial/occasion/category terms that should map to the site's taxonomy but return nothing (e.g. "Father's Day gift ideas", "stationery", "bedtime wear", "unique Irish gifts") — are ONE fix: consolidate them into a SINGLE roadmap item, whether the term has an exact category page or spans several taxonomy nodes. Do NOT create a separate item for "stationery" or any individual category term.
-Keep the roadmap to 5-8 items maximum. Be specific but not overly technical.
-HARD RULE — the #1 (first) roadmap item must NEVER be framed as fixing "relevance", "relevance score", "relevance ranking", "the ranking algorithm", "sort order", or "re-ranking". Those phrasings are forbidden in any roadmap title. Express the dominant ranking problem instead as a concrete intent/boost layer: name the specific signals to apply BEFORE generic keyword ranking (e.g. brand, product-type, price, bestseller, sale, negative-term intent acting as filters or boosts). A title may mention "ranking" only if it also names at least one of those concrete signals. Apply this even when poor ranking is the single most common failure mode — lead with the concrete behavior, not the abstract metric.
-
-Separate the two sections with this EXACT delimiter on its own line:
-{_SECTION_DELIMITER}"""
+    lines = ["## What's Working\n"]
+    lines.extend(f"- **{it['label']}** {it['text']}" for it in items)
+    return "\n".join(lines)
 
 
-_SCROLL_PHRASES = [
-    "Most customers never scroll past position 3.",
-    "Most customers never scroll past position 3",
-    "most customers never scroll past position 3.",
-    "most customers never scroll past position 3",
-    "Most users never scroll past position 3.",
-    "Most users never scroll past position 3",
-    "most users never scroll past position 3.",
-    "most users never scroll past position 3",
-    "Most shoppers never scroll past position 3.",
-    "most shoppers never scroll past position 3.",
-]
-
-# Top-level headings or section labels Sonnet sometimes adds that we strip
-_REDUNDANT_HEADINGS = {
-    "# search audit report",
-    "## deep_dives",
-    "## deep dives",
-    "## roadmap",
-    "## roadmap:",
-    "## prioritized roadmap",
-}
+def _as_judgments(value) -> list[QueryJudgment]:
+    """Accept judgments or CapabilityScores (legacy call shape)."""
+    value = list(value or [])
+    if value and isinstance(value[0], CapabilityScore):
+        return [j for cs in value for j in cs.judgments]
+    return value
 
 
-def _clean_sonnet_output(text: str, section: str) -> str:
-    """Remove duplicate titles, redundant section headings, and scroll-warning boilerplate."""
-    lines = text.splitlines()
-    cleaned: list[str] = []
-    for line in lines:
-        stripped = line.strip()
-        # Drop lines that are just a redundant heading
-        if stripped.lower() in _REDUNDANT_HEADINGS:
-            continue
-        # Drop lines that start with "# Search Audit Report"
-        if stripped.lower().startswith("# search audit report"):
-            continue
-        cleaned.append(line)
-
-    result = "\n".join(cleaned)
-
-    # Strip repeated scroll-warning sentences
-    for phrase in _SCROLL_PHRASES:
-        result = result.replace(phrase, "")
-
-    # Collapse any double-blank lines left by removals
-    import re as _re
-    result = _re.sub(r"\n{3,}", "\n\n", result)
-
-    return result.strip()
+# ---------------------------------------------------------------------------
+# PART 2 — Grounded LLM narratives (deep dives + roadmap, separate calls)
+# ---------------------------------------------------------------------------
 
 
-def _limit_language_mentions(
-    text: str,
-    language: str,
-    already_kept: int,
-    cap: int = 1,
-) -> tuple[str, int]:
-    """Drop redundant mentions of the site's own language beyond ``cap``.
-
-    The reader is a native speaker, so qualifying terms/fixes as "[Language] …"
-    in item after item reads as robotic templating. We keep at most ``cap``
-    mentions in total (threaded across sections via ``already_kept``) and strip
-    the rest, removing the word plus a trailing space so "Swedish synonym
-    mapping" -> "synonym mapping". Returns (cleaned_text, running_count).
-    """
-    if not language:
-        return text, already_kept
-
-    word_re = re.compile(rf"\b{re.escape(language)}\b[ ]?", re.IGNORECASE)
-    count = already_kept
-    pieces: list[str] = []
-    pos = 0
-    for m in word_re.finditer(text):
-        count += 1
-        pieces.append(text[pos:m.start()])
-        if count <= cap:
-            pieces.append(m.group(0))  # keep this mention
-        pos = m.end()
-    pieces.append(text[pos:])
-    result = "".join(pieces)
-
-    # Tidy whitespace/punctuation and re-capitalize any title/sentence whose
-    # leading word was stripped (e.g. "**Swedish synonym…" -> "**synonym…").
-    result = re.sub(r"(?<=\S)[ ]{2,}", " ", result)  # interior only; keep line indents
-    result = re.sub(r"[ ]+([,.;:])", r"\1", result)
-    result = re.sub(r"(\*\*[ ]*)([a-zåäöéü])", lambda mm: mm.group(1) + mm.group(2).upper(), result)
-    return result, count
+class Impact(str, Enum):
+    CRITICAL = "Critical"
+    HIGH = "High"
+    MODERATE = "Moderate"
 
 
-def generate_deep_dives_and_roadmap(
-    site_context: SiteContext,
-    capability_scores: list[CapabilityScore],
-) -> tuple[str, str]:
-    """Generate narrative deep dives and roadmap using Claude Sonnet.
+class Effort(str, Enum):
+    QUICK_WIN = "Quick Win"
+    MEDIUM = "Medium Effort"
+    MAJOR = "Major Project"
 
-    Returns (deep_dives_markdown, roadmap_markdown).
-    """
-    failing = [cs for cs in capability_scores if cs.severity != Severity.PASS.value]
-    if not failing:
-        return (
-            "## Detailed Analysis\n\nAll capabilities passed. No deep dives needed.",
-            "No fixes needed — all capabilities are performing well.",
-        )
 
-    prompt = _build_narrative_prompt(site_context, capability_scores)
+class Owner(str, Enum):
+    MERCH = "merch"
+    DEV = "dev"
 
-    try:
-        client = anthropic.Anthropic()
-        response = client.messages.create(
-            model=_MODEL,
-            max_tokens=8000,
-            temperature=0.3,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        raw = response.content[0].text.strip()
-    except Exception as e:
-        logger.warning("Sonnet narrative generation failed: %s", e)
-        # Fallback: build minimal deep dives from judgment data
-        fallback_dives = _build_fallback_deep_dives(failing)
-        fallback_roadmap = "Roadmap generation failed. Review the capability scores above for priority order."
-        return fallback_dives, fallback_roadmap
 
-    if _SECTION_DELIMITER in raw:
-        parts = raw.split(_SECTION_DELIMITER, 1)
-        deep_dives = _clean_sonnet_output(parts[0], section="dives")
-        roadmap = _clean_sonnet_output(parts[1], section="roadmap")
+class RoadmapItemOut(BaseModel):
+    query_ids: list[int] = Field(description="Ids of the failing searches this fix resolves.")
+    title: str = Field(description="One clear action, plain text.")
+    description: str = Field(description="One or two sentences: what changes and what it fixes.")
+    impact: Impact
+    effort: Effort
+    owner: Owner
+
+
+class RoadmapOut(BaseModel):
+    items: list[RoadmapItemOut]
+
+
+class DeepDiveExampleOut(BaseModel):
+    query_id: int
+    narrative: str = Field(description="1-2 plain-language sentences about what the shopper saw.")
+
+
+class DeepDiveSectionOut(BaseModel):
+    capability_id: int
+    intro: str = Field(description="2-3 sentences: what this capability means for shoppers.")
+    examples: list[DeepDiveExampleOut]
+
+
+class DeepDivesOut(BaseModel):
+    sections: list[DeepDiveSectionOut]
+
+
+_SHARED_RULES = """Audience: a business stakeholder at the store (e-commerce, merchandising or product lead). Plain language, short sentences. No technical jargon ("fuzzy matching", "tokenization", "relevance score", "reranker", "embedding"). Never use the words leverage, robust, optimize, deep dive, powerful or unique. Say "results", "products" or "items" — not "deals", "listings" or "offers" unless quoting a title.
+
+GROUNDING RULES — your answer is checked automatically and rejected if it breaks any of them:
+1. Put searches and product titles in straight double quotes, copied exactly from the data. Quote only searches and titles that appear in the data you were given for that example or item. Never invent a search or a product.
+2. Cite a result position "#N" only when that position appears under "Customer saw" for the same example. Searches with no results have no positions.
+3. Say or imply that the store carries, stocks or sells a product ONLY when the data has a "Proof the store carries it" line for that search — and then cite that proof. Without it, describe only what the shopper saw.
+4. No scores, percentages or prices that are not in the data. Prices keep the currency exactly as shown; never introduce a budget or currency of your own.
+5. Do not name or qualify the site's own language ("Swedish category terms", "German synonyms"); the quoted searches already show it.
+6. Plain text only: no markdown, no headings, no bullet characters, no bold."""
+
+_DEEP_DIVE_SYSTEM = """You write the per-capability analysis section of a site-search audit report.
+
+""" + _SHARED_RULES + """
+
+TASK: For each capability in the data, return one section:
+- capability_id: the capability number given in the data.
+- intro: 2-3 sentences on what this capability means for shoppers and why it matters for the business.
+- examples: up to 5 of that capability's searches, worst first. Use only the ids listed under that capability. If it has fewer than 5, show only those.
+  narrative: 1-2 sentences in plain language about what the shopper experienced, referencing specific product titles from that search's data.
+Match the narrative to the failure:
+- No results: say plainly the search returned nothing. Name the kind of product that should have appeared; do not list specific titles it "should have shown"; no position numbers.
+- Constraint dropped: lead with the violation across the set ("every result contained leather") and quote one or two offending titles. No position number.
+- Ranking (results exist and a better match sat lower): say where the better match was ("#N").
+Do not add warnings like "most customers never scroll past position 3". Vary how examples and sections open; never use the same opening structure twice in a row."""
+
+_ROADMAP_SYSTEM = """You write the prioritised roadmap of a site-search audit report.
+
+""" + _SHARED_RULES + """
+
+TASK: Return 3 to 8 fixes (fewer if there are fewer distinct problems), ordered by business impact, most impactful first. For each item:
+- query_ids: the ids of the failing searches this fix resolves (at least one; only ids from the data).
+- title: one clear action, at most about 12 words.
+- description: one or two sentences on what changes and what it fixes for shoppers. You may quote one or two of the item's own searches.
+- impact: Critical when it fixes critical searches, else High or Moderate.
+- effort: Quick Win (configuration or rules, days), Medium Effort (development, 2-4 weeks), Major Project (1-3 months).
+- owner: merch for synonyms, redirects, merchandising rules, category mapping and product data; dev for query parsing, ranking logic and index changes.
+
+CONSOLIDATION — one mechanism, one item:
+- Searches that fail for the same underlying reason are ONE fix. The "Root causes" list in the data groups them for you.
+- "The product type in the query is under-weighted against a colour, material or season word" is ONE item: it covers both requiring the product-type noun and boosting it above modifier-only matches, and it absorbs every ordering problem within a correctly retrieved set. Never add a separate generic item about ranking or relevance order.
+- All category-mapping failures (occasion, colloquial or category terms that should map to the store's categories) are ONE item.
+
+TITLES: no title may be about "relevance", "relevance score", "the ranking algorithm", "sort order" or "re-ranking" in the abstract. Name the concrete behaviour (treat price phrases as a filter; boost the product type; map gift and occasion terms to categories). Item 1 in particular must name the concrete intent signals (brand, product type, price, sale, bestseller, exclusion) to act on before generic keyword matching."""
+
+
+def failing_judgments(judgments: list[QueryJudgment]) -> list[QueryJudgment]:
+    """Scored, non-PASS judgments in a stable order — the id space both prompts share."""
+    fails = [j for j in scored(judgments) if not is_pass(j)]
+    fails.sort(key=lambda j: (-SEVERITY_RANK.get(sev(j), 0), CATEGORY_TO_CAPABILITY.get(category(j), ""),
+                              j.test_query.query))
+    return fails
+
+
+def _price(r) -> str:
+    return f" ({r.price})" if r.price else ""
+
+
+def _judgment_block(idx: int, j: QueryJudgment, all_scored: list[QueryJudgment]) -> str:
+    lines = [
+        f'[{idx}] "{j.test_query.query}" — category: {CATEGORY_DISPLAY.get(category(j), category(j))}; '
+        f"failure: {FAILURE_MODE_DISPLAY.get(mode(j), mode(j))}; severity: {SEVERITY_SHORT.get(sev(j), sev(j))}",
+        f"    What we observed: {client_observation(j)}",
+    ]
+    results = by_original(j)[:5]
+    if results:
+        lines.append("    Customer saw: " + "; ".join(f'#{r.original_rank} "{r.title}"{_price(r)}' for r in results))
+        better = [r for r in better_matches(j) if r.original_rank != 1]
+        if better:
+            lines.append("    Better matches further down: " +
+                         "; ".join(f'#{r.original_rank} "{r.title}"' for r in better))
     else:
-        logger.warning("Section delimiter not found in Sonnet response — treating all as deep dives")
-        deep_dives = _clean_sonnet_output(raw, section="dives")
-        roadmap = "Roadmap section was not generated. Review the capability scores above for priority order."
-
-    # Enforce the language-mention cap deterministically: the model tends to tag
-    # nearly every fix with the site's language even when told not to, which
-    # reads as templated. Keep at most the first mention across both sections.
-    language = getattr(site_context, "primary_language", None)
-    if language and language.lower() != "english":
-        deep_dives, kept = _limit_language_mentions(deep_dives, language, already_kept=0)
-        roadmap, _ = _limit_language_mentions(roadmap, language, already_kept=kept)
-
-    return deep_dives, roadmap
-
-
-def _build_fallback_deep_dives(failing_scores: list[CapabilityScore]) -> str:
-    """Build minimal deep dives from judgment data when LLM fails."""
-    lines = ["## Detailed Analysis\n"]
-    for cs in failing_scores:
-        cap_name = _CAPABILITY_NAMES.get(cs.capability, cs.capability)
-        sev_short = _SEVERITY_SHORT.get(cs.severity, cs.severity)
-        lines.append(f"### {cap_name} ({sev_short})\n")
-        lines.append(f"{cs.summary}\n")
-        for j in cs.judgments:
-            lines.append(f"- **\"{j.test_query.query}\"**: {j.evidence}")
-        lines.append("")
+        lines.append("    Customer saw: nothing (no results)")
+    proof = proof_of_stock(j, all_scored)
+    if proof:
+        lines.append(f'    Proof the store carries it: searching "{proof["working_variant"]}" returns '
+                     f'"{proof["example_title"]}"')
     return "\n".join(lines)
 
 
-# ---------------------------------------------------------------------------
-# PART 3 — Deterministic aggregate stats + executive summary
-# ---------------------------------------------------------------------------
+def _site_header(site_context: SiteContext) -> str:
+    currency = getattr(site_context, "currency", "") or "as shown in the prices"
+    return (f"Site: {site_context.site_name or '(unknown)'} ({site_context.url})\n"
+            f"Currency of prices on the site: {currency}")
 
 
-# ---------------------------------------------------------------------------
-# "Most damning example" selection
-#
-# Mirrors the email-side selector (src/enrichment/scripts/writeAuditToCRM.ts) so
-# the report's headline example matches what prospects receive. Prefers the most
-# self-evident, costly failure — a zero-result search on a product the store
-# stocks — over subtle ranking nits. Never emits an empty query or a nonsensical
-# "scroll to position #1".
-# ---------------------------------------------------------------------------
-
-_HIGH_INTENT_CATEGORIES = {
-    "PRICE_ANCHORED", "MULTI_ATTRIBUTE", "SKU_MODEL_NUMBER", "BRAND_SEARCH",
-    "TYPO", "SPLIT_WORD", "PLURAL_SINGULAR", "DIRECT_MATCH",
-}
-
-_EXAMPLE_STOPWORDS = {
-    "the", "a", "an", "and", "or", "for", "with", "some", "any", "me", "my", "i",
-    "want", "need", "buy", "find", "looking", "look", "show", "help", "best",
-    "nice", "really", "high", "quality", "good", "great", "perfect", "stylish",
-    "comfortable", "trendy", "fashionable", "available", "store", "both", "that",
-    "would", "work", "casual", "formal", "occasions", "occasion", "where", "can",
-    "from", "like", "brands", "brand", "women", "men", "under", "over", "kr", "dkk",
-    "size", "pair", "of", "to", "in", "on", "is", "are", "this", "your", "you",
-    "clothing", "clothes", "jacket", "jackets", "dress", "dresses", "shoes",
-    "shoe", "sneakers", "sneaker", "boots", "boot", "bag", "bags", "handbag",
-    "handbags", "sport", "sports", "outfit", "wardrobe", "essentials",
-    "til", "og", "en", "et", "med", "jeg", "vil", "have", "kjole", "sko",
-}
+def _capability_groups(fails: list[QueryJudgment], all_scored: list[QueryJudgment]) -> list[tuple[str, list[int]]]:
+    """[(capability key, [ids])] in the scorecard's priority order."""
+    order = [r["capability_key"] for r in capability_rows(all_scored)]
+    groups: dict[str, list[int]] = {}
+    for i, j in enumerate(fails):
+        groups.setdefault(CATEGORY_TO_CAPABILITY.get(category(j), ""), []).append(i)
+    return [(cap, groups[cap]) for cap in order if cap in groups]
 
 
-def _norm_token(s: str) -> str:
-    return re.sub(r"[^a-z0-9]", "", s.lower())
+def _deep_dive_user(site_context, fails, all_scored) -> str:
+    blocks = [_site_header(site_context), ""]
+    for cid, (cap, ids) in enumerate(_capability_groups(fails, all_scored)):
+        blocks.append(f"## Capability {cid}: {CAPABILITY_NAMES.get(cap, cap)}")
+        blocks.extend(_judgment_block(i, fails[i], all_scored) for i in ids)
+        blocks.append("")
+    return "\n".join(blocks)
 
 
-def _query_tokens(q: str) -> list[str]:
-    return [t for t in re.split(r"[^a-z0-9]+", q.lower()) if t]
+def _roadmap_user(site_context, fails, all_scored) -> str:
+    blocks = [_site_header(site_context), "", "## Failing searches"]
+    blocks.extend(_judgment_block(i, j, all_scored) for i, j in enumerate(fails))
+    index = {j.test_query.query: i for i, j in enumerate(fails)}
+    blocks.append("\n## Root causes (searches failing for the same reason)")
+    for rc in root_causes(fails):
+        ids = ", ".join(str(index[q]) for q in rc["queries"] if q in index)
+        blocks.append(f"- {rc['mechanism']}: ids {ids} ({rc['critical']} critical)")
+    return "\n".join(blocks)
 
 
-def _category_str(j: QueryJudgment) -> str:
-    c = j.test_query.category
-    return getattr(c, "value", str(c))
+# ── Grounding validator ─────────────────────────────────────────────────
+
+_QUOTE_RE = re.compile(r'"([^"\n]{2,200})"|“([^”\n]{2,200})”|‘([^’\n]{2,200})’')
+_RANK_RE = re.compile(r"#\s?(\d{1,3})\b")
+_CARRY_RE = re.compile(r"\b(?:carr(?:y|ies|ied)|stock(?:s|ed)?|in stock|sells?|sold)\b", re.I)
 
 
-def _candidate_phrases(query: str) -> list[str]:
-    words = [w for w in _query_tokens(query) if len(w) >= 3 and w not in _EXAMPLE_STOPWORDS]
-    phrases: list[str] = []
-    for i in range(len(words) - 1):
-        phrases.append(f"{words[i]} {words[i + 1]}")
-    phrases.extend(words)
-    seen: set[str] = set()
-    out: list[str] = []
-    for p in phrases:
-        if p in seen:
-            continue
-        seen.add(p)
-        if len(_norm_token(p)) >= 5:
-            out.append(p)
-    out.sort(key=lambda p: len(_norm_token(p)), reverse=True)
-    return out
+def _gnorm(s: str) -> str:
+    """Comparison key: casefolded word tokens only.
 
-
-def _find_proof_of_stock(query: str, judgments: list[QueryJudgment]) -> dict | None:
-    """Prove a zero-result query SHOULD have matched: a direct search for the term
-    works elsewhere in the audit. Rejects coincidental generic-word matches."""
-    others = [j for j in judgments if j.test_query.query != query and j.results]
-    for phrase in _candidate_phrases(query):
-        needle = _norm_token(phrase)
-        df = sum(1 for j in others if any(needle in _norm_token(r.title) for r in j.results))
-        if df == 0 or df > 6:
-            continue
-        direct = [
-            j for j in others
-            if needle in _norm_token(j.test_query.query)
-            and any(needle in _norm_token(r.title) for r in j.results)
-        ]
-        if direct:
-            direct.sort(key=lambda j: len(j.test_query.query))
-            j = direct[0]
-            match = next(r for r in j.results if needle in _norm_token(r.title))
-            return {"working_variant": j.test_query.query, "example_title": match.title}
-    return None
-
-
-_MATCHED_CATEGORY_RE = re.compile(r"matching category[^']*'([^']+)'")
-
-
-def _excluded_term_simple(query: str) -> str | None:
-    """The term a 'X not Y' / 'X without Y' query asks to exclude."""
-    m = re.search(r"\b(?:not|without)\s+(.+)$", query.lower())
-    return m.group(1).strip() if m else None
-
-
-def pick_worst_example(judgments: list[QueryJudgment]) -> str:
-    """Return a ready-made sentence describing the single most damning, TRUE failure.
-
-    Only genuine failures are eligible — never a PASS (incl. a catalog-gap zero, where the
-    store simply doesn't carry the item). The "you carry it" claim is based on VERIFIABLE
-    evidence the audit actually established — a query that maps to a real site category, or a
-    constraint the engine ignored — NOT a fragile token match against an unrelated product
-    (which produced false claims like "joggers" proving a "black top" is stocked).
+    Punctuation-insensitive, so a narrative quoting "Gozney Tread Portable Pizza Oven" matches the
+    scraped title "Gozney Tread - Portable Pizza Oven".
     """
-    candidates: list[tuple[float, float, str]] = []
-    for j in judgments:
-        if j.severity == Severity.PASS.value:
-            continue  # never feature a non-failure
-        q = j.test_query.query
-        if not q:
-            continue
-        fm = j.failure_mode
+    return " ".join(re.findall(r"[^\W_]+", (s or "").casefold()))
 
-        if not j.results:
-            # Zero result. If judging confirmed a matching site category, that is a verifiable
-            # "you have this" claim. Otherwise just state the dead end — no invented proof.
-            cat = None
-            if fm == FailureMode.CATEGORY_MAPPING_FAILURE.value:
-                m = _MATCHED_CATEGORY_RE.search(j.evidence or "")
-                cat = m.group(1) if m else None
-            if cat:
-                candidates.append((1, len(q), (
-                    f'A customer searching "{q}" gets a blank page — even though you have a '
-                    f'"{cat}" category for exactly this.'
-                )))
-            else:
-                high = _category_str(j) in _HIGH_INTENT_CATEGORIES
-                candidates.append((2 if high else 3, len(q), (
-                    f'A customer searching "{q}" gets a blank page — no results at all.'
-                )))
-            continue
 
-        # Constraint the engine ignored — concrete and fully verifiable from the titles shown.
-        if fm == FailureMode.CONSTRAINT_DROPPED.value:
-            excl = _excluded_term_simple(q)
-            if excl:
-                n = len(j.results)
-                candidates.append((1.5, float(-n), (
-                    f'A customer searching "{q}" is still shown {n} results that include '
-                    f'"{excl}" — the exact thing they asked to leave out.'
-                )))
+def _catalog_titles(all_scored: list[QueryJudgment], site_context: SiteContext | None) -> set[str]:
+    """Every real product title the audit observed: any tested search's results + the catalog sample."""
+    titles = {_gnorm(r.title) for j in all_scored for r in j.results}
+    if site_context is not None:
+        titles.update(_gnorm(t) for t in (site_context.catalog_sample or []) + (site_context.featured_items or []))
+    titles.discard("")
+    return titles
+
+
+def _allowed_strings(scope: list[QueryJudgment], all_scored: list[QueryJudgment],
+                     site_context: SiteContext | None) -> tuple[set[str], set[int], bool]:
+    """(allowed quote strings, allowed #ranks, whether a carry claim is provable)."""
+    allowed: set[str] = {_gnorm(j.test_query.query) for j in all_scored}
+    ranks: set[int] = set()
+    provable = False
+    for j in scope:
+        if j.test_query.target_term:
+            allowed.add(_gnorm(j.test_query.target_term))
+        for r in j.results:
+            allowed.add(_gnorm(r.title))
+            ranks.add(r.original_rank)
+        proof = proof_of_stock(j, all_scored)
+        if proof:
+            provable = True
+            allowed.add(_gnorm(proof["working_variant"]))
+            allowed.add(_gnorm(proof["example_title"]))
+    if site_context is not None:
+        allowed.update(_gnorm(x) for x in (site_context.nav_categories or []) + (site_context.brands or []))
+    # A real product observed anywhere in the audit may be named (e.g. as proof the store
+    # stocks what a zero-result search was looking for).
+    allowed |= _catalog_titles(all_scored, site_context)
+    allowed.discard("")
+    return allowed, ranks, provable
+
+
+def grounding_violations(
+    text: str,
+    scope: list[QueryJudgment],
+    all_scored: list[QueryJudgment],
+    site_context: SiteContext | None = None,
+    label: str = "text",
+) -> list[str]:
+    """Everything in ``text`` that is not backed by the audit data, as readable messages.
+
+    ``scope`` is the set of judgments the text is about (one example, a capability, a roadmap
+    item). Quotes must be tested searches (any) or titles/terms from the scope's results or
+    proof; "#N" must be a position in the scope's results; carry/stock claims need proof.
+    """
+    problems: list[str] = []
+    allowed, ranks, provable = _allowed_strings(scope, all_scored, site_context)
+    catalog = _catalog_titles(all_scored, site_context)
+    for m in _QUOTE_RE.finditer(text or ""):
+        quote = _gnorm(next(g for g in m.groups() if g is not None))
+        if len(quote) < 2 or quote in allowed:
+            continue
+        if re.fullmatch(r"[^\W\d_]{1,10}", quote):
+            continue  # a single plain word ("not", "wool") is a quoted query term, not a claim
+        if len(quote) >= 3 and any(quote in a for a in allowed):
+            continue  # partial quote of a real title or query
+        if quote in catalog or (len(quote) >= 8 and any(quote in t for t in catalog)):
+            provable = True  # naming a real, observed product backs a "the store carries it" claim
+            continue
+        problems.append(f"{label}: quoted \"{quote}\" is not a tested search or a product title in its results")
+    if not provable:
+        # Quoted real products (from any search or the catalog sample) prove stock.
+        quoted = [_gnorm(next(g for g in m.groups() if g is not None)) for m in _QUOTE_RE.finditer(text or "")]
+        provable = any(len(q) >= 8 and (q in catalog or any(q in t for t in catalog)) for q in quoted)
+    prose = _QUOTE_RE.sub(" ", text or "")  # positions/claims are checked outside quoted titles
+    for m in _RANK_RE.finditer(prose):
+        n = int(m.group(1))
+        if n not in ranks:
+            problems.append(f"{label}: cites #{n}, which is not a result position for these searches")
+    zero_scope = [j for j in failing_judgments(scope) if not j.results]
+    if zero_scope and not provable and _CARRY_RE.search(prose):
+        problems.append(f"{label}: claims the store carries/stocks the product without proof")
+    return problems
+
+
+def _scope_for(queries: list[str], all_scored: list[QueryJudgment]) -> list[QueryJudgment]:
+    by_q = {j.test_query.query: j for j in all_scored}
+    return [by_q[q] for q in queries if q in by_q]
+
+
+def deep_dive_violations(sections: list[dict], judgments: list[QueryJudgment],
+                         site_context: SiteContext | None = None) -> list[str]:
+    """Validate stored-format deep dives against the audit data."""
+    sc = scored(judgments)
+    fails = {j.test_query.query for j in failing_judgments(sc)}
+    problems: list[str] = []
+    for s in sections:
+        cap = s.get("capability")
+        queries = [e.get("query") for e in s.get("examples", [])]
+        for q in queries:
+            if q not in fails:
+                problems.append(f"deep dive {cap}: example \"{q}\" is not a failing tested search")
+        cap_scope = [j for j in sc if CATEGORY_TO_CAPABILITY.get(category(j)) == cap]
+        problems += grounding_violations(s.get("intro", ""), cap_scope, sc, site_context, f"deep dive {cap} intro")
+        for e in s.get("examples", []):
+            problems += grounding_violations(e.get("narrative", ""), _scope_for([e.get("query")], sc), sc,
+                                             site_context, f"deep dive \"{e.get('query')}\"")
+    return problems
+
+
+def roadmap_violations(items: list[dict], judgments: list[QueryJudgment],
+                       site_context: SiteContext | None = None) -> list[str]:
+    """Validate stored-format roadmap items against the audit data."""
+    sc = scored(judgments)
+    fails = {j.test_query.query for j in failing_judgments(sc)}
+    problems: list[str] = []
+    for n, it in enumerate(items, 1):
+        qs = it.get("queries") or []
+        if not qs:
+            problems.append(f"roadmap item {n}: has no tested searches")
+        bad = [q for q in qs if q not in fails]
+        if bad:
+            problems.append(f"roadmap item {n}: {bad[:3]} are not failing tested searches")
+        if not (it.get("title") or "").strip():
+            problems.append(f"roadmap item {n}: empty title")
+        scope = _scope_for(qs, sc)
+        text = f"{it.get('title', '')}. {it.get('description', '')}"
+        problems += grounding_violations(text, scope, sc, site_context, f"roadmap item {n}")
+    return problems
+
+
+# Concrete intent terms that make a "ranking" title acceptable (not vague).
+_INTENT_TERMS = (
+    "intent", "boost", "price", "brand", "bestseller", "best seller", "sale",
+    "product-type", "product type", "filter", "negative", "facet", "constraint",
+    "synonym", "typo", "fuzzy", "exclu",
+)
+
+
+def _is_relevance_vague_title(title: str) -> bool:
+    """True when a roadmap title leads with abstract 'relevance/ranking' framing."""
+    t = title.lower()
+    if "relevance" in t:
+        return True
+    if "ranking algorithm" in t or "sort order" in t or "re-rank" in t or "rerank" in t:
+        return True
+    return "ranking" in t and not any(term in t for term in _INTENT_TERMS)
+
+
+def _with_feedback(user: str, problems: list[str]) -> str:
+    listed = "\n".join(f"- {p}" for p in problems[:25])
+    return (f"{user}\n\nYOUR PREVIOUS ANSWER WAS REJECTED for these reasons:\n{listed}\n"
+            "Return a corrected answer that follows every rule.")
+
+
+def _grounded_call(*, system: str, user: str, schema, convert, validate, phase: str,
+                   max_tokens: int, client=None, soft_validate=None):
+    """structured_call → convert → validate; on violations regenerate once, then raise.
+
+    ``soft_validate`` problems (style rules) trigger the retry but never raise.
+    """
+    problems: list[str] = []
+    for attempt in range(2):
+        prompt = user if attempt == 0 else _with_feedback(user, problems)
+        out = structured_call(model=_MODEL, system=system, user=prompt, schema=schema,
+                              max_tokens=max_tokens, phase=phase, temperature=0.3, client=client)
+        content, problems = convert(out)
+        if not problems:
+            problems = validate(content)
+        soft = soft_validate(content) if (soft_validate and not problems) else []
+        if not problems and not soft:
+            return content
+        if not problems and attempt == 1:
+            logger.warning("%s: style rule still broken after retry: %s", phase, soft)
+            return content
+        problems = problems or soft
+        logger.warning("%s attempt %d rejected: %s", phase, attempt + 1, problems[:5])
+    raise GroundingError(f"{phase}: narrative failed grounding twice: {problems[:10]}")
+
+
+def generate_deep_dives(site_context: SiteContext, judgments: list[QueryJudgment], client=None) -> list[dict]:
+    """Per-capability deep dives (stored format), grounded. [] when nothing failed."""
+    sc = scored(judgments)
+    fails = failing_judgments(sc)
+    if not fails:
+        return []
+    groups = _capability_groups(fails, sc)
+
+    def convert(out: DeepDivesOut):
+        problems, sections, seen = [], [], set()
+        for s in out.sections:
+            if not 0 <= s.capability_id < len(groups) or s.capability_id in seen:
+                problems.append(f"unknown or repeated capability_id {s.capability_id}")
                 continue
+            seen.add(s.capability_id)
+            cap, ids = groups[s.capability_id]
+            examples = []
+            for e in s.examples[:5]:
+                if e.query_id not in ids:
+                    problems.append(f"query_id {e.query_id} does not belong to capability {s.capability_id}")
+                    continue
+                examples.append({"query": fails[e.query_id].test_query.query, "narrative": e.narrative.strip()})
+            sections.append({"capability": cap, "capability_name": CAPABILITY_NAMES.get(cap, cap),
+                             "intro": s.intro.strip(), "examples": examples})
+        missing = [CAPABILITY_NAMES.get(groups[i][0]) for i in range(len(groups)) if i not in seen]
+        if missing:
+            problems.append(f"no section for capabilities: {missing}")
+        return sections, problems
 
-        by_orig = sorted(j.results, key=lambda r: r.original_rank)
-        top = by_orig[0]
-        best_rel = max(r.relevance_score for r in j.results)
-        if top.relevance_score < 0.6:
-            candidates.append((4, -top.relevance_score, (
-                f'A customer searching "{q}" sees "{top.title}" at the #1 spot — '
-                f'not what they asked for.'
-            )))
-        elif j.displacement > 2 and best_rel - top.relevance_score >= 0.15:
-            pos = j.displacement + 1
-            candidates.append((5, float(-pos), (
-                f'A customer searching "{q}" has to scroll to position {pos} to reach '
-                f'the best-matching product — below {j.displacement} weaker results.'
-            )))
-        else:
-            candidates.append((99, 0.0, ""))
-
-    real = [c for c in candidates if c[0] != 99]
-    if real:
-        real.sort(key=lambda c: (c[0], c[1]))
-        return real[0][2]
-    return ""
+    sections = _grounded_call(
+        system=_DEEP_DIVE_SYSTEM, user=_deep_dive_user(site_context, fails, sc), schema=DeepDivesOut,
+        convert=convert, validate=lambda c: deep_dive_violations(c, sc, site_context),
+        phase="report_deep_dives", max_tokens=8000, client=client,
+    )
+    order = {cap: i for i, (cap, _) in enumerate(groups)}
+    sections.sort(key=lambda s: order.get(s["capability"], 99))
+    return sections
 
 
-def compute_aggregate_stats(judgments: list[QueryJudgment]) -> dict:
-    """Compute aggregate statistics across all judged queries.
+def generate_roadmap(site_context: SiteContext, judgments: list[QueryJudgment], client=None) -> list[dict]:
+    """Prioritised roadmap (stored format), grounded. [] when nothing failed."""
+    sc = scored(judgments)
+    fails = failing_judgments(sc)
+    if not fails:
+        return []
 
-    Returns a dict with keys:
-        total_queries, critical_count, moderate_count, minor_count, pass_count,
-        pct_top3_irrelevant, avg_best_position,
-        pct_top1_irrelevant, worst_example_query, worst_example_displacement
-    """
-    total = len(judgments)
-    if total == 0:
-        return {
-            "total_queries": 0,
-            "critical_count": 0,
-            "moderate_count": 0,
-            "minor_count": 0,
-            "pass_count": 0,
-            "pct_top3_irrelevant": 0.0,
-            "pct_top3_relevant_all": 0.0,
-            "avg_best_position": 0.0,
-            "pct_top1_irrelevant": 0.0,
-            "zero_result_count": 0,
-            "pct_zero_result": 0.0,
-            "pct_no_relevant_first": 0.0,
-            "worst_zero_query": "",
-            "worst_example_query": "",
-            "worst_example_displacement": 0,
-            "worst_example": "",
-        }
+    def convert(out: RoadmapOut):
+        problems, items = [], []
+        if not out.items:
+            problems.append("roadmap has no items")
+        for n, it in enumerate(out.items[:8], 1):
+            ids = [i for i in dict.fromkeys(it.query_ids) if 0 <= i < len(fails)]
+            if len(ids) != len(set(it.query_ids)):
+                problems.append(f"item {n}: query_ids out of range {it.query_ids}")
+            items.append({
+                "title": " ".join(it.title.split()).rstrip("."),
+                "description": " ".join(it.description.split()),
+                "impact": it.impact.value, "effort": it.effort.value, "owner": it.owner.value,
+                "queries": [fails[i].test_query.query for i in ids],
+            })
+        return items, problems
 
-    critical_count  = sum(1 for j in judgments if j.severity == Severity.CRITICAL.value)
-    moderate_count  = sum(1 for j in judgments if j.severity == Severity.MODERATE.value)
-    minor_count     = sum(1 for j in judgments if j.severity == Severity.MINOR.value)
-    pass_count      = sum(1 for j in judgments if j.severity == Severity.PASS.value)
+    def soft(items):
+        return ([f"item 1 title is abstract ranking/relevance framing: {items[0]['title']!r} — name "
+                 "concrete intent signals"] if items and _is_relevance_vague_title(items[0]["title"]) else [])
 
-    # Only consider queries that returned results for displacement-based stats.
-    # Zero-result queries have no meaningful "position" to report.
-    with_results = [j for j in judgments if j.results]
-    nres = len(with_results) or 1
-
-    # pct_top3_irrelevant: best result NOT in top 3 (displacement > 2)
-    top3_irrelevant = sum(1 for j in with_results if j.displacement > 2)
-    pct_top3_irrelevant = (top3_irrelevant / nres) * 100
-
-    # All-search version: best result IS in the top 3, counted over ALL queries (zero-result
-    # queries have nothing relevant in the top 3, so they correctly count against this).
-    top3_relevant_all = sum(1 for j in with_results if j.displacement <= 2)
-    pct_top3_relevant_all = (top3_relevant_all / total) * 100
-
-    # avg_best_position: average original_rank of the highest-scoring result
-    avg_best_position = (
-        sum(j.displacement + 1 for j in with_results) / nres if with_results else 0
+    return _grounded_call(
+        system=_ROADMAP_SYSTEM, user=_roadmap_user(site_context, fails, sc), schema=RoadmapOut,
+        convert=convert, validate=lambda c: roadmap_violations(c, sc, site_context),
+        soft_validate=soft, phase="report_roadmap", max_tokens=3000, client=client,
     )
 
-    # pct_top1_irrelevant: #1 result's relevance_score below 0.40
-    top1_irrelevant = 0
-    for j in with_results:
-        by_original = sorted(j.results, key=lambda r: r.original_rank)
-        if by_original and by_original[0].relevance_score < 0.40:
-            top1_irrelevant += 1
-    pct_top1_irrelevant = (top1_irrelevant / nres) * 100
 
-    # worst example: highest displacement among queries where the #1 result shown to
-    # customers was genuinely weak (top-1 relevance < 0.40). This avoids flagging
-    # queries where all results are on-topic but the scorer split hairs.
-    def _top1_relevance(j):
-        by_original = sorted(j.results, key=lambda r: r.original_rank)
-        return by_original[0].relevance_score if by_original else 1.0
+# ── Language-mention cap (deterministic backstop to prompt rule 5) ──────────
 
-    weak_top1 = [j for j in with_results if _top1_relevance(j) < 0.40]
-    worst = max(weak_top1, key=lambda j: j.displacement) if weak_top1 else None
-
-    # Retrieval-health metrics computed over ALL queries (zero-result queries INCLUDED).
-    # These are the true headline for retrieval-failure-dominated sites — unlike the
-    # position metrics above, they do not silently drop the queries that returned nothing.
-    # Count zero-result queries that are actual FAILURES — exclude correctly-empty results
-    # (a catalog gap judged PASS, e.g. a product the store doesn't carry) so we don't inflate.
-    zero_result_count = sum(
-        1 for j in judgments if not j.results and j.severity != Severity.PASS.value
-    )
-    pct_zero_result = (zero_result_count / total) * 100
-    # "No relevant result surfaced first": zero results OR the customer's #1 was irrelevant.
-    no_relevant_first = 0
-    for j in judgments:
-        if j.severity == Severity.PASS.value:
-            continue  # a PASS gave the customer a relevant result (or correctly nothing)
-        if not j.results:
-            no_relevant_first += 1
-            continue
-        by_original = sorted(j.results, key=lambda r: r.original_rank)
-        if by_original and by_original[0].relevance_score < 0.40:
-            no_relevant_first += 1
-    pct_no_relevant_first = (no_relevant_first / total) * 100
-
-    # Worst example, retrieval-first: prefer a CRITICAL zero-result query that the store
-    # PROVABLY stocks (the term works elsewhere in the audit) — the most self-evident,
-    # costly failure. Fall back to any critical zero-result, else the displacement example.
-    zero_critical = [
-        j for j in judgments
-        if not j.results and j.severity == Severity.CRITICAL.value
-    ]
-    worst_zero = next(
-        (j for j in zero_critical if _find_proof_of_stock(j.test_query.query, judgments)),
-        zero_critical[0] if zero_critical else None,
-    )
-
-    return {
-        "total_queries": total,
-        "critical_count": critical_count,
-        "moderate_count": moderate_count,
-        "minor_count": minor_count,
-        "pass_count": pass_count,
-        "pct_top3_irrelevant": pct_top3_irrelevant,
-        "pct_top3_relevant_all": pct_top3_relevant_all,
-        "avg_best_position": avg_best_position,
-        "pct_top1_irrelevant": pct_top1_irrelevant,
-        "zero_result_count": zero_result_count,
-        "pct_zero_result": pct_zero_result,
-        "pct_no_relevant_first": pct_no_relevant_first,
-        "worst_zero_query": worst_zero.test_query.query if worst_zero else "",
-        "worst_example_query": worst.test_query.query if worst else "",
-        "worst_example_displacement": worst.displacement if worst else 0,
-        "worst_example": pick_worst_example(judgments),
-    }
+_PROTECTED_SPAN = re.compile(r'"[^"\n]*"|“[^”\n]*”|‘[^’\n]*’|`[^`\n]*`')
 
 
-def build_summary_statistics_markdown(
-    stats: dict,
-    judgments: list[QueryJudgment],
-) -> str:
-    """Build a summary statistics section showing severity distribution,
-    failure mode breakdown, and key metrics."""
-    total = stats["total_queries"]
+def _limit_language_mentions(text: str, language: str, already_kept: int, cap: int = 1) -> tuple[str, int]:
+    """Drop adjectival mentions of the site's own language beyond ``cap`` ("German synonym
+    mapping" -> "synonym mapping"). Never edits inside quotes or backticks (queries/titles stay
+    verbatim), never touches noun uses ("in German"), and re-capitalises only a sentence it
+    edited. Returns (text, running mention count)."""
+    if not language or not text:
+        return text, already_kept
+    word_re = re.compile(rf"\b{re.escape(language)}\b(\s+(?=[^\W\d_]))?", re.I)
+    count = already_kept
+    out: list[str] = []
+    pos = 0
 
-    lines = [
-        f"## Test Results Summary\n",
-        f"We ran **{total} test queries** across multiple search capability categories. "
-        f"Here is the breakdown.\n",
-    ]
+    def process(segment: str) -> None:
+        nonlocal count
+        p = 0
+        for m in word_re.finditer(segment):
+            count += 1
+            out.append(segment[p:m.start()])
+            p = m.end()
+            if count <= cap or m.group(1) is None:
+                out.append(m.group(0))
+                continue
+            before = "".join(out).rstrip(" *")
+            at_start = not before or before.endswith((".", "!", "?", ":", "\n"))
+            rest = segment[p:]
+            if at_start and rest[:1].islower():
+                out.append(rest[:1].upper())
+                p += 1
+        out.append(segment[p:])
 
-    # Severity distribution
-    lines.append("### Severity Distribution\n")
-    lines.append("| Severity | Queries |")
-    lines.append("|----------|---------|")
-    for sev_value, label in [
-        (Severity.CRITICAL.value, "Critical"),
-        (Severity.MODERATE.value, "Moderate"),
-        (Severity.MINOR.value, "Minor"),
-        (Severity.PASS.value, "Pass"),
-    ]:
-        emoji = _SEVERITY_EMOJI.get(sev_value, "")
-        key = f"{label.lower()}_count"
-        count = stats.get(key, 0)
-        lines.append(f"| {emoji} {label} | {count} |")
+    for m in _PROTECTED_SPAN.finditer(text):
+        process(text[pos:m.start()])
+        out.append(m.group(0))
+        pos = m.end()
+    process(text[pos:])
+    return "".join(out), count
 
-    # Failure mode breakdown
-    mode_counts = Counter(j.failure_mode for j in judgments if j.severity != Severity.PASS.value)
-    if mode_counts:
+
+def _apply_language_cap(site_context: SiteContext, deep_dives: list[dict], roadmap: list[dict]) -> None:
+    language = getattr(site_context, "primary_language", None)
+    if not language or language.lower() == "english":
+        return
+    kept = 0
+    for s in deep_dives:
+        s["intro"], kept = _limit_language_mentions(s["intro"], language, kept)
+        for e in s["examples"]:
+            e["narrative"], kept = _limit_language_mentions(e["narrative"], language, kept)
+    for it in roadmap:
+        it["title"], kept = _limit_language_mentions(it["title"], language, kept)
+        it["description"], kept = _limit_language_mentions(it["description"], language, kept)
+
+
+# ── Markdown rendering of the narratives ────────────────────────────────
+
+
+def render_deep_dives_markdown(sections: list[dict], judgments: list[QueryJudgment]) -> str:
+    if not sections:
+        return "## Detailed Analysis\n\nEvery scored search passed — no failing capability to analyse."
+    by_q = {j.test_query.query: j for j in scored(judgments)}
+    out: list[str] = []
+    for s in sections:
+        out.append(f"## {s['capability_name']}\n")
+        out.append(f"{s['intro']}\n")
+        for e in s["examples"]:
+            j = by_q.get(e["query"])
+            if j is None:
+                continue
+            meta = f"{CATEGORY_DISPLAY.get(category(j), category(j))} · {SEVERITY_SHORT.get(sev(j), sev(j))}"
+            out.append(f"### \"{e['query']}\"\n")
+            out.append(f"*{meta}{' · No results returned' if not j.results else ''}*\n")
+            out.append(f"{e['narrative']}\n")
+            shown = by_original(j)[:5]
+            if shown:
+                out.append("**Customer saw:**")
+                out.extend(f"{r.original_rank}. {r.title}{_price(r)}" for r in shown)
+                out.append("")
+                better = better_matches(j)
+                if better:
+                    out.append("**Should have seen:**")
+                    out.extend(f"- {r.title}{_price(r)} (shown at #{r.original_rank})" for r in better)
+                    out.append("")
+    return "\n".join(out).strip()
+
+
+def _roadmap_reach(item: dict, judgments: list[QueryJudgment]) -> tuple[int, int]:
+    scope = _scope_for(item.get("queries") or [], scored(judgments))
+    return len(scope), sum(1 for j in scope if sev(j) == Severity.CRITICAL.value)
+
+
+def roadmap_reach_text(item: dict, judgments: list[QueryJudgment]) -> str:
+    n, k = _roadmap_reach(item, judgments)
+    word = "search" if n == 1 else "searches"
+    return f"Fixes {n} tested {word}" + (f" ({k} critical)" if k else "")
+
+
+def render_roadmap_markdown(items: list[dict], judgments: list[QueryJudgment]) -> str:
+    if not items:
+        return "Every scored search passed — no fixes needed."
+    lines = []
+    for n, it in enumerate(items, 1):
+        owner = _OWNER_LABELS.get(it.get("owner"), "")
+        lines.append(f"{n}. **{it['title']}**")
+        lines.append(f"   {it['description']}")
+        lines.append(f"   Impact: {it['impact']} | Effort: {it['effort']}" + (f" | Owner: {owner}" if owner else ""))
+        lines.append(f"   {roadmap_reach_text(it, judgments)}: " +
+                     ", ".join(f"\"{q}\"" for q in it.get("queries", [])[:5]))
         lines.append("")
-        lines.append("### Failure Mode Breakdown\n")
-        lines.append("| Failure Mode | Queries |")
-        lines.append("|-------------|---------|")
-        for mode, count in mode_counts.most_common():
-            display = _FAILURE_MODE_DISPLAY.get(mode, mode)
-            lines.append(f"| {display} | {count} |")
+    return "\n".join(lines).strip()
 
-    # Key metrics
-    lines.append("")
-    lines.append("### Key Metrics\n")
 
-    if total > 0:
-        # Retrieval failed entirely — returned nothing usable.
-        zero_count = stats["zero_result_count"]
-        lines.append(
-            f"- **No usable results returned:** {stats['pct_zero_result']:.0f}% of queries "
-            f"({zero_count} of {total}) — the search returned nothing relevant at all"
-        )
+# ---------------------------------------------------------------------------
+# PART 3 — Deterministic stats + framing sections
+# ---------------------------------------------------------------------------
 
-        # Retrieval succeeded but result QUALITY failed: a non-pass verdict where the engine
-        # DID return results — covers poor ranking, partial keyword matches, dropped
-        # constraints, brand bleed, facet misses, duplicate flooding (not just POOR_RANKING).
-        retrieved_but_wrong = sum(
-            1 for j in judgments
-            if j.severity != Severity.PASS.value and j.results
-        )
-        pct_retrieved_wrong = (retrieved_but_wrong / total) * 100
-        lines.append(
-            f"- **Results returned but mis-ranked or wrong:** {pct_retrieved_wrong:.0f}% of queries "
-            f"({retrieved_but_wrong} of {total}) — the engine found products but ordered them poorly, "
-            f"dropped a stated constraint, or surfaced only partial matches"
-        )
 
-    # Position metrics are scoped to queries that returned results (zero-result queries have
-    # no position) — label them so, to avoid implying they cover all queries.
-    lines.append(
-        f"- **Average best result position (among queries that returned results):** "
-        f"#{stats['avg_best_position']:.1f}"
-    )
-    lines.append(
-        f"- **Top-3 miss rate (among queries that returned results):** {stats['pct_top3_irrelevant']:.0f}% "
-        f"had their best result outside the top 3"
-    )
-    lines.append(
-        f"- **Irrelevant #1 result (among queries that returned results):** {stats['pct_top1_irrelevant']:.0f}% "
-        f"showed an irrelevant result in the top position"
-    )
+def build_summary_statistics_markdown(stats: dict, judgments: list[QueryJudgment]) -> str:
+    """Severity distribution, failure modes and key metrics (scored searches only)."""
+    f = formatted_stats(stats)
+    total = stats["total_queries"]
+    lines = [
+        "## Test Results Summary\n",
+        f"We scored **{total} test searches** across multiple search capability categories."
+        + (f" {stats['excluded_count']} more are listed under “Not scored”." if stats["excluded_count"] else "")
+        + " Here is the breakdown.\n",
+        "### Severity Distribution\n",
+        "| Severity | Searches |",
+        "|----------|---------|",
+    ]
+    for sev_value, label in [(Severity.CRITICAL.value, "Critical"), (Severity.MODERATE.value, "Moderate"),
+                             (Severity.MINOR.value, "Minor"), (Severity.PASS.value, "Pass")]:
+        lines.append(f"| {_SEVERITY_EMOJI.get(sev_value, '')} {label} | {stats[f'{label.lower()}_count']} |")
 
+    if stats["failure_mode_counts"]:
+        lines += ["", "### Failure Mode Breakdown\n", "| Failure Mode | Searches |", "|-------------|---------|"]
+        lines += [f"| {md_cell(fm['label'])} | {fm['count']} |" for fm in stats["failure_mode_counts"]]
+
+    lines += ["", "### Key Metrics\n"]
+    if total:
+        lines.append(f"- **{ZERO_RESULT_LABEL}:** {f['pct_zero_result']} of searches ({f['zero_of_total']})¹")
+        lines.append(f"- **{FOUND_BUT_WRONG_LABEL}:** {f['pct_found_but_wrong']} of searches "
+                     f"({f['found_wrong_of_total']}) — products came back, but ordered poorly, ignoring a "
+                     "stated limit, or matching only part of the query")
+    lines.append(f"- **Average best result position (searches that returned products):** {f['avg_best_position']}")
+    lines.append(f"- **Best match outside the top 3 (searches that returned products):** {f['pct_top3_irrelevant']}")
+    lines.append(f"- **Irrelevant #1 result (searches that returned products):** {f['pct_top1_irrelevant']}")
+    lines += ["", f"¹ {ZERO_RESULT_FOOTNOTE}"]
     return "\n".join(lines)
 
 
-def build_full_query_appendix_markdown(judgments: list[QueryJudgment]) -> str:
-    """Build a full table of every query tested, sorted by severity then displacement."""
-    total = len(judgments)
-
+def build_root_causes_markdown(judgments: list[QueryJudgment]) -> str:
+    rows = root_causes(judgments)
+    if not rows:
+        return ""
     lines = [
-        f"## Appendix: Complete Test Results\n",
-        f"All {total} queries tested in this audit.\n",
-        "| # | Query | Category | Severity | Best Position | Failure Mode |",
+        "## Root Causes\n",
+        "Many failures share one mechanism. Fix the mechanism once and every search below it improves.\n",
+        "| Cause | Searches | Critical | Examples |",
+        "|-------|----------|----------|----------|",
+    ]
+    for r in rows:
+        ex = ", ".join(f"`{md_cell(q)}`" for q in r["queries"][:3])
+        lines.append(f"| {md_cell(r['mechanism'])} | {r['count']} | {r['critical']} | {ex} |")
+    return "\n".join(lines)
+
+
+def build_full_query_appendix_markdown(judgments: list[QueryJudgment], search_url_template: str = "") -> str:
+    """Every SCORED search, worst first, with a reproduction link when the template allows."""
+    sc = scored(judgments)
+    lines = [
+        "## Appendix: Complete Test Results\n",
+        f"All {len(sc)} scored searches in this audit.\n",
+        "| # | Search | Category | Severity | Best Position | Failure Mode |",
         "|---|-------|----------|----------|--------------|-------------|",
     ]
-
-    # Sort: worst first (CRITICAL -> MODERATE -> MINOR -> PASS), then by displacement desc
-    sorted_judgments = sorted(
-        judgments,
-        key=lambda j: (-_SEVERITY_RANK.get(j.severity, 0), -j.displacement),
-    )
-
-    for idx, j in enumerate(sorted_judgments, 1):
-        query = j.test_query.query
-        category = _CATEGORY_DISPLAY.get(j.test_query.category, j.test_query.category)
-        emoji = _SEVERITY_EMOJI.get(j.severity, "")
-        sev_label = _SEVERITY_SHORT.get(j.severity, j.severity)
-        best_pos = f"#{j.displacement + 1}"
-        failure = _FAILURE_MODE_DISPLAY.get(j.failure_mode, j.failure_mode)
-
-        if j.severity == Severity.PASS.value:
-            failure = "—"
-            best_pos = "#1"
-        elif not j.results:
-            # Zero-result query: no position exists.
-            best_pos = "—"
-
+    for idx, j in enumerate(sorted(sc, key=lambda j: (-SEVERITY_RANK.get(sev(j), 0), -j.displacement)), 1):
+        q = md_cell(j.test_query.query)
+        url = search_url(search_url_template, j.test_query.query)
+        query_cell = f"[{q.replace('[', '(').replace(']', ')')}]({url})" if url else q
+        if is_pass(j):
+            failure, best_pos = "—", "#1"
+        else:
+            failure = FAILURE_MODE_DISPLAY.get(mode(j), mode(j))
+            best_pos = f"#{j.displacement + 1}" if j.results else "—"
         lines.append(
-            f"| {idx} | {query} | {category} | {emoji} {sev_label} | {best_pos} | {failure} |"
+            f"| {idx} | {query_cell} | {md_cell(CATEGORY_DISPLAY.get(category(j), category(j)))} | "
+            f"{_SEVERITY_EMOJI.get(sev(j), '')} {SEVERITY_SHORT.get(sev(j), sev(j))} | {best_pos} | {md_cell(failure)} |"
         )
-
     return "\n".join(lines)
 
 
-def build_executive_summary(
-    site_context: SiteContext,
-    capability_scores: list[CapabilityScore],
-    stats: dict,
-) -> str:
-    """Build a deterministic executive summary (no LLM)."""
-    site_name = site_context.site_name or site_context.url
-    total_cap = len(capability_scores)
-    pass_cap = sum(1 for cs in capability_scores if cs.severity == Severity.PASS.value)
+def build_not_scored_markdown(judgments: list[QueryJudgment]) -> str:
+    ex = excluded(judgments)
+    if not ex:
+        return ""
+    lines = [
+        "## Not Scored\n",
+        "These searches were tested but left out of every figure in this report.\n",
+        "| Search | Why it isn't scored |",
+        "|--------|---------------------|",
+    ]
+    for j in ex:
+        reason = EXCLUDED_REASON_TEXT.get(j.excluded_reason, "Left out of scoring.")
+        lines.append(f"| {md_cell(j.test_query.query)} | {md_cell(reason)} |")
+    return "\n".join(lines)
 
-    total_queries       = stats["total_queries"]
-    avg_best_position   = stats["avg_best_position"]
-    pct_top3_irrelevant = stats["pct_top3_irrelevant"]
-    pct_no_relevant     = stats["pct_no_relevant_first"]
-    zero_count          = stats["zero_result_count"]
-    pct_zero            = stats["pct_zero_result"]
-    worst_zero          = stats["worst_zero_query"]
-    worst_query         = stats["worst_example_query"]
-    worst_disp          = stats["worst_example_displacement"]
+
+def build_executive_summary(site_context: SiteContext, capability_scores, stats: dict) -> str:
+    """Deterministic executive summary (no LLM). Every claim comes from ``stats``."""
+    f = formatted_stats(stats)
+    site_name = site_context.site_name or site_context.url
+    n_caps = len(capability_rows(_as_judgments(capability_scores)))
+    n = stats["total_queries"]
 
     summary = (
-        f"## Executive Summary\n\n"
-        f"This audit tested {site_name}'s internal search engine across "
-        f"{total_cap} core capabilities using {total_queries} realistic customer queries. "
-        f"**The results are grouped by where improvements are likely to help customer journeys most.**\n\n"
-        # Lead with retrieval health over ALL queries — including the ones that returned nothing.
-        f"In **{pct_no_relevant:.0f}% of queries**, the customer was not shown a relevant result first — "
-        f"either no usable results at all or an off-topic top result. In particular, "
-        f"**{pct_zero:.0f}% of queries ({zero_count} of {total_queries}) returned no usable results**, "
-        f"most often because the search could not interpret everyday phrasing, map common terms to the "
-        f"right category, tolerate a typo, or honour an exclusion."
+        "## Executive Summary\n\n"
+        f"This audit tested {site_name}'s site search across {n_caps} core capabilities using {n} "
+        "realistic customer searches. **The results are grouped by where improvements are likely to "
+        "help customer journeys most.**\n\n"
+        f"In **{f['pct_no_relevant_first']} of tested searches**, the shopper was not shown a relevant "
+        "result first — either nothing usable at all or an off-topic top result."
     )
-    # Secondary: ordering quality, scoped to queries that DID return results.
-    summary += (
-        f"\n\nAmong the queries that did return results, the best match appeared at "
-        f"**position #{avg_best_position:.0f}** on average — past the first 3 results most customers look at — "
-        f"and in **{pct_top3_irrelevant:.0f}%** of them the best match wasn't in the top 3."
-    )
-    # Worst example, retrieval-first: a zero-result on a product the store stocks beats a scroll example.
-    if worst_zero:
+    if stats["zero_result_count"]:
+        causes = stats["zero_result_causes"]
+        cause_txt = ""
+        if causes:
+            parts = [f"{c} ({k})" for c, k in causes]
+            joined = parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + " or " + parts[-1]
+            cause_txt = f", most often because {joined}"
+        summary += (f" **{f['zero_of_total']} searches returned nothing usable**{cause_txt}.")
+    if stats["with_results_count"]:
         summary += (
-            f'\n\nThe most telling example: a customer searching "{worst_zero}" was shown '
-            f"**no usable results at all**, even though the store carries matching products."
+            "\n\nAmong the searches that did return products, the best match sat at "
+            f"**position {f['avg_best_position']}** on average — {position_context(stats['avg_best_position'])}"
+            f" — and in **{f['pct_top3_irrelevant']}** of them the best match wasn't in the top 3."
         )
-    elif worst_query and worst_disp > 0:
-        summary += (
-            f'\n\nThe most severe ranking example: a customer searching "{worst_query}" '
-            f"had to scroll to position #{worst_disp + 1} to find the best matching result."
-        )
+    if stats["worst_example"]:
+        ex = stats["worst_example"]
+        summary += f"\n\nThe most telling example: {ex[:1].lower() + ex[1:] if ex.startswith('A ') else ex}"
+    summary += f"\n\n_{SAMPLE_NOTE}_"
     return summary
 
 
-def build_methodology(
-    total_queries: int,
-    num_capabilities: int,
-    num_categories: int,
-) -> str:
-    """Build a detailed methodology section describing the full audit pipeline."""
+def build_methodology(total_queries: int, num_capabilities: int, num_categories: int) -> str:
+    """Methodology — describes the pipeline without naming tools or internal scores."""
     return (
-        f"## Methodology: The Audit Pipeline\n\n"
-        f"This audit was conducted using our search-quality audit pipeline — a seven-phase automated "
-        f"search quality assessment. {total_queries} test queries were generated across "
-        f"{num_categories} query categories, grouped into {num_capabilities} core capabilities.\n\n"
-        f"**1. Site Discovery**\n"
-        f"Automated analysis of your site's structure, navigation categories, brands, and "
-        f"featured products to understand what your search engine should be able to find.\n\n"
-        f"**2. Test Design**\n"
-        f"Site-type-aware selection from a library of 26 test categories. Categories are chosen "
-        f"based on your site's commerce model to ensure the audit tests what matters most for "
-        f"your customers.\n\n"
-        f"**3. Query Generation**\n"
-        f"AI-generated realistic customer queries grounded in the actual products, brands, and "
-        f"categories found on your site — not generic templates.\n\n"
-        f"**4. Result Collection**\n"
-        f"Automated search execution collecting the top results for each test query exactly as "
-        f"your customers would see them.\n\n"
-        f"**5. Relevance Scoring**\n"
-        f"Each result scored on a 0.0–1.0 scale by a specialized relevance model, producing an "
-        f"objective measure of how well each result matches the query intent.\n\n"
-        f"**6. Failure Analysis**\n"
-        f"Each query classified by failure mode (e.g., no results, category not understood, "
-        f"constraint ignored, typo not handled, or relevant results buried) and assigned a "
-        f"severity based on customer impact — whether the search returned nothing, surfaced the "
-        f"wrong products, or simply ordered the right ones poorly.\n\n"
-        f"**7. Report Assembly**\n"
-        f"Findings synthesized into this actionable narrative with prioritized recommendations "
-        f"ordered by business impact."
+        "## Methodology: How We Tested\n\n"
+        f"{total_queries} scored test searches were generated across {num_categories} query categories, "
+        f"grouped into {num_capabilities} core capabilities.\n\n"
+        "**1. Site Discovery**\n"
+        "Analysis of your site's navigation categories, brands and featured products, to understand "
+        "what your search should be able to find.\n\n"
+        "**2. Test Design**\n"
+        "Site-type-aware selection from a library of test categories, chosen for how your customers shop.\n\n"
+        "**3. Query Generation**\n"
+        "Realistic customer searches grounded in the actual products, brands and categories on your site — "
+        "not generic templates. Where a search has a plain underlying term (the correct spelling behind a "
+        "typo, the product type behind a long phrase), that term is searched too, as a control.\n\n"
+        "**4. Result Collection**\n"
+        "Each search run live on the site (desktop), collecting the top results exactly as a shopper sees them.\n\n"
+        "**5. Result Rating**\n"
+        "Every returned product rated for how well it matches what the shopper asked for.\n\n"
+        "**6. Failure Analysis**\n"
+        "Each search classified by failure mode (no results, category not understood, constraint ignored, "
+        "typo not handled, relevant results buried) and given a severity based on shopper impact. Searches "
+        "whose control also found nothing (the store doesn't stock it) or whose page couldn't be loaded "
+        "reliably are listed as not scored and left out of every figure.\n\n"
+        "**7. Report Assembly**\n"
+        "Findings written up with prioritised fixes, ordered by impact. Every quoted search, product and "
+        "position is checked against the collected results."
     )
 
 
-def build_industry_benchmarks_markdown(stats: dict) -> str:
-    """Build a section comparing the client's scores against published industry benchmarks."""
-    pct_dead_end = stats["pct_no_relevant_first"]
-    pct_top3_relevant_all = stats["pct_top3_relevant_all"]
-    avg_best = stats["avg_best_position"]
-    pct_top1_irrelevant = stats["pct_top1_irrelevant"]
-
-    lines = [
-        "## How You Compare: Industry Benchmarks\n",
-        "Your results in context of published ecommerce search research. The first two rows "
-        "are measured across ALL searches (a search that returns nothing has no relevant "
-        "result); the last two describe ordering among searches that did return results.\n",
-        "| Metric | Your Score | Industry Target | Source |",
-        "|--------|-----------|----------------|--------|",
-        f"| Searches ending in a dead end (nothing usable / irrelevant first result) | {pct_dead_end:.0f}% | <10% (avg ~31%) | Baymard Institute |",
-        f"| Relevant result in top 3 (all searches) | {pct_top3_relevant_all:.0f}% | 80%+ | Baymard Institute |",
-        f"| Average best result position (when results returned) | #{avg_best:.1f} | #1–2 | Industry best practice |",
-        f"| Irrelevant #1 result (when results returned) | {pct_top1_irrelevant:.0f}% | <10% | Industry best practice |",
-        "",
-        "### Why This Matters\n",
-        "- **70% of ecommerce sites cannot handle typos** in their site search "
-        "(Baymard Institute). Sites that do handle them gain a significant edge.\n"
-        "- **~30% of ecommerce visitors use site search**, but they generate a "
-        "disproportionate share of revenue — search users convert at **1.8–3x the rate** "
-        "of browse-only visitors (Econsultancy, Algolia).\n"
-        "- **31% of site searches end at a dead end** — irrelevant results or zero "
-        "results — across the average ecommerce site (Baymard Institute).\n"
-        "- The top 3 results capture **~55–60% of all clicks**. Results below position 3 "
-        "are seen by a rapidly shrinking share of customers.",
-    ]
-
+def build_industry_benchmarks_markdown(stats: dict, peer_benchmark: dict | None = None) -> str:
+    rows = benchmark_rows(stats, peer_benchmark)
+    peer = peer_label(peer_benchmark)
+    head = "| Metric | Your Result | Target |" + (f" {md_cell(peer)} |" if peer else "")
+    sep = "|--------|-------------|--------|" + ("--------|" if peer else "")
+    lines = ["## How to Read These Numbers\n", BENCHMARK_NOTE + "\n", head, sep]
+    for r in rows:
+        line = f"| {md_cell(r['metric'])} | {r['your_score']} | {r['target']} |"
+        if peer:
+            line += f" {r['peer'] or '—'} |"
+        lines.append(line)
+    lines += ["", f"_{SAMPLE_NOTE}_"]
     return "\n".join(lines)
 
 
 def build_call_to_action() -> str:
-    """Build a deterministic call-to-action section (no LLM)."""
     return (
         "## Next Steps\n\n"
         "We'd welcome the opportunity to walk you through these findings in detail and discuss "
@@ -1142,82 +876,95 @@ def build_call_to_action() -> str:
     )
 
 
+def audit_date_text(run_metadata: dict | None) -> str:
+    """Human date of the audit run (falls back to today for legacy reports)."""
+    md = run_metadata or {}
+    for key in ("audit_date", "run_date", "started_at", "run_started_at", "generated_at"):
+        raw = md.get(key)
+        if raw:
+            try:
+                return date.fromisoformat(str(raw)[:10]).strftime("%B %d, %Y")
+            except ValueError:
+                continue
+    return date.today().strftime("%B %d, %Y")
+
+
 # ---------------------------------------------------------------------------
 # Main report assembly
 # ---------------------------------------------------------------------------
 
 
+def report_content(report: AuditReport) -> dict:
+    """The accepted narratives stored on a report: {"deep_dives": [...], "roadmap": [...]}."""
+    return (report.run_metadata or {}).get("report_content") or {}
+
+
 def generate_report(
     site_context: SiteContext,
     judgments: list[QueryJudgment],
-    deep_dives_md: str | None = None,
-    roadmap_md: str | None = None,
+    deep_dives: list[dict] | None = None,
+    roadmap: list[dict] | None = None,
+    client=None,
+    peer_benchmark: dict | None = None,
 ) -> AuditReport:
-    """Assemble the full audit report: deterministic scoring + LLM narratives.
+    """Assemble the full audit report: deterministic scoring + grounded narratives.
 
-    ``deep_dives_md`` / ``roadmap_md`` let a caller supply already-reviewed LLM narratives
-    (the deep-dives + roadmap are non-deterministic, so a reviewed version should be passed in
-    rather than regenerated at assembly time). When omitted, they are generated fresh.
+    ``deep_dives`` / ``roadmap`` accept already-reviewed narratives in stored format (as found in
+    ``report_content(report)`` of an earlier run); they are validated, never regenerated. When
+    omitted, they are generated. A narrative that fails grounding raises :class:`GroundingError`.
     """
+    sc = scored(judgments)
+    capability_scores = build_capability_scores(judgments)  # persisted: all judgments, scored severities
 
-    # Part 1: Deterministic
-    capability_scores = build_capability_scores(judgments)
-    scorecard_md = build_scorecard_markdown(capability_scores)
-    whats_working_md = build_whats_working_markdown(capability_scores)
+    if deep_dives is None:
+        deep_dives = generate_deep_dives(site_context, sc, client=client)
+    else:
+        problems = deep_dive_violations(deep_dives, sc, site_context)
+        if problems:
+            raise GroundingError(f"supplied deep dives fail grounding: {problems[:10]}")
+    if roadmap is None:
+        roadmap = generate_roadmap(site_context, sc, client=client)
+    else:
+        problems = roadmap_violations(roadmap, sc, site_context)
+        if problems:
+            raise GroundingError(f"supplied roadmap fails grounding: {problems[:10]}")
+    _apply_language_cap(site_context, deep_dives, roadmap)
 
-    # Part 2: LLM narratives — reuse reviewed versions if supplied, else generate.
-    if deep_dives_md is None or roadmap_md is None:
-        deep_dives_md, roadmap_md = generate_deep_dives_and_roadmap(
-            site_context, capability_scores
-        )
-
-    # Part 3: Deterministic stats + framing sections
-    stats = compute_aggregate_stats(judgments)
-    num_categories = len({j.test_query.category for j in judgments})
-    executive_summary_md = build_executive_summary(site_context, capability_scores, stats)
-    summary_stats_md = build_summary_statistics_markdown(stats, judgments)
-    advanced_diagnostics_md = build_advanced_diagnostics_markdown(site_context, judgments)
-    benchmarks_md = build_industry_benchmarks_markdown(stats)
-    appendix_md = build_full_query_appendix_markdown(judgments)
-    methodology_md = build_methodology(
-        total_queries=stats["total_queries"],
-        num_capabilities=len(capability_scores),
-        num_categories=num_categories,
-    )
-    cta_md = build_call_to_action()
-
-    # Assemble markdown in specified order
+    stats = compute_stats(judgments, site_context.nav_categories)
+    run_metadata = {"report_content": {"deep_dives": deep_dives, "roadmap": roadmap}}
+    if peer_benchmark:
+        run_metadata["peer_benchmark"] = peer_benchmark
     site_name = site_context.site_name or site_context.url
-    today = date.today().strftime("%B %d, %Y")
+    today = audit_date_text(None)
+    scope = scope_line(stats, today, getattr(site_context, "locale", "") or site_context.primary_language)
+    roadmap_md = render_roadmap_markdown(roadmap, sc)
 
-    full_narrative = "\n\n".join([
-        f"# Search Audit Report: {site_name}\n\n*Generated on {today}*",
-        executive_summary_md,
-        scorecard_md,
-        summary_stats_md,
-        advanced_diagnostics_md,
-        deep_dives_md,
-        whats_working_md,
+    sections = [
+        f"# Search Audit Report: {site_name}\n\n*{scope}*",
+        build_executive_summary(site_context, sc, stats),
+        build_scorecard_markdown(sc),
+        build_summary_statistics_markdown(stats, sc),
+        build_root_causes_markdown(sc),
+        build_advanced_diagnostics_markdown(site_context, sc),
+        render_deep_dives_markdown(deep_dives, sc),
+        build_whats_working_markdown(sc),
         f"## Prioritized Roadmap\n\n{roadmap_md}",
-        benchmarks_md,
-        methodology_md,
-        appendix_md,
-        cta_md,
-    ])
-
-    # Collect all selected categories and queries from judgments
-    all_categories = list({
-        QueryCategory(j.test_query.category) for j in judgments
-    })
-    all_queries = [j.test_query for j in judgments]
+        build_industry_benchmarks_markdown(stats, peer_benchmark),
+        build_methodology(stats["total_queries"], len(capability_rows(sc)), stats["num_categories"]),
+        build_full_query_appendix_markdown(sc, site_context.search_url_template),
+        build_not_scored_markdown(judgments),
+        build_call_to_action(),
+    ]
+    full_narrative = "\n\n".join(s for s in sections if s)
 
     return AuditReport(
         site_context=site_context,
-        selected_categories=all_categories,
-        queries=all_queries,
+        selected_categories=list({QueryCategory(category(j)) for j in judgments}),
+        queries=[j.test_query for j in judgments],
         capability_scores=capability_scores,
         deep_dive_narrative=full_narrative,
         roadmap_narrative=roadmap_md,
+        run_metadata=run_metadata,
     )
 
 

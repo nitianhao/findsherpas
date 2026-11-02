@@ -1,20 +1,32 @@
 from __future__ import annotations
 
+import copy
+import gzip
+import hashlib
 import json
 import logging
+import os as _os
 import re
 import sys
+import threading
 import time
+import unicodedata
 from collections import Counter
-from typing import Optional
-from urllib.parse import quote_plus, urlparse
+from dataclasses import dataclass, field
+from html import unescape
+from pathlib import Path
+from typing import Callable, Optional
+from urllib.parse import parse_qs, quote_plus, unquote, urlparse
 
 import anthropic
 import requests
 from bs4 import BeautifulSoup, Tag
+from bs4.element import Comment, Declaration, Doctype, NavigableString, ProcessingInstruction
 from dotenv import load_dotenv
+from pydantic import BaseModel
 
-from src.models import SearchResult, TestQuery
+from src.llm_compat import LLMResponseError, structured_call
+from src.models import FetchOutcome, FetchStatus, SearchResult, TestQuery
 
 load_dotenv(override=True)
 
@@ -26,17 +38,20 @@ _USER_AGENT = (
     "Chrome/123.0.0.0 Safari/537.36"
 )
 
-_HAIKU_MODEL = "claude-haiku-4-5-20251001"
+# Overridable per-run; unset env = unchanged default. See docs/CASE_STUDY_PLAYBOOK.md.
+_HAIKU_MODEL = _os.environ.get("AUDIT_MODEL_FETCHER", "claude-haiku-4-5-20251001")
 
 # Optional proxy support — set PROXY_URL in .env to route all fetches through a proxy.
 # Example: PROXY_URL=http://user:pass@proxy.example.com:8080
-import os as _os
 _PROXY_URL = _os.environ.get("PROXY_URL", "").strip() or None
 if _PROXY_URL:
     logger.info("Proxy configured: %s", _PROXY_URL.split("@")[-1] if "@" in _PROXY_URL else _PROXY_URL)
 
 _REQUESTS_PROXIES = {"http": _PROXY_URL, "https": _PROXY_URL} if _PROXY_URL else None
 _PW_PROXY = {"server": _PROXY_URL} if _PROXY_URL else None
+
+# Sleep hook so tests can run the retry/backoff logic without waiting.
+_sleep = time.sleep
 
 
 def _decode_response(resp) -> str:
@@ -55,51 +70,79 @@ def _decode_response(resp) -> str:
         return resp.text
 
 # LLM calls (validation, extraction, selector generation) require an API key.
-# When absent, these functions gracefully skip — the heuristic improvements
-# (quality scoring, stealth, persistent context) still work without any API calls.
-# When running audits through Claude Code, the LLM steps can be done manually.
+# When absent, these functions gracefully skip — the heuristic strategies still work
+# without any API calls. Every skip leaves the outcome's strategy/evidence honest.
 _HAS_API_KEY = bool(_os.environ.get("ANTHROPIC_API_KEY", "").strip())
 
 # ---------------------------------------------------------------------------
 # Price regex
 # ---------------------------------------------------------------------------
+# A currency must sit directly against its amount. The symbol-after forms refuse a
+# symbol that is itself followed by a digit: in "7 £240.00" (review count, then price)
+# the old regex matched "7 £" — see the cotswoldoutdoor.com profile.
+_CUR_SYM = r"[$€£¥₹₩₪฿₫₴]"
+_CUR_WORD = r"(?<![A-Za-z])(?:Kč|kč|zł|kr|CHF|Fr\.)"
+_CUR_CODE = r"(?:USD|EUR|GBP|JPY|CAD|AUD|CHF|CNY|KRW|INR|BRL|SEK|NOK|DKK|PLN|CZK|HUF|RON)"
 _PRICE_RE = re.compile(
     r"(?:"
-    r"(?:[A-Z]{0,2}[$€£¥₹₩₪฿₫₴])\s?\d[\d.,]*"   # symbol-before: €14,60
+    rf"(?:[A-Z]{{0,2}}{_CUR_SYM})\s?\d[\d.,]*"              # symbol-before: €14,60 / US$9
     r"|"
-    r"\d[\d.,]*\s?[$€£¥₹₩₪฿₫₴]"                   # symbol-after: 14,60 €
+    rf"\d[\d.,]*\s?{_CUR_SYM}(?!\s?\d)"                      # symbol-after: 14,60 €
     r"|"
-    r"(?:Kč|kč|zł|kr)\s?\d[\d.,]*"
+    rf"{_CUR_WORD}\s?\d[\d.,]*"                              # kr 199 / CHF 99.00
     r"|"
-    r"\d[\d.,]*\s?(?:Kč|kč|zł|kr)"
+    rf"\d[\d.,]*\s?{_CUR_WORD}(?![A-Za-z])(?!\s?\d)"         # 199 kr
     r"|"
-    r"\d[\d.,]*\s?(?:USD|EUR|GBP|JPY|CAD|AUD|CHF|CNY|KRW|INR|BRL|SEK|NOK|DKK|PLN|CZK)"
+    rf"\b{_CUR_CODE}\s?\d[\d.,]*"                            # EUR 12,00
+    r"|"
+    rf"\d[\d.,]*\s?{_CUR_CODE}\b(?!\s?\d)"                   # 12,00 EUR
     r")"
 )
-_PRICE_FALLBACK_RE = re.compile(r"(?:[$€£¥₹]|Kč|zł|kr)\s?\d{1,7}(?:[.,]\d{1,2})?")
+_PRICE_FALLBACK_RE = re.compile(rf"(?:{_CUR_SYM}|{_CUR_WORD})\s?\d{{1,7}}(?:[.,]\d{{1,2}})?")
 
-# Junk title filters
+# Price nodes that are NOT the price a shopper pays: struck-through originals,
+# "was"/RRP/UVP, unit prices ("12,40 €/100 ml"), per-month instalments.
+_SECONDARY_PRICE_TOKEN_RE = re.compile(
+    r"(?:^|[-_])(?:old|was|strike|strikethrough|striked|crossed|line-?through|unit|per|"
+    r"before|original|orig|rrp|uvp|msrp|compare|compare-at|reference|base-?price|"
+    r"instal?ments?|monthly)(?:[-_]|$)|(?:old|was|strike|unit|list|base|original)Price",
+    re.I,
+)
+_STRUCK_TAGS = ("del", "s", "strike")
+_CURRENT_PRICE_TOKEN_RE = re.compile(r"sale|current|final|actual|now|special|reduced|selling|promo|offer", re.I)
+
+# Junk title filters (only applied to UNSCOPED generic strategies — never to a
+# dedicated extractor that is already scoped to the real results container).
 _JUNK_STARTS = (
     "results for", "showing results", "search results",
     "top trending", "trending deals", "featured deals",
     "popular picks", "recommended for you", "you may also like",
-    "sponsored", "advertisement",
     "see all", "view more", "load more", "show more",
     "next page", "previous", "back to top",
     "sign in", "log in", "join now",
     # Dutch / common e-commerce UI strings
     "bekijk vergelijking", "vergelijk", "toon meer", "meer laden",
     "inloggen", "registreren", "mijn account",
-    "gratis bezorgd", "gratis verzending", "voor ", "binnen ",
+    "gratis bezorgd", "gratis verzending",
 )
 _JUNK_EXACT = {
     "free shipping", "new arrivals", "best sellers", "sale", "clearance", "ad", "ads",
+    "sponsored", "advertisement",
 }
+
+# Cookie-banner artefacts are recognised by where they point, never by a title
+# word: "cookie" in a title deletes real products (cookie cutters, cookie jars).
+_COOKIE_JUNK_URL_RE = re.compile(r"^javascript:|cookie|consent|gdpr|datenschutz|privacy", re.I)
+_COOKIE_JUNK_TITLE_RE = re.compile(
+    r"^(?:accept|allow|reject|decline|manage|customi[sz]e)\b.{0,30}\bcookies?\b|"
+    r"^cookies? (?:settings|policy|preferences|einstellungen|richtlinie|inställningar)\b",
+    re.I,
+)
 
 # Chrome element class/ID patterns
 _CHROME_CLASSES = re.compile(
     r"header|banner|hero|promo|nav|footer|sidebar|trending|featured.section|"
-    r"advertisement|sponsored|breadcrumb|pagination|toolbar|"
+    r"advertisement|breadcrumb|pagination|toolbar|"
     r"cookie|consent|gdpr|cookiebot|cybot|privacy-modal|cc-window",
     re.I,
 )
@@ -107,7 +150,27 @@ _CHROME_CLASSES = re.compile(
 # Section-header heading text
 _SECTION_HEADER_RE = re.compile(
     r"^(top|best|featured|popular|recommended|trending|new|sale|deal|you may|"
-    r"related|similar|people also|customers also|sponsored)\b",
+    r"related|similar|people also|customers also)\b",
+    re.I,
+)
+
+# Containers that hold recommendation / cross-sell carousels rather than the search
+# grid. Matched per class/id/data-testid token on a card's ANCESTORS.
+_RECO_CONTAINER_RE = re.compile(
+    r"carousel|swiper|splide|slick|glide|recommend|\brecs?\b|upsell|cross-?sell|related|"
+    r"also-?(?:bought|viewed|like)|recently-?viewed|last-?seen|trending|bestseller|"
+    r"you-?may|personali[sz]ed|minicart|mini-cart|cart-drawer",
+    re.I,
+)
+# Headings that introduce such a carousel, multilingual.
+_RECO_HEADING_RE = re.compile(
+    r"recommended|you may also like|you might also like|customers (?:also|bought)|others also|"
+    r"people also|most popular|popular (?:right now|products|items)|bestsellers?|trending|"
+    r"recently viewed|top picks|inspiration for you|"
+    r"das könnte (?:dir|ihnen) (?:auch )?gefallen|empfehlungen|empfohlen|beliebte?|andere kunden|"
+    r"zuletzt angesehen|du kanske också gillar|populära|rekommenderade|andre kjøpte|anbefal|"
+    r"populære|aanbevolen|misschien ook leuk|vous aimerez aussi|recommandé|potrebbe piacerti|"
+    r"consigliati|polecane|może ci się spodobać|doporučujeme|mohlo by se vám líbit|suosittel",
     re.I,
 )
 
@@ -124,7 +187,22 @@ _LOAD_MORE_RE = re.compile(
 )
 
 # Product/deal URL path patterns
-_PRODUCT_LINK_RE = re.compile(r"/deal|/product|/item|/offer|/dp/|/p/|/listing", re.I)
+_PRODUCT_LINK_RE = re.compile(
+    r"/deal|/product|/item|/offer|/dp/|/p/|/listing|/produkt|/pd/|/artikel/|-p-\d|/ip/",
+    re.I,
+)
+
+# Sponsored / paid placement labels as they appear on a tile, multilingual.
+_SPONSORED_LABEL_RE = re.compile(
+    r"^(?:sponsored|sponsorisé|sponsorizzato|sponsorowane|sponzorováno|patrocinado|"
+    r"anzeige|gesponsert|werbung|sponsrad|sponset|annonse|annonce|gesponsord|advertisement|ad)$",
+    re.I,
+)
+_SPONSORED_PREFIX_RE = re.compile(
+    r"^(?:sponsored|anzeige|gesponsert|sponsrad|sponset|annonse|annonce|gesponsord|werbung)\b[\s:·|\-–]*",
+    re.I,
+)
+_SPONSORED_ATTR_RE = re.compile(r"(?:^|[-_])(?:sponsored|is-ad|ad-tile|advert|promoted)(?:[-_]|$)", re.I)
 
 # ---------------------------------------------------------------------------
 # Block detection signals & site-level fetch modes
@@ -139,38 +217,183 @@ _CLOUDFLARE_SIGNALS = (
 _IMPERVA_SIGNALS = (
     "incapsula incident", "pardon our interruption", "request unsuccessful",
 )
+_BLOCK_TITLE_RE = re.compile(
+    r"^\s*(?:just a moment|attention required|access denied|pardon our interruption|"
+    r"robot or human|are you a (?:robot|human)|verify(?:ing)? you are (?:a )?human|security check|"
+    r"request blocked|you have been blocked|access to this page has been denied|403 forbidden|"
+    r"forbidden|zugriff verweigert|one more step|please verify)",
+    re.I,
+)
+# HTTP codes that mean "the WAF/CDN refused us", not "the search found nothing".
+_BLOCK_HTTP_CODES = frozenset({400, 401, 403, 405, 407, 429})
+# A page with less visible text than this is a challenge/interstitial candidate.
+_SMALL_PAGE_TEXT = 2500
+_TINY_PAGE_BYTES = 5000
+
+
+def _visible_text_len(soup: BeautifulSoup) -> int:
+    texts, _ = _collect_visible_text(soup)
+    return len(" ".join(texts))
+
+
+def _count_product_links(soup: BeautifulSoup) -> int:
+    hrefs = {
+        (a.get("href") or "").split("#")[0]
+        for a in soup.find_all("a", href=True)
+        if _PRODUCT_LINK_RE.search(a.get("href") or "") or "/products/" in (a.get("href") or "")
+    }
+    return len(hrefs)
+
+
+def _detect_block(
+    html: str,
+    status_code: Optional[int] = None,
+    final_url: str = "",
+    soup: Optional[BeautifulSoup] = None,
+    strict: bool = True,
+    has_zero_marker: bool = False,
+) -> Optional[str]:
+    """Return a short block label ("akamai", "datadome", "http_403", …) or None.
+
+    ``strict=False`` uses page signatures only — for the in-browser check made right
+    after navigation, when a SPA shell is still tiny and the goto status may belong to
+    a challenge that clears a second later. ``strict=True`` (the final verdict) also
+    treats WAF status codes and tiny product-less bodies as blocks.
+    """
+    if not html:
+        return "empty"
+    lower = html[:60000].lower()
+    soup = soup if soup is not None else BeautifulSoup(html, "html.parser")
+    title = soup.title.get_text(" ", strip=True) if soup.title else ""
+    text_len = _visible_text_len(soup)
+    small = text_len < _SMALL_PAGE_TEXT
+    path = urlparse(final_url or "").path.lower()
+
+    if path.rstrip("/").endswith("/challenge") or 'action="/challenge"' in lower:
+        return "shopify_challenge"
+    if "errors.edgesuite.net" in lower or (title.lower().startswith("access denied") and "reference #" in lower):
+        return "akamai"
+    if "captcha-delivery.com" in lower and small:
+        return "datadome"
+    if small and ("px-captcha" in lower or "press &amp; hold" in lower or "press & hold" in lower):
+        return "perimeterx"
+    if "_cf_chl_opt" in lower or "cf-browser-verification" in lower:
+        return "cloudflare"
+    if small and any(sig in lower[:8000] for sig in _CLOUDFLARE_SIGNALS):
+        return "cloudflare"
+    if small and any(sig in lower[:8000] for sig in _IMPERVA_SIGNALS):
+        return "imperva"
+    if small and ("awswaf" in lower or "aws-waf-token" in lower):
+        return "aws_waf"
+    if title and _BLOCK_TITLE_RE.match(title) and small:
+        return "challenge"
+    if not strict:
+        return None
+    # A captcha widget on a near-empty page. Not checked in the early in-browser pass:
+    # an unrendered SPA shell that merely loads reCAPTCHA for a newsletter form is small too.
+    if small and ("g-recaptcha" in lower or "h-captcha" in lower or "hcaptcha.com" in lower
+                  or "recaptcha/api" in lower):
+        return "captcha"
+    if status_code is not None and (status_code in _BLOCK_HTTP_CODES or 500 <= status_code < 600):
+        if small or _count_product_links(soup) < 3:
+            return f"http_{status_code}"
+    if len(html) < _TINY_PAGE_BYTES and not has_zero_marker and _count_product_links(soup) == 0:
+        return "tiny_page"
+    return None
 
 
 def _classify_response(html: str, status_code: int = 200) -> str:
-    """Classify a page response. Returns 'cloudflare', 'imperva', or 'ok'."""
+    """Classify a page response by signature. Returns 'ok', 'empty' or a block label.
+
+    Kept for callers outside the fetch loop; signature-only (non-strict) so a SPA
+    shell that has not rendered yet is not mistaken for a block.
+    """
     if not html:
         return "empty"
-    sample = html[:5000].lower()
-    if any(sig in sample for sig in _CLOUDFLARE_SIGNALS):
-        return "cloudflare"
-    if any(sig in sample for sig in _IMPERVA_SIGNALS):
-        return "imperva"
-    return "ok"
+    return _detect_block(html, status_code, strict=False) or "ok"
+
+
+# ---------------------------------------------------------------------------
+# Redirect detection
+# ---------------------------------------------------------------------------
+
+# A path SEGMENT that names a search results page ("/search/", "/de/suche", "/lister.html",
+# "/catalogsearch/result"). Segment-based: a PDP slug like "/research-notebook.html" is not one.
+_SEARCH_PATH_RE = re.compile(
+    r"(?:^|/)(?:search|suche|such|sok|sök|soeg|søg|zoeken|zoek|recherche|ricerca|cerca|buscar|busca|"
+    r"szukaj|hledat|vyhledavani|haku|find|query|s|lister|catalogsearch|searchresults?|search-results?)"
+    r"(?:/|$|\.html?$|\.aspx?$|\.php$)",
+    re.I,
+)
+
+
+def _query_tokens(text: str) -> list[str]:
+    text = unicodedata.normalize("NFKC", text or "").casefold().replace("’", "'")
+    return re.findall(r"\w+", text)
+
+
+def _query_present_in(values: list[str], query: str) -> bool:
+    want = set(_query_tokens(query))
+    if not want:
+        return True
+    for value in values:
+        if want <= set(_query_tokens(value)):
+            return True
+    return False
+
+
+def _url_values(url: str, where: str) -> list[str]:
+    parsed = urlparse(url)
+    if where == "path":
+        return [unquote(parsed.path).replace("+", " ")]
+    values: list[str] = []
+    for part in (parsed.query, parsed.fragment):
+        for vals in parse_qs(part, keep_blank_values=False).values():
+            values.extend(vals)
+    return values
+
+
+def _query_location(original_url: str, query: str) -> str:
+    """Where the search template puts the query: in the query string or the path."""
+    if _query_present_in(_url_values(original_url, "query"), query):
+        return "query"
+    if _query_present_in(_url_values(original_url, "path"), query):
+        return "path"
+    return "query"
+
+
+def _redirect_kind(original_url: str, final_url: str, query: str) -> Optional[str]:
+    """Classify where the browser ended up relative to the search URL.
+
+    None       — still on the search page (or only scheme/host/params changed).
+    "away"     — the query is gone from the destination (PDP, brand page, …).
+    "landing"  — the query survives as a parameter but the path is a category /
+                 landing page, not the search page (cotswold `?q=…&sred=1`,
+                 bergzeit `?bzsearch=…`, lyko `?fromsearch=…`).
+
+    Tokens are compared after parse_qs + unquote + casefold, so "Arc'teryx",
+    "+" vs "%20" and percent-encoded umlauts all compare equal.
+    """
+    if not final_url or final_url == original_url:
+        return None
+    orig, final = urlparse(original_url), urlparse(final_url)
+    if orig.path.rstrip("/").lower() == final.path.rstrip("/").lower():
+        return None
+    where = _query_location(original_url, query)
+    if not _query_present_in(_url_values(final_url, where), query):
+        # /search?q=red+shoes → /search/red-shoes is the same results page, re-routed.
+        if _SEARCH_PATH_RE.search(final.path) and _query_present_in(_url_values(final_url, "path"), query):
+            return None
+        logger.debug("Search redirect (away): %s → %s", original_url, final_url)
+        return "away"
+    if _SEARCH_PATH_RE.search(final.path):
+        return None
+    return "landing"
 
 
 def _is_search_redirect(original_url: str, final_url: str, query: str) -> bool:
-    """Return True if the server redirected away from the search results page.
-
-    Flags a redirect when BOTH hold:
-      1. The URL path changed (ignoring harmless scheme/host normalisation).
-      2. The URL-encoded query string is absent from the final URL.
-    """
-    if not final_url or final_url == original_url:
-        return False
-    orig = urlparse(original_url)
-    final = urlparse(final_url)
-    if orig.path == final.path:
-        return False  # Only scheme/host changed — harmless normalisation
-    encoded = quote_plus(query).lower()
-    if encoded in final_url.lower():
-        return False  # Query still present — not redirected away from search
-    logger.debug("Search redirect detected: %s → %s", original_url, final_url)
-    return True
+    """True if the server redirected away from the search results page (query dropped)."""
+    return _redirect_kind(original_url, final_url, query) == "away"
 
 
 class SiteMode:
@@ -183,12 +406,363 @@ class SiteMode:
 
 
 # ---------------------------------------------------------------------------
+# Visible text & page state (no-results markers, hit counts)
+# ---------------------------------------------------------------------------
+
+_INVISIBLE_TAGS = frozenset({"script", "style", "noscript", "template", "svg", "head", "iframe", "object"})
+_CHROME_TAGS = frozenset({"header", "nav", "footer"})
+_CHROME_ROLES = frozenset({"banner", "navigation", "contentinfo", "dialog"})
+# Overlays whose text is not the results page: search-as-you-type dropdowns, mini-carts.
+_OVERLAY_TOKEN_RE = re.compile(
+    r"autocomplete|auto-complete|suggest|typeahead|predictive|minicart|mini-cart|cart-drawer|"
+    r"flyout|search-overlay|quick-search|searchbar|search-bar|search-layer",
+    re.I,
+)
+
+
+def _is_hidden_tag(tag: Tag) -> bool:
+    attrs = tag.attrs or {}
+    if "hidden" in attrs:
+        return True
+    style = (attrs.get("style") or "").replace(" ", "").lower()
+    return "display:none" in style or "visibility:hidden" in style
+
+
+def _is_chrome_container(tag: Tag) -> bool:
+    if tag.name in _CHROME_TAGS:
+        return True
+    attrs = tag.attrs or {}
+    if (attrs.get("role") or "").lower() in _CHROME_ROLES:
+        return True
+    tokens = list(attrs.get("class") or []) + [attrs.get("id") or "", attrs.get("data-testid") or ""]
+    return any(t and _OVERLAY_TOKEN_RE.search(t) for t in tokens)
+
+
+def _collect_visible_text(node) -> tuple[list[str], list[str]]:
+    """Walk the DOM once; return (all visible strings, strings outside page chrome).
+
+    Iterative (deep DOMs blow the recursion limit) and non-mutating (the caller keeps
+    using the same soup for extraction).
+    """
+    everything: list[str] = []
+    content: list[str] = []
+    stack: list[tuple[Tag, bool]] = [(node, False)]
+    while stack:
+        current, in_chrome = stack.pop()
+        children = list(current.children) if hasattr(current, "children") else []
+        pending: list[tuple[Tag, bool]] = []
+        for child in children:
+            if isinstance(child, NavigableString):
+                if isinstance(child, (Comment, Declaration, Doctype, ProcessingInstruction)):
+                    continue
+                s = str(child).strip()
+                if s:
+                    everything.append(s)
+                    if not in_chrome:
+                        content.append(s)
+            elif isinstance(child, Tag):
+                if child.name in _INVISIBLE_TAGS or _is_hidden_tag(child):
+                    continue
+                pending.append((child, in_chrome or _is_chrome_container(child)))
+        # Preserve document order: push children in reverse so the first is popped first.
+        for item in reversed(pending):
+            stack.append(item)
+    return everything, content
+
+
+def _norm_text(text: str) -> str:
+    return re.sub(r"\s+", " ", unescape(text or "")).strip()
+
+
+# Explicit "no results" messages, multilingual. Word-bounded: "10 results" must never
+# read as "0 results".
+_ZERO_COUNT_WORDS = (
+    r"results?|treffer|ergebnisse?|träffar|resultater|resultat|resultaten|résultats?|"
+    r"risultati|resultados|wyników|výsledků|tulosta|hits|matches|products? found|items? found|"
+    r"produkte gefunden|artikel gefunden"
+)
+_NO_RESULTS_PATTERNS = (
+    rf"(?<![\d.,])\b0\s+(?:{_ZERO_COUNT_WORDS})\b",
+    r"\bno (?:matching )?(?:results|matches)\b",
+    r"\bno (?:products|items) (?:were )?found\b",
+    r"\b(?:did not|didn['’]t|does not|doesn['’]t) (?:return|match|find) any (?:results|products|items)",
+    r"\b(?:sorry,? )?we (?:couldn['’]t|could not|can['’]t|cannot) find (?:any |anything|results|products|matches|[\"“„'])",
+    r"\bnothing (?:matches|matched|found)\b",
+    r"\breturned no results\b",
+    r"\bzero results\b",
+    r"\bkeine (?:passenden |übereinstimmenden )?(?:treffer|ergebnisse|suchergebnisse)\b",
+    r"\bkeine (?:passenden )?(?:produkte|artikel) gefunden\b",
+    r"\bkein (?:passendes )?(?:ergebnis|produkt) gefunden\b",
+    r"\b(?:leider )?nichts gefunden\b",
+    r"\binga (?:träffar|resultat|sökresultat)\b",
+    r"\binga produkter (?:hittades|matchade)\b",
+    r"\bingen (?:resultater|resultat|søgeresultater|søkeresultater|treff|varer fundet|produkter fundet)\b",
+    r"\bvi (?:fant|fandt) ingen\b",
+    r"\bgeen (?:resultaten|zoekresultaten|producten gevonden)\b",
+    r"\baucun (?:résultat|produit (?:ne correspond|trouvé))",
+    r"\bpas de résultats?\b",
+    r"\bnessun (?:risultato|prodotto trovato)\b",
+    r"\bsin resultados\b",
+    r"\bno se (?:han )?encontr(?:aron|ado) (?:resultados|productos)",
+    r"\bningún resultado\b",
+    r"\bnenhum resultado\b",
+    r"\bbrak (?:wyników|produktów)\b",
+    r"\bnie znaleziono\b",
+    r"\bžádné (?:výsledky|produkty)\b",
+    r"\bnebyly nalezeny žádné\b",
+    r"\bnic (?:nebylo )?nenalezeno\b",
+    r"\bei (?:haku)?tuloksia\b",
+    r"\bhakusi ei tuottanut\b",
+    r"(?:suchergebnis\w*|search results?|results?) (?:für|for)\s*[«»\"'„“”‚‘’]?[^()«»\"„“”]{1,80}[«»\"'„“”‚‘’]?\s*\(0\)",
+)
+_NO_RESULTS_RE = re.compile("|".join(f"(?:{p})" for p in _NO_RESULTS_PATTERNS), re.I)
+
+# The page APPLIED a spelling correction and shows results for the corrected query:
+# the shopper sees products, so "no results for X" next to it is not a zero.
+_AUTO_APPLIED_RE = re.compile(
+    r"showing results for|search(?:ed)? instead for|we searched for|results for .{1,60} instead|"
+    r"stattdessen|wir zeigen (?:dir|ihnen) (?:ergebnisse|treffer)|ergebnisse für .{1,60} anzeigen|"
+    r"visar (?:resultat|träffar) för|viser resultater for|resultaten voor .{1,60} getoond|"
+    r"résultats pour .{1,60} affichés|risultati per .{1,60} mostrati",
+    re.I,
+)
+# The page only SUGGESTS a correction ("Did you mean …?"); results may or may not follow.
+_SUGGESTION_RE = re.compile(
+    r"did you mean|meintest du|meinten sie|menade du|mente du|bedoelde (?:u|je)|"
+    r"vous vouliez dire|forse cercavi|intendevi|quisiste decir|czy chodziło ci o|"
+    r"měli jste na mysli|tarkoititko",
+    re.I,
+)
+
+# "Strong" words only ever describe search hits; "weak" ones (items, Artikel, products)
+# also appear in product names ("Storage box 12 items"), so they count only in the
+# title, the h1 or an element whose id/class/testid says it is a result count.
+_STRONG_HIT_WORDS = (
+    r"results?|treffer|ergebnisse?|träffar|resultater|resultaten|résultats?|risultati|"
+    r"resultados|výsledků|výsledky|wyników|tulosta|hits|suchergebnisse"
+)
+_WEAK_HIT_WORDS = r"artikel|produkte|produkter|items?|products?|varer|tuotetta|produits|prodotti"
+_HIT_WORDS = f"{_STRONG_HIT_WORDS}|{_WEAK_HIT_WORDS}"
+_HIT_COUNT_RE = re.compile(
+    rf"(?<![\w.,])(\d{{1,3}}(?:[.,   ]\d{{3}})+|\d+)\s*(?:{_HIT_WORDS})\b"
+    r"(?!\s*(?:pro|per|je|par|på)\s+(?:seite|page|sida|side|pagina))",
+    re.I,
+)
+_HIT_COUNT_PAREN_RE = re.compile(
+    rf"(?:{_HIT_WORDS})\s*\((\d{{1,3}}(?:[.,   ]\d{{3}})+|\d+)\)",
+    re.I,
+)
+_COUNTISH_ATTR_RE = re.compile(r"count|result|hits|total|summary|amount", re.I)
+_STRONG_HIT_RE = re.compile(rf"\b(?:{_STRONG_HIT_WORDS})\b", re.I)
+_CART_ATTR_RE = re.compile(r"cart|basket|bag|wishlist|warenkorb|varukorg|kurv", re.I)
+
+
+def _parse_count(raw: str) -> Optional[int]:
+    digits = re.sub(r"\D", "", raw or "")
+    if not digits:
+        return None
+    try:
+        return int(digits)
+    except ValueError:
+        return None
+
+
+@dataclass
+class HostProfile:
+    """Per-host fetch knowledge (see docs/FETCHER_PLAYBOOK.md per-site profiles)."""
+    no_results: tuple[str, ...] = ()          # extra no-results regexes (visible text + title)
+    generic_markers: bool = True              # False: only this profile's markers count
+    zero_title: Optional[str] = None          # regex on <title> that confirms a zero
+    hits_regex: Optional[str] = None          # regex with one group = the page's hit count
+    pdp_path: Optional[str] = None            # regex: product pages live at this path
+    ready_selector: Optional[str] = None      # CSS: the results grid has rendered
+    ready_no_results: Optional[str] = None    # JS regex source: no-results state rendered
+    ready_timeout_ms: int = 15000
+
+
+_HOST_PROFILES: dict[str, HostProfile] = {
+    "zalando.": HostProfile(
+        no_results=(re.escape("Try a different search term or check the spelling."),),
+        ready_selector='[data-testid="product-count"]',
+        ready_no_results="Try a different search term",
+        ready_timeout_ms=20000,
+    ),
+    # Akamai serves stale SSR headings ("0 Ergebnisse") that are re-rendered client-side,
+    # so ONLY the document title confirms a zero on this host (FETCHER_PLAYBOOK douglas.de).
+    "douglas.de": HostProfile(
+        generic_markers=False,
+        zero_title=r"^\s*Keine Ergebnisse gefunden \| DOUGLAS\s*$",
+        pdp_path=r"/p/\d+",
+    ),
+    "manufactum.de": HostProfile(
+        no_results=(r"Suchergebnis für »[^«]*«\s*\(0\)",),
+        hits_regex=r"Suchergebnis für »[^«]*«\s*\((\d[\d.]*)\)",
+    ),
+    "bergzeit.de": HostProfile(no_results=(r"ergab leider keine Treffer",)),
+    "colourpop.com": HostProfile(
+        no_results=(r"\b0 items\b",),
+        ready_selector="#product-grid main-product",
+        ready_no_results=r"\b0 items\b",
+    ),
+    "cotswoldoutdoor.com": HostProfile(
+        pdp_path=r"^/p/",
+        ready_selector='div[data-testid="product-tile-vertical"]',
+        ready_no_results=r"\bno results\b|\b0\s+results\b|couldn'?t find",
+        ready_timeout_ms=20000,
+    ),
+    "ahlens.se": HostProfile(
+        ready_selector="#product-rain-section",
+        ready_no_results=r"inga träffar",
+    ),
+    "avoca.com": HostProfile(
+        ready_selector=".boost-sd__product-item",
+        ready_no_results=r"\b0\s+results?\s+found|couldn['’]t find results",
+    ),
+    "huckberry.com": HostProfile(
+        ready_selector="span.ProductTileContent__price, a.ProductTileContent__brand-link",
+        ready_no_results=r"couldn['’]?t find|\bno results\b|\b0\s+results\b",
+        ready_timeout_ms=20000,
+    ),
+}
+
+
+def _host_profile(url: str) -> Optional[HostProfile]:
+    try:
+        host = urlparse(url).netloc.lower()
+    except Exception:
+        return None
+    for key, profile in _HOST_PROFILES.items():
+        if key in host:
+            return profile
+    return None
+
+
+@dataclass
+class PageState:
+    title: str = ""
+    no_results_marker: Optional[str] = None   # the matched text, for evidence
+    total_hits: Optional[int] = None          # the page's own hit count, when parseable
+    hits_strong: bool = False                 # the count used a search-only word ("results")
+    max_strong_hits: int = 0                  # largest "N results"-style count anywhere in the headers
+    auto_applied: bool = False                # page shows results for a corrected query
+    suggestion: bool = False                  # page suggests a correction ("did you mean")
+
+
+def _main_text(soup: BeautifulSoup, limit: int = 20000) -> str:
+    """Visible text outside page chrome: <main> first (the message usually sits there),
+    then the rest of the body (some shops render the "no hits" header outside <main>)."""
+    body = soup.body or soup
+    main = soup.find("main") or soup.find(attrs={"role": "main"})
+    parts = []
+    if main is not None:
+        _, content = _collect_visible_text(main)
+        parts.append(_norm_text(" ".join(content))[:limit])
+    _, content = _collect_visible_text(body)
+    parts.append(_norm_text(" ".join(content))[:limit * 2])
+    return " \n ".join(parts)
+
+
+def _hit_count_candidates(soup: BeautifulSoup) -> list[tuple[str, bool]]:
+    """(text, weak_words_allowed) pairs, most authoritative first."""
+    out: list[tuple[str, bool]] = []
+    if soup.title:
+        out.append((soup.title.get_text(" ", strip=True), True))
+    for el in soup.find_all(["h1", "h2", "h3"]):
+        if el.find_parent(["header", "nav", "footer"]) or _is_hidden_tag(el):
+            continue
+        text = el.get_text(" ", strip=True)
+        if text and len(text) < 200:
+            out.append((text, el.name == "h1"))
+    for el in soup.find_all(True):
+        attrs = el.attrs or {}
+        tokens = " ".join(list(attrs.get("class") or []) + [attrs.get("id") or "", attrs.get("data-testid") or ""])
+        if not tokens or not _COUNTISH_ATTR_RE.search(tokens) or _CART_ATTR_RE.search(tokens):
+            continue
+        if el.name in _INVISIBLE_TAGS or el.find_parent(["header", "nav", "footer"]):
+            continue
+        text = el.get_text(" ", strip=True)
+        if text and len(text) < 200:
+            out.append((text, True))
+    return out
+
+
+def page_state(html_or_soup, url: str = "", visible_text: Optional[str] = None, query: str = "") -> PageState:
+    """Read the page's own account of its result state, for any host.
+
+    - ``no_results_marker``: an explicit no-results message in the visible text or the
+      title (multilingual, word-bounded), or a host-profile marker.
+    - ``total_hits``: the hit count the page reports in its title / headings / count
+      elements ("384 results", "1.234 Artikel", "Products (12)").
+    - ``auto_applied`` / ``suggestion``: the page applied / suggested a spelling fix.
+
+    ``visible_text`` (from the browser's innerText) is preferred when given: it honours
+    CSS visibility, which a static parse cannot. ``query`` is blanked out before the
+    hit-count parse so "pack of 6 items" never reads as 6 hits.
+    """
+    soup = html_or_soup if isinstance(html_or_soup, BeautifulSoup) else BeautifulSoup(html_or_soup or "", "html.parser")
+    profile = _host_profile(url)
+    title = soup.title.get_text(" ", strip=True) if soup.title else ""
+    text = _norm_text(visible_text) if visible_text else _main_text(soup)
+    haystack = f"{title} \n {text}"
+    state = PageState(title=title)
+
+    marker = None
+    if profile and profile.zero_title and re.search(profile.zero_title, title, re.I):
+        marker = title
+    if marker is None and profile:
+        for pat in profile.no_results:
+            m = re.search(pat, haystack, re.I)
+            if m:
+                marker = m.group(0)
+                break
+    if marker is None and (profile is None or profile.generic_markers):
+        m = _NO_RESULTS_RE.search(haystack)
+        if m:
+            marker = m.group(0)
+    state.no_results_marker = marker
+    state.auto_applied = bool(_AUTO_APPLIED_RE.search(haystack))
+    state.suggestion = bool(_SUGGESTION_RE.search(haystack))
+
+    def _blank_query(text: str) -> str:
+        q = (query or "").strip()
+        return re.sub(re.escape(q), " ", text, flags=re.I) if len(q) >= 2 else text
+
+    hits, strong, max_strong = None, False, 0
+    if profile and profile.hits_regex:
+        m = re.search(profile.hits_regex, _blank_query(haystack), re.I)
+        if m:
+            hits, strong = _parse_count(m.group(1)), True
+            max_strong = hits or 0
+    if hits is None and (profile is None or profile.generic_markers):
+        for cand, weak_ok in _hit_count_candidates(soup):
+            cand = _blank_query(cand)
+            for rx in (_HIT_COUNT_RE, _HIT_COUNT_PAREN_RE):
+                for m in rx.finditer(cand):
+                    n = _parse_count(m.group(1))
+                    is_strong = bool(_STRONG_HIT_RE.search(m.group(0)))
+                    if n is None or (not is_strong and not weak_ok):
+                        continue
+                    if is_strong:
+                        max_strong = max(max_strong, n)
+                    if hits is None:
+                        hits, strong = n, is_strong
+    state.total_hits, state.hits_strong, state.max_strong_hits = hits, strong, max_strong
+    if hits == 0 and strong and marker is None:
+        state.no_results_marker = "page reports 0 hits"
+    return state
+
+
+# ---------------------------------------------------------------------------
 # Result validation / junk filter
 # ---------------------------------------------------------------------------
 
 
 def _filter_junk_results(results: list[SearchResult]) -> list[SearchResult]:
-    """Remove results that are clearly page chrome, not real products."""
+    """Remove results that are clearly page chrome, not real products.
+
+    Only for UNSCOPED strategies (generic sweep, LLM). Ranks are re-numbered because
+    a removed nav/chrome item never was a ranked position.
+    """
     clean: list[SearchResult] = []
 
     for r in results:
@@ -212,28 +786,116 @@ def _filter_junk_results(results: list[SearchResult]) -> list[SearchResult]:
     return clean
 
 
+def _is_cookie_junk(r: SearchResult) -> bool:
+    return bool(_COOKIE_JUNK_URL_RE.search(r.url or "") or _COOKIE_JUNK_TITLE_RE.search(r.title or ""))
+
+
+def _detect_sponsored(card: Optional[Tag]) -> bool:
+    """True when a tile carries a paid-placement label or attribute."""
+    if card is None:
+        return False
+    for el in [card] + card.find_all(True):
+        attrs = el.attrs or {}
+        for name, val in attrs.items():
+            if name in ("data-sponsored", "data-is-sponsored", "data-ad", "data-promoted") and str(val).lower() not in ("false", "0"):
+                return True
+            if name in ("class", "data-testid", "data-test", "data-qa"):
+                vals = val if isinstance(val, list) else str(val).split()
+                if any(_SPONSORED_ATTR_RE.search(v) for v in vals):
+                    return True
+    for s in card.find_all(string=True):
+        if isinstance(s, Comment):
+            continue
+        if _SPONSORED_LABEL_RE.match(s.strip()):
+            return True
+    return False
+
+
+def _strip_sponsored_prefix(r: SearchResult) -> SearchResult:
+    m = _SPONSORED_PREFIX_RE.match(r.title or "")
+    if m and len(r.title) > m.end() + 3:
+        r.title = r.title[m.end():].strip()
+        r.sponsored = True
+    return r
+
+
 # ---------------------------------------------------------------------------
 # Price extraction
 # ---------------------------------------------------------------------------
 
 
-def _extract_price(element: Tag) -> Optional[str]:
-    for child in element.find_all(True, recursive=True):
-        classes = " ".join(child.get("class", [])).lower()
-        if any(kw in classes for kw in ("price", "cost", "amount", "money")):
-            text = child.get_text(separator=" ", strip=True)
-            for pattern in (_PRICE_RE, _PRICE_FALLBACK_RE):
-                m = pattern.search(text)
-                if m:
-                    return m.group(0).strip()
+def _is_secondary_price_node(el: Tag) -> bool:
+    if el.name in _STRUCK_TAGS:
+        return True
+    attrs = el.attrs or {}
+    tokens = list(attrs.get("class") or []) + [attrs.get("data-testid") or "", attrs.get("itemprop") or ""]
+    style = (attrs.get("style") or "").replace(" ", "").lower()
+    if "line-through" in style:
+        return True
+    return any(t and _SECONDARY_PRICE_TOKEN_RE.search(t) for t in tokens)
 
-    full_text = element.get_text(separator=" ", strip=True)
+
+def _current_price_text(el: Tag) -> str:
+    """Text of ``el`` with struck-through / was / unit-price descendants removed."""
+    if not el.find(lambda t: isinstance(t, Tag) and _is_secondary_price_node(t)):
+        return el.get_text(separator=" ", strip=True)
+    clone = copy.copy(el)
+    for bad in clone.find_all(lambda t: isinstance(t, Tag) and _is_secondary_price_node(t)):
+        bad.decompose()
+    return clone.get_text(separator=" ", strip=True)
+
+
+def _first_price(text: str) -> Optional[str]:
     for pattern in (_PRICE_RE, _PRICE_FALLBACK_RE):
-        m = pattern.search(full_text)
+        m = pattern.search(text or "")
         if m:
             return m.group(0).strip()
-
     return None
+
+
+def _inside_secondary(el: Tag, stop: Tag) -> bool:
+    node = el
+    while node is not None and node is not stop:
+        if isinstance(node, Tag) and _is_secondary_price_node(node):
+            return True
+        node = node.parent
+    return False
+
+
+def _extract_price(element: Tag) -> Optional[str]:
+    """The price a shopper pays, from a product card.
+
+    Order: itemprop=price → price-classed nodes that say sale/current/final → any
+    price-classed node → the card's text. Struck-through (<del>/<s>), was/RRP/UVP,
+    unit-price and instalment nodes are skipped at every step.
+    """
+    meta = element.find(attrs={"itemprop": "price"})
+    if isinstance(meta, Tag) and not _inside_secondary(meta, element):
+        content = (meta.get("content") or "").strip()
+        if content and re.match(r"^\d[\d.,]*$", content):
+            cur = element.find(attrs={"itemprop": "priceCurrency"})
+            code = (cur.get("content") or cur.get_text(strip=True)) if isinstance(cur, Tag) else ""
+            return f"{code} {content}".strip()
+        price = _first_price(_current_price_text(meta))
+        if price:
+            return price
+
+    current: list[Tag] = []
+    plain: list[Tag] = []
+    for child in element.find_all(True, recursive=True):
+        attrs = child.attrs or {}
+        tokens = " ".join(list(attrs.get("class") or []) + [attrs.get("data-testid") or ""]).lower()
+        if not any(kw in tokens for kw in ("price", "cost", "amount", "money", "preis", "pris")):
+            continue
+        if _inside_secondary(child, element):
+            continue
+        (current if _CURRENT_PRICE_TOKEN_RE.search(tokens) else plain).append(child)
+    for child in current + plain:
+        price = _first_price(_current_price_text(child))
+        if price:
+            return price
+
+    return _first_price(_current_price_text(element))
 
 
 # ---------------------------------------------------------------------------
@@ -264,21 +926,20 @@ def _prefers_chromium(url: str) -> bool:
     return any(h in host for h in _PREFER_CHROMIUM_HOSTS)
 
 
-# Hosts with a hand-tuned extractor in _try_site_specific. For these, an empty
-# extraction is authoritative (genuine zero results) — the dispatcher must not fall
-# back to generic strategies that would scrape recommendation chrome as results.
-_DEDICATED_EXTRACTOR_HOSTS = ("groupon", "lyko.com", "ahlens.se", "bergzeit.de", "avoca.com", "huckberry.com", "manufactum.de", "imerco.dk", "baechli-bergsport.ch", "cotswoldoutdoor.com")
+# Hosts with a hand-tuned extractor in _try_site_specific. For these the dispatcher
+# never falls back to generic strategies (they would scrape recommendation chrome as
+# results). An EMPTY extraction is NOT proof of zero results by itself: it becomes
+# ZERO_CONFIRMED only when page_state() sees a no-results marker, otherwise
+# ZERO_UNVERIFIED — a render lapse or a bot wall looks exactly like an empty grid.
+_DEDICATED_EXTRACTOR_HOSTS = ("groupon", "lyko.com", "ahlens.se", "bergzeit.de", "avoca.com", "huckberry.com", "manufactum.de", "imerco.dk", "baechli-bergsport.ch", "cotswoldoutdoor.com", "zalando.", "douglas.de", "colourpop.com")
 
 
-# Hosts where a query that uniquely matches one product redirects the server
-# straight to that product's detail page (PDP), bypassing the search-results
-# grid entirely. The generic redirect handling (_is_search_redirect) treats
-# any such redirect as "no results, skip" — for these hosts that's wrong: the
-# redirect destination IS the single correct answer and must be extracted as
-# a 1-result list, not discarded. This is a GOOD search-engine behavior (an
-# unambiguous exact-title query short-circuiting straight to the answer), not
-# a failure — see JUDGE_PLAYBOOK.md for how DIRECT_MATCH scoring treats it.
-_PDP_REDIRECT_HOSTS = ("baechli-bergsport.ch", "cotswoldoutdoor.com")
+# Hosts known to send a query that uniquely matches one product straight to that
+# product's detail page (PDP). Every redirect on EVERY host is now extracted on the
+# destination (_analyse_page → _extract_pdp / the listing extractors), so this list
+# only lets the probe settle on STATIC mode from such a PDP hit. A PDP redirect is a
+# GOOD search behaviour (see JUDGE_PLAYBOOK.md for how DIRECT_MATCH scores it).
+_PDP_REDIRECT_HOSTS = ("baechli-bergsport.ch", "cotswoldoutdoor.com", "douglas.de")
 
 
 def _needs_pdp_redirect_extraction(url: str) -> bool:
@@ -316,60 +977,181 @@ def _is_authoritative_no_results(final_url: str) -> bool:
     return False
 
 
-def _try_extract_pdp_as_result(html: str, final_url: str) -> list[SearchResult]:
-    """Extract a single product from a PDP that a unique-match search redirected to.
+# ---------------------------------------------------------------------------
+# JSON-LD helpers (shared by the PDP detector and Strategy 1)
+# ---------------------------------------------------------------------------
 
-    Bächli Bergsport (Rent-a-Shop platform) exposes the price via OpenGraph
-    `product:price:amount`/`product:price:currency` meta tags. Cotswold Outdoor's
-    PDP has no such meta tags, so falls back to its own `data-testid` price hook
-    (`product_price-actual-price`, e.g. "£999.99"; falls back to
-    `product_price-previous-price` i.e. RRP if no actual/sale price is present).
+_LD_PRODUCT_TYPES = {"Product", "Service", "IndividualProduct", "ProductModel", "Vehicle", "Book"}
+# Keys whose values describe *other* things than the listing itself: variants, related
+# products, offers, reviews. Recursing into them turned one product into five results.
+_LD_SKIP_KEYS = {
+    "offers", "isRelatedTo", "isSimilarTo", "hasVariant", "isVariantOf", "itemOffered",
+    "review", "reviews", "aggregateRating", "brand", "manufacturer", "isAccessoryOrSparePartFor",
+    "isConsumableFor", "model", "subjectOf", "potentialAction", "breadcrumb", "publisher",
+    "author", "image", "logo", "address", "seller", "includesObject", "workExample", "audience",
+}
 
-    Guards against the OTHER kind of search redirect — a non-unique query (e.g. a
-    brand name) landing on a multi-product brand/category LISTING page rather than
-    a single PDP (seen on cotswoldoutdoor.com: an Arc'teryx brand search redirects
-    to /brands/arcteryx.html, a real results grid, not a unique-match product
-    page). Distinguish by the destination URL PATH, not by counting product
-    tiles on the page — a genuine PDP can ALSO render a "related products"/
-    recommendations grid using the identical tile markup (cotswoldoutdoor.com
-    appends `&rrec=true` to those recommendation links), so a tile-count check
-    would misfire and silently swap the real single-product answer for unrelated
-    recommended products. cotswoldoutdoor.com PDPs live at `/p/...html`; anything
-    else (e.g. `/brands/...html`, `/c/...html`) is a listing page — return []
-    so the caller falls back to the dedicated grid extractor on that destination
-    page instead.
+
+def _ld_types(node: dict) -> set[str]:
+    raw = node.get("@type")
+    vals = raw if isinstance(raw, list) else [raw]
+    out = set()
+    for v in vals:
+        if isinstance(v, str) and v:
+            out.add(v.rsplit("/", 1)[-1].rsplit(":", 1)[-1])
+    return out
+
+
+def _ld_str(value) -> str:
+    if isinstance(value, str):
+        return unescape(value).strip()
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return str(value)
+    if isinstance(value, dict):
+        return _ld_str(value.get("@value") or value.get("name") or "")
+    if isinstance(value, list) and value:
+        return _ld_str(value[0])
+    return ""
+
+
+def _jsonld_blocks(soup: BeautifulSoup) -> list:
+    blocks = []
+    for script in soup.find_all("script", type=re.compile(r"application/ld\+json", re.I)):
+        raw = script.string if script.string is not None else script.get_text()
+        if not raw or not raw.strip():
+            continue
+        try:
+            blocks.append(json.loads(raw.strip()))
+        except (json.JSONDecodeError, TypeError, ValueError):
+            continue
+    return blocks
+
+
+def _ld_price(node: dict) -> Optional[str]:
+    offers = node.get("offers")
+    candidates = offers if isinstance(offers, list) else [offers]
+    for off in candidates:
+        if not isinstance(off, dict):
+            continue
+        p = off.get("price")
+        if p in (None, ""):
+            p = off.get("lowPrice")
+        if p in (None, "") and isinstance(off.get("priceSpecification"), dict):
+            p = off["priceSpecification"].get("price")
+        if p in (None, ""):
+            continue
+        currency = _ld_str(off.get("priceCurrency"))
+        return f"{currency} {_ld_str(p)}".strip()
+    if node.get("price") not in (None, ""):
+        return _ld_str(node.get("price"))
+    return None
+
+
+def _ld_top_level_products(blocks: list) -> tuple[list[dict], bool]:
+    """Product nodes reachable without passing through an ItemList; plus 'has ItemList'."""
+    products: list[dict] = []
+    has_list = False
+
+    def walk(node, depth=0):
+        nonlocal has_list
+        if depth > 6:
+            return
+        if isinstance(node, list):
+            for n in node:
+                walk(n, depth + 1)
+            return
+        if not isinstance(node, dict):
+            return
+        types = _ld_types(node)
+        if types & _LD_PRODUCT_TYPES:
+            products.append(node)
+            return
+        if "ItemList" in types or "OfferCatalog" in types:
+            has_list = True
+            return
+        for key in ("@graph", "mainEntity", "mainEntityOfPage"):
+            if key in node:
+                walk(node[key], depth + 1)
+
+    for b in blocks:
+        walk(b)
+    return products, has_list
+
+
+# ---------------------------------------------------------------------------
+# PDP (product detail page) detection — a search that lands on ONE product
+# ---------------------------------------------------------------------------
+
+
+def _extract_pdp(soup: BeautifulSoup, final_url: str) -> Optional[SearchResult]:
+    """Return the single product a search redirected to, or None if this is not a PDP.
+
+    A page counts as a PDP only on positive evidence: og:type=product, a
+    product:price:amount meta, exactly one top-level JSON-LD Product with no ItemList,
+    or the host's own PDP path rule. A brand/category landing page has an <h1> too —
+    without that evidence its heading must never become a fake one-product result
+    (cotswoldoutdoor.com: "Arc'teryx" → /brands/arcteryx.html is a listing).
     """
-    pdp_path_hosts = ("cotswoldoutdoor.com",)
     try:
-        host = urlparse(final_url).netloc.lower()
-        path = urlparse(final_url).path.lower()
+        path = urlparse(final_url).path
     except Exception:
-        host, path = "", ""
-    if any(h in host for h in pdp_path_hosts) and not path.startswith("/p/"):
-        return []
+        path = ""
+    profile = _host_profile(final_url)
+    if profile and profile.pdp_path and not re.search(profile.pdp_path, path):
+        return None
 
-    soup = BeautifulSoup(html, "html.parser")
+    og_type = soup.find("meta", attrs={"property": "og:type"})
+    og_product = bool(og_type and "product" in (og_type.get("content") or "").lower())
+    amount_tag = soup.find("meta", attrs={"property": re.compile(r"^(?:product|og):price:amount$")})
+    ld_products, has_list = _ld_top_level_products(_jsonld_blocks(soup))
+    path_rule = bool(profile and profile.pdp_path and re.search(profile.pdp_path, path))
+    if not (path_rule or og_product or amount_tag or (len(ld_products) == 1 and not has_list)):
+        return None
+
+    ld = ld_products[0] if len(ld_products) == 1 else None
+    title = ""
     h1 = soup.find("h1")
-    title = h1.get_text(" ", strip=True) if h1 else None
+    if h1:
+        title = h1.get_text(" ", strip=True)
+    if not title and ld:
+        title = _ld_str(ld.get("name"))
     if not title:
-        return []
+        og_title = soup.find("meta", attrs={"property": "og:title"})
+        title = re.split(r"\s+[|–-]\s+", (og_title.get("content") or "").strip())[0] if og_title else ""
+    if not title:
+        return None
 
     price = None
-    amount_tag = soup.find("meta", attrs={"property": "product:price:amount"})
-    currency_tag = soup.find("meta", attrs={"property": "product:price:currency"})
     if amount_tag and amount_tag.get("content"):
-        amount = amount_tag["content"].strip()
-        currency = (currency_tag.get("content").strip() if currency_tag and currency_tag.get("content") else "")
-        price = f"{currency} {amount}".strip()
-
+        currency_tag = soup.find("meta", attrs={"property": re.compile(r"^(?:product|og):price:currency$")})
+        currency = (currency_tag.get("content") or "").strip() if currency_tag else ""
+        price = f"{currency} {amount_tag['content'].strip()}".strip()
+    if not price and ld:
+        price = _ld_price(ld)
     if not price:
-        price_el = soup.select_one('[data-testid="product_price-actual-price"]')
-        if not price_el:
-            price_el = soup.select_one('[data-testid="product_price-previous-price"]')
+        price_el = soup.select_one('[data-testid="product_price-actual-price"]') \
+            or soup.select_one('[data-testid="product_price-previous-price"]')
         if price_el:
-            price = price_el.get_text(" ", strip=True)
+            price = price_el.get_text(" ", strip=True) or None
+    if not price:
+        og_desc = soup.find("meta", attrs={"property": "og:description"})
+        if og_desc:
+            price = _first_price(og_desc.get("content") or "")
 
-    return [SearchResult(rank=1, title=title[:120], url=final_url, price=price)]
+    link = ""
+    canon = soup.find("link", attrs={"rel": "canonical"})
+    if canon and canon.get("href"):
+        link = canon["href"].strip()
+    if not link:
+        og_url = soup.find("meta", attrs={"property": "og:url"})
+        link = (og_url.get("content") or "").strip() if og_url else ""
+    return SearchResult(rank=1, title=title[:200], url=link or final_url, price=price)
+
+
+def _try_extract_pdp_as_result(html: str, final_url: str) -> list[SearchResult]:
+    """Legacy wrapper: [the PDP's single product] or []."""
+    pdp = _extract_pdp(BeautifulSoup(html, "html.parser"), final_url)
+    return [pdp] if pdp else []
 
 
 # Hosts that serve a Cloudflare "Just a moment..." JS challenge to headless
@@ -377,7 +1159,10 @@ def _try_extract_pdp_as_result(html: str, final_url: str) -> list[SearchResult]:
 # we launch headed, force Chromium (Firefox isn't reliably installed and the
 # challenge is Chromium-friendly), and wait for the challenge to clear before
 # classifying the response as blocked.
-_HEADED_CHROMIUM_HOSTS = ("huckberry.com",)
+# zalando.* (every market): no challenge page, but headless Chromium gets a 403 / soft "Not Found"
+# with zero products (and is flaky — sometimes classified as blocked outright). Headed
+# Chromium returns the normal page reliably: ~806KB, 84 product articles.
+_HEADED_CHROMIUM_HOSTS = ("huckberry.com", "zalando.", "douglas.de", "colourpop.com")
 
 
 def _has_dedicated_extractor(url: str) -> bool:
@@ -399,6 +1184,9 @@ def _needs_headed_chromium(url: str) -> bool:
 def _try_site_specific(soup: BeautifulSoup, url: str, max_results: int) -> list[SearchResult]:
     """Site-specific extraction for known sites. Returns empty list if no match."""
     host = urlparse(url).netloc.lower()
+
+    if "colourpop.com" in host:
+        return _try_colourpop(soup, max_results)
 
     if "groupon" in host:
         return _try_groupon(soup, max_results)
@@ -430,7 +1218,314 @@ def _try_site_specific(soup: BeautifulSoup, url: str, max_results: int) -> list[
     if "cotswoldoutdoor.com" in host:
         return _try_cotswoldoutdoor(soup, max_results)
 
+    if "zalando." in host:
+        return _try_zalando(soup, max_results)
+
+    if "douglas.de" in host:
+        return _try_douglas(soup, max_results)
+
     return []
+
+
+def _try_colourpop(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Read ColourPop's visible search grid, excluding hidden recommendations."""
+    results: list[SearchResult] = []
+    seen: set[str] = set()
+    for card in soup.select("#product-grid main-product"):
+        link = card.select_one('h2 a[href*="/products/"]')
+        if not link:
+            continue
+        title = link.get_text(" ", strip=True)
+        href = (link.get("href") or "").strip()
+        if not title or not href:
+            continue
+        key = href.split("?", 1)[0]
+        if key in seen:
+            continue
+        seen.add(key)
+        price_match = re.search(r"Regular price\s*(\$[\d,.]+)", card.get_text(" ", strip=True))
+        price = price_match.group(1) if price_match else None
+        url = f"https://colourpop.com{href}" if href.startswith("/") else href
+        results.append(SearchResult(rank=len(results) + 1, title=title[:120], price=price, url=url,
+                                    sponsored=_detect_sponsored(card)))
+        if len(results) >= max_results:
+            break
+    return results
+
+
+
+# Zalando's authoritative no-results marker. This exact sentence appears ONLY on a
+# genuine zero-results page and nowhere else on the site, which makes it the single
+# reliable signal — see _try_zalando for why structure/count checks are not.
+_ZALANDO_NO_RESULTS_MARKER = "Try a different search term or check the spelling."
+
+# Card chrome that precedes the brand/name lines inside a Zalando <article>.
+_ZALANDO_PRICE_LINE = re.compile(r"^\u20ac\s?[\d.,]+$")
+_ZALANDO_ORIGINAL_PRICE_LABEL = re.compile(
+    r"^(reference price|originally|last lowest price|rrp)\b", re.I
+)
+# Zalando PDPs carry no product:price meta; the price sits in og:description
+# ("... - brown for \u20ac13.59 (01/09/2026). Free shipping ...").
+_ZALANDO_PDP_PRICE = re.compile(r"for\s*\u20ac\s*([\d.,]+)")
+
+
+
+def _try_douglas(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Extract product cards from Douglas (douglas.de) search results.
+
+    Structure (verified live 2026-09-14):
+      .product-grid  >  .product-tile  >  .product-tile__details-container
+
+    Two traps this guards against:
+
+    1. **SEO footer links.** A naive ``a[href*="/p/"]`` sweep over the page finds
+       ~72 links on a typical search page, but only ~52 are real product tiles —
+       the remaining ~20 live in ``.seo-footer__column`` and are category/SEO
+       links, not results. Scoping to ``.product-grid`` excludes them.
+
+    2. **Hashed CSS-module class names.** Douglas ships hashed classes
+       (``_9b02884cbd4bdbe2``) for the inner brand/name/price nodes, so there is
+       no stable ``.product-tile__brand``/``__name``/``__price`` to select. The
+       stable surface is the tile's own text: its FIRST line is the full
+       accessible product title (e.g. "Lippenstift fuer Unisex DIOR Rouge Dior
+       Velvet 999 - 999"), and the price line carries UVP, selling price and a
+       parenthesised unit price.
+
+    NOTE (critical, see FETCHER_PLAYBOOK / DISCOVERY_PLAYBOOK): Douglas has **no
+    no-results page**. A nonsense query still renders a populated
+    ``.product-grid`` of unrelated fallback products under a confident heading
+    ("99 ERGEBNISSE FUER „QWERTZUIOP“"). So a non-empty return from this
+    function is NOT evidence that the query matched anything. Relevance scoring,
+    not result count, is the signal on this host.
+    """
+    results: list[SearchResult] = []
+    seen_urls: set[str] = set()
+
+    grids = soup.select(".product-grid")
+    tiles = []
+    for g in grids:
+        tiles.extend(g.select(".product-tile"))
+    if not tiles:
+        # Search can redirect to a category/brand listing that still uses tiles
+        # but not the .product-grid wrapper. Fall back to tiles anywhere EXCEPT
+        # the SEO footer.
+        tiles = [
+            tl for tl in soup.select(".product-tile")
+            if not tl.find_parent(class_=re.compile(r"seo-footer", re.I))
+        ]
+
+    for tile in tiles:
+        if len(results) >= max_results:
+            break
+
+        link = tile.find("a", href=re.compile(r"/p/"))
+        if link is None:
+            continue
+        href = (link.get("href") or "").split("?")[0].strip()
+        if not href or href in seen_urls:
+            continue
+        seen_urls.add(href)
+        url_full = f"https://www.douglas.de{href}" if href.startswith("/") else href
+
+        raw = tile.get_text(separator="\n", strip=True)
+
+        # Title: hashed CSS-module classes mean there is no stable
+        # .product-tile__name selector, and the visible title lives in a
+        # visually-hidden leaf <span>. Pick it structurally: the first
+        # childless descendant whose text is substantial, not a number, and
+        # carries no price. Do NOT hardcode the hashed class — it changes on
+        # every deploy. (See FETCHER_PLAYBOOK douglas.de profile.)
+        title = ""
+        for el in tile.find_all(True):
+            if el.find(True) is not None:
+                continue
+            s = " ".join((el.get_text() or "").split())
+            if len(s) > 15 and not s[:1].isdigit() and "\u20ac" not in s:
+                title = s[:180]
+                break
+        if not title:
+            lines = [ln.strip() for ln in raw.split("\n") if ln.strip()]
+            if not lines:
+                continue
+            title = lines[0]
+
+        # Price: drop the parenthesised unit price ("(11.140,00 EUR / 1 kg)"),
+        # then take the LAST remaining amount — with a UVP present the order is
+        # [UVP, selling price]; without one there is a single amount.
+        price = None
+        price_text = re.sub(r"\([^)]*\)", " ", raw)
+        amounts = re.findall(r"\d{1,3}(?:\.\d{3})*,\d{2}\s*€", price_text)
+        if amounts:
+            price = amounts[-1].replace("\xa0", " ").strip()
+
+        results.append(
+            SearchResult(
+                rank=len(results) + 1,
+                title=title,
+                price=price,
+                url=url_full,
+                sponsored=_detect_sponsored(tile),
+            )
+        )
+
+    return results
+
+
+def _try_zalando(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Extract product cards from Zalando (zalando.ie / zalando.co.uk) search results.
+
+    THE TRAP this exists to prevent: Zalando's no-results page renders NO search
+    results but pads itself with two recommendation carousels ("Recommended for
+    you" / "Most popular - Our customers bought"). Those carousel cards are real
+    products with real prices and real PDP URLs, sitting in the SAME <article>
+    elements inside the SAME `ul[role="list"]` structure as genuine results — so
+    neither the tag, the container, nor the result count can tell them apart. A
+    gibberish control query returned 15 confident phantom results (baggy jeans),
+    and a real conversational query returned 4 phantom trainers when its true
+    answer was zero. The phantom set also ROTATES between runs, so it cannot be
+    caught by eyeballing counts either.
+
+    The only dependable discriminator is the sentence Zalando prints on a genuine
+    no-hits page and nowhere else, so that string gates the whole extractor (it is
+    also the host profile's no-results marker → ZERO_CONFIRMED). The grid itself is
+    read only from the `product-count` header down to the first carousel heading.
+    The host is in _DEDICATED_EXTRACTOR_HOSTS, so the generic/LLM fallbacks never run.
+
+    Card text is line-structured with no data-testid hooks (class names are hashed
+    per build and must NOT be used), e.g.:
+
+        Bestseller / Top rated / heart_outlined      <- badges (variable)
+        adidas Performance                           <- brand
+        GALAXY 8 M - Road running shoes - core black <- name
+        From
+        \u20ac49.95                                      <- current price
+        Reference price: / \u20ac55.00 / up to / -9%      <- original price (ignored)
+
+    Rather than blacklisting badge words (an open-ended set), brand+name are taken
+    as the last two non-empty lines BEFORE the first price line - the same
+    "lines before price" approach used by _try_ahlens. Title = "brand name" so
+    BRAND_SEARCH / DIRECT_MATCH queries that include the brand can match, matching
+    the _try_imerco / _try_manufactum / _try_huckberry convention.
+
+    No generic junk filter is applied: once scoped to a confirmed results container
+    its title-length heuristic only risks dropping legitimately short real names
+    (the baechli-bergsport.ch lesson).
+    """
+    page_text = soup.get_text(" ", strip=True)
+    if _ZALANDO_NO_RESULTS_MARKER in page_text:
+        logger.info("Zalando: authoritative no-results marker present -> 0 results")
+        return []
+
+    # PDP short-circuit. An exact article code (e.g. "PI954K02Z-O11") redirects
+    # straight to that product's detail page - correct, desirable search behaviour
+    # (judge: PDP-redirect on an exact-identifier query = PASS). _analyse_page now
+    # catches this first (token-based _redirect_kind + _extract_pdp); this stays as a
+    # second guard. Before, the article code embedded in the destination slug
+    # (".../...-pi954k02z-o11.html") hid the redirect, so extraction would
+    # otherwise run against the PDP and return its "similar products" carousels as
+    # search results - measured: 52 <article> elements, 15 phantom results, on a
+    # page with no search grid at all. Detect the PDP by its og:type and return the
+    # ONE product it represents.
+    og_type = soup.find("meta", attrs={"property": "og:type"})
+    if og_type and "product" in (og_type.get("content") or "").lower():
+        h1 = soup.find("h1")
+        title = h1.get_text(" ", strip=True) if h1 else ""
+        if not title:
+            og_title = soup.find("meta", attrs={"property": "og:title"})
+            title = (og_title.get("content") or "").split(" - Zalando")[0] if og_title else ""
+        if not title:
+            return []
+
+        price = None
+        og_desc = soup.find("meta", attrs={"property": "og:description"})
+        if og_desc:
+            m = _ZALANDO_PDP_PRICE.search(og_desc.get("content") or "")
+            if m:
+                price = f"\u20ac{m.group(1)}"
+
+        link = ""
+        canon = soup.find("link", attrs={"rel": "canonical"})
+        if canon and canon.get("href"):
+            link = canon["href"].strip()
+        if not link:
+            og_url = soup.find("meta", attrs={"property": "og:url"})
+            if og_url and og_url.get("content"):
+                link = og_url["content"].strip()
+
+        logger.info("Zalando: PDP redirect detected -> 1 result (%s)", title[:60])
+        return [SearchResult(rank=1, title=title[:200], url=link, price=price)]
+
+    results: list[SearchResult] = []
+    seen: set[str] = set()
+
+    # Scope: the real grid follows the "N items" count header. Recommendation
+    # carousels come after it under their own headings ("Recommended for you",
+    # "Most popular - Our customers bought"), so collect <article>s in document order
+    # from the count header and stop at the first carousel heading. No count header
+    # means this is not a results grid we can trust -> [] (ZERO_UNVERIFIED upstream,
+    # unless the no-results marker is present).
+    count_el = soup.select_one('[data-testid="product-count"]')
+    if count_el is None:
+        logger.info("Zalando: no product-count header -> not a trusted results grid")
+        return []
+    cards: list[Tag] = []
+    for el in count_el.find_all_next(["article", "h2", "h3", "h4"]):
+        if el.name != "article":
+            if _RECO_HEADING_RE.search(el.get_text(" ", strip=True)):
+                break
+            continue
+        cards.append(el)
+
+    for card in cards:
+        link = None
+        for a in card.select("a[href]"):
+            href = (a.get("href") or "").strip()
+            if ".html" in href:
+                link = href
+                break
+        if not link:
+            continue
+        key = link.split("?")[0].split("#")[0]
+        if key in seen:
+            continue
+
+        lines = [ln.strip() for ln in card.get_text("\n").split("\n")]
+        lines = [ln for ln in lines if ln]
+
+        price = None
+        price_idx = None
+        for i, ln in enumerate(lines):
+            if _ZALANDO_PRICE_LINE.match(ln):
+                price, price_idx = ln, i
+                break
+
+        # brand + name = last two meaningful lines before the price block
+        head = lines[:price_idx] if price_idx is not None else lines
+        head = [
+            ln for ln in head
+            if ln.lower() not in ("from", "heart_outlined", "up to")
+            and not _ZALANDO_ORIGINAL_PRICE_LABEL.match(ln)
+            and not ln.startswith("-")
+        ]
+        if len(head) >= 2:
+            brand, name = head[-2], head[-1]
+        elif head:
+            brand, name = "", head[-1]
+        else:
+            continue
+        if not name:
+            continue
+        title = name if (brand and name.lower().startswith(brand.lower())) else f"{brand} {name}".strip()
+
+        seen.add(key)
+        results.append(
+            SearchResult(rank=len(results) + 1, title=title[:200], url=link, price=price,
+                         sponsored=_detect_sponsored(card))
+        )
+        if len(results) >= max_results:
+            break
+
+    return results
 
 
 def _try_huckberry(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
@@ -502,16 +1597,14 @@ def _try_huckberry(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
             title=title[:120],
             url=url_full,
             price=price,
+            sponsored=_detect_sponsored(cont),
         ))
         if len(results) >= max_results:
             break
 
-    filtered = _filter_junk_results(results)
-    logger.debug(
-        "Strategy 0 (Huckberry site-specific): found %d raw results, %d after filtering",
-        len(results), len(filtered),
-    )
-    return filtered
+    # Scoped to real tiles: no generic junk filter (it drops short real names).
+    logger.debug("Strategy 0 (Huckberry site-specific): found %d results", len(results))
+    return results
 
 
 def _try_ahlens(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
@@ -594,17 +1687,14 @@ def _try_ahlens(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
             title=title[:120],
             url=url_full,
             price=price,
+            sponsored=_detect_sponsored(card),
         ))
         if len(results) >= max_results:
             break
 
-    raw_count = len(results)
-    filtered = _filter_junk_results(results)
-    logger.debug(
-        "Strategy 0 (Åhléns site-specific): found %d raw results, %d after filtering",
-        raw_count, len(filtered),
-    )
-    return filtered
+    # Scoped to #product-rain-section: no generic junk filter.
+    logger.debug("Strategy 0 (Åhléns site-specific): found %d results", len(results))
+    return results
 
 
 def _try_avoca(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
@@ -620,7 +1710,7 @@ def _try_avoca(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
     page ("0 results found for …") renders ZERO such items, so returning `[]` here
     correctly signals a search miss instead of falling through to recommendation
     carousels. The host is registered in `_DEDICATED_EXTRACTOR_HOSTS` so an empty
-    result short-circuits the generic/LLM fallbacks (phantom-result guard).
+    result never falls through to the generic/LLM fallbacks (phantom-result guard).
     """
     items = soup.select("div.boost-sd__product-item")
     if not items:
@@ -661,16 +1751,14 @@ def _try_avoca(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
             title=title[:120],
             url=url_full,
             price=price,
+            sponsored=_detect_sponsored(card),
         ))
         if len(results) >= max_results:
             break
 
-    filtered = _filter_junk_results(results)
-    logger.debug(
-        "Strategy 0 (Avoca site-specific): found %d raw results, %d after filtering",
-        len(results), len(filtered),
-    )
-    return filtered
+    # Scoped to Boost product items: no generic junk filter.
+    logger.debug("Strategy 0 (Avoca site-specific): found %d results", len(results))
+    return results
 
 
 def _try_baechli(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
@@ -689,7 +1777,7 @@ def _try_baechli(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
 
     A SEPARATE, more serious trap: an exact-title query that uniquely matches
     one product redirects straight to that product's detail page (no grid at
-    all) — handled upstream by `_try_extract_pdp_as_result` /
+    all) — handled upstream by `_extract_pdp` /
     `_PDP_REDIRECT_HOSTS`, not here.
 
     Title = product name only (brand lives in a separate `<p>` sibling, not
@@ -718,7 +1806,8 @@ def _try_baechli(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
             price = f"CHF {m.group(1)}"
 
         url_full = f"https://www.baechli-bergsport.ch{href}" if href.startswith("/") else href
-        results.append(SearchResult(rank=len(results) + 1, title=title[:120], url=url_full, price=price))
+        results.append(SearchResult(rank=len(results) + 1, title=title[:120], url=url_full, price=price,
+                                    sponsored=_detect_sponsored(article)))
         if len(results) >= max_results:
             break
 
@@ -779,7 +1868,8 @@ def _try_cotswoldoutdoor(soup: BeautifulSoup, max_results: int) -> list[SearchRe
             price = price_el.get_text(" ", strip=True)
 
         url_full = f"https://www.cotswoldoutdoor.com{href}" if href.startswith("/") else href
-        results.append(SearchResult(rank=len(results) + 1, title=title[:120], url=url_full, price=price))
+        results.append(SearchResult(rank=len(results) + 1, title=title[:120], url=url_full, price=price,
+                                    sponsored=_detect_sponsored(card)))
         if len(results) >= max_results:
             break
 
@@ -793,8 +1883,11 @@ def _try_manufactum(soup: BeautifulSoup, max_results: int) -> list[SearchResult]
     THE TRAP (caught at 4a): on a genuine no-results query Manufactum's search
     header reads "Suchergebnis für »…« (0)" but the page is padded with a large
     grid of fallback/recommendation products (oak furniture, shoes, …). The
-    generic strategy scrapes those phantoms and masks the search failure. So we
-    treat the header count as authoritative: when it is (0), return `[]`.
+    generic strategy scrapes those phantoms and masks the search failure. So the
+    header count is authoritative: (0) → `[]` (the host profile's no-results marker
+    makes that ZERO_CONFIRMED); (N) → at most N tiles, since anything past N is
+    padding; header missing / unparseable → `[]`, which surfaces as ZERO_UNVERIFIED.
+    Never scrape "all tiles" without a parsed count.
 
     Manufactum exposes STABLE `data-test-*` hooks (the CSS module class names are
     hashed and change per build, so we must NOT key off them):
@@ -804,16 +1897,20 @@ def _try_manufactum(soup: BeautifulSoup, max_results: int) -> list[SearchResult]
                  brand usually embedded — no brand prefix needed)
       - price:   `span[data-test-stelar-price-price="true"]` (e.g. "39,90 €")
 
-    Scoping to these tiles is authoritative: registered in
-    `_DEDICATED_EXTRACTOR_HOSTS` so `[]` short-circuits the generic/LLM fallbacks.
+    Registered in `_DEDICATED_EXTRACTOR_HOSTS` so `[]` never falls through to the
+    generic/LLM fallbacks.
     """
-    # Header count → authoritative zero (phantom-result guard).
+    # Header count → authoritative (phantom-result guard).
     header = soup.find("h1")
-    if header:
-        m = re.search(r"\((\d+)\)\s*$", header.get_text(" ", strip=True))
-        if m and int(m.group(1)) == 0:
-            logger.debug("Strategy 0 (Manufactum site-specific): header reports (0) -> authoritative empty")
-            return []
+    m = re.search(r"\((\d[\d.]*)\)\s*$", header.get_text(" ", strip=True)) if header else None
+    if not m:
+        logger.info("Strategy 0 (Manufactum site-specific): results header unparseable -> not trusting tiles")
+        return []
+    header_count = _parse_count(m.group(1)) or 0
+    if header_count == 0:
+        logger.debug("Strategy 0 (Manufactum site-specific): header reports (0) -> empty")
+        return []
+    max_results = min(max_results, header_count)
 
     results: list[SearchResult] = []
     seen: set[str] = set()
@@ -858,16 +1955,14 @@ def _try_manufactum(soup: BeautifulSoup, max_results: int) -> list[SearchResult]
             title=title[:120],
             url=url_full,
             price=price,
+            sponsored=_detect_sponsored(tile),
         ))
         if len(results) >= max_results:
             break
 
-    filtered = _filter_junk_results(results)
-    logger.debug(
-        "Strategy 0 (Manufactum site-specific): found %d raw results, %d after filtering",
-        len(results), len(filtered),
-    )
-    return filtered
+    # Scoped to data-test tiles: no generic junk filter.
+    logger.debug("Strategy 0 (Manufactum site-specific): found %d results", len(results))
+    return results
 
 
 def _try_imerco(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
@@ -933,16 +2028,14 @@ def _try_imerco(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
             title=title[:120],
             url=url_full,
             price=price,
+            sponsored=_detect_sponsored(card),
         ))
         if len(results) >= max_results:
             break
 
-    filtered = _filter_junk_results(results)
-    logger.debug(
-        "Strategy 0 (Imerco site-specific): found %d raw results, %d after filtering",
-        len(results), len(filtered),
-    )
-    return filtered
+    # Scoped to ProductHit cards: no generic junk filter.
+    logger.debug("Strategy 0 (Imerco site-specific): found %d results", len(results))
+    return results
 
 
 def _try_bergzeit(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
@@ -964,14 +2057,18 @@ def _try_bergzeit(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
     product_links = soup.find_all("a", class_=re.compile(r"products-list__product-box"))
     if not product_links:
         # Fallback: anchors inside the results wrapper, excluding footer teasers.
+        # Never the whole page: on a "Deine Suche ergab leider keine Treffer" page the
+        # only /p/ anchors are the recommendation carousel (12 phantom results once).
         wrapper = soup.select_one(
             ".products-list-page__products-list-wrapper, .products-list-page__main, .products-list"
         )
-        scope = wrapper or soup
+        if wrapper is None:
+            return []
         product_links = [
-            a for a in scope.find_all("a", href=True)
+            a for a in wrapper.find_all("a", href=True)
             if id_re.match(a.get("href", ""))
             and not a.find_parent(class_=re.compile(r"footer-teaser"))
+            and not _is_inside_reco(a)
         ]
 
     for link in product_links:
@@ -1026,6 +2123,7 @@ def _try_bergzeit(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
             title=title[:120],
             url=url_full,
             price=price,
+            sponsored=_detect_sponsored(card),
         ))
         if len(results) >= max_results:
             break
@@ -1081,6 +2179,7 @@ def _try_lyko(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
         raw = link.get_text(separator=" ", strip=True)
         if len(raw.strip()) < 8:
             raw = _card_text(link)
+        sponsored = bool(re.search(r"\bSponsrad\b", raw + " " + _card_text(link), re.I))
         # Remove promo badges: "Combo Deal 20%", "Se villkor på produktsidan", "Reapris X kr", "Utan kampanj X kr"
         text = re.sub(r"Combo Deal\s*\d+%", "", raw, flags=re.I)
         # Leading promo/badge labels that prefix the product name in the card.
@@ -1127,6 +2226,7 @@ def _try_lyko(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
             title=text[:120],
             url=url_full,
             price=price,
+            sponsored=sponsored,
         ))
         if len(results) >= max_results:
             break
@@ -1225,73 +2325,108 @@ def _try_groupon(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
 
 
 def _try_schema_org(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
-    results: list[SearchResult] = []
+    """Products described in JSON-LD, in the page's own order (ItemList.position first).
 
-    for script in soup.find_all("script", type="application/ld+json"):
-        if not script.string:
-            continue
-        try:
-            data = json.loads(script.string)
-        except (json.JSONDecodeError, TypeError):
-            continue
-        _collect_products_jsonld(data, results, max_results)
+    Structured data is clean product data, so the generic junk filter (title length,
+    junk words) is not applied: it would drop short real names like "Talon 6".
+    """
+    results: list[SearchResult] = []
+    seen: set[str] = set()
+    for data in _jsonld_blocks(soup):
+        _collect_products_jsonld(data, results, max_results, seen)
         if len(results) >= max_results:
             break
 
-    for i, r in enumerate(results[:max_results]):
-        r.rank = i + 1
-
-    raw = results[:max_results]
-    filtered = _filter_junk_results(raw)
-    logger.debug(
-        "Strategy 1 (Schema.org): found %d raw results, %d after filtering",
-        len(raw), len(filtered),
-    )
-    return filtered
+    results = results[:max_results]
+    for i, r in enumerate(results, 1):
+        r.rank = i
+    logger.debug("Strategy 1 (Schema.org): found %d results", len(results))
+    return results
 
 
-def _collect_products_jsonld(data: object, results: list[SearchResult], max_results: int) -> None:
-    if len(results) >= max_results:
+def _ld_result(node: dict) -> Optional[SearchResult]:
+    name = _ld_str(node.get("name"))
+    if not name:
+        return None
+    snippet = _ld_str(node.get("description"))[:300] or None
+    url = _ld_str(node.get("url")) or _ld_str(node.get("@id")) or None
+    return SearchResult(rank=0, title=name[:300], price=_ld_price(node), snippet=snippet, url=url)
+
+
+def _ld_add(result: Optional[SearchResult], results: list[SearchResult], seen: set[str]) -> None:
+    if result is None:
+        return
+    key = (result.url or result.title).split("#")[0].casefold()
+    if key in seen:
+        return
+    seen.add(key)
+    results.append(result)
+
+
+def _collect_products_jsonld(
+    data: object,
+    results: list[SearchResult],
+    max_results: int,
+    seen: Optional[set[str]] = None,
+    _depth: int = 0,
+) -> None:
+    """Collect Product nodes. ItemLists are walked once, sorted by ListItem.position;
+    a Product's own children (variants, related products, offers) are never collected."""
+    seen = seen if seen is not None else set()
+    if len(results) >= max_results or _depth > 12:
         return
 
-    if isinstance(data, dict):
-        type_val = data.get("@type", "")
-        types = type_val if isinstance(type_val, list) else [type_val]
-
-        if "Product" in types or "Service" in types:
-            name = data.get("name", "").strip()
-            if name:
-                price = None
-                offers = data.get("offers", {})
-                if isinstance(offers, dict):
-                    p = offers.get("price") or offers.get("lowPrice")
-                    currency = offers.get("priceCurrency", "")
-                    price = (f"{currency} {p}".strip() if currency else str(p)) if p else None
-                elif isinstance(offers, list) and offers:
-                    p = offers[0].get("price") or offers[0].get("lowPrice")
-                    currency = offers[0].get("priceCurrency", "")
-                    price = (f"{currency} {p}".strip() if currency else str(p)) if p else None
-                if not price and data.get("price"):
-                    price = str(data["price"])
-
-                snippet = data.get("description", "")
-                snippet = snippet[:300].strip() if isinstance(snippet, str) else None
-
-                results.append(SearchResult(
-                    rank=0, title=name, price=price,
-                    snippet=snippet or None, url=data.get("url") or data.get("@id"),
-                ))
-
-        if "ItemList" in types:
-            for item in data.get("itemListElement", []):
-                _collect_products_jsonld(item, results, max_results)
-
-        for v in data.values():
-            _collect_products_jsonld(v, results, max_results)
-
-    elif isinstance(data, list):
+    if isinstance(data, list):
         for item in data:
-            _collect_products_jsonld(item, results, max_results)
+            _collect_products_jsonld(item, results, max_results, seen, _depth + 1)
+        return
+    if not isinstance(data, dict):
+        return
+
+    types = _ld_types(data)
+    if types & _LD_PRODUCT_TYPES:
+        _ld_add(_ld_result(data), results, seen)
+        return
+
+    if "ItemList" in types or "OfferCatalog" in types:
+        elems = data.get("itemListElement") or []
+        if isinstance(elems, dict):
+            elems = [elems]
+        if not isinstance(elems, list):
+            return
+
+        def _pos(el) -> float:
+            if isinstance(el, dict):
+                try:
+                    return float(el.get("position"))
+                except (TypeError, ValueError):
+                    pass
+            return float("inf")
+
+        for el in sorted(elems, key=_pos):  # stable: unpositioned keep DOM order
+            if len(results) >= max_results:
+                return
+            if not isinstance(el, dict):
+                continue
+            el_types = _ld_types(el)
+            if "ListItem" in el_types:
+                item = el.get("item")
+                if isinstance(item, dict) and (_ld_types(item) & _LD_PRODUCT_TYPES or item.get("name")):
+                    _ld_add(_ld_result(item), results, seen)
+                elif isinstance(item, dict) and _ld_types(item):
+                    _collect_products_jsonld(item, results, max_results, seen, _depth + 1)
+                elif el.get("name") and (el.get("url") or isinstance(item, str)):
+                    _ld_add(SearchResult(rank=0, title=_ld_str(el.get("name"))[:300],
+                                         url=_ld_str(el.get("url")) or _ld_str(item) or None), results, seen)
+            else:
+                _collect_products_jsonld(el, results, max_results, seen, _depth + 1)
+        return
+
+    for key, value in data.items():
+        if key in _LD_SKIP_KEYS or (key.startswith("@") and key != "@graph"):
+            continue
+        if isinstance(value, (dict, list)):
+            _collect_products_jsonld(value, results, max_results, seen, _depth + 1)
 
 
 # ---------------------------------------------------------------------------
@@ -1363,17 +2498,66 @@ def _element_matches_card(el: Tag) -> bool:
     return False
 
 
-def _detect_repeated_structure(soup: BeautifulSoup, max_results: int) -> list[Tag]:
-    """Find the parent with the most children of the same tag+class pattern.
+def _attr_tokens(node: Tag) -> list[str]:
+    # Class / id / testid only: an aria-label is a sentence ("Results related to boots").
+    attrs = node.attrs or {}
+    return list(attrs.get("class") or []) + [attrs.get("id") or "", attrs.get("data-testid") or ""]
 
-    Returns candidate card elements from that parent.
+
+def _is_inside_reco(el: Tag) -> bool:
+    """True if ``el`` sits inside a recommendation / carousel / mini-cart container."""
+    for node in [el] + list(el.parents):
+        if not isinstance(node, Tag) or node.name in ("body", "html", "[document]"):
+            continue
+        if any(t and _RECO_CONTAINER_RE.search(t) for t in _attr_tokens(node)):
+            return True
+    return False
+
+
+def _preceding_heading_is_reco(el: Tag) -> bool:
+    """True if the nearest heading above ``el`` (ignoring header/nav/footer menus)
+    introduces a recommendation carousel."""
+    for heading in el.find_all_previous(re.compile(r"^h[1-4]$"), limit=8):
+        if heading.find_parent(["header", "nav", "footer"]):
+            continue
+        return bool(_RECO_HEADING_RE.search(heading.get_text(" ", strip=True)))
+    return False
+
+
+def _doc_order(soup: BeautifulSoup) -> dict[int, int]:
+    return {id(el): i for i, el in enumerate(soup.find_all(True))}
+
+
+def _group_quality(group: list[Tag]) -> float:
+    """Mean per-card quality: has a link (1) and a price (1), out of 2."""
+    if not group:
+        return 0.0
+    total = 0.0
+    for c in group:
+        text = c.get_text(" ")
+        total += (1.0 if c.find("a", href=True) else 0.0) + (
+            1.0 if (_PRICE_RE.search(text) or _PRICE_FALLBACK_RE.search(text)) else 0.0)
+    return total / (2 * len(group))
+
+
+def _detect_repeated_structure(soup: BeautifulSoup, max_results: int) -> list[Tag]:
+    """Find the repeated card group that is the search grid; return its cards in DOM order.
+
+    1. Group candidate cards by (parent, tag+first-class signature).
+    2. Merge same-signature groups whose parents are siblings with the same signature —
+       a grid split around editorial blocks (douglas.de: 8 + 4 + 12 + 28 tiles in four
+       .product-grid blocks) is ONE result list, and its real rank 1 is in the first block.
+    3. Score each group by mean quality × min(n, k); recommendation carousels (by
+       container class or the heading that introduces them) are heavily discounted.
+    4. Among groups scoring within 80% of the best, take the one nearest the top of
+       <main> — never simply the largest (a 15-tile carousel beat a 4-tile grid).
     """
-    best_group: list[Tag] = []
+    order = _doc_order(soup)
+    k = max(1, max_results)
+    groups: dict[tuple[int, str], list[Tag]] = {}
+    parents: dict[tuple[int, str], Tag] = {}
 
     for tag_name in ("div", "li", "article", "figure", "section"):
-        # Group children by their class signature
-        parent_map: dict[int, dict[str, list[Tag]]] = {}
-
         for el in soup.find_all(tag_name, recursive=True):
             if not isinstance(el, Tag) or not el.parent:
                 continue
@@ -1384,22 +2568,54 @@ def _detect_repeated_structure(soup: BeautifulSoup, max_results: int) -> list[Ta
                 continue
             if _is_inside_chrome(el):
                 continue
-
-            parent_id = id(el.parent)
-            # Signature: tag name + first class (if any)
             classes = el.get("class", [])
             sig = f"{tag_name}::{classes[0] if classes else ''}"
+            key = (id(el.parent), sig)
+            groups.setdefault(key, []).append(el)
+            parents[key] = el.parent
 
-            parent_map.setdefault(parent_id, {}).setdefault(sig, []).append(el)
+    def _sig(node: Tag) -> str:
+        classes = node.get("class", []) if isinstance(node, Tag) else []
+        return f"{getattr(node, 'name', '')}::{classes[0] if classes else ''}"
 
-        for sig_map in parent_map.values():
-            for group in sig_map.values():
-                if len(group) >= 5 and len(group) > len(best_group):
-                    best_group = group
+    merged: dict[tuple, list[Tag]] = {}
+    for key, group in groups.items():
+        parent = parents[key]
+        grand = parent.parent
+        if grand is not None and not _is_inside_reco(group[0]):
+            mkey = ("merge", id(grand), _sig(parent), key[1])
+        else:
+            mkey = ("single",) + key
+        merged.setdefault(mkey, []).extend(group)
 
+    main = soup.find("main") or soup.find(attrs={"role": "main"})
+    scored: list[tuple[float, int, list[Tag]]] = []
+    for group in merged.values():
+        if len(group) < 3:
+            continue
+        group.sort(key=lambda t: order.get(id(t), 0))
+        # Drop cards nested inside other cards of the same group (keep the outer one).
+        ids = {id(g) for g in group}
+        group = [g for g in group if not any(id(p) in ids for p in g.parents)]
+        if len(group) < 3:
+            continue
+        score = _group_quality(group) * min(len(group), k)
+        if _is_inside_reco(group[0]) or _preceding_heading_is_reco(group[0]):
+            score *= 0.25
+        if main is not None and main not in group[0].parents:
+            score *= 0.7
+        scored.append((score, order.get(id(group[0]), 0), group))
+
+    if not scored:
+        return []
+    best = max(s for s, _, _ in scored)
+    if best <= 0:
+        return []
+    near = [item for item in scored if item[0] >= 0.8 * best]
+    chosen = min(near, key=lambda item: item[1])[2]
     # Return 3× the requested count so downstream deduplication (color variants,
     # price-identical items) has enough buffer to still reach max_results.
-    return best_group[: max_results * 3]
+    return chosen[: max_results * 3]
 
 
 _HOVER_CONTAINER_RE = re.compile(
@@ -1543,7 +2759,6 @@ def _extract_title_from_card(card: Tag) -> str:
         label = link.get("aria-label", "").strip()
         if label and len(label) > 4 and not _GENERIC_ARIA_LABELS.match(label):
             return label[:300]
-        import copy
         link_copy = copy.copy(link)
         for node in link_copy.find_all(True):
             if isinstance(node, Tag) and (_is_hover_or_hidden(node) or _is_badge_element(node)):
@@ -1558,6 +2773,7 @@ def _extract_title_from_card(card: Tag) -> str:
     _UI_JUNK_RE = re.compile(
         r"^(like|add to|view|remove|close|open|toggle|share|save|buy|"
         r"purchase|wishlist|cart|basket|bag|compare|quick view|more info|"
+        r"sponsored|anzeige|gesponsert|sponsrad|annonse|annonce|"
         r"sold out|out of stock|unavailable|new|sale|–?\d+\s*%|"
         r"\+\d+\s*(mehr|more|colors?|colours?|variants?|options?)|"  # "+3 mehr", "+2 colors"
         r"ab\s+[\d,.])",  # "ab 4,99 €" (German "from price")
@@ -1658,6 +2874,9 @@ def _try_product_cards(soup: BeautifulSoup, max_results: int) -> list[SearchResu
         if heading and _SECTION_HEADER_RE.match(heading.get_text(strip=True)):
             continue
 
+        if _is_inside_reco(el):
+            continue
+
         cards.append(el)
 
     # When there are many candidates the list is likely polluted by either:
@@ -1669,8 +2888,7 @@ def _try_product_cards(soup: BeautifulSoup, max_results: int) -> list[SearchResu
     # class is that dominant one.  If the set is still too large after stripping,
     # discard it entirely (true CSS-module pollution).
     if len(cards) > 200:
-        from collections import Counter as _Counter
-        match_counts: _Counter[str] = _Counter()
+        match_counts: Counter[str] = Counter()
         for c in cards:
             for cls in c.get("class", []):
                 if _CARD_PATTERN.search(cls):
@@ -1749,31 +2967,21 @@ def _try_product_cards(soup: BeautifulSoup, max_results: int) -> list[SearchResu
                 q_leaf, len(leaf_cards), q_rep, len(repeated),
             )
 
-    # Prefer cards with both link and price/description
-    def _card_score(c: Tag) -> int:
-        has_link = bool(c.find("a", href=True))
-        has_price = bool(_PRICE_RE.search(c.get_text()) or _PRICE_FALLBACK_RE.search(c.get_text()))
-        has_desc = any(
-            kw in " ".join(child.get("class", [])).lower()
-            for child in c.find_all(True, recursive=True)
-            for kw in ("desc", "snippet", "subtitle", "detail")
-        )
-        return (0 if has_link else 2) + (0 if (has_price or has_desc) else 1)
-
-    filtered_cards.sort(key=_card_score)
-
+    # Keep DOM order — it IS the ranking the shopper sees. (Sorting by a link/price
+    # "card score" here once moved price-less real results below priced chrome.)
     for card in filtered_cards:
         title = _extract_title_from_card(card)
         if not title or len(title) < 2:
             continue
 
-        results.append(SearchResult(
+        results.append(_strip_sponsored_prefix(SearchResult(
             rank=len(results) + 1,
             title=title,
             price=_extract_price(card),
             snippet=_extract_snippet_from_card(card),
             url=_extract_url_from_card(card),
-        ))
+            sponsored=_detect_sponsored(card),
+        )))
 
         if len(results) >= max_results:
             break
@@ -1804,7 +3012,7 @@ def _try_generic_list(soup: BeautifulSoup, max_results: int) -> list[SearchResul
                 continue
             if len(el.get_text(strip=True)) < 10:
                 continue
-            if _is_inside_chrome(el):
+            if _is_inside_chrome(el) or _is_inside_reco(el):
                 continue
             parent_groups.setdefault(id(el.parent), []).append(el)
 
@@ -1830,13 +3038,14 @@ def _try_generic_list(soup: BeautifulSoup, max_results: int) -> list[SearchResul
         if not title or len(title) < 3:
             continue
 
-        results.append(SearchResult(
+        results.append(_strip_sponsored_prefix(SearchResult(
             rank=len(results) + 1,
             title=title,
             price=_extract_price(el),
             snippet=None,
             url=url,
-        ))
+            sponsored=_detect_sponsored(el),
+        )))
 
         if len(results) >= max_results:
             break
@@ -1855,164 +3064,133 @@ def _try_generic_list(soup: BeautifulSoup, max_results: int) -> list[SearchResul
 # ---------------------------------------------------------------------------
 
 
-def _score_strategy(results: list[SearchResult]) -> float:
-    """Score a strategy's results by quality, not just count.
+def _result_quality(r: SearchResult) -> float:
+    """0..1 quality of one extracted result: URL (3), price (2), real title (1), not junk (2)."""
+    has_url = bool(r.url and not r.url.startswith("#"))
+    has_price = r.price is not None
+    title_quality = len(r.title) > 20
+    lower = r.title.lower().strip()
+    looks_junky = (
+        any(lower.startswith(p) for p in _JUNK_STARTS)
+        or lower in _JUNK_EXACT
+        or len(r.title) < 10
+    )
+    return ((3.0 if has_url else 0) + (2.0 if has_price else 0)
+            + (1.0 if title_quality else 0) + (0.0 if looks_junky else 2.0)) / 8.0
 
-    Weights: valid URL (3), has price (2), meaningful title (1), not-junk bonus (2).
-    This prevents 20 nav links from beating 5 real products.
+
+def _score_strategy(results: list[SearchResult], k: int = 15) -> float:
+    """Mean result quality × min(n, k).
+
+    Summing per-result points let a 15-item recommendation carousel beat a 4-item real
+    grid on volume alone; the mean keeps 20 nav links from beating 5 real products and
+    the min(n, k) cap stops volume past k from counting at all.
     """
     if not results:
         return 0.0
-    score = 0.0
-    for r in results:
-        has_url = bool(r.url and not r.url.startswith("#"))
-        has_price = r.price is not None
-        title_quality = len(r.title) > 20
-        # Penalise results that look like junk (even if they passed the filter)
-        lower = r.title.lower().strip()
-        looks_junky = (
-            any(lower.startswith(p) for p in _JUNK_STARTS)
-            or lower in _JUNK_EXACT
-            or len(r.title) < 10
-        )
-        score += (
-            (3.0 if has_url else 0)
-            + (2.0 if has_price else 0)
-            + (1.0 if title_quality else 0)
-            + (0.0 if looks_junky else 2.0)
-        )
-    return score
+    mean = sum(_result_quality(r) for r in results) / len(results)
+    return mean * min(len(results), max(1, k))
 
 
-def _extract_results(html: str, max_results: int, url: str = "") -> list[SearchResult]:
-    """Run extraction strategies, return the one with the best quality score.
+def _first_position(results: list[SearchResult], html: str) -> int:
+    """Where the strategy's first result sits in the page (proxy for DOM order)."""
+    for r in results[:3]:
+        for needle in (r.url, (r.url or "").replace("&", "&amp;"), r.title):
+            if needle:
+                pos = html.find(needle)
+                if pos >= 0:
+                    return pos
+    return len(html) + 1
 
-    If a cached SiteExtractionProfile exists (learned from probe), tries it first.
-    Falls back to the full 4-strategy sweep if the cache misses.
+
+_GENERIC_STRATEGIES = ("schema-org", "product-cards", "generic-list", "cached-selectors")
+
+
+def _extract_page(
+    soup: BeautifulSoup,
+    html: str,
+    url: str,
+    max_results: int,
+    query: str = "",
+    allow_llm: bool = True,
+    client=None,
+) -> tuple[list[SearchResult], str]:
+    """Extraction only (no status logic). Returns (results, strategy name).
+
+    Callers must have ruled out a no-results marker first (see _analyse_page): on a
+    no-results page every strategy below happily scrapes the recommendation carousel.
     """
     global _site_extraction_profile
 
-    # Highest priority: a purpose-built site-specific extractor. It returns []
-    # for unknown hosts (falling through to the cache/sweep below), but when it
-    # matches a known site its hand-tuned output must win over generic cached
-    # selectors — otherwise the probe-learned profile can mask it with lower-
-    # quality results (e.g. priceless generic cards on bergzeit.de).
-    site_soup = BeautifulSoup(html, "html.parser")
-    site_results = _try_site_specific(site_soup, url, max_results)
+    # Highest priority: a purpose-built site-specific extractor. When it matches a
+    # known host its hand-tuned output must win over generic cached selectors.
+    site_results = _try_site_specific(soup, url, max_results)
     if site_results:
         logger.debug("Site-specific extractor matched: %d results", len(site_results))
-        return site_results
+        return site_results, "site-specific"
 
-    # For hosts with a dedicated extractor, an empty result is AUTHORITATIVE: it
-    # means a genuine zero-results page (e.g. Åhléns "Inga träffar"). Do NOT fall
-    # through to the cached/generic/LLM strategies — on a no-results page those
-    # scrape the "you might also like" recommendation carousel and report phantom
-    # results, masking a real search failure.
+    # Dedicated hosts never fall through to generic strategies: on a no-results or
+    # half-rendered page those scrape recommendation chrome. Empty here becomes
+    # ZERO_CONFIRMED or ZERO_UNVERIFIED in _analyse_page, never phantom results.
     if _has_dedicated_extractor(url):
-        logger.debug("Dedicated extractor returned 0 for known host — authoritative empty (no generic fallback)")
-        return []
+        logger.debug("Dedicated extractor returned 0 for known host — no generic fallback")
+        return [], "site-specific"
 
-    # Fast path: try cached LLM-generated selectors first
     if _site_extraction_profile is not None:
-        cached_results = _extract_with_cached_selectors(html, _site_extraction_profile, max_results)
+        cached_results = _extract_with_cached_selectors(soup, _site_extraction_profile, max_results)
         if len(cached_results) >= 3:
-            logger.debug(
-                "Cached selectors hit: %d results (skipping full strategy sweep)",
-                len(cached_results),
-            )
-            return cached_results
+            logger.debug("Cached selectors hit: %d results (skipping full strategy sweep)", len(cached_results))
+            return cached_results, "cached-selectors"
         logger.debug("Cached selectors miss (%d results) — falling back to full sweep", len(cached_results))
 
-    # Full sweep: run all heuristic strategies
-    soup = BeautifulSoup(html, "html.parser")
+    strategy_results: dict[str, list[SearchResult]] = {
+        "schema-org": _try_schema_org(soup, max_results),
+        "product-cards": _try_product_cards(soup, max_results),
+        "generic-list": _try_generic_list(soup, max_results),
+    }
+    for name in strategy_results:
+        strategy_results[name] = [r for r in strategy_results[name] if not _is_cookie_junk(r)]
 
-    strategy_results: dict[str, list[SearchResult]] = {}
-
-    strategy_results["site-specific"] = _try_site_specific(soup, url, max_results)
-    strategy_results["schema-org"] = _try_schema_org(soup, max_results)
-    strategy_results["product-cards"] = _try_product_cards(soup, max_results)
-    strategy_results["generic-list"] = _try_generic_list(soup, max_results)
-
-    # Pick the strategy with the highest quality score (not just most results)
-    scores = {k: _score_strategy(v) for k, v in strategy_results.items()}
-    winner_name = max(scores, key=scores.get)
-    winner = strategy_results[winner_name]
-
+    scores = {name: _score_strategy(res, max_results) for name, res in strategy_results.items()}
+    best = max(scores.values())
+    winner_name = "none"
+    winner: list[SearchResult] = []
+    if best > 0:
+        # Among strategies within 80% of the best score, take the one whose results
+        # start highest on the page.
+        near = [name for name, sc in scores.items() if sc >= 0.8 * best]
+        winner_name = min(near, key=lambda n: _first_position(strategy_results[n], html))
+        winner = strategy_results[winner_name]
     logger.debug(
-        "Strategy scores: %s",
-        ", ".join(f"{k}:{s:.1f} ({len(strategy_results[k])})" for k, s in scores.items()),
+        "Strategy scores: %s → %s",
+        ", ".join(f"{k}:{sc:.1f} ({len(strategy_results[k])})" for k, sc in scores.items()),
+        winner_name,
     )
-    logger.debug(
-        "Strategy winner: %s (score=%.1f, %d results)",
-        winner_name, scores[winner_name], len(winner),
-    )
+
+    if allow_llm and winner:
+        winner = _validate_results_with_llm(winner, query, client=client)
+    if allow_llm and len(winner) < 5:
+        llm_results = _extract_with_llm(html, query, max_results, url=url, client=client)
+        if len(llm_results) > len(winner):
+            winner, winner_name = llm_results, "llm"
 
     if winner:
-        # Strip any cookie-banner artefacts (e.g. CookieConsent.js items that remain in DOM)
-        winner = [
-            r for r in winner
-            if not (
-                (r.url or "").lower().startswith("javascript:")
-                or "cookie" in (r.title or "").lower()
-            )
-        ]
         _log_first_titles(winner, winner_name)
+    return winner, winner_name
 
-    return winner
+
+def _extract_results(html: str, max_results: int, url: str = "") -> list[SearchResult]:
+    """Legacy entry point: extracted results for one page ([] on a no-results page).
+
+    New code should use _analyse_page, which also returns WHY the list is empty.
+    """
+    outcome = _analyse_page(html=html, url=url, final_url=url, query="", max_results=max_results)
+    return outcome.results
 
 
 def _log_first_titles(results: list[SearchResult], strategy: str) -> None:
     titles = [f'"{r.title[:60]}"' for r in results[:3]]
     logger.debug("  %s sample: %s", strategy, " | ".join(titles))
-
-
-# ---------------------------------------------------------------------------
-# JS-rendering detection
-# ---------------------------------------------------------------------------
-
-
-def _needs_js_rendering(html: str, results_count: int) -> bool:
-    """Heuristic: True if page is likely JS-rendered and needs Playwright."""
-    html_lower = html[:80000].lower()
-
-    # Framework fingerprints — always check these
-    for signal in (
-        "window.__next_data__", "__nuxt__", "__react_root__",
-        'id="__next"', 'id="app"', 'id="root"',
-        "window.__remixcontext", "data-reactroot", "ng-app", "react-root",
-    ):
-        if signal in html_lower:
-            return True
-
-    if results_count >= 5:
-        return False
-
-    # Strip scripts for body text measurement
-    soup = BeautifulSoup(html, "html.parser")
-    for tag in soup(["script", "style", "noscript"]):
-        tag.decompose()
-
-    body = soup.find("body")
-    body_text = body.get_text(strip=True) if body else ""
-
-    if len(body_text) < 500:
-        return True
-    if len(html) > 0 and len(body_text) / len(html) < 0.10:
-        return True
-
-    product_links = [
-        a for a in soup.find_all("a", href=True)
-        if _PRODUCT_LINK_RE.search(a.get("href", ""))
-    ]
-    if len(product_links) < 5:
-        return True
-
-    scripts = soup.find_all("script")
-    total_script_len = sum(len(s.string or "") for s in scripts)
-    if total_script_len > 5000 and (len(body_text) < 2000 or total_script_len > len(body_text) * 2):
-        return True
-
-    return False
 
 
 # ---------------------------------------------------------------------------
@@ -2303,63 +3481,37 @@ def _hydrate_lazy_prices(page, url: str) -> None:
         pass
 
 
-def _wait_for_ahlens_ready(page, url: str) -> None:
-    """Wait for Åhléns search to finish rendering before capturing the page.
+# Readiness: wait until EITHER the host's results grid OR its no-results state has
+# rendered. Client-rendered grids (Boost, Zalando, Åhléns, Cotswold's post-redirect
+# hydration) are empty for seconds after domcontentloaded; capturing then reads a
+# real page as zero. Returns 'grid' | 'no_results' | 'timeout' (never fails open:
+# a timeout is recorded and turns an empty capture into TIMEOUT, not a zero).
+_READY_JS = """([sel, rx]) => {
+    if (sel && document.querySelector(sel)) return 'grid';
+    if (rx) {
+        const t = (document.title || '') + ' ' + (document.body ? document.body.innerText : '');
+        if (new RegExp(rx, 'i').test(t)) return 'no_results';
+    }
+    return false;
+}"""
 
-    Åhléns renders the results grid (`#product-rain-section`) and the
-    "X träffar" / "Inga träffar" header client-side after the search API responds.
-    If we read the page mid-render, the grid is absent and the dispatcher would
-    treat it as a no-results page. Wait until EITHER the results section OR the
-    no-hits marker is present so the captured HTML reflects the true result state.
-    No-op for other hosts.
-    """
+
+def _wait_for_host_ready(page, url: str) -> Optional[str]:
+    profile = _host_profile(url)
+    if not profile or not (profile.ready_selector or profile.ready_no_results):
+        return None
     try:
-        host = urlparse(url).netloc.lower()
-    except Exception:
-        return
-    if "ahlens.se" not in host:
-        return
-    try:
-        page.wait_for_function(
-            """() => {
-                if (document.querySelector('#product-rain-section')) return true;
-                const t = document.body ? document.body.innerText : '';
-                return /inga tr\\u00e4ffar/i.test(t);
-            }""",
-            timeout=15000,
+        handle = page.wait_for_function(
+            _READY_JS,
+            arg=[profile.ready_selector or "", profile.ready_no_results or ""],
+            timeout=profile.ready_timeout_ms,
         )
+        state = handle.json_value() or "timeout"
     except Exception:
-        logger.debug("Åhléns readiness wait timed out — capturing current state")
+        logger.debug("Readiness wait timed out for %s — recording timeout", url)
+        state = "timeout"
     page.wait_for_timeout(800)
-
-
-def _wait_for_avoca_ready(page, url: str) -> None:
-    """Wait for Avoca's Boost AI Search grid to render before capturing.
-
-    Avoca's `boost-sd__product-item` cards are injected client-side after the
-    Boost search API responds. Capturing mid-render yields zero cards, which would
-    look like a (false) no-results page. Wait until EITHER a product card OR the
-    "0 results found" / "couldn't find results" no-hits marker is present.
-    No-op for other hosts.
-    """
-    try:
-        host = urlparse(url).netloc.lower()
-    except Exception:
-        return
-    if "avoca.com" not in host:
-        return
-    try:
-        page.wait_for_function(
-            """() => {
-                if (document.querySelector('.boost-sd__product-item')) return true;
-                const t = document.body ? document.body.innerText : '';
-                return /0 results found|couldn't find results|couldn\\u2019t find results/i.test(t);
-            }""",
-            timeout=15000,
-        )
-    except Exception:
-        logger.debug("Avoca readiness wait timed out — capturing current state")
-    page.wait_for_timeout(800)
+    return state
 
 
 def _wait_for_cloudflare_clear(page, timeout_ms: int = 30000) -> bool:
@@ -2387,115 +3539,82 @@ def _wait_for_cloudflare_clear(page, timeout_ms: int = 30000) -> bool:
         return False
 
 
-def _wait_for_cotswold_ready(page, url: str) -> None:
-    """Wait for Cotswold Outdoor's grid to render before capturing.
+# Visible text as the browser renders it (honours CSS display:none, which a static
+# parse cannot), outside header/nav/footer/dialogs. Mutates the DOM, so it runs
+# after the HTML and the screenshot have been captured.
+_VISIBLE_TEXT_JS = """() => {
+    const drop = 'header, nav, footer, [role=banner], [role=navigation], [role=contentinfo], [role=dialog]';
+    for (const el of document.querySelectorAll(drop)) el.remove();
+    const main = document.querySelector('main, [role=main]');
+    const head = main ? (main.innerText || '').slice(0, 20000) : '';
+    const body = document.body ? (document.body.innerText || '').slice(0, 40000) : '';
+    return head + '\n' + body;
+}"""
 
-    A keyword query often *redirects* from `/lister.html?q=…` to a curated
-    category page (e.g. `backpack` → `/c/equipment/rucksacks.html?q=…`). That
-    redirect is client-side: `page.goto` returns a ~6KB stub before the
-    destination's React product grid hydrates, so without waiting we capture
-    zero tiles. Wait until EITHER a product tile is present, OR the authoritative
-    no-results page has loaded. No-op for other hosts.
-    """
+
+@dataclass
+class PageFetch:
+    """One HTTP/browser fetch of a search URL, before any extraction."""
+    html: str = ""
+    final_url: str = ""
+    http_status: Optional[int] = None
+    browser: str = ""
+    error: Optional[str] = None
+    timed_out: bool = False
+    ready: Optional[str] = None            # grid | no_results | timeout | None (no host wait)
+    visible_text: Optional[str] = None     # browser innerText of the main content
+    block: Optional[str] = None            # signature block seen in the browser loop
+    screenshot: Optional[str] = None
+    search_api: list = field(default_factory=list)   # [(vendor, url, body)] captured responses
+
+
+def _static_fetch(url: str, timeout: float = 15) -> PageFetch:
     try:
-        host = urlparse(url).netloc.lower()
-    except Exception:
-        return
-    if "cotswoldoutdoor.com" not in host:
-        return
-    try:
-        page.wait_for_function(
-            """() => {
-                if (document.querySelector('div[data-testid="product-tile-vertical"]')) return true;
-                if (location.pathname.toLowerCase().includes('/lister/no-results')) return true;
-                const t = document.body ? document.body.innerText : '';
-                return /no results|0 results|couldn'?t find/i.test(t);
-            }""",
-            timeout=20000,
+        resp = requests.get(
+            url, headers={"User-Agent": _USER_AGENT},
+            timeout=timeout, allow_redirects=True, proxies=_REQUESTS_PROXIES,
         )
-    except Exception:
-        logger.debug("Cotswold readiness wait timed out — capturing current state")
-    page.wait_for_timeout(800)
+    except requests.Timeout as e:
+        return PageFetch(final_url=url, error=f"timeout: {e}", timed_out=True, browser="static")
+    except requests.RequestException as e:
+        return PageFetch(final_url=url, error=str(e)[:300], browser="static")
+    return PageFetch(html=_decode_response(resp), final_url=resp.url, http_status=resp.status_code, browser="static")
 
 
-def _wait_for_huckberry_ready(page, url: str) -> None:
-    """Wait for Huckberry's React product grid to render before capturing.
-
-    Product tiles (`span.ProductTileContent__price` / brand links) are injected
-    client-side after the search API responds. Wait until EITHER a price span OR
-    the "We couldn't find …" / "no results" no-hits marker is present. No-op for
-    other hosts.
-    """
-    try:
-        host = urlparse(url).netloc.lower()
-    except Exception:
-        return
-    if "huckberry.com" not in host:
-        return
-    try:
-        page.wait_for_function(
-            """() => {
-                if (document.querySelector('span.ProductTileContent__price')) return true;
-                if (document.querySelector('a.ProductTileContent__brand-link')) return true;
-                const t = document.body ? document.body.innerText : '';
-                return /couldn'?t find|couldn\\u2019t find|no results|0 results/i.test(t);
-            }""",
-            timeout=20000,
-        )
-    except Exception:
-        logger.debug("Huckberry readiness wait timed out — capturing current state")
-    page.wait_for_timeout(800)
-
-
-def _fetch_with_playwright(
+def _playwright_fetch(
     url: str,
     quick_probe: bool = False,
     force_browser: Optional[str] = None,
-    reuse_context: Optional[object] = None,
-) -> tuple[str, str, str]:
-    """Fetch a page using a headless browser.
+    screenshot_path: Optional[str] = None,
+) -> PageFetch:
+    """Fetch a page in a real browser. Never raises; failures are recorded on PageFetch.
 
-    Args:
-        url: Target URL.
-        quick_probe: If True, skip scroll/load-more (just navigate + consent + 2s wait).
-        force_browser: 'firefox' or 'chromium' to skip the fallback loop.
-        reuse_context: An existing Playwright BrowserContext to reuse.  When provided,
-                       skips browser launch entirely — just opens a new page on the
-                       existing context.  The caller owns the lifecycle.
-
-    Returns:
-        (html, browser_name, final_url) — html is "" if blocked/unavailable.
+    Browser order: headed Chromium for `_HEADED_CHROMIUM_HOSTS`, Chromium for
+    `_PREFER_CHROMIUM_HOSTS` / force_browser="chromium", else Firefox then Chromium.
+    A browser that lands on a bot-wall signature is skipped; if all do, the last
+    block page is returned (so the caller reports BLOCKED, not an empty zero).
     """
-    # ---- Fast path: reuse an existing persistent context ----
-    if reuse_context is not None:
-        return _fetch_on_context(reuse_context, url, quick_probe)
-
-    # ---- Normal path: launch browser, try Firefox then Chromium ----
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
         logger.warning(
             "Playwright not installed. Install: pip install playwright && playwright install chromium"
         )
-        return "", "", ""
+        return PageFetch(final_url=url, error="playwright not installed")
 
-    html = ""
-    used_browser = ""
-    final_url = ""
+    out = PageFetch(final_url=url)
     try:
         with sync_playwright() as p:
             chromium_opts = {"args": ["--disable-blink-features=AutomationControlled", "--no-sandbox"]}
+            if "colourpop.com" in urlparse(url).netloc.lower():
+                chromium_opts["channel"] = "chrome"
 
             # Some hosts (Cloudflare "Just a moment...") only let a *headed*
             # Chromium session through. Force headed Chromium for those.
             headed_host = _needs_headed_chromium(url)
             launch_headless = not headed_host
 
-            if headed_host:
-                browsers = [(p.chromium, "chromium", chromium_opts)]
-            elif _prefers_chromium(url):
-                browsers = [(p.chromium, "chromium", chromium_opts)]
-            elif force_browser == "chromium":
+            if headed_host or _prefers_chromium(url) or force_browser == "chromium":
                 browsers = [(p.chromium, "chromium", chromium_opts)]
             elif force_browser == "firefox":
                 browsers = [(p.firefox, "firefox", {})]
@@ -2505,61 +3624,67 @@ def _fetch_with_playwright(
                     (p.chromium, "chromium", chromium_opts),
                 ]
 
-            browser = None
-            browser_name = ""
+            browser = context = page = None
+            captured: list = []
             for browser_type, name, launch_kw in browsers:
                 try:
                     browser = browser_type.launch(headless=launch_headless, **launch_kw)
-                    browser_name = name
                     logger.debug("Playwright: launched %s (headless=%s)", name, launch_headless)
                 except Exception as e:
                     logger.debug("Playwright: %s unavailable (%s), trying next", name, e)
+                    browser = None
+                    out.error = f"{name} unavailable: {e}"[:300]
                     continue
 
-                ctx_kwargs = {
-                    "user_agent": _USER_AGENT,
-                    "viewport": {"width": 1280, "height": 900},
-                }
+                ctx_kwargs = {"user_agent": _USER_AGENT, "viewport": {"width": 1280, "height": 900}}
                 if _PW_PROXY:
                     ctx_kwargs["proxy"] = _PW_PROXY
                 context = browser.new_context(**ctx_kwargs)
                 page = context.new_page()
                 _apply_stealth(page)
+                captured = []
+                page.on("response", lambda resp, _c=captured: _capture_search_api(resp, _c))
 
                 try:
-                    page.goto(url, wait_until="domcontentloaded", timeout=20000)
+                    goto_resp = page.goto(url, wait_until="domcontentloaded", timeout=20000)
+                    out.http_status = goto_resp.status if goto_resp is not None else None
                     page.wait_for_timeout(3000)
                     # For headed Cloudflare hosts, give the JS challenge time to
                     # auto-clear before deciding it's a block.
                     if headed_host:
                         _wait_for_cloudflare_clear(page)
                     probe_html = page.content()
-                    block = _classify_response(probe_html)
-                    if block in ("cloudflare", "imperva"):
+                    block = _detect_block(probe_html, out.http_status, page.url, strict=False)
+                    if block:
                         logger.debug("Playwright: %s returned %s block page, trying next browser", name, block)
+                        out.html, out.final_url, out.block, out.browser = probe_html, page.url, block, name
                         context.close()
                         browser.close()
                         browser = None
                         continue
                 except Exception as e:
                     logger.debug("Playwright: %s navigation failed (%s), trying next", name, e)
+                    out.error = f"{name} navigation failed: {e}"[:300]
+                    out.timed_out = "timeout" in str(e).lower()
                     context.close()
                     browser.close()
                     browser = None
                     continue
-
                 break
 
             if browser is None:
-                logger.warning("Playwright: all browsers blocked or unavailable")
-                return "", "", ""
+                if out.block:
+                    logger.warning("Playwright: every browser hit a block page (%s)", out.block)
+                else:
+                    logger.warning("Playwright: all browsers unavailable or failed for %s", url)
+                return out
 
-            used_browser = browser_name
+            out.browser = name
+            out.block = None
+            out.error = None
+            out.timed_out = False
             _dismiss_consent_banners(page)
-            _wait_for_ahlens_ready(page, url)
-            _wait_for_avoca_ready(page, url)
-            _wait_for_huckberry_ready(page, url)
-            _wait_for_cotswold_ready(page, url)
+            out.ready = _wait_for_host_ready(page, url)
 
             if quick_probe:
                 page.wait_for_timeout(2000)
@@ -2567,53 +3692,44 @@ def _fetch_with_playwright(
                 _scroll_and_load_more(page)
                 _hydrate_lazy_prices(page, url)
 
-            html = page.content()
-            final_url = page.url
+            out.html = page.content()
+            out.final_url = page.url
+            if screenshot_path:
+                try:
+                    # Top of the page = what the shopper sees first (the scroll loop left
+                    # us at the bottom). Viewport only: full-page PNGs run to megabytes.
+                    page.evaluate("window.scrollTo(0, 0)")
+                    page.wait_for_timeout(300)
+                    page.screenshot(path=screenshot_path, full_page=False)
+                    out.screenshot = screenshot_path
+                except Exception as e:
+                    logger.debug("Screenshot failed: %s", e)
+            out.search_api = _read_captured_search_api(captured)
+            try:
+                out.visible_text = page.evaluate(_VISIBLE_TEXT_JS)
+            except Exception:
+                out.visible_text = None
             context.close()
             browser.close()
 
     except Exception as e:
         logger.warning("Playwright fetch failed for %s: %s", url, e)
+        out.error = str(e)[:300]
+        out.timed_out = out.timed_out or "timeout" in str(e).lower()
 
-    return html, used_browser, final_url
+    return out
 
 
-def _fetch_on_context(context, url: str, quick_probe: bool = False) -> tuple[str, str, str]:
-    """Fetch a page on an existing BrowserContext (persistent session)."""
-    html = ""
-    final_url = ""
-    try:
-        page = context.new_page()
-        _apply_stealth(page)
-        page.goto(url, wait_until="domcontentloaded", timeout=20000)
-        page.wait_for_timeout(3000)
-
-        probe_html = page.content()
-        block = _classify_response(probe_html)
-        if block in ("cloudflare", "imperva"):
-            logger.debug("Persistent context: %s block detected", block)
-            page.close()
-            return "", "persistent", ""
-
-        _dismiss_consent_banners(page)
-        _wait_for_ahlens_ready(page, url)
-        _wait_for_avoca_ready(page, url)
-        _wait_for_huckberry_ready(page, url)
-        _wait_for_cotswold_ready(page, url)
-
-        if quick_probe:
-            page.wait_for_timeout(2000)
-        else:
-            _scroll_and_load_more(page)
-            _hydrate_lazy_prices(page, url)
-
-        html = page.content()
-        final_url = page.url
-        page.close()
-    except Exception as e:
-        logger.warning("Persistent context fetch failed for %s: %s", url, e)
-
-    return html, "persistent", final_url
+def _fetch_with_playwright(
+    url: str,
+    quick_probe: bool = False,
+    force_browser: Optional[str] = None,
+) -> tuple[str, str, str]:
+    """Legacy wrapper: (html, browser_name, final_url); html is "" if blocked/unavailable."""
+    pf = _playwright_fetch(url, quick_probe=quick_probe, force_browser=force_browser)
+    if pf.block or not pf.html:
+        return "", "", ""
+    return pf.html, pf.browser, pf.final_url
 
 
 # ---------------------------------------------------------------------------
@@ -2634,151 +3750,188 @@ def _clean_html_for_llm(html: str) -> str:
     return cleaned.strip()
 
 
+def _best_product_container(soup: BeautifulSoup, url: str = "") -> Optional[Tag]:
+    """The tightest container holding most of the page's distinct product links.
+
+    Picking the first div whose class matched items?/grid grabbed Tailwind's
+    `items-center` in the site header. Density of product links is what identifies
+    the results grid.
+    """
+    link_re = re.compile(r"/deals?/", re.I) if "groupon" in (url or "").lower() else None
+    hrefs_by_el: dict[int, set[str]] = {}
+    el_by_id: dict[int, Tag] = {}
+    depth_by_id: dict[int, int] = {}
+    for a in soup.find_all("a", href=True):
+        href = (a.get("href") or "").split("#")[0]
+        if not href:
+            continue
+        if link_re is not None:
+            if not link_re.search(href):
+                continue
+        elif not (_PRODUCT_LINK_RE.search(href) or "/products/" in href):
+            continue
+        if _is_inside_chrome(a):
+            continue
+        ancestors = [anc for anc in a.parents if isinstance(anc, Tag) and anc.name not in ("html", "[document]", "body")]
+        for depth_from_leaf, anc in enumerate(ancestors):
+            if anc.name not in ("main", "div", "section", "ul", "ol"):
+                continue
+            hrefs_by_el.setdefault(id(anc), set()).add(href)
+            el_by_id[id(anc)] = anc
+            depth_by_id[id(anc)] = len(ancestors) - depth_from_leaf
+    if not hrefs_by_el:
+        return None
+    best = max(len(v) for v in hrefs_by_el.values())
+    if best < 3:
+        return None
+    candidates = [i for i, v in hrefs_by_el.items() if len(v) >= 0.8 * best]
+    chosen = max(candidates, key=lambda i: depth_by_id[i])
+    return el_by_id[chosen]
+
+
 def _find_main_content(html: str, url: str = "") -> str:
-    """Extract the tightest results container available."""
+    """Extract the tightest results container available (for LLM prompts)."""
     soup = BeautifulSoup(html, "html.parser")
-
-    # Site-specific: Groupon — find the div with the most /deals/ links
-    if "groupon" in url.lower():
-        best_el = None
-        best_count = 0
-        for div in soup.find_all(["div", "main", "section", "ul"]):
-            deal_links = div.find_all("a", href=re.compile(r"/deals?/", re.I))
-            if len(deal_links) > best_count:
-                best_count = len(deal_links)
-                best_el = div
-        if best_el and best_count >= 3:
-            logger.debug("LLM container: Groupon deal list with %d deal links", best_count)
-            return str(best_el)
-
-    # Generic: id/class/data-testid containing results/deals/listings keywords
-    container_id_re = re.compile(
-        r"results?|search.results?|deals?|listings?|product.list|card.list|items?|catalog|feed|grid",
-        re.I,
-    )
-    for tag in ("main", "div", "section", "ul", "ol"):
-        for el in soup.find_all(tag):
-            el_id = (el.get("id", "") or "").strip()
-            el_classes = " ".join(el.get("class", []))
-            el_testid = (el.get("data-testid", "") or "").strip()
-            if (
-                container_id_re.search(el_id)
-                or container_id_re.search(el_classes)
-                or container_id_re.search(el_testid)
-            ):
-                if len(str(el)) > 500:
-                    logger.debug("LLM container: <%s class='%s' id='%s' data-testid='%s'>", tag, el_classes[:40], el_id, el_testid[:40])
-                    return str(el)
-
-    # Fallback: <main>
+    container = _best_product_container(soup, url)
+    if container is not None and len(str(container)) > 500:
+        logger.debug("LLM container: <%s class='%s'>", container.name, " ".join(container.get("class", []))[:40])
+        return str(container)
     main_el = soup.find("main")
     if main_el and len(str(main_el)) > 500:
         return str(main_el)
-
     return html
 
 
+class _LLMExtractedItem(BaseModel):
+    title: str
+    price: Optional[str] = None
+    snippet: Optional[str] = None
+    url: Optional[str] = None
+
+
+class _LLMExtraction(BaseModel):
+    items: list[_LLMExtractedItem]
+
+
+_EXTRACTION_SYSTEM = (
+    "You are a web scraping expert. You extract product/service/deal listings from search "
+    "result page HTML, in the order they appear in the HTML. You are precise and never confuse "
+    "page chrome (navigation, banners, buttons, consent dialogs) with actual results.\n\n"
+    "APPROACH:\n"
+    "1. Identify the REPEATING card-like HTML pattern that contains the listings — usually "
+    "<article>, <li>, <div> or <figure> elements that repeat with similar class names.\n"
+    "2. From EACH card take: title (product name exactly as written in the HTML), price "
+    "(displayed current price including currency, null if none), snippet (short description "
+    "or null), url (the main link's href exactly as written, null if none).\n\n"
+    "RULES:\n"
+    "- Copy titles and hrefs verbatim from the HTML. Never invent, translate or complete them.\n"
+    "- Keep the page order. Do not judge relevance: include every listing in the results grid.\n"
+    "- Exclude page headers, section titles, navigation, breadcrumbs, footer links, cookie/"
+    "consent banners, sign-in prompts, filter/facet items and promotional banners.\n"
+    "- If the page shows a no-results message, return an empty list — a recommendation "
+    "carousel on a no-results page is not a result list."
+)
+
+
+def _llm_enabled(client) -> bool:
+    return client is not None or _HAS_API_KEY
+
+
 def _call_haiku_for_extraction(
-    html_chunk: str, query: str, max_results: int, instruction_prefix: str = ""
+    html_chunk: str, max_results: int, instruction_prefix: str = "", client=None,
 ) -> list[dict]:
-    """Make a single Haiku call for HTML extraction. Returns raw list of dicts."""
-    if not _HAS_API_KEY:
+    """One structured Haiku call for HTML extraction. Returns a list of plain dicts.
+
+    The search query is deliberately NOT sent: knowing it invites the model to keep
+    only on-topic items, which makes a bad search engine look good.
+    """
+    if not _llm_enabled(client):
         logger.debug("LLM extraction skipped: no ANTHROPIC_API_KEY")
         return []
-    client = anthropic.Anthropic()
-    response = client.messages.create(
+    parsed = structured_call(
         model=_HAIKU_MODEL,
-        max_tokens=3000,
+        system=_EXTRACTION_SYSTEM,
+        user=f"{instruction_prefix}Extract up to {max_results} listings.\n\nHTML:\n{html_chunk}",
+        schema=_LLMExtraction,
+        max_tokens=4000,
+        phase="fetcher",
         temperature=0,
-        system=(
-            "You are a web scraping expert. Your job is to extract product/service/deal "
-            "listings from search result page HTML. You are precise and never confuse "
-            "page chrome (navigation, banners, buttons, consent dialogs) with actual results."
-        ),
-        messages=[{
-            "role": "user",
-            "content": (
-                f"{instruction_prefix}"
-                f'The search query was: "{query}"\n\n'
-                "TASK: Extract up to " + str(max_results) + " product/deal/service listings from "
-                "this HTML. Do NOT stop at 3 or 5 — extract ALL listings you can find.\n\n"
-                "APPROACH:\n"
-                "1. First, identify the REPEATING card-like HTML pattern that contains product listings. "
-                "These are usually <article>, <li>, <div>, or <figure> elements that repeat with "
-                "similar class names and structure.\n"
-                "2. Then extract from EACH card:\n"
-                "   - title: the product/deal/service name (from heading, link text, or aria-label)\n"
-                "   - price: the displayed price string including currency symbol (null if not visible)\n"
-                "   - snippet: a short description if available (null if not)\n"
-                "   - url: the href of the main link (null if not found)\n\n"
-                "EXCLUSIONS — do NOT extract any of these:\n"
-                "- Page headers, section titles ('Results for...', 'Top Trending', 'Recommended')\n"
-                "- Navigation links, breadcrumbs, footer links\n"
-                "- Cookie/consent banners, sign-in prompts\n"
-                "- Filter/facet sidebar items\n"
-                "- Promotional banners or sponsored sections\n\n"
-                "Respond with ONLY a JSON array of objects. No markdown, no commentary.\n\n"
-                f"HTML:\n{html_chunk}"
-            ),
-        }],
+        client=client,
     )
-    raw = response.content[0].text.strip()
-    if raw.startswith("```"):
-        raw = raw.split("\n", 1)[1] if "\n" in raw else raw[3:]
-        if raw.rstrip().endswith("```"):
-            raw = raw.rstrip()[:-3]
-        raw = raw.strip()
-    return json.loads(raw)
+    return [item.model_dump() for item in parsed.items]
 
 
-def _extract_with_llm(html: str, query: str, max_results: int = 15, url: str = "") -> list[SearchResult]:
-    """Nuclear fallback: ask Claude Haiku to extract results from cleaned HTML."""
+def _norm_for_grounding(text: str) -> str:
+    text = unicodedata.normalize("NFKC", unescape(text or "")).casefold()
+    return re.sub(r"[\W_]+", " ", text).strip()
+
+
+def _ground_llm_results(results: list[SearchResult], html: str, page_text_norm: str) -> list[SearchResult]:
+    """Drop LLM items that are not on the page: title not in the visible text, or a URL
+    that does not occur in the HTML. An LLM may only report what a shopper would see."""
+    html_l = html.lower()
+    grounded: list[SearchResult] = []
+    for r in results:
+        title_norm = _norm_for_grounding(r.title)
+        if not title_norm or title_norm not in page_text_norm:
+            logger.info("LLM grounding: dropped %r (title not on page)", r.title[:60])
+            continue
+        if r.url:
+            u = r.url.strip().lower()
+            path = urlparse(u).path or u
+            if not any(n and n in html_l for n in (u, u.replace("&", "&amp;"), path if len(path) > 3 else "")):
+                logger.info("LLM grounding: dropped %r (url not in HTML)", r.title[:60])
+                continue
+        grounded.append(r)
+    for i, r in enumerate(grounded, 1):
+        r.rank = i
+    return grounded
+
+
+def _extract_with_llm(
+    html: str, query: str = "", max_results: int = 15, url: str = "", client=None,
+) -> list[SearchResult]:
+    """Last-resort fallback: ask Haiku to extract results from the cleaned results container.
+
+    Every item is grounded against the page before it is accepted (see
+    _ground_llm_results); the query is used for logging only.
+    """
+    if not _llm_enabled(client):
+        return []
     try:
         content_html = _find_main_content(html, url)
-        clean = _clean_html_for_llm(content_html)
-        truncated = clean[:50000]
+        truncated = _clean_html_for_llm(content_html)[:50000]
+        soup = BeautifulSoup(html, "html.parser")
+        texts, _ = _collect_visible_text(soup)
+        page_text_norm = _norm_for_grounding(" ".join(texts))
 
-        items = _call_haiku_for_extraction(truncated, query, max_results)
+        def _run(prefix: str = "") -> list[SearchResult]:
+            items = _call_haiku_for_extraction(truncated, max_results, prefix, client=client)
+            results = _filter_junk_results(_items_to_results(items, max_results))
+            return _ground_llm_results(results, html, page_text_norm)
 
-        if not isinstance(items, list):
-            logger.warning("LLM extraction returned non-array JSON")
-            return []
-
-        results = _items_to_results(items, max_results)
-        filtered = _filter_junk_results(results)
-
-        # Retry once if we got very few results
+        filtered = _run()
         if len(filtered) < 5:
-            logger.info(
-                "LLM first pass found only %d results, retrying with stronger instruction...",
-                len(filtered),
-            )
+            logger.info("LLM first pass found only %d grounded results, retrying once", len(filtered))
             retry_prefix = (
-                f"The previous extraction found only {len(filtered)} results. "
-                "Look more carefully at the HTML. Search results are usually rendered as "
-                "repeated card-like elements (article, li, figure, div) containing a title link "
-                f"and often a price. Extract up to {max_results}.\n\n"
+                f"A previous extraction found only {len(filtered)} listings. Look more carefully: "
+                "search results are usually repeated card-like elements containing a title link "
+                "and often a price.\n\n"
             )
             try:
-                retry_items = _call_haiku_for_extraction(truncated, query, max_results, retry_prefix)
-                if isinstance(retry_items, list):
-                    retry_results = _filter_junk_results(_items_to_results(retry_items, max_results))
-                    if len(retry_results) > len(filtered):
-                        filtered = retry_results
-                        logger.info("LLM retry improved to %d results", len(filtered))
-            except Exception as e:
+                retry = _run(retry_prefix)
+                if len(retry) > len(filtered):
+                    filtered = retry
+            except (LLMResponseError, anthropic.APIError) as e:
                 logger.debug("LLM retry failed: %s", e)
 
-        logger.info("Strategy 4 (LLM): found %d results", len(filtered))
+        logger.info("Strategy 4 (LLM) for '%s': %d grounded results", query, len(filtered))
         if filtered:
             _log_first_titles(filtered, "LLM")
         return filtered
 
-    except anthropic.APIError as e:
-        logger.warning("LLM extraction API error: %s", e)
-        return []
-    except (json.JSONDecodeError, IndexError) as e:
-        logger.warning("LLM extraction parse error: %s", e)
+    except (LLMResponseError, anthropic.APIError) as e:
+        logger.warning("LLM extraction failed: %s", e)
         return []
     except Exception as e:
         logger.warning("LLM extraction unexpected error: %s", e)
@@ -2788,16 +3941,18 @@ def _extract_with_llm(html: str, query: str, max_results: int = 15, url: str = "
 def _items_to_results(items: list[dict], max_results: int) -> list[SearchResult]:
     results: list[SearchResult] = []
     for item in items[:max_results]:
-        title = str(item.get("title", "")).strip()
+        if not isinstance(item, dict):
+            continue
+        title = str(item.get("title") or "").strip()
         if not title:
             continue
-        results.append(SearchResult(
+        results.append(_strip_sponsored_prefix(SearchResult(
             rank=len(results) + 1,
             title=title,
             price=item.get("price") or None,
             snippet=item.get("snippet") or None,
             url=item.get("url") or None,
-        ))
+        )))
     return results
 
 
@@ -2824,133 +3979,95 @@ class SiteExtractionProfile:
         self.url_selector = url_selector
 
 
-def _generate_extraction_profile(
-    html: str, results: list[SearchResult], url: str = ""
-) -> Optional[SiteExtractionProfile]:
-    """Ask Haiku to generate CSS selectors for this site's product cards.
+class _LLMSelectorProfile(BaseModel):
+    container_selector: str
+    card_selector: str
+    title_selector: str
+    price_selector: Optional[str] = None
+    url_selector: Optional[str] = None
 
-    Sends a trimmed HTML chunk + the titles we found, and asks the LLM to
-    identify the repeating card structure.  Runs once per site (on the probe).
-    """
+
+_SELECTOR_SYSTEM = (
+    "You are a web scraping expert. Given HTML and a list of product titles found on the page, "
+    "identify the CSS selectors for the repeating product card structure.\n"
+    "Rules:\n"
+    "- container_selector: the parent container holding all result cards.\n"
+    "- card_selector: matches EVERY individual result card, not just one.\n"
+    "- title_selector / price_selector / url_selector: relative to a card (price null if no prices; "
+    "url usually 'a').\n"
+    "- Prefer class-based selectors over nth-child. Never select recommendation carousels."
+)
+
+
+def _generate_extraction_profile(
+    html: str, results: list[SearchResult], url: str = "", client=None,
+) -> Optional[SiteExtractionProfile]:
+    """Ask Haiku for CSS selectors of this site's product cards. Runs once per site."""
     if len(results) < 3:
         return None
-    if not _HAS_API_KEY:
+    if not _llm_enabled(client):
         logger.debug("LLM selector generation skipped: no ANTHROPIC_API_KEY")
         return None
 
-    # Find the HTML region around the results for context
-    content_html = _find_main_content(html, url)
-    clean = _clean_html_for_llm(content_html)
-    truncated = clean[:30000]  # smaller chunk — we just need structure
-
+    truncated = _clean_html_for_llm(_find_main_content(html, url))[:30000]
     titles_sample = "\n".join(f"- {r.title[:80]}" for r in results[:8])
-
     try:
-        client = anthropic.Anthropic()
-        response = client.messages.create(
+        data = structured_call(
             model=_HAIKU_MODEL,
-            max_tokens=500,
+            system=_SELECTOR_SYSTEM,
+            user=f"Product listings found on this page:\n{titles_sample}\n\nHTML:\n{truncated}",
+            schema=_LLMSelectorProfile,
+            max_tokens=600,
+            phase="fetcher",
             temperature=0,
-            system=(
-                "You are a web scraping expert. Given HTML and a list of product titles found on "
-                "the page, identify the CSS selectors for the repeating product card structure."
-            ),
-            messages=[{
-                "role": "user",
-                "content": (
-                    "I found these product listings on this search results page:\n"
-                    f"{titles_sample}\n\n"
-                    "Analyze the HTML below and return a JSON object with CSS selectors:\n"
-                    "{\n"
-                    '  "container_selector": "CSS selector for the parent container holding all cards",\n'
-                    '  "card_selector": "CSS selector for each individual product card element",\n'
-                    '  "title_selector": "CSS selector for the title element WITHIN a card",\n'
-                    '  "price_selector": "CSS selector for the price element WITHIN a card (null if no prices)",\n'
-                    '  "url_selector": "CSS selector for the link element WITHIN a card (usually a)"\n'
-                    "}\n\n"
-                    "Rules:\n"
-                    "- Use class-based selectors when possible (more stable than nth-child)\n"
-                    "- The card_selector should match ALL product cards, not just one\n"
-                    "- Return ONLY the JSON object, no commentary\n\n"
-                    f"HTML:\n{truncated}"
-                ),
-            }],
+            client=client,
         )
-        raw = response.content[0].text.strip()
-        if raw.startswith("```"):
-            raw = raw.split("\n", 1)[1] if "\n" in raw else raw[3:]
-            if raw.rstrip().endswith("```"):
-                raw = raw.rstrip()[:-3]
-            raw = raw.strip()
-
-        # Extract just the JSON object — LLM sometimes appends commentary
-        brace_start = raw.find("{")
-        if brace_start == -1:
-            logger.warning("LLM selector generation: no JSON object found in response")
-            return None
-        depth = 0
-        brace_end = -1
-        for i in range(brace_start, len(raw)):
-            if raw[i] == "{":
-                depth += 1
-            elif raw[i] == "}":
-                depth -= 1
-                if depth == 0:
-                    brace_end = i + 1
-                    break
-        if brace_end == -1:
-            logger.warning("LLM selector generation: unclosed JSON object")
-            return None
-        raw = raw[brace_start:brace_end]
-
-        data = json.loads(raw)
-        profile = SiteExtractionProfile(
-            container_selector=data.get("container_selector", ""),
-            card_selector=data.get("card_selector", ""),
-            title_selector=data.get("title_selector", ""),
-            price_selector=data.get("price_selector"),
-            url_selector=data.get("url_selector", "a"),
-        )
-
-        if not profile.container_selector or not profile.card_selector:
-            logger.debug("LLM selector generation: incomplete selectors, skipping cache")
-            return None
-
-        logger.info(
-            "LLM selector cache: container='%s', card='%s', title='%s'",
-            profile.container_selector, profile.card_selector, profile.title_selector,
-        )
-        return profile
-
     except Exception as e:
         logger.warning("LLM selector generation failed: %s", e)
         return None
+    if not data.container_selector or not data.card_selector:
+        logger.debug("LLM selector generation: incomplete selectors, skipping cache")
+        return None
+    logger.info(
+        "LLM selector cache: container='%s', card='%s', title='%s'",
+        data.container_selector, data.card_selector, data.title_selector,
+    )
+    return SiteExtractionProfile(
+        container_selector=data.container_selector,
+        card_selector=data.card_selector,
+        title_selector=data.title_selector,
+        price_selector=data.price_selector,
+        url_selector=data.url_selector or "a",
+    )
 
 
 def _extract_with_cached_selectors(
-    html: str, profile: SiteExtractionProfile, max_results: int
+    soup_or_html, profile: SiteExtractionProfile, max_results: int
 ) -> list[SearchResult]:
     """Fast extraction using LLM-generated selectors from the probe query."""
-    soup = BeautifulSoup(html, "html.parser")
+    soup = soup_or_html if isinstance(soup_or_html, BeautifulSoup) else BeautifulSoup(soup_or_html, "html.parser")
     results: list[SearchResult] = []
 
-    # Find the container
-    container = soup.select_one(profile.container_selector)
-    if not container:
-        # Try without container — just find cards globally
-        cards = soup.select(profile.card_selector)
-    else:
-        cards = container.select(profile.card_selector)
+    try:
+        container = soup.select_one(profile.container_selector)
+        cards = container.select(profile.card_selector) if container else soup.select(profile.card_selector)
+    except Exception as e:  # invalid CSS from the model
+        logger.debug("Cached selectors invalid (%s)", e)
+        return results
 
     if not cards:
         logger.debug("Cached selectors: no cards found with '%s'", profile.card_selector)
         return results
 
     for card in cards[:max_results * 2]:  # scan extra in case some are junk
-        # Extract title
+        if _is_inside_reco(card):
+            continue
         title = ""
         if profile.title_selector:
-            title_el = card.select_one(profile.title_selector)
+            try:
+                title_el = card.select_one(profile.title_selector)
+            except Exception:
+                title_el = None
             if title_el:
                 title = title_el.get_text(separator=" ", strip=True)[:300]
         if not title:
@@ -2958,24 +4075,23 @@ def _extract_with_cached_selectors(
         if not title or len(title) < 3:
             continue
 
-        # Extract price
         price = None
         if profile.price_selector:
-            price_el = card.select_one(profile.price_selector)
-            if price_el:
-                text = price_el.get_text(separator=" ", strip=True)
-                for pattern in (_PRICE_RE, _PRICE_FALLBACK_RE):
-                    m = pattern.search(text)
-                    if m:
-                        price = m.group(0).strip()
-                        break
+            try:
+                price_el = card.select_one(profile.price_selector)
+            except Exception:
+                price_el = None
+            if price_el and not _is_secondary_price_node(price_el):
+                price = _first_price(_current_price_text(price_el))
         if not price:
             price = _extract_price(card)
 
-        # Extract URL
         url = None
         if profile.url_selector:
-            link_el = card.select_one(profile.url_selector)
+            try:
+                link_el = card.select_one(profile.url_selector)
+            except Exception:
+                link_el = None
             if link_el:
                 href = link_el.get("href", "")
                 if href and href != "#":
@@ -2983,22 +4099,20 @@ def _extract_with_cached_selectors(
         if not url:
             url = _extract_url_from_card(card)
 
-        results.append(SearchResult(
+        results.append(_strip_sponsored_prefix(SearchResult(
             rank=len(results) + 1,
             title=title,
             price=price,
             snippet=_extract_snippet_from_card(card),
             url=url,
-        ))
+            sponsored=_detect_sponsored(card),
+        )))
 
         if len(results) >= max_results:
             break
 
     filtered = _filter_junk_results(results)
-    logger.debug(
-        "Cached selectors: found %d raw results, %d after filtering",
-        len(results), len(filtered),
-    )
+    logger.debug("Cached selectors: found %d raw results, %d after filtering", len(results), len(filtered))
     return filtered
 
 
@@ -3018,259 +4132,682 @@ def _all_urls_look_like_products(results: list[SearchResult]) -> bool:
     for r in results:
         if not r.url or r.url.startswith("#"):
             return False
-        if not _PRODUCT_LINK_RE.search(r.url):
+        if not (_PRODUCT_LINK_RE.search(r.url) or "/products/" in r.url):
             return False
     return True
 
 
+class _LLMValidation(BaseModel):
+    product_indices: list[int]
+
+
+_VALIDATION_SYSTEM = (
+    "You are a web scraping quality checker. You receive items extracted from an online shop's "
+    "search results page and decide which are REAL product/service/deal listings and which are "
+    "page chrome: navigation links, UI buttons, section headers, cookie banners, sign-in prompts, "
+    "headers, footers.\n"
+    "- Judge only 'is this a listing', never whether it is relevant to anything.\n"
+    "- If the same title appears several times keep ALL occurrences (colour/size variants).\n"
+    "Return the 1-based indices of the real listings."
+)
+
+
 def _validate_results_with_llm(
-    results: list[SearchResult], query: str
+    results: list[SearchResult], query: str = "", client=None,
 ) -> list[SearchResult]:
     """Ask Haiku which extracted results are real products vs. page chrome.
 
-    Sends only titles + URLs (tiny payload, ~$0.001/call).
+    Sends only titles + URLs. The query is NOT sent: with it, the model drops
+    off-topic real results, which makes a bad search engine look good.
     Returns only the validated results, re-indexed 1-based.
     """
     if not results:
         return results
-    if not _HAS_API_KEY:
+    if not _llm_enabled(client):
         logger.debug("LLM validation skipped: no ANTHROPIC_API_KEY")
         return results
-
-    # Skip validation when URLs strongly signal real products
     if _all_urls_look_like_products(results):
         logger.debug("Validation skip: all %d URLs match product patterns", len(results))
         return results
 
-    lines = []
-    for r in results:
-        url_part = r.url[:120] if r.url else "(no URL)"
-        lines.append(f"{r.rank}. {r.title[:100]} | {url_part}")
-    listing = "\n".join(lines)
-
+    listing = "\n".join(
+        f"{r.rank}. {r.title[:100]} | {r.url[:120] if r.url else '(no URL)'}" for r in results
+    )
     try:
-        client = anthropic.Anthropic()
-        response = client.messages.create(
+        parsed = structured_call(
             model=_HAIKU_MODEL,
-            max_tokens=300,
+            system=_VALIDATION_SYSTEM,
+            user=f"Extracted items:\n{listing}",
+            schema=_LLMValidation,
+            max_tokens=400,
+            phase="fetcher",
             temperature=0,
-            system=(
-                "You are a web scraping quality checker. "
-                "You determine which extracted items are real product/service listings "
-                "vs. page chrome (navigation, buttons, banners, cookie consent, headers, footers)."
-            ),
-            messages=[{
-                "role": "user",
-                "content": (
-                    f'Search query: "{query}"\n\n'
-                    f"Extracted results:\n{listing}\n\n"
-                    "Return a JSON array of the 1-based indices of items that are REAL "
-                    "product/service/deal listings. Exclude navigation links, UI buttons, "
-                    "section headers, cookie banners, sign-in prompts, and any other page chrome.\n"
-                    "IMPORTANT: If the same product title appears multiple times, keep ALL occurrences — "
-                    "they are different color, size, or style variants and must not be deduplicated.\n"
-                    "Return ONLY the JSON array, no commentary. Example: [1, 2, 4, 5]"
-                ),
-            }],
+            client=client,
         )
-        raw = response.content[0].text.strip()
-        # Strip markdown fences if present
-        if raw.startswith("```"):
-            raw = raw.split("\n", 1)[1] if "\n" in raw else raw[3:]
-            if raw.rstrip().endswith("```"):
-                raw = raw.rstrip()[:-3]
-            raw = raw.strip()
-
-        valid_indices = set(json.loads(raw))
-        validated = [r for r in results if r.rank in valid_indices]
-
-        # Re-index ranks
-        for i, r in enumerate(validated, 1):
-            r.rank = i
-
-        rejected_count = len(results) - len(validated)
-        if rejected_count > 0:
-            logger.info(
-                "LLM validation: kept %d/%d results for query '%s' (rejected %d as page chrome)",
-                len(validated), len(results), query, rejected_count,
-            )
-        else:
-            logger.debug("LLM validation: all %d results validated for '%s'", len(results), query)
-
-        return validated
-
     except Exception as e:
         logger.warning("LLM validation failed (%s), returning unvalidated results", e)
         return results
+
+    valid = set(parsed.product_indices)
+    validated = [r for r in results if r.rank in valid]
+    for i, r in enumerate(validated, 1):
+        r.rank = i
+    if len(validated) < len(results):
+        logger.info(
+            "LLM validation: kept %d/%d results for '%s' (rejected %d as page chrome)",
+            len(validated), len(results), query, len(results) - len(validated),
+        )
+    return validated
+
+
+# ---------------------------------------------------------------------------
+# Search-engine API capture (Playwright network interception)
+# ---------------------------------------------------------------------------
+# Many shops render results from a hosted search engine's JSON API. Capturing that
+# response gives an independent hit count and ordering to cross-check the DOM read.
+
+_SEARCH_API_PATTERNS: tuple[tuple[str, re.Pattern], ...] = (
+    ("algolia", re.compile(r"(?:algolia\.net|algolianet\.com)/1/indexes/", re.I)),
+    ("klevu", re.compile(r"ksearchnet\.com|klevu\.com/cs/", re.I)),
+    ("constructor", re.compile(r"cnstrc\.com/(?:search|browse)/", re.I)),
+    ("bloomreach", re.compile(r"dxpapi\.com|brsrvr\.com", re.I)),
+    ("doofinder", re.compile(r"doofinder\.com/.*search", re.I)),
+    ("searchspring", re.compile(r"searchspring\.io/api/search", re.I)),
+    ("boost", re.compile(r"mybcapps\.com/bc-sf-filter/search|boostcommerce\.net/.*search", re.I)),
+    ("nosto", re.compile(r"search\.nosto\.com|api\.nosto\.com/v1/graphql", re.I)),
+)
+_MAX_CAPTURED_API = 12
+
+
+def _search_api_vendor(url: str) -> Optional[str]:
+    for vendor, rx in _SEARCH_API_PATTERNS:
+        if rx.search(url or ""):
+            return vendor
+    return None
+
+
+def _capture_search_api(resp, sink: list) -> None:
+    """page.on('response') handler: remember matching responses; bodies are read later
+    (reading a body inside the event callback can dead-lock the sync API)."""
+    try:
+        vendor = _search_api_vendor(resp.url)
+        if vendor and len(sink) < _MAX_CAPTURED_API:
+            sink.append((vendor, resp))
+    except Exception:
+        pass
+
+
+def _read_captured_search_api(captured: list) -> list[tuple[str, str, str]]:
+    out = []
+    for vendor, resp in captured:
+        try:
+            body = resp.text()
+        except Exception:
+            continue
+        if body and len(body) < 5_000_000:
+            out.append((vendor, resp.url, body))
+    return out
+
+
+@dataclass
+class SearchApiResult:
+    vendor: str
+    query: Optional[str]
+    total: Optional[int]
+    titles: list[str] = field(default_factory=list)
+
+
+def _url_param(url: str, *names: str) -> Optional[str]:
+    params = parse_qs(urlparse(url).query)
+    for n in names:
+        if params.get(n):
+            return params[n][0]
+    return None
+
+
+def _int_or_none(v) -> Optional[int]:
+    try:
+        return int(v) if v is not None and not isinstance(v, bool) else None
+    except (TypeError, ValueError):
+        return None
+
+
+def _hit_titles(hits, *keys: str) -> list[str]:
+    titles = []
+    for h in hits or []:
+        if not isinstance(h, dict):
+            continue
+        for k in keys:
+            v = h.get(k)
+            if isinstance(v, dict):  # Algolia localised fields {"en": "..."}
+                v = next((x for x in v.values() if isinstance(x, str)), None)
+            if isinstance(v, str) and v.strip():
+                titles.append(v.strip())
+                break
+    return titles
+
+
+def _parse_algolia(data, url: str) -> list[SearchApiResult]:
+    blocks = data.get("results") if isinstance(data.get("results"), list) else [data]
+    out = []
+    for b in blocks:
+        if not isinstance(b, dict) or "nbHits" not in b:
+            continue
+        out.append(SearchApiResult("algolia", b.get("query"), _int_or_none(b.get("nbHits")),
+                                   _hit_titles(b.get("hits"), "name", "title", "product_name")))
+    return out
+
+
+def _parse_klevu(data, url: str) -> list[SearchApiResult]:
+    out = []
+    for b in data.get("queryResults") or []:
+        if not isinstance(b, dict):
+            continue
+        meta = b.get("meta") or {}
+        if b.get("id") not in (None, "productSearch") and "product" not in str(b.get("id")).lower():
+            continue
+        out.append(SearchApiResult("klevu", meta.get("searchedTerm"), _int_or_none(meta.get("totalResultsFound")),
+                                   _hit_titles(b.get("records"), "name", "title")))
+    if not out and isinstance(data.get("meta"), dict):
+        meta = data["meta"]
+        out.append(SearchApiResult("klevu", meta.get("searchedTerm") or _url_param(url, "term", "q"),
+                                   _int_or_none(meta.get("totalResultsFound")),
+                                   _hit_titles(data.get("result"), "name", "title")))
+    return out
+
+
+def _parse_constructor(data, url: str) -> list[SearchApiResult]:
+    resp = data.get("response") or {}
+    if "total_num_results" not in resp:
+        return []
+    req = data.get("request") or {}
+    return [SearchApiResult("constructor", req.get("term") or _url_param(url, "term", "q"),
+                            _int_or_none(resp.get("total_num_results")),
+                            _hit_titles(resp.get("results"), "value", "name"))]
+
+
+def _parse_bloomreach(data, url: str) -> list[SearchApiResult]:
+    resp = data.get("response") or {}
+    if "numFound" not in resp:
+        return []
+    return [SearchApiResult("bloomreach", _url_param(url, "q"), _int_or_none(resp.get("numFound")),
+                            _hit_titles(resp.get("docs"), "title", "name"))]
+
+
+def _parse_doofinder(data, url: str) -> list[SearchApiResult]:
+    if "total" not in data or "results" not in data:
+        return []
+    return [SearchApiResult("doofinder", data.get("query") or _url_param(url, "query", "q"),
+                            _int_or_none(data.get("total")), _hit_titles(data.get("results"), "title", "name"))]
+
+
+def _parse_searchspring(data, url: str) -> list[SearchApiResult]:
+    pag = data.get("pagination") or {}
+    if "totalResults" not in pag:
+        return []
+    q = data.get("query")
+    q = q.get("original") or q.get("matchType") if isinstance(q, dict) else q
+    return [SearchApiResult("searchspring", (q if isinstance(q, str) else None) or _url_param(url, "q"),
+                            _int_or_none(pag.get("totalResults")), _hit_titles(data.get("results"), "name", "title"))]
+
+
+def _parse_boost(data, url: str) -> list[SearchApiResult]:
+    if "total_product" not in data:
+        return []
+    return [SearchApiResult("boost", _url_param(url, "q"), _int_or_none(data.get("total_product")),
+                            _hit_titles(data.get("products"), "title", "name"))]
+
+
+def _parse_nosto(data, url: str) -> list[SearchApiResult]:
+    search = ((data.get("data") or {}).get("search")) if isinstance(data.get("data"), dict) else None
+    if not isinstance(search, dict) or not isinstance(search.get("products"), dict):
+        return []
+    products = search["products"]
+    return [SearchApiResult("nosto", search.get("query"), _int_or_none(products.get("total")),
+                            _hit_titles(products.get("hits"), "name", "title"))]
+
+
+_SEARCH_API_PARSERS: dict[str, Callable] = {
+    "algolia": _parse_algolia, "klevu": _parse_klevu, "constructor": _parse_constructor,
+    "bloomreach": _parse_bloomreach, "doofinder": _parse_doofinder, "searchspring": _parse_searchspring,
+    "boost": _parse_boost, "nosto": _parse_nosto,
+}
+
+
+def parse_search_api_payload(vendor: str, url: str, body: str) -> list[SearchApiResult]:
+    """Parse one captured search-engine response. Never raises."""
+    parser = _SEARCH_API_PARSERS.get(vendor)
+    if parser is None:
+        return []
+    try:
+        data = json.loads(body)
+    except (TypeError, ValueError):
+        return []
+    if not isinstance(data, dict):
+        return []
+    try:
+        return parser(data, url)
+    except Exception as e:  # unexpected payload shape
+        logger.debug("search API parse failed (%s): %s", vendor, e)
+        return []
+
+
+def _search_api_summary(captured: list, query: str) -> Optional[SearchApiResult]:
+    """The captured search-API answer for THIS query (autocomplete / recommendation
+    calls on the same page carry other queries and are ignored)."""
+    parsed: list[SearchApiResult] = []
+    for vendor, url, body in captured or []:
+        parsed.extend(parse_search_api_payload(vendor, url, body))
+    want = _query_tokens(query)
+    for r in parsed:
+        if r.query is not None and _query_tokens(r.query) == want and r.total is not None:
+            return r
+    return None
+
+
+# ---------------------------------------------------------------------------
+# Page analysis — one page → FetchOutcome (status + results), no network
+# ---------------------------------------------------------------------------
+
+
+def _outcome(query: str, status: FetchStatus, **kw) -> FetchOutcome:
+    return FetchOutcome(query=query, status=status, **kw)
+
+
+def _analyse_page(
+    *,
+    html: str,
+    url: str,
+    final_url: str,
+    query: str,
+    max_results: int,
+    http_status: Optional[int] = None,
+    visible_text: Optional[str] = None,
+    ready: Optional[str] = None,
+    search_api: Optional[list] = None,
+    allow_llm: bool = True,
+    client=None,
+) -> FetchOutcome:
+    """Decide what one fetched page says about the search, and extract its results.
+
+    Order matters — each step guards the next:
+      1. known no-results destination path                       → ZERO_CONFIRMED
+      2. bot wall / WAF status / tiny product-less page        → BLOCKED
+      3. redirected onto a single product page                   → REDIRECT, 1 result
+      4. explicit no-results marker on the page                  → ZERO_CONFIRMED, []
+         (even if a carousel is present: those are phantoms; skip all extraction)
+      5. extract (dedicated extractor, or cached/generic/LLM)    → OK / PARTIAL / REDIRECT
+      6. nothing extracted, no marker                            → ZERO_UNVERIFIED (TIMEOUT
+         when the readiness wait timed out). Never an authoritative empty list.
+    """
+    final_url = final_url or url
+    base = dict(final_url=final_url, http_status=http_status)
+    if not html:
+        return _outcome(query, FetchStatus.ERROR, evidence="empty response", **base)
+
+    soup = BeautifulSoup(html, "html.parser")
+    state = page_state(soup, final_url, visible_text, query=query)
+    base["page_title"] = state.title[:200] or None
+
+    if _is_authoritative_no_results(final_url):
+        return _outcome(query, FetchStatus.ZERO_CONFIRMED, total_hits=0, strategy="path-marker",
+                        evidence=f"search redirected to the no-results page {urlparse(final_url).path}", **base)
+
+    block = _detect_block(html, http_status, final_url, soup=soup, strict=True,
+                          has_zero_marker=bool(state.no_results_marker))
+    if block:
+        return _outcome(query, FetchStatus.BLOCKED, evidence=f"bot wall / refused ({block})", **base)
+
+    api = _search_api_summary(search_api or [], query) if query else None
+
+    kind = _redirect_kind(url, final_url, query) if query else None
+    if kind:
+        pdp = _extract_pdp(soup, final_url)
+        if pdp is not None:
+            return _outcome(query, FetchStatus.REDIRECT, results=[pdp], total_hits=1, strategy="pdp",
+                            evidence=f"search went straight to a product page ({final_url})", **base)
+
+    note = ""
+    if state.no_results_marker:
+        if state.auto_applied:
+            note = (f"page says '{state.no_results_marker}' but shows results for a corrected query; "
+                    "kept those results")
+        elif state.max_strong_hits:
+            return _outcome(query, FetchStatus.ZERO_UNVERIFIED, total_hits=state.total_hits, strategy="marker",
+                            evidence=(f"page shows a no-results message ('{state.no_results_marker}') and a "
+                                      f"hit count ({state.max_strong_hits}) — ambiguous, verify by hand"), **base)
+        else:
+            return _outcome(query, FetchStatus.ZERO_CONFIRMED, total_hits=0, strategy="marker",
+                            evidence=f"page says: '{state.no_results_marker}'", **base)
+
+    results, strategy = _extract_page(soup, html, final_url, max_results * 2, query, allow_llm, client)
+
+    hits = state.total_hits
+    hits_from_api = False
+    if hits is None and api is not None:
+        hits, hits_from_api = api.total, True
+    notes = [note] if note else []
+    if hits and state.hits_strong and not hits_from_api and 0 < hits < len(results):
+        notes.append(f"page reports {hits} hits; dropped {len(results) - hits} extra tiles (recommendation padding)")
+        results = results[:hits]
+    results = results[:max_results]
+    for i, r in enumerate(results, 1):
+        r.rank = i
+    if api is not None:
+        notes.append(f"{api.vendor} search API reports {api.total} hits")
+        if results and api.titles and _norm_for_grounding(api.titles[0])[:40] not in _norm_for_grounding(results[0].title):
+            notes.append(f"API top hit '{api.titles[0][:60]}' differs from page rank 1")
+
+    if results and api is not None and api.total == 0 and not state.auto_applied and not kind:
+        # The engine's own API answered "0 hits"; whatever tiles the page shows are a
+        # recommendation / bestseller fallback, not search results.
+        return _outcome(query, FetchStatus.ZERO_CONFIRMED, total_hits=0, strategy="search-api",
+                        evidence=(f"{api.vendor} search API returned 0 hits; ignored {len(results)} "
+                                  f"recommendation tiles on the page"), **base)
+
+    if results:
+        if kind:
+            status = FetchStatus.REDIRECT
+            notes.insert(0, f"search redirected to {final_url}")
+        elif hits and len(results) < min(hits, max_results):
+            status = FetchStatus.PARTIAL
+            notes.insert(0, f"page reports {hits} hits, extracted {len(results)}")
+        else:
+            status = FetchStatus.OK
+        return _outcome(query, status, results=results, total_hits=hits, strategy=strategy,
+                        evidence="; ".join(notes), **base)
+
+    if api is not None and api.total == 0:
+        return _outcome(query, FetchStatus.ZERO_CONFIRMED, total_hits=0, strategy="search-api",
+                        evidence=f"{api.vendor} search API returned 0 hits for this query", **base)
+    if ready == "timeout":
+        return _outcome(query, FetchStatus.TIMEOUT, total_hits=hits, strategy=strategy,
+                        evidence="results grid and no-results message both failed to render in time", **base)
+    if hits:
+        why = f"page reports {hits} hits but no product tiles could be read"
+    elif kind:
+        why = f"redirected to {final_url}; no products found there and no no-results message"
+    elif "douglas.de" in urlparse(final_url).netloc.lower():
+        why = ("no product tiles and no 'Keine Ergebnisse gefunden' title — Douglas blocks automated "
+               "browsers (Akamai), so this is not a confirmed zero")
+    else:
+        why = "no products extracted and no no-results message on the page"
+    return _outcome(query, FetchStatus.ZERO_UNVERIFIED, total_hits=hits, strategy=strategy, evidence=why, **base)
+
+
+def _outcome_from_page(
+    pf: PageFetch, url: str, query: str, max_results: int, allow_llm: bool = True, client=None,
+) -> FetchOutcome:
+    base = dict(final_url=pf.final_url or url, http_status=pf.http_status)
+    if pf.block:
+        return _outcome(query, FetchStatus.BLOCKED, evidence=f"bot wall in every browser ({pf.block})", **base)
+    if not pf.html:
+        if pf.timed_out:
+            return _outcome(query, FetchStatus.TIMEOUT, evidence=pf.error or "timed out", **base)
+        if pf.http_status is not None and (pf.http_status in _BLOCK_HTTP_CODES or pf.http_status >= 500):
+            return _outcome(query, FetchStatus.BLOCKED, evidence=f"HTTP {pf.http_status}", **base)
+        return _outcome(query, FetchStatus.ERROR, evidence=pf.error or "empty response", **base)
+    return _analyse_page(
+        html=pf.html, url=url, final_url=pf.final_url or url, query=query, max_results=max_results,
+        http_status=pf.http_status, visible_text=pf.visible_text, ready=pf.ready,
+        search_api=pf.search_api, allow_llm=allow_llm and not _LIGHT_MODE, client=client,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Evidence capture
+# ---------------------------------------------------------------------------
+
+
+def _query_slug(query: str) -> str:
+    base = unicodedata.normalize("NFKD", query or "").encode("ascii", "ignore").decode()
+    base = re.sub(r"[^A-Za-z0-9]+", "-", base).strip("-").lower()[:60] or "query"
+    return f"{base}-{hashlib.sha1((query or '').encode('utf-8')).hexdigest()[:8]}"
+
+
+def _evidence_paths(evidence_dir: Optional[str], query: str, attempt: int) -> tuple[Optional[str], Optional[str]]:
+    if not evidence_dir:
+        return None, None
+    d = Path(evidence_dir)
+    try:
+        d.mkdir(parents=True, exist_ok=True)
+    except OSError as e:
+        logger.warning("Evidence dir unavailable (%s): %s", evidence_dir, e)
+        return None, None
+    stem = f"{_query_slug(query)}_a{attempt}"
+    return str(d / f"{stem}.html.gz"), str(d / f"{stem}.png")
+
+
+def _attach_evidence(outcome: FetchOutcome, html: str, html_path: Optional[str], screenshot: Optional[str]) -> None:
+    saved = []
+    if html_path and html:
+        try:
+            with gzip.open(html_path, "wt", encoding="utf-8") as fh:
+                fh.write(html)
+            saved.append(html_path)
+        except OSError as e:
+            logger.debug("Evidence HTML not saved: %s", e)
+    if screenshot and Path(screenshot).exists():
+        saved.append(screenshot)
+    if saved:
+        outcome.evidence = (f"{outcome.evidence} " if outcome.evidence else "") + f"[evidence: {', '.join(saved)}]"
 
 
 # ---------------------------------------------------------------------------
 # Probe-first fetch infrastructure
 # ---------------------------------------------------------------------------
 
+# Per-attempt wall-clock cap. The worker thread cannot be killed: a hung Playwright
+# fetch keeps running as a daemon thread until the process exits (deferred: a
+# subprocess-per-fetch model would fix it, see FETCHER_PLAYBOOK).
+_PER_ATTEMPT_TIMEOUT_S = 300
+_PROBE_TIMEOUT_S = 600
+_MAX_ATTEMPTS = 3            # zero_unverified / timeout / error / thin results
+_ZERO_CONFIRM_ATTEMPTS = 2   # a confirmed zero is re-checked once (backend flakiness)
+_RETRY_BACKOFF_S = (2.0, 5.0, 10.0)
+_MAX_PROBES = 3
+_MAX_CONSECUTIVE_BLOCKS = 3   # consecutive BLOCKED / TIMEOUT / ERROR outcomes before giving up
+_FAILURE_STATUSES = frozenset({FetchStatus.BLOCKED.value, FetchStatus.TIMEOUT.value, FetchStatus.ERROR.value})
 
-def _probe_site(
-    url: str,
-    query: str,
-    max_results: int,
-) -> tuple[str, list[SearchResult], str, bool]:
-    """Probe one URL to determine site-level fetch mode and get first results.
+# Light mode (catalog sampling): one attempt per page, no LLM extraction/validation, no
+# profile learning. Set only for the duration of one fetch_all_outcomes(light=True) call.
+_LIGHT_MODE = False
+_THIN_RESULTS = 3
+_BETWEEN_QUERIES_S = 1.5
+
+_STATUS_RANK = {
+    FetchStatus.OK.value: 6, FetchStatus.REDIRECT.value: 6, FetchStatus.PARTIAL.value: 6,
+    FetchStatus.ZERO_CONFIRMED.value: 5, FetchStatus.ZERO_UNVERIFIED.value: 4,
+    FetchStatus.TIMEOUT.value: 3, FetchStatus.BLOCKED.value: 2, FetchStatus.ERROR.value: 1,
+}
+
+
+def _status_value(o: FetchOutcome) -> str:
+    return o.status.value if isinstance(o.status, FetchStatus) else str(o.status)
+
+
+def _outcome_rank(o: FetchOutcome) -> tuple:
+    return (_STATUS_RANK.get(_status_value(o), 0), len(o.results))
+
+
+def _needs_retry(o: FetchOutcome, attempts: int) -> bool:
+    if _LIGHT_MODE:
+        return False
+    st = _status_value(o)
+    if st == FetchStatus.BLOCKED.value:
+        return False  # hammering a WAF escalates the block (douglas.de profile)
+    if st == FetchStatus.ZERO_CONFIRMED.value:
+        return attempts < _ZERO_CONFIRM_ATTEMPTS
+    if st in (FetchStatus.ZERO_UNVERIFIED.value, FetchStatus.TIMEOUT.value, FetchStatus.ERROR.value):
+        return attempts < _MAX_ATTEMPTS
+    if len(o.results) < _THIN_RESULTS:
+        if o.total_hits is not None and o.total_hits <= len(o.results):
+            return False
+        if o.strategy == "pdp":
+            return False
+        return attempts < _MAX_ATTEMPTS
+    return False
+
+
+def _run_with_timeout(timeout_s: float, fn, *args, **kwargs) -> tuple[str, object]:
+    """Run fn in a daemon thread. Returns ('ok', value) | ('timeout', None) | ('error', exc)."""
+    box: dict = {}
+
+    def _target() -> None:
+        try:
+            box["value"] = fn(*args, **kwargs)
+        except Exception as exc:  # recorded as ERROR by the caller
+            box["error"] = exc
+
+    t = threading.Thread(target=_target, daemon=True)
+    t.start()
+    t.join(timeout=timeout_s)
+    if t.is_alive():
+        return "timeout", None
+    if "error" in box:
+        return "error", box["error"]
+    return "ok", box.get("value")
+
+
+def _fetch_once(
+    url: str, query: str, max_results: int, mode: str,
+    evidence_dir: Optional[str] = None, attempt: int = 1, client=None,
+) -> tuple[FetchOutcome, str]:
+    """One fetch of one query with the site's proven mode. Never raises for page problems."""
+    if mode in (SiteMode.BLOCKED, SiteMode.FAILED):
+        status = FetchStatus.BLOCKED if mode == SiteMode.BLOCKED else FetchStatus.ERROR
+        return _outcome(query, status, attempts=0, evidence=f"not fetched (site mode {mode})"), ""
+    html_path, shot = _evidence_paths(evidence_dir, query, attempt)
+    if mode == SiteMode.STATIC:
+        pf = _static_fetch(url, timeout=15)
+    elif mode == SiteMode.PLAYWRIGHT_CHROMIUM:
+        pf = _playwright_fetch(url, force_browser="chromium", screenshot_path=shot)
+    else:  # PLAYWRIGHT_FIREFOX: Firefox first, Chromium fallback
+        pf = _playwright_fetch(url, screenshot_path=shot)
+    outcome = _outcome_from_page(pf, url, query, max_results, client=client)
+    _attach_evidence(outcome, pf.html, html_path, pf.screenshot)
+    return outcome, pf.html
+
+
+def _fetch_with_retries(
+    url: str, query: str, max_results: int, mode: str,
+    evidence_dir: Optional[str] = None, client=None,
+    first: Optional[tuple[FetchOutcome, str]] = None,
+) -> tuple[FetchOutcome, str]:
+    """Fetch, re-fetching zero / thin / timeout / error results with backoff.
+
+    A zero is accepted as ZERO_CONFIRMED only when a no-results marker was seen (and is
+    re-checked once — manufactum.de and bergzeit.de both flip between a no-hits page
+    and real results for the same URL). The best attempt wins; ``attempts`` records
+    how many fetches were made.
+    """
+    attempts: list[tuple[FetchOutcome, str]] = [first] if first else []
+    while True:
+        if attempts:
+            best = max(attempts, key=lambda a: _outcome_rank(a[0]))[0]
+            if not _needs_retry(best, len(attempts)):
+                break
+            delay = _RETRY_BACKOFF_S[min(len(attempts) - 1, len(_RETRY_BACKOFF_S) - 1)]
+            logger.info("'%s' → %s (%d results); retrying in %.0fs (attempt %d)",
+                        query, _status_value(best), len(best.results), delay, len(attempts) + 1)
+            _sleep(delay)
+        n = len(attempts) + 1
+        kind, value = _run_with_timeout(
+            _PER_ATTEMPT_TIMEOUT_S, _fetch_once, url, query, max_results, mode, evidence_dir, n, client,
+        )
+        if kind == "ok":
+            attempts.append(value)
+        elif kind == "timeout":
+            logger.warning("Query '%s' attempt %d timed out after %ds", query, n, _PER_ATTEMPT_TIMEOUT_S)
+            attempts.append((_outcome(query, FetchStatus.TIMEOUT, final_url=url,
+                                      evidence=f"fetch exceeded {_PER_ATTEMPT_TIMEOUT_S}s"), ""))
+        else:
+            logger.warning("Unexpected error fetching '%s': %s", query, value)
+            attempts.append((_outcome(query, FetchStatus.ERROR, final_url=url,
+                                      evidence=f"{type(value).__name__}: {value}"[:300]), ""))
+
+    best_outcome, best_html = max(attempts, key=lambda a: _outcome_rank(a[0]))
+    best_outcome.attempts = len(attempts)
+    seen = [_status_value(a[0]) for a in attempts]
+    if len(set(seen)) > 1:
+        best_outcome.evidence = (f"{best_outcome.evidence}; " if best_outcome.evidence else "") + \
+            f"attempts: {', '.join(seen)}"
+    return best_outcome, best_html
+
+
+def _probe_outcome(
+    url: str, query: str, max_results: int, evidence_dir: Optional[str] = None, client=None,
+) -> tuple[str, FetchOutcome, str]:
+    """Probe one URL to choose the site-level fetch mode; returns (mode, outcome, html).
 
     Strategy (ordered by cost):
-      1. Quick static fetch (5s timeout) — catches Cloudflare blocks and cheap wins.
-      2. Full Playwright fetch (Firefox → Chromium stealth fallback) — for JS-heavy /
-         bot-protected sites.  Block detection is built into _fetch_with_playwright.
-      3. LLM extraction fallback on the best HTML retrieved so far.
-
-    Returns:
-        (mode, results, html, was_redirected)
-        mode: one of SiteMode.{STATIC, PLAYWRIGHT_FIREFOX, PLAYWRIGHT_CHROMIUM, BLOCKED, FAILED}
-        was_redirected: True if both static and Playwright landed on a non-search page for
-                        this query (caller should retry with a different query).
+      1. Quick static fetch (5s). Good enough (k results, prices server-rendered) → STATIC.
+      2. Full Playwright fetch (Firefox → Chromium stealth fallback).
+      3. Static is kept when Playwright is not better (count and price coverage).
+    mode is BLOCKED when every transport hit a bot wall, FAILED when nothing loaded.
     """
-    # ---- Step 1: Quick static probe (5s) ------------------------------------
-    static_html = ""
-    static_code = 0
-    static_redirected = False
-    try:
-        resp = requests.get(
-            url, headers={"User-Agent": _USER_AGENT},
-            timeout=5, allow_redirects=True, proxies=_REQUESTS_PROXIES,
-        )
-        static_html = _decode_response(resp)
-        static_code = resp.status_code
-        static_redirected = _is_search_redirect(url, resp.url, query)
-        if static_redirected:
-            logger.info("Probe: static redirected to %s for query '%s'", resp.url, query)
-            if _needs_pdp_redirect_extraction(url):
-                pdp_results = _try_extract_pdp_as_result(static_html, resp.url)
-                if pdp_results:
-                    logger.info("Probe: redirect was a unique-match PDP — extracted 1 result → STATIC mode")
-                    return SiteMode.STATIC, pdp_results, static_html, False
-        else:
-            logger.debug("Probe: static HTTP %d, %d bytes", static_code, len(static_html))
-    except requests.RequestException as e:
-        logger.debug("Probe: static fetch failed: %s", e)
-
-    # Hard-block detection on static response.
-    # Cloudflare on static does NOT mean the site is inaccessible — many sites
-    # serve the CF challenge to plain requests but allow Playwright stealth through.
-    # Fall through to Playwright; only return BLOCKED if Playwright also fails.
-    if static_html and _classify_response(static_html, static_code) == "cloudflare":
-        logger.info("Probe: Cloudflare on static fetch → falling through to Playwright")
-
-    # Some sites server-render the product grid but inject prices only via
-    # client-side JS, so a static fetch returns products with no prices. For
-    # those hosts the static short-circuit must be skipped — always use
-    # Playwright so prices hydrate.
+    html_path, shot = _evidence_paths(evidence_dir, query, 1)
     host = urlparse(url).netloc.lower()
     client_priced_host = any(h in host for h in _CLIENT_RENDERED_PRICE_HOSTS)
 
-    # Static accessible, no redirect, and extraction sufficient?
-    static_results_cache: list = []
-    if not static_redirected and static_code == 200 and len(static_html) > 2000:
-        results = _extract_results(static_html, max_results * 2, url=url)
-        if len(results) >= max_results and not client_priced_host:
-            # Static gives enough results — no need for Playwright.
-            results = _validate_results_with_llm(results, query)
-            results = results[:max_results]
-            logger.info("Probe: static extraction (%d validated results) → STATIC mode", len(results))
-            return SiteMode.STATIC, results, static_html, False
-        elif len(results) >= 5:
-            # Static has some results but fewer than needed — cache them and try
-            # Playwright in case scroll/load-more reveals additional products.
-            static_results_cache = results
-            logger.info(
-                "Probe: static got only %d/%d results — trying Playwright for more",
-                len(results), max_results,
-            )
+    static = _static_fetch(url, timeout=5)
+    static_out = _outcome_from_page(static, url, query, max_results, allow_llm=False)
+    logger.debug("Probe: static %s (%d results)", _status_value(static_out), len(static_out.results))
 
-    # ---- Step 2: Full Playwright fetch (Firefox → Chromium stealth) ----------
-    pw_html, pw_browser, pw_final_url = _fetch_with_playwright(url)
+    def _static_final() -> tuple[str, FetchOutcome, str]:
+        final = _outcome_from_page(static, url, query, max_results, client=client)
+        _attach_evidence(final, static.html, html_path, None)
+        return SiteMode.STATIC, final, static.html
 
-    if not pw_html:
-        # Playwright failed — likely hard-blocked.  Try LLM on static HTML as last resort.
-        if not static_redirected and static_html and static_code == 200 and len(static_html) > 2000:
-            llm_results = _extract_with_llm(static_html, query, max_results, url=url)
-            if llm_results:
-                logger.info("Probe: static + LLM (%d results) → STATIC mode", len(llm_results))
-                return SiteMode.STATIC, llm_results, static_html, False
-        logger.info("Probe: all browsers blocked → BLOCKED")
-        return SiteMode.BLOCKED, [], "", False
+    if (_status_value(static_out) == FetchStatus.REDIRECT.value and static_out.strategy == "pdp"
+            and _needs_pdp_redirect_extraction(url)):
+        logger.info("Probe: static redirect was a unique-match PDP → STATIC mode")
+        return _static_final()
+    if static_out.trusted and len(static_out.results) >= max_results and not client_priced_host:
+        logger.info("Probe: static extraction (%d results) → STATIC mode", len(static_out.results))
+        return _static_final()
 
-    # Determine mode regardless of redirect (mode is site-level, not query-level)
-    mode = SiteMode.PLAYWRIGHT_CHROMIUM if pw_browser == "chromium" else SiteMode.PLAYWRIGHT_FIREFOX
+    pw = _playwright_fetch(url, screenshot_path=shot)
+    if not pw.html:
+        if static_out.trusted and static_out.results:
+            logger.info("Probe: Playwright unavailable — keeping static (%d results)", len(static_out.results))
+            return _static_final()
+        if _status_value(static_out) == FetchStatus.BLOCKED.value:
+            _attach_evidence(static_out, static.html, html_path, None)
+            return SiteMode.BLOCKED, static_out, static.html
+        failed = _outcome_from_page(pw, url, query, max_results)
+        logger.info("Probe: no page from any transport → FAILED (%s)", failed.evidence)
+        return SiteMode.FAILED, failed, ""
 
-    pw_redirected = _is_search_redirect(url, pw_final_url, query)
-    if pw_redirected:
-        if _needs_pdp_redirect_extraction(url):
-            pdp_results = _try_extract_pdp_as_result(pw_html, pw_final_url)
-            if pdp_results:
-                logger.info("Probe: Playwright redirect was a unique-match PDP — extracted 1 result")
-                return mode, pdp_results, pw_html, False
-        if _has_dedicated_extractor(url) and not _is_authoritative_no_results(pw_final_url):
-            # Not a unique-match PDP — check whether it's a real multi-product
-            # category/brand listing page instead (e.g. a brand-name query
-            # redirecting to /brands/<brand>.html). That page reuses the same
-            # tile markup as the search grid, so the dedicated extractor still
-            # works on it directly. Skipped when the destination is a known
-            # authoritative-no-results page — those can render a "you might
-            # also like" carousel using the identical tile markup, which would
-            # otherwise be scraped as phantom results (see
-            # _NO_RESULTS_PATH_MARKERS).
-            redirect_soup = BeautifulSoup(pw_html, "html.parser")
-            cat_results = _try_site_specific(redirect_soup, pw_final_url, max_results)
-            if cat_results:
-                logger.info(
-                    "Probe: Playwright redirect was a real category/brand listing — extracted %d results",
-                    len(cat_results),
-                )
-                return mode, cat_results, pw_html, False
-        logger.info(
-            "Probe: Playwright also redirected to %s for query '%s' → was_redirected=True",
-            pw_final_url, query,
-        )
-        return mode, [], pw_html, True
+    pw_out = _outcome_from_page(pw, url, query, max_results, client=client)
+    _attach_evidence(pw_out, pw.html, html_path, pw.screenshot)
+    if _status_value(pw_out) == FetchStatus.BLOCKED.value:
+        if static_out.trusted and static_out.results:
+            return _static_final()
+        logger.info("Probe: all browsers blocked → BLOCKED (%s)", pw_out.evidence)
+        return SiteMode.BLOCKED, pw_out, pw.html
 
-    results = _extract_results(pw_html, max_results * 2, url=url)
-    results = _validate_results_with_llm(results, query)
-    results = results[:max_results]
-    # Dedicated-extractor hosts are authoritative — a thin/empty result is the
-    # real answer, so don't let the LLM fallback scrape recommendation chrome.
-    if len(results) < 5 and not _has_dedicated_extractor(url):
-        llm_results = _extract_with_llm(pw_html, query, max_results, url=url)
-        if len(llm_results) > len(results):
-            results = llm_results
+    mode = SiteMode.PLAYWRIGHT_CHROMIUM if pw.browser == "chromium" else SiteMode.PLAYWRIGHT_FIREFOX
+    # Static is kept when Playwright is not better. Count is not the only signal: some
+    # sites render prices client-side, so equal counts with better price coverage win.
+    if static_out.trusted and len(static_out.results) >= 5 and len(pw_out.results) <= len(static_out.results):
+        static_final = _outcome_from_page(static, url, query, max_results, client=client)
+        pw_priced = sum(1 for r in pw_out.results if r.price)
+        static_priced = sum(1 for r in static_final.results if r.price)
+        if len(static_final.results) >= len(pw_out.results) and static_priced >= pw_priced:
+            logger.info("Probe: Playwright/%s (%d) not better than static (%d) → STATIC mode",
+                        pw.browser, len(pw_out.results), len(static_final.results))
+            _attach_evidence(static_final, static.html, html_path, None)
+            return SiteMode.STATIC, static_final, static.html
+    logger.info("Probe: Playwright/%s → %s (%s, %d results)", pw.browser, mode,
+                _status_value(pw_out), len(pw_out.results))
+    return mode, pw_out, pw.html
 
-    # If static cached results are better (Playwright didn't improve), fall back to static.
-    if static_results_cache and len(results) <= len(static_results_cache):
-        static_validated = _validate_results_with_llm(static_results_cache, query)
-        static_validated = static_validated[:max_results]
-        # Count is not the only quality signal: some sites render prices only
-        # client-side, so static HTML yields the same products but with no prices.
-        # Don't discard the Playwright set when it has strictly better price
-        # coverage — those prices are real data the static fetch can't produce.
-        pw_priced = sum(1 for r in results if r.price)
-        static_priced = sum(1 for r in static_validated if r.price)
-        if len(static_validated) >= len(results) and static_priced >= pw_priced:
-            logger.info(
-                "Probe: Playwright/%s (%d results) not better than static (%d) → STATIC mode",
-                pw_browser, len(results), len(static_validated),
-            )
-            return SiteMode.STATIC, static_validated, static_html, static_redirected
-        if pw_priced > static_priced:
-            logger.info(
-                "Probe: keeping Playwright/%s (%d priced) over static (%d priced) despite equal count",
-                pw_browser, pw_priced, static_priced,
-            )
 
-    was_redirected = static_redirected  # Playwright didn't redirect; static might have
-    logger.info(
-        "Probe: Playwright/%s (%d validated results) → %s mode%s",
-        pw_browser, len(results), mode,
-        " [static had redirected]" if static_redirected else "",
-    )
-    return mode, results, pw_html, was_redirected
+def _probe_site(url: str, query: str, max_results: int) -> tuple[str, list[SearchResult], str, bool]:
+    """Legacy wrapper: (mode, results, html, was_redirected=False)."""
+    mode, outcome, html = _probe_outcome(url, query, max_results)
+    return mode, outcome.results, html, False
 
 
 def _fetch_with_mode(
@@ -3280,384 +4817,205 @@ def _fetch_with_mode(
     mode: str,
     reuse_context: Optional[object] = None,
 ) -> tuple[list[SearchResult], bool]:
-    """Fetch and extract results for *one* URL using the mode determined by _probe_site.
+    """Legacy wrapper for per-query runner scripts: (results, was_redirected=False).
 
-    Skips the probe overhead — applies the already-proven fetch strategy directly.
-    When reuse_context is provided, Playwright modes use the persistent session.
-
-    Returns:
-        (results, was_redirected) — was_redirected=True means the server sent us to a
-        non-search page for this query; caller should skip and try a different query.
+    Redirects are now always extracted on the destination, so there is nothing to
+    skip. Use _fetch_outcome_with_mode to learn WHY a list is empty.
     """
-    if mode in (SiteMode.BLOCKED, SiteMode.FAILED):
-        return [], False
+    outcome, _ = _fetch_once(url, query, max_results, mode)
+    return outcome.results, False
 
-    html = ""
-    final_url = url
 
-    if mode == SiteMode.STATIC:
-        try:
-            resp = requests.get(
-                url, headers={"User-Agent": _USER_AGENT},
-                timeout=15, allow_redirects=True, proxies=_REQUESTS_PROXIES,
-            )
-            resp.raise_for_status()
-            html = _decode_response(resp)
-            final_url = resp.url
-        except requests.RequestException as e:
-            logger.warning("Static fetch failed for %s: %s", url, e)
-            return [], False
-
-    elif reuse_context is not None:
-        # Persistent session — use shared context regardless of browser type
-        html, _, final_url = _fetch_with_playwright(url, reuse_context=reuse_context)
-
-    elif mode == SiteMode.PLAYWRIGHT_CHROMIUM:
-        html, _, final_url = _fetch_with_playwright(url, force_browser="chromium")
-
-    else:  # PLAYWRIGHT_FIREFOX (default)
-        html, _, final_url = _fetch_with_playwright(url)
-
-    if not html:
-        return [], False
-
-    if _is_search_redirect(url, final_url, query):
-        if _needs_pdp_redirect_extraction(url):
-            pdp_results = _try_extract_pdp_as_result(html, final_url)
-            if pdp_results:
-                logger.info("Query '%s' redirected to a unique-match PDP %s — extracted 1 result", query, final_url)
-                return pdp_results, False
-        if _has_dedicated_extractor(url) and not _is_authoritative_no_results(final_url):
-            redirect_soup = BeautifulSoup(html, "html.parser")
-            cat_results = _try_site_specific(redirect_soup, final_url, max_results)
-            if cat_results:
-                logger.info(
-                    "Query '%s' redirected to a real category/brand listing %s — extracted %d results",
-                    query, final_url, len(cat_results),
-                )
-                return cat_results, False
-        logger.info("Query '%s' redirected to %s — skipping", query, final_url)
-        return [], True
-
-    results = _extract_results(html, max_results * 2, url=url)
-    results = _validate_results_with_llm(results, query)
-    results = results[:max_results]
-    # Dedicated-extractor hosts are authoritative — don't let the LLM fallback
-    # scrape recommendation chrome on top of a thin/empty (but real) result set.
-    if len(results) < 5 and not _has_dedicated_extractor(url):
-        llm_results = _extract_with_llm(html, query, max_results, url=url)
-        if len(llm_results) > len(results):
-            results = llm_results
-
-    return results, False
+def _fetch_outcome_with_mode(url: str, query: str, max_results: int, mode: str,
+                             evidence_dir: Optional[str] = None) -> FetchOutcome:
+    """One query, proven mode, with the standard retry policy."""
+    outcome, _ = _fetch_with_retries(url, query, max_results, mode, evidence_dir)
+    return outcome
 
 
 # ---------------------------------------------------------------------------
-# Main public function
+# Main public functions
 # ---------------------------------------------------------------------------
+
+
+def _query_str(q) -> str:
+    return q.query if isinstance(q, TestQuery) else str(q)
+
+
+def _search_url(template: str, query: str) -> str:
+    return template.replace("{}", quote_plus(query))
+
+
+_profile_attempted = False
+
+
+def _maybe_learn_profile(outcome: FetchOutcome, html: str, url: str, client=None) -> None:
+    """Learn cached selectors once per site from the first good generic extraction."""
+    global _site_extraction_profile, _profile_attempted
+    if _LIGHT_MODE or _profile_attempted or _site_extraction_profile is not None or not html:
+        return
+    if _has_dedicated_extractor(url) or _status_value(outcome) != FetchStatus.OK.value:
+        return
+    if outcome.strategy not in ("schema-org", "product-cards", "generic-list") or len(outcome.results) < 3:
+        return
+    _profile_attempted = True
+    _site_extraction_profile = _generate_extraction_profile(html, outcome.results, url=url, client=client)
+
+
+def fetch_all_outcomes(
+    queries: list,
+    search_url_template: str,
+    max_results: int = 15,
+    evidence_dir: Optional[str] = None,
+    on_outcome: Optional[Callable[[FetchOutcome], None]] = None,
+    client=None,
+    light: bool = False,
+) -> dict[str, FetchOutcome]:
+    """See :func:`_fetch_all_outcomes`. ``light=True`` = one attempt, no LLM (catalog sampling)."""
+    global _LIGHT_MODE
+    previous, _LIGHT_MODE = _LIGHT_MODE, light
+    try:
+        return _fetch_all_outcomes(queries, search_url_template, max_results, evidence_dir, on_outcome, client)
+    finally:
+        _LIGHT_MODE = previous
+
+
+def _fetch_all_outcomes(
+    queries: list,
+    search_url_template: str,
+    max_results: int = 15,
+    evidence_dir: Optional[str] = None,
+    on_outcome: Optional[Callable[[FetchOutcome], None]] = None,
+    client=None,
+) -> dict[str, FetchOutcome]:
+    """Fetch every query's search page; return {query: FetchOutcome}, in input order.
+
+    Every outcome carries a FetchStatus — an empty ``results`` list is only evidence of
+    zero results when status is ZERO_CONFIRMED. ``queries`` may be strings or TestQuery.
+
+    Probe-first: the first query establishes the site-level fetch mode (static /
+    Playwright / blocked) with the cheapest transport that works; the rest reuse it.
+    A blocked or unreachable site fails fast (every remaining query gets BLOCKED /
+    TIMEOUT / ERROR with attempts=0, never an empty "zero"). ``on_outcome`` is called
+    after each query (checkpointing). ``evidence_dir`` saves gzipped HTML (and, with
+    Playwright, a viewport screenshot) per attempt; the paths are noted in evidence.
+    """
+    global _site_extraction_profile, _profile_attempted
+    _site_extraction_profile = None
+    _profile_attempted = False
+
+    qlist = list(dict.fromkeys(_query_str(q) for q in queries))
+    outcomes: dict[str, FetchOutcome] = {}
+
+    def _emit(o: FetchOutcome) -> None:
+        outcomes[o.query] = o
+        logger.info("'%s' → %s, %d results%s", o.query, _status_value(o), len(o.results),
+                    f" ({o.evidence[:120]})" if o.evidence else "")
+        if on_outcome is not None:
+            try:
+                on_outcome(o)
+            except Exception as e:  # a checkpoint failure must not lose the fetch
+                logger.warning("on_outcome callback failed for '%s': %s", o.query, e)
+
+    if not search_url_template or "{}" not in search_url_template:
+        logger.error("Invalid search_url_template '%s' — must contain '{}'", search_url_template)
+        for q in qlist:
+            _emit(_outcome(q, FetchStatus.ERROR, attempts=0, evidence="invalid search URL template"))
+        return {q: outcomes[q] for q in qlist}
+    if not qlist:
+        return {}
+
+    total = len(qlist)
+    remaining = list(qlist)
+    site_mode = SiteMode.FAILED
+    last_failure: Optional[FetchOutcome] = None
+    probes = 0
+
+    # ---- Phase 1: probe until a transport works ----------------------------
+    while remaining and probes < _MAX_PROBES and site_mode == SiteMode.FAILED:
+        q = remaining.pop(0)
+        probes += 1
+        url = _search_url(search_url_template, q)
+        logger.info("[probe %d/%d] Probing with query: '%s'", probes, total, q)
+        kind, value = _run_with_timeout(_PROBE_TIMEOUT_S, _probe_outcome, url, q, max_results, evidence_dir, client)
+        if kind == "timeout":
+            print(f"\nTIMEOUT: probing '{q}' exceeded {_PROBE_TIMEOUT_S}s — trying the next query as probe.\n")
+            last_failure = _outcome(q, FetchStatus.TIMEOUT, final_url=url,
+                                    evidence=f"site probe exceeded {_PROBE_TIMEOUT_S}s")
+            _emit(last_failure)
+            continue
+        if kind == "error":
+            last_failure = _outcome(q, FetchStatus.ERROR, final_url=url,
+                                    evidence=f"probe failed: {type(value).__name__}: {value}"[:300])
+            _emit(last_failure)
+            continue
+        probe_mode, outcome, html = value
+        if probe_mode == SiteMode.FAILED:
+            last_failure = outcome
+            _emit(outcome)
+            continue
+        site_mode = probe_mode
+        if site_mode != SiteMode.BLOCKED and _needs_retry(outcome, 1):
+            outcome, html = _fetch_with_retries(url, q, max_results, site_mode, evidence_dir, client,
+                                                first=(outcome, html))
+        _emit(outcome)
+        if site_mode == SiteMode.BLOCKED:
+            last_failure = outcome
+        else:
+            _maybe_learn_profile(outcome, html, url, client)
+
+    if site_mode in (SiteMode.BLOCKED, SiteMode.FAILED):
+        status = FetchStatus.BLOCKED if site_mode == SiteMode.BLOCKED else (
+            FetchStatus(_status_value(last_failure)) if last_failure is not None else FetchStatus.ERROR)
+        reason = last_failure.evidence if last_failure is not None else site_mode
+        logger.info("Site probe → %s — skipping %d remaining queries", site_mode, len(remaining))
+        for q in remaining:
+            _emit(_outcome(q, status, attempts=0, final_url=_search_url(search_url_template, q),
+                           evidence=f"not fetched: site probe failed ({reason})"[:300]))
+        _log_summary(outcomes, site_mode)
+        return {q: outcomes[q] for q in qlist}
+
+    # ---- Phase 2: proven mode for the rest ----------------------------------
+    consecutive_blocks = 0
+    last_status = FetchStatus.BLOCKED.value
+    for i, q in enumerate(remaining, probes + 1):
+        url = _search_url(search_url_template, q)
+        if consecutive_blocks >= _MAX_CONSECUTIVE_BLOCKS:
+            _emit(_outcome(q, FetchStatus(last_status), attempts=0, final_url=url,
+                           evidence=f"not fetched: {consecutive_blocks} queries in a row ended {last_status}"))
+            continue
+        _sleep(_BETWEEN_QUERIES_S)
+        logger.info("[%d/%d] Fetching '%s' (mode: %s)", i, total, q, site_mode)
+        outcome, html = _fetch_with_retries(url, q, max_results, site_mode, evidence_dir, client)
+        _emit(outcome)
+        _maybe_learn_profile(outcome, html, url, client)
+        last_status = _status_value(outcome)
+        consecutive_blocks = consecutive_blocks + 1 if last_status in _FAILURE_STATUSES else 0
+
+    _log_summary(outcomes, site_mode)
+    return {q: outcomes[q] for q in qlist}
 
 
 def fetch_all_results(
     search_url_template: str,
-    queries: list[TestQuery],
+    queries: list,
     max_results: int = 15,
 ) -> dict[str, list[SearchResult]]:
-    """Fetch search result pages for every query and extract structured data.
+    """Legacy wrapper: {query: results}. An empty list here can mean blocked, timeout or
+    unverified — new code should call fetch_all_outcomes and read the status."""
+    outcomes = fetch_all_outcomes(queries, search_url_template, max_results=max_results)
+    return {q: o.results for q, o in outcomes.items()}
 
-    Uses a probe-first strategy:
-      1. Probe the first query to determine site-level fetch mode (static / playwright /
-         blocked) using the cheapest successful approach.
-      2. If the site is blocked, skip all remaining queries immediately (fast-fail).
-      3. Apply the proven mode to all remaining queries without re-probing.
 
-    This cuts wall-clock time dramatically for blocked sites (Cloudflare saves
-    ~30s × N queries vs the old per-query approach) and avoids redundant Playwright
-    launches for sites where static HTML already works.
-    """
-    # Reset per-site state from any previous run
-    global _site_extraction_profile
-    _site_extraction_profile = None
-
-    if not search_url_template or "{}" not in search_url_template:
-        logger.error("Invalid search_url_template '%s' — must contain '{}'", search_url_template)
-        return {q.query: [] for q in queries}
-    if not queries:
-        return {}
-
-    all_results: dict[str, list[SearchResult]] = {}
-    total = len(queries)
-    empty_count = thin_count = 0
-
-    # ---- Phase 1: Probe — find first non-redirecting query, establish site mode ----
-    # Walk through queries until one gives a real search results page.
-    site_mode = SiteMode.FAILED
-    remaining_queries: list[TestQuery] = list(queries)
-    probe_position = 0  # tracks which slot in the output dict each probe query occupies
-
-    while remaining_queries:
-        probe_tq = remaining_queries.pop(0)
-        probe_position += 1
-        probe_url = search_url_template.replace("{}", quote_plus(probe_tq.query))
-        logger.info("[probe %d/%d] Probing with query: '%s'", probe_position, total, probe_tq.query)
-
-        import threading as _threading
-        _probe_result: list = []
-        _probe_error: list = []
-
-        def _run_probe() -> None:
-            try:
-                _probe_result.extend(_probe_site(probe_url, probe_tq.query, max_results))
-            except Exception as exc:
-                _probe_error.append(exc)
-
-        _pt = _threading.Thread(target=_run_probe, daemon=True)
-        _pt.start()
-        _pt.join(timeout=600)
-
-        if _pt.is_alive():
-            print(
-                f"\nTIMEOUT: Probing query '{probe_tq.query}' exceeded 10 minutes. "
-                "Skipping this site — please check the site manually.\n"
-            )
-            logger.warning("Probe for '%s' timed out after 600s", probe_tq.query)
-            all_results[probe_tq.query] = []
-            break
-        elif _probe_error:
-            raise _probe_error[0]
-        else:
-            site_mode, probe_results, probe_html, was_redirected = (
-                _probe_result[0], _probe_result[1], _probe_result[2], _probe_result[3]
-            )
-
-        all_results[probe_tq.query] = probe_results
-
-        if was_redirected:
-            logger.info(
-                "Probe query '%s' redirected — trying next query", probe_tq.query
-            )
-            empty_count += 1
-            thin_count += 1
-            if site_mode in (SiteMode.BLOCKED, SiteMode.FAILED):
-                break  # blocked AND redirected — nothing to try
-            continue  # try next query as probe
-
-        logger.info(
-            "[%d/%d] '%s' → %d results (mode: %s)",
-            probe_position, total, probe_tq.query, len(probe_results), site_mode,
-        )
-
-        # Learn extraction selectors from the probe's HTML + results
-        if probe_results and probe_html and len(probe_results) >= 3:
-            _site_extraction_profile = _generate_extraction_profile(
-                probe_html, probe_results, url=probe_url
-            )
-
-        if not probe_results:
-            empty_count += 1
-        if len(probe_results) < 5:
-            thin_count += 1
-        break  # probe succeeded (non-redirected)
-
-    # Fast-fail: skip everything if site is inaccessible
-    if site_mode in (SiteMode.BLOCKED, SiteMode.FAILED):
-        logger.info(
-            "Site probe returned %s — skipping %d remaining queries",
-            site_mode, len(remaining_queries),
-        )
-        for tq in remaining_queries:
-            all_results[tq.query] = []
-            empty_count += 1
-            thin_count += 1
-        _log_summary(total, 0, 0, empty_count, site_mode)
-        return all_results
-
-    # ---- Phase 2: Apply proven mode to remaining queries --------------------
-    # For Playwright modes we intentionally use per-query browser launches here.
-    # The per-query timeout wrapper runs fetches in a worker thread; Playwright's
-    # sync API cannot safely reuse a persistent context across those thread
-    # boundaries (greenlet "Cannot switch to a different thread" errors).
-    pw_count = llm_count = 0
-    persistent_pw = None   # Playwright sync_playwright context manager
-    persistent_browser = None
-    persistent_context = None
-    is_pw_mode = site_mode in (SiteMode.PLAYWRIGHT_FIREFOX, SiteMode.PLAYWRIGHT_CHROMIUM)
-
-    # LLM-primary promotion: if heuristic extraction keeps failing, switch to
-    # direct LLM extraction for remaining queries.
-    use_llm_primary = False
-    consecutive_thin = 0  # track consecutive queries with < 3 results
-
-    if remaining_queries:
-        time.sleep(1.5)
-
-    _PER_QUERY_TIMEOUT_S = 600  # 10 minutes per query hard limit
-
-    try:
-        for i, tq in enumerate(remaining_queries, probe_position + 1):
-            query_str = tq.query
-            url = search_url_template.replace("{}", quote_plus(query_str))
-
-            if use_llm_primary:
-                # LLM-primary mode: fetch HTML then go straight to LLM extraction
-                logger.info("[%d/%d] Fetching '%s' (LLM-primary mode)", i, total, query_str)
-                html = ""
-                if site_mode == SiteMode.STATIC:
-                    try:
-                        resp = requests.get(
-                            url, headers={"User-Agent": _USER_AGENT},
-                            timeout=15, allow_redirects=True, proxies=_REQUESTS_PROXIES,
-                        )
-                        html = resp.text
-                    except requests.RequestException:
-                        pass
-                elif persistent_context is not None:
-                    html, _, _ = _fetch_on_context(persistent_context, url)
-                else:
-                    html, _, _ = _fetch_with_playwright(url)
-
-                if html:
-                    results = _extract_with_llm(html, query_str, max_results, url=url)
-                else:
-                    results = []
-                was_redirected = False
-                llm_count += 1
-            else:
-                logger.info("[%d/%d] Fetching '%s' (mode: %s)", i, total, query_str, site_mode)
-                try:
-                    import threading as _threading
-                    _fetch_result: list = []
-                    _fetch_error: list = []
-
-                    def _run_fetch() -> None:
-                        try:
-                            _fetch_result.extend(
-                                _fetch_with_mode(
-                                    url, query_str, max_results, site_mode,
-                                    reuse_context=persistent_context,
-                                )
-                            )
-                        except Exception as exc:
-                            _fetch_error.append(exc)
-
-                    _t = _threading.Thread(target=_run_fetch, daemon=True)
-                    _t.start()
-                    _t.join(timeout=_PER_QUERY_TIMEOUT_S)
-
-                    if _t.is_alive():
-                        elapsed = _PER_QUERY_TIMEOUT_S
-                        print(
-                            f"\nTIMEOUT: Fetching query '{query_str}' exceeded "
-                            f"{_PER_QUERY_TIMEOUT_S // 60} minutes. "
-                            "Skipping this query — please check the site manually.\n"
-                        )
-                        logger.warning("Query '%s' timed out after %ds", query_str, elapsed)
-                        results, was_redirected = [], False
-                    elif _fetch_error:
-                        raise _fetch_error[0]
-                    else:
-                        results, was_redirected = _fetch_result[0], _fetch_result[1]
-                except Exception as e:
-                    logger.warning("Unexpected error fetching '%s': %s", query_str, e)
-                    results, was_redirected = [], False
-
-                # Retry-on-zero for dedicated-extractor hosts. These hosts are
-                # authoritative-empty (an empty result short-circuits fallbacks),
-                # so a transient client-render lapse during the batch looks
-                # identical to a genuine no-results page and would silently poison
-                # the audit with a false zero. One re-fetch distinguishes them: a
-                # genuine zero stays zero; a transient miss recovers.
-                if (not was_redirected and not results
-                        and _has_dedicated_extractor(url)):
-                    logger.info("[%d/%d] '%s' → 0 results; re-fetching once (transient-zero guard)", i, total, query_str)
-                    time.sleep(1.5)
-                    try:
-                        _retry_out: list = []
-                        _retry_err: list = []
-
-                        def _run_retry() -> None:
-                            try:
-                                _retry_out.extend(
-                                    _fetch_with_mode(
-                                        url, query_str, max_results, site_mode,
-                                        reuse_context=persistent_context,
-                                    )
-                                )
-                            except Exception as exc:
-                                _retry_err.append(exc)
-
-                        _rt = _threading.Thread(target=_run_retry, daemon=True)
-                        _rt.start()
-                        _rt.join(timeout=_PER_QUERY_TIMEOUT_S)
-                        if not _rt.is_alive() and not _retry_err and _retry_out:
-                            retry_results, retry_redirected = _retry_out[0], _retry_out[1]
-                            if not retry_redirected and retry_results:
-                                logger.info("[%d/%d] '%s' recovered %d results on retry", i, total, query_str, len(retry_results))
-                                results = retry_results
-                    except Exception as e:
-                        logger.warning("Retry-on-zero failed for '%s': %s", query_str, e)
-
-            if was_redirected:
-                logger.info("[%d/%d] '%s' redirected — skipping", i, total, query_str)
-                all_results[query_str] = []
-                empty_count += 1
-                thin_count += 1
-            else:
-                all_results[query_str] = results
-                if is_pw_mode:
-                    pw_count += 1
-                if not results:
-                    empty_count += 1
-                if len(results) < 5:
-                    thin_count += 1
-                logger.info("[%d/%d] '%s' → %d results", i, total, query_str, len(results))
-
-                # Track thin results for diagnostics only. Do not promote an
-                # entire site to LLM-primary extraction: some valid search
-                # queries naturally return few results, and promotion can
-                # poison later queries with zero-result LLM extraction.
-                if len(results) < 3:
-                    consecutive_thin += 1
-                else:
-                    consecutive_thin = 0
-
-            if i < total:
-                time.sleep(1.5)
-    finally:
-        # Clean up persistent browser resources
-        if persistent_context is not None:
-            try:
-                persistent_context.close()
-            except Exception:
-                pass
-        if persistent_browser is not None:
-            try:
-                persistent_browser.close()
-            except Exception:
-                pass
-        if persistent_pw is not None:
-            try:
-                persistent_pw.stop()
-            except Exception:
-                pass
-
-    _log_summary(total, pw_count, llm_count, empty_count, site_mode)
-
-    thin_pct = thin_count / total * 100 if total else 0
-    if thin_pct > 50:
+def _log_summary(outcomes: dict[str, FetchOutcome], mode: str) -> None:
+    counts = Counter(_status_value(o) for o in outcomes.values())
+    logger.info("Fetch complete: %d queries, mode=%s, statuses=%s", len(outcomes), mode, dict(counts))
+    untrusted = sum(1 for o in outcomes.values() if not o.trusted)
+    if outcomes and untrusted / len(outcomes) > 0.25:
         print(
-            f"\nWARNING: {thin_pct:.0f}% of queries returned fewer than 5 results. "
-            f"Site mode was '{site_mode}'. "
-            "Consider checking the page HTML manually or adjusting extraction strategies.\n"
+            f"\nWARNING: {untrusted}/{len(outcomes)} queries were not observed reliably "
+            f"({dict(counts)}). Site mode was '{mode}'. Check the evidence before judging.\n"
         )
-
-    return all_results
-
-
-def _log_summary(total: int, pw_count: int, llm_count: int, empty_count: int, mode: str) -> None:
-    logger.info(
-        "Fetch complete: %d queries, mode=%s, %d Playwright, %d LLM, %d empty",
-        total, mode, pw_count, llm_count, empty_count,
-    )
 
 
 # ---------------------------------------------------------------------------
@@ -3668,27 +5026,19 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
 
     template = sys.argv[1] if len(sys.argv) > 1 else "https://www.groupon.com/search?query={}"
-
-    demo_queries = [
-        TestQuery(category="DIRECT_MATCH", query="spa deals", rationale="Test real deal extraction"),
-        TestQuery(category="BROAD_CATEGORY", query="restaurants", rationale="Broad category test"),
-    ]
+    demo_queries = ["spa deals", "restaurants"]
 
     print(f"Search template: {template}")
-    print(f"Queries: {[q.query for q in demo_queries]}\n")
+    print(f"Queries: {demo_queries}\n")
 
-    results = fetch_all_results(template, demo_queries, max_results=15)
-
-    for query_str, result_list in results.items():
+    for query_str, outcome in fetch_all_outcomes(demo_queries, template, max_results=15).items():
         print(f"\n{'='*60}")
-        print(f"  Query: '{query_str}' — {len(result_list)} results")
+        print(f"  Query: '{query_str}' — {outcome.status}, {len(outcome.results)} results")
+        print(f"  {outcome.evidence}")
         print(f"{'='*60}")
-        for r in result_list:
-            print(f"  #{r.rank} {r.title[:80]}")
+        for r in outcome.results:
+            print(f"  #{r.rank} {r.title[:80]}{'  [sponsored]' if r.sponsored else ''}")
             if r.price:
                 print(f"       price:   {r.price}")
-            if r.snippet:
-                print(f"       snippet: {r.snippet[:80]}")
             if r.url:
                 print(f"       url:     {r.url[:80]}")
-            print()

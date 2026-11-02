@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 
 from src.models import QueryJudgment, SiteContext, Severity
+from src.report_stats import NAMEABLE_BEST_MIN, md_cell, sanitize_client_text, scored
 
 
 def _is_pass(j: QueryJudgment) -> bool:
@@ -74,14 +75,14 @@ _MODE_LABEL = {
     "FACET_NOT_EXTRACTED": "missed a filter",
 }
 
-# Modes where the engine returned a product, but the wrong one, at the top.
+# Modes where the engine led with the wrong KIND of product. POOR_RANKING / DUPLICATE_FLOODING
+# are deliberately absent: there the right type was retrieved, just mis-ordered (that is the
+# ordering section), so counting them here contradicted the "wrong type of product" wording.
 _WRONG_PRODUCT_MODES = {
     "NO_SEMANTIC_UNDERSTANDING",
     "CATEGORY_MAPPING_FAILURE",
     "PARTIAL_KEYWORD_MATCH",
     "BRAND_BLEED",
-    "POOR_RANKING",
-    "DUPLICATE_FLOODING",
 }
 _WRONG_PRODUCT_ORDER = {
     m: i for i, m in enumerate([
@@ -89,8 +90,6 @@ _WRONG_PRODUCT_ORDER = {
         "CATEGORY_MAPPING_FAILURE",
         "PARTIAL_KEYWORD_MATCH",
         "BRAND_BLEED",
-        "DUPLICATE_FLOODING",
-        "POOR_RANKING",
     ])
 }
 
@@ -127,17 +126,19 @@ def _build_ordering(judgments: list[QueryJudgment]) -> dict:
         if j.displacement > 0:
             buried += 1
             first = results[0]
-            # The buried better match is the highest-scored result (displacement>0 means
-            # it is not at original rank 1). Score is used only to NAME it; the existence
-            # of a stronger result is asserted by the judge's displacement field.
+            # The existence of a stronger result is asserted by the judge's displacement field.
+            # We only NAME it when it is clearly on-topic and the judge called this a ranking
+            # failure — otherwise "the better X" can name a product that is merely less bad.
             best = max(results, key=lambda r: r.relevance_score)
+            nameable = best.relevance_score >= NAMEABLE_BEST_MIN and _mode(j) == "POOR_RANKING"
             rows.append({
                 "query": j.test_query.query,
                 "first_title": first.title,
-                "better_title": best.title,
+                "better_title": best.title if nameable else None,
                 "buried_by": j.displacement,
             })
-    rows.sort(key=lambda r: -r["buried_by"])
+    # Nameable examples first (they are the self-evident ones), then deepest-buried.
+    rows.sort(key=lambda r: (r["better_title"] is None, -r["buried_by"]))
     return {
         "evaluated": evaluated,
         "buried": buried,
@@ -223,11 +224,13 @@ def _build_substitutions(judgments: list[QueryJudgment]) -> dict:
 # ---------------------------------------------------------------------------
 
 def _build_constraint_obedience(judgments: list[QueryJudgment]) -> dict:
+    """Buckets always sum to ``total``: honoured + violated + empty + other."""
     candidates = [j for j in judgments if j.test_query.category in _CONSTRAINT_CATEGORIES]
     total = len(candidates)
     honored = 0
     violations = []
     empty = 0
+    other = 0
     for j in candidates:
         if _is_pass(j):
             honored += 1
@@ -239,15 +242,18 @@ def _build_constraint_obedience(judgments: list[QueryJudgment]) -> dict:
         if mode in _CONSTRAINT_VIOLATION_MODES:
             violations.append({
                 "query": j.test_query.query,
-                "detail": _trim(j.evidence),
+                "detail": _trim(sanitize_client_text(j.evidence)),
             })
+        else:
+            other += 1  # results returned, limit not the problem (e.g. wrong product type)
     return {
         "applicable": total > 0,
         "total": total,
         "honored": honored,
         "violated": len(violations),
         "empty": empty,
-        "examples": violations[:4],
+        "other": other,
+        "examples": [v for v in violations if v["detail"]][:4],
     }
 
 
@@ -273,21 +279,44 @@ def _ordering_text(o: dict) -> str:
 
 
 def _specificity_text(s: dict) -> str:
-    return (
-        f"Pass rate slides from {s['broad_rate']:.0f}% on broad searches to "
-        f"{s['specific_rate']:.0f}% on the most specific — the shoppers closest to buying."
-    )
+    broad, specific = round(s["broad_rate"]), round(s["specific_rate"])
+    if specific < broad:
+        return (
+            f"Pass rate slides from {broad}% on broad searches to {specific}% on the most "
+            "specific — the shoppers closest to buying."
+        )
+    if specific > broad:
+        return (
+            f"Pass rate rises from {broad}% on broad searches to {specific}% on the most "
+            "specific — precise searches are handled better than broad ones."
+        )
+    return f"Pass rate holds at {broad}% from broad to the most specific searches."
 
 
 def _substitutions_text(sub: dict) -> str:
-    return f"{sub['count']} searches led with the wrong type of product. What shoppers saw instead:"
+    word = "search" if sub["count"] == 1 else "searches"
+    return f"{sub['count']} {word} led with the wrong kind of product. What shoppers saw instead:"
 
 
 def _constraint_text(c: dict) -> str:
     base = f"{c['honored']} of {c['total']} filtered searches kept the shopper's limit."
     if c["violated"]:
         base += f" {c['violated']} returned items that broke it."
+    if c["empty"]:
+        base += f" {c['empty']} returned nothing."
+    if c.get("other"):
+        base += f" {c['other']} missed for another reason (e.g. the wrong kind of product)."
     return base
+
+
+def _ordering_detail(row: dict) -> str:
+    spots = f"{row['buried_by']} spot{'s' if row['buried_by'] != 1 else ''} lower"
+    if row["better_title"]:
+        return (
+            f"“{_short(row['first_title'])}” ranked first — the better "
+            f"“{_short(row['better_title'])}” was {spots}."
+        )
+    return f"“{_short(row['first_title'])}” ranked first — a stronger match sat {spots}."
 
 
 # ---------------------------------------------------------------------------
@@ -295,6 +324,7 @@ def _constraint_text(c: dict) -> str:
 # ---------------------------------------------------------------------------
 
 def build_advanced_diagnostics(site_context: SiteContext, judgments: list[QueryJudgment]) -> dict:
+    judgments = scored(judgments)  # excluded judgments never count toward a rate
     return {
         "ordering": _build_ordering(judgments),
         "specificity": _build_specificity_cliff(judgments),
@@ -329,14 +359,7 @@ def build_advanced_diagnostics_sections(
             "status_label": _STATUS_LABEL[cls],
             "narrative": _ordering_text(ordering),
             "examples": [
-                {
-                    "code": row["query"],
-                    "detail": (
-                        f"“{_short(row['first_title'])}” ranked first — the better "
-                        f"“{_short(row['better_title'])}” was {row['buried_by']} "
-                        f"spot{'s' if row['buried_by'] != 1 else ''} lower."
-                    ),
-                }
+                {"code": row["query"], "detail": _ordering_detail(row)}
                 for row in ordering["examples"][:3]
             ],
         })
@@ -414,7 +437,7 @@ def build_advanced_diagnostics_markdown(
     lines = [
         "## Advanced Query Diagnostics\n",
         "Beyond pass/fail, these checks read the whole result page the way a shopper does — "
-        "and are built on the audited verdicts, not internal relevance scores.",
+        "and are built on the reviewed verdict for each search.",
     ]
 
     for section in build_advanced_diagnostics_sections(site_context, judgments):
@@ -437,7 +460,7 @@ def build_advanced_diagnostics_markdown(
             lines.append("| Shopper searched | Top result was | Why |")
             lines.append("| --- | --- | --- |")
             for row in section["rows"]:
-                lines.append(f"| `{row['searched']}` | {row['got']} | {row['why']} |")
+                lines.append(f"| `{md_cell(row['searched'])}` | {md_cell(row['got'])} | {md_cell(row['why'])} |")
         else:  # rate_list
             if section["examples"]:
                 lines.append("")
