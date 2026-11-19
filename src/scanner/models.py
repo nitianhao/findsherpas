@@ -5,7 +5,7 @@ Probe types are based on the approved failure modes from docs/search-failure-mod
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Optional
 from pydantic import BaseModel, Field
@@ -174,7 +174,7 @@ class SiteInfo(BaseModel):
 class ScanResult(BaseModel):
     """Complete result of scanning a site."""
     site: SiteInfo
-    scanned_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
+    scanned_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     probes: list[ScoredProbe] = Field(default_factory=list)
     capabilities: list[CapabilityScore] = Field(default_factory=list)
     overall_score: ProbeScore = Field(default=ProbeScore.ERROR)

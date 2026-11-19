@@ -119,6 +119,7 @@ class ProbeGenerator:
         self.brands = brands
         self._client: Optional[anthropic.Anthropic] = None
         self.llm_cost_usd = 0.0
+        self._rng = random.Random(0)
     
     def _get_client(self) -> anthropic.Anthropic:
         if self._client is None:
@@ -128,17 +129,19 @@ class ProbeGenerator:
     def _pick_category(self) -> str:
         """Pick a category term from navigation."""
         if self.nav_categories:
-            return random.choice(self.nav_categories[:10])
+            return self.nav_categories[0]
         return "shoes"  # Fallback
     
     def _pick_product(self) -> str:
         """Pick a product name from featured items."""
         if self.featured_items:
-            return random.choice(self.featured_items[:10])
+            return self.featured_items[0]
         return ""
     
     def _llm_pick_terms(self, prompt: str, count: int = 1) -> list[str]:
         """Use LLM to pick relevant terms from site context."""
+        if not os.environ.get("ANTHROPIC_API_KEY"):
+            return []
         try:
             client = self._get_client()
             
@@ -151,7 +154,6 @@ Brands: {', '.join(self.brands[:10])}"""
             response = client.messages.create(
                 model=_HAIKU_MODEL,
                 max_tokens=200,
-                temperature=0,
                 messages=[{
                     "role": "user",
                     "content": f"""{context}
@@ -165,9 +167,9 @@ Return ONLY the term(s), one per line, no explanations. Return exactly {count} t
             # Track cost (Haiku is cheap)
             input_tokens = response.usage.input_tokens
             output_tokens = response.usage.output_tokens
-            self.llm_cost_usd += (input_tokens * 0.25 + output_tokens * 1.25) / 1_000_000
+            self.llm_cost_usd += (input_tokens * 1.0 + output_tokens * 5.0) / 1_000_000
             
-            text = response.content[0].text.strip()
+            text = "\n".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
             lines = [l.strip() for l in text.split('\n') if l.strip()]
             return lines[:count]
             
@@ -180,9 +182,7 @@ Return ONLY the term(s), one per line, no explanations. Return exactly {count} t
         if self.featured_items:
             # Try to get a clean product name
             product = self._pick_product()
-            # Truncate to first few words to avoid overly specific queries
-            words = product.split()[:4]
-            query = ' '.join(words)
+            query = product
             return query, f"Testing exact match for product: {product}"
         
         # Fallback: use LLM to suggest a product
@@ -243,6 +243,10 @@ Return ONLY the term(s), one per line, no explanations. Return exactly {count} t
         if not base_query:
             base_query = self._pick_category()
         
+        if self.site.primary_language.lower() != "english":
+            terms = self._llm_pick_terms(
+                f"Return only the correct singular/plural variant of '{base_query}' in {self.site.primary_language}.", count=1)
+            return (terms[0], base_query, "Locale-specific singular/plural variant") if terms else ("", "", "No locale variant available")
         words = base_query.split()
         if not words:
             return "", "", "No base query"
@@ -287,22 +291,6 @@ Return ONLY the term(s), one per line, no explanations. Return exactly {count} t
     
     def generate_compound_split(self) -> tuple[str, str, str]:
         """Generate compound word split test. Returns (split_query, compound_query, rationale)."""
-        # Look for compound words
-        compounds = [
-            item for item in self.nav_categories + self.featured_items
-            if len(item) > 10 and ' ' not in item and item.lower() == item
-        ]
-        
-        if compounds:
-            compound = random.choice(compounds)
-            # Try to split at obvious boundaries
-            for i in range(4, len(compound) - 3):
-                left = compound[:i]
-                right = compound[i:]
-                if len(left) >= 3 and len(right) >= 3:
-                    split = f"{left} {right}"
-                    return split, compound, f"Compound split: '{split}' should match '{compound}'"
-        
         # Use LLM
         pairs = self._llm_pick_terms(
             "Find ONE compound word from this site that could be searched as two words. "
@@ -326,7 +314,7 @@ Return ONLY the term(s), one per line, no explanations. Return exactly {count} t
                 # Try to find a multi-word category
                 multi_word = [c for c in self.nav_categories if ' ' in c]
                 if multi_word:
-                    base_query = random.choice(multi_word)
+                    base_query = self._rng.choice(multi_word)
         
         if ' ' not in base_query:
             return "", "", "No multi-word query available"
@@ -343,7 +331,7 @@ Return ONLY the term(s), one per line, no explanations. Return exactly {count} t
         
         # Color constraint
         colors = ['red', 'blue', 'black', 'white', 'green']
-        color = random.choice(colors)
+        color = 'schwarz' if self.site.primary_language.lower() == 'german' else 'black'
         constraints.append(color)
         
         # Price constraint (site-language aware)
@@ -370,16 +358,6 @@ Return ONLY the term(s), one per line, no explanations. Return exactly {count} t
             if match:
                 sku = match.group()
                 return sku, f"SKU search: '{sku}' from product '{item}'"
-        
-        # Use LLM
-        terms = self._llm_pick_terms(
-            "Find ONE product SKU or model number from this site's products. "
-            "Just the SKU/model number, nothing else.",
-            count=1
-        )
-        
-        if terms:
-            return terms[0], f"LLM-suggested SKU: '{terms[0]}'"
         
         return "", "No SKU found"
     

@@ -77,3 +77,9 @@ reports/passwords.json
 /.impeccable/screenshots/
 /.impeccable/mocks/
 /.impeccable-before.png
+
+# Local scanner runtime
+src/scanner/.venv/
+scanner_output/
+src/scanner_output/
+.pytest_cache/

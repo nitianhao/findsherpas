@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import json
 import logging
-import os
 import re
 import sys
 import time
@@ -38,7 +37,7 @@ from .models import (
 from .probes import ProbeGenerator
 from .scorer import score_probe_result, score_scan
 
-load_dotenv(override=True)
+load_dotenv(override=False)
 
 logger = logging.getLogger(__name__)
 
@@ -71,25 +70,15 @@ class Scanner:
         headed: bool = True,
         max_results_per_query: int = 10,
     ):
-        self.output_dir = Path(output_dir)
+        self._output_root = Path(output_dir)
+        self.output_dir = self._output_root
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.take_screenshots = take_screenshots
         self.headed = headed
         self.max_results = max_results_per_query
-        self._fetcher = None
         self._playwright = None
         self._browser = None
-    
-    def _get_fetcher(self):
-        """Get the audit fetcher module."""
-        if self._fetcher is None:
-            try:
-                from src import fetcher
-                self._fetcher = fetcher
-            except ImportError as e:
-                logger.warning("Could not import audit fetcher: %s", e)
-                self._fetcher = None
-        return self._fetcher
+        self._query_cache = {}
     
     def _get_browser(self):
         """Lazy-initialize Playwright browser."""
@@ -106,10 +95,8 @@ class Scanner:
             )
             return self._browser
         except Exception as e:
-            logger.error("Failed to initialize Playwright: %s", e)
-            raise RuntimeError(
-                "Playwright not available. Run: pip install playwright && playwright install chromium"
-            ) from e
+            self._close_browser()
+            raise RuntimeError(f"Could not launch Chromium: {e}") from e
     
     def _close_browser(self):
         """Close browser if open."""
@@ -132,307 +119,113 @@ class Scanner:
     def __exit__(self, *args):
         self._close_browser()
     
-    def _discover_site(self, url: str) -> tuple[SiteInfo, list[str], list[str], list[str]]:
-        """Discover site info using the audit module's discovery."""
+    def _load_page(self, url: str, name: str):
+        """Capture rendered HTML, API evidence and screenshot in one headed visit."""
+        import gzip
+        from src import fetcher
+        browser = self._get_browser()
+        context = browser.new_context(viewport={"width": 1280, "height": 900}, user_agent=_USER_AGENT)
+        page = context.new_page()
+        page.set_default_timeout(3000)
+        captured = []
+        fetcher._apply_stealth(page)
+        page.on("response", lambda response: fetcher._capture_search_api(response, captured))
         try:
-            from src.discovery import discover_from_search_url, discover_site
-            
-            # Try to discover from the URL
-            parsed = urlparse(url)
-            domain = parsed.netloc.replace("www.", "")
-            
-            # If URL looks like a search URL, use that
-            if "search" in url.lower() or "q=" in url.lower():
-                ctx = discover_from_search_url(url)
-            else:
-                # Otherwise discover from homepage
-                ctx = discover_site(url)
-            
-            site_info = SiteInfo(
-                domain=domain,
-                site_name=ctx.site_name,
-                search_url_template=ctx.search_url_template,
-                primary_language=ctx.primary_language,
-            )
-            
-            return site_info, ctx.nav_categories, ctx.featured_items, ctx.brands
-            
-        except Exception as e:
-            logger.warning("Discovery failed, using basic info: %s", e)
-            parsed = urlparse(url)
-            domain = parsed.netloc.replace("www.", "")
-            return SiteInfo(domain=domain), [], [], []
-    
-    def _discover_search_url(self, base_url: str) -> Optional[str]:
-        """Try to discover the search URL template for a site."""
-        try:
-            # First try to find search form on homepage
-            resp = requests.get(base_url, headers={"User-Agent": _USER_AGENT}, timeout=15)
-            resp.raise_for_status()
-            soup = BeautifulSoup(resp.text, "html.parser")
-            
-            # Look for search forms
-            for form in soup.find_all("form"):
-                action = form.get("action", "")
-                if "search" in action.lower():
-                    # Find the query parameter name
-                    for inp in form.find_all("input"):
-                        name = inp.get("name", "").lower()
-                        if name in ("q", "query", "search", "keyword", "k", "term", "s"):
-                            full_action = action if action.startswith("http") else f"{base_url.rstrip('/')}{action}"
-                            return f"{full_action}?{inp.get('name')}={{}}"
-            
-            # Try common search URL patterns
-            for pattern in ["/search?q={}", "/search?query={}", "/catalogsearch/result/?q={}"]:
-                test_url = f"{base_url.rstrip('/')}{pattern.format('test')}"
-                try:
-                    r = requests.head(test_url, headers={"User-Agent": _USER_AGENT}, timeout=5, allow_redirects=True)
-                    if r.status_code < 400:
-                        return f"{base_url.rstrip('/')}{pattern}"
-                except:
-                    pass
-            
-            return None
-            
-        except Exception as e:
-            logger.warning("Search URL discovery failed: %s", e)
-            return None
-    
-    def _fetch_search_results(
-        self,
-        search_url: str,
-        query: str,
-        screenshot_name: Optional[str] = None,
-    ) -> tuple[list[SearchResult], int, ProbeStatus, Optional[str], Optional[str]]:
-        """
-        Fetch search results for a query.
-        
-        Uses the audit module's fetcher when available for robust extraction.
-        Falls back to basic Playwright fetching otherwise.
-        
-        Returns: (results, count, status, error_message, screenshot_path)
-        """
-        url = search_url.format(quote_plus(query))
-        screenshot_path = None
-        
-        # Try using the audit fetcher first (has site-specific extractors)
-        fetcher = self._get_fetcher()
-        if fetcher:
-            try:
-                outcome = fetcher.fetch_search_results(
-                    search_url_template=search_url,
-                    query=query,
-                    max_results=self.max_results,
-                    headed=self.headed,
-                )
-                
-                # Convert FetchOutcome to our format
-                results = [
-                    SearchResult(
-                        rank=r.rank,
-                        title=r.title,
-                        price=r.price,
-                        url=r.url,
-                    )
-                    for r in outcome.results
-                ]
-                
-                # Map FetchStatus to ProbeStatus
-                from src.models import FetchStatus
-                status_map = {
-                    FetchStatus.OK: ProbeStatus.SUCCESS,
-                    FetchStatus.ZERO_CONFIRMED: ProbeStatus.SUCCESS,
-                    FetchStatus.PARTIAL: ProbeStatus.PARTIAL,
-                    FetchStatus.REDIRECT: ProbeStatus.REDIRECT,
-                    FetchStatus.BLOCKED: ProbeStatus.BLOCKED,
-                    FetchStatus.TIMEOUT: ProbeStatus.TIMEOUT,
-                    FetchStatus.ERROR: ProbeStatus.ERROR,
-                }
-                probe_status = status_map.get(outcome.status, ProbeStatus.ERROR)
-                
-                count = outcome.total_hits if outcome.total_hits else len(results)
-                
-                # Take screenshot if requested
-                if self.take_screenshots and screenshot_name:
-                    screenshot_path = self._take_screenshot(url, screenshot_name)
-                
-                return results, count, probe_status, outcome.evidence if probe_status != ProbeStatus.SUCCESS else None, screenshot_path
-                
-            except Exception as e:
-                logger.warning("Audit fetcher failed, falling back to basic fetch: %s", e)
-        
-        # Fallback: Use basic Playwright fetch
-        try:
-            from bs4 import BeautifulSoup
-            html, screenshot_path = self._fetch_with_playwright(url, screenshot_name)
-            if not html:
-                return [], 0, ProbeStatus.BLOCKED, "Failed to fetch page", screenshot_path
-            
-            # Basic block detection
-            sample = html[:5000].lower()
-            if any(sig in sample for sig in ("just a moment", "checking your browser", "ray id")):
-                return [], 0, ProbeStatus.BLOCKED, "Cloudflare protection", screenshot_path
-            if any(sig in sample for sig in ("incapsula incident", "pardon our interruption")):
-                return [], 0, ProbeStatus.BLOCKED, "Imperva protection", screenshot_path
-            
-            soup = BeautifulSoup(html, "html.parser")
-            results, count = self._extract_results(soup, url)
-            return results, count, ProbeStatus.SUCCESS, None, screenshot_path
-            
-        except Exception as e:
-            return [], 0, ProbeStatus.ERROR, str(e), None
-    
-    def _fetch_with_playwright(
-        self,
-        url: str,
-        screenshot_name: Optional[str] = None,
-    ) -> tuple[Optional[str], Optional[str]]:
-        """Fetch page with Playwright. Returns (html, screenshot_path)."""
-        screenshot_path = None
-        try:
-            browser = self._get_browser()
-            context = browser.new_context(
-                viewport={"width": 1280, "height": 800},
-                user_agent=_USER_AGENT,
-            )
-            page = context.new_page()
-            
-            # Navigate and wait for content
-            page.goto(url, wait_until="networkidle", timeout=30000)
-            
-            # Wait a bit for any JS to settle
-            page.wait_for_timeout(2000)
-            
-            # Take screenshot if requested
-            if self.take_screenshots and screenshot_name:
-                screenshot_path = str(self.output_dir / f"{screenshot_name}.png")
-                page.screenshot(path=screenshot_path, full_page=False)
-            
+            response = page.goto(url, wait_until="domcontentloaded", timeout=30000)
+            page.wait_for_timeout(3000)
+            fetcher._dismiss_consent_banners(page)
+            ready = fetcher._wait_for_host_ready(page, url) if "?" in url else None
+            page.wait_for_timeout(1500)
+            if "bergzeit.de" in urlparse(url).netloc:
+                decline = page.get_by_role("button", name="Nicht einverstanden", exact=True)
+                if decline.count() and decline.first.is_visible():
+                    decline.first.click(timeout=2000)
+                    page.wait_for_timeout(300)
+            if "allbirds.com" in urlparse(url).netloc:
+                close = page.get_by_role("button", name="Close", exact=True)
+                for button in close.all():
+                    if button.is_visible():
+                        button.click(timeout=2000)
+                        page.wait_for_timeout(300)
+                        break
             html = page.content()
+            safe_name = re.sub(r"[^\w.-]+", "_", name)[:100]
+            path = self.output_dir / safe_name
+            with gzip.open(str(path) + ".html.gz", "wt") as evidence:
+                evidence.write(html)
+            shot = None
+            if self.take_screenshots:
+                shot = str(path) + ".png"
+                page.screenshot(path=shot, full_page=False)
+            return dict(html=html, final_url=page.url,
+                        http_status=response.status if response else None,
+                        visible_text=page.locator("body").inner_text(timeout=5000), ready=ready,
+                        search_api=fetcher._read_captured_search_api(captured)), shot
+        finally:
             context.close()
-            
-            return html, screenshot_path
-            
-        except Exception as e:
-            logger.error("Playwright fetch failed: %s", e)
-            return None, screenshot_path
-    
-    def _take_screenshot(self, url: str, name: str) -> Optional[str]:
-        """Take a screenshot of a URL."""
+
+    def _discover_site(self, url: str) -> tuple[SiteInfo, list[str], list[str], list[str]]:
+        from bs4 import BeautifulSoup
+        from src import discovery
+        page, _ = self._load_page(url, "homepage")
+        soup = BeautifulSoup(page["html"], "html.parser")
+        template = ""
+        if "?" in url:
+            try:
+                template, _ = discovery.parse_search_url(url)
+            except ValueError:
+                pass
+        template = template or discovery._extract_search_url_template(soup, page["final_url"])
+        if not template:
+            link = soup.select_one('a[href$="/search"]')
+            if link:
+                from urllib.parse import urljoin
+                search_page, _ = self._load_page(urljoin(url, link["href"]), "search_discovery")
+                template = discovery._extract_search_url_template(BeautifulSoup(search_page["html"], "html.parser"), search_page["final_url"])
+        info = SiteInfo(domain=urlparse(url).netloc.removeprefix("www."),
+                        site_name=discovery._extract_site_name(soup, url),
+                        search_url_template=template,
+                        primary_language="German" if soup.html and str(soup.html.get("lang", "")).startswith("de") else "English")
+        categories = discovery._extract_nav_categories(soup)
+        excluded = discovery._NON_SEED_NAV | {"b2b", "image link", "advice & inspiration", "shopping cart", "black friday", "men", "women", "herren", "damen", "services", "stores", "login", "holiday sale", "mens holiday sale", "bestsellers", "leather alternatives"}
+        categories = [c for c in categories if c.lower() not in excluded][:15]
+        return info, categories, discovery._extract_featured_items(soup), discovery._extract_brands(soup)
+
+    def _discover_search_url(self, base_url: str) -> Optional[str]:
+        # Never accept an arbitrary HTTP 200 as proof that a search endpoint works.
+        return None
+
+    def _fetch_search_results(self, search_url: str, query: str, screenshot_name: Optional[str] = None):
+        from src import fetcher
+        from src.models import FetchStatus
+        key = (search_url, query)
+        if key in self._query_cache:
+            return self._query_cache[key]
         try:
-            browser = self._get_browser()
-            context = browser.new_context(
-                viewport={"width": 1280, "height": 800},
-                user_agent=_USER_AGENT,
-            )
-            page = context.new_page()
-            page.goto(url, wait_until="networkidle", timeout=30000)
-            page.wait_for_timeout(1000)
-            
-            path = str(self.output_dir / f"{name}.png")
-            page.screenshot(path=path, full_page=False)
-            context.close()
-            return path
-        except Exception as e:
-            logger.warning("Screenshot failed: %s", e)
-            return None
-    
-    def _extract_results(self, soup: BeautifulSoup, url: str) -> tuple[list[SearchResult], int]:
-        """Extract search results from a page. Returns (results, count)."""
-        results = []
-        
-        # Try to extract result count from page text
-        count = self._extract_result_count(soup)
-        
-        # Look for product cards using common patterns
-        card_selectors = [
-            # Common e-commerce patterns
-            "[class*='product']",
-            "[class*='item']",
-            "[class*='result']",
-            "[class*='card']",
-            "[data-product]",
-            "[data-item]",
-            # Specific platform patterns
-            ".product-item",
-            ".search-result",
-            ".product-card",
-            ".plp-product",
-        ]
-        
-        cards = []
-        for selector in card_selectors:
-            cards = soup.select(selector)
-            if len(cards) >= 3:  # Found enough cards
-                break
-        
-        # Extract info from each card
-        for i, card in enumerate(cards[:self.max_results]):
-            # Find title
-            title = None
-            for tag in card.find_all(["h1", "h2", "h3", "h4", "a"]):
-                text = tag.get_text(strip=True)
-                if text and len(text) > 5 and len(text) < 200:
-                    title = text
-                    break
-            
-            if not title:
-                continue
-            
-            # Find price
-            price = None
-            price_patterns = [
-                r"(?:[$€£¥])\s?\d[\d.,]*",
-                r"\d[\d.,]*\s?(?:[$€£¥]|kr|Kč)",
-            ]
-            card_text = card.get_text()
-            for pattern in price_patterns:
-                match = re.search(pattern, card_text)
-                if match:
-                    price = match.group().strip()
-                    break
-            
-            # Find URL
-            link = card.find("a", href=True)
-            item_url = link["href"] if link else None
-            if item_url and not item_url.startswith("http"):
-                parsed = urlparse(url)
-                item_url = f"{parsed.scheme}://{parsed.netloc}{item_url}"
-            
-            results.append(SearchResult(
-                rank=len(results) + 1,
-                title=title[:200],
-                price=price,
-                url=item_url,
-            ))
-        
-        # If no count was found, use results length
-        if count == 0 and results:
-            count = len(results)
-        
-        return results, count
-    
-    def _extract_result_count(self, soup: BeautifulSoup) -> int:
-        """Try to extract the total result count from page text."""
-        # Look for common count patterns
-        patterns = [
-            r"(\d+)\s*(?:results?|products?|items?)",
-            r"(?:showing|found)\s*(\d+)",
-            r"(\d+)\s*(?:träffar|produkter)",  # Swedish
-            r"(\d+)\s*(?:Ergebnisse|Produkte)",  # German
-        ]
-        
-        text = soup.get_text()[:5000]
-        for pattern in patterns:
-            match = re.search(pattern, text, re.IGNORECASE)
-            if match:
-                try:
-                    return int(match.group(1))
-                except:
-                    pass
-        
-        return 0
-    
+            url = search_url.format(quote_plus(query))
+            page, shot = self._load_page(url, screenshot_name or query)
+            outcome = fetcher._analyse_page(url=url, query=query, max_results=self.max_results,
+                                            allow_llm=False, **page)
+            status = {
+                FetchStatus.OK: ProbeStatus.SUCCESS,
+                FetchStatus.ZERO_CONFIRMED: ProbeStatus.SUCCESS,
+                FetchStatus.ZERO_UNVERIFIED: ProbeStatus.ERROR,
+                FetchStatus.PARTIAL: ProbeStatus.PARTIAL,
+                FetchStatus.REDIRECT: ProbeStatus.REDIRECT,
+                FetchStatus.BLOCKED: ProbeStatus.BLOCKED,
+                FetchStatus.TIMEOUT: ProbeStatus.TIMEOUT,
+                FetchStatus.ERROR: ProbeStatus.ERROR,
+            }[FetchStatus(outcome.status)]
+            count = outcome.total_hits if outcome.total_hits is not None else len(outcome.results)
+            results = [SearchResult(rank=r.rank, title=r.title, price=r.price, url=r.url) for r in outcome.results]
+            value = (results, count, status, outcome.evidence or None, shot)
+            logger.info("%r -> %s: %s hits (%s)", query, status.value, count, outcome.evidence)
+            self._query_cache[key] = value
+            return value
+        except Exception as exc:
+            logger.exception("Search fetch failed for %r", query)
+            return [], 0, ProbeStatus.ERROR, str(exc), None
+
     def scan(
         self,
         url: str,
@@ -451,10 +244,19 @@ class Scanner:
             ScanResult with all probe results and scores
         """
         start_time = time.time()
+        self._query_cache.clear()
+        self.output_dir = self._output_root / urlparse(url).netloc
+        self.output_dir.mkdir(parents=True, exist_ok=True)
         
         # Discover site info
         logger.info("Discovering site: %s", url)
-        site_info, nav_categories, featured_items, brands = self._discover_site(url)
+        try:
+            site_info, nav_categories, featured_items, brands = self._discover_site(url)
+        except Exception as exc:
+            logger.error("Discovery failed: %s", exc)
+            return ScanResult(site=SiteInfo(domain=urlparse(url).netloc.removeprefix("www."),
+                              vertical=vertical, country=country), error_message=str(exc),
+                              execution_time_ms=int((time.time() - start_time) * 1000))
         site_info.vertical = vertical
         site_info.country = country
         
@@ -485,6 +287,10 @@ class Scanner:
         
         # 1. Control query (must pass for other probes to be meaningful)
         control_query, control_rationale = generator.generate_control_query()
+        if not control_query:
+            result.error_message = "No catalog category available for a positive control"
+            result.execution_time_ms = int((time.time() - start_time) * 1000)
+            return result
         if control_query:
             probe = self._run_probe(
                 ProbeType.CONTROL_QUERY,
@@ -495,7 +301,7 @@ class Scanner:
             scored = score_probe_result(probe)
             probes.append(scored)
             
-            if scored.score in (ProbeScore.BLOCKED, ProbeScore.ERROR):
+            if scored.score != ProbeScore.PASS:
                 result.blocked = scored.score == ProbeScore.BLOCKED
                 result.error_message = probe.error_message
                 result.probes = probes
@@ -503,6 +309,9 @@ class Scanner:
                 result.llm_cost_usd = generator.llm_cost_usd
                 return score_scan(result)
         
+        if control_query and probe.results:
+            generator.featured_items = [r.title for r in probe.results]
+
         # 2. Exact product name
         product_query, product_rationale = generator.generate_exact_product_name()
         if product_query:
@@ -688,6 +497,12 @@ class Scanner:
             search_url_template, query, screenshot_name
         )
         
+        if control_query:
+            control = self._query_cache.get((search_url_template, control_query))
+            if control and control[2] not in (ProbeStatus.SUCCESS, ProbeStatus.REDIRECT):
+                status = ProbeStatus.ERROR
+                error = f"Control fetch was {control[2].value}; comparison is inconclusive"
+                control_count = None
         return ProbeResult(
             probe_type=probe_type,
             query=query,
@@ -716,47 +531,9 @@ class Scanner:
 
 
 def main():
-    """CLI entry point for single-site scanning."""
-    import argparse
-    
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s - %(levelname)s - %(message)s"
-    )
-    
-    parser = argparse.ArgumentParser(description="Scan a site's search capability")
-    parser.add_argument("url", help="Site URL to scan")
-    parser.add_argument("--vertical", help="Industry vertical (e.g., fashion, outdoor)")
-    parser.add_argument("--country", help="Country code (e.g., US, UK, DE)")
-    parser.add_argument("--output-dir", default="scanner_output", help="Output directory")
-    parser.add_argument("--no-screenshots", action="store_true", help="Disable screenshots")
-    parser.add_argument("--headless", action="store_true", help="Run browser headless")
-    
-    args = parser.parse_args()
-    
-    with Scanner(
-        output_dir=args.output_dir,
-        take_screenshots=not args.no_screenshots,
-        headed=not args.headless,
-    ) as scanner:
-        result = scanner.scan(
-            args.url,
-            vertical=args.vertical,
-            country=args.country,
-        )
-        
-        path = scanner.save_result(result)
-        
-        print(f"\n{'='*60}")
-        print(f"Scan Results for {result.site.domain}")
-        print(f"{'='*60}")
-        print(f"Overall Score: {result.overall_score.value}")
-        print(f"LLM Cost: ${result.llm_cost_usd:.4f}")
-        print(f"Execution Time: {result.execution_time_ms}ms")
-        print(f"\nCapabilities:")
-        for cap in result.capabilities:
-            print(f"  {cap.capability}: {cap.score.value} ({cap.summary})")
-        print(f"\nResults saved to: {path}")
+    """Backward-compatible module entry point."""
+    from .cli import main as cli_main
+    cli_main()
 
 
 if __name__ == "__main__":

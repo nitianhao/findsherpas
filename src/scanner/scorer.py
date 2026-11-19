@@ -55,7 +55,7 @@ def score_probe_result(probe: ProbeResult) -> ScoredProbe:
         return ScoredProbe(
             probe=probe,
             score=ProbeScore.ERROR,
-            score_reason="Request timed out"
+            score_reason="Request timeout"
         )
     
     if probe.status == ProbeStatus.ERROR:
@@ -80,6 +80,13 @@ def score_probe_result(probe: ProbeResult) -> ScoredProbe:
             score_reason="Search redirected to different page"
         )
     
+    if probe.status == ProbeStatus.PARTIAL:
+        return ScoredProbe(probe=probe, score=ProbeScore.ERROR,
+                           score_reason="Incomplete extraction; cannot judge search behavior")
+    if probe.control_query and not probe.control_count:
+        return ScoredProbe(probe=probe, score=ProbeScore.ERROR,
+                           score_reason="No positive control; comparison is inconclusive")
+
     # Score based on probe type
     scorer = PROBE_SCORERS.get(probe.probe_type, _score_generic)
     return scorer(probe)
@@ -280,15 +287,6 @@ def _score_constraint(probe: ProbeResult) -> ScoredProbe:
             score=ProbeScore.FAIL,
             score_reason=f"No results for constraint query: '{probe.query}'"
         )
-    
-    # Constraint queries often return fewer results, which is correct behavior
-    if probe.control_count and probe.control_count > 0:
-        if probe.result_count <= probe.control_count:
-            return ScoredProbe(
-                probe=probe,
-                score=ProbeScore.PASS,
-                score_reason=f"Constraint narrowed results: {probe.result_count} vs {probe.control_count}"
-            )
     
     if probe.result_count > 0:
         return ScoredProbe(
@@ -520,7 +518,12 @@ def score_scan(scan_result: ScanResult) -> ScanResult:
         scan_result.overall_score = ProbeScore.ERROR
     else:
         cap_scores = [c.score for c in capabilities]
-        if ProbeScore.FAIL in cap_scores:
+        if ProbeScore.BLOCKED in cap_scores:
+            scan_result.overall_score = ProbeScore.BLOCKED
+            scan_result.blocked = True
+        elif ProbeScore.ERROR in cap_scores:
+            scan_result.overall_score = ProbeScore.ERROR
+        elif ProbeScore.FAIL in cap_scores:
             scan_result.overall_score = ProbeScore.FAIL
         elif ProbeScore.PARTIAL in cap_scores:
             scan_result.overall_score = ProbeScore.PARTIAL

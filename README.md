@@ -72,37 +72,31 @@ The lead-gen system lives under `src/scanner/` (Python) and several new Next.js 
 ### Scanner Setup (Mac local)
 
 ```bash
-cd src/scanner
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-playwright install chromium
+cd src
+python3 -m venv scanner/.venv
+scanner/.venv/bin/pip install -r scanner/requirements.txt -r audit/requirements.txt
+scanner/.venv/bin/playwright install chromium
+cd ..
 ```
 
-Environment variables (`.env` in `src/scanner/`):
+Run from the repository root (headed Chromium is the default):
 
-```env
-INSTANT_APP_ID=...           # InstantDB app ID
-INSTANT_ADMIN_TOKEN=...      # InstantDB admin token
-```
-
-### Scanner CLI
-
-**Single scan:**
 ```bash
-python -m scanner.cli https://example-store.com --vertical fashion --country DK --headed
+./scripts/scan-search https://example-store.com --vertical fashion --country DK --headed
+./scripts/scan-search --batch domains.csv --output-dir ../scanner_output --headed
 ```
 
-**Batch mode (CSV):**
-```bash
-python -m scanner.cli --batch domains.csv --output-dir ./output --headed
-```
+CSV format: `domain,vertical,country`. Relative output paths resolve from `src/`.
+Batch runs resume from `batch_results.json`. Results, rendered HTML and screenshots
+are local files. The CLI never writes to InstantDB or sends email.
 
-CSV format: `domain,vertical,country`
+Optional API keys for query generation can be read with `--env-file /path/to/.env`.
+Without an API key, LLM-generated probes are omitted. Never commit dotenv files.
 
-**Push to InstantDB:**
+Equivalent module invocation from `src/`:
+
 ```bash
-python -m scanner.cli https://example-store.com --push-benchmark
+PYTHONPATH="$PWD:$PWD/audit" scanner/.venv/bin/python -m scanner.cli https://example-store.com --headed
 ```
 
 ### Teardown Worker
@@ -132,9 +126,8 @@ Flags:
 
 **Python scanner tests:**
 ```bash
-cd src/scanner
-source .venv/bin/activate
-pytest test_scorer.py -v
+cd src
+PYTHONPATH="$PWD:$PWD/audit" scanner/.venv/bin/python -m pytest scanner -v
 ```
 
 **TypeScript API tests:**

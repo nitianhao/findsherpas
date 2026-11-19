@@ -10,3 +10,6 @@ playwright>=1.40.0
 
 # InstantDB sync
 httpx>=0.27.0
+
+# Regression tests
+pytest>=8.0.0

@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 from html import unescape
 from pathlib import Path
 from typing import Callable, Optional
-from urllib.parse import parse_qs, quote_plus, unquote, urlparse
+from urllib.parse import urljoin, parse_qs, quote_plus, unquote, urlparse
 
 import anthropic
 import requests
@@ -291,8 +291,12 @@ def _detect_block(
         return None
     # A captcha widget on a near-empty page. Not checked in the early in-browser pass:
     # an unrendered SPA shell that merely loads reCAPTCHA for a newsletter form is small too.
-    if small and ("g-recaptcha" in lower or "h-captcha" in lower or "hcaptcha.com" in lower
-                  or "recaptcha/api" in lower):
+    rendered_shopify_results = soup.select_one(
+        'main [data-testid^="product-card-"] a[href*="/products/"]'
+    ) is not None
+    if small and not has_zero_marker and not rendered_shopify_results and (
+            "g-recaptcha" in lower or "h-captcha" in lower or "hcaptcha.com" in lower
+            or "recaptcha/api" in lower):
         return "captcha"
     if status_code is not None and (status_code in _BLOCK_HTTP_CODES or 500 <= status_code < 600):
         if small or _count_product_links(soup) < 3:
@@ -606,7 +610,7 @@ _HOST_PROFILES: dict[str, HostProfile] = {
     ),
     "cotswoldoutdoor.com": HostProfile(
         pdp_path=r"^/p/",
-        ready_selector='div[data-testid="product-tile-vertical"]',
+        ready_selector='div[data-testid="product-tile-vertical"], div[data-testid="product-tile"]',
         ready_no_results=r"\bno results\b|\b0\s+results\b|couldn'?t find",
         ready_timeout_ms=20000,
     ),
@@ -665,6 +669,8 @@ def _main_text(soup: BeautifulSoup, limit: int = 20000) -> str:
 def _hit_count_candidates(soup: BeautifulSoup) -> list[tuple[str, bool]]:
     """(text, weak_words_allowed) pairs, most authoritative first."""
     out: list[tuple[str, bool]] = []
+    for el in soup.select('[data-search-results-count]'):
+        out.append((el.get_text(" ", strip=True), True))
     if soup.title:
         out.append((soup.title.get_text(" ", strip=True), True))
     for el in soup.find_all(["h1", "h2", "h3"]):
@@ -940,7 +946,7 @@ def _prefers_chromium(url: str) -> bool:
 # results). An EMPTY extraction is NOT proof of zero results by itself: it becomes
 # ZERO_CONFIRMED only when page_state() sees a no-results marker, otherwise
 # ZERO_UNVERIFIED — a render lapse or a bot wall looks exactly like an empty grid.
-_DEDICATED_EXTRACTOR_HOSTS = ("groupon", "lyko.com", "ahlens.se", "bergzeit.de", "avoca.com", "huckberry.com", "manufactum.de", "imerco.dk", "baechli-bergsport.ch", "cotswoldoutdoor.com", "zalando.", "douglas.de", "colourpop.com")
+_DEDICATED_EXTRACTOR_HOSTS = ("allbirds.com", "groupon", "lyko.com", "ahlens.se", "bergzeit.de", "avoca.com", "huckberry.com", "manufactum.de", "imerco.dk", "baechli-bergsport.ch", "cotswoldoutdoor.com", "zalando.", "douglas.de", "colourpop.com")
 
 
 # Hosts known to send a query that uniquely matches one product straight to that
@@ -1194,6 +1200,9 @@ def _try_site_specific(soup: BeautifulSoup, url: str, max_results: int) -> list[
     """Site-specific extraction for known sites. Returns empty list if no match."""
     host = urlparse(url).netloc.lower()
 
+    if "allbirds.com" in host:
+        return _try_allbirds(soup, max_results)
+
     if "colourpop.com" in host:
         return _try_colourpop(soup, max_results)
 
@@ -1234,6 +1243,26 @@ def _try_site_specific(soup: BeautifulSoup, url: str, max_results: int) -> list[
         return _try_douglas(soup, max_results)
 
     return []
+
+
+def _try_allbirds(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
+    """Use catalog titles, excluding badges, size pickers and quick-add controls."""
+    results = []
+    seen = set()
+    for card in soup.select('main [data-testid^="product-card-"]'):
+        link = card.select_one('a[data-analytics-main-search-card-name][href*="/products/"]')
+        if not link:
+            continue
+        href = link.get("href", "")
+        if href in seen:
+            continue
+        seen.add(href)
+        title = link.get("data-analytics-main-search-card-name", "")
+        results.append(SearchResult(rank=len(results) + 1, title=title,
+                       url=urljoin("https://www.allbirds.com", href), price=_extract_price(card)))
+        if len(results) >= max_results:
+            break
+    return results
 
 
 def _try_colourpop(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
@@ -1855,7 +1884,7 @@ def _try_cotswoldoutdoor(soup: BeautifulSoup, max_results: int) -> list[SearchRe
     results: list[SearchResult] = []
     seen: set[str] = set()
 
-    for card in soup.select('div[data-testid="product-tile-vertical"]'):
+    for card in soup.select('div[data-testid="product-tile-vertical"], div[data-testid="product-tile"]'):
         link = card.select_one('a[href*="/p/"]')
         if not link:
             continue
@@ -1864,15 +1893,15 @@ def _try_cotswoldoutdoor(soup: BeautifulSoup, max_results: int) -> list[SearchRe
             continue
         seen.add(href)
 
-        title_el = card.select_one('div[class*="product-tile__title"]')
+        title_el = card.select_one('[data-testid="product-tile-title-header"], div[class*="product-tile__title"]')
         title = title_el.get_text(" ", strip=True) if title_el else link.get("href", "")
         if not title:
             continue
 
         price = None
-        price_el = card.select_one('span[data-testid="product-tile-vertical-price-actual-price"]')
+        price_el = card.select_one('span[data-testid="product-tile-vertical-price-actual-price"], span[data-testid="product-tile-price-actual-price"]')
         if not price_el:
-            price_el = card.select_one('span[data-testid="product-tile-vertical-price-previous-price"]')
+            price_el = card.select_one('span[data-testid="product-tile-vertical-price-previous-price"], span[data-testid="product-tile-price-previous-price"]')
         if price_el:
             price = price_el.get_text(" ", strip=True)
 
@@ -2123,6 +2152,13 @@ def _try_bergzeit(soup: BeautifulSoup, max_results: int) -> list[SearchResult]:
         title = re.sub(r"(?:\b\d{1,3}(?:[.,]\d)?\b\s*\|?\s*){2,}$", "", title)
         title = re.sub(r"\s*\|\s*", " | ", title)
         title = re.sub(r"\s{2,}", " ", title).strip(" |+")
+
+        # Stable catalog fields avoid sale badges, color counts and size pickers.
+        name_el = link.select_one(".product-box-content__name")
+        brand_el = link.select_one(".product-box-content__brand")
+        if name_el:
+            brand = brand_el.get_text(" ", strip=True).split("|")[0].strip() if brand_el else ""
+            title = f"{brand} {name_el.get_text(' ', strip=True)}".strip()
 
         if not title or len(title) < 4:
             continue

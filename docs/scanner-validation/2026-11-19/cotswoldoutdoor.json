@@ -1,0 +1,1507 @@
+{
+  "site": {
+    "domain": "cotswoldoutdoor.com",
+    "site_name": "Cotswold Outdoor",
+    "search_url_template": "https://www.cotswoldoutdoor.com/lister.html?q={}",
+    "primary_language": "English",
+    "vertical": "outdoor",
+    "country": "GB"
+  },
+  "scanned_at": "2026-11-19T20:23:22.451204+00:00",
+  "probes": [
+    {
+      "probe": {
+        "probe_type": "control_query",
+        "query": "Jackets",
+        "control_query": null,
+        "status": "redirect",
+        "result_count": 1036,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Patagonia Mens Boulder Fork Rain Jacket",
+            "price": "£187.50",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+          },
+          {
+            "rank": 2,
+            "title": "Patagonia Mens Fitz Roy Down Hoody Jacket",
+            "price": "£400.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-fitz-roy-down-hoody-jacket-B12ABB0461.html?colour=5545"
+          },
+          {
+            "rank": 3,
+            "title": "Patagonia Womens Boulder Fork Rain Jacket",
+            "price": "£174.89",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+          },
+          {
+            "rank": 4,
+            "title": "Patagonia Mens Down Sweater Hooded Jacket",
+            "price": "£247.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-down-sweater-hooded-jacket-B12ACA0036.html?colour=124"
+          },
+          {
+            "rank": 5,
+            "title": "Rab Mens Microlight Alpine Jacket",
+            "price": "£165.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=123"
+          },
+          {
+            "rank": 6,
+            "title": "The North Face Mens Quest Jacket",
+            "price": "£80.50",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+          },
+          {
+            "rank": 7,
+            "title": "Rab Mens Microlight Alpine Jacket",
+            "price": "£165.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=107"
+          },
+          {
+            "rank": 8,
+            "title": "Rab Mens Downpour Mountain Jacket",
+            "price": "£160.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+          },
+          {
+            "rank": 9,
+            "title": "The North Face Mens Quest Triclimate 3-In-1 Jacket",
+            "price": "£161.25",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-triclimate-3-in-1-jacket-B12AA90129.html?colour=124"
+          },
+          {
+            "rank": 10,
+            "title": "The North Face Mens Millerton Insulated Jacket",
+            "price": "£136.00",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-millerton-insulated-jacket-B12ACB0013.html?colour=15449"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/control_query_Jackets.png",
+        "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/jackets.html?q=Jackets&sred=1",
+        "execution_time_ms": 8589,
+        "rationale": "Control query: 'Jackets' should return results"
+      },
+      "score": "pass",
+      "score_reason": "Control query returned 1036 results"
+    },
+    {
+      "probe": {
+        "probe_type": "exact_product_name",
+        "query": "Patagonia Mens Boulder Fork Rain Jacket",
+        "control_query": null,
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Patagonia Mens Boulder Fork Rain Jacket",
+            "price": "£187.50",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+          },
+          {
+            "rank": 2,
+            "title": "Patagonia Mens Boulder Fork Rain Jacket",
+            "price": "£187.50",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=107"
+          },
+          {
+            "rank": 3,
+            "title": "Patagonia Mens Insulated Boulder Fork Rain Jacket",
+            "price": "£310.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-insulated-boulder-fork-rain-jacket-B12ABB0460.html?colour=132"
+          },
+          {
+            "rank": 4,
+            "title": "Patagonia Mens Boulder Fork Rain Jacket",
+            "price": "£200.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=143"
+          },
+          {
+            "rank": 5,
+            "title": "Patagonia Mens Boulder Fork Rain Jacket",
+            "price": "£199.89",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=103"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/exact_product_name_Patagonia_Mens_Bould.png",
+        "error_message": null,
+        "execution_time_ms": 7791,
+        "rationale": "Testing exact match for product: Patagonia Mens Boulder Fork Rain Jacket"
+      },
+      "score": "pass",
+      "score_reason": "Top result matches query (6/6 words)"
+    },
+    {
+      "probe": {
+        "probe_type": "category_term",
+        "query": "Jackets",
+        "control_query": null,
+        "status": "redirect",
+        "result_count": 1036,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Patagonia Mens Boulder Fork Rain Jacket",
+            "price": "£187.50",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+          },
+          {
+            "rank": 2,
+            "title": "Patagonia Mens Fitz Roy Down Hoody Jacket",
+            "price": "£400.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-fitz-roy-down-hoody-jacket-B12ABB0461.html?colour=5545"
+          },
+          {
+            "rank": 3,
+            "title": "Patagonia Womens Boulder Fork Rain Jacket",
+            "price": "£174.89",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+          },
+          {
+            "rank": 4,
+            "title": "Patagonia Mens Down Sweater Hooded Jacket",
+            "price": "£247.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-down-sweater-hooded-jacket-B12ACA0036.html?colour=124"
+          },
+          {
+            "rank": 5,
+            "title": "Rab Mens Microlight Alpine Jacket",
+            "price": "£165.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=123"
+          },
+          {
+            "rank": 6,
+            "title": "The North Face Mens Quest Jacket",
+            "price": "£80.50",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+          },
+          {
+            "rank": 7,
+            "title": "Rab Mens Microlight Alpine Jacket",
+            "price": "£165.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=107"
+          },
+          {
+            "rank": 8,
+            "title": "Rab Mens Downpour Mountain Jacket",
+            "price": "£160.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+          },
+          {
+            "rank": 9,
+            "title": "The North Face Mens Quest Triclimate 3-In-1 Jacket",
+            "price": "£161.25",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-triclimate-3-in-1-jacket-B12AA90129.html?colour=124"
+          },
+          {
+            "rank": 10,
+            "title": "The North Face Mens Millerton Insulated Jacket",
+            "price": "£136.00",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-millerton-insulated-jacket-B12ACB0013.html?colour=15449"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/control_query_Jackets.png",
+        "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/jackets.html?q=Jackets&sred=1",
+        "execution_time_ms": 0,
+        "rationale": "Testing category search for: Jackets"
+      },
+      "score": "pass",
+      "score_reason": "Good result count (1036) for category search"
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "Jacekts",
+        "control_query": "Jackets",
+        "status": "redirect",
+        "result_count": 1036,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Patagonia Mens Boulder Fork Rain Jacket",
+            "price": "£187.50",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+          },
+          {
+            "rank": 2,
+            "title": "Patagonia Mens Fitz Roy Down Hoody Jacket",
+            "price": "£400.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-fitz-roy-down-hoody-jacket-B12ABB0461.html?colour=5545"
+          },
+          {
+            "rank": 3,
+            "title": "Patagonia Womens Boulder Fork Rain Jacket",
+            "price": "£174.89",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+          },
+          {
+            "rank": 4,
+            "title": "Patagonia Mens Down Sweater Hooded Jacket",
+            "price": "£247.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-down-sweater-hooded-jacket-B12ACA0036.html?colour=124"
+          },
+          {
+            "rank": 5,
+            "title": "Rab Mens Microlight Alpine Jacket",
+            "price": "£165.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=123"
+          },
+          {
+            "rank": 6,
+            "title": "The North Face Mens Quest Jacket",
+            "price": "£80.50",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+          },
+          {
+            "rank": 7,
+            "title": "Rab Mens Microlight Alpine Jacket",
+            "price": "£165.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=107"
+          },
+          {
+            "rank": 8,
+            "title": "Rab Mens Downpour Mountain Jacket",
+            "price": "£160.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+          },
+          {
+            "rank": 9,
+            "title": "The North Face Mens Quest Triclimate 3-In-1 Jacket",
+            "price": "£161.25",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-triclimate-3-in-1-jacket-B12AA90129.html?colour=124"
+          },
+          {
+            "rank": 10,
+            "title": "The North Face Mens Millerton Insulated Jacket",
+            "price": "£136.00",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-millerton-insulated-jacket-B12ACB0013.html?colour=15449"
+          }
+        ],
+        "control_count": 1036,
+        "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/typo_Jacekts.png",
+        "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/jackets.html?q=Jacekts&sred=1",
+        "execution_time_ms": 9779,
+        "rationale": "Typo tolerance: 'Jacekts' (should match 'Jackets')"
+      },
+      "score": "pass",
+      "score_reason": "Good typo tolerance: 1036 vs 1036 results"
+    },
+    {
+      "probe": {
+        "probe_type": "synonym",
+        "query": "waterproof jacket",
+        "control_query": "rain jacket",
+        "status": "redirect",
+        "result_count": 328,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Patagonia Mens Boulder Fork Rain Jacket",
+            "price": "£187.50",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+          },
+          {
+            "rank": 2,
+            "title": "Patagonia Womens Boulder Fork Rain Jacket",
+            "price": "£174.89",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+          },
+          {
+            "rank": 3,
+            "title": "Rab Womens Microlight Shield Waterproof Jacket",
+            "price": "£240.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-womens-microlight-shield-waterproof-jacket-B11ABA0025.html?colour=12278"
+          },
+          {
+            "rank": 4,
+            "title": "Rab Womens Downpour Mountain Jacket",
+            "price": "£160.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-womens-downpour-mountain-jacket-B11AE90516.html?colour=111"
+          },
+          {
+            "rank": 5,
+            "title": "Ayacucho Mens Adventure II 3-In-1 Jacket",
+            "price": "£98.00",
+            "url": "https://www.cotswoldoutdoor.com/p/ayacucho-mens-adventure-ii-3-in-1-jacket-B12AA90123.html?colour=16313"
+          },
+          {
+            "rank": 6,
+            "title": "Patagonia Mens Insulated Boulder Fork Rain Jacket",
+            "price": "£310.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-insulated-boulder-fork-rain-jacket-B12ABB0460.html?colour=132"
+          },
+          {
+            "rank": 7,
+            "title": "Rab Womens Downpour Jacket",
+            "price": "£120.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-womens-downpour-jacket-B11AE90515.html?colour=30876"
+          },
+          {
+            "rank": 8,
+            "title": "The North Face Womens Carto Mono Triclimate 3-in-1 Hooded Jacket",
+            "price": "£280.00",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-womens-carto-mono-triclimate-3-in-1-hooded-jacket-B11AA90107.html?colour=12355"
+          },
+          {
+            "rank": 9,
+            "title": "The North Face Mens Quest Jacket",
+            "price": "£80.50",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+          },
+          {
+            "rank": 10,
+            "title": "Rab Mens Downpour Mountain Jacket",
+            "price": "£160.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+          }
+        ],
+        "control_count": 328,
+        "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/synonym_waterproof_jacket.png",
+        "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/waterproofs/waterproof-jackets.html?q=waterproof%20jacket&sred=1",
+        "execution_time_ms": 9091,
+        "rationale": "Synonym test: 'waterproof jacket' should match like 'rain jacket'"
+      },
+      "score": "pass",
+      "score_reason": "Good synonym handling: 328 vs 328"
+    },
+    {
+      "probe": {
+        "probe_type": "plural_singular",
+        "query": "Jacket",
+        "control_query": "Jackets",
+        "status": "redirect",
+        "result_count": 1036,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Patagonia Mens Boulder Fork Rain Jacket",
+            "price": "£187.50",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+          },
+          {
+            "rank": 2,
+            "title": "Patagonia Mens Fitz Roy Down Hoody Jacket",
+            "price": "£400.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-fitz-roy-down-hoody-jacket-B12ABB0461.html?colour=5545"
+          },
+          {
+            "rank": 3,
+            "title": "Patagonia Womens Boulder Fork Rain Jacket",
+            "price": "£174.89",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+          },
+          {
+            "rank": 4,
+            "title": "Patagonia Mens Down Sweater Hooded Jacket",
+            "price": "£247.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-down-sweater-hooded-jacket-B12ACA0036.html?colour=124"
+          },
+          {
+            "rank": 5,
+            "title": "Rab Mens Microlight Alpine Jacket",
+            "price": "£165.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=123"
+          },
+          {
+            "rank": 6,
+            "title": "The North Face Mens Quest Jacket",
+            "price": "£80.50",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+          },
+          {
+            "rank": 7,
+            "title": "Rab Mens Microlight Alpine Jacket",
+            "price": "£165.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=107"
+          },
+          {
+            "rank": 8,
+            "title": "Rab Mens Downpour Mountain Jacket",
+            "price": "£160.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+          },
+          {
+            "rank": 9,
+            "title": "The North Face Mens Quest Triclimate 3-In-1 Jacket",
+            "price": "£161.25",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-triclimate-3-in-1-jacket-B12AA90129.html?colour=124"
+          },
+          {
+            "rank": 10,
+            "title": "The North Face Mens Millerton Insulated Jacket",
+            "price": "£136.00",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-millerton-insulated-jacket-B12ACB0013.html?colour=15449"
+          }
+        ],
+        "control_count": 1036,
+        "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/plural_singular_Jacket.png",
+        "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/jackets.html?q=Jacket&sred=1",
+        "execution_time_ms": 15511,
+        "rationale": "Plural/singular: 'Jacket' (singular of 'Jackets')"
+      },
+      "score": "pass",
+      "score_reason": "Good plural/singular handling: 1036 vs 1036"
+    },
+    {
+      "probe": {
+        "probe_type": "diacritics",
+        "query": "Fjallraven",
+        "control_query": "Fjällräven",
+        "status": "redirect",
+        "result_count": 214,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Fjallraven Mens Nuuk Parka",
+            "price": "£495.00",
+            "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-nuuk-parka-B12ACB0157.html?colour=124"
+          },
+          {
+            "rank": 2,
+            "title": "Fjallraven Mens Vidda Pro Trousers",
+            "price": "£144.50",
+            "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-vidda-pro-trousers-B12CEH0496.html?colour=124"
+          },
+          {
+            "rank": 3,
+            "title": "Fjallraven Mens Skogsö Padded Jacket",
+            "price": "£310.25",
+            "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-skogsoe-padded-jacket-A1414201.html?colour=38878"
+          },
+          {
+            "rank": 4,
+            "title": "Fjallraven Mens Greenland Winter Jacket",
+            "price": "£260.00",
+            "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-greenland-winter-jacket-A1414203.html?colour=145"
+          },
+          {
+            "rank": 5,
+            "title": "Fjallraven Mens Vardag G-1000 Pile Jacket",
+            "price": "£252.00",
+            "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-vardag-g-1000-pile-jacket-B12ACB0481.html?colour=108"
+          },
+          {
+            "rank": 6,
+            "title": "Fjallraven Mens Vardag Anorak",
+            "price": "£144.00",
+            "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-vardag-anorak-A1414258.html?colour=144"
+          },
+          {
+            "rank": 7,
+            "title": "Fjallraven Mens Vardag Anorak",
+            "price": "£161.89",
+            "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-vardag-anorak-A1414258.html?colour=123"
+          },
+          {
+            "rank": 8,
+            "title": "Fjallraven Womens Kaipak Curved Trousers",
+            "price": "£127.50",
+            "url": "https://www.cotswoldoutdoor.com/p/fjallraven-womens-kaipak-curved-trousers-A4B15997.html?colour=104"
+          },
+          {
+            "rank": 9,
+            "title": "Fjallraven Womens Kiruna Padded Parka",
+            "price": "£288.00",
+            "url": "https://www.cotswoldoutdoor.com/p/fjallraven-womens-kiruna-padded-parka-A4414465.html?colour=107"
+          },
+          {
+            "rank": 10,
+            "title": "Fjallraven Unisex Vardag Beanie",
+            "price": "£28.00",
+            "url": "https://www.cotswoldoutdoor.com/p/fjallraven-unisex-vardag-beanie-B13JFC0456.html?colour=124"
+          }
+        ],
+        "control_count": 214,
+        "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/diacritics_Fjallraven.png",
+        "error_message": "search redirected to https://www.cotswoldoutdoor.com/brands/fjallraven.html?q=Fjallraven&sred=1",
+        "execution_time_ms": 10540,
+        "rationale": "Diacritics: 'Fjallraven' should match 'Fjällräven'"
+      },
+      "score": "pass",
+      "score_reason": "Good diacritics handling: 214 vs 214"
+    },
+    {
+      "probe": {
+        "probe_type": "compound_split",
+        "query": "rain jacket",
+        "control_query": "Raincoat",
+        "status": "redirect",
+        "result_count": 328,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Patagonia Mens Boulder Fork Rain Jacket",
+            "price": "£187.50",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+          },
+          {
+            "rank": 2,
+            "title": "Patagonia Womens Boulder Fork Rain Jacket",
+            "price": "£174.89",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+          },
+          {
+            "rank": 3,
+            "title": "Rab Womens Microlight Shield Waterproof Jacket",
+            "price": "£240.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-womens-microlight-shield-waterproof-jacket-B11ABA0025.html?colour=12278"
+          },
+          {
+            "rank": 4,
+            "title": "Rab Womens Downpour Mountain Jacket",
+            "price": "£160.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-womens-downpour-mountain-jacket-B11AE90516.html?colour=111"
+          },
+          {
+            "rank": 5,
+            "title": "Ayacucho Mens Adventure II 3-In-1 Jacket",
+            "price": "£98.00",
+            "url": "https://www.cotswoldoutdoor.com/p/ayacucho-mens-adventure-ii-3-in-1-jacket-B12AA90123.html?colour=16313"
+          },
+          {
+            "rank": 6,
+            "title": "Patagonia Mens Insulated Boulder Fork Rain Jacket",
+            "price": "£310.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-insulated-boulder-fork-rain-jacket-B12ABB0460.html?colour=132"
+          },
+          {
+            "rank": 7,
+            "title": "Rab Womens Downpour Jacket",
+            "price": "£120.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-womens-downpour-jacket-B11AE90515.html?colour=30876"
+          },
+          {
+            "rank": 8,
+            "title": "The North Face Womens Carto Mono Triclimate 3-in-1 Hooded Jacket",
+            "price": "£280.00",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-womens-carto-mono-triclimate-3-in-1-hooded-jacket-B11AA90107.html?colour=12355"
+          },
+          {
+            "rank": 9,
+            "title": "The North Face Mens Quest Jacket",
+            "price": "£80.50",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+          },
+          {
+            "rank": 10,
+            "title": "Rab Mens Downpour Mountain Jacket",
+            "price": "£160.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+          }
+        ],
+        "control_count": 1040,
+        "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/rain_jacket.png",
+        "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/waterproofs/waterproof-jackets.html?q=rain%20jacket&sred=1",
+        "execution_time_ms": 0,
+        "rationale": "Compound split: 'rain jacket' should match 'Raincoat'"
+      },
+      "score": "partial",
+      "score_reason": "Partial compound split: 328 vs 1040"
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "Vests&Gilets",
+        "control_query": "Vests & Gilets",
+        "status": "success",
+        "result_count": 89,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Regatta Kids Pack-It III Jacket",
+            "price": "£10.89",
+            "url": "https://www.cotswoldoutdoor.com/p/regatta-kids-pack-it-iii-jacket-C1124980.html?colour=124"
+          },
+          {
+            "rank": 2,
+            "title": "Fjallraven Womens Abisko Padded Vest",
+            "price": "£170.00",
+            "url": "https://www.cotswoldoutdoor.com/p/fjallraven-womens-abisko-padded-vest-A4224172.html?colour=104"
+          },
+          {
+            "rank": 3,
+            "title": "The North Face Mens Terra Peak Gilet Vest",
+            "price": "£116.25",
+            "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-terra-peak-gilet-vest-B12AH90193.html?colour=124"
+          },
+          {
+            "rank": 4,
+            "title": "Rab Mens Xenair Vest",
+            "price": "£112.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-xenair-vest-B12AH90142.html?colour=124"
+          },
+          {
+            "rank": 5,
+            "title": "Patagonia Mens Better Sweater Vest",
+            "price": "£96.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-better-sweater-vest-B12BEB0080.html?colour=124"
+          },
+          {
+            "rank": 6,
+            "title": "Ayacucho Womens Texel Sherpa Vest",
+            "price": "£31.50",
+            "url": "https://www.cotswoldoutdoor.com/p/ayacucho-womens-texel-sherpa-vest-B11AH90133.html?colour=21183"
+          },
+          {
+            "rank": 7,
+            "title": "Rab Mens Microlight Vest",
+            "price": "£120.00",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-vest-B12AH90227.html?colour=124"
+          },
+          {
+            "rank": 8,
+            "title": "Rab Womens Microlight Vest",
+            "price": "£112.50",
+            "url": "https://www.cotswoldoutdoor.com/p/rab-womens-microlight-vest-B11AH90176.html?colour=124"
+          },
+          {
+            "rank": 9,
+            "title": "Ayacucho Womens Adventure Lightweight Down Gilet II",
+            "price": "£63.75",
+            "url": "https://www.cotswoldoutdoor.com/p/ayacucho-womens-adventure-lightweight-down-gilet-ii-B11ABB0426.html?colour=17230"
+          },
+          {
+            "rank": 10,
+            "title": "Patagonia Womens Classic Retro-X Vest",
+            "price": "£144.00",
+            "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-classic-retro-x-vest-B11AH90162.html?colour=5940"
+          }
+        ],
+        "control_count": 89,
+        "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/merged_words_Vests_Gilets.png",
+        "error_message": null,
+        "execution_time_ms": 9118,
+        "rationale": "Merged words: 'Vests&Gilets' should match 'Vests & Gilets'"
+      },
+      "score": "pass",
+      "score_reason": "Good merged words handling: 89 vs 89"
+    },
+    {
+      "probe": {
+        "probe_type": "constraint_query",
+        "query": "black Jackets under 50",
+        "control_query": "Jackets",
+        "status": "success",
+        "result_count": 2,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Regatta Kids Pack-It III Jacket",
+            "price": "£10.89",
+            "url": "https://www.cotswoldoutdoor.com/p/regatta-kids-pack-it-iii-jacket-C1124980.html?colour=124"
+          },
+          {
+            "rank": 2,
+            "title": "Under Armour Womens Armour Fleece Pro Half Zip Top",
+            "price": "£29.89",
+            "url": "https://www.cotswoldoutdoor.com/p/under-armour-womens-armour-fleece-pro-half-zip-top-C11AD90075.html?colour=108"
+          }
+        ],
+        "control_count": 1036,
+        "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/constraint_query_black_Jackets_under_.png",
+        "error_message": null,
+        "execution_time_ms": 7876,
+        "rationale": "Constraint query: 'black Jackets under 50' should return relevant Jackets"
+      },
+      "score": "partial",
+      "score_reason": "Results found (2) but could not verify constraint applied"
+    },
+    {
+      "probe": {
+        "probe_type": "zero_result_check",
+        "query": "xyzqwk12345nonsense",
+        "control_query": null,
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/zero_result_check_xyzqwk12345nonsense.png",
+        "error_message": "search redirected to the no-results page /lister/no-results.html",
+        "execution_time_ms": 8085,
+        "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results"
+      },
+      "score": "pass",
+      "score_reason": "Correctly returned zero results for gibberish query"
+    }
+  ],
+  "capabilities": [
+    {
+      "capability": "basic_retrieval",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "control_query",
+            "query": "Jackets",
+            "control_query": null,
+            "status": "redirect",
+            "result_count": 1036,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Patagonia Mens Boulder Fork Rain Jacket",
+                "price": "£187.50",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+              },
+              {
+                "rank": 2,
+                "title": "Patagonia Mens Fitz Roy Down Hoody Jacket",
+                "price": "£400.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-fitz-roy-down-hoody-jacket-B12ABB0461.html?colour=5545"
+              },
+              {
+                "rank": 3,
+                "title": "Patagonia Womens Boulder Fork Rain Jacket",
+                "price": "£174.89",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+              },
+              {
+                "rank": 4,
+                "title": "Patagonia Mens Down Sweater Hooded Jacket",
+                "price": "£247.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-down-sweater-hooded-jacket-B12ACA0036.html?colour=124"
+              },
+              {
+                "rank": 5,
+                "title": "Rab Mens Microlight Alpine Jacket",
+                "price": "£165.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=123"
+              },
+              {
+                "rank": 6,
+                "title": "The North Face Mens Quest Jacket",
+                "price": "£80.50",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+              },
+              {
+                "rank": 7,
+                "title": "Rab Mens Microlight Alpine Jacket",
+                "price": "£165.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=107"
+              },
+              {
+                "rank": 8,
+                "title": "Rab Mens Downpour Mountain Jacket",
+                "price": "£160.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+              },
+              {
+                "rank": 9,
+                "title": "The North Face Mens Quest Triclimate 3-In-1 Jacket",
+                "price": "£161.25",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-triclimate-3-in-1-jacket-B12AA90129.html?colour=124"
+              },
+              {
+                "rank": 10,
+                "title": "The North Face Mens Millerton Insulated Jacket",
+                "price": "£136.00",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-millerton-insulated-jacket-B12ACB0013.html?colour=15449"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/control_query_Jackets.png",
+            "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/jackets.html?q=Jackets&sred=1",
+            "execution_time_ms": 8589,
+            "rationale": "Control query: 'Jackets' should return results"
+          },
+          "score": "pass",
+          "score_reason": "Control query returned 1036 results"
+        },
+        {
+          "probe": {
+            "probe_type": "exact_product_name",
+            "query": "Patagonia Mens Boulder Fork Rain Jacket",
+            "control_query": null,
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Patagonia Mens Boulder Fork Rain Jacket",
+                "price": "£187.50",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+              },
+              {
+                "rank": 2,
+                "title": "Patagonia Mens Boulder Fork Rain Jacket",
+                "price": "£187.50",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=107"
+              },
+              {
+                "rank": 3,
+                "title": "Patagonia Mens Insulated Boulder Fork Rain Jacket",
+                "price": "£310.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-insulated-boulder-fork-rain-jacket-B12ABB0460.html?colour=132"
+              },
+              {
+                "rank": 4,
+                "title": "Patagonia Mens Boulder Fork Rain Jacket",
+                "price": "£200.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=143"
+              },
+              {
+                "rank": 5,
+                "title": "Patagonia Mens Boulder Fork Rain Jacket",
+                "price": "£199.89",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=103"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/exact_product_name_Patagonia_Mens_Bould.png",
+            "error_message": null,
+            "execution_time_ms": 7791,
+            "rationale": "Testing exact match for product: Patagonia Mens Boulder Fork Rain Jacket"
+          },
+          "score": "pass",
+          "score_reason": "Top result matches query (6/6 words)"
+        },
+        {
+          "probe": {
+            "probe_type": "category_term",
+            "query": "Jackets",
+            "control_query": null,
+            "status": "redirect",
+            "result_count": 1036,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Patagonia Mens Boulder Fork Rain Jacket",
+                "price": "£187.50",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+              },
+              {
+                "rank": 2,
+                "title": "Patagonia Mens Fitz Roy Down Hoody Jacket",
+                "price": "£400.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-fitz-roy-down-hoody-jacket-B12ABB0461.html?colour=5545"
+              },
+              {
+                "rank": 3,
+                "title": "Patagonia Womens Boulder Fork Rain Jacket",
+                "price": "£174.89",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+              },
+              {
+                "rank": 4,
+                "title": "Patagonia Mens Down Sweater Hooded Jacket",
+                "price": "£247.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-down-sweater-hooded-jacket-B12ACA0036.html?colour=124"
+              },
+              {
+                "rank": 5,
+                "title": "Rab Mens Microlight Alpine Jacket",
+                "price": "£165.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=123"
+              },
+              {
+                "rank": 6,
+                "title": "The North Face Mens Quest Jacket",
+                "price": "£80.50",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+              },
+              {
+                "rank": 7,
+                "title": "Rab Mens Microlight Alpine Jacket",
+                "price": "£165.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=107"
+              },
+              {
+                "rank": 8,
+                "title": "Rab Mens Downpour Mountain Jacket",
+                "price": "£160.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+              },
+              {
+                "rank": 9,
+                "title": "The North Face Mens Quest Triclimate 3-In-1 Jacket",
+                "price": "£161.25",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-triclimate-3-in-1-jacket-B12AA90129.html?colour=124"
+              },
+              {
+                "rank": 10,
+                "title": "The North Face Mens Millerton Insulated Jacket",
+                "price": "£136.00",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-millerton-insulated-jacket-B12ACB0013.html?colour=15449"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/control_query_Jackets.png",
+            "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/jackets.html?q=Jackets&sred=1",
+            "execution_time_ms": 0,
+            "rationale": "Testing category search for: Jackets"
+          },
+          "score": "pass",
+          "score_reason": "Good result count (1036) for category search"
+        }
+      ],
+      "summary": "3/3 passed"
+    },
+    {
+      "capability": "typo_tolerance",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "Jacekts",
+            "control_query": "Jackets",
+            "status": "redirect",
+            "result_count": 1036,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Patagonia Mens Boulder Fork Rain Jacket",
+                "price": "£187.50",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+              },
+              {
+                "rank": 2,
+                "title": "Patagonia Mens Fitz Roy Down Hoody Jacket",
+                "price": "£400.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-fitz-roy-down-hoody-jacket-B12ABB0461.html?colour=5545"
+              },
+              {
+                "rank": 3,
+                "title": "Patagonia Womens Boulder Fork Rain Jacket",
+                "price": "£174.89",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+              },
+              {
+                "rank": 4,
+                "title": "Patagonia Mens Down Sweater Hooded Jacket",
+                "price": "£247.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-down-sweater-hooded-jacket-B12ACA0036.html?colour=124"
+              },
+              {
+                "rank": 5,
+                "title": "Rab Mens Microlight Alpine Jacket",
+                "price": "£165.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=123"
+              },
+              {
+                "rank": 6,
+                "title": "The North Face Mens Quest Jacket",
+                "price": "£80.50",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+              },
+              {
+                "rank": 7,
+                "title": "Rab Mens Microlight Alpine Jacket",
+                "price": "£165.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=107"
+              },
+              {
+                "rank": 8,
+                "title": "Rab Mens Downpour Mountain Jacket",
+                "price": "£160.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+              },
+              {
+                "rank": 9,
+                "title": "The North Face Mens Quest Triclimate 3-In-1 Jacket",
+                "price": "£161.25",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-triclimate-3-in-1-jacket-B12AA90129.html?colour=124"
+              },
+              {
+                "rank": 10,
+                "title": "The North Face Mens Millerton Insulated Jacket",
+                "price": "£136.00",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-millerton-insulated-jacket-B12ACB0013.html?colour=15449"
+              }
+            ],
+            "control_count": 1036,
+            "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/typo_Jacekts.png",
+            "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/jackets.html?q=Jacekts&sred=1",
+            "execution_time_ms": 9779,
+            "rationale": "Typo tolerance: 'Jacekts' (should match 'Jackets')"
+          },
+          "score": "pass",
+          "score_reason": "Good typo tolerance: 1036 vs 1036 results"
+        }
+      ],
+      "summary": "1/1 passed"
+    },
+    {
+      "capability": "language_understanding",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "synonym",
+            "query": "waterproof jacket",
+            "control_query": "rain jacket",
+            "status": "redirect",
+            "result_count": 328,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Patagonia Mens Boulder Fork Rain Jacket",
+                "price": "£187.50",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+              },
+              {
+                "rank": 2,
+                "title": "Patagonia Womens Boulder Fork Rain Jacket",
+                "price": "£174.89",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+              },
+              {
+                "rank": 3,
+                "title": "Rab Womens Microlight Shield Waterproof Jacket",
+                "price": "£240.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-womens-microlight-shield-waterproof-jacket-B11ABA0025.html?colour=12278"
+              },
+              {
+                "rank": 4,
+                "title": "Rab Womens Downpour Mountain Jacket",
+                "price": "£160.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-womens-downpour-mountain-jacket-B11AE90516.html?colour=111"
+              },
+              {
+                "rank": 5,
+                "title": "Ayacucho Mens Adventure II 3-In-1 Jacket",
+                "price": "£98.00",
+                "url": "https://www.cotswoldoutdoor.com/p/ayacucho-mens-adventure-ii-3-in-1-jacket-B12AA90123.html?colour=16313"
+              },
+              {
+                "rank": 6,
+                "title": "Patagonia Mens Insulated Boulder Fork Rain Jacket",
+                "price": "£310.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-insulated-boulder-fork-rain-jacket-B12ABB0460.html?colour=132"
+              },
+              {
+                "rank": 7,
+                "title": "Rab Womens Downpour Jacket",
+                "price": "£120.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-womens-downpour-jacket-B11AE90515.html?colour=30876"
+              },
+              {
+                "rank": 8,
+                "title": "The North Face Womens Carto Mono Triclimate 3-in-1 Hooded Jacket",
+                "price": "£280.00",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-womens-carto-mono-triclimate-3-in-1-hooded-jacket-B11AA90107.html?colour=12355"
+              },
+              {
+                "rank": 9,
+                "title": "The North Face Mens Quest Jacket",
+                "price": "£80.50",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+              },
+              {
+                "rank": 10,
+                "title": "Rab Mens Downpour Mountain Jacket",
+                "price": "£160.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+              }
+            ],
+            "control_count": 328,
+            "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/synonym_waterproof_jacket.png",
+            "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/waterproofs/waterproof-jackets.html?q=waterproof%20jacket&sred=1",
+            "execution_time_ms": 9091,
+            "rationale": "Synonym test: 'waterproof jacket' should match like 'rain jacket'"
+          },
+          "score": "pass",
+          "score_reason": "Good synonym handling: 328 vs 328"
+        },
+        {
+          "probe": {
+            "probe_type": "plural_singular",
+            "query": "Jacket",
+            "control_query": "Jackets",
+            "status": "redirect",
+            "result_count": 1036,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Patagonia Mens Boulder Fork Rain Jacket",
+                "price": "£187.50",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+              },
+              {
+                "rank": 2,
+                "title": "Patagonia Mens Fitz Roy Down Hoody Jacket",
+                "price": "£400.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-fitz-roy-down-hoody-jacket-B12ABB0461.html?colour=5545"
+              },
+              {
+                "rank": 3,
+                "title": "Patagonia Womens Boulder Fork Rain Jacket",
+                "price": "£174.89",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+              },
+              {
+                "rank": 4,
+                "title": "Patagonia Mens Down Sweater Hooded Jacket",
+                "price": "£247.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-down-sweater-hooded-jacket-B12ACA0036.html?colour=124"
+              },
+              {
+                "rank": 5,
+                "title": "Rab Mens Microlight Alpine Jacket",
+                "price": "£165.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=123"
+              },
+              {
+                "rank": 6,
+                "title": "The North Face Mens Quest Jacket",
+                "price": "£80.50",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+              },
+              {
+                "rank": 7,
+                "title": "Rab Mens Microlight Alpine Jacket",
+                "price": "£165.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-alpine-jacket-B12ABB0446.html?colour=107"
+              },
+              {
+                "rank": 8,
+                "title": "Rab Mens Downpour Mountain Jacket",
+                "price": "£160.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+              },
+              {
+                "rank": 9,
+                "title": "The North Face Mens Quest Triclimate 3-In-1 Jacket",
+                "price": "£161.25",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-triclimate-3-in-1-jacket-B12AA90129.html?colour=124"
+              },
+              {
+                "rank": 10,
+                "title": "The North Face Mens Millerton Insulated Jacket",
+                "price": "£136.00",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-millerton-insulated-jacket-B12ACB0013.html?colour=15449"
+              }
+            ],
+            "control_count": 1036,
+            "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/plural_singular_Jacket.png",
+            "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/jackets.html?q=Jacket&sred=1",
+            "execution_time_ms": 15511,
+            "rationale": "Plural/singular: 'Jacket' (singular of 'Jackets')"
+          },
+          "score": "pass",
+          "score_reason": "Good plural/singular handling: 1036 vs 1036"
+        }
+      ],
+      "summary": "2/2 passed"
+    },
+    {
+      "capability": "locale_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "diacritics",
+            "query": "Fjallraven",
+            "control_query": "Fjällräven",
+            "status": "redirect",
+            "result_count": 214,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Fjallraven Mens Nuuk Parka",
+                "price": "£495.00",
+                "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-nuuk-parka-B12ACB0157.html?colour=124"
+              },
+              {
+                "rank": 2,
+                "title": "Fjallraven Mens Vidda Pro Trousers",
+                "price": "£144.50",
+                "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-vidda-pro-trousers-B12CEH0496.html?colour=124"
+              },
+              {
+                "rank": 3,
+                "title": "Fjallraven Mens Skogsö Padded Jacket",
+                "price": "£310.25",
+                "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-skogsoe-padded-jacket-A1414201.html?colour=38878"
+              },
+              {
+                "rank": 4,
+                "title": "Fjallraven Mens Greenland Winter Jacket",
+                "price": "£260.00",
+                "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-greenland-winter-jacket-A1414203.html?colour=145"
+              },
+              {
+                "rank": 5,
+                "title": "Fjallraven Mens Vardag G-1000 Pile Jacket",
+                "price": "£252.00",
+                "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-vardag-g-1000-pile-jacket-B12ACB0481.html?colour=108"
+              },
+              {
+                "rank": 6,
+                "title": "Fjallraven Mens Vardag Anorak",
+                "price": "£144.00",
+                "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-vardag-anorak-A1414258.html?colour=144"
+              },
+              {
+                "rank": 7,
+                "title": "Fjallraven Mens Vardag Anorak",
+                "price": "£161.89",
+                "url": "https://www.cotswoldoutdoor.com/p/fjallraven-mens-vardag-anorak-A1414258.html?colour=123"
+              },
+              {
+                "rank": 8,
+                "title": "Fjallraven Womens Kaipak Curved Trousers",
+                "price": "£127.50",
+                "url": "https://www.cotswoldoutdoor.com/p/fjallraven-womens-kaipak-curved-trousers-A4B15997.html?colour=104"
+              },
+              {
+                "rank": 9,
+                "title": "Fjallraven Womens Kiruna Padded Parka",
+                "price": "£288.00",
+                "url": "https://www.cotswoldoutdoor.com/p/fjallraven-womens-kiruna-padded-parka-A4414465.html?colour=107"
+              },
+              {
+                "rank": 10,
+                "title": "Fjallraven Unisex Vardag Beanie",
+                "price": "£28.00",
+                "url": "https://www.cotswoldoutdoor.com/p/fjallraven-unisex-vardag-beanie-B13JFC0456.html?colour=124"
+              }
+            ],
+            "control_count": 214,
+            "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/diacritics_Fjallraven.png",
+            "error_message": "search redirected to https://www.cotswoldoutdoor.com/brands/fjallraven.html?q=Fjallraven&sred=1",
+            "execution_time_ms": 10540,
+            "rationale": "Diacritics: 'Fjallraven' should match 'Fjällräven'"
+          },
+          "score": "pass",
+          "score_reason": "Good diacritics handling: 214 vs 214"
+        }
+      ],
+      "summary": "1/1 passed"
+    },
+    {
+      "capability": "compound_handling",
+      "score": "partial",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "compound_split",
+            "query": "rain jacket",
+            "control_query": "Raincoat",
+            "status": "redirect",
+            "result_count": 328,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Patagonia Mens Boulder Fork Rain Jacket",
+                "price": "£187.50",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-boulder-fork-rain-jacket-B12AE90462.html?colour=3391"
+              },
+              {
+                "rank": 2,
+                "title": "Patagonia Womens Boulder Fork Rain Jacket",
+                "price": "£174.89",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-boulder-fork-rain-jacket-B11AE90489.html?colour=161"
+              },
+              {
+                "rank": 3,
+                "title": "Rab Womens Microlight Shield Waterproof Jacket",
+                "price": "£240.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-womens-microlight-shield-waterproof-jacket-B11ABA0025.html?colour=12278"
+              },
+              {
+                "rank": 4,
+                "title": "Rab Womens Downpour Mountain Jacket",
+                "price": "£160.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-womens-downpour-mountain-jacket-B11AE90516.html?colour=111"
+              },
+              {
+                "rank": 5,
+                "title": "Ayacucho Mens Adventure II 3-In-1 Jacket",
+                "price": "£98.00",
+                "url": "https://www.cotswoldoutdoor.com/p/ayacucho-mens-adventure-ii-3-in-1-jacket-B12AA90123.html?colour=16313"
+              },
+              {
+                "rank": 6,
+                "title": "Patagonia Mens Insulated Boulder Fork Rain Jacket",
+                "price": "£310.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-insulated-boulder-fork-rain-jacket-B12ABB0460.html?colour=132"
+              },
+              {
+                "rank": 7,
+                "title": "Rab Womens Downpour Jacket",
+                "price": "£120.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-womens-downpour-jacket-B11AE90515.html?colour=30876"
+              },
+              {
+                "rank": 8,
+                "title": "The North Face Womens Carto Mono Triclimate 3-in-1 Hooded Jacket",
+                "price": "£280.00",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-womens-carto-mono-triclimate-3-in-1-hooded-jacket-B11AA90107.html?colour=12355"
+              },
+              {
+                "rank": 9,
+                "title": "The North Face Mens Quest Jacket",
+                "price": "£80.50",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-quest-jacket-B12AE90630.html?colour=124"
+              },
+              {
+                "rank": 10,
+                "title": "Rab Mens Downpour Mountain Jacket",
+                "price": "£160.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-downpour-mountain-jacket-B12AE90517.html?colour=124"
+              }
+            ],
+            "control_count": 1040,
+            "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/rain_jacket.png",
+            "error_message": "search redirected to https://www.cotswoldoutdoor.com/c/clothing/waterproofs/waterproof-jackets.html?q=rain%20jacket&sred=1",
+            "execution_time_ms": 0,
+            "rationale": "Compound split: 'rain jacket' should match 'Raincoat'"
+          },
+          "score": "partial",
+          "score_reason": "Partial compound split: 328 vs 1040"
+        },
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "Vests&Gilets",
+            "control_query": "Vests & Gilets",
+            "status": "success",
+            "result_count": 89,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Regatta Kids Pack-It III Jacket",
+                "price": "£10.89",
+                "url": "https://www.cotswoldoutdoor.com/p/regatta-kids-pack-it-iii-jacket-C1124980.html?colour=124"
+              },
+              {
+                "rank": 2,
+                "title": "Fjallraven Womens Abisko Padded Vest",
+                "price": "£170.00",
+                "url": "https://www.cotswoldoutdoor.com/p/fjallraven-womens-abisko-padded-vest-A4224172.html?colour=104"
+              },
+              {
+                "rank": 3,
+                "title": "The North Face Mens Terra Peak Gilet Vest",
+                "price": "£116.25",
+                "url": "https://www.cotswoldoutdoor.com/p/the-north-face-mens-terra-peak-gilet-vest-B12AH90193.html?colour=124"
+              },
+              {
+                "rank": 4,
+                "title": "Rab Mens Xenair Vest",
+                "price": "£112.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-xenair-vest-B12AH90142.html?colour=124"
+              },
+              {
+                "rank": 5,
+                "title": "Patagonia Mens Better Sweater Vest",
+                "price": "£96.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-mens-better-sweater-vest-B12BEB0080.html?colour=124"
+              },
+              {
+                "rank": 6,
+                "title": "Ayacucho Womens Texel Sherpa Vest",
+                "price": "£31.50",
+                "url": "https://www.cotswoldoutdoor.com/p/ayacucho-womens-texel-sherpa-vest-B11AH90133.html?colour=21183"
+              },
+              {
+                "rank": 7,
+                "title": "Rab Mens Microlight Vest",
+                "price": "£120.00",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-mens-microlight-vest-B12AH90227.html?colour=124"
+              },
+              {
+                "rank": 8,
+                "title": "Rab Womens Microlight Vest",
+                "price": "£112.50",
+                "url": "https://www.cotswoldoutdoor.com/p/rab-womens-microlight-vest-B11AH90176.html?colour=124"
+              },
+              {
+                "rank": 9,
+                "title": "Ayacucho Womens Adventure Lightweight Down Gilet II",
+                "price": "£63.75",
+                "url": "https://www.cotswoldoutdoor.com/p/ayacucho-womens-adventure-lightweight-down-gilet-ii-B11ABB0426.html?colour=17230"
+              },
+              {
+                "rank": 10,
+                "title": "Patagonia Womens Classic Retro-X Vest",
+                "price": "£144.00",
+                "url": "https://www.cotswoldoutdoor.com/p/patagonia-womens-classic-retro-x-vest-B11AH90162.html?colour=5940"
+              }
+            ],
+            "control_count": 89,
+            "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/merged_words_Vests_Gilets.png",
+            "error_message": null,
+            "execution_time_ms": 9118,
+            "rationale": "Merged words: 'Vests&Gilets' should match 'Vests & Gilets'"
+          },
+          "score": "pass",
+          "score_reason": "Good merged words handling: 89 vs 89"
+        }
+      ],
+      "summary": "1/2 passed, 1 partial"
+    },
+    {
+      "capability": "constraint_handling",
+      "score": "partial",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "constraint_query",
+            "query": "black Jackets under 50",
+            "control_query": "Jackets",
+            "status": "success",
+            "result_count": 2,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Regatta Kids Pack-It III Jacket",
+                "price": "£10.89",
+                "url": "https://www.cotswoldoutdoor.com/p/regatta-kids-pack-it-iii-jacket-C1124980.html?colour=124"
+              },
+              {
+                "rank": 2,
+                "title": "Under Armour Womens Armour Fleece Pro Half Zip Top",
+                "price": "£29.89",
+                "url": "https://www.cotswoldoutdoor.com/p/under-armour-womens-armour-fleece-pro-half-zip-top-C11AD90075.html?colour=108"
+              }
+            ],
+            "control_count": 1036,
+            "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/constraint_query_black_Jackets_under_.png",
+            "error_message": null,
+            "execution_time_ms": 7876,
+            "rationale": "Constraint query: 'black Jackets under 50' should return relevant Jackets"
+          },
+          "score": "partial",
+          "score_reason": "Results found (2) but could not verify constraint applied"
+        }
+      ],
+      "summary": "0/1 passed, 1 partial"
+    },
+    {
+      "capability": "zero_result_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "zero_result_check",
+            "query": "xyzqwk12345nonsense",
+            "control_query": null,
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/final/www.cotswoldoutdoor.com/zero_result_check_xyzqwk12345nonsense.png",
+            "error_message": "search redirected to the no-results page /lister/no-results.html",
+            "execution_time_ms": 8085,
+            "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results"
+          },
+          "score": "pass",
+          "score_reason": "Correctly returned zero results for gibberish query"
+        }
+      ],
+      "summary": "1/1 passed"
+    }
+  ],
+  "overall_score": "partial",
+  "blocked": false,
+  "llm_cost_usd": 0.000842,
+  "execution_time_ms": 134170,
+  "error_message": null
+}
