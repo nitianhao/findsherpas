@@ -140,6 +140,51 @@ const _schema = i.schema({
       is_completed: i.number().indexed(),
       created_at: i.string(),
     }),
+    // Benchmark scans for the /benchmark page (anonymized)
+    benchmarkScans: i.entity({
+      vertical: i.string().indexed(),
+      country: i.string().indexed(),
+      overall_score: i.string().indexed(),
+      capabilities: i.string(),
+      proof_cards: i.string(),
+      probe_count: i.number(),
+      llm_cost_usd: i.number().optional(),
+      execution_time_ms: i.number().optional(),
+      scanned_at: i.string(),
+      created_at: i.string(),
+    }),
+    // Audit/teardown requests from the public form
+    auditRequests: i.entity({
+      store_url: i.string(),
+      email: i.string().indexed(),
+      name: i.string(),
+      problem_queries: i.string().optional(),
+      status: i.string().indexed(),
+      rate_limit_key: i.string().indexed(),
+      created_at: i.string(),
+      updated_at: i.string().optional(),
+      scanned_at: i.string().optional(),
+      approved_at: i.string().optional(),
+      sent_at: i.string().optional(),
+      rejected_at: i.string().optional(),
+      report_slug: i.string().optional(),
+      notes: i.string().optional(),
+    }),
+    // Full teardown scan results (linked to auditRequests)
+    teardownScans: i.entity({
+      domain: i.string().indexed(),
+      site_name: i.string().optional(),
+      vertical: i.string().optional(),
+      country: i.string().optional(),
+      overall_score: i.string(),
+      capabilities: i.string(),
+      probes: i.string(),
+      blocked: i.number().optional(),
+      llm_cost_usd: i.number().optional(),
+      execution_time_ms: i.number().optional(),
+      scanned_at: i.string(),
+      created_at: i.string(),
+    }),
   },
   links: {
     contactCompany: {
@@ -189,6 +234,19 @@ const _schema = i.schema({
     variantSequence: {
       forward: { on: 'experimentVariants', has: 'one', label: 'sequence' },
       reverse: { on: 'sequences', has: 'many', label: 'variants' },
+    },
+    // Audit request links
+    auditRequestCompany: {
+      forward: { on: 'auditRequests', has: 'one', label: 'company' },
+      reverse: { on: 'companies', has: 'many', label: 'auditRequests' },
+    },
+    auditRequestContact: {
+      forward: { on: 'auditRequests', has: 'one', label: 'contact' },
+      reverse: { on: 'contacts', has: 'many', label: 'auditRequests' },
+    },
+    teardownScanRequest: {
+      forward: { on: 'teardownScans', has: 'one', label: 'auditRequest' },
+      reverse: { on: 'auditRequests', has: 'one', label: 'teardownScan' },
     },
   },
 });

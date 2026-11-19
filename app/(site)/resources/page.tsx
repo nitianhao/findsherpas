@@ -58,6 +58,20 @@ export default async function ResourcesPage() {
         </div>
       </section>
 
+      <section className="fs-section fs-resource-benchmark" aria-labelledby="resource-benchmark-title">
+        <h2 id="resource-benchmark-title">See how stores compare.</h2>
+        <div className="fs-prose">
+          <p>
+            Anonymous benchmark data showing how ecommerce search performs
+            across verticals and markets. See which capabilities most sites
+            handle well—and where they commonly fail.
+          </p>
+          <Link href="/benchmark" className="fs-text-link">
+            View the benchmark <ArrowUpRight size={20} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
+
       <section className="fs-section fs-resource-frameworks" aria-labelledby="frameworks-title">
         <div className="fs-section-heading">
           <h2 id="frameworks-title">Frameworks for diagnosing search.</h2>

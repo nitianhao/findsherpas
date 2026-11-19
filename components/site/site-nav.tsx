@@ -12,7 +12,7 @@ const links = [
   {
     href: "/resources",
     label: "Resources",
-    matches: ["/resources", "/blog", "/search-check", "/frameworks"],
+    matches: ["/resources", "/blog", "/search-check", "/frameworks", "/benchmark"],
   },
   { href: "/about", label: "About" },
 ];

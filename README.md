@@ -57,6 +57,91 @@ The audit pipeline is a self-contained project under `src/audit/`. Its documenta
 - Report publishing, CRM writeback, and report presentation rules: `src/audit/docs/REPORT-PUBLISHING-AND-CRM-NOTES.md`
 - Pipeline run instructions and architecture: see `src/audit/` (skill: `synthetic-search-audit`)
 
+## Lead-gen: Search Scanner & Teardown Flow
+
+The lead-gen system lives under `src/scanner/` (Python) and several new Next.js routes/components.
+
+### Components
+
+1. **Scanner** (`src/scanner/`) — Python module with deterministic search probes
+2. **Benchmark page** (`/benchmark`) — anonymized capability stats across stores
+3. **Teardown request** (`/teardown`) — public form to request a free search teardown
+4. **CRM queue** (`/crm/audit-requests`) — approve/reject teardown requests, trigger emails
+5. **Teardown report** (`/teardown-report/[slug]`) — private noindexed report page
+
+### Scanner Setup (Mac local)
+
+```bash
+cd src/scanner
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+playwright install chromium
+```
+
+Environment variables (`.env` in `src/scanner/`):
+
+```env
+INSTANT_APP_ID=...           # InstantDB app ID
+INSTANT_ADMIN_TOKEN=...      # InstantDB admin token
+```
+
+### Scanner CLI
+
+**Single scan:**
+```bash
+python -m scanner.cli https://example-store.com --vertical fashion --country DK --headed
+```
+
+**Batch mode (CSV):**
+```bash
+python -m scanner.cli --batch domains.csv --output-dir ./output --headed
+```
+
+CSV format: `domain,vertical,country`
+
+**Push to InstantDB:**
+```bash
+python -m scanner.cli https://example-store.com --push-benchmark
+```
+
+### Teardown Worker
+
+Polls InstantDB for new teardown requests and runs scans:
+
+```bash
+python -m scanner.worker --interval 60 --headed --output-dir ./output
+```
+
+Flags:
+- `--once` — process pending requests and exit
+- `--dry-run` — don't push results to InstantDB
+- `--headless` — run browser headless (default: headed)
+
+### Teardown Flow
+
+1. User submits form at `/teardown` with store URL and email
+2. Rate limiting checks (2 per domain/week, 5 per email domain/day)
+3. Request saved to InstantDB (`auditRequests`) with status `new`
+4. CRM shows request at `/crm/audit-requests`
+5. Worker picks up request, runs scanner, pushes results, sets status `ready_for_review`
+6. CRM reviewer can approve (sends email via Resend) or reject
+7. Approved requests link to private report at `/teardown-report/[slug]`
+
+### Tests
+
+**Python scanner tests:**
+```bash
+cd src/scanner
+source .venv/bin/activate
+pytest test_scorer.py -v
+```
+
+**TypeScript API tests:**
+```bash
+npm test -- lib/teardown-route.test.ts
+```
+
 ## Stripe (Checkout)
 - API route: `app/api/stripe/checkout/route.ts`
 - Success page: `app/stripe/success`
