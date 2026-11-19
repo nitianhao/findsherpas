@@ -1,0 +1,2456 @@
+[
+  {
+    "target_capacity_ml": "1600",
+    "original_query": "kande 1600 ml",
+    "expanded_query": "kande 1,6 liter",
+    "retrieval_queries": [
+      "kande 1600 ml",
+      "kande 1,6 liter"
+    ],
+    "input_records": 32,
+    "eligible_records": [
+      {
+        "product_id": "100396731",
+        "name": "Legio Nova Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Legio Nova <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Hvid",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Hvid"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100401235",
+        "name": "Bernadotte Serveringskande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/georg-jensen-bernadotte-serveringskande-1-6-liter-krombelagt-staal?id=100401235",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Bernadotte Serverings<em>kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Krombe",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Krombelagt stål",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Krombelagt stål"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100423451",
+        "name": "Sky Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/georg-jensen-sky-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100423451",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Sky <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankp",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankpoleret rust",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankpoleret rustfrit stål"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100030058",
+        "name": "Glaskande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/melitta-glaskande-1-6-liter-glas?id=100030058",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Glas<em>kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100357957",
+        "name": "Blå Mega Riflet Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/royal-copenhagen-blaa-mega-riflet-kande-1-6-liter-porcelaen-koboltblaa-hvid?id=100357957",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Blå Mega Riflet <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porce",
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porcelæn - Kobol",
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porcelæn - Koboltblå/hvid"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100349959",
+        "name": "Hvid Riflet Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/royal-copenhagen-hvid-riflet-kande-1-6-liter-porcelaen-hvid?id=100349959",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Hvid Riflet <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porce",
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porcelæn - Hvid",
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porcelæn - Hvid"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100455248",
+        "name": "Koppel Kande",
+        "capacity_text": "1,6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/georg-jensen-koppel-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100455248",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Koppel <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankp",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankpoleret rust",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankpoleret rustfrit stål"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100030047",
+        "name": "Glaskande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/melitta-glaskande-1-6-liter-glas-sort?id=100030047",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Glas<em>kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas -",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Sort",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Sort"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441781",
+        "name": "Pip Chique Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-pip-chique-kande-1-6-liter-glas-pink?id=100441781",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Pip Chique <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas -",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Pink",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Pink"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441783",
+        "name": "Pip Chique Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-pip-chique-kande-1-6-liter-glas-yellow?id=100441783",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Pip Chique <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas -",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Yellow",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Yellow"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441780",
+        "name": "Pip Chique Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-pip-chique-kande-1-6-liter-glas-green?id=100441780",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Pip Chique <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas -",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Green",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Green"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441779",
+        "name": "La Majorelle Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-la-majorelle-kande-1-6-liter-glas?id=100441779",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "La Majorelle <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100477709",
+        "name": "Bamboo Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/sambonet-bamboo-kande-1-6-liter?id=100477709",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Bamboo <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em>",
+              "<em>1</em>,<em>6</em> <em>liter</em>",
+              "<em>1</em>,<em>6</em> <em>liter</em>"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441643",
+        "name": "Flower Festival Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-flower-festival-tekande-1-6-liter-porcelaen-pink?id=100441643",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Pink",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Pink"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441591",
+        "name": "Berry Blues Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-berry-blues-tekande-1-6-liter-porcelaen-blaa?id=100441591",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>Liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>Liter</em> - Porcelæn - Blå",
+              "<em>1</em>,<em>6</em> <em>Liter</em> - Porcelæn - Blå"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100400914",
+        "name": "Blushing Bird Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-blushing-bird-tekande-1-6-liter-porcelaen-hvid?id=100400914",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Hvid",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Hvid"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100416826",
+        "name": "Blushing Bird Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-blushing-bird-tekande-1-6-liter-porcelaen-khaki?id=100416826",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Khaki",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Khaki"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441653",
+        "name": "Lily & Lotus Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-lily-lotus-tekande-1-6-liter-porcelaen-lilac?id=100441653",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Lilac",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Lilac"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100400915",
+        "name": "Blushing Bird Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-blushing-bird-tekande-1-6-liter-porcelaen-blaa?id=100400915",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blå",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blå"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100466313",
+        "name": "Lily & Lotus Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-lily-lotus-tekande-1-6-liter-porcelaen-gul?id=100466313",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Gul",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Gul"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441642",
+        "name": "Flower Festival Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-flower-festival-tekande-1-6-liter-porcelaen-blue?id=100441642",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blue",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blue"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100471150",
+        "name": "Blooming Tales Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-blooming-tales-tekande-1-6-liter-porcelaen-roed?id=100471150",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Rød",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Rød"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441640",
+        "name": "Jolie Tepotte",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-jolie-tepotte-1-6-liter-porcelaen-dots-gold?id=100441640",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Dots G",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Dots Gold"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100466266",
+        "name": "Blooming Tales Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-blooming-tales-tekande-1-6-liter-porcelaen-blaa?id=100466266",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blå",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blå"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441641",
+        "name": "La Majorelle Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-la-majorelle-tekande-1-6-liter-porcelaen-pink?id=100441641",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Pink",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Pink"
+            ]
+          }
+        ]
+      }
+    ],
+    "unknown_records": [],
+    "rejected_wrong_capacity": 7,
+    "scope": "Local replay of captured candidate records, not a production change or complete catalog recall measurement."
+  },
+  {
+    "target_capacity_ml": "1600",
+    "original_query": "kande 1600 ml",
+    "expanded_query": "kande 1,6 liter",
+    "retrieval_queries": [
+      "kande 1600 ml",
+      "kande 1,6 liter",
+      "kande 160 cl",
+      "kande 16 dl"
+    ],
+    "input_records": 33,
+    "eligible_records": [
+      {
+        "product_id": "100396731",
+        "name": "Legio Nova Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Legio Nova <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Hvid",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Hvid"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100401235",
+        "name": "Bernadotte Serveringskande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/georg-jensen-bernadotte-serveringskande-1-6-liter-krombelagt-staal?id=100401235",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Bernadotte Serverings<em>kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Krombe",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Krombelagt stål",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Krombelagt stål"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100423451",
+        "name": "Sky Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/georg-jensen-sky-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100423451",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Sky <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankp",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankpoleret rust",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankpoleret rustfrit stål"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100030058",
+        "name": "Glaskande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/melitta-glaskande-1-6-liter-glas?id=100030058",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Glas<em>kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100357957",
+        "name": "Blå Mega Riflet Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/royal-copenhagen-blaa-mega-riflet-kande-1-6-liter-porcelaen-koboltblaa-hvid?id=100357957",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Blå Mega Riflet <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porce",
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porcelæn - Kobol",
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porcelæn - Koboltblå/hvid"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100349959",
+        "name": "Hvid Riflet Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/royal-copenhagen-hvid-riflet-kande-1-6-liter-porcelaen-hvid?id=100349959",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Hvid Riflet <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porce",
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porcelæn - Hvid",
+              "<em>1</em>,<em>6</em> <em>liter</em>  - Porcelæn - Hvid"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100455248",
+        "name": "Koppel Kande",
+        "capacity_text": "1,6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/georg-jensen-koppel-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100455248",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Koppel <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankp",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankpoleret rust",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Blankpoleret rustfrit stål"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100030047",
+        "name": "Glaskande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/melitta-glaskande-1-6-liter-glas-sort?id=100030047",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Glas<em>kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas -",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Sort",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Sort"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441781",
+        "name": "Pip Chique Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-pip-chique-kande-1-6-liter-glas-pink?id=100441781",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Pip Chique <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas -",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Pink",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Pink"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441783",
+        "name": "Pip Chique Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-pip-chique-kande-1-6-liter-glas-yellow?id=100441783",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Pip Chique <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas -",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Yellow",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Yellow"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441780",
+        "name": "Pip Chique Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-pip-chique-kande-1-6-liter-glas-green?id=100441780",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Pip Chique <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas -",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Green",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas - Green"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441779",
+        "name": "La Majorelle Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-la-majorelle-kande-1-6-liter-glas?id=100441779",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "La Majorelle <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Glas"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100477709",
+        "name": "Bamboo Kande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/sambonet-bamboo-kande-1-6-liter?id=100477709",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Bamboo <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em>",
+              "<em>1</em>,<em>6</em> <em>liter</em>",
+              "<em>1</em>,<em>6</em> <em>liter</em>"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441643",
+        "name": "Flower Festival Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-flower-festival-tekande-1-6-liter-porcelaen-pink?id=100441643",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Pink",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Pink"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441591",
+        "name": "Berry Blues Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-berry-blues-tekande-1-6-liter-porcelaen-blaa?id=100441591",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>Liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>Liter</em> - Porcelæn - Blå",
+              "<em>1</em>,<em>6</em> <em>Liter</em> - Porcelæn - Blå"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100400914",
+        "name": "Blushing Bird Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-blushing-bird-tekande-1-6-liter-porcelaen-hvid?id=100400914",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Hvid",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Hvid"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100416826",
+        "name": "Blushing Bird Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-blushing-bird-tekande-1-6-liter-porcelaen-khaki?id=100416826",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Khaki",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Khaki"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441653",
+        "name": "Lily & Lotus Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-lily-lotus-tekande-1-6-liter-porcelaen-lilac?id=100441653",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Lilac",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Lilac"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100400915",
+        "name": "Blushing Bird Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-blushing-bird-tekande-1-6-liter-porcelaen-blaa?id=100400915",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blå",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blå"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100466313",
+        "name": "Lily & Lotus Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-lily-lotus-tekande-1-6-liter-porcelaen-gul?id=100466313",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Gul",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Gul"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441642",
+        "name": "Flower Festival Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-flower-festival-tekande-1-6-liter-porcelaen-blue?id=100441642",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blue",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blue"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100471150",
+        "name": "Blooming Tales Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-blooming-tales-tekande-1-6-liter-porcelaen-roed?id=100471150",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Rød",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Rød"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441640",
+        "name": "Jolie Tepotte",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-jolie-tepotte-1-6-liter-porcelaen-dots-gold?id=100441640",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Dots G",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Dots Gold"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100466266",
+        "name": "Blooming Tales Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-blooming-tales-tekande-1-6-liter-porcelaen-blaa?id=100466266",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blå",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Blå"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100441641",
+        "name": "La Majorelle Tekande",
+        "capacity_text": "1.6 L",
+        "capacity_spec_text": "1,6",
+        "capacity_ml": "1600",
+        "url": "/pip-studio-la-majorelle-tekande-1-6-liter-porcelaen-pink?id=100441641",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "6",
+              "liter"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcel",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Pink",
+              "<em>1</em>,<em>6</em> <em>liter</em> - Porcelæn - Pink"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100473538",
+        "name": "Orbit Kande",
+        "capacity_text": "160 cl",
+        "capacity_spec_text": "160",
+        "capacity_ml": "1600",
+        "url": "/hubsch-orbit-kande-160-cl-glas-klar-gul?id=100473538",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Orbit <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "160",
+              "cl"
+            ],
+            "snippets": [
+              "<em>160</em> <em>cl</em> - Glas - Klar/gul",
+              "<em>160</em> <em>cl</em> - Glas - Klar/gul"
+            ]
+          }
+        ]
+      }
+    ],
+    "unknown_records": [],
+    "rejected_wrong_capacity": 7,
+    "scope": "Local replay of captured candidate records, not a production change or complete catalog recall measurement."
+  },
+  {
+    "target_capacity_ml": "1500",
+    "original_query": "kande 1500 ml",
+    "expanded_query": "kande 1,5 L",
+    "retrieval_queries": [
+      "kande 1500 ml",
+      "kande 1,5 L"
+    ],
+    "input_records": 44,
+    "eligible_records": [
+      {
+        "product_id": "100443865",
+        "name": "T-Prep Tekande",
+        "capacity_text": "1500 ml",
+        "capacity_spec_text": "1500",
+        "capacity_ml": "1500",
+        "url": "/gefu-t-prep-tekande-1500-ml-borosilikatglas-rustfrit-staal-plastik-soelvfarvet?id=100443865",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1500",
+              "ml"
+            ],
+            "snippets": [
+              "<em>1500</em> <em>ml</em> - Borosilikatglas/Rust",
+              "<em>1500</em> <em>ml</em> - Borosilikatglas/Rustfrit stål/pl"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100443866",
+        "name": "T-Prep Tekande",
+        "capacity_text": "1500 ml",
+        "capacity_spec_text": "1500",
+        "capacity_ml": "1500",
+        "url": "/gefu-t-prep-tekande-1500-ml-borosilikatglas-rustfrit-staal-plastik-soelvfarvet?id=100443866",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1500",
+              "ml"
+            ],
+            "snippets": [
+              "<em>1500</em> <em>ml</em> - Borosilikatglas/Rust",
+              "<em>1500</em> <em>ml</em> - Borosilikatglas/Rustfrit stål/pl"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100437750",
+        "name": "EM77 Kande m. låg",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/stelton-em77-kande-m-laag-1-5-liter-abs-plastik-smoke?id=100437750",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande",
+              "l"
+            ],
+            "snippets": [
+              "EM77 <em>Kande</em> m. <em>l</em>åg",
+              "EM77 <em>Kande</em> m. <em>l</em>åg"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - ABS pl",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - ABS plastik - Smo",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - ABS plastik - Smoke"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100161059",
+        "name": "EM Juicekande m. låg",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/stelton-em-juicekande-m-laag-1-5-liter-plastik-blaa?id=100161059",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande",
+              "l"
+            ],
+            "snippets": [
+              "EM Juice<em>kande</em> m. <em>l</em>åg",
+              "M Juice<em>kande</em> m. <em>l</em>åg"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Plasti",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Plastik - Blå",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Plastik - Blå"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100385194",
+        "name": "Sky Kande",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/georg-jensen-sky-kande-1-5-liter-glas-rustfrit-staal-klar?id=100385194",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Sky <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas/r",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas/rustfrit stå",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas/rustfrit stål - Klar"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100437723",
+        "name": "EM77 Kande m. låg",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/stelton-em77-kande-m-laag-1-5-liter-abs-plastik-dusty-green?id=100437723",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande",
+              "l"
+            ],
+            "snippets": [
+              "EM77 <em>Kande</em> m. <em>l</em>åg",
+              "EM77 <em>Kande</em> m. <em>l</em>åg"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - ABS pl",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - ABS plastik - Dus",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - ABS plastik - Dusty green"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100311759",
+        "name": "Hotello Kande",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/alfi-hotello-kande-1-5-liter-rustfrit-staal?id=100311759",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Hotello <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfr",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfrit stål",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfrit stål"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100412625",
+        "name": "Blenderkande m. tamper",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/ankarsrum-assistent-original-blenderkande-m-tamper-1-5-liter-bpa-fri-plastik-passer-til-alle-n24-n30-assistenter?id=100412625",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Blender<em>kande</em> m. tamper"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - BPA-fr",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - BPA-fri plastik -",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - BPA-fri plastik - Passer til"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100456669",
+        "name": "Big Love Serveringskande",
+        "capacity_text": "1500 ml",
+        "capacity_spec_text": "1500",
+        "capacity_ml": "1500",
+        "url": "/jamie-oliver-big-love-serveringskande-1-5-liter-stentoej-gul?id=100456669",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande",
+              "l"
+            ],
+            "snippets": [
+              "Big <em>L</em>ove Serverings<em>kande</em>",
+              " <em>L</em>ove Serverings<em>kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Stentø",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Stentøj - Gul",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Stentøj - Gul"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100437724",
+        "name": "EM77 Kande m. låg",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/stelton-em77-kande-m-laag-1-5-liter-abs-plastik-saffron?id=100437724",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande",
+              "l"
+            ],
+            "snippets": [
+              "EM77 <em>Kande</em> m. <em>l</em>åg",
+              "EM77 <em>Kande</em> m. <em>l</em>åg"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - ABS pl",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - ABS plastik - Saf",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - ABS plastik - Saffron"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100469104",
+        "name": "Ciao Serveringskande",
+        "capacity_text": "150 cl",
+        "capacity_spec_text": "150",
+        "capacity_ml": "1500",
+        "url": "/leonardo-ciao-serveringskande-1-5-liter-glas-klar?id=100469104",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Ciao Serverings<em>kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas -",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas - Klar",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas - Klar"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100006306",
+        "name": "Assam Tekande",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/bodum-assam-tekande-1-5-liter-rustfrit-staal-glas-plastik-staal?id=100006306",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfr",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfrit stål/gla",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfrit stål/glas/plastik -"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100346490",
+        "name": "Cabernet Vandkaraffel",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/holmegaard-cabernet-vandkaraffel-1-5-liter-glas-klar?id=100346490",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas -",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas - Klar",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas - Klar"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100318213",
+        "name": "Columbia Tekande",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/bodum-columbia-tekande-1-5-liter-borosilikatglas-rustfrit-staal?id=100318213",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Borosi",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Borosilikatglas/R",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Borosilikatglas/Rustfrit stå"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100395554",
+        "name": "Cool-It Karaffel",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/rig-tig-cool-it-karaffel-1-5-liter-glas-gummi-black?id=100395554",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas/G",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas/Gummi - Blac",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas/Gummi - Black"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100408462",
+        "name": "Lyngby Palermo Karaffel",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/lyngby-glas-lyngby-palermo-karaffel-1-5-liter-glas-klar?id=100408462",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "l"
+            ],
+            "snippets": [
+              "<em>L</em>yngby Palermo Karaffel"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas -",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas - Klar",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas - Klar"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100318214",
+        "name": "Columbia Tekande",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/bodum-columbia-tekande-1-5-liter-krom-mat?id=100318214",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Krom -",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Krom - Mat",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Krom - Mat"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100361084",
+        "name": "Cool-It Karaffel",
+        "capacity_text": "150 cl",
+        "capacity_spec_text": "150",
+        "capacity_ml": "1500",
+        "url": "/rig-tig-cool-it-karaffel-1-5-liter-glas-klar-moerkegraa?id=100361084",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas -",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas - Klar/mørke",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas - Klar/mørkegrå"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100454107",
+        "name": "London Tekande",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/kuchenprofi-london-tekande-1-5-liter-rustfritstaal-keramik-graa?id=100454107",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "l"
+            ],
+            "snippets": [
+              "<em>L</em>ondon Tekande"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfr",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfritstål/kera",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfritstål/keramik - Grå"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100370067",
+        "name": "The Tea Maker Tebrygger",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/sage-the-tea-maker-tebrygger-1-5-liter-glas-staal?id=100370067",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas/s",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas/stål",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Glas/stål"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100449617",
+        "name": "Minuet Tekande",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/bredemeijer-minuet-tekande-1-5-liter-borosilikatglas-klar?id=100449617",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Borosi",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Borosilikatglas -",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Borosilikatglas - Klar"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100321446",
+        "name": "Swedish Grace Tekande",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/rorstrand-swedish-grace-tekande-1-5-liter-porcelaen-snehvid?id=100321446",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter -  Porce",
+              "<em>1</em>,<em>5</em> <em>l</em>iter -  Porcelæn - Snehv",
+              "<em>1</em>,<em>5</em> <em>l</em>iter -  Porcelæn - Snehvid"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100449707",
+        "name": "Bella Ronde Tekande",
+        "capacity_text": "1,5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/bredemeijer-bella-ronde-tekande-1-5-liter-rustfrit-staal-sort?id=100449707",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfr",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfrit stål - S",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfrit stål - Sort"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100449706",
+        "name": "Bella Ronde Tekande",
+        "capacity_text": "1,5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/bredemeijer-bella-ronde-tekande-1-5-liter-rustfrit-staal-krom?id=100449706",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfr",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfrit stål - K",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfrit stål - Krom"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100458775",
+        "name": "Luna Flødekande",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/bloomingville-luna-floedekande-1-5-liter-stentoej-blaa?id=100458775",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "l"
+            ],
+            "snippets": [
+              "<em>L</em>una Flødekande"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Stentø",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Stentøj - Blå",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Stentøj - Blå"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100440760",
+        "name": "Brillance Fleurs Sauvages Kaffekande",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/rosenthal-brillance-fleurs-sauvages-kaffekande-1-5-liter-benporcelaen?id=100440760",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Benpor",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Benporcelæn",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Benporcelæn"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100477141",
+        "name": "Trevio Tekande",
+        "capacity_text": "1.5 L",
+        "capacity_spec_text": "1,5",
+        "capacity_ml": "1500",
+        "url": "/gefu-trevio-tekande-1-5-liter-borosilikatglas-rustfrit-staal?id=100477141",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Borosi",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Borosilikatglas/r",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Borosilikatglas/rustfrit stå"
+            ]
+          }
+        ]
+      }
+    ],
+    "unknown_records": [
+      {
+        "product_id": "100454103",
+        "name": "Sovsekande",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/kuchenprofi-sovsekande-500-ml-rustfrit-staal-soelvfarvet?id=100454103",
+        "nb_typos": 3,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1500",
+              "ml"
+            ],
+            "snippets": [
+              "<em>500</em> <em>ml</em> - Rustfrit stål - Sølv",
+              "<em>500</em> <em>ml</em> - Rustfrit stål - Sølvfarvet"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100436070",
+        "name": "Koppel Kande",
+        "capacity_text": null,
+        "capacity_spec_text": "",
+        "capacity_ml": null,
+        "url": "/georg-jensen-koppel-kande-1-5-liter-rustfrit-staal-soelvfarvet?id=100436070",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Koppel <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfr",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfrit stål - S",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Rustfrit stål - Sølvfarvet"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100444271",
+        "name": "Florist Kande",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/creative-collection-florist-kande-1-5-liter-stentoej-multifarvet?id=100444271",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande"
+            ],
+            "snippets": [
+              "Florist <em>Kande</em>"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Stentø",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Stentøj - Multifa",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Stentøj - Multifarvet"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100420992",
+        "name": "Zero Kandesæt - 5 dele",
+        "capacity_text": null,
+        "capacity_spec_text": "",
+        "capacity_ml": null,
+        "url": "/lyngby-glas-zero-kandesaet-5-dele-1-1-liter-krystalglas-klar?id=100420992",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande",
+              "5"
+            ],
+            "snippets": [
+              "Zero <em>Kande</em>sæt - <em>5</em> dele",
+              "Zero <em>Kande</em>sæt - <em>5</em> dele"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>1</em> <em>l</em>iter - Krysta",
+              "<em>1</em>,<em>1</em> <em>l</em>iter - Krystalglas - Kla",
+              "<em>1</em>,<em>1</em> <em>l</em>iter - Krystalglas - Klar"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100460032",
+        "name": "Kandesæt - 5 dele",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/aida-kandesaet-5-dele-31-cl-1-liter-glas?id=100460032",
+        "nb_typos": 0,
+        "highlights": [
+          {
+            "field": "name",
+            "matched_words": [
+              "kande",
+              "5"
+            ],
+            "snippets": [
+              "<em>Kande</em>sæt - <em>5</em> dele",
+              "<em>Kande</em>sæt - <em>5</em> dele"
+            ]
+          },
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "l"
+            ],
+            "snippets": [
+              "31 cl/<em>1</em> <em>l</em>iter - Glas",
+              "31 cl/<em>1</em> <em>l</em>iter - Glas"
+            ]
+          }
+        ]
+      },
+      {
+        "product_id": "100440720",
+        "name": "Grand Air Kaffekande",
+        "capacity_text": null,
+        "capacity_spec_text": "",
+        "capacity_ml": null,
+        "url": "/rosenthal-grand-air-kaffekande-1-5-liter-benporcelaen-multifarvet?id=100440720",
+        "nb_typos": 1,
+        "highlights": [
+          {
+            "field": "cust_synopsis",
+            "matched_words": [
+              "1",
+              "5",
+              "l"
+            ],
+            "snippets": [
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Benpor",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Benporcelæn - Mul",
+              "<em>1</em>,<em>5</em> <em>l</em>iter - Benporcelæn - Multifarvet"
+            ]
+          }
+        ]
+      }
+    ],
+    "rejected_wrong_capacity": 11,
+    "scope": "Local replay of captured candidate records, not a production change or complete catalog recall measurement."
+  }
+]

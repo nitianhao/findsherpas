@@ -1,0 +1,522 @@
+{
+  "Royal Copenhagen Alfabet Kollektion Højhankskop": {
+    "observed_at": "2026-11-05T19:33:54.469045+00:00",
+    "outcome": {
+      "query": "Royal Copenhagen Alfabet Kollektion Højhankskop",
+      "status": "ok",
+      "results": [
+        {
+          "rank": 1,
+          "title": "Royal Copenhagen Alfabet Kollektion Højhankskop  /  Mor",
+          "price": "699,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/mor-alfabet-hoejhankskop-royal-copenhagen?id=100461453",
+          "sponsored": false
+        },
+        {
+          "rank": 2,
+          "title": "Royal Copenhagen Alfabet Kollektion Højhankskop  /  C",
+          "price": "529,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/royal-copenhagen-alfabet-kollektion-hoejhankskop-c-33-cl-porcelaen-hvid-koboltblaa?id=100400862",
+          "sponsored": false
+        },
+        {
+          "rank": 3,
+          "title": "Royal Copenhagen Alfabet Kollektion Højhankskop  /  M",
+          "price": "529,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/royal-copenhagen-alfabet-kollektion-hoejhankskop-m-33-cl-porcelaen-hvid-koboltblaa?id=100400870",
+          "sponsored": false
+        },
+        {
+          "rank": 4,
+          "title": "Royal Copenhagen Alfabet Kollektion Højhankskop  /  A",
+          "price": "529,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/royal-copenhagen-alfabet-kollektion-hoejhankskop-a-33-cl-porcelaen-hvid-koboltblaa?id=100400861",
+          "sponsored": false
+        },
+        {
+          "rank": 5,
+          "title": "Royal Copenhagen Alfabet Kollektion Højhankskop  /  L",
+          "price": "529,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/royal-copenhagen-alfabet-kollektion-hoejhankskop-l-33-cl-porcelaen-hvid-koboltblaa?id=100400869",
+          "sponsored": false
+        },
+        {
+          "rank": 6,
+          "title": "Royal Copenhagen Alfabet Kollektion Højhankskop  /  S",
+          "price": "529,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/royal-copenhagen-alfabet-kollektion-hoejhankskop-s-33-cl-porcelaen-hvid-koboltblaa?id=100400873",
+          "sponsored": false
+        },
+        {
+          "rank": 7,
+          "title": "Royal Copenhagen Alfabet Kollektion Højhankskop  /  Far",
+          "price": "699,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/far-alfabet-hoejhankskop-royal-copenhagen?id=100461454",
+          "sponsored": false
+        },
+        {
+          "rank": 8,
+          "title": "Royal Copenhagen Alfabet Kollektion Højhankskop  /  H",
+          "price": "529,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/royal-copenhagen-alfabet-kollektion-hoejhankskop-h-33-cl-porcelaen-hvid-koboltblaa?id=100400866",
+          "sponsored": false
+        },
+        {
+          "rank": 9,
+          "title": "Royal Copenhagen Alfabet Kollektion Højhankskop  /  J",
+          "price": "529,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/royal-copenhagen-alfabet-kollektion-hoejhankskop-j-33-cl-porcelaen-hvid-koboltblaa?id=100400867",
+          "sponsored": false
+        },
+        {
+          "rank": 10,
+          "title": "Royal Copenhagen Alfabet Kollektion Højhankskop  /  T",
+          "price": "529,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/royal-copenhagen-alfabet-kollektion-hoejhankskop-t-33-cl-porcelaen-hvid-koboltblaa?id=100400874",
+          "sponsored": false
+        }
+      ],
+      "final_url": "https://www.imerco.dk/search?query=Royal+Copenhagen+Alfabet+Kollektion+H%C3%B8jhankskop",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 25,
+      "strategy": "site-specific",
+      "attempts": 1,
+      "evidence": "[evidence: reports/imerco_dk/stock_20261105/evidence/recheck/royal-copenhagen-alfabet-kollektion-hjhankskop-238eea90_a1.html.gz]"
+    }
+  },
+  "Georg Jensen Bernadotte Glas": {
+    "observed_at": "2026-11-05T19:33:58.992152+00:00",
+    "outcome": {
+      "query": "Georg Jensen Bernadotte Glas",
+      "status": "ok",
+      "results": [
+        {
+          "rank": 1,
+          "title": "Georg Jensen Bernadotte Glas  /  6 stk.",
+          "price": "399,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/georg-jensen-bernadotte-glas-6?id=100404523",
+          "sponsored": false
+        },
+        {
+          "rank": 2,
+          "title": "Georg Jensen Bernadotte Glas  /  6 stk.",
+          "price": "349,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/georg-jensen-bernadotte-glas-6-stk-lave?id=100404522",
+          "sponsored": false
+        },
+        {
+          "rank": 3,
+          "title": "Georg Jensen Bernadotte Glas  /  6 stk.",
+          "price": "349,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/georg-jensen-bernadotte-glas-6-stk-45-cl-krystalglas-klar?id=100420296",
+          "sponsored": false
+        },
+        {
+          "rank": 4,
+          "title": "Georg Jensen Bernadotte Snapseglas  /  6 stk.",
+          "price": "349,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/georg-jensen-bernadotte-snapseglas-6-stk-4-cl-krystalglas-klar?id=100420298",
+          "sponsored": false
+        },
+        {
+          "rank": 5,
+          "title": "Georg Jensen Bernadotte Vin Coaster",
+          "price": "499,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/georg-jensen-bernadotte-vin-coaster-rustfrit-staal-blank?id=100461735",
+          "sponsored": false
+        },
+        {
+          "rank": 6,
+          "title": "Georg Jensen Bernadotte Hvidvinsglas  /  6 stk.",
+          "price": "399,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/georg-jensen-bernadotte-hvidvinsglas-6-stk?id=100404525",
+          "sponsored": false
+        },
+        {
+          "rank": 7,
+          "title": "Georg Jensen Bernadotte Rødvinsglas  /  6 stk.",
+          "price": "399,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/georg-jensen-bernadotte-roedvinsglas-6-stk?id=100404526",
+          "sponsored": false
+        },
+        {
+          "rank": 8,
+          "title": "Georg Jensen Bernadotte Coupe Cocktailglas  /  6 stk.",
+          "price": "469,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/georg-jensen-bernadotte-coupeglas-6-stk?id=100455261",
+          "sponsored": false
+        },
+        {
+          "rank": 9,
+          "title": "Georg Jensen Bernadotte Champagneglas  /  6 stk.",
+          "price": "399,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/georg-jensen-bernadotte-champagneglas-6-stk-27-cl-krystalglas-klar?id=100420299",
+          "sponsored": false
+        },
+        {
+          "rank": 10,
+          "title": "Georg Jensen Bernadotte Ølglas  /  6 stk.",
+          "price": "399,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/georg-jensen-bernadotte-oelglas-6-stk-52-cl-glas-klar?id=100431771",
+          "sponsored": false
+        }
+      ],
+      "final_url": "https://www.imerco.dk/search?query=Georg+Jensen+Bernadotte+Glas",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 18,
+      "strategy": "site-specific",
+      "attempts": 1,
+      "evidence": "[evidence: reports/imerco_dk/stock_20261105/evidence/recheck/georg-jensen-bernadotte-glas-1200694f_a1.html.gz]"
+    }
+  },
+  "Stelton EM77 Vandfilterkande": {
+    "observed_at": "2026-11-05T19:34:01.855010+00:00",
+    "outcome": {
+      "query": "Stelton EM77 Vandfilterkande",
+      "status": "ok",
+      "results": [
+        {
+          "rank": 1,
+          "title": "Stelton EM77 Magnesium+ Vandfilter  /  3 stk.",
+          "price": "149,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/stelton-em77-magnesium-vandfilter-3-stk-passer-til-em77-vandfilterkande?id=100451497",
+          "sponsored": false
+        },
+        {
+          "rank": 2,
+          "title": "Stelton EM77 Vandfilterkande",
+          "price": "299,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/stelton-em77-vandfilterkande-2-liter-plastik-smoke?id=100308983",
+          "sponsored": false
+        },
+        {
+          "rank": 3,
+          "title": "Stelton EM77 Vandfilterkande",
+          "price": "299,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/stelton-em77-vandfilterkande-2-liter-plastik-blue?id=100449455",
+          "sponsored": false
+        }
+      ],
+      "final_url": "https://www.imerco.dk/search?query=Stelton+EM77+Vandfilterkande",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 3,
+      "strategy": "site-specific",
+      "attempts": 1,
+      "evidence": "[evidence: reports/imerco_dk/stock_20261105/evidence/recheck/stelton-em77-vandfilterkande-79596b6f_a1.html.gz]"
+    }
+  },
+  "vandglas": {
+    "observed_at": "2026-11-05T19:34:07.595255+00:00",
+    "outcome": {
+      "query": "vandglas",
+      "status": "ok",
+      "results": [
+        {
+          "rank": 1,
+          "title": "Lyngby Glas Melodia Vandglas  /  6 stk.",
+          "price": "249,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-glas-melodia-vandglas-6-stk-23-cl-glas-klar?id=100431241",
+          "sponsored": false
+        },
+        {
+          "rank": 2,
+          "title": "Eva Solo Facet Vandglas  /  4 stk.",
+          "price": "98,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-4-stk-43-cl-glas-klar?id=100353708",
+          "sponsored": false
+        },
+        {
+          "rank": 3,
+          "title": "Lyngby Glas Zero Vandglas  /  6 stk.",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-glas-zero-vandglas-6-stk-42-cl-krystalglas-klar?id=100409458",
+          "sponsored": false
+        },
+        {
+          "rank": 4,
+          "title": "Rosendahl Grand Cru Vandglas  /  6 stk.",
+          "price": "99,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/rosendahl-grand-cru-vandglas-6-stk-22-cl-glas-klar?id=100156984",
+          "sponsored": false
+        },
+        {
+          "rank": 5,
+          "title": "erik bagger a/s Encore Vandglas  /  6 stk.",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/erik-bagger-a-s-encore-vandglas-6-stk-36-cl-glas-klar?id=100328936",
+          "sponsored": false
+        },
+        {
+          "rank": 6,
+          "title": "Eva Solo Facet Vandglas  /  4 stk.",
+          "price": "98,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-4-stk-34-cl-glas-klar?id=100353707",
+          "sponsored": false
+        },
+        {
+          "rank": 7,
+          "title": "Kähler Hammershøi Vandglas  /  4 stk. -",
+          "price": "169,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/kahler-hammershoei-vandglas-4-stk-37-cl-glas-klar?id=100416214",
+          "sponsored": false
+        },
+        {
+          "rank": 8,
+          "title": "CASA Living Daisy Vandglas  /  4 stk.",
+          "price": "149,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/daisy-vandglas-casa-living-4-stk?id=100425564",
+          "sponsored": false
+        },
+        {
+          "rank": 9,
+          "title": "Eva Trio Legio Nova Vandglas  /  6 stk.",
+          "price": "399,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-trio-legio-nova-vandglas-6-stk-40-cl-krystalglas-klar?id=100430598",
+          "sponsored": false
+        },
+        {
+          "rank": 10,
+          "title": "Eva Solo Facet Vandglas  /  6 stk.",
+          "price": "127,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-6-stk-27-cl-glas-klar?id=100353706",
+          "sponsored": false
+        }
+      ],
+      "final_url": "https://www.imerco.dk/search?query=vandglas",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 524,
+      "strategy": "site-specific",
+      "attempts": 1,
+      "evidence": "[evidence: reports/imerco_dk/stock_20261105/evidence/recheck/vandglas-27862c25_a1.html.gz]"
+    }
+  },
+  "drikkeglas": {
+    "observed_at": "2026-11-05T19:34:14.087617+00:00",
+    "outcome": {
+      "query": "drikkeglas",
+      "status": "ok",
+      "results": [
+        {
+          "rank": 1,
+          "title": "Lyngby Glas Melodia Vandglas  /  6 stk.",
+          "price": "249,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-glas-melodia-vandglas-6-stk-23-cl-glas-klar?id=100431241",
+          "sponsored": false
+        },
+        {
+          "rank": 2,
+          "title": "Eva Solo Facet Vandglas  /  4 stk.",
+          "price": "98,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-4-stk-43-cl-glas-klar?id=100353708",
+          "sponsored": false
+        },
+        {
+          "rank": 3,
+          "title": "Lyngby Glas Zero Vandglas  /  6 stk.",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-glas-zero-vandglas-6-stk-42-cl-krystalglas-klar?id=100409458",
+          "sponsored": false
+        },
+        {
+          "rank": 4,
+          "title": "Rosendahl Grand Cru Vandglas  /  6 stk.",
+          "price": "99,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/rosendahl-grand-cru-vandglas-6-stk-22-cl-glas-klar?id=100156984",
+          "sponsored": false
+        },
+        {
+          "rank": 5,
+          "title": "erik bagger a/s Encore Vandglas  /  6 stk.",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/erik-bagger-a-s-encore-vandglas-6-stk-36-cl-glas-klar?id=100328936",
+          "sponsored": false
+        },
+        {
+          "rank": 6,
+          "title": "Eva Solo Facet Vandglas  /  4 stk.",
+          "price": "98,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-4-stk-34-cl-glas-klar?id=100353707",
+          "sponsored": false
+        },
+        {
+          "rank": 7,
+          "title": "Kähler Hammershøi Vandglas  /  4 stk. -",
+          "price": "169,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/kahler-hammershoei-vandglas-4-stk-37-cl-glas-klar?id=100416214",
+          "sponsored": false
+        },
+        {
+          "rank": 8,
+          "title": "CASA Living Daisy Vandglas  /  4 stk.",
+          "price": "149,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/daisy-vandglas-casa-living-4-stk?id=100425564",
+          "sponsored": false
+        },
+        {
+          "rank": 9,
+          "title": "Eva Trio Legio Nova Vandglas  /  6 stk.",
+          "price": "399,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-trio-legio-nova-vandglas-6-stk-40-cl-krystalglas-klar?id=100430598",
+          "sponsored": false
+        },
+        {
+          "rank": 10,
+          "title": "Eva Solo Facet Vandglas  /  6 stk.",
+          "price": "127,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-6-stk-27-cl-glas-klar?id=100353706",
+          "sponsored": false
+        }
+      ],
+      "final_url": "https://www.imerco.dk/search?query=drikkeglas",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 867,
+      "strategy": "site-specific",
+      "attempts": 1,
+      "evidence": "[evidence: reports/imerco_dk/stock_20261105/evidence/recheck/drikkeglas-157181ee_a1.html.gz]"
+    }
+  },
+  "vase": {
+    "observed_at": "2026-11-05T19:34:22.202752+00:00",
+    "outcome": {
+      "query": "vase",
+      "status": "ok",
+      "results": [
+        {
+          "rank": 1,
+          "title": "CASA Living Vase",
+          "price": "129,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/casa-living-vase-h-19-5-cm-porcelaen-hvid?id=100465383",
+          "sponsored": false
+        },
+        {
+          "rank": 2,
+          "title": "Casa Christmas Vase",
+          "price": "99,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/casa-christmas-vase-h-19-5-cm-stentoej?id=100465690",
+          "sponsored": false
+        },
+        {
+          "rank": 3,
+          "title": "CASA Living Vase",
+          "price": "99,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/casa-living-vase-h-18-cm-stentoej-hvid-brun?id=100465349",
+          "sponsored": false
+        },
+        {
+          "rank": 4,
+          "title": "Lyngby Porcelæn Vase",
+          "price": "248,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-porcelaen-vase-h-10-5-cm-porcelaen-hvid?id=100369095",
+          "sponsored": false
+        },
+        {
+          "rank": 5,
+          "title": "Knabstrup Keramik Vase",
+          "price": "149,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/knabstrup-keramik-vase-h-12-5-cm-keramik-hvid?id=100386970",
+          "sponsored": false
+        },
+        {
+          "rank": 6,
+          "title": "CASA Living Vase",
+          "price": "49,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/casa-living-vase-h-24-7-cm-dolomit-multifarvet?id=100457500",
+          "sponsored": false
+        },
+        {
+          "rank": 7,
+          "title": "Knabstrup Keramik Vase",
+          "price": "269,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/knabstrup-keramik-vase-h-20-cm-keramik-hvid?id=100386969",
+          "sponsored": false
+        },
+        {
+          "rank": 8,
+          "title": "RAW by Aida Vase",
+          "price": "249,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/raw-by-aida-vase-h-23-5-cm-stentoej-northern-green?id=100450131",
+          "sponsored": false
+        },
+        {
+          "rank": 9,
+          "title": "CASA Living Vase",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/casa-living-vase-h-27-cm-mundblaest-glas-rosa?id=100420583",
+          "sponsored": false
+        },
+        {
+          "rank": 10,
+          "title": "CASA Living Vase",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/casa-living-vase-h-33-5-cm-glas-smoke?id=100465377",
+          "sponsored": false
+        }
+      ],
+      "final_url": "https://www.imerco.dk/search?query=vase",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 3783,
+      "strategy": "site-specific",
+      "attempts": 1,
+      "evidence": "[evidence: reports/imerco_dk/stock_20261105/evidence/recheck/vase-28e4e605_a1.html.gz]"
+    }
+  }
+}

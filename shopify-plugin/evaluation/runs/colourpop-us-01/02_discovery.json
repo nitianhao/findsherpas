@@ -1,0 +1,30 @@
+{
+  "url": "https://colourpop.com/",
+  "site_name": "ColourPop",
+  "site_type": "PHYSICAL_GOODS",
+  "nav_categories": [
+    "Palettes",
+    "Eyes",
+    "Lips",
+    "Face",
+    "Skincare",
+    "Body",
+    "Brushes & Tools",
+    "Value Sets",
+    "Collabs"
+  ],
+  "brands": [
+    "ColourPop"
+  ],
+  "featured_items": [
+    "A Very Mickey Christmas Eyeshadow Palette",
+    "Fallen Eyeshadow Palette",
+    "Cloud Whip Blurring Lip Liner",
+    "Cloud Whip Lip & Cheek Pudding",
+    "Dear Santa BFF Crème Gel Liner Kit",
+    "Glitter Face Freckle Tattoos"
+  ],
+  "search_url_template": "https://colourpop.com/search?q={}",
+  "raw_meta_description": "Shop ColourPop® top-rated makeup for eyes, lips & face. From Super Shock Shadow to glossy balms & liners, plus iconic collabs. Find your match - shop now!",
+  "primary_language": "English"
+}

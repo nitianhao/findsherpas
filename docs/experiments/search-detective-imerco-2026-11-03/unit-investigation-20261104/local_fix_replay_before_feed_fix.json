@@ -1,0 +1,344 @@
+[
+  {
+    "target_capacity_ml": "1600",
+    "original_query": "",
+    "expanded_query": "",
+    "input_records": 20,
+    "eligible_records": [],
+    "unknown_records": [
+      {
+        "product_id": "100436785",
+        "name": "Mobil Printer - MBP-32B",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/denver-mobil-printer-mbp-32b?id=100436785",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100434491",
+        "name": "Classic Grydeskesæt - 4 dele",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/rosti-classic-grydeskesaet-4-dele-durostima-sort?id=100434491",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100394725",
+        "name": "Legio Nova Ovnfast Fadsæt - 3 dele",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/eva-trio-legio-nova-ovnfast-fadsaet-3-dele?id=100394725",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100437351",
+        "name": "Opbevarings skålsæt m. låg - 8 dele",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/kitchenaid-opbevarings-skaalesaet-m-laag?id=100437351",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100425861",
+        "name": "Køkkenrulleholder",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/aida-koekkenrulleholder-h-30-5-cm-akacietrae-natur?id=100425861",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100465961",
+        "name": "CC 2026 Juleuro - Tromme",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/georg-jensen-juleuro-2026-tromme-guldbelagt?id=100465961",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100468434",
+        "name": "Miniature Bjørn – Teddy",
+        "capacity_text": null,
+        "capacity_spec_text": "",
+        "capacity_ml": null,
+        "url": "/spring-copenhagen-miniature-bjoern-teddy-h-5-2-cm-egetrae?id=100468434",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100435160",
+        "name": "Stavblender",
+        "capacity_text": null,
+        "capacity_spec_text": "",
+        "capacity_ml": null,
+        "url": "/stavblender-cook-baker-400-watt?id=100435160",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100442489",
+        "name": "Magnetisk Bordskåner",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/eva-solo-magnetisk-bordskaaner-l-19-5-cm-certificeret-karboniseret-bambus-bamboo?id=100442489",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100442538",
+        "name": "Stainless Steel Grydesæt - 3 dele",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/eva-trio-stainless-steel-grydesaet-3-dele-1-1-2-2-3-6-liter-genanvendt-rustfrit-staal-?id=100442538",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100452170",
+        "name": "Redskabssæt - 6 dele",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/kitchenaid-koekkenredskaber-6-dele?id=100452170",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100353730",
+        "name": "Legio Nova Skål - 4 stk.",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/eva-trio-legio-nova-skaal-4-stk-oe-13-cm-porcelaen-hvid?id=100353730",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100427669",
+        "name": "Håndmixer",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/gastronoma-haandmixer-500-watt-6-hastigheder-turbofunktion?id=100427669",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100081580",
+        "name": "Hvid Riflet Middagstallerken",
+        "capacity_text": null,
+        "capacity_spec_text": "",
+        "capacity_ml": null,
+        "url": "/royal-copenhagen-hvid-riflet-middagstallerken-oe-27-cm-porcelaen-hvid?id=100081580",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100409441",
+        "name": "Køkkenvægt",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/melissa-koekkenvaegt-vejekapacitet-5-kg-maalepraecision-1-gram-sort?id=100409441",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100465997",
+        "name": "CC 2026 Juleuro 2006/2026",
+        "capacity_text": null,
+        "capacity_spec_text": "",
+        "capacity_ml": null,
+        "url": "/georg-jensen-cc-2026-juleuro-2006-2026-oe-7-8-cm-messing-belagt-med-18-kt-guld?id=100465997",
+        "nb_typos": null,
+        "highlights": []
+      }
+    ],
+    "rejected_wrong_capacity": 4,
+    "scope": "Local replay of captured candidate records, not a production change or complete catalog recall measurement."
+  },
+  {
+    "target_capacity_ml": "1500",
+    "original_query": "",
+    "expanded_query": "",
+    "input_records": 20,
+    "eligible_records": [],
+    "unknown_records": [
+      {
+        "product_id": "100436785",
+        "name": "Mobil Printer - MBP-32B",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/denver-mobil-printer-mbp-32b?id=100436785",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100434491",
+        "name": "Classic Grydeskesæt - 4 dele",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/rosti-classic-grydeskesaet-4-dele-durostima-sort?id=100434491",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100394725",
+        "name": "Legio Nova Ovnfast Fadsæt - 3 dele",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/eva-trio-legio-nova-ovnfast-fadsaet-3-dele?id=100394725",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100437351",
+        "name": "Opbevarings skålsæt m. låg - 8 dele",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/kitchenaid-opbevarings-skaalesaet-m-laag?id=100437351",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100425861",
+        "name": "Køkkenrulleholder",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/aida-koekkenrulleholder-h-30-5-cm-akacietrae-natur?id=100425861",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100465961",
+        "name": "CC 2026 Juleuro - Tromme",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/georg-jensen-juleuro-2026-tromme-guldbelagt?id=100465961",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100468434",
+        "name": "Miniature Bjørn – Teddy",
+        "capacity_text": null,
+        "capacity_spec_text": "",
+        "capacity_ml": null,
+        "url": "/spring-copenhagen-miniature-bjoern-teddy-h-5-2-cm-egetrae?id=100468434",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100435160",
+        "name": "Stavblender",
+        "capacity_text": null,
+        "capacity_spec_text": "",
+        "capacity_ml": null,
+        "url": "/stavblender-cook-baker-400-watt?id=100435160",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100442489",
+        "name": "Magnetisk Bordskåner",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/eva-solo-magnetisk-bordskaaner-l-19-5-cm-certificeret-karboniseret-bambus-bamboo?id=100442489",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100442538",
+        "name": "Stainless Steel Grydesæt - 3 dele",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/eva-trio-stainless-steel-grydesaet-3-dele-1-1-2-2-3-6-liter-genanvendt-rustfrit-staal-?id=100442538",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100452170",
+        "name": "Redskabssæt - 6 dele",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/kitchenaid-koekkenredskaber-6-dele?id=100452170",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100353730",
+        "name": "Legio Nova Skål - 4 stk.",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/eva-trio-legio-nova-skaal-4-stk-oe-13-cm-porcelaen-hvid?id=100353730",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100427669",
+        "name": "Håndmixer",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/gastronoma-haandmixer-500-watt-6-hastigheder-turbofunktion?id=100427669",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100081580",
+        "name": "Hvid Riflet Middagstallerken",
+        "capacity_text": null,
+        "capacity_spec_text": "",
+        "capacity_ml": null,
+        "url": "/royal-copenhagen-hvid-riflet-middagstallerken-oe-27-cm-porcelaen-hvid?id=100081580",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100409441",
+        "name": "Køkkenvægt",
+        "capacity_text": null,
+        "capacity_spec_text": null,
+        "capacity_ml": null,
+        "url": "/melissa-koekkenvaegt-vejekapacitet-5-kg-maalepraecision-1-gram-sort?id=100409441",
+        "nb_typos": null,
+        "highlights": []
+      },
+      {
+        "product_id": "100465997",
+        "name": "CC 2026 Juleuro 2006/2026",
+        "capacity_text": null,
+        "capacity_spec_text": "",
+        "capacity_ml": null,
+        "url": "/georg-jensen-cc-2026-juleuro-2006-2026-oe-7-8-cm-messing-belagt-med-18-kt-guld?id=100465997",
+        "nb_typos": null,
+        "highlights": []
+      }
+    ],
+    "rejected_wrong_capacity": 4,
+    "scope": "Local replay of captured candidate records, not a production change or complete catalog recall measurement."
+  }
+]

@@ -1,0 +1,3607 @@
+{
+  "labels": [
+    {
+      "case_id": "pans_category",
+      "product_id": "100451441",
+      "reason": "Named 'Stegepande', categorized under Stegepander, matches the broad query for a frying pan with no brand/material restrictions.",
+      "evidence": "primary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100429693",
+      "reason": "Named 'Stegepande', categorized under Stegepander, matches the broad query for a frying pan.",
+      "evidence": "primary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100433830",
+      "reason": "Named 'Stegepande', categorized under Stegepander, matches the broad query for a frying pan.",
+      "evidence": "primary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100433831",
+      "reason": "Named 'Stegepande', categorized under Stegepander, matches the broad query for a frying pan.",
+      "evidence": "primary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100429691",
+      "reason": "Named 'Stegepande', categorized under Stegepander, matches the broad query for a frying pan.",
+      "evidence": "primary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100354387",
+      "reason": "Named 'Stegepande', categorized under Stegepander, matches the broad query for a frying pan.",
+      "evidence": "primary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100429694",
+      "reason": "Named 'Stegepande', categorized under Stegepander, matches the broad query for a frying pan.",
+      "evidence": "primary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100451440",
+      "reason": "Named 'Stegepande', categorized under Stegepander, matches the broad query for a frying pan.",
+      "evidence": "primary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100386485",
+      "reason": "Named 'Stegepande', categorized under Stegepander, matches the broad query for a frying pan.",
+      "evidence": "primary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100451309",
+      "reason": "Named 'Stegepande', categorized under Stegepander, matches the broad query for a frying pan.",
+      "evidence": "primary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100466136",
+      "reason": "This is a gryde- og pandesæt (pot and pan set) categorized under Grydesæt, not a standalone stegepande. It contains pans but is primarily a cookware set in a different category.",
+      "evidence": "primary_category_id: Grydesæt",
+      "label": "substitute"
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100439699",
+      "reason": "Named 'Stainless Steel Stegepande', categorized under Stegepander, made of rustfrit stål/aluminium — satisfies the rustfri stegepande query.",
+      "evidence": "cust_material: [\"Aluminium\", \"Rustfrit stål\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100456332",
+      "reason": "Named 'Stainless Steel Stegepande', categorized under Stegepander, made of aluminium/rustfrit stål — satisfies the rustfri stegepande query.",
+      "evidence": "cust_material: [\"Aluminium\", \"Rustfrit stål\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100468230",
+      "reason": "A set of 2 stegepander in rustfrit stål, categorized under Stegepander. Quantity unspecified in query; set containing the requested item qualifies.",
+      "evidence": "primary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100453812",
+      "reason": "A set of 2 stegepander in genanvendt aluminium/rustfrit stål, categorized under Stegepander. Quantity unspecified; set qualifies.",
+      "evidence": "cust_material: [\"Aluminium\", \"Rustfrit stål\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100439700",
+      "reason": "Named 'Stainless Steel Stegepande', categorized under Stegepander, made of genanvendt rustfrit stål/aluminium — satisfies the rustfri stegepande query.",
+      "evidence": "cust_material: [\"Aluminium\", \"Rustfrit stål\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100456331",
+      "reason": "Named 'Stainless Steel Stegepande', categorized under Stegepander, made of aluminium/rustfrit stål — satisfies the rustfri stegepande query.",
+      "evidence": "cust_material: [\"Aluminium\", \"Rustfrit stål\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100442546",
+      "reason": "Named 'Stainless Steel Stegepande', categorized under Stegepander, made of genanvendt rustfrit stål/aluminium — satisfies the rustfri stegepande query.",
+      "evidence": "cust_material: [\"Rustfrit stål\", \"Aluminium\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100468229",
+      "reason": "Named 'Multi 5-ply Stegepande', categorized under Stegepander, made of genanvendt rustfrit stål — satisfies the rustfri stegepande query.",
+      "evidence": "cust_material: [\"Aluminium\", \"Rustfrit stål\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100455457",
+      "reason": "Named 'CS+ Rec. Stegepande', categorized under Stegepander, made of genanvendt rustfrit stål — satisfies the rustfri stegepande query.",
+      "evidence": "cust_material: [\"Genanvendt Rustfrit stål\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100455457",
+      "reason": "Scanpan brand frying pan (Stegepande) matching required brand exactly.",
+      "evidence": "brand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100414744",
+      "reason": "Scanpan brand frying pan matching required brand exactly.",
+      "evidence": "brand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100414740",
+      "reason": "Scanpan brand frying pan matching required brand exactly.",
+      "evidence": "brand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100414742",
+      "reason": "Scanpan brand frying pan matching required brand exactly.",
+      "evidence": "brand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100414741",
+      "reason": "Scanpan brand frying pan matching required brand exactly.",
+      "evidence": "brand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100467488",
+      "reason": "Scanpan brand frying pan matching required brand exactly.",
+      "evidence": "brand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100455458",
+      "reason": "Scanpan brand frying pan matching required brand exactly.",
+      "evidence": "brand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100455459",
+      "reason": "Scanpan brand frying pan matching required brand exactly.",
+      "evidence": "brand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100414738",
+      "reason": "Scanpan brand frying pan matching required brand exactly.",
+      "evidence": "brand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100430419",
+      "reason": "Scanpan brand frying pan set (contains stegepander); quantity unspecified so set qualifies.",
+      "evidence": "brand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100453812",
+      "reason": "Eva Trio Multi Mosaic frying pan set; contains stegepander of the required family and brand; quantity unspecified so set qualifies.",
+      "evidence": "name: Multi Mosaic Stegepandesæt - 2 dele\nbrand: Eva Trio",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100466776",
+      "reason": "Eva Trio Multi Mosaic frying pan set matching required brand and family; set qualifies when quantity unspecified.",
+      "evidence": "name: Multi Mosaic Stegepandesæt - 2 dele\nbrand: Eva Trio",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100466778",
+      "reason": "Eva Trio Multi Mosaic Stegepande matching required brand and family exactly.",
+      "evidence": "name: Multi Mosaic Stegepande\nbrand: Eva Trio\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100430635",
+      "reason": "Eva Trio Multi Mosaic Stegepande matching required brand and family exactly.",
+      "evidence": "name: Multi Mosaic Stegepande\nbrand: Eva Trio\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100430142",
+      "reason": "Eva Trio Multi Mosaic Stegepande matching required brand and family exactly.",
+      "evidence": "name: Multi Mosaic Stegepande\nbrand: Eva Trio\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100466777",
+      "reason": "Eva Trio Multi Mosaic Stegepande matching required brand and family exactly.",
+      "evidence": "name: Multi Mosaic Stegepande\nbrand: Eva Trio\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100462287",
+      "reason": "Eva Trio Multi Mosaic Stegepande matching required brand and family exactly.",
+      "evidence": "name: Multi Mosaic Stegepande\nbrand: Eva Trio\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100468875",
+      "reason": "Eva Trio Multi Mosaic Wok is a different pan type (wok), not a stegepande; substitute within same family.",
+      "evidence": "name: Multi Mosaic Wok\nbrand: Eva Trio\nprimary_category_id: Wokpander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100467498",
+      "reason": "Eva Trio Multi Mosaic Sauterpande is a different pan type, not a stegepande; substitute within same family.",
+      "evidence": "name: Multi Mosaic Sauterpande\nbrand: Eva Trio\nprimary_category_id: Sauterpander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100468872",
+      "reason": "Eva Trio Multi Mosaic Sautergryde is a different cookware type, not a stegepande; substitute within same family.",
+      "evidence": "name: Multi Mosaic Sautergryde\nbrand: Eva Trio\nprimary_category_id: Sauterpander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100414744",
+      "reason": "Scanpan Fusion 5 Stegepande matching required brand and family exactly.",
+      "evidence": "name: Fusion 5 Stegepande\nbrand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100414742",
+      "reason": "Scanpan Fusion 5 Stegepande (24 cm variant) matching required brand and family exactly.",
+      "evidence": "name: Fusion 5 Stegepande\nbrand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100414741",
+      "reason": "Scanpan Fusion 5 Stegepande (20 cm variant) matching required brand and family exactly.",
+      "evidence": "name: Fusion 5 Stegepande\nbrand: Scanpan\nprimary_category_id: Stegepander",
+      "label": "exact"
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369488",
+      "reason": "Scanpan Fusion 5 Chefpande is a different pan type (sauterpande), not a stegepande; substitute within same family.",
+      "evidence": "name: Fusion 5 Chefpande m. låg\nbrand: Scanpan\nprimary_category_id: Sauterpander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100414746",
+      "reason": "Scanpan Fusion 5 Sautese is a different cookware type (kasserolle), not a stegepande; substitute within same family.",
+      "evidence": "name: Fusion 5 Sautese\nbrand: Scanpan\nprimary_category_id: Kasseroller",
+      "label": "substitute"
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369487",
+      "reason": "Scanpan Fusion 5 Sauterpande is a different pan type, not a stegepande; substitute within same family.",
+      "evidence": "name: Fusion 5 Sauterpande m. låg\nbrand: Scanpan\nprimary_category_id: Sauterpander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369492",
+      "reason": "Scanpan Fusion 5 Gryde is a pot, not a stegepande; substitute within same family.",
+      "evidence": "name: Fusion 5 Gryde m. låg\nbrand: Scanpan\nprimary_category_id: Gryder",
+      "label": "substitute"
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369490",
+      "reason": "Scanpan Fusion 5 Kasserolle is a different cookware type, not a stegepande; substitute within same family.",
+      "evidence": "name: Fusion 5 Kasserolle m. låg\nbrand: Scanpan\nprimary_category_id: Kasseroller",
+      "label": "substitute"
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369489",
+      "reason": "Scanpan Fusion 5 Kasserolle is a different cookware type, not a stegepande; substitute within same family.",
+      "evidence": "name: Fusion 5 Kasserolle m. låg\nbrand: Scanpan\nprimary_category_id: Kasseroller",
+      "label": "substitute"
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369491",
+      "reason": "Scanpan Fusion 5 Kasserolle is a different cookware type, not a stegepande; substitute within same family.",
+      "evidence": "name: Fusion 5 Kasserolle m. låg\nbrand: Scanpan\nprimary_category_id: Kasseroller",
+      "label": "substitute"
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100413361",
+      "reason": "Named 'Krus', categorized under 'Krus og kopper med hank', directly matches the broad query 'krus'.",
+      "evidence": "name: Krus\nbrand: Moomin Arabia\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100422339",
+      "reason": "Named 'Krus', categorized under 'Krus og kopper med hank', directly matches the broad query 'krus'.",
+      "evidence": "name: Krus\nbrand: Moomin Arabia\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100473933",
+      "reason": "Named 'Termokrus', a subtype of krus used for warm drinks, fits the broad category query 'krus'.",
+      "evidence": "name: Termokrus\nprimary_category_id: To go kopper",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100450886",
+      "reason": "Named 'Krus', categorized under 'Krus og kopper uden hank', directly matches the broad query 'krus'.",
+      "evidence": "name: Krus\nbrand: RAW by Aida\nprimary_category_id: Krus og kopper uden hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100354461",
+      "reason": "Named 'Krus', categorized under 'Krus og kopper med hank', directly matches the broad query 'krus'.",
+      "evidence": "name: Krus\nbrand: Le Creuset\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100399260",
+      "reason": "Named 'Krus', categorized under 'Krus og kopper med hank', directly matches the broad query 'krus'.",
+      "evidence": "name: Krus\nbrand: Le Creuset\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100430093",
+      "reason": "Named 'Krus', categorized under 'Krus og kopper med hank', directly matches the broad query 'krus'.",
+      "evidence": "name: Krus\nbrand: Le Creuset\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100412444",
+      "reason": "Named 'Krus', categorized under 'Krus og kopper med hank', directly matches the broad query 'krus'.",
+      "evidence": "name: Krus\nbrand: Le Creuset\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100365891",
+      "reason": "Named 'Krus', categorized under 'Krus og kopper med hank', directly matches the broad query 'krus'.",
+      "evidence": "name: Krus\nbrand: Broste Copenhagen\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100389155",
+      "reason": "Named 'Krus', categorized under 'Krus og kopper med hank', directly matches the broad query 'krus'.",
+      "evidence": "name: Krus\nbrand: Knabstrup Keramik\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100448774",
+      "reason": "Named 'Kaffekop', categorized under 'Krus og kopper med hank', directly matches the query 'kaffekop'.",
+      "evidence": "name: Kaffekop\nbrand: RAW by Aida\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100418575",
+      "reason": "Named 'Kaffekop', categorized under 'Krus og kopper med hank', directly matches the query 'kaffekop'.",
+      "evidence": "name: Kaffekop\nbrand: RAW by Aida\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100446697",
+      "reason": "Named 'Kaffekop', categorized under 'Krus og kopper med hank', directly matches the query 'kaffekop'.",
+      "evidence": "name: Kaffekop\nbrand: RAW by Aida\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100418556",
+      "reason": "Named 'Kaffekop', categorized under 'Krus og kopper med hank', directly matches the query 'kaffekop'.",
+      "evidence": "name: Kaffekop\nbrand: RAW by Aida\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100418563",
+      "reason": "Named 'Kaffekop', categorized under 'Krus og kopper med hank', directly matches the query 'kaffekop'.",
+      "evidence": "name: Kaffekop\nbrand: RAW by Aida\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100418570",
+      "reason": "Named 'Kaffekop', categorized under 'Krus og kopper med hank', directly matches the query 'kaffekop'.",
+      "evidence": "name: Kaffekop\nbrand: RAW by Aida\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100418577",
+      "reason": "Named 'Kaffekop', categorized under 'Krus og kopper med hank', directly matches the query 'kaffekop'.",
+      "evidence": "name: Kaffekop\nbrand: RAW by Aida\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100185140",
+      "reason": "Named 'Kaffekop', categorized under 'Krus og kopper med hank', directly matches the query 'kaffekop'.",
+      "evidence": "name: Kaffekop\nbrand: Iittala\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100009176",
+      "reason": "Named 'Plissé Kaffekop', categorized under 'Krus og kopper med hank', directly matches the query 'kaffekop'.",
+      "evidence": "name: Plissé Kaffekop\nbrand: Pillivuyt\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100454805",
+      "reason": "Named 'Good Morning Kaffekop', categorized under 'Krus og kopper med hank', directly matches the query 'kaffekop'.",
+      "evidence": "name: Good Morning Kaffekop\nbrand: Urban Nature Culture\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100473933",
+      "reason": "Named 'Termokrus', categorized under 'To go kopper', made of rustfrit stål which provides thermal function, directly matches query 'termokrus'.",
+      "evidence": "name: Termokrus\nprimary_category_id: To go kopper\ncust_material: [\"Rustfrit stål\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100418568",
+      "reason": "Named 'Termokrus' but made of stentøj (stoneware), which does not inherently provide thermal insulation; the name matches but material raises doubt about actual thermal function.",
+      "evidence": "name: Termokrus\ncust_material: [\"Stentøj\"]",
+      "label": "unknown"
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100470608",
+      "reason": "Named 'Termokrus', categorized under 'To go kopper', made of rustfrit stål which provides thermal function, directly matches query 'termokrus'.",
+      "evidence": "name: Termokrus\nprimary_category_id: To go kopper\ncust_material: [\"Rustfrit stål\", \"Plastik\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100447006",
+      "reason": "Named 'Termokrus', categorized under 'To go kopper', made of rustfrit stål which provides thermal function, directly matches query 'termokrus'.",
+      "evidence": "name: Termokrus\nprimary_category_id: To go kopper\ncust_material: [\"Rustfrit stål\", \"Silikone\", \"Polyester\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100382747",
+      "reason": "Named 'Termokrus' but made of stentøj (stoneware), which does not inherently provide thermal insulation; the name matches but material raises doubt about actual thermal function.",
+      "evidence": "name: Termokrus\ncust_material: [\"Stentøj\"]",
+      "label": "unknown"
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100418554",
+      "reason": "Named 'Termokrus' but made of stentøj (stoneware), which does not inherently provide thermal insulation; the name matches but material raises doubt about actual thermal function.",
+      "evidence": "name: Termokrus\ncust_material: [\"Stentøj\"]",
+      "label": "unknown"
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100473914",
+      "reason": "Named 'Termokrus', categorized under 'To go kopper', made of rustfrit stål which provides thermal function, directly matches query 'termokrus'.",
+      "evidence": "name: Termokrus\nprimary_category_id: To go kopper\ncust_material: [\"Rustfrit stål\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100445157",
+      "reason": "Named 'Termokrus' but made of stentøj (stoneware), which does not inherently provide thermal insulation; the name matches but material raises doubt about actual thermal function.",
+      "evidence": "name: Termokrus\ncust_material: [\"Stentøj\"]",
+      "label": "unknown"
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100473929",
+      "reason": "Named 'Termokrus', categorized under 'To go kopper', made of rustfrit stål which provides thermal function, directly matches query 'termokrus'.",
+      "evidence": "name: Termokrus\nprimary_category_id: To go kopper\ncust_material: [\"Rustfrit stål\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100418561",
+      "reason": "Named 'Termokrus' but made of stentøj (stoneware), which does not inherently provide thermal insulation; the name matches but material raises doubt about actual thermal function.",
+      "evidence": "name: Termokrus\ncust_material: [\"Stentøj\"]",
+      "label": "unknown"
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100470237",
+      "reason": "Brand is Kähler and category is 'Krus og kopper med hank', fully matching the brand and product type query.",
+      "evidence": "brand: Kähler\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100470232",
+      "reason": "Brand is Kähler, category is krus med hank; it is a 2-pack set of mugs, but quantity was unspecified so it qualifies as exact.",
+      "evidence": "brand: Kähler\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100470637",
+      "reason": "Brand is Kähler, category is krus med hank, different capacity but no capacity requirement specified.",
+      "evidence": "brand: Kähler\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100422284",
+      "reason": "Brand is Kähler, category is krus med hank, satisfies the broad brand+mug query.",
+      "evidence": "brand: Kähler\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100445095",
+      "reason": "Brand is Kähler, category is krus med hank, satisfies the broad brand+mug query.",
+      "evidence": "brand: Kähler\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100422283",
+      "reason": "Brand is Kähler, category is krus med hank, satisfies the broad brand+mug query.",
+      "evidence": "brand: Kähler\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100435101",
+      "reason": "Brand is Kähler, category is krus med hank, satisfies the broad brand+mug query.",
+      "evidence": "brand: Kähler\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100465503",
+      "reason": "Brand is Kähler, category is krus med hank, satisfies the broad brand+mug query.",
+      "evidence": "brand: Kähler\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100465508",
+      "reason": "Brand is Kähler, category is krus med hank, satisfies the broad brand+mug query.",
+      "evidence": "brand: Kähler\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100350502",
+      "reason": "Brand is Kähler, category is krus med hank, satisfies the broad brand+mug query.",
+      "evidence": "brand: Kähler\nprimary_category_id: Krus og kopper med hank",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100350502",
+      "reason": "Brand Kähler, family Hammershøi, category krus med hank — exact match for Kähler Hammershøi krus.",
+      "evidence": "name: Hammershøi Krus\nbrand: Kähler",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100350504",
+      "reason": "Brand Kähler, Hammershøi family, krus category, different color variant — exact match.",
+      "evidence": "name: Hammershøi Krus\nbrand: Kähler",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100350505",
+      "reason": "Brand Kähler, Hammershøi family, krus category — exact match.",
+      "evidence": "name: Hammershøi Krus\nbrand: Kähler",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100411640",
+      "reason": "Brand Kähler, Hammershøi family, krus category — exact match.",
+      "evidence": "name: Hammershøi Krus\nbrand: Kähler",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100361894",
+      "reason": "Brand Kähler, Hammershøi family, krus category — exact match.",
+      "evidence": "name: Hammershøi Krus\nbrand: Kähler",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100452667",
+      "reason": "Brand Kähler, Hammershøi family, krus category, 2-pack but quantity unspecified — exact match.",
+      "evidence": "name: Hammershøi Krus - 2 stk.\nbrand: Kähler",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100470244",
+      "reason": "Brand Kähler, Hammershøi family, krus category, smaller capacity variant — exact match.",
+      "evidence": "name: Hammershøi Krus\nbrand: Kähler",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100452666",
+      "reason": "Brand Kähler, Hammershøi family, krus category, 2-pack but quantity unspecified — exact match.",
+      "evidence": "name: Hammershøi Krus - 2 stk.\nbrand: Kähler",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100470237",
+      "reason": "Brand Kähler, Hammershøi family (Hammershøi Jul Krus), krus category — exact match for family search.",
+      "evidence": "name: Hammershøi Jul Krus 2026\nbrand: Kähler",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100470232",
+      "reason": "Brand Kähler, Hammershøi family (Hammershøi Jul Krus), krus category, 2-pack — exact match for family search.",
+      "evidence": "name: Hammershøi Jul Krus 2018 & 2025 - 2 stk.\nbrand: Kähler",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100081624",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, product type Krus med hank — exact named product match.",
+      "evidence": "name: Blå Mega Riflet Krus - 2 stk.\nbrand: Royal Copenhagen",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100455108",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, product type Krus med hank, 2-pack variant — exact match.",
+      "evidence": "name: Blå Mega Riflet Krus - 2 stk. #9\nbrand: Royal Copenhagen",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100329316",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, product type Krus med hank, different capacity — exact match.",
+      "evidence": "name: Blå Mega Riflet Krus - 2 stk.\nbrand: Royal Copenhagen",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100395012",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, product type Krus med hank, different capacity — exact match.",
+      "evidence": "name: Blå Mega Riflet Krus - 2 stk.\nbrand: Royal Copenhagen",
+      "label": "exact"
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100075010",
+      "reason": "Same brand and family but product type is 'Termokop' (without handle, 'uden hank'), not a krus — substitute missing the explicit krus subtype.",
+      "evidence": "primary_category_id: Krus og kopper uden hank",
+      "label": "substitute"
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100357955",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, but product is 'Kop' not 'Krus' — related cup type, missing the explicit krus designation.",
+      "evidence": "name: Blå Mega Riflet Kop\nbrand: Royal Copenhagen",
+      "label": "substitute"
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100079433",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, but product is 'Tekop m. underkop' not a krus — related but missing explicit krus type.",
+      "evidence": "name: Blå Mega Riflet Tekop m. underkop\nbrand: Royal Copenhagen",
+      "label": "substitute"
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100309084",
+      "reason": "Same brand and family but product type is 'Termokop uden hank', not a krus — substitute missing the explicit krus subtype.",
+      "evidence": "primary_category_id: Krus og kopper uden hank",
+      "label": "substitute"
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100343180",
+      "reason": "Same brand and family but product type is 'Termokop uden hank', not a krus — substitute missing the explicit krus subtype.",
+      "evidence": "primary_category_id: Krus og kopper uden hank",
+      "label": "substitute"
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100078449",
+      "reason": "Same brand and family but product type is 'Termokop uden hank', not a krus — substitute missing the explicit krus subtype.",
+      "evidence": "name: Blå Mega Riflet Termokop - 2 stk.\nbrand: Royal Copenhagen",
+      "label": "substitute"
+    },
+    {
+      "case_id": "glasses_category",
+      "product_id": "100353708",
+      "reason": "Product is categorized as Vandglas and named Facet Vandglas, directly matching the query 'vandglas'.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_category",
+      "product_id": "100353706",
+      "reason": "Product is categorized as Vandglas and named Facet Vandglas, directly matching the query 'vandglas'.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_category",
+      "product_id": "100431241",
+      "reason": "Product is categorized as Vandglas and named Melodia Vandglas, directly matching the query 'vandglas'.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_category",
+      "product_id": "100409458",
+      "reason": "Product is categorized as Vandglas and named Zero Vandglas, directly matching the query 'vandglas'.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_category",
+      "product_id": "100109876",
+      "reason": "Product is categorized as Vandglas and named Future Vandglas, directly matching the query 'vandglas'.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100353708",
+      "reason": "Vandglas (water glass) is a drikkeglas (drinking glass); product is in Vandglas category, satisfying the broad 'drikkeglas' query.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100353706",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category, satisfying the broad 'drikkeglas' query.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100431241",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category, satisfying the broad 'drikkeglas' query.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100409458",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category, satisfying the broad 'drikkeglas' query.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100353707",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category, satisfying the broad 'drikkeglas' query.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100109876",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category, satisfying the broad 'drikkeglas' query.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100109877",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category, satisfying the broad 'drikkeglas' query.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100425564",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category, satisfying the broad 'drikkeglas' query.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100416214",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category, satisfying the broad 'drikkeglas' query.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100430598",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category, satisfying the broad 'drikkeglas' query.",
+      "evidence": "primary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100409458",
+      "reason": "Product is a Vandglas made of Krystalglas, exactly matching both requirements of the query 'krystalglas vandglas'.",
+      "evidence": "cust_material: [\"Krystalglas\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100430598",
+      "reason": "Product is a Vandglas made of Blyfrit krystalglas (lead-free crystal glass), satisfying the krystalglas subtype requirement.",
+      "evidence": "cust_material: [\"Blyfrit krystalglas\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100002217",
+      "reason": "Product is a Vandglas made of Krystalglas, exactly matching both requirements of the query 'krystalglas vandglas'.",
+      "evidence": "cust_material: [\"Krystalglas\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100456203",
+      "reason": "Product name is XO Vandglas but cust_material lists Glas while description says Krystalglas; material attribute is ambiguous/contradictory.",
+      "evidence": "cust_material: [\"Glas\"]\ncust_capacity: 42 cl\ndescription: 42 cl - Krystalglas - Klar",
+      "label": "unknown"
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100400995",
+      "reason": "Product is a Vandglas made of Krystalglas, exactly matching both requirements of the query 'krystalglas vandglas'.",
+      "evidence": "cust_material: [\"Krystalglas\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100447745",
+      "reason": "Product is a Vandglas made of Blyfrit krystalglas, satisfying the krystalglas subtype requirement.",
+      "evidence": "cust_material: [\"Blyfrit krystalglas\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100452453",
+      "reason": "Product is a Vandglas made of Krystalglas, exactly matching both requirements of the query 'krystalglas vandglas'.",
+      "evidence": "cust_material: [\"Krystalglas\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100447744",
+      "reason": "Product is a Vandglas made of Blyfrit krystalglas, satisfying the krystalglas subtype requirement.",
+      "evidence": "cust_material: [\"Blyfrit krystalglas\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100474713",
+      "reason": "Product is a Vandglas made of Krystalglas, exactly matching both requirements of the query 'krystalglas vandglas'.",
+      "evidence": "cust_material: [\"Krystalglas\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100455251",
+      "reason": "Product is a Vandglas made of Blyfrit krystalglas, satisfying the krystalglas subtype requirement.",
+      "evidence": "cust_material: [\"Blyfrit krystalglas\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100109876",
+      "reason": "Brand is Holmegaard and primary_category_id is Vandglas, matching the query exactly.",
+      "evidence": "brand: Holmegaard\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100109877",
+      "reason": "Brand is Holmegaard and primary_category_id is Vandglas, matching the query exactly.",
+      "evidence": "brand: Holmegaard\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100473695",
+      "reason": "Brand is Holmegaard and primary_category_id is Vandglas, matching the query exactly.",
+      "evidence": "brand: Holmegaard\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100406298",
+      "reason": "Brand is Holmegaard and primary_category_id is Vandglas, matching the query exactly.",
+      "evidence": "brand: Holmegaard\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100473693",
+      "reason": "Brand is Holmegaard and primary_category_id is Vandglas, matching the query exactly.",
+      "evidence": "brand: Holmegaard\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100422230",
+      "reason": "Brand is Holmegaard and primary_category_id is Vandglas, matching the query exactly.",
+      "evidence": "brand: Holmegaard\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100473702",
+      "reason": "Brand is Holmegaard and primary_category_id is Vandglas, matching the query exactly.",
+      "evidence": "brand: Holmegaard\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100081177",
+      "reason": "Brand is Holmegaard and primary_category_id is Vandglas, matching the query exactly.",
+      "evidence": "brand: Holmegaard\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100473706",
+      "reason": "Brand is Holmegaard and primary_category_id is Vandglas, matching the query exactly.",
+      "evidence": "brand: Holmegaard\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100422229",
+      "reason": "Brand is Holmegaard and primary_category_id is Vandglas, matching the query exactly.",
+      "evidence": "brand: Holmegaard\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100156985",
+      "reason": "Brand is Rosendahl, family is Grand Cru, and it is a drinking glass (Vandglas/Caféglas), matching the query.",
+      "evidence": "name: Grand Cru Caféglas - 4 stk.\nbrand: Rosendahl",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100316665",
+      "reason": "Brand is Rosendahl, family is Grand Cru, and primary_category_id is Vandglas, matching the query.",
+      "evidence": "name: Grand Cru Soft Drikkeglas - 4 stk.\nbrand: Rosendahl\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100156708",
+      "reason": "Brand is Rosendahl, family is Grand Cru, and it is a glass (snapseglas), a variant within the Grand Cru glas family.",
+      "evidence": "name: Grand Cru Snapseglas - 6 stk.\nbrand: Rosendahl\nprimary_category_id: Snapseglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100156709",
+      "reason": "Brand is Rosendahl, family is Grand Cru, and it is a glass (cognacglas), a variant within the Grand Cru glas family.",
+      "evidence": "name: Grand Cru Cognacglas - 2 stk.\nbrand: Rosendahl\nprimary_category_id: Cognacglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100346438",
+      "reason": "Brand is Rosendahl, family is Grand Cru, and it is a glass (spiritusglas), a variant within the Grand Cru glas family.",
+      "evidence": "name: Grand Cru Spiritusglas - 2 stk.\nbrand: Rosendahl",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100156990",
+      "reason": "Brand is Rosendahl, family is Grand Cru, and it is a glass (hotdrink glas), a variant within the Grand Cru glas family.",
+      "evidence": "name: Grand Cru Hotdrink Glas - 2 stk.\nbrand: Rosendahl\nprimary_category_id: Termoglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100338720",
+      "reason": "Brand is Rosendahl and family is Grand Cru, but this is a stegeso (roasting dish), not a glass product.",
+      "evidence": "name: Grand Cru Stegeso\nbrand: Rosendahl\nprimary_category_id: Stegesøer",
+      "label": "irrelevant"
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100157020",
+      "reason": "Brand is Rosendahl and family is Grand Cru, but this is a spice grinder (krydderikværn), not a glass.",
+      "evidence": "name: Grand Cru Krydderikværn\nbrand: Rosendahl\nprimary_category_id: Øvrige kværne",
+      "label": "irrelevant"
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100156984",
+      "reason": "Brand is Rosendahl, family is Grand Cru, and primary_category_id is Vandglas, matching the query exactly.",
+      "evidence": "name: Grand Cru Vandglas - 6 stk.\nbrand: Rosendahl\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100422366",
+      "reason": "Brand is Rosendahl and family is Grand Cru, but this is a thermoskanke (thermos jug), not a glass.",
+      "evidence": "name: Grand Cru Soft Termokande\nbrand: Rosendahl\nprimary_category_id: Termokander",
+      "label": "irrelevant"
+    },
+    {
+      "case_id": "glasses_named_product",
+      "product_id": "100430598",
+      "reason": "Brand is Eva Trio, family is Legio Nova, and primary_category_id is Vandglas, exactly matching the query.",
+      "evidence": "name: Legio Nova Vandglas - 6 stk.\nbrand: Eva Trio\nprimary_category_id: Vandglas",
+      "label": "exact"
+    },
+    {
+      "case_id": "glasses_named_product",
+      "product_id": "100424648",
+      "reason": "Brand is Eva Trio and family is Legio Nova, but this is a Bourgogne wine glass, not a vandglas as explicitly requested.",
+      "evidence": "name: Legio Nova Bourgogne Vinglas - 6 stk.\nbrand: Eva Trio\nprimary_category_id: Rødvinsglas",
+      "label": "substitute"
+    },
+    {
+      "case_id": "glasses_named_product",
+      "product_id": "100424649",
+      "reason": "Brand is Eva Trio and family is Legio Nova, but this is a white wine glass, not a vandglas as explicitly requested.",
+      "evidence": "name: Legio Nova Hvidvinsglas - 6 stk.\nbrand: Eva Trio\nprimary_category_id: Hvidvinsglas",
+      "label": "substitute"
+    },
+    {
+      "case_id": "glasses_named_product",
+      "product_id": "100424647",
+      "reason": "Brand is Eva Trio and family is Legio Nova, but this is a red wine glass, not a vandglas as explicitly requested.",
+      "evidence": "name: Legio Nova Rødvinsglas - 6 stk.\nbrand: Eva Trio\nprimary_category_id: Rødvinsglas",
+      "label": "substitute"
+    },
+    {
+      "case_id": "glasses_named_product",
+      "product_id": "100430597",
+      "reason": "Brand is Eva Trio and family is Legio Nova, but this is a red wine glass, not a vandglas as explicitly requested.",
+      "evidence": "name: Legio Nova Rødvinsglas - 6 stk.\nbrand: Eva Trio\nprimary_category_id: Rødvinsglas",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100463435",
+      "reason": "Named 'Kande', categorized as Serveringskander, matches the broad query 'kande' for a serving jug exactly.",
+      "evidence": "primary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100451351",
+      "reason": "Named 'Kande', categorized as Serveringskander, matches the broad query 'kande' exactly.",
+      "evidence": "primary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100420539",
+      "reason": "Named 'Kande' but categorized as Vandkarafler (water carafes), not Serveringskander; still a serving vessel type closely related to 'kande', making it a reasonable substitute.",
+      "evidence": "primary_category_id: Vandkarafler",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100446498",
+      "reason": "Named 'Kande', categorized as Serveringskander, matches the broad query 'kande' exactly.",
+      "evidence": "primary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100408286",
+      "reason": "Named 'Legio Nova Kande', categorized as Serveringskander, matches the broad query 'kande' exactly.",
+      "evidence": "primary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100408584",
+      "reason": "Named 'Klip It Plus Kande', categorized as Serveringskander, matches the broad query 'kande' exactly.",
+      "evidence": "primary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100455071",
+      "reason": "Named 'Hammershøi Jul Saucekande', categorized as Sovseskåle og -kander (sauce jugs), which is a different subtype from a general serving jug; it is a sauce jug, a related but more specific vessel.",
+      "evidence": "primary_category_id: Sovseskåle og -kander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100469257",
+      "reason": "Named 'Bernadotte Saucekande', categorized as Sovseskåle og -kander; a sauce jug is a related but distinct subtype from a general serving jug.",
+      "evidence": "primary_category_id: Sovseskåle og -kander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100449039",
+      "reason": "Named 'Legio Nova Kande m. hank', categorized as Serveringskander, matches the broad query 'kande' exactly.",
+      "evidence": "primary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100420992",
+      "reason": "Named 'Zero Kandesæt - 5 dele', categorized as Serveringskander; a set containing a kande satisfies the unspecified-quantity query for 'kande'.",
+      "evidence": "primary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100308750",
+      "reason": "Named 'Vinkaraffel', categorized as Vinkarafler; a wine carafe is a related serving vessel but specifically for wine, not water or juice as the goal specifies, making it a substitute.",
+      "evidence": "primary_category_id: Vinkarafler",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100430566",
+      "reason": "Named 'Vandkaraffel', categorized as Vandkarafler; directly matches the query 'karaffel' for serving water.",
+      "evidence": "primary_category_id: Vandkarafler",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100110632",
+      "reason": "Named 'Vandkaraffel', categorized as Vandkarafler; directly matches the query 'karaffel' for serving water.",
+      "evidence": "primary_category_id: Vandkarafler",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100396657",
+      "reason": "Named 'Vandkaraffel', categorized as Vandkarafler; directly matches the query 'karaffel' for serving water.",
+      "evidence": "primary_category_id: Vandkarafler",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100110303",
+      "reason": "Named 'Karaffel', categorized as Vandkarafler; directly matches the query 'karaffel'.",
+      "evidence": "primary_category_id: Vandkarafler",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100477560",
+      "reason": "Named 'Karaffel', categorized as Vandkarafler; directly matches the query 'karaffel'.",
+      "evidence": "primary_category_id: Vandkarafler",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100350283",
+      "reason": "Named 'Karaffel', categorized as Vandkarafler; directly matches the query 'karaffel'.",
+      "evidence": "primary_category_id: Vandkarafler",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100477361",
+      "reason": "Named 'Karaffel', categorized as Vinkarafler; a wine carafe is a related vessel but specifically for wine, making it a substitute for a general water/juice carafe query.",
+      "evidence": "primary_category_id: Vinkarafler",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100477559",
+      "reason": "Named 'Karaffel', categorized as Vandkarafler; directly matches the query 'karaffel'.",
+      "evidence": "primary_category_id: Vandkarafler",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100420945",
+      "reason": "Named 'Vandkaraffel', categorized as Vandkarafler; directly matches the query 'karaffel' for serving water.",
+      "evidence": "primary_category_id: Vandkarafler",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100470759",
+      "reason": "Named 'Essential Vandfilterkande', categorized as Serveringskander; exactly matches the query 'vandfilterkande'.",
+      "evidence": "name: Essential Vandfilterkande",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100474717",
+      "reason": "Named 'Vida Vandfilterkande', categorized as Serveringskander; exactly matches the query 'vandfilterkande'.",
+      "evidence": "name: Vida Vandfilterkande",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100308983",
+      "reason": "Named 'EM77 Vandfilterkande', categorized as Serveringskander; exactly matches the query 'vandfilterkande'.",
+      "evidence": "name: EM77 Vandfilterkande",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100449084",
+      "reason": "Named 'Aqualizer Vandfilterkande', categorized as Serveringskander; exactly matches the query 'vandfilterkande'.",
+      "evidence": "name: Aqualizer Vandfilterkande",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100474718",
+      "reason": "Named 'Vida Vandfilterkande', categorized as Serveringskander; exactly matches the query 'vandfilterkande'.",
+      "evidence": "name: Vida Vandfilterkande",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100437139",
+      "reason": "Named 'Style Vandfilterkande'; exactly matches the query 'vandfilterkande' despite being in Øvrigt køkkengrej category.",
+      "evidence": "name: Style Vandfilterkande",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100437138",
+      "reason": "Named 'Marella Vandfilterkande'; exactly matches the query 'vandfilterkande' despite being in Øvrigt køkkengrej category.",
+      "evidence": "name: Marella Vandfilterkande",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100470758",
+      "reason": "Named 'Essential Vandfilterkande', categorized as Serveringskander; exactly matches the query 'vandfilterkande'.",
+      "evidence": "name: Essential Vandfilterkande",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100449832",
+      "reason": "Named 'Filter til BWT Vandfilterkande - 3 stk.'; this is a replacement filter accessory for a water filter jug, not the jug itself.",
+      "evidence": "name: Filter til BWT Vandfilterkande - 3 stk.",
+      "label": "complement"
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100470760",
+      "reason": "Named 'Essential Vandfilterkande', categorized as Serveringskander; exactly matches the query 'vandfilterkande'.",
+      "evidence": "name: Essential Vandfilterkande",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100390465",
+      "reason": "Royal Copenhagen brand, Serveringskander category, matches brand query for a kande exactly.",
+      "evidence": "brand: Royal Copenhagen\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100417744",
+      "reason": "Royal Copenhagen brand, Serveringskander category, matches brand query for a kande exactly.",
+      "evidence": "brand: Royal Copenhagen\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100078141",
+      "reason": "Royal Copenhagen brand, Serveringskander category, matches brand query for a kande exactly.",
+      "evidence": "brand: Royal Copenhagen\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100075388",
+      "reason": "Royal Copenhagen brand, Serveringskander category, matches brand query for a kande exactly.",
+      "evidence": "brand: Royal Copenhagen\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100329324",
+      "reason": "Royal Copenhagen brand, Serveringskander category, seasonal variant still a kande from the required brand.",
+      "evidence": "brand: Royal Copenhagen\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100380525",
+      "reason": "Royal Copenhagen brand, Serveringskander category, matches brand query for a kande exactly.",
+      "evidence": "brand: Royal Copenhagen\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100357957",
+      "reason": "Royal Copenhagen brand, Serveringskander category, matches brand query for a kande exactly.",
+      "evidence": "brand: Royal Copenhagen\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100303948",
+      "reason": "Royal Copenhagen brand, Serveringskander category, matches brand query for a kande exactly.",
+      "evidence": "brand: Royal Copenhagen\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100353780",
+      "reason": "Royal Copenhagen brand, Serveringskander category, seasonal variant still a kande from the required brand.",
+      "evidence": "brand: Royal Copenhagen\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100079452",
+      "reason": "Royal Copenhagen brand, Serveringskander category, matches brand query for a kande exactly.",
+      "evidence": "brand: Royal Copenhagen\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100408286",
+      "reason": "Eva Trio brand, Legio Nova family, Serveringskander category — exact match on brand, family, and product type.",
+      "evidence": "name: Legio Nova Kande\nbrand: Eva Trio\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100449039",
+      "reason": "Eva Trio brand, Legio Nova family, Serveringskander category — exact match on brand, family, and product type.",
+      "evidence": "name: Legio Nova Kande m. hank\nbrand: Eva Trio\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100396731",
+      "reason": "Eva Trio brand, Legio Nova family, Serveringskander category — exact match on brand, family, and product type.",
+      "evidence": "name: Legio Nova Kande\nbrand: Eva Trio\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100358209",
+      "reason": "Eva Trio brand, Legio Nova family, Serveringskander category — exact match on brand, family, and product type.",
+      "evidence": "name: Legio Nova Kande\nbrand: Eva Trio\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100449038",
+      "reason": "Eva Trio brand, Legio Nova family, Serveringskander category — exact match on brand, family, and product type.",
+      "evidence": "name: Legio Nova Kande m. hank\nbrand: Eva Trio\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100347062",
+      "reason": "Eva Trio brand, Legio Nova family, Serveringskander category — exact match on brand, family, and product type.",
+      "evidence": "name: Legio Nova Kande\nbrand: Eva Trio\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100347061",
+      "reason": "Eva Trio brand, Legio Nova family, Serveringskander category — exact match on brand, family, and product type.",
+      "evidence": "name: Legio Nova Kande\nbrand: Eva Trio\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100362413",
+      "reason": "Eva Trio brand, Legio Nova family, but categorized as Sovseskåle og -kander (sauce jug), not a serving jug/kande as queried. Related but different subtype.",
+      "evidence": "name: Legio Nova Sovsekande\nbrand: Eva Trio\nprimary_category_id: Sovseskåle og -kander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100448547",
+      "reason": "Georg Jensen brand, Bernadotte family, Serveringskander category — exact match on brand, family, and product type kande.",
+      "evidence": "name: Bernadotte Kande\nbrand: Georg Jensen\nprimary_category_id: Serveringskander",
+      "label": "exact"
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100469257",
+      "reason": "Georg Jensen Bernadotte but categorized as Sovseskåle og -kander (sauce jug), not the serving kande requested.",
+      "evidence": "name: Bernadotte Saucekande\nbrand: Georg Jensen\nprimary_category_id: Sovseskåle og -kander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100401235",
+      "reason": "Georg Jensen Bernadotte but categorized as Termokander (thermos jug), a different subtype from the porcelain serving kande queried.",
+      "evidence": "name: Bernadotte Serveringskande\nbrand: Georg Jensen\nprimary_category_id: Termokander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100469258",
+      "reason": "Georg Jensen Bernadotte but categorized as Sovseskåle og -kander (sauce jug), not the serving kande requested.",
+      "evidence": "name: Bernadotte Saucekande\nbrand: Georg Jensen\nprimary_category_id: Sovseskåle og -kander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100414544",
+      "reason": "Georg Jensen Bernadotte but categorized as Vandkarafler (water carafe), a different product type from a kande.",
+      "evidence": "name: Bernadotte Karaffel m. låg\nbrand: Georg Jensen\nprimary_category_id: Vandkarafler",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100408100",
+      "reason": "Georg Jensen Bernadotte but categorized as Mælke- og flødekander (milk/cream jugs), a different subtype from the serving kande requested.",
+      "evidence": "name: Bernadotte Flødekande\nbrand: Georg Jensen\nprimary_category_id: Mælke- og flødekander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100390549",
+      "reason": "Georg Jensen Bernadotte but categorized as Mælke- og flødekander (milk/cream jugs), a different subtype from the serving kande requested.",
+      "evidence": "name: Bernadotte Flødekande\nbrand: Georg Jensen\nprimary_category_id: Mælke- og flødekander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100448542",
+      "reason": "Georg Jensen Bernadotte but categorized as Mælke- og flødekander (milk/cream jugs), a different subtype from the serving kande requested.",
+      "evidence": "name: Bernadotte Flødekande\nbrand: Georg Jensen\nprimary_category_id: Mælke- og flødekander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100420292",
+      "reason": "Georg Jensen Bernadotte but categorized as Tekander (teapot), a different product type from the serving kande requested.",
+      "evidence": "name: Bernadotte Tekande\nbrand: Georg Jensen\nprimary_category_id: Tekander",
+      "label": "substitute"
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100465383",
+      "reason": "Named 'Vase', categorized under Vaser, matches broad query 'vase' exactly.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100386969",
+      "reason": "Named 'Vase', categorized under Vaser, matches broad query 'vase' exactly.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100465690",
+      "reason": "Named 'Vase', categorized under Vaser, matches broad query 'vase' exactly.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100465402",
+      "reason": "Named 'Vase', categorized under Vaser, matches broad query 'vase' exactly.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100450238",
+      "reason": "Named 'Vase', categorized under Vaser, matches broad query 'vase' exactly.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100422363",
+      "reason": "Named 'Vase', categorized under Vaser, matches broad query 'vase' exactly.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100369095",
+      "reason": "Named 'Vase', categorized under Vaser, matches broad query 'vase' exactly.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100386970",
+      "reason": "Named 'Vase', categorized under Vaser, matches broad query 'vase' exactly.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100470274",
+      "reason": "Named 'Vase', categorized under Vaser, matches broad query 'vase' exactly.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100450131",
+      "reason": "Named 'Vase', categorized under Vaser, matches broad query 'vase' exactly.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100445100",
+      "reason": "Named 'Hammershøi Sommer Vase', categorized under Vaser; a vase intended for flowers matches 'blomstervase'.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100397997",
+      "reason": "Named 'Bloom Botanica Vase', categorized under Vaser; a vase for flowers matches 'blomstervase'.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100447941",
+      "reason": "Named 'Hammershøi Sommer Vase', categorized under Vaser; matches 'blomstervase'.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100460332",
+      "reason": "Named 'Hammershøi Sommer Vase', categorized under Vaser; matches 'blomstervase'.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100452675",
+      "reason": "Named 'Hammershøi Jul Vase', categorized under Vaser; seasonal vases are relevant to broad vase searches.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100471725",
+      "reason": "Named 'Bloom Botanica Vase', categorized under Vaser; matches 'blomstervase'.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100467269",
+      "reason": "Named 'Eslau Lilje Vase', categorized under Vaser; a lily vase is a flower vase, matches 'blomstervase'.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100403985",
+      "reason": "Named 'Hammershøi Poppy Vase', categorized under Vaser; matches 'blomstervase'.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100465383",
+      "reason": "Named 'Vase', categorized under Vaser; matches 'blomstervase'.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100397998",
+      "reason": "Named 'Bloom Botanica Vase', categorized under Vaser; matches 'blomstervase'.",
+      "evidence": "primary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100457577",
+      "reason": "Named 'Keramikvase' with material Keramik, directly matches query 'keramikvase'.",
+      "evidence": "cust_material: [\"Keramik\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100437561",
+      "reason": "Named 'Keramikvase' with material Keramik, directly matches query 'keramikvase'.",
+      "evidence": "cust_material: [\"Keramik\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100386969",
+      "reason": "Vase made of Fajance (a ceramic material), categorized under Vaser; fajance is a ceramic subtype matching 'keramikvase'.",
+      "evidence": "cust_material: [\"Fajance\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100470874",
+      "reason": "Solum Vase with materials Ler and Keramik; keramik material matches 'keramikvase'.",
+      "evidence": "cust_material: [\"Ler\", \"Keramik\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100386970",
+      "reason": "Vase made of Fajance, a ceramic material; matches 'keramikvase'.",
+      "evidence": "cust_material: [\"Fajance\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100470876",
+      "reason": "Solum Vase with materials Ler and Keramik; keramik material matches 'keramikvase'.",
+      "evidence": "cust_material: [\"Ler\", \"Keramik\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100402480",
+      "reason": "Riller Vase made of Fajance, a ceramic material; matches 'keramikvase'.",
+      "evidence": "cust_material: [\"Fajance\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100414234",
+      "reason": "Riller Vase made of Fajance, a ceramic material; matches 'keramikvase'.",
+      "evidence": "cust_material: [\"Fajance\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100431809",
+      "reason": "Knabstrup Natura Vase made of Keramik; directly matches 'keramikvase'.",
+      "evidence": "cust_material: [\"Keramik\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100402479",
+      "reason": "Riller Vase made of Fajance, a ceramic material; matches 'keramikvase'.",
+      "evidence": "cust_material: [\"Fajance\"]",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100445100",
+      "reason": "Kähler brand vase, matches all requirements for a Kähler vase search.",
+      "evidence": "brand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100447941",
+      "reason": "Kähler brand vase, same family variant, matches brand and category requirements.",
+      "evidence": "brand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100460332",
+      "reason": "Kähler brand vase, matches all requirements for a Kähler vase search.",
+      "evidence": "brand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100452675",
+      "reason": "Kähler brand vase, matches all requirements for a Kähler vase search.",
+      "evidence": "brand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100403985",
+      "reason": "Kähler brand vase, matches all requirements for a Kähler vase search.",
+      "evidence": "brand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100435114",
+      "reason": "Kähler brand vase, matches all requirements for a Kähler vase search.",
+      "evidence": "brand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100346354",
+      "reason": "Kähler brand vase, matches all requirements for a Kähler vase search.",
+      "evidence": "brand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100405135",
+      "reason": "Kähler brand vase, matches all requirements for a Kähler vase search.",
+      "evidence": "brand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100411647",
+      "reason": "Kähler brand vase, matches all requirements for a Kähler vase search.",
+      "evidence": "brand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100411645",
+      "reason": "Kähler brand vase, matches all requirements for a Kähler vase search.",
+      "evidence": "brand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100411647",
+      "reason": "Kähler Omaggio Vase - part of the Omaggio family, closely related to Omaggio Nuovo; query is for Omaggio series broadly, this is an Omaggio variant.",
+      "evidence": "name: Omaggio Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100350496",
+      "reason": "Kähler Omaggio Vase - part of the Omaggio family, matches the Omaggio series search.",
+      "evidence": "name: Omaggio Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100071570",
+      "reason": "Kähler Omaggio Vase - part of the Omaggio family, matches the Omaggio series search.",
+      "evidence": "name: Omaggio Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100342439",
+      "reason": "Kähler Omaggio Vase - part of the Omaggio family, matches the Omaggio series search.",
+      "evidence": "name: Omaggio Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100342440",
+      "reason": "Kähler Omaggio Vase - part of the Omaggio family, matches the Omaggio series search.",
+      "evidence": "name: Omaggio Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100422384",
+      "reason": "Kähler Omaggio Vase - part of the Omaggio family, matches the Omaggio series search.",
+      "evidence": "name: Omaggio Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100071199",
+      "reason": "Kähler Omaggio Vase - part of the Omaggio family, matches the Omaggio series search.",
+      "evidence": "name: Omaggio Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100411634",
+      "reason": "Kähler Omaggio Vase set (3 stk.) - contains Omaggio vases, quantity unspecified in query, part of Omaggio family.",
+      "evidence": "name: Omaggio Vase - 3 stk.\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100422377",
+      "reason": "Kähler Omaggio Vase set (3 stk.) - contains Omaggio vases, quantity unspecified in query, part of Omaggio family.",
+      "evidence": "name: Omaggio Vase - 3 stk.\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100405135",
+      "reason": "Kähler Omaggio Nuovo Vase - the anchor product, directly matches the required family Omaggio Nuovo.",
+      "evidence": "name: Omaggio Nuovo Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100445100",
+      "reason": "Exact match: Kähler Hammershøi Sommer Vase, the anchor product.",
+      "evidence": "name: Hammershøi Sommer Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100447941",
+      "reason": "Same named product family (Hammershøi Sommer Vase) by Kähler, different color/decoration variant.",
+      "evidence": "name: Hammershøi Sommer Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100460332",
+      "reason": "Same named product family (Hammershøi Sommer Vase) by Kähler, different material/decoration variant.",
+      "evidence": "name: Hammershøi Sommer Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100435114",
+      "reason": "Same named product family (Hammershøi Sommer Vase) by Kähler, different material/decoration variant.",
+      "evidence": "name: Hammershøi Sommer Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100435116",
+      "reason": "Same named product family (Hammershøi Sommer Vase) by Kähler, different decoration variant.",
+      "evidence": "name: Hammershøi Sommer Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100460333",
+      "reason": "Same named product family (Hammershøi Sommer Vase) by Kähler, different decoration variant.",
+      "evidence": "name: Hammershøi Sommer Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100460331",
+      "reason": "Same named product family (Hammershøi Sommer Vase) by Kähler, smaller size variant.",
+      "evidence": "name: Hammershøi Sommer Vase\nbrand: Kähler\nprimary_category_id: Vaser",
+      "label": "exact"
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100445095",
+      "reason": "Hammershøi Sommer Krus (mug) by Kähler - same series but different product type (krus/mug), not a vase.",
+      "evidence": "name: Hammershøi Sommer Krus\nbrand: Kähler\nprimary_category_id: Krus og kopper med hank",
+      "label": "complement"
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100445096",
+      "reason": "Hammershøi Sommer Skål (bowl) by Kähler - same series but different product type (bowl), not a vase.",
+      "evidence": "name: Hammershøi Sommer Skål\nbrand: Kähler\nprimary_category_id: Skåle",
+      "label": "complement"
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100445094",
+      "reason": "Hammershøi Sommer Opbevaringsdåse (storage tin) by Kähler - same series but different product type (storage tin), not a vase.",
+      "evidence": "name: Hammershøi Sommer Opbevaringsdåse - Symphony\nbrand: Kähler\nprimary_category_id: Dåser og kagedåser",
+      "label": "complement"
+    }
+  ],
+  "reviews": [
+    {
+      "case_id": "pans_category",
+      "product_id": "100451441",
+      "reason": "Product is named 'Stegepande', categorized under Stegepander, and directly matches the broad query 'stegepande' with no brand or material restrictions. Evidence 'primary_category_id: Stegepander' is genuine and sufficient.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100429693",
+      "reason": "Product is named 'Stegepande', categorized under Stegepander. Exact match to the broad query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100433830",
+      "reason": "Product is named 'Stegepande', categorized under Stegepander. Exact match to the broad query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100433831",
+      "reason": "Product is named 'Stegepande', categorized under Stegepander. Exact match to the broad query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100429691",
+      "reason": "Product is named 'Stegepande', categorized under Stegepander. Exact match to the broad query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100354387",
+      "reason": "Product is named 'Stegepande', categorized under Stegepander. Exact match to the broad query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100429694",
+      "reason": "Product is named 'Stegepande', categorized under Stegepander. Exact match to the broad query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100451440",
+      "reason": "Product is named 'Stegepande', categorized under Stegepander. Exact match to the broad query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100386485",
+      "reason": "Product is named 'Stegepande', categorized under Stegepander. Exact match to the broad query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_category",
+      "product_id": "100451309",
+      "reason": "Product is named 'Stegepande', categorized under Stegepander. Exact match to the broad query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100466136",
+      "reason": "Product is a 'Gryde- og pandesæt' categorized under Grydesæt, not a standalone stegepande. The query 'rustfri stegepande' seeks a single frying pan made of stainless steel. A multi-item cookware set in a different primary category is reasonably labeled as substitute rather than exact. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100439699",
+      "reason": "Named 'Stainless Steel Stegepande', categorized under Stegepander, with cust_material including 'Rustfrit stål'. Directly satisfies the 'rustfri stegepande' query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100456332",
+      "reason": "Named 'Stainless Steel Stegepande', categorized under Stegepander, with cust_material including 'Rustfrit stål'. Directly satisfies the 'rustfri stegepande' query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100468230",
+      "reason": "Named 'Stainless Steel Honeycomb Stegepandesæt', categorized under Stegepander, made of 'Genanvendt rustfrit stål'. The query does not restrict to a single pan; a set of stainless steel frying pans is a reasonable match. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100453812",
+      "reason": "Named 'Multi Mosaic Stegepandesæt', categorized under Stegepander, with cust_material including 'Rustfrit stål'. Set of stainless steel frying pans satisfies the query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100439700",
+      "reason": "Named 'Stainless Steel Stegepande', categorized under Stegepander, with cust_material including 'Rustfrit stål'. Directly satisfies the 'rustfri stegepande' query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100456331",
+      "reason": "Named 'Stainless Steel Stegepande', categorized under Stegepander, with cust_material including 'Rustfrit stål'. Directly satisfies the 'rustfri stegepande' query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100442546",
+      "reason": "Named 'Stainless Steel Stegepande', categorized under Stegepander, with cust_material including 'Rustfrit stål'. Directly satisfies the 'rustfri stegepande' query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100468229",
+      "reason": "Named 'Multi 5-ply Stegepande', categorized under Stegepander, made of 'Genanvendt rustfrit stål'. Directly satisfies the 'rustfri stegepande' query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_subtype",
+      "product_id": "100455457",
+      "reason": "Named 'CS+ Rec. Stegepande', categorized under Stegepander, made of 'Genanvendt Rustfrit stål'. Directly satisfies the 'rustfri stegepande' query. Evidence is genuine.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100455457",
+      "reason": "Product is brand: Scanpan, primary_category_id: Stegepander — exact match on both required brand and category. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100414744",
+      "reason": "Product is brand: Scanpan, primary_category_id: Stegepander — exact match on both required brand and category. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100414740",
+      "reason": "Product is brand: Scanpan, primary_category_id: Stegepander — exact match on both required brand and category. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100414742",
+      "reason": "Product is brand: Scanpan, primary_category_id: Stegepander — exact match on both required brand and category. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100414741",
+      "reason": "Product is brand: Scanpan, primary_category_id: Stegepander — exact match on both required brand and category. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100467488",
+      "reason": "Product is brand: Scanpan, primary_category_id: Stegepander — exact match on both required brand and category. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100455458",
+      "reason": "Product is brand: Scanpan, primary_category_id: Stegepander — exact match on both required brand and category. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100455459",
+      "reason": "Product is brand: Scanpan, primary_category_id: Stegepander — exact match on both required brand and category. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100414738",
+      "reason": "Product is brand: Scanpan, primary_category_id: Stegepander — exact match on both required brand and category. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_brand",
+      "product_id": "100430419",
+      "reason": "Product is brand: Scanpan, primary_category_id: Stegepander, name: STS Stegepandesæt - 2 dele. A set of frying pans from Scanpan satisfies a brand-level frying pan query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100453812",
+      "reason": "Product is brand: Eva Trio, name: Multi Mosaic Stegepandesæt - 2 dele, primary_category_id: Stegepander — matches required brand and family. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100466776",
+      "reason": "Product is brand: Eva Trio, name: Multi Mosaic Stegepandesæt - 2 dele — matches required brand and family. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100466778",
+      "reason": "Product is brand: Eva Trio, name: Multi Mosaic Stegepande, primary_category_id: Stegepander — exact match on brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100430635",
+      "reason": "Product is brand: Eva Trio, name: Multi Mosaic Stegepande, primary_category_id: Stegepander — exact match on brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100430142",
+      "reason": "Product is brand: Eva Trio, name: Multi Mosaic Stegepande, primary_category_id: Stegepander — exact match on brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100466777",
+      "reason": "Product is brand: Eva Trio, name: Multi Mosaic Stegepande, primary_category_id: Stegepander — exact match on brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100462287",
+      "reason": "Product is brand: Eva Trio, name: Multi Mosaic Stegepande, primary_category_id: Stegepander — exact match on brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100468875",
+      "reason": "Product is brand: Eva Trio, name: Multi Mosaic Wok, primary_category_id: Wokpander — correct brand and family but different product type (wok, not stegepande). 'substitute' label is reasonable and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100467498",
+      "reason": "Product is brand: Eva Trio, name: Multi Mosaic Sauterpande, primary_category_id: Sauterpander — correct brand and family but different product type. 'substitute' label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_family",
+      "product_id": "100468872",
+      "reason": "Product is brand: Eva Trio, name: Multi Mosaic Sautergryde, primary_category_id: Sauterpander — correct brand and family but different product type (sautergryde, not stegepande). 'substitute' label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100414744",
+      "reason": "Product is brand: Scanpan, name: Fusion 5 Stegepande, primary_category_id: Stegepander — exact match on brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100414742",
+      "reason": "Product is brand: Scanpan, name: Fusion 5 Stegepande (Ø 24 cm), primary_category_id: Stegepander — size variant of the exact product. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100414741",
+      "reason": "Product is brand: Scanpan, name: Fusion 5 Stegepande (Ø 20 cm), primary_category_id: Stegepander — size variant of the exact product. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369488",
+      "reason": "Product is brand: Scanpan, name: Fusion 5 Chefpande m. låg, primary_category_id: Sauterpander — correct brand and family but different product type (chefpande/sauterpande, not stegepande). 'substitute' label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100414746",
+      "reason": "Product is brand: Scanpan, name: Fusion 5 Sautese, primary_category_id: Kasseroller — correct brand and family but different product type. 'substitute' label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369487",
+      "reason": "Product is brand: Scanpan, name: Fusion 5 Sauterpande m. låg, primary_category_id: Sauterpander — correct brand and family but different product type. 'substitute' label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369492",
+      "reason": "Product is brand: Scanpan, name: Fusion 5 Gryde m. låg, primary_category_id: Gryder — correct brand and family but a pot, not a stegepande. 'substitute' label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369490",
+      "reason": "Product is brand: Scanpan, name: Fusion 5 Kasserolle m. låg, primary_category_id: Kasseroller — correct brand and family but different product type. 'substitute' label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369489",
+      "reason": "Product is brand: Scanpan, name: Fusion 5 Kasserolle m. låg, primary_category_id: Kasseroller — correct brand and family but different product type. 'substitute' label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_named_product",
+      "product_id": "100369491",
+      "reason": "Product is brand: Scanpan, name: Fusion 5 Kasserolle m. låg, primary_category_id: Kasseroller — correct brand and family but different product type. 'substitute' label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100413361",
+      "reason": "Product is named 'Krus' and categorized under 'Krus og kopper med hank', directly matching the query 'krus' and the goal of finding a mug for hot drinks. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100422339",
+      "reason": "Product is named 'Krus' and categorized under 'Krus og kopper med hank', directly matching the query 'krus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100473933",
+      "reason": "Product is named 'Termokrus', a recognized subtype of krus used for warm drinks. The broad category query 'krus' reasonably encompasses subtypes like termokrus. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100450886",
+      "reason": "Product is named 'Krus' and categorized under 'Krus og kopper uden hank', directly matching the query 'krus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100354461",
+      "reason": "Product is named 'Krus' and categorized under 'Krus og kopper med hank', directly matching the query 'krus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100399260",
+      "reason": "Product is named 'Krus' and categorized under 'Krus og kopper med hank', directly matching the query 'krus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100430093",
+      "reason": "Product is named 'Krus' and categorized under 'Krus og kopper med hank', directly matching the query 'krus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100412444",
+      "reason": "Product is named 'Krus' and categorized under 'Krus og kopper med hank', directly matching the query 'krus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100365891",
+      "reason": "Product is named 'Krus' and categorized under 'Krus og kopper med hank', directly matching the query 'krus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_category",
+      "product_id": "100389155",
+      "reason": "Product is named 'Krus' and categorized under 'Krus og kopper med hank', directly matching the query 'krus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100448774",
+      "reason": "Product is named 'Kaffekop' and categorized under 'Krus og kopper med hank', directly matching the query 'kaffekop'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100418575",
+      "reason": "Product is named 'Kaffekop' and categorized under 'Krus og kopper med hank', directly matching the query 'kaffekop'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100446697",
+      "reason": "Product is named 'Kaffekop' and categorized under 'Krus og kopper med hank', directly matching the query 'kaffekop'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100418556",
+      "reason": "Product is named 'Kaffekop' and categorized under 'Krus og kopper med hank', directly matching the query 'kaffekop'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100418563",
+      "reason": "Product is named 'Kaffekop' and categorized under 'Krus og kopper med hank', directly matching the query 'kaffekop'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100418570",
+      "reason": "Product is named 'Kaffekop' and categorized under 'Krus og kopper med hank', directly matching the query 'kaffekop'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100418577",
+      "reason": "Product is named 'Kaffekop' and categorized under 'Krus og kopper med hank', directly matching the query 'kaffekop'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100185140",
+      "reason": "Product is named 'Kaffekop' and categorized under 'Krus og kopper med hank', directly matching the query 'kaffekop'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100009176",
+      "reason": "Product is named 'Plissé Kaffekop' and categorized under 'Krus og kopper med hank', directly matching the query 'kaffekop'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_synonym",
+      "product_id": "100454805",
+      "reason": "Product is named 'Good Morning Kaffekop' and categorized under 'Krus og kopper med hank', directly matching the query 'kaffekop'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100473933",
+      "reason": "Product is named 'Termokrus', categorized under 'To go kopper', and made of rustfrit stål, directly matching the query 'termokrus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100418568",
+      "reason": "The product is explicitly named 'Termokrus' by the manufacturer (RAW by Aida), which is the primary signal for relevance. The 'unknown' label imposes an unstated requirement that the material must be stainless steel to qualify as a termokrus. However, the product name itself is the strongest evidence of product type. Stoneware can provide some heat retention, and the manufacturer's own naming is authoritative. The 'unknown' label is overly severe given the explicit name match. This should be 'exact' based on the product name directly matching the query.",
+      "approved": false
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100470608",
+      "reason": "Product is named 'Termokrus', categorized under 'To go kopper', and made of rustfrit stål and plastik, directly matching the query 'termokrus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100447006",
+      "reason": "Product is named 'Termokrus', categorized under 'To go kopper', and made of rustfrit stål, directly matching the query 'termokrus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100382747",
+      "reason": "The product is explicitly named 'Termokrus' by RAW by Aida. The 'unknown' label imposes an unstated material requirement. The manufacturer's naming is the primary evidence of product type. Rejecting the 'unknown' label as overly severe; the name directly matches the query 'termokrus'.",
+      "approved": false
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100418554",
+      "reason": "The product is explicitly named 'Termokrus' by RAW by Aida. The 'unknown' label imposes an unstated material requirement not present in the query. The manufacturer's naming is authoritative evidence of product type. Rejecting the 'unknown' label as overly severe.",
+      "approved": false
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100473914",
+      "reason": "Product is named 'Termokrus', categorized under 'To go kopper', and made of rustfrit stål, directly matching the query 'termokrus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100445157",
+      "reason": "The product is explicitly named 'Termokrus' by RAW by Aida. The 'unknown' label imposes an unstated material requirement. The manufacturer's naming is the primary evidence of product type. Rejecting the 'unknown' label as overly severe.",
+      "approved": false
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100473929",
+      "reason": "Product is named 'Termokrus', categorized under 'To go kopper', and made of rustfrit stål, directly matching the query 'termokrus'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_subtype",
+      "product_id": "100418561",
+      "reason": "The product is explicitly named 'Termokrus' by RAW by Aida. The 'unknown' label imposes an unstated material requirement not present in the query. The manufacturer's naming is authoritative evidence of product type. Rejecting the 'unknown' label as overly severe.",
+      "approved": false
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100470237",
+      "reason": "Brand is Kähler and category is 'Krus og kopper med hank', directly matching the query 'Kähler krus'. Evidence is genuine and sufficient.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100470232",
+      "reason": "Brand is Kähler, category is 'Krus og kopper med hank'. 2-pack variant is a reasonable product form; no quantity restriction in query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100470637",
+      "reason": "Brand is Kähler, category is 'Krus og kopper med hank'. Capacity difference is not a disqualifier for a broad brand+type query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100422284",
+      "reason": "Brand is Kähler, category is 'Krus og kopper med hank'. Seasonal Sommer Krus is still a Kähler krus. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100445095",
+      "reason": "Brand is Kähler, category is 'Krus og kopper med hank'. Satisfies broad brand+mug query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100422283",
+      "reason": "Brand is Kähler, category is 'Krus og kopper med hank'. Satisfies broad brand+mug query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100435101",
+      "reason": "Brand is Kähler, category is 'Krus og kopper med hank'. Satisfies broad brand+mug query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100465503",
+      "reason": "Brand is Kähler, category is 'Krus og kopper med hank'. Satisfies broad brand+mug query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100465508",
+      "reason": "Brand is Kähler, category is 'Krus og kopper med hank'. Satisfies broad brand+mug query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_brand",
+      "product_id": "100350502",
+      "reason": "Brand is Kähler, category is 'Krus og kopper med hank'. Core Hammershøi Krus satisfies the broad brand+mug query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100350502",
+      "reason": "Brand Kähler, name 'Hammershøi Krus', category 'Krus og kopper med hank'. Exact match for Kähler Hammershøi krus query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100350504",
+      "reason": "Brand Kähler, name 'Hammershøi Krus', color variant only. Exact match for family query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100350505",
+      "reason": "Brand Kähler, name 'Hammershøi Krus', color variant only. Exact match for family query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100411640",
+      "reason": "Brand Kähler, name 'Hammershøi Krus', color variant only. Exact match for family query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100361894",
+      "reason": "Brand Kähler, name 'Hammershøi Krus', color variant only. Exact match for family query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100452667",
+      "reason": "Brand Kähler, name 'Hammershøi Krus - 2 stk.', 2-pack variant with no quantity restriction in query. Exact match for family query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100470244",
+      "reason": "Brand Kähler, name 'Hammershøi Krus', smaller capacity variant. No capacity restriction in query. Exact match for family query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100452666",
+      "reason": "Brand Kähler, name 'Hammershøi Krus - 2 stk.', 2-pack variant. No quantity restriction in query. Exact match for family query. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100470237",
+      "reason": "Brand Kähler, name 'Hammershøi Jul Krus 2026' — Hammershøi family, krus category. Seasonal edition is still within the Hammershøi family. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_family",
+      "product_id": "100470232",
+      "reason": "Brand Kähler, name 'Hammershøi Jul Krus 2018 & 2025 - 2 stk.' — Hammershøi family, krus category. Seasonal 2-pack edition within Hammershøi family. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100081624",
+      "reason": "Brand Royal Copenhagen, name 'Blå Mega Riflet Krus - 2 stk.', category 'Krus og kopper med hank'. Direct named product match. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100455108",
+      "reason": "Brand Royal Copenhagen, name 'Blå Mega Riflet Krus - 2 stk. #9', category 'Krus og kopper med hank'. Variant of the named product. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100329316",
+      "reason": "Brand Royal Copenhagen, name 'Blå Mega Riflet Krus - 2 stk.', different capacity variant. Still the named product type. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100395012",
+      "reason": "Brand Royal Copenhagen, name 'Blå Mega Riflet Krus - 2 stk.', different capacity variant. Still the named product type. Label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100075010",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, but product is 'Termokop' in category 'Krus og kopper uden hank'. Query explicitly requests 'Krus' which has a handle; Termokop is a distinct product type. Substitute label is appropriate and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100357955",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, but product is 'Kop' not 'Krus'. Query explicitly names 'Krus'. Substitute label is appropriate and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100079433",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, but product is 'Tekop m. underkop', a distinct product type from 'Krus'. Substitute label is appropriate and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100309084",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, but product is 'Termokop' in category 'Krus og kopper uden hank'. Distinct from the queried 'Krus'. Substitute label is appropriate and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100343180",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, but product is 'Termokop' in category 'Krus og kopper uden hank'. Distinct from the queried 'Krus'. Substitute label is appropriate and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_named_product",
+      "product_id": "100078449",
+      "reason": "Brand Royal Copenhagen, family Blå Mega Riflet, but product is 'Termokop' in category 'Krus og kopper uden hank'. Distinct from the queried 'Krus'. Substitute label is appropriate and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_category",
+      "product_id": "100353708",
+      "reason": "Product name 'Facet Vandglas' and primary_category_id 'Vandglas' directly match the query 'vandglas'. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_category",
+      "product_id": "100353706",
+      "reason": "Product name 'Facet Vandglas' and primary_category_id 'Vandglas' directly match the query 'vandglas'. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_category",
+      "product_id": "100431241",
+      "reason": "Product name 'Melodia Vandglas' and primary_category_id 'Vandglas' directly match the query 'vandglas'. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_category",
+      "product_id": "100409458",
+      "reason": "Product name 'Zero Vandglas' and primary_category_id 'Vandglas' directly match the query 'vandglas'. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_category",
+      "product_id": "100109876",
+      "reason": "Product name 'Future Vandglas' and primary_category_id 'Vandglas' directly match the query 'vandglas'. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100353708",
+      "reason": "'Drikkeglas' (drinking glass) is a broad term; vandglas is a drinking glass. Product is categorized as Vandglas. The synonym interpretation is reasonable and well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100353706",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category. Synonym interpretation is reasonable and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100431241",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category. Synonym interpretation is reasonable and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100409458",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category. Synonym interpretation is reasonable and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100353707",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category. Synonym interpretation is reasonable and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100109876",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category. Synonym interpretation is reasonable and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100109877",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category. Synonym interpretation is reasonable and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100425564",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category. Synonym interpretation is reasonable and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100416214",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category. Synonym interpretation is reasonable and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_synonym",
+      "product_id": "100430598",
+      "reason": "Vandglas is a type of drikkeglas; product is in Vandglas category. Synonym interpretation is reasonable and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100409458",
+      "reason": "Product is a Vandglas with cust_material 'Krystalglas', directly matching both terms of the query 'krystalglas vandglas'. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100430598",
+      "reason": "Product is a Vandglas with cust_material 'Blyfrit krystalglas', which is a subtype of krystalglas. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100002217",
+      "reason": "Product 'Palace Vandglas' has cust_material 'Krystalglas' and primary_category_id 'Vandglas', exactly matching the query. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100456203",
+      "reason": "The contradictory data (cust_material lists 'Glas' while description says 'Krystalglas') makes the material genuinely ambiguous. The 'unknown' label is appropriate and well-reasoned.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100400995",
+      "reason": "Product 'Lifestyle Vandglas' has cust_material 'Krystalglas' and primary_category_id 'Vandglas', exactly matching the query. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100447745",
+      "reason": "Product is a Vandglas with cust_material 'Blyfrit krystalglas', a subtype of krystalglas. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100452453",
+      "reason": "Product 'Ane Vandglas på fod' has cust_material 'Krystalglas' and primary_category_id 'Vandglas', matching the query. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100447744",
+      "reason": "Product is a Vandglas with cust_material 'Blyfrit krystalglas', a subtype of krystalglas. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100474713",
+      "reason": "Product 'Tiger Vandglas' has cust_material 'Krystalglas' and primary_category_id 'Vandglas', exactly matching the query. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_subtype",
+      "product_id": "100455251",
+      "reason": "Product 'Koppel Vandglas' has cust_material 'Blyfrit krystalglas' and primary_category_id 'Vandglas', satisfying the krystalglas subtype requirement. Label is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100109876",
+      "reason": "Product is brand Holmegaard and primary_category_id Vandglas, directly matching the query 'Holmegaard vandglas'. Label 'exact' is fully supported by catalog evidence.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100109877",
+      "reason": "Product is brand Holmegaard and primary_category_id Vandglas, directly matching the query. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100473695",
+      "reason": "Product is brand Holmegaard and primary_category_id Vandglas. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100406298",
+      "reason": "Product is brand Holmegaard and primary_category_id Vandglas. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100473693",
+      "reason": "Product is brand Holmegaard and primary_category_id Vandglas. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100422230",
+      "reason": "Product is brand Holmegaard and primary_category_id Vandglas. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100473702",
+      "reason": "Product is brand Holmegaard and primary_category_id Vandglas. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100081177",
+      "reason": "Product is brand Holmegaard and primary_category_id Vandglas. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100473706",
+      "reason": "Product is brand Holmegaard and primary_category_id Vandglas. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_brand",
+      "product_id": "100422229",
+      "reason": "Product is brand Holmegaard and primary_category_id Vandglas. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100156985",
+      "reason": "Product name 'Grand Cru Caféglas' confirms brand Rosendahl and Grand Cru family. A caféglas is a drinking glass type, fitting the query 'Rosendahl Grand Cru glas'. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100316665",
+      "reason": "Product name 'Grand Cru Soft Drikkeglas', brand Rosendahl, primary_category_id Vandglas. Directly matches query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100156708",
+      "reason": "Product name 'Grand Cru Snapseglas', brand Rosendahl, Grand Cru family. The query is for 'Grand Cru glas' broadly; a snapseglas is a glass type within the Grand Cru series. Label 'exact' is supported as the query shape is 'family' and the goal is to find glasses from the Grand Cru series.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100156709",
+      "reason": "Product name 'Grand Cru Cognacglas', brand Rosendahl, Grand Cru family. A cognacglas is a glass type within the Grand Cru series. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100346438",
+      "reason": "Product name 'Grand Cru Spiritusglas', brand Rosendahl, Grand Cru family. A spiritusglas is a glass type within the Grand Cru series. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100156990",
+      "reason": "Product name 'Grand Cru Hotdrink Glas', brand Rosendahl, Grand Cru family, primary_category_id Termoglas. It is a glass product in the Grand Cru series. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100338720",
+      "reason": "Product is 'Grand Cru Stegeso' (roasting dish), primary_category_id Stegesøer. Despite being Rosendahl Grand Cru, it is not a glass product. Label 'irrelevant' is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100157020",
+      "reason": "Product is 'Grand Cru Krydderikværn' (spice grinder), primary_category_id Øvrige kværne. Not a glass product. Label 'irrelevant' is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100156984",
+      "reason": "Product is 'Grand Cru Vandglas', brand Rosendahl, primary_category_id Vandglas. Directly matches query. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_family",
+      "product_id": "100422366",
+      "reason": "Product is 'Grand Cru Soft Termokande' (thermos jug), primary_category_id Termokander. Not a glass product. Label 'irrelevant' is well-supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_named_product",
+      "product_id": "100430598",
+      "reason": "Product is 'Legio Nova Vandglas', brand Eva Trio, primary_category_id Vandglas. Exactly matches the query. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_named_product",
+      "product_id": "100424648",
+      "reason": "Product is 'Legio Nova Bourgogne Vinglas', brand Eva Trio, Legio Nova family, but it is a wine glass not a vandglas. The query explicitly requests 'vandglas'. Label 'substitute' is appropriate and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_named_product",
+      "product_id": "100424649",
+      "reason": "Product is 'Legio Nova Hvidvinsglas', brand Eva Trio, Legio Nova family, but it is a white wine glass not a vandglas. Label 'substitute' is appropriate and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_named_product",
+      "product_id": "100424647",
+      "reason": "Product is 'Legio Nova Rødvinsglas' (45 cl), brand Eva Trio, Legio Nova family, but it is a red wine glass not a vandglas. Label 'substitute' is appropriate and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_named_product",
+      "product_id": "100430597",
+      "reason": "Product is 'Legio Nova Rødvinsglas' (90 cl), brand Eva Trio, Legio Nova family, but it is a red wine glass not a vandglas. Label 'substitute' is appropriate and supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100463435",
+      "reason": "Product is named 'Kande', categorized as Serveringskander, and directly matches the query 'kande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100451351",
+      "reason": "Product is named 'Kande', categorized as Serveringskander, directly matching the query 'kande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100420539",
+      "reason": "Product is named 'Kande' but categorized as Vandkarafler rather than Serveringskander. It is still a serving vessel called 'kande', so 'substitute' is reasonable. However, the product name is literally 'Kande', which is the exact query term, making 'exact' arguably more appropriate. That said, the label 'substitute' is not over-severe and is defensible given the category difference. Approved as a reasonable judgment.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100446498",
+      "reason": "Product is named 'Kande', categorized as Serveringskander, directly matching the query 'kande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100408286",
+      "reason": "Product is named 'Legio Nova Kande', categorized as Serveringskander, directly matching the query 'kande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100408584",
+      "reason": "Product is named 'Klip It Plus Kande', categorized as Serveringskander, directly matching the query 'kande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100455071",
+      "reason": "Product is named 'Hammershøi Jul Saucekande', categorized as Sovseskåle og -kander. A sauce jug is a distinct subtype from a general serving jug. 'Substitute' is a reasonable and not over-severe judgment. Approved.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100469257",
+      "reason": "Product is named 'Bernadotte Saucekande', categorized as Sovseskåle og -kander. A sauce jug is a distinct subtype. 'Substitute' is reasonable and not over-severe. Approved.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100449039",
+      "reason": "Product is named 'Legio Nova Kande m. hank', categorized as Serveringskander, directly matching the query 'kande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_category",
+      "product_id": "100420992",
+      "reason": "Product is named 'Zero Kandesæt - 5 dele', categorized as Serveringskander. It contains a kande and the name includes 'Kande'. A set is a reasonable match for the broad query 'kande'. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100308750",
+      "reason": "Product is named 'Vinkaraffel', categorized as Vinkarafler. The goal specifies water or juice; a wine carafe is a related but wine-specific vessel. 'Substitute' is a reasonable judgment and not over-severe for a wine-specific carafe when the goal mentions water/juice. Approved.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100430566",
+      "reason": "Product is named 'Vandkaraffel', categorized as Vandkarafler, directly matching the query 'karaffel' and the goal of serving water. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100110632",
+      "reason": "Product is named 'Vandkaraffel', categorized as Vandkarafler, directly matching the query 'karaffel'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100396657",
+      "reason": "Product is named 'Vandkaraffel', categorized as Vandkarafler, directly matching the query 'karaffel'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100110303",
+      "reason": "Product is named 'Karaffel', categorized as Vandkarafler, directly matching the query 'karaffel'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100477560",
+      "reason": "Product is named 'Karaffel', categorized as Vandkarafler, directly matching the query 'karaffel'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100350283",
+      "reason": "Product is named 'Karaffel', categorized as Vandkarafler, directly matching the query 'karaffel'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100477361",
+      "reason": "Product is named 'Karaffel', categorized as Vinkarafler. The query is 'karaffel' broadly, but the goal specifies water or juice. A wine carafe is a related vessel. 'Substitute' is a reasonable and not over-severe judgment. Approved.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100477559",
+      "reason": "Product is named 'Karaffel', categorized as Vandkarafler, directly matching the query 'karaffel'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_synonym",
+      "product_id": "100420945",
+      "reason": "Product is named 'Vandkaraffel', categorized as Vandkarafler, directly matching the query 'karaffel'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100470759",
+      "reason": "Product is named 'Essential Vandfilterkande', categorized as Serveringskander, exactly matching the query 'vandfilterkande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100474717",
+      "reason": "Product is named 'Vida Vandfilterkande', categorized as Serveringskander, exactly matching the query 'vandfilterkande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100308983",
+      "reason": "Product is named 'EM77 Vandfilterkande', categorized as Serveringskander, exactly matching the query 'vandfilterkande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100449084",
+      "reason": "Product is named 'Aqualizer Vandfilterkande', categorized as Serveringskander, exactly matching the query 'vandfilterkande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100474718",
+      "reason": "Product is named 'Vida Vandfilterkande', categorized as Serveringskander, exactly matching the query 'vandfilterkande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100437139",
+      "reason": "Product is named 'Style Vandfilterkande', exactly matching the query 'vandfilterkande'. Category difference (Øvrigt køkkengrej) does not make it irrelevant. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100437138",
+      "reason": "Product is named 'Marella Vandfilterkande', exactly matching the query 'vandfilterkande'. Category difference does not make it irrelevant. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100470758",
+      "reason": "Product is named 'Essential Vandfilterkande', categorized as Serveringskander, exactly matching the query 'vandfilterkande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100449832",
+      "reason": "Product is named 'Filter til BWT Vandfilterkande - 3 stk.', which is a replacement filter accessory, not a water filter jug itself. 'Complement' is the correct label for an accessory to the main product type. Approved.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_subtype",
+      "product_id": "100470760",
+      "reason": "Product is named 'Essential Vandfilterkande', categorized as Serveringskander, exactly matching the query 'vandfilterkande'. Label 'exact' is well supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100390465",
+      "reason": "Product is brand: Royal Copenhagen, primary_category_id: Serveringskander, name: Hvid Riflet Kande — exact match on required brand and product type kande. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100417744",
+      "reason": "Product is brand: Royal Copenhagen, primary_category_id: Serveringskander, name: Sort Mega Riflet Kande — exact match on required brand and product type kande. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100078141",
+      "reason": "Product is brand: Royal Copenhagen, primary_category_id: Serveringskander, name: Blå Mega Riflet Kande — exact match on required brand and product type kande. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100075388",
+      "reason": "Product is brand: Royal Copenhagen, primary_category_id: Serveringskander, name: Blå Mega Riflet Kande — exact match on required brand and product type kande. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100329324",
+      "reason": "Product is brand: Royal Copenhagen, primary_category_id: Serveringskander, name: Stjerne Riflet Jul Kande — seasonal variant is still a kande from the required brand. Seasonal merchandising is not a defect. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100380525",
+      "reason": "Product is brand: Royal Copenhagen, primary_category_id: Serveringskander, name: Blå Mega Riflet Kande — exact match on required brand and product type kande. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100357957",
+      "reason": "Product is brand: Royal Copenhagen, primary_category_id: Serveringskander, name: Blå Mega Riflet Kande — exact match on required brand and product type kande. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100303948",
+      "reason": "Product is brand: Royal Copenhagen, primary_category_id: Serveringskander, name: Hvid Riflet Kande — exact match on required brand and product type kande. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100353780",
+      "reason": "Product is brand: Royal Copenhagen, primary_category_id: Serveringskander, name: Stjerne Riflet Jul Kande — seasonal variant is still a kande from the required brand. Seasonal merchandising is not a defect. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_brand",
+      "product_id": "100079452",
+      "reason": "Product is brand: Royal Copenhagen, primary_category_id: Serveringskander, name: Hvid Riflet Kande — exact match on required brand and product type kande. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100408286",
+      "reason": "Product is brand: Eva Trio, name: Legio Nova Kande, primary_category_id: Serveringskander — exact match on required brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100449039",
+      "reason": "Product is brand: Eva Trio, name: Legio Nova Kande m. hank, primary_category_id: Serveringskander — exact match on required brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100396731",
+      "reason": "Product is brand: Eva Trio, name: Legio Nova Kande, primary_category_id: Serveringskander — exact match on required brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100358209",
+      "reason": "Product is brand: Eva Trio, name: Legio Nova Kande, primary_category_id: Serveringskander — exact match on required brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100449038",
+      "reason": "Product is brand: Eva Trio, name: Legio Nova Kande m. hank, primary_category_id: Serveringskander — exact match on required brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100347062",
+      "reason": "Product is brand: Eva Trio, name: Legio Nova Kande, primary_category_id: Serveringskander — exact match on required brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100347061",
+      "reason": "Product is brand: Eva Trio, name: Legio Nova Kande, primary_category_id: Serveringskander — exact match on required brand, family, and product type. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_family",
+      "product_id": "100362413",
+      "reason": "Product is brand: Eva Trio, name: Legio Nova Sovsekande, primary_category_id: Sovseskåle og -kander — correct brand and family but a sauce jug rather than a serving kande. Label 'substitute' is supported by the category difference from the queried product type.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100448547",
+      "reason": "Product is brand: Georg Jensen, name: Bernadotte Kande, primary_category_id: Serveringskander — exact match on required brand, family Bernadotte, and product type kande. Label 'exact' is fully supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100469257",
+      "reason": "Product is brand: Georg Jensen, name: Bernadotte Saucekande, primary_category_id: Sovseskåle og -kander — correct brand and family but a sauce jug, not a serving kande. Label 'substitute' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100401235",
+      "reason": "Product is brand: Georg Jensen, name: Bernadotte Serveringskande, primary_category_id: Termokander — correct brand and family but a thermos jug, a different subtype. Label 'substitute' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100469258",
+      "reason": "Product is brand: Georg Jensen, name: Bernadotte Saucekande, primary_category_id: Sovseskåle og -kander — correct brand and family but a sauce jug, not a serving kande. Label 'substitute' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100414544",
+      "reason": "Product is brand: Georg Jensen, name: Bernadotte Karaffel m. låg, primary_category_id: Vandkarafler — correct brand and family but a water carafe, a different product type from a kande. Label 'substitute' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100408100",
+      "reason": "Product is brand: Georg Jensen, name: Bernadotte Flødekande, primary_category_id: Mælke- og flødekander — correct brand and family but a cream/milk jug, a different subtype from the serving kande requested. Label 'substitute' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100390549",
+      "reason": "Product is brand: Georg Jensen, name: Bernadotte Flødekande, primary_category_id: Mælke- og flødekander — correct brand and family but a cream/milk jug, a different subtype from the serving kande requested. Label 'substitute' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100448542",
+      "reason": "Product is brand: Georg Jensen, name: Bernadotte Flødekande, primary_category_id: Mælke- og flødekander — correct brand and family but a cream/milk jug, a different subtype from the serving kande requested. Label 'substitute' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_named_product",
+      "product_id": "100420292",
+      "reason": "Product is brand: Georg Jensen, name: Bernadotte Tekande, primary_category_id: Tekander — correct brand and family but a teapot, a different product type from the serving kande requested. Label 'substitute' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100465383",
+      "reason": "Product is named 'Vase', categorized under 'Vaser', and the query is the broad term 'vase'. Direct name and category match supports exact label.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100386969",
+      "reason": "Product is named 'Vase', categorized under 'Vaser'. Direct name and category match supports exact label.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100465690",
+      "reason": "Product is named 'Vase', categorized under 'Vaser'. Direct name and category match supports exact label.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100465402",
+      "reason": "Product is named 'Vase', categorized under 'Vaser'. Direct name and category match supports exact label.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100450238",
+      "reason": "Product is named 'Vase', categorized under 'Vaser'. Direct name and category match supports exact label.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100422363",
+      "reason": "Product is named 'Vase', categorized under 'Vaser'. Direct name and category match supports exact label.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100369095",
+      "reason": "Product is named 'Vase', categorized under 'Vaser'. Direct name and category match supports exact label.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100386970",
+      "reason": "Product is named 'Vase', categorized under 'Vaser'. Direct name and category match supports exact label.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100470274",
+      "reason": "Product is named 'Vase', categorized under 'Vaser'. Direct name and category match supports exact label.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_category",
+      "product_id": "100450131",
+      "reason": "Product is named 'Vase', categorized under 'Vaser'. Direct name and category match supports exact label.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100445100",
+      "reason": "'Hammershøi Sommer Vase' is categorized under 'Vaser' and the name explicitly contains 'Vase'. Query 'blomstervase' means flower vase; a vase is the core product type and this is a direct match.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100397997",
+      "reason": "'Bloom Botanica Vase' is categorized under 'Vaser'. The name 'Bloom Botanica' references flowers/botanics, and it is a vase, directly matching 'blomstervase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100447941",
+      "reason": "'Hammershøi Sommer Vase' is categorized under 'Vaser'. It is a vase, matching 'blomstervase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100460332",
+      "reason": "'Hammershøi Sommer Vase' categorized under 'Vaser', material Keramik, description references pæoner (peonies). Directly matches 'blomstervase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100452675",
+      "reason": "'Hammershøi Jul Vase' is categorized under 'Vaser'. Seasonal vases are still vases; the product is a vase and seasonal merchandising is not a disqualifier. Exact label is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100471725",
+      "reason": "'Bloom Botanica Vase' categorized under 'Vaser'. Flower-themed name and vase type directly match 'blomstervase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100467269",
+      "reason": "'Eslau Lilje Vase' (lily vase) categorized under 'Vaser'. A lily vase is a flower vase, directly matching 'blomstervase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100403985",
+      "reason": "'Hammershøi Poppy Vase' categorized under 'Vaser'. Poppy is a flower; this is a flower vase matching 'blomstervase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100465383",
+      "reason": "Named 'Vase', categorized under 'Vaser'. A generic vase is a valid match for 'blomstervase' as all vases can hold flowers.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_synonym",
+      "product_id": "100397998",
+      "reason": "'Bloom Botanica Vase' categorized under 'Vaser'. Flower-themed name and vase type directly match 'blomstervase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100457577",
+      "reason": "Named 'Keramikvase' with cust_material 'Keramik'. Exact name and material match for query 'keramikvase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100437561",
+      "reason": "Named 'Keramikvase' with cust_material 'Keramik'. Exact name and material match for query 'keramikvase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100386969",
+      "reason": "Vase with cust_material 'Fajance'. The case goal explicitly includes fajance ('keramik eller fajance'), and fajance is a ceramic subtype. Exact label is supported by the case goal and material evidence.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100470874",
+      "reason": "'Solum Vase' with cust_material including 'Keramik'. Direct material match for 'keramikvase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100386970",
+      "reason": "Vase with cust_material 'Fajance'. Case goal includes fajance as a target material; fajance is a ceramic subtype. Exact label supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100470876",
+      "reason": "'Solum Vase' with cust_material including 'Keramik'. Direct material match for 'keramikvase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100402480",
+      "reason": "'Riller Vase' with cust_material 'Fajance'. Case goal includes fajance; fajance is a ceramic subtype. Exact label supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100414234",
+      "reason": "'Riller Vase' with cust_material 'Fajance'. Case goal includes fajance; fajance is a ceramic subtype. Exact label supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100431809",
+      "reason": "'Knabstrup Natura Vase' with cust_material 'Keramik'. Direct material match for 'keramikvase'.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_subtype",
+      "product_id": "100402479",
+      "reason": "'Riller Vase' with cust_material 'Fajance'. Case goal includes fajance; fajance is a ceramic subtype. Exact label supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100445100",
+      "reason": "Product is brand: Kähler, primary_category_id: Vaser. Directly satisfies the 'Kähler vase' query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100447941",
+      "reason": "Product is brand: Kähler, primary_category_id: Vaser. Directly satisfies the 'Kähler vase' query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100460332",
+      "reason": "Product is brand: Kähler, primary_category_id: Vaser. Directly satisfies the 'Kähler vase' query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100452675",
+      "reason": "Product is brand: Kähler, primary_category_id: Vaser. Directly satisfies the 'Kähler vase' query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100403985",
+      "reason": "Product is brand: Kähler, primary_category_id: Vaser. Directly satisfies the 'Kähler vase' query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100435114",
+      "reason": "Product is brand: Kähler, primary_category_id: Vaser. Directly satisfies the 'Kähler vase' query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100346354",
+      "reason": "Product is brand: Kähler, primary_category_id: Vaser. Directly satisfies the 'Kähler vase' query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100405135",
+      "reason": "Product is brand: Kähler, primary_category_id: Vaser. Directly satisfies the 'Kähler vase' query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100411647",
+      "reason": "Product is brand: Kähler, primary_category_id: Vaser. Directly satisfies the 'Kähler vase' query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_brand",
+      "product_id": "100411645",
+      "reason": "Product is brand: Kähler, primary_category_id: Vaser. Directly satisfies the 'Kähler vase' query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100411647",
+      "reason": "Product name is 'Omaggio Vase', brand Kähler, category Vaser. The query is 'Kähler Omaggio vase' and the goal references the Omaggio series broadly. The required_family is 'Omaggio Nuovo' but the query text says 'Omaggio' generally. 'Omaggio Vase' is a direct member of the Omaggio series and is a reasonable match for the broad query. Label 'exact' is supported given the query wording.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100350496",
+      "reason": "Product name is 'Omaggio Vase', brand Kähler, category Vaser. Matches the Omaggio series query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100071570",
+      "reason": "Product name is 'Omaggio Vase', brand Kähler, category Vaser. Matches the Omaggio series query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100342439",
+      "reason": "Product name is 'Omaggio Vase', brand Kähler, category Vaser. Matches the Omaggio series query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100342440",
+      "reason": "Product name is 'Omaggio Vase', brand Kähler, category Vaser. Matches the Omaggio series query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100422384",
+      "reason": "Product name is 'Omaggio Vase', brand Kähler, category Vaser. Matches the Omaggio series query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100071199",
+      "reason": "Product name is 'Omaggio Vase', brand Kähler, category Vaser. Matches the Omaggio series query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100411634",
+      "reason": "Product name is 'Omaggio Vase - 3 stk.', brand Kähler, category Vaser. Contains Omaggio vases and matches the Omaggio series query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100422377",
+      "reason": "Product name is 'Omaggio Vase - 3 stk.', brand Kähler, category Vaser. Contains Omaggio vases and matches the Omaggio series query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_family",
+      "product_id": "100405135",
+      "reason": "Product name is 'Omaggio Nuovo Vase', brand Kähler, category Vaser. This is the anchor product and directly matches the required_family 'Omaggio Nuovo'. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100445100",
+      "reason": "Product name is 'Hammershøi Sommer Vase', brand Kähler, category Vaser. This is the anchor product and exactly matches the query. Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100447941",
+      "reason": "Product name is 'Hammershøi Sommer Vase', brand Kähler, category Vaser. Same named product, different color variant (Symphony). Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100460332",
+      "reason": "Product name is 'Hammershøi Sommer Vase', brand Kähler, category Vaser. Same named product, different material/decoration variant (Pæoner). Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100435114",
+      "reason": "Product name is 'Hammershøi Sommer Vase', brand Kähler, category Vaser. Same named product, different material/decoration variant (Forglemmigej). Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100435116",
+      "reason": "Product name is 'Hammershøi Sommer Vase', brand Kähler, category Vaser. Same named product, different decoration variant (Solsikke). Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100460333",
+      "reason": "Product name is 'Hammershøi Sommer Vase', brand Kähler, category Vaser. Same named product, different decoration variant (Kystblomst). Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100460331",
+      "reason": "Product name is 'Hammershøi Sommer Vase', brand Kähler, category Vaser. Same named product, smaller size variant (H 8,5 cm). Label 'exact' is supported.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100445095",
+      "reason": "Product is 'Hammershøi Sommer Krus', brand Kähler, category 'Krus og kopper med hank'. Same series but a mug, not a vase. The query specifically asks for a vase. Label 'complement' correctly reflects that this is a related but different product type. Approved.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100445096",
+      "reason": "Product is 'Hammershøi Sommer Skål', brand Kähler, category 'Skåle'. Same series but a bowl, not a vase. Label 'complement' correctly reflects that this is a related but different product type. Approved.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_named_product",
+      "product_id": "100445094",
+      "reason": "Product is 'Hammershøi Sommer Opbevaringsdåse', brand Kähler, category 'Dåser og kagedåser'. Same series but a storage tin, not a vase. Label 'complement' correctly reflects that this is a related but different product type. Approved.",
+      "approved": true
+    }
+  ]
+}

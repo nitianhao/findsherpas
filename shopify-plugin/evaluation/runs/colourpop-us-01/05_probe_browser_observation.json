@@ -1,0 +1,21 @@
+{
+  "query": "A Very Mickey Christmas Eyeshadow Palette",
+  "url": "https://colourpop.com/search?q=A+Very+Mickey+Christmas+Eyeshadow+Palette",
+  "method": "Live browser DOM, #product-grid main-product; local evaluator returned HTTP 429 and an empty blocked probe",
+  "visible_result_count": 2,
+  "results": [
+    {
+      "rank": 1,
+      "title": "Disney’s A Very Mickey Christmas x ColourPop Collection",
+      "price": "$125.00",
+      "url": "https://colourpop.com/products/colourpop-and-disney-a-very-mickey-christmas-full-collection?serp=1"
+    },
+    {
+      "rank": 2,
+      "title": "A Very Mickey Christmas Eyeshadow Palette",
+      "price": "$25.00",
+      "url": "https://colourpop.com/products/a-very-mickey-christmas-eyeshadow-palette?serp=1"
+    }
+  ],
+  "note": "The document title said 252 results, but the visible results header said 2 items and #product-grid contained 2 product cards. Use the visible grid count and order. The local 05_probe.json is a blocked fetch, not a genuine zero-result search."
+}

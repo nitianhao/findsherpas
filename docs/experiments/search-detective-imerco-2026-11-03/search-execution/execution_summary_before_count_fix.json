@@ -1,0 +1,262 @@
+{
+  "status": "complete",
+  "completed_at": "2026-11-03T20:31:37.262364+00:00",
+  "searches_executed": true,
+  "unique_queries": 18,
+  "query_entries": 19,
+  "status_counts": {
+    "ok": 13,
+    "zero_confirmed": 5
+  },
+  "cases": [
+    {
+      "mode": "negation",
+      "anchor_product_id": "100481065",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "kopper",
+          "status": "ok",
+          "total_hits": 1115,
+          "extracted": 10,
+          "anchor_rank": null,
+          "observations": 2,
+          "trusted_fetch": true
+        },
+        {
+          "role": "test",
+          "query": "kopper uden hank",
+          "status": "ok",
+          "total_hits": 137,
+          "extracted": 10,
+          "anchor_rank": null,
+          "observations": 1,
+          "trusted_fetch": true
+        }
+      ]
+    },
+    {
+      "mode": "unit_conversion",
+      "anchor_product_id": "100396731",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "kande 1,6 L",
+          "status": "ok",
+          "total_hits": 3,
+          "extracted": 10,
+          "anchor_rank": 1,
+          "observations": 1,
+          "trusted_fetch": true
+        },
+        {
+          "role": "test",
+          "query": "kande 1600 ml",
+          "status": "ok",
+          "total_hits": 2,
+          "extracted": 5,
+          "anchor_rank": null,
+          "observations": 1,
+          "trusted_fetch": true
+        }
+      ]
+    },
+    {
+      "mode": "dimension",
+      "anchor_product_id": "100445100",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "vase",
+          "status": "ok",
+          "total_hits": 1490,
+          "extracted": 10,
+          "anchor_rank": null,
+          "observations": 1,
+          "trusted_fetch": true
+        },
+        {
+          "role": "test",
+          "query": "vase højde 21 cm",
+          "status": "zero_confirmed",
+          "total_hits": 0,
+          "extracted": 0,
+          "anchor_rank": null,
+          "observations": 2,
+          "trusted_fetch": true
+        }
+      ]
+    },
+    {
+      "mode": "pack_capacity",
+      "anchor_product_id": "100404523",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "glas sæt 6 stk",
+          "status": "zero_confirmed",
+          "total_hits": 0,
+          "extracted": 0,
+          "anchor_rank": null,
+          "observations": 2,
+          "trusted_fetch": true
+        },
+        {
+          "role": "test",
+          "query": "glas sæt 6 stk 38 cl",
+          "status": "zero_confirmed",
+          "total_hits": 0,
+          "extracted": 0,
+          "anchor_rank": null,
+          "observations": 2,
+          "trusted_fetch": true
+        }
+      ]
+    },
+    {
+      "mode": "solid_material",
+      "anchor_product_id": "100455704",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "sofabord",
+          "status": "ok",
+          "total_hits": 23,
+          "extracted": 10,
+          "anchor_rank": 2,
+          "observations": 1,
+          "trusted_fetch": true
+        },
+        {
+          "role": "test",
+          "query": "sofabord massivt egetræ",
+          "status": "zero_confirmed",
+          "total_hits": 0,
+          "extracted": 0,
+          "anchor_rank": null,
+          "observations": 2,
+          "trusted_fetch": true
+        }
+      ]
+    },
+    {
+      "mode": "compatibility",
+      "anchor_product_id": "100468229",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "stegepande",
+          "status": "ok",
+          "total_hits": 890,
+          "extracted": 10,
+          "anchor_rank": null,
+          "observations": 1,
+          "trusted_fetch": true
+        },
+        {
+          "role": "test",
+          "query": "stegepande induktion",
+          "status": "ok",
+          "total_hits": 602,
+          "extracted": 10,
+          "anchor_rank": 8,
+          "observations": 1,
+          "trusted_fetch": true
+        }
+      ]
+    },
+    {
+      "mode": "combined_exclusions",
+      "anchor_product_id": "100468229",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "stegepande rustfrit stål",
+          "status": "ok",
+          "total_hits": 331,
+          "extracted": 10,
+          "anchor_rank": null,
+          "observations": 1,
+          "trusted_fetch": true
+        },
+        {
+          "role": "test",
+          "query": "stegepande rustfrit stål uden belægning",
+          "status": "ok",
+          "total_hits": 2,
+          "extracted": 2,
+          "anchor_rank": null,
+          "observations": 1,
+          "trusted_fetch": true
+        }
+      ]
+    },
+    {
+      "mode": "specificity",
+      "anchor_product_id": "100396731",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "kande",
+          "status": "ok",
+          "total_hits": 518,
+          "extracted": 10,
+          "anchor_rank": null,
+          "observations": 1,
+          "trusted_fetch": true
+        },
+        {
+          "role": "test",
+          "query": "kande porcelæn",
+          "status": "ok",
+          "total_hits": 47,
+          "extracted": 10,
+          "anchor_rank": 7,
+          "observations": 1,
+          "trusted_fetch": true
+        },
+        {
+          "role": "test",
+          "query": "kande porcelæn 1,6 L",
+          "status": "ok",
+          "total_hits": 1,
+          "extracted": 10,
+          "anchor_rank": 1,
+          "observations": 1,
+          "trusted_fetch": true
+        }
+      ]
+    },
+    {
+      "mode": "conditional_price",
+      "anchor_product_id": "100456332",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "stegepande",
+          "status": "ok",
+          "total_hits": 890,
+          "extracted": 10,
+          "anchor_rank": null,
+          "observations": 1,
+          "trusted_fetch": true
+        },
+        {
+          "role": "test",
+          "query": "stegepande under 500 kr",
+          "status": "zero_confirmed",
+          "total_hits": 0,
+          "extracted": 0,
+          "anchor_rank": null,
+          "observations": 2,
+          "trusted_fetch": true
+        }
+      ]
+    }
+  ],
+  "refreshed_products": 9,
+  "product_refresh_errors": 0,
+  "quality_judgments_performed": false,
+  "llm_calls": 0,
+  "note": "Counts/anchor visibility are observations. Result-level eligibility and root causes have not been judged."
+}

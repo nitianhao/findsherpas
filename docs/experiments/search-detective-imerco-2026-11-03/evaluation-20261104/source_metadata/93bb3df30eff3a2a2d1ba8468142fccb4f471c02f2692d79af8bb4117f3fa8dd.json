@@ -1,0 +1,9 @@
+{
+  "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas?id=100030058",
+  "final_url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas?id=100030058",
+  "http_status": 200,
+  "captured_at": "2026-11-04T19:02:34.510819+00:00",
+  "sha256": "90bbe07755d2b24b38f8e67b957f9167a8a2e6d49e32f1be4d19b40cd2485b5a",
+  "transport": "requests/static",
+  "snapshot": "sources/93bb3df30eff3a2a2d1ba8468142fccb4f471c02f2692d79af8bb4117f3fa8dd.html"
+}

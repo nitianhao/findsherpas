@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-11-03T19:57:20.642067+00:00",
+  "config": {
+    "failure_library_sha256": "c954134575feff6b17fc1d23d48cb84bc390b71126759a3e007629d101bbadf6",
+    "mode": "replay",
+    "input_sha256": "b7f1caacbddf3b9731fc29d656fd11eb043768874acc365cc3b10c4c155d013b",
+    "model": "claude-sonnet-4-6",
+    "max_usd": 3.0,
+    "max_calls": 30,
+    "input_rate": 3,
+    "output_rate": 15,
+    "code_sha256": "c815da0e3c2e25ed032aeccde39486b2a3276781aeb1934626256995c9d7d61f"
+  },
+  "git_revision": "27ad7472a13d0a52bd9f483e8dae0351bcf1792b",
+  "note": "Code hash includes uncommitted implementation; no queries generated/executed.",
+  "products_sha256": "7223a902769cd9c803c07fc9e371f67f7f431dd6e861e3e3786d87ba717d26d2"
+}

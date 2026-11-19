@@ -1,0 +1,41 @@
+[
+  {
+    "query": "vandglas",
+    "original_capture_date": "2026-11-04",
+    "current_capture_at": "2026-11-05T19:34:07.595255+00:00",
+    "before_top1_id": "100353708",
+    "before_top1_title": "Eva Solo Facet Vandglas  /  4 stk.",
+    "before_top1_stock": "not_available_online",
+    "current_top1_id": "100431241",
+    "current_top1_title": "Lyngby Glas Melodia Vandglas  /  6 stk.",
+    "current_top1_stock": "available_online",
+    "same_first_ten_urls": false,
+    "note": "Read-only temporal comparison. No store configuration was changed by this experiment."
+  },
+  {
+    "query": "drikkeglas",
+    "original_capture_date": "2026-11-04",
+    "current_capture_at": "2026-11-05T19:34:14.087617+00:00",
+    "before_top1_id": "100353708",
+    "before_top1_title": "Eva Solo Facet Vandglas  /  4 stk.",
+    "before_top1_stock": "not_available_online",
+    "current_top1_id": "100431241",
+    "current_top1_title": "Lyngby Glas Melodia Vandglas  /  6 stk.",
+    "current_top1_stock": "available_online",
+    "same_first_ten_urls": false,
+    "note": "Read-only temporal comparison. No store configuration was changed by this experiment."
+  },
+  {
+    "query": "vase",
+    "original_capture_date": "2026-11-04",
+    "current_capture_at": "2026-11-05T19:34:22.202752+00:00",
+    "before_top1_id": "100465383",
+    "before_top1_title": "CASA Living Vase",
+    "before_top1_stock": "not_available_online",
+    "current_top1_id": "100465383",
+    "current_top1_title": "CASA Living Vase",
+    "current_top1_stock": "not_available_online",
+    "same_first_ten_urls": false,
+    "note": "Read-only temporal comparison. No store configuration was changed by this experiment."
+  }
+]

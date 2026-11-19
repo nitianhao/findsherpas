@@ -1,0 +1,77 @@
+{
+  "drafts": [
+    {
+      "mode": "negation",
+      "anchor_product_id": "100481065",
+      "baseline_query": "kopper",
+      "test_queries": [
+        "kopper uden hank"
+      ]
+    },
+    {
+      "mode": "unit_conversion",
+      "anchor_product_id": "100396731",
+      "baseline_query": "kande 1,6 L",
+      "test_queries": [
+        "kande 1600 ml"
+      ]
+    },
+    {
+      "mode": "dimension",
+      "anchor_product_id": "100445100",
+      "baseline_query": "vase",
+      "test_queries": [
+        "vase højde 21 cm"
+      ]
+    },
+    {
+      "mode": "pack_capacity",
+      "anchor_product_id": "100404523",
+      "baseline_query": "glas sæt 6 stk",
+      "test_queries": [
+        "glas sæt 6 stk 38 cl"
+      ]
+    },
+    {
+      "mode": "solid_material",
+      "anchor_product_id": "100455704",
+      "baseline_query": "sofabord",
+      "test_queries": [
+        "sofabord massivt egetræ"
+      ]
+    },
+    {
+      "mode": "compatibility",
+      "anchor_product_id": "100468229",
+      "baseline_query": "stegepande",
+      "test_queries": [
+        "stegepande induktion"
+      ]
+    },
+    {
+      "mode": "combined_exclusions",
+      "anchor_product_id": "100468229",
+      "baseline_query": "stegepande rustfrit stål",
+      "test_queries": [
+        "stegepande rustfrit stål uden belægning"
+      ]
+    },
+    {
+      "mode": "specificity",
+      "anchor_product_id": "100396731",
+      "baseline_query": "kande",
+      "test_queries": [
+        "kande porcelæn",
+        "kande porcelæn 1,6 L"
+      ]
+    },
+    {
+      "mode": "conditional_price",
+      "anchor_product_id": "100456332",
+      "baseline_query": "stegepande",
+      "test_queries": [
+        "stegepande under 500 kr"
+      ]
+    }
+  ]
+}

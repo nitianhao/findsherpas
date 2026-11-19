@@ -1,0 +1,939 @@
+{
+  "created_at": "2026-11-05T19:21:57.927191+00:00",
+  "cases": [
+    {
+      "id": "cups_category",
+      "category": "cups",
+      "shape": "category",
+      "query": "porcelæn krus",
+      "goal": "porcelæn krus",
+      "anchor_ids": [
+        "100081624",
+        "100081658",
+        "100081719",
+        "100470237",
+        "100422284"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "cups_subtype",
+      "category": "cups",
+      "shape": "subtype",
+      "query": "termokop",
+      "goal": "termokop",
+      "anchor_ids": [
+        "100422904"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "cups_brand",
+      "category": "cups",
+      "shape": "brand",
+      "query": "Kähler krus",
+      "goal": "Kähler krus",
+      "anchor_ids": [
+        "100470232",
+        "100470237",
+        "100422284"
+      ],
+      "required_brand": "Kähler",
+      "required_family": ""
+    },
+    {
+      "id": "cups_family",
+      "category": "cups",
+      "shape": "family",
+      "query": "Kähler Hammershøi jul krus",
+      "goal": "Kähler Hammershøi jul krus",
+      "anchor_ids": [
+        "100470232",
+        "100470237"
+      ],
+      "required_brand": "Kähler",
+      "required_family": "Hammershøi"
+    },
+    {
+      "id": "cups_named_product",
+      "category": "cups",
+      "shape": "named_product",
+      "query": "Royal Copenhagen Alfabet Kollektion Højhankskop",
+      "goal": "Royal Copenhagen Alfabet Kollektion Højhankskop",
+      "anchor_ids": [
+        "100461453",
+        "100400862"
+      ],
+      "required_brand": "Royal Copenhagen",
+      "required_family": "Alfabet Kollektion"
+    },
+    {
+      "id": "glasses_category",
+      "category": "glasses",
+      "shape": "category",
+      "query": "vandglas",
+      "goal": "vandglas",
+      "anchor_ids": [
+        "100431241",
+        "100409458",
+        "100156984",
+        "100416214",
+        "100425564"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "glasses_subtype",
+      "category": "glasses",
+      "shape": "subtype",
+      "query": "caféglas",
+      "goal": "caféglas",
+      "anchor_ids": [
+        "100156985"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "glasses_brand",
+      "category": "glasses",
+      "shape": "brand",
+      "query": "Lyngby Glas vandglas",
+      "goal": "Lyngby Glas vandglas",
+      "anchor_ids": [
+        "100431241",
+        "100409458"
+      ],
+      "required_brand": "Lyngby Glas",
+      "required_family": ""
+    },
+    {
+      "id": "glasses_family",
+      "category": "glasses",
+      "shape": "family",
+      "query": "Rosendahl Grand Cru glas",
+      "goal": "Rosendahl Grand Cru glas",
+      "anchor_ids": [
+        "100156984",
+        "100156985"
+      ],
+      "required_brand": "Rosendahl",
+      "required_family": "Grand Cru"
+    },
+    {
+      "id": "glasses_named_product",
+      "category": "glasses",
+      "shape": "named_product",
+      "query": "Georg Jensen Bernadotte Glas",
+      "goal": "Georg Jensen Bernadotte Glas",
+      "anchor_ids": [
+        "100404523"
+      ],
+      "required_brand": "Georg Jensen",
+      "required_family": "Bernadotte"
+    },
+    {
+      "id": "jugs_category",
+      "category": "jugs",
+      "shape": "category",
+      "query": "serveringskande porcelæn",
+      "goal": "serveringskande porcelæn",
+      "anchor_ids": [
+        "100408286",
+        "100390465",
+        "100448547",
+        "100075388"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "jugs_subtype",
+      "category": "jugs",
+      "shape": "subtype",
+      "query": "vandfilterkande",
+      "goal": "vandfilterkande",
+      "anchor_ids": [
+        "100308983",
+        "100470759",
+        "100474717"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "jugs_brand",
+      "category": "jugs",
+      "shape": "brand",
+      "query": "Royal Copenhagen kande",
+      "goal": "Royal Copenhagen kande",
+      "anchor_ids": [
+        "100390465",
+        "100417744",
+        "100075388"
+      ],
+      "required_brand": "Royal Copenhagen",
+      "required_family": ""
+    },
+    {
+      "id": "jugs_family",
+      "category": "jugs",
+      "shape": "family",
+      "query": "Eva Trio Legio Nova kande",
+      "goal": "Eva Trio Legio Nova kande",
+      "anchor_ids": [
+        "100408286",
+        "100449039"
+      ],
+      "required_brand": "Eva Trio",
+      "required_family": "Legio Nova"
+    },
+    {
+      "id": "jugs_named_product",
+      "category": "jugs",
+      "shape": "named_product",
+      "query": "Stelton EM77 Vandfilterkande",
+      "goal": "Stelton EM77 Vandfilterkande",
+      "anchor_ids": [
+        "100308983"
+      ],
+      "required_brand": "Stelton",
+      "required_family": "EM77"
+    },
+    {
+      "id": "pans_category",
+      "category": "pans",
+      "shape": "category",
+      "query": "stegepande",
+      "goal": "stegepande",
+      "anchor_ids": [
+        "100439699",
+        "100468229",
+        "100455457",
+        "100454201",
+        "100410806",
+        "100414744"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "pans_subtype",
+      "category": "pans",
+      "shape": "subtype",
+      "query": "stegepandesæt",
+      "goal": "stegepandesæt",
+      "anchor_ids": [
+        "100468230",
+        "100453812",
+        "100461801"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "pans_brand",
+      "category": "pans",
+      "shape": "brand",
+      "query": "Scanpan stegepande",
+      "goal": "Scanpan stegepande",
+      "anchor_ids": [
+        "100455457",
+        "100414744"
+      ],
+      "required_brand": "Scanpan",
+      "required_family": ""
+    },
+    {
+      "id": "pans_family",
+      "category": "pans",
+      "shape": "family",
+      "query": "Eva Trio Stainless Steel stegepande",
+      "goal": "Eva Trio Stainless Steel stegepande",
+      "anchor_ids": [
+        "100439699",
+        "100468230"
+      ],
+      "required_brand": "Eva Trio",
+      "required_family": "Stainless Steel"
+    },
+    {
+      "id": "pans_named_product",
+      "category": "pans",
+      "shape": "named_product",
+      "query": "Greenpan Barcelona Pro Stegepande",
+      "goal": "Greenpan Barcelona Pro Stegepande",
+      "anchor_ids": [
+        "100410806"
+      ],
+      "required_brand": "Greenpan",
+      "required_family": "Barcelona Pro"
+    },
+    {
+      "id": "vases_category",
+      "category": "vases",
+      "shape": "category",
+      "query": "vase stentøj",
+      "goal": "vase stentøj",
+      "anchor_ids": [
+        "100452837",
+        "100411645",
+        "100465690",
+        "100470874"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "vases_subtype",
+      "category": "vases",
+      "shape": "subtype",
+      "query": "glasvase",
+      "goal": "glasvase",
+      "anchor_ids": [
+        "100411644"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "vases_brand",
+      "category": "vases",
+      "shape": "brand",
+      "query": "Kähler vase",
+      "goal": "Kähler vase",
+      "anchor_ids": [
+        "100445100",
+        "100411644",
+        "100411645"
+      ],
+      "required_brand": "Kähler",
+      "required_family": ""
+    },
+    {
+      "id": "vases_family",
+      "category": "vases",
+      "shape": "family",
+      "query": "Kähler Hammershøi Sommer Vase",
+      "goal": "Kähler Hammershøi Sommer Vase",
+      "anchor_ids": [
+        "100445100"
+      ],
+      "required_brand": "Kähler",
+      "required_family": "Hammershøi"
+    },
+    {
+      "id": "vases_named_product",
+      "category": "vases",
+      "shape": "named_product",
+      "query": "Royal Copenhagen Art of Giving Flowers Hortensia Vase",
+      "goal": "Royal Copenhagen Art of Giving Flowers Hortensia Vase",
+      "anchor_ids": [
+        "100079045"
+      ],
+      "required_brand": "Royal Copenhagen",
+      "required_family": "Art of Giving Flowers"
+    },
+    {
+      "id": "bowls_category",
+      "category": "bowls",
+      "shape": "category",
+      "query": "serveringsskåle i porcelæn",
+      "goal": "serveringsskåle i porcelæn",
+      "anchor_ids": [
+        "100353730",
+        "100429550",
+        "100422903",
+        "100077591",
+        "100081685"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "bowls_subtype",
+      "category": "bowls",
+      "shape": "subtype",
+      "query": "salat skål hvid",
+      "goal": "salat skål hvid",
+      "anchor_ids": [
+        "100384434",
+        "100353730",
+        "100429550"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "bowls_brand",
+      "category": "bowls",
+      "shape": "brand",
+      "query": "Royal Copenhagen skål",
+      "goal": "Royal Copenhagen skål",
+      "anchor_ids": [
+        "100422903",
+        "100077591",
+        "100390463",
+        "100303949",
+        "100081685"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "bowls_family",
+      "category": "bowls",
+      "shape": "family",
+      "query": "Hammershøi Jul skål",
+      "goal": "Hammershøi Jul skål",
+      "anchor_ids": [
+        "100393450",
+        "100393441"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "bowls_named_product",
+      "category": "bowls",
+      "shape": "named_product",
+      "query": "Georg Jensen Bernadotte skål",
+      "goal": "Georg Jensen Bernadotte skål",
+      "anchor_ids": [
+        "100404519",
+        "100407634"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "cutlery_category",
+      "category": "cutlery",
+      "shape": "category",
+      "query": "bestiksæt rustfrit stål",
+      "goal": "bestiksæt rustfrit stål",
+      "anchor_ids": [
+        "100302086",
+        "100357287",
+        "100023195",
+        "100323409",
+        "100352202"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "cutlery_subtype",
+      "category": "cutlery",
+      "shape": "subtype",
+      "query": "steakbestik til 4 personer",
+      "goal": "steakbestik til 4 personer",
+      "anchor_ids": [
+        "100023195",
+        "100427498",
+        "100450924"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "cutlery_brand",
+      "category": "cutlery",
+      "shape": "brand",
+      "query": "Georg Jensen bestik",
+      "goal": "Georg Jensen bestik",
+      "anchor_ids": [
+        "100302086",
+        "100323409"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "cutlery_family",
+      "category": "cutlery",
+      "shape": "family",
+      "query": "CASA Living Daisy bestiksæt",
+      "goal": "CASA Living Daisy bestiksæt",
+      "anchor_ids": [
+        "100450061",
+        "100436690"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "cutlery_named_product",
+      "category": "cutlery",
+      "shape": "named_product",
+      "query": "erik bagger a/s Encore bestiksæt",
+      "goal": "erik bagger a/s Encore bestiksæt",
+      "anchor_ids": [
+        "100434010"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "knives_category",
+      "category": "knives",
+      "shape": "category",
+      "query": "køkkenknive rustfrit stål",
+      "goal": "køkkenknive rustfrit stål",
+      "anchor_ids": [
+        "100408754",
+        "100445605",
+        "100462911",
+        "100408757",
+        "100443006"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "knives_subtype",
+      "category": "knives",
+      "shape": "subtype",
+      "query": "santokukniv japansk stål",
+      "goal": "santokukniv japansk stål",
+      "anchor_ids": [
+        "100434186",
+        "100432425",
+        "100456609"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "knives_brand",
+      "category": "knives",
+      "shape": "brand",
+      "query": "Scanpan kokkekniv",
+      "goal": "Scanpan kokkekniv",
+      "anchor_ids": [
+        "100462911",
+        "100462901"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "knives_family",
+      "category": "knives",
+      "shape": "family",
+      "query": "Cuisine::pro Damashiro EMPEROR kokkekniv",
+      "goal": "Cuisine::pro Damashiro EMPEROR kokkekniv",
+      "anchor_ids": [
+        "100432380"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "knives_named_product",
+      "category": "knives",
+      "shape": "named_product",
+      "query": "Endeavour Resolution kokkekniv",
+      "goal": "Endeavour Resolution kokkekniv",
+      "anchor_ids": [
+        "100408754",
+        "100408757",
+        "100419372"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "plates_category",
+      "category": "plates",
+      "shape": "category",
+      "query": "middagstallerkener porcelæn",
+      "goal": "middagstallerkener porcelæn",
+      "anchor_ids": [
+        "100347068",
+        "100081580",
+        "100385084",
+        "100404524",
+        "100359668"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "plates_subtype",
+      "category": "plates",
+      "shape": "subtype",
+      "query": "coupe tallerken koboltblå",
+      "goal": "coupe tallerken koboltblå",
+      "anchor_ids": [
+        "100336247"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "plates_brand",
+      "category": "plates",
+      "shape": "brand",
+      "query": "Lyngby Porcelæn middagstallerken",
+      "goal": "Lyngby Porcelæn middagstallerken",
+      "anchor_ids": [
+        "100359668"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "plates_family",
+      "category": "plates",
+      "shape": "family",
+      "query": "Royal Copenhagen Hvid Halvblonde middagstallerken",
+      "goal": "Royal Copenhagen Hvid Halvblonde middagstallerken",
+      "anchor_ids": [
+        "100077605"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "plates_named_product",
+      "category": "plates",
+      "shape": "named_product",
+      "query": "Royal Copenhagen Blå Mega Riflet middagstallerken",
+      "goal": "Royal Copenhagen Blå Mega Riflet middagstallerken",
+      "anchor_ids": [
+        "100074807",
+        "100380524",
+        "100336247"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "pots_category",
+      "category": "pots",
+      "shape": "category",
+      "query": "gryder til komfur",
+      "goal": "gryder til komfur",
+      "anchor_ids": [
+        "100429301",
+        "100442525",
+        "100416978",
+        "100442007",
+        "100449060"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "pots_subtype",
+      "category": "pots",
+      "shape": "subtype",
+      "query": "støbejern gryde",
+      "goal": "støbejern gryde",
+      "anchor_ids": [
+        "100412777",
+        "100359662",
+        "100451765"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "pots_brand",
+      "category": "pots",
+      "shape": "brand",
+      "query": "Le Creuset gryde",
+      "goal": "Le Creuset gryde",
+      "anchor_ids": [
+        "100359662"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "pots_family",
+      "category": "pots",
+      "shape": "family",
+      "query": "Eva Trio Stainless Steel gryde",
+      "goal": "Eva Trio Stainless Steel gryde",
+      "anchor_ids": [
+        "100442525",
+        "100442533",
+        "100442529"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "pots_named_product",
+      "category": "pots",
+      "shape": "named_product",
+      "query": "Cook & Baker Gastro suppegryde",
+      "goal": "Cook & Baker Gastro suppegryde",
+      "anchor_ids": [
+        "100445549",
+        "100416978"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    }
+  ],
+  "review": [
+    {
+      "case_id": "cups_category",
+      "reason": "Query 'porcelæn krus' is a natural Danish category search. Anchors 100081624 (Royal Copenhagen Blå Mega Riflet Krus, porcelæn), 100081658 (Stjerne Riflet Jul Krus, benporcelæn), 100081719 (Hvid Riflet Krus, porcelæn), 100470237 (Kähler Hammershøi Jul Krus 2026, porcelæn), and 100422284 (Kähler Hammershøi Sommer Krus, keramik) are all confirmed in inventory. Four of five are explicitly porcelæn/benporcelæn; the Sommer Krus is keramik which is a close material alternative reasonably returned in a broad category search. Five distinct products confirmed. Shape is category, no brand/family required. All anchors are real inventory items.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_subtype",
+      "reason": "Query 'termokop' is a natural Danish subtype search. Anchor 100422904 (Royal Copenhagen Sort Riflet Blonde Termokop) is confirmed in inventory and explicitly named 'Termokop'. Single anchor is sufficient for a subtype probe. Shape is subtype, no brand/family required. Inventory grounding confirmed.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_brand",
+      "reason": "Query 'Kähler krus' is a natural brand search. Anchors 100470232 (Kähler Hammershøi Jul Krus 2018 & 2025), 100470237 (Kähler Hammershøi Jul Krus 2026), and 100422284 (Kähler Hammershøi Sommer Krus) are all confirmed Kähler krus products in inventory. Required brand is Kähler, confirmed across all three anchors. Shape is brand. All anchors verified.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_family",
+      "reason": "Query 'Kähler Hammershøi jul krus' is a natural family+subtype search. Anchors 100470232 (Kähler Hammershøi Jul Krus 2018 & 2025) and 100470237 (Kähler Hammershøi Jul Krus 2026) are both confirmed in inventory, both Kähler brand, both Hammershøi family, both explicitly 'Jul Krus'. Required brand Kähler and family Hammershøi confirmed. Shape is family. Seasonal mugs are valid mugs per instructions.",
+      "approved": true
+    },
+    {
+      "case_id": "cups_named_product",
+      "reason": "Query 'Royal Copenhagen Alfabet Kollektion Højhankskop' is a natural named product search. Anchors 100461453 (Royal Copenhagen Alfabet Kollektion Højhankskop / Mor) and 100400862 (Royal Copenhagen Alfabet Kollektion Højhankskop / C) are confirmed in inventory. Named product searches accept unspecified variants per instructions, so different letter/variant results are valid. Required brand Royal Copenhagen and family Alfabet Kollektion confirmed. Shape is named_product.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_category",
+      "reason": "Query 'vandglas' is a natural Danish category search. Anchors 100431241 (Lyngby Glas Melodia Vandglas), 100409458 (Lyngby Glas Zero Vandglas), 100156984 (Rosendahl Grand Cru Vandglas), 100416214 (Kähler Hammershøi Vandglas), and 100425564 (CASA Living Daisy Vandglas) are all confirmed in inventory and all explicitly named 'Vandglas'. Five distinct products confirmed. Shape is category, no brand/family required.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_subtype",
+      "reason": "Query 'caféglas' is a natural Danish subtype search. Anchor 100156985 (Rosendahl Grand Cru Caféglas / 4 stk.) is confirmed in inventory and explicitly named 'Caféglas'. Shape is subtype, no brand/family required. Inventory grounding confirmed.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_brand",
+      "reason": "Query 'Lyngby Glas vandglas' is a natural brand search. Anchors 100431241 (Lyngby Glas Melodia Vandglas) and 100409458 (Lyngby Glas Zero Vandglas) are both confirmed Lyngby Glas vandglas products in inventory. Required brand Lyngby Glas confirmed across both anchors. Shape is brand.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_family",
+      "reason": "Query 'Rosendahl Grand Cru glas' is a natural family search. Anchors 100156984 (Rosendahl Grand Cru Vandglas) and 100156985 (Rosendahl Grand Cru Caféglas) are both confirmed in inventory, both Rosendahl brand, both Grand Cru family. The query says 'glas' generically, so both vandglas and caféglas are valid results. Required brand Rosendahl and family Grand Cru confirmed. Shape is family.",
+      "approved": true
+    },
+    {
+      "case_id": "glasses_named_product",
+      "reason": "Query 'Georg Jensen Bernadotte Glas' is a natural named product search. Anchor 100404523 (Georg Jensen Bernadotte Glas / 6 stk.) is confirmed in inventory. Required brand Georg Jensen and family Bernadotte confirmed. Named product searches accept unspecified variants (pack size). Shape is named_product.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_category",
+      "reason": "Query 'serveringskande porcelæn' is a natural category+material search. Anchors 100408286 (Eva Trio Legio Nova Kande, porcelæn), 100390465 (Royal Copenhagen Hvid Riflet Kande, porcelæn), 100448547 (Georg Jensen Bernadotte Kande, porcelæn), and 100075388 (Royal Copenhagen Blå Mega Riflet Kande, porcelæn) are all confirmed in inventory and all explicitly porcelæn. Four anchors confirmed. Shape is category, no brand/family required.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_subtype",
+      "reason": "Query 'vandfilterkande' is a natural Danish subtype search. Anchors 100308983 (Stelton EM77 Vandfilterkande), 100470759 (Brita Essential Vandfilterkande), and 100474717 (BWT Vida Vandfilterkande) are all confirmed in inventory and all explicitly named 'Vandfilterkande'. Three distinct products confirmed. Shape is subtype, no brand/family required.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_brand",
+      "reason": "Query 'Royal Copenhagen kande' is a natural brand search. Anchors 100390465 (Royal Copenhagen Hvid Riflet Kande), 100417744 (Royal Copenhagen Sort Mega Riflet Kande), and 100075388 (Royal Copenhagen Blå Mega Riflet Kande) are all confirmed Royal Copenhagen kande products in inventory. Required brand Royal Copenhagen confirmed across all three anchors. Shape is brand.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_family",
+      "reason": "Query 'Eva Trio Legio Nova kande' is a natural family search. Anchors 100408286 (Eva Trio Legio Nova Kande) and 100449039 (Eva Trio Legio Nova Kande m. hank) are both confirmed in inventory, both Eva Trio brand, both Legio Nova family. Required brand Eva Trio and family Legio Nova confirmed. Named product searches accept unspecified variants per instructions. Shape is family.",
+      "approved": true
+    },
+    {
+      "case_id": "jugs_named_product",
+      "reason": "Query 'Stelton EM77 Vandfilterkande' is a natural named product search. Anchor 100308983 (Stelton EM77 Vandfilterkande) is confirmed in inventory. Required brand Stelton and family EM77 confirmed. Shape is named_product. Inventory grounding confirmed.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_category",
+      "reason": "Query 'stegepande' is a natural Danish category search. Anchors 100439699 (Eva Trio Stainless Steel Stegepande), 100468229 (Eva Trio Multi 5-ply Stegepande), 100455457 (Scanpan CS+ Rec. Stegepande), 100454201 (Jamie Oliver by Tefal Cook Smart Stegepande), 100410806 (Greenpan Barcelona Pro Stegepande), and 100414744 (Scanpan Fusion 5 Stegepande) are all confirmed in inventory and all explicitly named 'Stegepande'. Per instructions, stegepande is not narrowed to single-item packaging without explicit query evidence. Shape is category, no brand/family required.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_subtype",
+      "reason": "Query 'stegepandesæt' is a natural Danish subtype search. Anchors 100468230 (Eva Trio Stainless Steel Honeycomb Stegepandesæt / 2 stk.), 100453812 (Eva Trio Multi Mosaic Stegepandesæt / 2 dele), and 100461801 (Timm Vladimir Kitchen Stegepandesæt / 2 dele) are all confirmed in inventory and all explicitly named 'Stegepandesæt'. Per instructions, stegepande is not narrowed to single-item packaging without explicit query evidence, so multi-item sets are valid for this subtype query. Shape is subtype.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_brand",
+      "reason": "Query 'Scanpan stegepande' is a natural brand search. Anchors 100455457 (Scanpan CS+ Rec. Stegepande) and 100414744 (Scanpan Fusion 5 Stegepande) are both confirmed Scanpan stegepande products in inventory. Required brand Scanpan confirmed across both anchors. Shape is brand.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_family",
+      "reason": "Query 'Eva Trio Stainless Steel stegepande' is a natural family search. Anchors 100439699 (Eva Trio Stainless Steel Stegepande) and 100468230 (Eva Trio Stainless Steel Honeycomb Stegepandesæt / 2 stk.) are both confirmed in inventory, both Eva Trio brand, both Stainless Steel family. The query does not restrict to single pans, so the set is a valid result. Required brand Eva Trio and family Stainless Steel confirmed. Shape is family.",
+      "approved": true
+    },
+    {
+      "case_id": "pans_named_product",
+      "reason": "Query 'Greenpan Barcelona Pro Stegepande' is a natural named product search. Anchor 100410806 (Greenpan Barcelona Pro Stegepande) is confirmed in inventory. Required brand Greenpan and family Barcelona Pro confirmed. Shape is named_product. Inventory grounding confirmed.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_category",
+      "reason": "Query 'vase stentøj' is a natural category+material search. Anchors 100452837 (Creative Collection Hiro Vase, stentøj), 100411645 (Kähler Signature Vase, stentøj), 100465690 (Casa Christmas Vase, stentøj), and 100470874 (Knabstrup Keramik Solum Vase, stentøj) are all confirmed in inventory and all explicitly stentøj material. Four anchors confirmed. Shape is category, no brand/family required.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_subtype",
+      "reason": "Query 'glasvase' is a natural Danish subtype search. Anchor 100411644 (Kähler Hammershøi Vase, mundblæst glas) is confirmed in inventory and explicitly made of glass (mundblæst glas). Shape is subtype, no brand/family required. Inventory grounding confirmed.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_brand",
+      "reason": "Query 'Kähler vase' is a natural brand search. Anchors 100445100 (Kähler Hammershøi Sommer Vase), 100411644 (Kähler Hammershøi Vase), and 100411645 (Kähler Signature Vase) are all confirmed Kähler vase products in inventory. Required brand Kähler confirmed across all three anchors. Shape is brand.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_family",
+      "reason": "Query 'Kähler Hammershøi Sommer Vase' is a natural family+product search. Anchor 100445100 (Kähler Hammershøi Sommer Vase) is confirmed in inventory. Required brand Kähler and family Hammershøi confirmed. The query names a specific seasonal product; seasonal items are valid per instructions. Shape is family.",
+      "approved": true
+    },
+    {
+      "case_id": "vases_named_product",
+      "reason": "Query 'Royal Copenhagen Art of Giving Flowers Hortensia Vase' is a natural named product search. Anchor 100079045 (Royal Copenhagen Art of Giving Flowers Hortensia Vase) is confirmed in inventory. Required brand Royal Copenhagen and family Art of Giving Flowers confirmed. Named product searches accept unspecified variants. Shape is named_product. Inventory grounding confirmed.",
+      "approved": true
+    },
+    {
+      "case_id": "bowls_category",
+      "reason": "Query 'serveringsskåle i porcelæn' is a natural category search for serving bowls in porcelain. All five anchors (100353730 Eva Trio Legio Nova Skål 4 stk. porcelæn, 100429550 Eva Trio Legio Nova Skålsæt porcelæn, 100422903 Royal Copenhagen Sort Riflet Blonde Skål porcelæn, 100077591 Royal Copenhagen Hvid Halvblonde Skål porcelæn, 100081685 Royal Copenhagen Hvid Riflet Skåle porcelæn) are porcelain bowls directly matching the category and material filter. Inventory grounding is solid, shape is category, no invented products or hidden constraints.",
+      "approved": true
+    },
+    {
+      "case_id": "bowls_subtype",
+      "reason": "Query 'salat skål hvid' is a natural subtype search for white salad bowls. Anchors 100384434 (Eva Trio Legio Nova Skål, hvid porcelæn), 100353730 (Eva Trio Legio Nova Skål 4 stk., hvid porcelæn), and 100429550 (Eva Trio Legio Nova Skålsæt, hvid porcelæn) are all white porcelain bowls suitable as salad bowls. The query does not restrict to a single-piece listing or exclude sets, so multi-piece sets are valid. All anchors are grounded in inventory.",
+      "approved": true
+    },
+    {
+      "case_id": "bowls_brand",
+      "reason": "Query 'Royal Copenhagen skål' is a natural brand search. All five anchors (100422903 Sort Riflet Blonde Skål, 100077591 Hvid Halvblonde Skål, 100390463 Blå Mega Riflet Skål, 100303949 Stjerne Riflet Jul Skål, 100081685 Hvid Riflet Skåle) are Royal Copenhagen bowls present in inventory. Seasonal/Christmas bowls are valid bowls. No hidden constraints violated.",
+      "approved": true
+    },
+    {
+      "case_id": "bowls_family",
+      "reason": "Query 'Hammershøi Jul skål' targets the Kähler Hammershøi Jul product family. Anchor 100393450 (Kähler Hammershøi Jul Skål) is a direct match. Anchor 100393441 (Kähler Hammershøi Jul Juleopsats) is a decorative stand/centrepiece from the same family line, not a skål; it is a related accessory but not a bowl. However, the plan includes it as an anchor for a family-shape query, which is reasonable since family queries can surface related items from the same product family. The primary anchor 100393450 is an exact match, and the family shape allows related items. Both are grounded in inventory.",
+      "approved": true
+    },
+    {
+      "case_id": "bowls_named_product",
+      "reason": "Query 'Georg Jensen Bernadotte skål' names both brand and product line. Anchors 100404519 (Georg Jensen Bernadotte Skål, porcelæn) and 100407634 (Georg Jensen Bernadotte Mini Skål 2 stk., rustfrit stål) are both Bernadotte-line bowls from Georg Jensen, present in inventory. Named product queries accept unspecified variants, so both size and material variants are valid. No invented products.",
+      "approved": true
+    },
+    {
+      "case_id": "cutlery_category",
+      "reason": "Query 'bestiksæt rustfrit stål' is a natural category search for cutlery sets in stainless steel. Anchors 100302086 (Georg Jensen Bernadotte Bestiksæt rustfrit stål), 100357287 (WMF Philadelphia Bestiksæt rustfrit stål), 100023195 (WMF Steak Bestiksæt rustfrit stål), 100323409 (Georg Jensen Bernadotte Bestiksæt rustfrit stål), 100352202 (Zwilling King Bestiksæt rustfrit stål) all match the category and material. Inventory grounded, no hidden constraints.",
+      "approved": true
+    },
+    {
+      "case_id": "cutlery_subtype",
+      "reason": "Query 'steakbestik til 4 personer' is a natural subtype search for steak cutlery for 4 persons. Anchor 100023195 (WMF Steak Bestiksæt 12 dele, 6 kuverter) covers 6 persons, not 4. Anchor 100427498 (erik bagger a/s Timeless Steakbestik 8 dele, 4 kuverter) exactly matches 4 persons. Anchor 100450924 (Aida Groovy Steaksæt 8 dele, 4 kuverter) exactly matches 4 persons. The 6-person set is a reasonable alternative but not an exact match for '4 personer'. Since the plan includes it and the shape is subtype (allowing close alternatives), and the two exact 4-person anchors are present, the plan is acceptable overall. Inventory grounded.",
+      "approved": true
+    },
+    {
+      "case_id": "cutlery_brand",
+      "reason": "Query 'Georg Jensen bestik' is a natural brand search. Anchors 100302086 (Georg Jensen Bernadotte Bestiksæt 24 dele) and 100323409 (Georg Jensen Bernadotte Bestiksæt 16 dele) are both Georg Jensen cutlery sets present in inventory. Direct brand match, no hidden constraints.",
+      "approved": true
+    },
+    {
+      "case_id": "cutlery_family",
+      "reason": "Query 'CASA Living Daisy bestiksæt' names brand and product family. Anchors 100450061 (CASA Living Daisy Bestiksæt 60 dele) and 100436690 (CASA Living Daisy Bestiksæt 48 dele) are both CASA Living Daisy cutlery sets in inventory. Named product/family queries accept unspecified variants (piece count). No invented products.",
+      "approved": true
+    },
+    {
+      "case_id": "cutlery_named_product",
+      "reason": "Query 'erik bagger a/s Encore bestiksæt' names brand and product. Anchor 100434010 (erik bagger a/s Encore Bestiksæt 60 dele) is a direct match present in inventory. Single anchor is sufficient for a named product that has one variant in stock. No invented products.",
+      "approved": true
+    },
+    {
+      "case_id": "knives_category",
+      "reason": "Query 'køkkenknive rustfrit stål' is a natural category search for kitchen knives in stainless steel. Anchors 100408754 (Endeavour Resolution Kokkekniv rustfrit stål), 100445605 (KitchenAid Gourmet Kokkekniv rustfrit stål), 100462911 (Scanpan Spectrum Kokkekniv 3Cr13 rustfrit stål), 100408757 (Endeavour Resolution Universalkniv rustfrit stål), 100443006 (Fiskars Control+ Kokkekniv rustfrit stål) all match. Inventory grounded, no hidden constraints.",
+      "approved": true
+    },
+    {
+      "case_id": "knives_subtype",
+      "reason": "Query 'santokukniv japansk stål' is a natural subtype search. Anchor 100434186 (THE CUSTOM CHEF Cuisine::pro iD3 Santokukniv, rustfrit stål) is a santoku but not explicitly described as Japanese steel. Anchor 100432425 (THE CUSTOM CHEF Cuisine::pro KIYOSHI Santoku Try Me Kniv, rustfrit stål) is a santoku but not explicitly Japanese steel. Anchor 100456609 (THE CUSTOM CHEF Cuisine::pro Kuroi Kiba Try Me Moon Kniv, japansk rustfrit stål) is described as Japanese stainless steel but is a 'Moon Kniv', not explicitly a santoku. None of the anchors is simultaneously labelled both santoku and Japanese steel in the inventory text. However, the subtype shape allows useful alternatives, and these are the closest available matches in the inventory. The plan is a reasonable best-effort given inventory constraints, not an invented product.",
+      "approved": true
+    },
+    {
+      "case_id": "knives_brand",
+      "reason": "Query 'Scanpan kokkekniv' is a natural brand search. Anchor 100462911 (Scanpan Spectrum Kokkekniv) is a direct match. Anchor 100462901 (Scanpan Spectrum Universalkniv) is a Scanpan knife but a universalkniv, not a kokkekniv; it is a related Scanpan knife that may appear in brand results but is not an exact subtype match. For a brand-shape query, showing all Scanpan knives is reasonable. Inventory grounded.",
+      "approved": true
+    },
+    {
+      "case_id": "knives_family",
+      "reason": "Query 'Cuisine::pro Damashiro EMPEROR kokkekniv' names the product family and type. Anchor 100432380 (THE CUSTOM CHEF Cuisine::pro Damashiro EMPEROR Kokkekniv) is a direct match present in inventory. Single anchor is sufficient for this specific named family with one variant in stock. No invented products.",
+      "approved": true
+    },
+    {
+      "case_id": "knives_named_product",
+      "reason": "Query 'Endeavour Resolution kokkekniv' names brand and product line. Anchors 100408754 (Endeavour Resolution Kokkekniv) is an exact match. Anchors 100408757 (Endeavour Resolution Universalkniv) and 100419372 (Endeavour Resolution R12 Big Chopper Kniv) are other knives in the Resolution line. Named product queries accept unspecified variants, so other knife types within the Resolution family are valid results. Inventory grounded.",
+      "approved": true
+    },
+    {
+      "case_id": "plates_category",
+      "reason": "Query 'middagstallerkener porcelæn' is a natural category search. Anchors 100347068 (Eva Trio Legio Nova Middagstallerken porcelæn), 100081580 (Royal Copenhagen Hvid Riflet Middagstallerken porcelæn), 100385084 (Kähler Hammershøi Jul Middagstallerken porcelæn), 100404524 (Georg Jensen Bernadotte Middagstallerken porcelæn), 100359668 (Lyngby Porcelæn Rhombe Middagstallerken porcelæn) all match. Seasonal plates are valid. Inventory grounded.",
+      "approved": true
+    },
+    {
+      "case_id": "plates_subtype",
+      "reason": "Query 'coupe tallerken koboltblå' is a natural subtype search for a coupe-style plate in cobalt blue. Anchor 100336247 (Royal Copenhagen Blå Mega Riflet Coupe Tallerken, koboltblå/hvid) is a direct match present in inventory. Single anchor is the only coupe plate in cobalt blue available. No invented products.",
+      "approved": true
+    },
+    {
+      "case_id": "plates_brand",
+      "reason": "Query 'Lyngby Porcelæn middagstallerken' is a natural brand search. Anchor 100359668 (Lyngby Porcelæn Rhombe Middagstallerken) is a direct match present in inventory. Only one Lyngby Porcelæn dinner plate is in the inventory, so a single anchor is appropriate. No invented products.",
+      "approved": true
+    },
+    {
+      "case_id": "plates_family",
+      "reason": "Query 'Royal Copenhagen Hvid Halvblonde middagstallerken' names brand and product family. Anchor 100077605 (Royal Copenhagen Hvid Halvblonde Middagstallerken) is a direct match present in inventory. Single anchor reflects the one available variant of this family in the dinner plate inventory. No invented products.",
+      "approved": true
+    },
+    {
+      "case_id": "plates_named_product",
+      "reason": "Query 'Royal Copenhagen Blå Mega Riflet middagstallerken' names brand, line, and type. Anchors 100074807 (Royal Copenhagen Blå Mega Riflet Middagstallerken #2) and 100380524 (Royal Copenhagen Blå Mega Riflet Middagstallerken #8) are direct matches. Anchor 100336247 (Royal Copenhagen Blå Mega Riflet Coupe Tallerken) is a coupe variant of the same line, not a middagstallerken, but is a close family variant acceptable under named product queries accepting unspecified variants. Inventory grounded.",
+      "approved": true
+    },
+    {
+      "case_id": "pots_category",
+      "reason": "Query 'gryder til komfur' is a natural category search for stovetop pots. Anchors 100429301 (Eva Trio Multi Gryde), 100442525 (Eva Trio Stainless Steel Gryde), 100416978 (Cook & Baker Gastro Gryde), 100442007 (Fiskars Functional Form Gryde), 100449060 (Eva Trio Grey Line Gryde) are all standard pots suitable for stovetop use. The query does not restrict material or size. Inventory grounded, no hidden constraints.",
+      "approved": true
+    },
+    {
+      "case_id": "pots_subtype",
+      "reason": "Query 'støbejern gryde' is a natural subtype search for cast iron pots. Anchors 100412777 (Cook & Baker Stegegryde støbejern), 100359662 (Le Creuset Signature Gryde støbejern), 100451765 (Victoria Seasoned Dutch Oven Gryde støbejern) all match the cast iron material. Inventory grounded, no hidden constraints.",
+      "approved": true
+    },
+    {
+      "case_id": "pots_brand",
+      "reason": "Query 'Le Creuset gryde' is a natural brand search. Anchor 100359662 (Le Creuset Signature Gryde) is a direct match present in inventory. Only one Le Creuset pot is in the inventory, so a single anchor is appropriate. No invented products.",
+      "approved": true
+    },
+    {
+      "case_id": "pots_family",
+      "reason": "Query 'Eva Trio Stainless Steel gryde' names brand and product family. Anchors 100442525 (Eva Trio Stainless Steel Gryde), 100442533 (Eva Trio Stainless Steel Sautergryde), 100442529 (Eva Trio Stainless Steel Suppegryde) are all members of the Eva Trio Stainless Steel line present in inventory. Named product/family queries accept unspecified variants, so different pot types within the family are valid. Inventory grounded.",
+      "approved": true
+    },
+    {
+      "case_id": "pots_named_product",
+      "reason": "Query 'Cook & Baker Gastro suppegryde' names brand, product family, and type. Anchor 100445549 (Cook & Baker Gastro Suppegryde 12 liter) is a direct match. Anchor 100416978 (Cook & Baker Gastro Gryde 2 liter) is from the same Gastro family but is a general gryde, not a suppegryde. For a named product query, the exact suppegryde is the primary result; the general Gastro Gryde is a related family variant. Including it is reasonable under named product queries accepting unspecified variants, though it is a secondary result. Inventory grounded, no invented products.",
+      "approved": true
+    }
+  ],
+  "inventory_hash": "ac1023c3a83fa9920b26d94bc3e3f664b77fb8a9d942c66edd3ee69f298dd790",
+  "scope": "Fifty natural queries, not measured demand; frozen before search capture."
+}

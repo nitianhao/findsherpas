@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-11-03T19:55:18.339378+00:00",
+  "config": {
+    "mode": "live",
+    "input_sha256": null,
+    "model": "claude-sonnet-4-6",
+    "max_usd": 3.0,
+    "max_calls": 30,
+    "input_rate": 3,
+    "output_rate": 15,
+    "code_sha256": "378dacae1b2d64bd24a6d71bbff33abe335ea41d6bcf578428b0968189926399"
+  },
+  "git_revision": "27ad7472a13d0a52bd9f483e8dae0351bcf1792b",
+  "note": "Code hash includes uncommitted implementation; no queries generated/executed."
+}

@@ -1,0 +1,163 @@
+{
+  "completed_at": "2026-11-05T19:37:14.577912+00:00",
+  "queries": 50,
+  "fetch_status": {
+    "ok": 49,
+    "zero_confirmed": 1
+  },
+  "stock_ordering_before": 0,
+  "stock_ordering_after": 0,
+  "available_exact_top3_before": 125,
+  "available_exact_top3_after": 127,
+  "ranking_changed": 9,
+  "top1_changed": 0,
+  "relevance_sequence_preserved": true,
+  "same_products": true,
+  "named_lookups": 10,
+  "named_lookups_changed": 0,
+  "raw_top1_unavailable": 0,
+  "label_counts": {
+    "exact": 341,
+    "complement": 7,
+    "substitute": 49,
+    "irrelevant": 4,
+    "unknown": 17
+  },
+  "model_cost": {
+    "requests": 56,
+    "estimated_usd": 1.889841,
+    "reserved_usd": 7.8552,
+    "input_rate_per_million": 3.0,
+    "output_rate_per_million": 15.0,
+    "pricing_source": "https://platform.claude.com/docs/en/models/sonnet-4-6/overview",
+    "pricing_checked": "2026-11-03",
+    "currency": "USD",
+    "note": "Token-based estimate, not invoice; failed/pending requests charged their full reserve."
+  },
+  "scope": "Offline replay of first ten, judged relevance used as an input; not an independent relevance uplift test. No conversion impact measured.",
+  "verified_product_pages": 18,
+  "verified_product_errors": 0,
+  "confirmed_changed_query_pdp_contrasts": 9,
+  "rechecked_queries": 6,
+  "frozen_cohort_rechecks": 4,
+  "stable_frozen_rechecks": 4,
+  "issue_categories": [],
+  "named_stock_candidates": 0,
+  "categories": [
+    {
+      "category": "cups",
+      "queries": 5,
+      "stock_candidates": 0,
+      "changed": 1,
+      "top1_changed": 0
+    },
+    {
+      "category": "glasses",
+      "queries": 5,
+      "stock_candidates": 0,
+      "changed": 1,
+      "top1_changed": 0
+    },
+    {
+      "category": "jugs",
+      "queries": 5,
+      "stock_candidates": 0,
+      "changed": 1,
+      "top1_changed": 0
+    },
+    {
+      "category": "pans",
+      "queries": 5,
+      "stock_candidates": 0,
+      "changed": 0,
+      "top1_changed": 0
+    },
+    {
+      "category": "vases",
+      "queries": 5,
+      "stock_candidates": 0,
+      "changed": 2,
+      "top1_changed": 0
+    },
+    {
+      "category": "bowls",
+      "queries": 5,
+      "stock_candidates": 0,
+      "changed": 1,
+      "top1_changed": 0
+    },
+    {
+      "category": "cutlery",
+      "queries": 5,
+      "stock_candidates": 0,
+      "changed": 1,
+      "top1_changed": 0
+    },
+    {
+      "category": "knives",
+      "queries": 5,
+      "stock_candidates": 0,
+      "changed": 0,
+      "top1_changed": 0
+    },
+    {
+      "category": "plates",
+      "queries": 5,
+      "stock_candidates": 0,
+      "changed": 0,
+      "top1_changed": 0
+    },
+    {
+      "category": "pots",
+      "queries": 5,
+      "stock_candidates": 0,
+      "changed": 2,
+      "top1_changed": 0
+    }
+  ],
+  "top1_card_stock_counts": {
+    "available_online": 48,
+    "unknown": 1
+  },
+  "historical_probes": [
+    {
+      "query": "vandglas",
+      "original_capture_date": "2026-11-04",
+      "current_capture_at": "2026-11-05T19:34:07.595255+00:00",
+      "before_top1_id": "100353708",
+      "before_top1_title": "Eva Solo Facet Vandglas  /  4 stk.",
+      "before_top1_stock": "not_available_online",
+      "current_top1_id": "100431241",
+      "current_top1_title": "Lyngby Glas Melodia Vandglas  /  6 stk.",
+      "current_top1_stock": "available_online",
+      "same_first_ten_urls": false,
+      "note": "Read-only temporal comparison. No store configuration was changed by this experiment."
+    },
+    {
+      "query": "drikkeglas",
+      "original_capture_date": "2026-11-04",
+      "current_capture_at": "2026-11-05T19:34:14.087617+00:00",
+      "before_top1_id": "100353708",
+      "before_top1_title": "Eva Solo Facet Vandglas  /  4 stk.",
+      "before_top1_stock": "not_available_online",
+      "current_top1_id": "100431241",
+      "current_top1_title": "Lyngby Glas Melodia Vandglas  /  6 stk.",
+      "current_top1_stock": "available_online",
+      "same_first_ten_urls": false,
+      "note": "Read-only temporal comparison. No store configuration was changed by this experiment."
+    },
+    {
+      "query": "vase",
+      "original_capture_date": "2026-11-04",
+      "current_capture_at": "2026-11-05T19:34:22.202752+00:00",
+      "before_top1_id": "100465383",
+      "before_top1_title": "CASA Living Vase",
+      "before_top1_stock": "not_available_online",
+      "current_top1_id": "100465383",
+      "current_top1_title": "CASA Living Vase",
+      "current_top1_stock": "not_available_online",
+      "same_first_ten_urls": false,
+      "note": "Read-only temporal comparison. No store configuration was changed by this experiment."
+    }
+  ]
+}

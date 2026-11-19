@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-11-03T19:53:17.489691+00:00",
+  "config": {
+    "mode": "replay",
+    "input_sha256": "b7f1caacbddf3b9731fc29d656fd11eb043768874acc365cc3b10c4c155d013b",
+    "model": "claude-sonnet-4-6",
+    "max_usd": 3.0,
+    "max_calls": 30,
+    "input_rate": 3,
+    "output_rate": 15,
+    "code_sha256": "13b4cc2a143d80d24594b0505df8979d277db1f8f4669ae9c574f7fa6498b178"
+  },
+  "git_revision": "27ad7472a13d0a52bd9f483e8dae0351bcf1792b",
+  "note": "Code hash includes uncommitted implementation; no queries generated/executed."
+}

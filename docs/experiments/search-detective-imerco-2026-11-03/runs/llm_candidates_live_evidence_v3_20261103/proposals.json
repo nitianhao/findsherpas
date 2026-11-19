@@ -1,0 +1,416 @@
+{
+  "proposed": [
+    {
+      "mode": "negation",
+      "positive_ids": [
+        "100481065",
+        "100422904",
+        "100309088",
+        "100388154"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:0",
+        "0:1",
+        "0:9",
+        "0:10",
+        "0:18",
+        "0:19",
+        "0:31",
+        "0:32"
+      ],
+      "rationale": "All four cups have an explicit handle attribute with value 'none', satisfying the negation mode requirement for cups explicitly without a handle."
+    },
+    {
+      "mode": "either_or",
+      "positive_ids": [
+        "100408047",
+        "100413383"
+      ],
+      "contrast_ids": [
+        "100413383",
+        "100408047"
+      ],
+      "fact_ids": [
+        "1:0",
+        "1:1",
+        "1:6",
+        "1:7"
+      ],
+      "rationale": "Product 100408047 is a bowl made of glass and product 100413383 is a bowl made of porcelain, providing one verified product in each branch of the glass OR porcelain either_or mode."
+    },
+    {
+      "mode": "unit_conversion",
+      "positive_ids": [
+        "100408286",
+        "100449039",
+        "100396731",
+        "100448547",
+        "100463435"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "2:0",
+        "2:2",
+        "2:5",
+        "2:7",
+        "2:10",
+        "2:12",
+        "2:16",
+        "2:18",
+        "2:21",
+        "2:24"
+      ],
+      "rationale": "All five jugs have explicit capacity values expressed in L, enabling unit conversion to ml or cl. Capacities are 0.70L, 1L, 1.6L, 1.2L, and 1.8L respectively."
+    },
+    {
+      "mode": "dimension",
+      "positive_ids": [
+        "100445100",
+        "100465402",
+        "100437417",
+        "100425739",
+        "100452312"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "3:0",
+        "3:2",
+        "3:3",
+        "3:5",
+        "3:7",
+        "3:8",
+        "3:10",
+        "3:12",
+        "3:13",
+        "3:15",
+        "3:17",
+        "3:18",
+        "3:20",
+        "3:22",
+        "3:23"
+      ],
+      "rationale": "Each vase has explicit height and distinct diameter values, satisfying the dimension mode requirement with both axes retained."
+    },
+    {
+      "mode": "pack_capacity",
+      "positive_ids": [
+        "100404523",
+        "100353708",
+        "100109877",
+        "100430598",
+        "100325650"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "4:0",
+        "4:1",
+        "4:2",
+        "4:3",
+        "4:5",
+        "4:6",
+        "4:7",
+        "4:8",
+        "4:10",
+        "4:11",
+        "4:12",
+        "4:13",
+        "4:16",
+        "4:17",
+        "4:18",
+        "4:19",
+        "4:22",
+        "4:23",
+        "4:24",
+        "4:25"
+      ],
+      "rationale": "All five drinking glasses have explicit pack_count and capacity per glass facts, satisfying the pack_capacity mode."
+    },
+    {
+      "mode": "solid_material",
+      "positive_ids": [
+        "100455704",
+        "100455702"
+      ],
+      "contrast_ids": [
+        "100478281"
+      ],
+      "fact_ids": [
+        "5:0",
+        "5:1",
+        "5:6",
+        "5:7",
+        "5:12",
+        "5:13"
+      ],
+      "rationale": "Products 100455704 and 100455702 are explicitly solid_oak tables; product 100478281 is explicitly an oak_veneer table, providing the required solid-oak positive and oak-veneer contrast."
+    },
+    {
+      "mode": "compatibility",
+      "positive_ids": [
+        "100468230",
+        "100442546",
+        "100456332",
+        "100468229",
+        "100414744"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "6:0",
+        "6:3",
+        "6:7",
+        "6:10",
+        "6:14",
+        "6:17",
+        "6:20",
+        "6:23",
+        "6:27",
+        "6:30"
+      ],
+      "rationale": "All five pans have an explicit induction attribute set to 'true', confirming compatibility with induction cooktops."
+    },
+    {
+      "mode": "combined_exclusions",
+      "positive_ids": [
+        "100468229"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "6:20",
+        "6:21",
+        "6:22",
+        "6:23"
+      ],
+      "rationale": "Product 100468229 is a pan explicitly made of stainless_steel_aluminium and explicitly has coating value 'none', satisfying both the stainless steel and no-coating exclusion criteria. It is also explicitly induction compatible."
+    },
+    {
+      "mode": "specificity",
+      "positive_ids": [
+        "100396731"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "2:10",
+        "2:11",
+        "2:12"
+      ],
+      "rationale": "Product 100396731 is a jug with explicit material (porcelain) and explicit capacity (1600ml / 1.6L), allowing one correct attribute to be added at a time for specificity testing."
+    },
+    {
+      "mode": "conditional_price",
+      "positive_ids": [
+        "100468230"
+      ],
+      "contrast_ids": [
+        "100456332"
+      ],
+      "fact_ids": [
+        "6:0",
+        "6:5",
+        "6:6",
+        "6:14",
+        "6:18",
+        "6:19"
+      ],
+      "rationale": "Product 100468230 (pan) has a member price of 499.95 DKK (<500) and a regular price of 1499.95 DKK (>=500), satisfying the conditional price positive. Product 100456332 (pan) has a public price of 299.95 DKK (<500 DKK) with no conditional pricing, serving as the unconditional under-500-DKK contrast pan."
+    }
+  ],
+  "valid": [
+    {
+      "mode": "negation",
+      "positive_ids": [
+        "100481065",
+        "100422904",
+        "100309088",
+        "100388154"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:0",
+        "0:1",
+        "0:9",
+        "0:10",
+        "0:18",
+        "0:19",
+        "0:31",
+        "0:32"
+      ],
+      "rationale": "All four cups have an explicit handle attribute with value 'none', satisfying the negation mode requirement for cups explicitly without a handle."
+    },
+    {
+      "mode": "unit_conversion",
+      "positive_ids": [
+        "100408286",
+        "100449039",
+        "100396731",
+        "100448547",
+        "100463435"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "2:0",
+        "2:2",
+        "2:5",
+        "2:7",
+        "2:10",
+        "2:12",
+        "2:16",
+        "2:18",
+        "2:21",
+        "2:24"
+      ],
+      "rationale": "All five jugs have explicit capacity values expressed in L, enabling unit conversion to ml or cl. Capacities are 0.70L, 1L, 1.6L, 1.2L, and 1.8L respectively."
+    },
+    {
+      "mode": "dimension",
+      "positive_ids": [
+        "100445100",
+        "100465402",
+        "100437417",
+        "100425739",
+        "100452312"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "3:0",
+        "3:2",
+        "3:3",
+        "3:5",
+        "3:7",
+        "3:8",
+        "3:10",
+        "3:12",
+        "3:13",
+        "3:15",
+        "3:17",
+        "3:18",
+        "3:20",
+        "3:22",
+        "3:23"
+      ],
+      "rationale": "Each vase has explicit height and distinct diameter values, satisfying the dimension mode requirement with both axes retained."
+    },
+    {
+      "mode": "pack_capacity",
+      "positive_ids": [
+        "100404523",
+        "100353708",
+        "100109877",
+        "100430598",
+        "100325650"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "4:0",
+        "4:1",
+        "4:2",
+        "4:3",
+        "4:5",
+        "4:6",
+        "4:7",
+        "4:8",
+        "4:10",
+        "4:11",
+        "4:12",
+        "4:13",
+        "4:16",
+        "4:17",
+        "4:18",
+        "4:19",
+        "4:22",
+        "4:23",
+        "4:24",
+        "4:25"
+      ],
+      "rationale": "All five drinking glasses have explicit pack_count and capacity per glass facts, satisfying the pack_capacity mode."
+    },
+    {
+      "mode": "solid_material",
+      "positive_ids": [
+        "100455704",
+        "100455702"
+      ],
+      "contrast_ids": [
+        "100478281"
+      ],
+      "fact_ids": [
+        "5:0",
+        "5:1",
+        "5:6",
+        "5:7",
+        "5:12",
+        "5:13"
+      ],
+      "rationale": "Products 100455704 and 100455702 are explicitly solid_oak tables; product 100478281 is explicitly an oak_veneer table, providing the required solid-oak positive and oak-veneer contrast."
+    },
+    {
+      "mode": "compatibility",
+      "positive_ids": [
+        "100468230",
+        "100442546",
+        "100456332",
+        "100468229",
+        "100414744"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "6:0",
+        "6:3",
+        "6:7",
+        "6:10",
+        "6:14",
+        "6:17",
+        "6:20",
+        "6:23",
+        "6:27",
+        "6:30"
+      ],
+      "rationale": "All five pans have an explicit induction attribute set to 'true', confirming compatibility with induction cooktops."
+    },
+    {
+      "mode": "combined_exclusions",
+      "positive_ids": [
+        "100468229"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "6:20",
+        "6:21",
+        "6:22",
+        "6:23"
+      ],
+      "rationale": "Product 100468229 is a pan explicitly made of stainless_steel_aluminium and explicitly has coating value 'none', satisfying both the stainless steel and no-coating exclusion criteria. It is also explicitly induction compatible."
+    },
+    {
+      "mode": "specificity",
+      "positive_ids": [
+        "100396731"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "2:10",
+        "2:11",
+        "2:12"
+      ],
+      "rationale": "Product 100396731 is a jug with explicit material (porcelain) and explicit capacity (1600ml / 1.6L), allowing one correct attribute to be added at a time for specificity testing."
+    },
+    {
+      "mode": "conditional_price",
+      "positive_ids": [
+        "100468230"
+      ],
+      "contrast_ids": [
+        "100456332"
+      ],
+      "fact_ids": [
+        "6:0",
+        "6:5",
+        "6:6",
+        "6:14",
+        "6:18",
+        "6:19"
+      ],
+      "rationale": "Product 100468230 (pan) has a member price of 499.95 DKK (<500) and a regular price of 1499.95 DKK (>=500), satisfying the conditional price positive. Product 100456332 (pan) has a public price of 299.95 DKK (<500 DKK) with no conditional pricing, serving as the unconditional under-500-DKK contrast pan."
+    }
+  ]
+}

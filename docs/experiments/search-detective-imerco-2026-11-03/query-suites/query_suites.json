@@ -1,0 +1,839 @@
+{
+  "status": "complete",
+  "searches_executed": false,
+  "cases": [
+    {
+      "id": "imerco_negation",
+      "mode": "negation",
+      "anchor_product_id": "100481065",
+      "supporting_fact_ids": [
+        "0:0",
+        "0:1"
+      ],
+      "context": {
+        "locale": "da-DK",
+        "currency": "DKK",
+        "membership": "unspecified"
+      },
+      "known_ineligible_product_ids": [],
+      "changed_requirement": "Add an explicit requirement for no handle.",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "kopper",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "cup",
+              "unit": "",
+              "fact_ids": [
+                "0:0"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        },
+        {
+          "role": "test",
+          "query": "kopper uden hank",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "cup",
+              "unit": "",
+              "fact_ids": [
+                "0:0"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "handle",
+              "operator": "eq",
+              "value": "none",
+              "unit": "",
+              "fact_ids": [
+                "0:1"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        }
+      ],
+      "success_rule": "Relevant results satisfy the declared requirements; equivalent qualifying alternatives count. The named anchor is evidence of a satisfiable need, not a mandatory result. Compare controlled queries; anchor absence or rank changes alone do not prove failure.",
+      "assessment": {
+        "inspect_top_k": 10,
+        "record": [
+          "first_satisfying_rank",
+          "verified_satisfying_count",
+          "verified_violations",
+          "unknown_attributes",
+          "anchor_observed"
+        ],
+        "no_results_requires": "trusted fetch status and contemporaneously verified qualifying product",
+        "unknown_attributes": "inconclusive until product details are checked",
+        "price_rule": "use actual eligible nonmember offer; clearly labelled member offers are not automatically a site defect",
+        "before_execution": "refresh source identity, availability, and any price-sensitive facts"
+      },
+      "status": "wording_review_accepted",
+      "searches_executed": false,
+      "review_reason": "Both queries use natural Danish wording. 'kopper' correctly targets cups (supported by fact 0:0). 'kopper uden hank' correctly adds the no-handle requirement (supported by fact 0:1, quote 'Krus og kopper uden hank'). The single change is the addition of 'uden hank'. Wording is idiomatic and the requirements are fully supported by evidence."
+    },
+    {
+      "id": "imerco_unit_conversion",
+      "mode": "unit_conversion",
+      "anchor_product_id": "100396731",
+      "supporting_fact_ids": [
+        "2:10",
+        "2:12"
+      ],
+      "context": {
+        "locale": "da-DK",
+        "currency": "DKK",
+        "membership": "unspecified"
+      },
+      "known_ineligible_product_ids": [],
+      "changed_requirement": "Express the same capacity in an equivalent different unit.",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "kande 1,6 L",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "jug",
+              "unit": "",
+              "fact_ids": [
+                "2:10"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "capacity",
+              "operator": "eq",
+              "value": "1600",
+              "unit": "ml",
+              "fact_ids": [
+                "2:12"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        },
+        {
+          "role": "test",
+          "query": "kande 1600 ml",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "jug",
+              "unit": "",
+              "fact_ids": [
+                "2:10"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "capacity",
+              "operator": "eq",
+              "value": "1600",
+              "unit": "ml",
+              "fact_ids": [
+                "2:12"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        }
+      ],
+      "success_rule": "Relevant results satisfy the declared requirements; equivalent qualifying alternatives count. The named anchor is evidence of a satisfiable need, not a mandatory result. Compare controlled queries; anchor absence or rank changes alone do not prove failure.",
+      "assessment": {
+        "inspect_top_k": 10,
+        "record": [
+          "first_satisfying_rank",
+          "verified_satisfying_count",
+          "verified_violations",
+          "unknown_attributes",
+          "anchor_observed"
+        ],
+        "no_results_requires": "trusted fetch status and contemporaneously verified qualifying product",
+        "unknown_attributes": "inconclusive until product details are checked",
+        "price_rule": "use actual eligible nonmember offer; clearly labelled member offers are not automatically a site defect",
+        "before_execution": "refresh source identity, availability, and any price-sensitive facts"
+      },
+      "status": "wording_review_accepted",
+      "searches_executed": false,
+      "review_reason": "Baseline 'kande 1,6 L' and test 'kande 1600 ml' both express the same 1600 ml capacity (supported by fact 2:12, quote 'Kapacitet 1,6 L'). The only change is the unit expression (L to ml), not the actual volume. Both queries are natural Danish. The requirement is correctly preserved across both steps."
+    },
+    {
+      "id": "imerco_dimension",
+      "mode": "dimension",
+      "anchor_product_id": "100445100",
+      "supporting_fact_ids": [
+        "3:0",
+        "3:2",
+        "3:3"
+      ],
+      "context": {
+        "locale": "da-DK",
+        "currency": "DKK",
+        "membership": "unspecified"
+      },
+      "known_ineligible_product_ids": [],
+      "changed_requirement": "Add the explicitly verified height, not the diameter.",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "vase",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "vase",
+              "unit": "",
+              "fact_ids": [
+                "3:0"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        },
+        {
+          "role": "test",
+          "query": "vase højde 21 cm",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "vase",
+              "unit": "",
+              "fact_ids": [
+                "3:0"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "height",
+              "operator": "eq",
+              "value": "210",
+              "unit": "mm",
+              "fact_ids": [
+                "3:2"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        }
+      ],
+      "success_rule": "Relevant results satisfy the declared requirements; equivalent qualifying alternatives count. The named anchor is evidence of a satisfiable need, not a mandatory result. Compare controlled queries; anchor absence or rank changes alone do not prove failure.",
+      "assessment": {
+        "inspect_top_k": 10,
+        "record": [
+          "first_satisfying_rank",
+          "verified_satisfying_count",
+          "verified_violations",
+          "unknown_attributes",
+          "anchor_observed"
+        ],
+        "no_results_requires": "trusted fetch status and contemporaneously verified qualifying product",
+        "unknown_attributes": "inconclusive until product details are checked",
+        "price_rule": "use actual eligible nonmember offer; clearly labelled member offers are not automatically a site defect",
+        "before_execution": "refresh source identity, availability, and any price-sensitive facts"
+      },
+      "status": "wording_review_accepted",
+      "searches_executed": false,
+      "review_reason": "Baseline 'vase' is supported by fact 3:0. Test 'vase højde 21 cm' adds the height dimension (supported by fact 3:2, quote 'Højde 21 cm', normalized 210 mm = 21 cm). The changed requirement is explicitly the height, not the diameter (fact 3:3 is diameter 17 cm, correctly not used). Wording is natural Danish and the single addition is the verified height. Both steps are correctly constructed."
+    },
+    {
+      "id": "imerco_pack_capacity",
+      "mode": "pack_capacity",
+      "anchor_product_id": "100404523",
+      "supporting_fact_ids": [
+        "4:0",
+        "4:1",
+        "4:2",
+        "4:3"
+      ],
+      "context": {
+        "locale": "da-DK",
+        "currency": "DKK",
+        "membership": "unspecified"
+      },
+      "known_ineligible_product_ids": [],
+      "changed_requirement": "Retain the pack count and add capacity per individual glass.",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "glas sæt 6 stk",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "glass",
+              "unit": "",
+              "fact_ids": [
+                "4:0"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "pack_count",
+              "operator": "eq",
+              "value": "6",
+              "unit": "items",
+              "fact_ids": [
+                "4:2"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        },
+        {
+          "role": "test",
+          "query": "glas sæt 6 stk 38 cl",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "glass",
+              "unit": "",
+              "fact_ids": [
+                "4:0"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "pack_count",
+              "operator": "eq",
+              "value": "6",
+              "unit": "items",
+              "fact_ids": [
+                "4:2"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "capacity",
+              "operator": "eq",
+              "value": "380",
+              "unit": "ml",
+              "fact_ids": [
+                "4:3"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        }
+      ],
+      "success_rule": "Relevant results satisfy the declared requirements; equivalent qualifying alternatives count. The named anchor is evidence of a satisfiable need, not a mandatory result. Compare controlled queries; anchor absence or rank changes alone do not prove failure.",
+      "assessment": {
+        "inspect_top_k": 10,
+        "record": [
+          "first_satisfying_rank",
+          "verified_satisfying_count",
+          "verified_violations",
+          "unknown_attributes",
+          "anchor_observed"
+        ],
+        "no_results_requires": "trusted fetch status and contemporaneously verified qualifying product",
+        "unknown_attributes": "inconclusive until product details are checked",
+        "price_rule": "use actual eligible nonmember offer; clearly labelled member offers are not automatically a site defect",
+        "before_execution": "refresh source identity, availability, and any price-sensitive facts"
+      },
+      "status": "wording_review_accepted",
+      "searches_executed": false,
+      "review_reason": "Baseline query 'glas sæt 6 stk' is natural Danish for a glass set of 6 items, supported by facts 4:0 (glass) and 4:2 (pack count 6). Test query 'glas sæt 6 stk 38 cl' adds the capacity per individual glass (38 cl), supported by fact 4:3 (Kapacitet 38 cl). The unit in the query matches the source quote exactly (38 cl). Both queries are idiomatic Danish. The single declared change is the addition of capacity per glass. All requirements are grounded in evidence."
+    },
+    {
+      "id": "imerco_solid_material",
+      "mode": "solid_material",
+      "anchor_product_id": "100455704",
+      "supporting_fact_ids": [
+        "5:0",
+        "5:1",
+        "5:12",
+        "5:13"
+      ],
+      "context": {
+        "locale": "da-DK",
+        "currency": "DKK",
+        "membership": "unspecified"
+      },
+      "known_ineligible_product_ids": [
+        "100478281"
+      ],
+      "changed_requirement": "Add solid oak, excluding oak veneer as an exact match.",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "sofabord",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "table",
+              "unit": "",
+              "fact_ids": [
+                "5:0"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        },
+        {
+          "role": "test",
+          "query": "sofabord massivt egetræ",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "table",
+              "unit": "",
+              "fact_ids": [
+                "5:0"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "material",
+              "operator": "eq",
+              "value": "solid_oak",
+              "unit": "",
+              "fact_ids": [
+                "5:1"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        }
+      ],
+      "success_rule": "Relevant results satisfy the declared requirements; equivalent qualifying alternatives count. The named anchor is evidence of a satisfiable need, not a mandatory result. Compare controlled queries; anchor absence or rank changes alone do not prove failure.",
+      "assessment": {
+        "inspect_top_k": 10,
+        "record": [
+          "first_satisfying_rank",
+          "verified_satisfying_count",
+          "verified_violations",
+          "unknown_attributes",
+          "anchor_observed"
+        ],
+        "no_results_requires": "trusted fetch status and contemporaneously verified qualifying product",
+        "unknown_attributes": "inconclusive until product details are checked",
+        "price_rule": "use actual eligible nonmember offer; clearly labelled member offers are not automatically a site defect",
+        "before_execution": "refresh source identity, availability, and any price-sensitive facts"
+      },
+      "status": "wording_review_accepted",
+      "searches_executed": false,
+      "review_reason": "Baseline query 'sofabord' is natural Danish for coffee table, supported by fact 5:0. Test query 'sofabord massivt egetræ' adds solid oak, supported by fact 5:1 ('Massivt egetræ'). The wording 'massivt egetræ' is idiomatic Danish and correctly distinguishes solid oak from oak veneer (facts 5:12 and 5:13 confirm the ineligible product uses finér/MDF). The single declared change is the addition of solid oak material. All requirements are grounded in evidence."
+    },
+    {
+      "id": "imerco_compatibility",
+      "mode": "compatibility",
+      "anchor_product_id": "100468229",
+      "supporting_fact_ids": [
+        "6:20",
+        "6:23"
+      ],
+      "context": {
+        "locale": "da-DK",
+        "currency": "DKK",
+        "membership": "unspecified"
+      },
+      "known_ineligible_product_ids": [],
+      "changed_requirement": "Add explicit induction compatibility.",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "stegepande",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "pan",
+              "unit": "",
+              "fact_ids": [
+                "6:20"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        },
+        {
+          "role": "test",
+          "query": "stegepande induktion",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "pan",
+              "unit": "",
+              "fact_ids": [
+                "6:20"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "induction",
+              "operator": "eq",
+              "value": "true",
+              "unit": "",
+              "fact_ids": [
+                "6:23"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        }
+      ],
+      "success_rule": "Relevant results satisfy the declared requirements; equivalent qualifying alternatives count. The named anchor is evidence of a satisfiable need, not a mandatory result. Compare controlled queries; anchor absence or rank changes alone do not prove failure.",
+      "assessment": {
+        "inspect_top_k": 10,
+        "record": [
+          "first_satisfying_rank",
+          "verified_satisfying_count",
+          "verified_violations",
+          "unknown_attributes",
+          "anchor_observed"
+        ],
+        "no_results_requires": "trusted fetch status and contemporaneously verified qualifying product",
+        "unknown_attributes": "inconclusive until product details are checked",
+        "price_rule": "use actual eligible nonmember offer; clearly labelled member offers are not automatically a site defect",
+        "before_execution": "refresh source identity, availability, and any price-sensitive facts"
+      },
+      "status": "wording_review_accepted",
+      "searches_executed": false,
+      "review_reason": "Baseline query 'stegepande' is natural Danish for frying pan, supported by fact 6:20. Test query 'stegepande induktion' adds induction compatibility, supported by fact 6:23 ('Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas'). Both queries are idiomatic Danish. The single declared change is the addition of induction compatibility. All requirements are grounded in evidence."
+    },
+    {
+      "id": "imerco_combined_exclusions",
+      "mode": "combined_exclusions",
+      "anchor_product_id": "100468229",
+      "supporting_fact_ids": [
+        "6:20",
+        "6:21",
+        "6:22",
+        "6:23"
+      ],
+      "context": {
+        "locale": "da-DK",
+        "currency": "DKK",
+        "membership": "unspecified"
+      },
+      "known_ineligible_product_ids": [],
+      "changed_requirement": "Retain stainless steel and add absence of a coating.",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "stegepande rustfrit stål",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "pan",
+              "unit": "",
+              "fact_ids": [
+                "6:20"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "material",
+              "operator": "eq",
+              "value": "stainless_steel_aluminium",
+              "unit": "",
+              "fact_ids": [
+                "6:21"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        },
+        {
+          "role": "test",
+          "query": "stegepande rustfrit stål uden belægning",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "pan",
+              "unit": "",
+              "fact_ids": [
+                "6:20"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "material",
+              "operator": "eq",
+              "value": "stainless_steel_aluminium",
+              "unit": "",
+              "fact_ids": [
+                "6:21"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "coating",
+              "operator": "eq",
+              "value": "none",
+              "unit": "",
+              "fact_ids": [
+                "6:22"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        }
+      ],
+      "success_rule": "Relevant results satisfy the declared requirements; equivalent qualifying alternatives count. The named anchor is evidence of a satisfiable need, not a mandatory result. Compare controlled queries; anchor absence or rank changes alone do not prove failure.",
+      "assessment": {
+        "inspect_top_k": 10,
+        "record": [
+          "first_satisfying_rank",
+          "verified_satisfying_count",
+          "verified_violations",
+          "unknown_attributes",
+          "anchor_observed"
+        ],
+        "no_results_requires": "trusted fetch status and contemporaneously verified qualifying product",
+        "unknown_attributes": "inconclusive until product details are checked",
+        "price_rule": "use actual eligible nonmember offer; clearly labelled member offers are not automatically a site defect",
+        "before_execution": "refresh source identity, availability, and any price-sensitive facts"
+      },
+      "status": "wording_review_accepted",
+      "searches_executed": false,
+      "review_reason": "Baseline query 'stegepande rustfrit stål' is natural Danish for a stainless steel frying pan, supported by facts 6:20 and 6:21. Test query 'stegepande rustfrit stål uden belægning' adds the absence of coating, supported by fact 6:22 ('Stegepanden har ingen belægning'). The single declared change is adding the coating-absence requirement. Wording is idiomatic Danish. The negation 'uden belægning' correctly expresses no coating. No unsupported requirements are added. Both queries are well-formed and the evidence supports all cited attributes."
+    },
+    {
+      "id": "imerco_specificity",
+      "mode": "specificity",
+      "anchor_product_id": "100396731",
+      "supporting_fact_ids": [
+        "2:10",
+        "2:11",
+        "2:12"
+      ],
+      "context": {
+        "locale": "da-DK",
+        "currency": "DKK",
+        "membership": "unspecified"
+      },
+      "known_ineligible_product_ids": [],
+      "changed_requirement": "Add verified material, then add verified capacity.",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "kande",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "jug",
+              "unit": "",
+              "fact_ids": [
+                "2:10"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        },
+        {
+          "role": "test",
+          "query": "kande porcelæn",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "jug",
+              "unit": "",
+              "fact_ids": [
+                "2:10"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "material",
+              "operator": "eq",
+              "value": "porcelain",
+              "unit": "",
+              "fact_ids": [
+                "2:11"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        },
+        {
+          "role": "test",
+          "query": "kande porcelæn 1,6 L",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "jug",
+              "unit": "",
+              "fact_ids": [
+                "2:10"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "material",
+              "operator": "eq",
+              "value": "porcelain",
+              "unit": "",
+              "fact_ids": [
+                "2:11"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "capacity",
+              "operator": "eq",
+              "value": "1600",
+              "unit": "ml",
+              "fact_ids": [
+                "2:12"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        }
+      ],
+      "success_rule": "Relevant results satisfy the declared requirements; equivalent qualifying alternatives count. The named anchor is evidence of a satisfiable need, not a mandatory result. Compare controlled queries; anchor absence or rank changes alone do not prove failure.",
+      "assessment": {
+        "inspect_top_k": 10,
+        "record": [
+          "first_satisfying_rank",
+          "verified_satisfying_count",
+          "verified_violations",
+          "unknown_attributes",
+          "anchor_observed"
+        ],
+        "no_results_requires": "trusted fetch status and contemporaneously verified qualifying product",
+        "unknown_attributes": "inconclusive until product details are checked",
+        "price_rule": "use actual eligible nonmember offer; clearly labelled member offers are not automatically a site defect",
+        "before_execution": "refresh source identity, availability, and any price-sensitive facts"
+      },
+      "status": "wording_review_accepted",
+      "searches_executed": false,
+      "review_reason": "Baseline 'kande' is natural Danish for jug, supported by fact 2:10. First test step 'kande porcelæn' adds material porcelain, supported by fact 2:11. Second test step 'kande porcelæn 1,6 L' adds capacity 1.6 L, supported by fact 2:12 ('Kapacitet 1,6 L'). Two successive changes are correctly applied one at a time. Wording is idiomatic Danish. The capacity is expressed as '1,6 L' matching the source quote exactly. All requirements are evidence-grounded."
+    },
+    {
+      "id": "imerco_conditional_price",
+      "mode": "conditional_price",
+      "anchor_product_id": "100456332",
+      "supporting_fact_ids": [
+        "6:0",
+        "6:14",
+        "6:18",
+        "6:19",
+        "6:5",
+        "6:6"
+      ],
+      "context": {
+        "locale": "da-DK",
+        "currency": "DKK",
+        "membership": "nonmember"
+      },
+      "known_ineligible_product_ids": [
+        "100468230"
+      ],
+      "changed_requirement": "Add a strict nonmember budget below 500 DKK.",
+      "steps": [
+        {
+          "role": "baseline",
+          "query": "stegepande",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "pan",
+              "unit": "",
+              "fact_ids": [
+                "6:14"
+              ],
+              "origin": "product_evidence"
+            }
+          ]
+        },
+        {
+          "role": "test",
+          "query": "stegepande under 500 kr",
+          "requirements": [
+            {
+              "attribute": "product_type",
+              "operator": "eq",
+              "value": "pan",
+              "unit": "",
+              "fact_ids": [
+                "6:14"
+              ],
+              "origin": "product_evidence"
+            },
+            {
+              "attribute": "nonmember_price",
+              "operator": "lt",
+              "value": "500",
+              "unit": "DKK",
+              "fact_ids": [
+                "6:18"
+              ],
+              "origin": "pilot_budget_policy"
+            }
+          ]
+        }
+      ],
+      "success_rule": "Relevant results satisfy the declared requirements; equivalent qualifying alternatives count. The named anchor is evidence of a satisfiable need, not a mandatory result. Compare controlled queries; anchor absence or rank changes alone do not prove failure.",
+      "assessment": {
+        "inspect_top_k": 10,
+        "record": [
+          "first_satisfying_rank",
+          "verified_satisfying_count",
+          "verified_violations",
+          "unknown_attributes",
+          "anchor_observed"
+        ],
+        "no_results_requires": "trusted fetch status and contemporaneously verified qualifying product",
+        "unknown_attributes": "inconclusive until product details are checked",
+        "price_rule": "use actual eligible nonmember offer; clearly labelled member offers are not automatically a site defect",
+        "before_execution": "refresh source identity, availability, and any price-sensitive facts"
+      },
+      "status": "wording_review_accepted",
+      "searches_executed": false,
+      "review_reason": "Baseline 'stegepande' is natural Danish for pan, supported by fact 6:14. Test query 'stegepande under 500 kr' adds a strict nonmember price below 500 DKK. The anchor product 100456332 has a public price of 299.95 DKK (fact 6:18, labelled 'SuperPris'), which is an unrestricted promotional price qualifying as a public/nonmember price and is strictly less than 500 DKK. The known ineligible product 100468230 has a nonmember price of 1499.95 DKK (fact 6:5) and a member-only price of 499.95 DKK (fact 6:6); the member price is clearly labelled and does not qualify. The price requirement is correctly grounded in the eligible anchor's public price. Wording 'under 500 kr' correctly expresses strictly less than 500 DKK in idiomatic Danish. No unsupported requirements are added."
+    }
+  ],
+  "rejected": [],
+  "source_modes_excluded": [
+    "either_or"
+  ],
+  "accepted_modes": [
+    "negation",
+    "unit_conversion",
+    "dimension",
+    "pack_capacity",
+    "solid_material",
+    "compatibility",
+    "combined_exclusions",
+    "specificity",
+    "conditional_price"
+  ],
+  "unaccepted_modes": [],
+  "query_count": 19,
+  "cost": {
+    "requests": 4,
+    "estimated_usd": 0.122982,
+    "reserved_usd": 0.806996,
+    "input_rate_per_million": 3.0,
+    "output_rate_per_million": 15.0,
+    "pricing_source": "https://platform.claude.com/docs/en/models/sonnet-4-6/overview",
+    "pricing_checked": "2026-11-03",
+    "currency": "USD",
+    "note": "Token-based estimate, not invoice; failed/pending requests charged their full reserve."
+  },
+  "completed_at": "2026-11-03T20:25:11.889569+00:00"
+}

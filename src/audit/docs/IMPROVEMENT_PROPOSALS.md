@@ -19,6 +19,39 @@ What the historical data says. These numbers decide the ranking below:
 
 ---
 
+## 0. AI shopper evaluator (prototype built 2026-11-02: `src/shopper_agent.py`)
+
+Instead of probing with isolated queries, Claude drives a real browser toward a goal ("waterproof
+women's walking boots under £120"): it searches, sorts, scrolls, opens products, and finishes or
+gives up. A judge then rates the session from the last screenshots and the action log. Clicks
+on basket, account and checkout controls are refused in code.
+
+**Measured on cotswoldoutdoor.com (3 tasks × 2 shopper models, judged by `claude-sonnet-5-5`):**
+
+| Shopper | Avg steps | Shopper $/task | Judge $/task | Total $/task | 20-task audit |
+|---|---|---|---|---|---|
+| claude-haiku-5-5 | 6.0 (boots hit the 12-step cap) | $0.002 | $0.013 | **$0.015** | **~$0.30** |
+| claude-sonnet-5-5 | 4.3 | $0.028 | $0.013 | **$0.040** | **~$0.80** |
+| *Today's 60-query pipeline* | | | | | *~$1.00* |
+
+- The estimate before building was $0.66–$2.10 per audit. Measured cost is about 2.5× lower: easy
+  tasks finish in 2–3 steps, and cached history is cheap.
+- Each task took 11–51 seconds. A 20-task audit run one task at a time takes about 6–12 minutes.
+- **The shopper model changes the verdict.** On the boots task, Haiku wandered: it re-sorted and
+  clicked price toggles that did nothing, then ran out of steps. It reported CRITICAL. Sonnet
+  found the £97.89 Hi-Tec boots and reported MINOR. A weak shopper produces false failures, so the
+  shopper must be at least Sonnet-class, or Haiku failures must be re-run with Sonnet before they
+  count.
+- It finds things the query probe cannot see: "no prices visible on the first screen of
+  results", a sponsored top row, socks and wellies mixed into "walking boots", and a search that
+  redirects straight to the right category ("4 person tent" → 4–5 Person Tents, a PASS).
+
+Next steps:
+- 15–20 tasks per site, written from the site's categories.
+- Run every task on Sonnet; re-run failures to confirm they're stable.
+- Screen-recorded failures as the report's evidence.
+- The same tasks on a competitor for a benchmark.
+
 ## 1. Graded relevance labels instead of reranker scores (highest impact)
 
 Today the Voyage cross-encoder score drives the stats ("best match at #6"), the ranking verdicts

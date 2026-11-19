@@ -1,0 +1,1798 @@
+{
+  "facts": [
+    {
+      "id": "e0:0",
+      "product_id": "100457437",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Disse små ramakiner fra Lékué er perfekte til både søde og salte portions anretninger",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e0:1",
+      "product_id": "100464477",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Nini Koppen fra Bloomingville liv til øjeblikket",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e0:2",
+      "product_id": "100419246",
+      "attribute": "product_type",
+      "value": "other",
+      "unit": "",
+      "quote": "Rig-Tig PICNIC Termoflaske m. 4 kopper",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e0:3",
+      "product_id": "100470237",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Kählers Hammershøi Jul krus fra 2026 er fremstillet i blankglaseret porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e0:4",
+      "product_id": "100081624",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "De to Blå Mega Riflede krus i porcelæn fra Royal Copenhagen",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e1:0",
+      "product_id": "100470232",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper med hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e1:1",
+      "product_id": "100081658",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper med hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e1:2",
+      "product_id": "100422904",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e1:3",
+      "product_id": "100422904",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e1:4",
+      "product_id": "100081719",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper med hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e1:5",
+      "product_id": "100470637",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper med hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:0",
+      "product_id": "100441446",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Riflet Contrast Marble Krus",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:1",
+      "product_id": "100441446",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:2",
+      "product_id": "100455134",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Riflet Contrast Marble Krus",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:3",
+      "product_id": "100455134",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:4",
+      "product_id": "100441447",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Riflet Contrast Marble Krus",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:5",
+      "product_id": "100441447",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:6",
+      "product_id": "100442405",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Moomin Arabia Krus",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:7",
+      "product_id": "100442405",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:8",
+      "product_id": "100388154",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Pillivuyt Plissé Termokrus",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:9",
+      "product_id": "100388154",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:0",
+      "product_id": "100380329",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:1",
+      "product_id": "100380329",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:2",
+      "product_id": "100075010",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:3",
+      "product_id": "100075010",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:4",
+      "product_id": "100404520",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:5",
+      "product_id": "100404520",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:6",
+      "product_id": "100081711",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:7",
+      "product_id": "100081711",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:8",
+      "product_id": "100396731",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:9",
+      "product_id": "100396731",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e3:10",
+      "product_id": "100396731",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:0",
+      "product_id": "100401235",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Bernadotte serveringskanden fra Georg Jensen er en af de helt store designklassikere",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:1",
+      "product_id": "100401235",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "liter",
+      "quote": "Serveringskanden, der kan rumme 1,6 liter, er baseret på et design fra 1938",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e4:2",
+      "product_id": "100423451",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Lad den elegante Sky kande fra Georg Jensen pryde dit bord",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:3",
+      "product_id": "100423451",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e4:4",
+      "product_id": "100030058",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Melitta Glaskande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:5",
+      "product_id": "100030058",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e4:6",
+      "product_id": "100357957",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Royal Copenhagen Blå Mega Riflet Kande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:7",
+      "product_id": "100357957",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e4:8",
+      "product_id": "100357957",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:9",
+      "product_id": "100349959",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Royal Copenhagen Hvid Riflet Kande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:10",
+      "product_id": "100349959",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e4:11",
+      "product_id": "100349959",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e5:0",
+      "product_id": "100455248",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e5:1",
+      "product_id": "100455248",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e5:2",
+      "product_id": "100030047",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tilbehør til kaffemaskiner",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e5:3",
+      "product_id": "100030047",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e5:4",
+      "product_id": "100441781",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Vandkarafler",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e5:5",
+      "product_id": "100441781",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e5:6",
+      "product_id": "100441780",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Vandkarafler",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e5:7",
+      "product_id": "100441780",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e5:8",
+      "product_id": "100403125",
+      "attribute": "product_type",
+      "value": "other",
+      "unit": "",
+      "quote": "Underkategori Drikkedunke",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e5:9",
+      "product_id": "100403125",
+      "attribute": "capacity",
+      "value": "600",
+      "unit": "ml",
+      "quote": "Kapacitet 600 ml",
+      "normalized_value": "600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e6:0",
+      "product_id": "100463696",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Vinkarafler",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e6:1",
+      "product_id": "100463696",
+      "attribute": "capacity",
+      "value": "1800",
+      "unit": "ml",
+      "quote": "Kapacitet 1800 ml",
+      "normalized_value": "1800",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e6:2",
+      "product_id": "100463695",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Vinkarafler",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e6:3",
+      "product_id": "100463695",
+      "attribute": "capacity",
+      "value": "1800",
+      "unit": "ml",
+      "quote": "Kapacitet 1800 ml",
+      "normalized_value": "1800",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e6:4",
+      "product_id": "100443865",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e6:5",
+      "product_id": "100443865",
+      "attribute": "capacity",
+      "value": "1500",
+      "unit": "ml",
+      "quote": "Kapacitet 1500 ml",
+      "normalized_value": "1500",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e6:6",
+      "product_id": "100443866",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e6:7",
+      "product_id": "100443866",
+      "attribute": "capacity",
+      "value": "1500",
+      "unit": "ml",
+      "quote": "Kapacitet 1500 ml",
+      "normalized_value": "1500",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e6:8",
+      "product_id": "100465690",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e7:0",
+      "product_id": "100465383",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e7:1",
+      "product_id": "100465402",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e7:2",
+      "product_id": "100386969",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e7:3",
+      "product_id": "100450238",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e7:4",
+      "product_id": "100422363",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e8:0",
+      "product_id": "100470274",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e8:1",
+      "product_id": "100386970",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e8:2",
+      "product_id": "100465377",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e8:3",
+      "product_id": "100450131",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e8:4",
+      "product_id": "100448350",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e9:0",
+      "product_id": "100455704",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e9:1",
+      "product_id": "100455702",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e9:2",
+      "product_id": "100461817",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e9:3",
+      "product_id": "100451197",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e9:4",
+      "product_id": "100478281",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e10:0",
+      "product_id": "100451187",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e10:1",
+      "product_id": "100451201",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e10:2",
+      "product_id": "100434685",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e10:3",
+      "product_id": "100434298",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e10:4",
+      "product_id": "100451441",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e11:0",
+      "product_id": "100354387",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e11:1",
+      "product_id": "100429693",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e11:2",
+      "product_id": "100433830",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e11:3",
+      "product_id": "100429691",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e11:4",
+      "product_id": "100429694",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:0",
+      "product_id": "100386485",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:1",
+      "product_id": "100451440",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:2",
+      "product_id": "100447502",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:3",
+      "product_id": "100451309",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:4",
+      "product_id": "100467488",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:5",
+      "product_id": "100467488",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Panden kan bruges på alle varmekilder, inklusiv induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:0",
+      "product_id": "100439699",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:1",
+      "product_id": "100439699",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:2",
+      "product_id": "100439699",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "kompatibel med alle varmekilder, inklusiv induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:3",
+      "product_id": "100468230",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:4",
+      "product_id": "100468230",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:5",
+      "product_id": "100468230",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:6",
+      "product_id": "100439700",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:7",
+      "product_id": "100439700",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:8",
+      "product_id": "100439700",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "kompatibel med alle varmekilder, inklusiv induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:9",
+      "product_id": "100453812",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:10",
+      "product_id": "100453812",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Genanvendt aluminium/rustfrit stål  /  Blank stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:11",
+      "product_id": "100453812",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Tåler ovn, maskinopvask, stålsvamp og alle varmekilder – også induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:12",
+      "product_id": "100442546",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:13",
+      "product_id": "100442546",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:14",
+      "product_id": "100442546",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "kompatibel med alle varmekilder, inklusiv induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:0",
+      "product_id": "100414744",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Scanpan Fusion 5 Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:1",
+      "product_id": "100414744",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:2",
+      "product_id": "100468229",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Eva Trio Multi 5-ply Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:3",
+      "product_id": "100468229",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:4",
+      "product_id": "100467757",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Tefal Emotion Plus Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:5",
+      "product_id": "100467757",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:6",
+      "product_id": "100443063",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Jamie Oliver by Tefal Cook Smart Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:7",
+      "product_id": "100443063",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:8",
+      "product_id": "100443063",
+      "attribute": "material",
+      "value": "stainless_steel",
+      "unit": "",
+      "quote": "Materiale Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:9",
+      "product_id": "100443063",
+      "attribute": "coating",
+      "value": "none",
+      "unit": "",
+      "quote": "Ø 28 cm  /  Rustfrit stål  /  Uden belægning",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:10",
+      "product_id": "100456332",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Eva Trio Stainless Steel Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:11",
+      "product_id": "100456332",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:0",
+      "product_id": "100455457",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:1",
+      "product_id": "100455457",
+      "attribute": "material",
+      "value": "stainless_steel",
+      "unit": "",
+      "quote": "Materiale Genanvendt Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:2",
+      "product_id": "100456331",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:3",
+      "product_id": "100456331",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:4",
+      "product_id": "100466776",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:5",
+      "product_id": "100466776",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Genanvendt Rustfrit stål,  Glaskeramisk",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:6",
+      "product_id": "100456330",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:7",
+      "product_id": "100456330",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:8",
+      "product_id": "100443062",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:9",
+      "product_id": "100443062",
+      "attribute": "material",
+      "value": "stainless_steel",
+      "unit": "",
+      "quote": "Materiale Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:10",
+      "product_id": "100443062",
+      "attribute": "coating",
+      "value": "none",
+      "unit": "",
+      "quote": "Ø 24 cm  /  Rustfrit stål  /  Uden belægning",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:0",
+      "product_id": "100463435",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:1",
+      "product_id": "100451351",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:2",
+      "product_id": "100420539",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Vandkarafler",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:3",
+      "product_id": "100446498",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:4",
+      "product_id": "100408286",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:5",
+      "product_id": "100408286",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:0",
+      "product_id": "100469257",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Servér sauce og dressing med et elegant løft i Bernadotte saucekanden fra Georg Jensen.",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:1",
+      "product_id": "100455071",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Sovseskåle og -kander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:2",
+      "product_id": "100455071",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:3",
+      "product_id": "100449039",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:4",
+      "product_id": "100449039",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:5",
+      "product_id": "100408584",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:6",
+      "product_id": "100420992",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:0",
+      "product_id": "100393453",
+      "attribute": "material",
+      "value": "Porcelæn",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:1",
+      "product_id": "100393453",
+      "attribute": "product_type",
+      "value": "other",
+      "unit": "",
+      "quote": "Underkategori Sovseskåle og -kander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:2",
+      "product_id": "100422295",
+      "attribute": "material",
+      "value": "Keramik",
+      "unit": "",
+      "quote": "Materiale Keramik",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:3",
+      "product_id": "100422295",
+      "attribute": "product_type",
+      "value": "other",
+      "unit": "",
+      "quote": "Underkategori Sovseskåle og -kander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:4",
+      "product_id": "100404730",
+      "attribute": "material",
+      "value": "Porcelæn",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:5",
+      "product_id": "100404730",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:6",
+      "product_id": "100448547",
+      "attribute": "material",
+      "value": "Porcelæn",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:7",
+      "product_id": "100448547",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:8",
+      "product_id": "100449038",
+      "attribute": "material",
+      "value": "Porcelæn",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:9",
+      "product_id": "100449038",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:0",
+      "product_id": "100078141",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:1",
+      "product_id": "100078141",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:2",
+      "product_id": "100441591",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:3",
+      "product_id": "100441591",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:5",
+      "product_id": "100441643",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:6",
+      "product_id": "100441643",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:8",
+      "product_id": "100400915",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:9",
+      "product_id": "100400915",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:11",
+      "product_id": "100400914",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:12",
+      "product_id": "100400914",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:0",
+      "product_id": "100416826",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:1",
+      "product_id": "100416826",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e20:2",
+      "product_id": "100416826",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:3",
+      "product_id": "100441653",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:4",
+      "product_id": "100441653",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e20:5",
+      "product_id": "100441653",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:6",
+      "product_id": "100466313",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:7",
+      "product_id": "100466313",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e20:8",
+      "product_id": "100466313",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    }
+  ],
+  "rejected": [
+    {
+      "fact": {
+        "id": "e19:4",
+        "product_id": "100441591",
+        "attribute": "capacity",
+        "value": "1,6",
+        "unit": "Liter",
+        "quote": "Kapacitet 1,6 L",
+        "normalized_value": "",
+        "normalized_unit": ""
+      },
+      "reason": "capacity unit missing or unsupported"
+    },
+    {
+      "fact": {
+        "id": "e19:7",
+        "product_id": "100441643",
+        "attribute": "capacity",
+        "value": "1,6",
+        "unit": "liter",
+        "quote": "Kapacitet 1,6 L",
+        "normalized_value": "",
+        "normalized_unit": ""
+      },
+      "reason": "capacity unit missing or unsupported"
+    },
+    {
+      "fact": {
+        "id": "e19:10",
+        "product_id": "100400915",
+        "attribute": "capacity",
+        "value": "1,6",
+        "unit": "liter",
+        "quote": "Kapacitet 1,6 L",
+        "normalized_value": "",
+        "normalized_unit": ""
+      },
+      "reason": "capacity unit missing or unsupported"
+    },
+    {
+      "fact": {
+        "id": "e19:13",
+        "product_id": "100400914",
+        "attribute": "capacity",
+        "value": "1,6",
+        "unit": "liter",
+        "quote": "Kapacitet 1,6 L",
+        "normalized_value": "",
+        "normalized_unit": ""
+      },
+      "reason": "capacity unit missing or unsupported"
+    }
+  ]
+}

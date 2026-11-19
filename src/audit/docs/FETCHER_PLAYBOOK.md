@@ -519,3 +519,11 @@ the tab mid-run (use `fetch()` for diagnostics too).
 Append a profile with at minimum: fetch mode, the real results-grid selector, the
 wrong containers you ruled out, price/locale quirks, and ordering behaviour. Wire the
 extractor into `_try_site_specific()` so it short-circuits the generic sweep.
+
+### Imerco recheck — 2026-11-03
+
+Limited three-query live probe passed via static site-specific extraction (Scanpan, krus hvid, gibberish zero). Scanpan first five titles/order/displayed prices matched rendered Chrome. Evidence in `reports/imerco_dk/extraction_check_20261103/`. Price caveat: extracted member prices lose their condition (Fusion 5: member 499,95 kr versus nonmember 969,95 kr). Preserve membership eligibility before judging price constraints. Bundled Chromium unavailable locally; installed Chrome via `channel="chrome"` worked for verification.
+
+### Imerco result-count correction — 2026-11-03
+
+The live advanced-query experiment exposed facet subtotals being selected as total_hits (e.g. kande 1,6 L: offer facet 3 versus real header 28). `page_state()` now prioritizes `[class*="HitsHeader_count"]` for imerco.dk before generic counts, including authoritative zero. Saved pages were re-extracted; original outputs retained. Two regression tests and all 309 offline tests pass. See `docs/experiments/search-detective-imerco-2026-11-03/search-execution-results.md` from the repository root.

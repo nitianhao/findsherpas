@@ -1,0 +1,3022 @@
+{
+  "facts": [
+    {
+      "id": "e1:1",
+      "product_id": "100081658",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper med hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e1:3",
+      "product_id": "100422904",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e1:2",
+      "product_id": "100422904",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e0:1",
+      "product_id": "100464477",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Nini Koppen fra Bloomingville liv til øjeblikket",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e0:2",
+      "product_id": "100419246",
+      "attribute": "product_type",
+      "value": "other",
+      "unit": "",
+      "quote": "Rig-Tig PICNIC Termoflaske m. 4 kopper",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e0:3",
+      "product_id": "100470237",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Kählers Hammershøi Jul krus fra 2026 er fremstillet i blankglaseret porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e1:0",
+      "product_id": "100470232",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper med hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e0:4",
+      "product_id": "100081624",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "De to Blå Mega Riflede krus i porcelæn fra Royal Copenhagen",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:1",
+      "product_id": "100441446",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:5",
+      "product_id": "100441447",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:1",
+      "product_id": "100380329",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:3",
+      "product_id": "100455134",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:4",
+      "product_id": "100441447",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Riflet Contrast Marble Krus",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:7",
+      "product_id": "100442405",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:6",
+      "product_id": "100442405",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Moomin Arabia Krus",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:2",
+      "product_id": "100455134",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Riflet Contrast Marble Krus",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e1:4",
+      "product_id": "100081719",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper med hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:8",
+      "product_id": "100388154",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Pillivuyt Plissé Termokrus",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e1:5",
+      "product_id": "100470637",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper med hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:0",
+      "product_id": "100380329",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:0",
+      "product_id": "100441446",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Riflet Contrast Marble Krus",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e2:9",
+      "product_id": "100388154",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:7",
+      "product_id": "100081711",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:8",
+      "product_id": "100396731",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:4",
+      "product_id": "100404520",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:5",
+      "product_id": "100404520",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:6",
+      "product_id": "100357957",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Royal Copenhagen Blå Mega Riflet Kande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:8",
+      "product_id": "100357957",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:6",
+      "product_id": "100081711",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:4",
+      "product_id": "100030058",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Melitta Glaskande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:9",
+      "product_id": "100396731",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e4:2",
+      "product_id": "100423451",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Lad den elegante Sky kande fra Georg Jensen pryde dit bord",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:0",
+      "product_id": "100401235",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Bernadotte serveringskanden fra Georg Jensen er en af de helt store designklassikere",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:1",
+      "product_id": "100401235",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "liter",
+      "quote": "Serveringskanden, der kan rumme 1,6 liter, er baseret på et design fra 1938",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e3:2",
+      "product_id": "100075010",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:7",
+      "product_id": "100357957",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e4:5",
+      "product_id": "100030058",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e4:3",
+      "product_id": "100423451",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e3:10",
+      "product_id": "100396731",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e3:3",
+      "product_id": "100075010",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:9",
+      "product_id": "100349959",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Royal Copenhagen Hvid Riflet Kande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e4:10",
+      "product_id": "100349959",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e5:9",
+      "product_id": "100403125",
+      "attribute": "capacity",
+      "value": "600",
+      "unit": "ml",
+      "quote": "Kapacitet 600 ml",
+      "normalized_value": "600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e5:2",
+      "product_id": "100030047",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tilbehør til kaffemaskiner",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e6:2",
+      "product_id": "100463695",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Vinkarafler",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e5:0",
+      "product_id": "100455248",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e5:6",
+      "product_id": "100441780",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Vandkarafler",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e5:4",
+      "product_id": "100441781",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Vandkarafler",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e6:3",
+      "product_id": "100463695",
+      "attribute": "capacity",
+      "value": "1800",
+      "unit": "ml",
+      "quote": "Kapacitet 1800 ml",
+      "normalized_value": "1800",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e5:8",
+      "product_id": "100403125",
+      "attribute": "product_type",
+      "value": "other",
+      "unit": "",
+      "quote": "Underkategori Drikkedunke",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e5:7",
+      "product_id": "100441780",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e6:0",
+      "product_id": "100463696",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Vinkarafler",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e5:1",
+      "product_id": "100455248",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e5:3",
+      "product_id": "100030047",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e4:11",
+      "product_id": "100349959",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e6:1",
+      "product_id": "100463696",
+      "attribute": "capacity",
+      "value": "1800",
+      "unit": "ml",
+      "quote": "Kapacitet 1800 ml",
+      "normalized_value": "1800",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e5:5",
+      "product_id": "100441781",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e6:7",
+      "product_id": "100443866",
+      "attribute": "capacity",
+      "value": "1500",
+      "unit": "ml",
+      "quote": "Kapacitet 1500 ml",
+      "normalized_value": "1500",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e7:2",
+      "product_id": "100386969",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e6:5",
+      "product_id": "100443865",
+      "attribute": "capacity",
+      "value": "1500",
+      "unit": "ml",
+      "quote": "Kapacitet 1500 ml",
+      "normalized_value": "1500",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e6:6",
+      "product_id": "100443866",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e6:8",
+      "product_id": "100465690",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e7:4",
+      "product_id": "100422363",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e7:1",
+      "product_id": "100465402",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e7:0",
+      "product_id": "100465383",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e7:3",
+      "product_id": "100450238",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e6:4",
+      "product_id": "100443865",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e8:4",
+      "product_id": "100448350",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e9:0",
+      "product_id": "100455704",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e8:3",
+      "product_id": "100450131",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e8:1",
+      "product_id": "100386970",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e9:1",
+      "product_id": "100455702",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e9:2",
+      "product_id": "100461817",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e8:2",
+      "product_id": "100465377",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e8:0",
+      "product_id": "100470274",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e10:4",
+      "product_id": "100451441",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e10:0",
+      "product_id": "100451187",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e11:0",
+      "product_id": "100354387",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e9:4",
+      "product_id": "100478281",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e10:3",
+      "product_id": "100434298",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e10:2",
+      "product_id": "100434685",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e10:1",
+      "product_id": "100451201",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e9:3",
+      "product_id": "100451197",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Kategori Borde Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:0",
+      "product_id": "100386485",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:1",
+      "product_id": "100451440",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:2",
+      "product_id": "100447502",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e11:1",
+      "product_id": "100429693",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e11:3",
+      "product_id": "100429691",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e11:2",
+      "product_id": "100433830",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e11:4",
+      "product_id": "100429694",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:3",
+      "product_id": "100451309",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:3",
+      "product_id": "100468229",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:6",
+      "product_id": "100439700",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:7",
+      "product_id": "100439700",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:12",
+      "product_id": "100442546",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:5",
+      "product_id": "100467488",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Panden kan bruges på alle varmekilder, inklusiv induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:13",
+      "product_id": "100442546",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:10",
+      "product_id": "100453812",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Genanvendt aluminium/rustfrit stål  /  Blank stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:4",
+      "product_id": "100468230",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:5",
+      "product_id": "100468230",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:2",
+      "product_id": "100439699",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "kompatibel med alle varmekilder, inklusiv induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:3",
+      "product_id": "100468230",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:0",
+      "product_id": "100414744",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Scanpan Fusion 5 Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:9",
+      "product_id": "100453812",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:11",
+      "product_id": "100453812",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Tåler ovn, maskinopvask, stålsvamp og alle varmekilder – også induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:1",
+      "product_id": "100414744",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:1",
+      "product_id": "100439699",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:0",
+      "product_id": "100439699",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:14",
+      "product_id": "100442546",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "kompatibel med alle varmekilder, inklusiv induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e13:8",
+      "product_id": "100439700",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "kompatibel med alle varmekilder, inklusiv induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:2",
+      "product_id": "100468229",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Eva Trio Multi 5-ply Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e12:4",
+      "product_id": "100467488",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:10",
+      "product_id": "100443062",
+      "attribute": "coating",
+      "value": "none",
+      "unit": "",
+      "quote": "Ø 24 cm  /  Rustfrit stål  /  Uden belægning",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:2",
+      "product_id": "100456331",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:9",
+      "product_id": "100443063",
+      "attribute": "coating",
+      "value": "none",
+      "unit": "",
+      "quote": "Ø 28 cm  /  Rustfrit stål  /  Uden belægning",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:5",
+      "product_id": "100466776",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Genanvendt Rustfrit stål,  Glaskeramisk",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:7",
+      "product_id": "100456330",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:6",
+      "product_id": "100443063",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Jamie Oliver by Tefal Cook Smart Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:11",
+      "product_id": "100456332",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:8",
+      "product_id": "100443063",
+      "attribute": "material",
+      "value": "stainless_steel",
+      "unit": "",
+      "quote": "Materiale Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:3",
+      "product_id": "100456331",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:9",
+      "product_id": "100443062",
+      "attribute": "material",
+      "value": "stainless_steel",
+      "unit": "",
+      "quote": "Materiale Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:10",
+      "product_id": "100456332",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Eva Trio Stainless Steel Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:1",
+      "product_id": "100455457",
+      "attribute": "material",
+      "value": "stainless_steel",
+      "unit": "",
+      "quote": "Materiale Genanvendt Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:5",
+      "product_id": "100467757",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:8",
+      "product_id": "100443062",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:6",
+      "product_id": "100456330",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:4",
+      "product_id": "100467757",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Tefal Emotion Plus Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:0",
+      "product_id": "100455457",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e14:7",
+      "product_id": "100443063",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e15:4",
+      "product_id": "100466776",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Kategori Gryder og stegepander Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:0",
+      "product_id": "100469257",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Servér sauce og dressing med et elegant løft i Bernadotte saucekanden fra Georg Jensen.",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:4",
+      "product_id": "100449039",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:1",
+      "product_id": "100451351",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:4",
+      "product_id": "100408286",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:2",
+      "product_id": "100455071",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:0",
+      "product_id": "100463435",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:5",
+      "product_id": "100408286",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:2",
+      "product_id": "100420539",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Vandkarafler",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e16:3",
+      "product_id": "100446498",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:3",
+      "product_id": "100449039",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:1",
+      "product_id": "100455071",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Sovseskåle og -kander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:5",
+      "product_id": "100408584",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:0",
+      "product_id": "100393453",
+      "attribute": "material",
+      "value": "Porcelæn",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:7",
+      "product_id": "100448547",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:6",
+      "product_id": "100448547",
+      "attribute": "material",
+      "value": "Porcelæn",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:0",
+      "product_id": "100078141",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:2",
+      "product_id": "100422295",
+      "attribute": "material",
+      "value": "Keramik",
+      "unit": "",
+      "quote": "Materiale Keramik",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:3",
+      "product_id": "100422295",
+      "attribute": "product_type",
+      "value": "other",
+      "unit": "",
+      "quote": "Underkategori Sovseskåle og -kander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:4",
+      "product_id": "100404730",
+      "attribute": "material",
+      "value": "Porcelæn",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:1",
+      "product_id": "100393453",
+      "attribute": "product_type",
+      "value": "other",
+      "unit": "",
+      "quote": "Underkategori Sovseskåle og -kander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:1",
+      "product_id": "100078141",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:8",
+      "product_id": "100449038",
+      "attribute": "material",
+      "value": "Porcelæn",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:5",
+      "product_id": "100404730",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e18:9",
+      "product_id": "100449038",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e17:6",
+      "product_id": "100420992",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:7",
+      "product_id": "100441643",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "liter",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e20:1",
+      "product_id": "100416826",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e19:13",
+      "product_id": "100400914",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "liter",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e19:4",
+      "product_id": "100441591",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "Liter",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e20:6",
+      "product_id": "100466313",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:4",
+      "product_id": "100441653",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e19:8",
+      "product_id": "100400915",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:5",
+      "product_id": "100441643",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:0",
+      "product_id": "100416826",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:12",
+      "product_id": "100400914",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:6",
+      "product_id": "100441643",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:3",
+      "product_id": "100441653",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:2",
+      "product_id": "100441591",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:11",
+      "product_id": "100400914",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Tekander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:7",
+      "product_id": "100466313",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "L",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e19:3",
+      "product_id": "100441591",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:10",
+      "product_id": "100400915",
+      "attribute": "capacity",
+      "value": "1,6",
+      "unit": "liter",
+      "quote": "Kapacitet 1,6 L",
+      "normalized_value": "1600",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "e20:5",
+      "product_id": "100441653",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:2",
+      "product_id": "100416826",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e19:9",
+      "product_id": "100400915",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "e20:8",
+      "product_id": "100466313",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    }
+  ],
+  "audits": [
+    {
+      "fact_id": "e1:1",
+      "approved": true,
+      "reasons": [
+        "The product text lists the subcategory as 'Krus og kopper med hank' and the product is named 'Stjerne Riflet Jul Krus'. The value 'cup' is directly supported by the product name and subcategory."
+      ]
+    },
+    {
+      "fact_id": "e1:3",
+      "approved": true,
+      "reasons": [
+        "The product text lists the subcategory as 'Krus og kopper uden hank', explicitly indicating no handle. The product name 'Termokop' (thermo cup) and the subcategory 'uden hank' (without handle) directly support the value 'none' for handle presence."
+      ]
+    },
+    {
+      "fact_id": "e1:2",
+      "approved": true,
+      "reasons": [
+        "The product text lists the subcategory as 'Krus og kopper uden hank' and the product is named 'Sort Riflet Blonde Termokop'. The value 'cup' is supported by the product name and subcategory."
+      ]
+    },
+    {
+      "fact_id": "e0:1",
+      "approved": true,
+      "reasons": [
+        "The product text describes 'Nini Kopper' (Nini Cups) from Bloomingville, listed under subcategory 'Krus og kopper med hank' (mugs and cups with handle). The value 'cup' is supported by the product name and category."
+      ]
+    },
+    {
+      "fact_id": "e0:2",
+      "approved": true,
+      "reasons": [
+        "The product text describes a 'Termoflaske m. 4 kopper' (thermos flask with 4 cups), listed under subcategory 'Termoflasker'. The value 'other' is assigned, which is appropriate since the primary product is a thermos flask (not a cup), and the quote itself names it a thermos flask. 'Other' is a reasonable classification for a thermos flask product."
+      ]
+    },
+    {
+      "fact_id": "e0:3",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Kählers Hammershøi Jul krus fra 2026 er fremstillet i blankglaseret porcelæn' and the subcategory is 'Krus og kopper med hank'. The value 'cup' (krus/mug) is supported by the product name, description, and category."
+      ]
+    },
+    {
+      "fact_id": "e0:0",
+      "approved": false,
+      "reasons": [
+        "The product text explicitly describes these as 'ramakiner' (ramekins) made of borosilicate glass for use in an airfryer. The subcategory is 'Tilbehør til airfryers'. The value 'cup' is not supported; these are ramekins/baking dishes, not cups. The quote itself says 'ramakiner', not cups."
+      ]
+    },
+    {
+      "fact_id": "e1:0",
+      "approved": true,
+      "reasons": [
+        "The product text lists the subcategory as 'Krus og kopper med hank' and the product is named 'Hammershøi Jul Krus 2018 & 2025'. The value 'cup' is directly supported by the product name and subcategory."
+      ]
+    },
+    {
+      "fact_id": "e0:4",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly names these 'Blå Mega Riflede krus' (mugs) from Royal Copenhagen, listed under subcategory 'Krus og kopper med hank'. The value 'cup' is supported by the product name and category."
+      ]
+    },
+    {
+      "fact_id": "e2:1",
+      "approved": true,
+      "reasons": [
+        "The product text for 100441446 explicitly states 'Underkategori Krus og kopper uden hank', meaning cups and mugs WITHOUT a handle. This directly supports the value 'none' for handle."
+      ]
+    },
+    {
+      "fact_id": "e2:5",
+      "approved": true,
+      "reasons": [
+        "The product text for 100441447 explicitly states 'Underkategori Krus og kopper uden hank', meaning cups and mugs WITHOUT a handle. This directly supports the value 'none' for handle."
+      ]
+    },
+    {
+      "fact_id": "e3:1",
+      "approved": true,
+      "reasons": [
+        "The product text for 100380329 explicitly states 'Underkategori Krus og kopper uden hank', meaning cups and mugs WITHOUT a handle. This directly supports the value 'none' for handle."
+      ]
+    },
+    {
+      "fact_id": "e2:3",
+      "approved": true,
+      "reasons": [
+        "The product text for 100455134 explicitly states 'Underkategori Krus og kopper uden hank', meaning cups and mugs WITHOUT a handle. This directly supports the value 'none' for handle."
+      ]
+    },
+    {
+      "fact_id": "e2:4",
+      "approved": true,
+      "reasons": [
+        "The product text for 100441447 is titled 'Royal Copenhagen Riflet Contrast Marble Krus' and described as a mug ('krus'). The subcategory 'Krus og kopper uden hank' confirms it is a cup/mug type product."
+      ]
+    },
+    {
+      "fact_id": "e2:7",
+      "approved": true,
+      "reasons": [
+        "The product text for 100442405 explicitly states 'Underkategori Krus og kopper uden hank', meaning cups and mugs WITHOUT a handle. This directly supports the value 'none' for handle."
+      ]
+    },
+    {
+      "fact_id": "e2:6",
+      "approved": true,
+      "reasons": [
+        "The product text for 100442405 is titled 'Moomin Arabia Krus' and described as a mug ('krus'). The subcategory 'Krus og kopper uden hank' confirms it is a cup/mug type product."
+      ]
+    },
+    {
+      "fact_id": "e2:2",
+      "approved": true,
+      "reasons": [
+        "The product text for 100455134 is titled 'Royal Copenhagen Riflet Contrast Marble Krus' and described as a mug ('krus'). The subcategory 'Krus og kopper uden hank' confirms it is a cup/mug type product."
+      ]
+    },
+    {
+      "fact_id": "e1:4",
+      "approved": true,
+      "reasons": [
+        "The product text for 100081719 explicitly lists 'Underkategori Krus og kopper med hank' in the specifications, and the product is described as a mug/cup ('krus'/'kopper'). The subcategory directly supports the value 'cup'."
+      ]
+    },
+    {
+      "fact_id": "e2:8",
+      "approved": true,
+      "reasons": [
+        "The product text for 100388154 is titled 'Pillivuyt Plissé Termokrus' and described as a thermo mug ('termokrus'). The subcategory 'Krus og kopper uden hank' confirms it is a cup/mug type product."
+      ]
+    },
+    {
+      "fact_id": "e1:5",
+      "approved": true,
+      "reasons": [
+        "The product text for 100470637 explicitly lists 'Underkategori Krus og kopper med hank' in the specifications, and the product is described as a mug ('krus'). The subcategory directly supports the value 'cup'."
+      ]
+    },
+    {
+      "fact_id": "e3:0",
+      "approved": true,
+      "reasons": [
+        "The product text for 100380329 is titled 'Royal Copenhagen Riflet Contrast Krus' and described as a mug ('krus'). The subcategory 'Krus og kopper uden hank' confirms it is a cup/mug type product."
+      ]
+    },
+    {
+      "fact_id": "e2:0",
+      "approved": true,
+      "reasons": [
+        "The product text for 100441446 is titled 'Royal Copenhagen Riflet Contrast Marble Krus' and is described as a mug ('krus'). The subcategory 'Krus og kopper uden hank' confirms it is a cup/mug type product."
+      ]
+    },
+    {
+      "fact_id": "e2:9",
+      "approved": true,
+      "reasons": [
+        "The product text for 100388154 explicitly states 'Underkategori Krus og kopper uden hank', meaning cups and mugs WITHOUT a handle. This directly supports the value 'none' for handle."
+      ]
+    },
+    {
+      "fact_id": "e3:7",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Krus og kopper uden hank' explicitly means 'mugs and cups without handle', directly confirming that this product has no handle."
+      ]
+    },
+    {
+      "fact_id": "e3:8",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Serveringskander' (serving jugs/pitchers) is explicitly listed in the specifications for product 100396731, and the product is described as a 'Kande' (jug/pitcher). The value 'jug' is supported."
+      ]
+    },
+    {
+      "fact_id": "e3:4",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Krus og kopper uden hank' (mugs and cups without handle) is explicitly listed in the specifications for product 100404520, and the product is described as a 'Termokop'/'termokrus' (thermal cup/mug). The value 'cup' is supported."
+      ]
+    },
+    {
+      "fact_id": "e3:5",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Krus og kopper uden hank' explicitly means 'mugs and cups without handle', directly confirming that this product has no handle."
+      ]
+    },
+    {
+      "fact_id": "e4:6",
+      "approved": true,
+      "reasons": [
+        "The product is named 'Royal Copenhagen Blå Mega Riflet Kande' and the subcategory is 'Serveringskander' (serving jugs). The value 'jug' is supported."
+      ]
+    },
+    {
+      "fact_id": "e4:8",
+      "approved": true,
+      "reasons": [
+        "The specification explicitly states 'Materiale Porcelæn' for product 100357957, confirming the material is porcelain."
+      ]
+    },
+    {
+      "fact_id": "e3:6",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Krus og kopper uden hank' (mugs and cups without handle) is explicitly listed in the specifications for product 100081711, and the product is described as a 'Krus' (mug/cup). The value 'cup' is supported."
+      ]
+    },
+    {
+      "fact_id": "e4:4",
+      "approved": true,
+      "reasons": [
+        "The product is named 'Melitta Glaskande' and the subcategory is 'Tilbehør til kaffemaskiner' (coffee machine accessories). While 'Glaskande' means glass jug, the category is coffee machine accessories rather than a standalone serving jug category. However, the product name explicitly contains 'Glaskande' (glass jug), supporting the product type as 'jug'."
+      ]
+    },
+    {
+      "fact_id": "e3:9",
+      "approved": true,
+      "reasons": [
+        "The specification explicitly states 'Kapacitet 1,6 L' for product 100396731, which equals 1600 ml. The quote, unit, value, and normalized value are all consistent and correct."
+      ]
+    },
+    {
+      "fact_id": "e4:2",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Lad den elegante Sky kande fra Georg Jensen pryde dit bord', and the product is named 'Georg Jensen Sky Kande'. The subcategory is 'Serveringskander'. The value 'jug' is supported."
+      ]
+    },
+    {
+      "fact_id": "e4:0",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Bernadotte serveringskanden fra Georg Jensen er en af de helt store designklassikere', and the product is named 'Georg Jensen Bernadotte Serveringskande'. The subcategory is 'Termokander' and the product is clearly a jug/pitcher. The value 'jug' is supported."
+      ]
+    },
+    {
+      "fact_id": "e4:1",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Serveringskanden, der kan rumme 1,6 liter' and the specification confirms 'Kapacitet 1,6 L', which equals 1600 ml. The quote, unit, value, and normalized value are all consistent and correct."
+      ]
+    },
+    {
+      "fact_id": "e3:2",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Krus og kopper uden hank' (mugs and cups without handle) is explicitly listed in the specifications for product 100075010, and the product is described as a 'Termokop' (thermal cup). The value 'cup' is supported by the product type indicated in the category and product name."
+      ]
+    },
+    {
+      "fact_id": "e4:7",
+      "approved": true,
+      "reasons": [
+        "The specification explicitly states 'Kapacitet 1,6 L' for product 100357957, which equals 1600 ml. The quote, unit, value, and normalized value are all consistent and correct."
+      ]
+    },
+    {
+      "fact_id": "e4:5",
+      "approved": true,
+      "reasons": [
+        "The specification explicitly states 'Kapacitet 1,6 L' for product 100030058, which equals 1600 ml. The quote, unit, value, and normalized value are all consistent and correct."
+      ]
+    },
+    {
+      "fact_id": "e4:3",
+      "approved": true,
+      "reasons": [
+        "The specification explicitly states 'Kapacitet 1,6 L' for product 100423451, which equals 1600 ml. The quote, unit, value, and normalized value are all consistent and correct."
+      ]
+    },
+    {
+      "fact_id": "e3:10",
+      "approved": true,
+      "reasons": [
+        "The specification explicitly states 'Materiale Porcelæn' for product 100396731, confirming the material is porcelain."
+      ]
+    },
+    {
+      "fact_id": "e3:3",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Krus og kopper uden hank' explicitly means 'mugs and cups without handle', directly confirming that this product has no handle."
+      ]
+    },
+    {
+      "fact_id": "e4:9",
+      "approved": true,
+      "reasons": [
+        "The product title 'Royal Copenhagen Hvid Riflet Kande' and the subcategory 'Serveringskander' both explicitly identify this as a serving jug/kande. The interpretation as 'jug' is supported."
+      ]
+    },
+    {
+      "fact_id": "e4:10",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kapacitet 1,6 L', and the product summary also shows '1,6 liter'. 1.6 L = 1600 ml, so the normalized value is correct."
+      ]
+    },
+    {
+      "fact_id": "e5:9",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kapacitet 600 ml', and the product summary confirms '600 ml'. The normalized value of 600 ml is correct."
+      ]
+    },
+    {
+      "fact_id": "e5:2",
+      "approved": true,
+      "reasons": [
+        "The subcategory is 'Tilbehør til kaffemaskiner' (coffee machine accessories), and the product is a glass jug (Glaskande) for a coffee machine. While it is a jug/kande by name, the subcategory quote used identifies it as a coffee machine accessory, not a standalone jug category. However, the product name 'Melitta Glaskande' and the word 'kande' directly support it being a jug. The fact value 'jug' is a reasonable interpretation of 'Glaskande'."
+      ]
+    },
+    {
+      "fact_id": "e6:2",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Vinkarafler' and the product name 'CASA Living Daisy Karafel' support the interpretation as a jug/carafe. Approved."
+      ]
+    },
+    {
+      "fact_id": "e5:0",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Serveringskander' and the product name 'Georg Jensen Koppel Kande' explicitly identify this as a serving jug. The interpretation as 'jug' is supported."
+      ]
+    },
+    {
+      "fact_id": "e5:6",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Vandkarafler' and the product name 'PIP Studio Pip Chique Kande' support the interpretation as a jug. Approved."
+      ]
+    },
+    {
+      "fact_id": "e5:4",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Vandkarafler' (water carafes/jugs) and the product name 'PIP Studio Pip Chique Kande' support the interpretation as a jug. Approved."
+      ]
+    },
+    {
+      "fact_id": "e6:3",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kapacitet 1800 ml', and the product description confirms 'Rummer 1800 ml'. The normalized value of 1800 ml is correct."
+      ]
+    },
+    {
+      "fact_id": "e5:8",
+      "approved": true,
+      "reasons": [
+        "The subcategory is 'Drikkedunke' (drinking bottles/flasks), not a jug category. The product is described as a 'Kande m. låg' (jug with lid) used for smoothies on the go, categorized under 'Madopbevaring og organisering' / 'Drikkedunke'. The fact value 'other' is consistent with the subcategory not being a standard jug category, and the quote supports this classification."
+      ]
+    },
+    {
+      "fact_id": "e5:7",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kapacitet 1,6 L', and the product summary confirms '1,6 liter'. 1.6 L = 1600 ml, so the normalized value is correct."
+      ]
+    },
+    {
+      "fact_id": "e6:0",
+      "approved": true,
+      "reasons": [
+        "The subcategory 'Vinkarafler' (wine carafes) and the product name 'CASA Living Toscana Karafel' support the interpretation as a jug/carafe. Approved."
+      ]
+    },
+    {
+      "fact_id": "e5:1",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kapacitet 1,6 L', and the product summary confirms '1,6 liter'. 1.6 L = 1600 ml, so the normalized value is correct."
+      ]
+    },
+    {
+      "fact_id": "e5:3",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kapacitet 1,6 L', and the product summary confirms '1,6 liter'. 1.6 L = 1600 ml, so the normalized value is correct."
+      ]
+    },
+    {
+      "fact_id": "e4:11",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Materiale Porcelæn', directly supporting the material claim of porcelain."
+      ]
+    },
+    {
+      "fact_id": "e6:1",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kapacitet 1800 ml', and the product description confirms 'Rummer 1800 ml'. The normalized value of 1800 ml is correct."
+      ]
+    },
+    {
+      "fact_id": "e5:5",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kapacitet 1,6 L', and the product summary confirms '1,6 liter'. 1.6 L = 1600 ml, so the normalized value is correct."
+      ]
+    },
+    {
+      "fact_id": "e6:7",
+      "approved": true,
+      "reasons": [
+        "The specifications section explicitly states 'Kapacitet 1500 ml', directly matching the quoted value, unit, and normalized values."
+      ]
+    },
+    {
+      "fact_id": "e7:2",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Underkategori Vaser' confirming the product type as vase, which matches the claimed value."
+      ]
+    },
+    {
+      "fact_id": "e6:5",
+      "approved": true,
+      "reasons": [
+        "The specifications section explicitly states 'Kapacitet 1500 ml', directly matching the quoted value, unit, and normalized values."
+      ]
+    },
+    {
+      "fact_id": "e6:6",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Underkategori Tekander' confirming the product is a teapot/tea jug. The value 'jug' is a reasonable English rendering supported by the category evidence."
+      ]
+    },
+    {
+      "fact_id": "e6:8",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Underkategori Vaser' confirming the product type as vase, which matches the claimed value."
+      ]
+    },
+    {
+      "fact_id": "e7:4",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Underkategori Vaser' confirming the product type as vase, which matches the claimed value."
+      ]
+    },
+    {
+      "fact_id": "e7:1",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Underkategori Vaser' confirming the product type as vase, which matches the claimed value."
+      ]
+    },
+    {
+      "fact_id": "e7:0",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Underkategori Vaser' confirming the product type as vase, which matches the claimed value."
+      ]
+    },
+    {
+      "fact_id": "e7:3",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Underkategori Vaser' confirming the product type as vase, which matches the claimed value."
+      ]
+    },
+    {
+      "fact_id": "e6:4",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Underkategori Tekander' which means subcategory Teapots/Tea jugs. 'Tekande' translates to teapot/tea jug, and the subcategory 'Tekander' confirms this product type. The value 'jug' is a reasonable English rendering of tekande/tea jug and is supported by the category evidence."
+      ]
+    },
+    {
+      "fact_id": "e8:4",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Sofaborde' in the specifications, and the product is titled 'CASA Living Sofabord'. The fact claims value 'table', which correctly describes a sofabord (coffee table). The category evidence is explicit and unambiguous."
+      ]
+    },
+    {
+      "fact_id": "e9:0",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Kategori Borde Underkategori Sofaborde' in the specifications, and the product is titled 'FDB Møbler D102 Sofabord', confirming the product type as table."
+      ]
+    },
+    {
+      "fact_id": "e8:3",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Vaser' in the specifications, and the product is titled 'RAW by Aida Vase', confirming the product type as vase."
+      ]
+    },
+    {
+      "fact_id": "e8:1",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Vaser' in the specifications, and the product is titled 'Knabstrup Keramik Vase', confirming the product type as vase."
+      ]
+    },
+    {
+      "fact_id": "e9:1",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Kategori Borde Underkategori Sofaborde' in the specifications, and the product is titled 'FDB Møbler D102 Sofabord', confirming the product type as table."
+      ]
+    },
+    {
+      "fact_id": "e9:2",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Kategori Borde Underkategori Sofaborde' in the specifications, and the product is titled 'CASA Living Seaford Sofabord', confirming the product type as table."
+      ]
+    },
+    {
+      "fact_id": "e8:2",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Vaser' in the specifications, and the product is titled 'CASA Living Vase', confirming the product type as vase."
+      ]
+    },
+    {
+      "fact_id": "e8:0",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Vaser' in the specifications, and the product is titled 'Lyngby Porcelæn Vase', confirming the product type as vase."
+      ]
+    },
+    {
+      "fact_id": "e10:4",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Kategori Gryder og stegepander Underkategori Stegepander' and the product is named 'Cook & Baker Stegepande', confirming it is a pan."
+      ]
+    },
+    {
+      "fact_id": "e10:0",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Kategori Borde Underkategori Sofaborde' and the product is named 'CASA Living Vega Sofabord', confirming it is a table."
+      ]
+    },
+    {
+      "fact_id": "e11:0",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Underkategori Stegepander' and the product is named 'Holm Stegepande', confirming it is a pan."
+      ]
+    },
+    {
+      "fact_id": "e9:4",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Kategori Borde Underkategori Sofaborde' and the product is named 'Hübsch Skak Sofabord', confirming it is a table."
+      ]
+    },
+    {
+      "fact_id": "e10:3",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Kategori Borde Underkategori Sofaborde' and the product is named 'CASA Living Vega Rectangular Sofabord', confirming it is a table."
+      ]
+    },
+    {
+      "fact_id": "e10:2",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Kategori Borde Underkategori Sofaborde' and the product is named 'CASA Living Barossa Sofabord', confirming it is a table."
+      ]
+    },
+    {
+      "fact_id": "e10:1",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Kategori Borde Underkategori Sofaborde' and the product is named 'CASA Living Dice Sofabordssæt', confirming it is a table (set)."
+      ]
+    },
+    {
+      "fact_id": "e9:3",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Kategori Borde Underkategori Sofaborde' and the product is named 'CASA Living Barossa Sofabord', confirming it is a table (sofabord = coffee table)."
+      ]
+    },
+    {
+      "fact_id": "e12:0",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product title is 'Skeppshult Stegepande', confirming this is a pan. The subcategory quote directly supports the product_type value of 'pan'."
+      ]
+    },
+    {
+      "fact_id": "e12:1",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product title is 'Cook & Baker Stegepande', confirming this is a pan. The subcategory quote directly supports the product_type value of 'pan'."
+      ]
+    },
+    {
+      "fact_id": "e12:2",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product title is 'Victoria Stegepande', confirming this is a pan. The subcategory quote directly supports the product_type value of 'pan'."
+      ]
+    },
+    {
+      "fact_id": "e11:1",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product title is 'Lodge Cast Iron Stegepande', confirming this is a pan (stegepande). The subcategory quote directly supports the product_type value of 'pan'."
+      ]
+    },
+    {
+      "fact_id": "e11:3",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product title is 'Lodge Cast Iron Stegepande', confirming this is a pan. The subcategory quote directly supports the product_type value of 'pan'."
+      ]
+    },
+    {
+      "fact_id": "e11:2",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product title is 'Kockums Jernverk Stegepande', confirming this is a pan. The subcategory quote directly supports the product_type value of 'pan'."
+      ]
+    },
+    {
+      "fact_id": "e11:4",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product title is 'Lodge Cast Iron Stegepande', confirming this is a pan. The subcategory quote directly supports the product_type value of 'pan'."
+      ]
+    },
+    {
+      "fact_id": "e12:3",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product title is 'Orrefors Jernverk Stegepande', confirming this is a pan. The subcategory quote directly supports the product_type value of 'pan'."
+      ]
+    },
+    {
+      "fact_id": "e14:3",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly list 'Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas', directly confirming induction compatibility."
+      ]
+    },
+    {
+      "fact_id": "e13:6",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product name is 'Eva Trio Stainless Steel Stegepande', confirming product type as pan."
+      ]
+    },
+    {
+      "fact_id": "e13:7",
+      "approved": true,
+      "reasons": [
+        "The product subtitle states 'Genanvendt rustfrit stål/aluminium / Keramisk Slip-Let® belægning' and the specifications list 'Materiale Aluminium, Rustfrit stål', directly supporting a stainless steel and aluminium construction."
+      ]
+    },
+    {
+      "fact_id": "e13:12",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product name is 'Eva Trio Stainless Steel Stegepande', confirming product type as pan."
+      ]
+    },
+    {
+      "fact_id": "e12:5",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Panden kan bruges på alle varmekilder, inklusiv induktion', directly confirming induction compatibility."
+      ]
+    },
+    {
+      "fact_id": "e13:13",
+      "approved": true,
+      "reasons": [
+        "The product subtitle states 'Genanvendt rustfrit stål/aluminium / Keramisk Slip-Let® belægning' and the specifications list 'Materiale Rustfrit stål, Aluminium', directly supporting a stainless steel and aluminium construction."
+      ]
+    },
+    {
+      "fact_id": "e13:10",
+      "approved": true,
+      "reasons": [
+        "The product subtitle states 'Genanvendt aluminium/rustfrit stål / Blank stål' and the specifications list 'Materiale Aluminium, Rustfrit stål', directly supporting a stainless steel and aluminium construction."
+      ]
+    },
+    {
+      "fact_id": "e13:4",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Materiale Aluminium, Rustfrit stål', directly supporting the stainless steel and aluminium material claim."
+      ]
+    },
+    {
+      "fact_id": "e13:5",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly list 'Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas', directly confirming induction compatibility."
+      ]
+    },
+    {
+      "fact_id": "e13:2",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states the pan is 'kompatibel med alle varmekilder, inklusiv induktion', directly confirming induction compatibility."
+      ]
+    },
+    {
+      "fact_id": "e13:3",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product name includes 'Stegepandesæt', confirming product type as pan(s)."
+      ]
+    },
+    {
+      "fact_id": "e14:0",
+      "approved": true,
+      "reasons": [
+        "The product name 'Scanpan Fusion 5 Stegepande' explicitly contains 'Stegepande' and the subcategory is listed as 'Stegepander', confirming product type as pan."
+      ]
+    },
+    {
+      "fact_id": "e13:9",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product name includes 'Stegepandesæt', confirming product type as pan(s)."
+      ]
+    },
+    {
+      "fact_id": "e13:11",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Tåler ovn, maskinopvask, stålsvamp og alle varmekilder – også induktion', directly confirming induction compatibility."
+      ]
+    },
+    {
+      "fact_id": "e14:1",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly list 'Varmekilder Alle varmekilder, Induktion', directly confirming induction compatibility."
+      ]
+    },
+    {
+      "fact_id": "e13:1",
+      "approved": true,
+      "reasons": [
+        "The product subtitle states 'Genanvendt rustfrit stål/aluminium / Keramisk Slip-Let® belægning' and the specifications list 'Materiale Aluminium, Rustfrit stål', directly supporting a stainless steel and aluminium construction."
+      ]
+    },
+    {
+      "fact_id": "e13:0",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' and the product name is 'Eva Trio Stainless Steel Stegepande', confirming product type as pan."
+      ]
+    },
+    {
+      "fact_id": "e13:14",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states the pan is 'kompatibel med alle varmekilder, inklusiv induktion', directly confirming induction compatibility."
+      ]
+    },
+    {
+      "fact_id": "e13:8",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states the pan is 'kompatibel med alle varmekilder, inklusiv induktion', directly confirming induction compatibility."
+      ]
+    },
+    {
+      "fact_id": "e14:2",
+      "approved": true,
+      "reasons": [
+        "The product name 'Eva Trio Multi 5-ply Stegepande' explicitly contains 'Stegepande' and the subcategory is listed as 'Stegepander', confirming product type as pan."
+      ]
+    },
+    {
+      "fact_id": "e12:4",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Stegepander' in the specifications, and the product name contains 'Stegepande', confirming this is a pan."
+      ]
+    },
+    {
+      "fact_id": "e15:10",
+      "approved": true,
+      "reasons": [
+        "The product variant selector and title include 'Uden belægning' (without coating), and the description does not mention any coating. The quote matches the text exactly, confirming no coating."
+      ]
+    },
+    {
+      "fact_id": "e15:2",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kategori Gryder og stegepander Underkategori Stegepander', confirming this is a pan. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e14:9",
+      "approved": true,
+      "reasons": [
+        "The product variant selector and title include 'Uden belægning' (without coating), and the description does not mention any coating. The quote matches the text exactly, confirming no coating."
+      ]
+    },
+    {
+      "fact_id": "e15:5",
+      "approved": true,
+      "reasons": [
+        "The specifications state 'Materiale Aluminium, Genanvendt Rustfrit stål, Glaskeramisk', which includes aluminium and stainless steel. The value 'stainless_steel_aluminium' is supported by the quoted text, though the material also includes glaskeramisk. The core claim of stainless steel and aluminium combination is directly evidenced."
+      ]
+    },
+    {
+      "fact_id": "e15:7",
+      "approved": true,
+      "reasons": [
+        "The specifications state 'Materiale Aluminium, Rustfrit stål', directly supporting a combined aluminium and stainless steel material. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e14:6",
+      "approved": true,
+      "reasons": [
+        "The product text title is 'Jamie Oliver by Tefal Cook Smart Stegepande' and subcategory is 'Stegepander', confirming this is a pan. The quote matches the product name in the text."
+      ]
+    },
+    {
+      "fact_id": "e14:11",
+      "approved": true,
+      "reasons": [
+        "The specifications state 'Materiale Aluminium, Rustfrit stål', directly supporting a combined aluminium and stainless steel material. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e14:8",
+      "approved": true,
+      "reasons": [
+        "The specifications state 'Materiale Rustfrit stål', directly supporting stainless steel as the material. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e15:3",
+      "approved": true,
+      "reasons": [
+        "The specifications state 'Materiale Aluminium, Rustfrit stål', directly supporting a combined aluminium and stainless steel material. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e15:9",
+      "approved": true,
+      "reasons": [
+        "The specifications state 'Materiale Rustfrit stål', directly supporting stainless steel as the material. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e14:10",
+      "approved": true,
+      "reasons": [
+        "The product text title is 'Eva Trio Stainless Steel Stegepande' and subcategory is 'Stegepander', confirming this is a pan. The quote matches the product name in the text."
+      ]
+    },
+    {
+      "fact_id": "e15:1",
+      "approved": true,
+      "reasons": [
+        "The specifications state 'Materiale Genanvendt Rustfrit stål', directly supporting stainless steel as the material. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e14:5",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly list 'Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas', confirming induction compatibility. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e15:8",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kategori Gryder og stegepander Underkategori Stegepander', confirming this is a pan. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e15:6",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kategori Gryder og stegepander Underkategori Stegepander', confirming this is a pan. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e14:4",
+      "approved": true,
+      "reasons": [
+        "The product text title is 'Tefal Emotion Plus Stegepande' and the subcategory is 'Stegepander', confirming this is a pan. The quote matches the product name in the text."
+      ]
+    },
+    {
+      "fact_id": "e15:0",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kategori Gryder og stegepander Underkategori Stegepander', confirming this is a pan. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e14:7",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly list 'Varmekilder Alle varmekilder, Induktion, Glaskeramisk, Gas', confirming induction compatibility. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e15:4",
+      "approved": true,
+      "reasons": [
+        "The specifications explicitly state 'Kategori Gryder og stegepander Underkategori Stegepander', confirming this is a pan. The quote matches the text exactly."
+      ]
+    },
+    {
+      "fact_id": "e17:0",
+      "approved": true,
+      "reasons": [
+        "The product is explicitly named 'Georg Jensen Bernadotte Saucekande' and the description states 'Servér sauce og dressing med et elegant løft i Bernadotte saucekanden fra Georg Jensen.' The product is a sauce jug/gravy boat, which falls under the jug category. The quote directly supports this classification."
+      ]
+    },
+    {
+      "fact_id": "e17:4",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Materiale Porcelæn' in the specifications for product 100449039 (Eva Trio Legio Nova Kande m. hank). The quote directly matches and the material is confirmed as porcelain."
+      ]
+    },
+    {
+      "fact_id": "e16:1",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Serveringskander' in the specifications, and the product is described as a 'Kande' (jug/pitcher). The subcategory quote directly supports the product type classification as a jug."
+      ]
+    },
+    {
+      "fact_id": "e16:4",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Serveringskander' in the specifications, and the product is described as a 'Kande' (jug/pitcher). The subcategory quote directly supports the product type classification as a jug."
+      ]
+    },
+    {
+      "fact_id": "e17:2",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Materiale Porcelæn' in the specifications for product 100455071 (Kähler Hammershøi Jul Saucekande). The quote directly matches and the material is confirmed as porcelain."
+      ]
+    },
+    {
+      "fact_id": "e16:0",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Serveringskander' in the specifications, and the product is described as a 'Kande' (jug/pitcher) used for storing and serving cold drinks. The subcategory quote directly supports the product type classification as a jug."
+      ]
+    },
+    {
+      "fact_id": "e16:5",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Materiale Porcelæn' in the specifications for product 100408286 (Eva Trio Legio Nova Kande). The quote directly matches and the material is confirmed as porcelain."
+      ]
+    },
+    {
+      "fact_id": "e16:2",
+      "approved": true,
+      "reasons": [
+        "The text lists 'Underkategori Vandkarafler' (water carafes), and the product is described as a 'Kande' (jug/pitcher). While the subcategory is 'Vandkarafler' rather than 'Serveringskander', the product is still a jug/pitcher type vessel. The quote provided says 'Vandkarafler' not 'Serveringskander', but 'jug' is a reasonable interpretation of 'Kande'. However, the fact claims the quote is 'Underkategori Vandkarafler' and the value is 'jug', which is a reasonable product type mapping for a kande/carafe."
+      ]
+    },
+    {
+      "fact_id": "e16:3",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Serveringskander' in the specifications, and the product is described as a 'Kande' (jug/pitcher). The subcategory quote directly supports the product type classification as a jug."
+      ]
+    },
+    {
+      "fact_id": "e17:3",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Serveringskander' in the specifications for product 100449039 (Eva Trio Legio Nova Kande m. hank). The subcategory quote directly supports the product type classification as a jug."
+      ]
+    },
+    {
+      "fact_id": "e17:1",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Sovseskåle og -kander' in the specifications for product 100455071 (Kähler Hammershøi Jul Saucekande). The product is a sauce jug/gravy boat, which is a type of jug. The subcategory quote supports this classification."
+      ]
+    },
+    {
+      "fact_id": "e17:5",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly lists 'Underkategori Serveringskander' in the specifications, which translates to serving jugs/pitchers. The product is described as a 'kande' (jug/pitcher) for juice or squash. The subcategory quote directly supports the value 'jug'."
+      ]
+    },
+    {
+      "fact_id": "e18:0",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Materiale Porcelæn' in the specifications for product 100393453 (Lyngby Porcelæn Rhombe Saucekande). The quote directly matches the stated material."
+      ]
+    },
+    {
+      "fact_id": "e18:7",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly lists 'Underkategori Serveringskander' in the specifications for product 100448547. The product is a 'Kande' (jug/pitcher) categorized under serving jugs. The quote directly supports the value 'jug'."
+      ]
+    },
+    {
+      "fact_id": "e18:6",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Materiale Porcelæn' in the specifications for product 100448547 (Georg Jensen Bernadotte Kande). The quote directly matches the stated material."
+      ]
+    },
+    {
+      "fact_id": "e19:0",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly lists 'Underkategori Serveringskander' in the specifications for product 100078141 (Royal Copenhagen Blå Mega Riflet Kande). The product is a 'Kande' (jug/pitcher) categorized under serving jugs. The quote directly supports the value 'jug'."
+      ]
+    },
+    {
+      "fact_id": "e18:2",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Materiale Keramik' in the specifications for product 100422295 (Lyngby Porcelæn Rhombe Color Saucekande). The quote directly matches the stated material."
+      ]
+    },
+    {
+      "fact_id": "e18:3",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly lists 'Underkategori Sovseskåle og -kander' in the specifications. The product is a saucekande categorized under sauce bowls and jugs. The value 'other' is supported by this subcategory distinction from serving jugs."
+      ]
+    },
+    {
+      "fact_id": "e18:4",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Materiale Porcelæn' in the specifications for product 100404730 (Lyngby Porcelæn Tura Kandevase). The quote directly matches the stated material."
+      ]
+    },
+    {
+      "fact_id": "e18:1",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly lists 'Underkategori Sovseskåle og -kander' (sauce bowls and jugs) in the specifications. The product is a saucekande (sauce jug/gravy boat), which is categorized under sauce bowls and jugs rather than serving jugs. The value 'other' is a reasonable classification distinct from 'jug', and the subcategory quote supports this."
+      ]
+    },
+    {
+      "fact_id": "e19:1",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Materiale Porcelæn' in the specifications for product 100078141 (Royal Copenhagen Blå Mega Riflet Kande). The quote directly matches the stated material 'porcelain'."
+      ]
+    },
+    {
+      "fact_id": "e18:8",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly states 'Materiale Porcelæn' in the specifications for product 100449038 (Eva Trio Legio Nova Kande m. hank). The quote directly matches the stated material."
+      ]
+    },
+    {
+      "fact_id": "e18:5",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly lists 'Underkategori Vaser' in the specifications for product 100404730. The product is described as a 'Kandevase' (jug vase) and categorized under Vaser (vases). The quote directly supports the value 'vase'."
+      ]
+    },
+    {
+      "fact_id": "e18:9",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly lists 'Underkategori Serveringskander' in the specifications for product 100449038. The product is a 'Kande' (jug/pitcher) categorized under serving jugs. The quote directly supports the value 'jug'."
+      ]
+    },
+    {
+      "fact_id": "e17:6",
+      "approved": true,
+      "reasons": [
+        "The product text explicitly lists 'Underkategori Serveringskander' in the specifications. The product is a 'Kandesæt' (jug set). The subcategory quote directly supports the value 'jug'."
+      ]
+    },
+    {
+      "fact_id": "e19:7",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Kapacitet 1,6 L' in the specifications, confirming 1.6 L = 1600 ml."
+      ]
+    },
+    {
+      "fact_id": "e20:1",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Kapacitet 1,6 L' in the specifications, confirming 1.6 L = 1600 ml."
+      ]
+    },
+    {
+      "fact_id": "e19:13",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Kapacitet 1,6 L' in the specifications, confirming 1.6 L = 1600 ml."
+      ]
+    },
+    {
+      "fact_id": "e19:4",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Kapacitet 1,6 L' in the specifications, and the description also mentions 'kapacitet på 1,6 liter', confirming 1.6 L = 1600 ml."
+      ]
+    },
+    {
+      "fact_id": "e20:6",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Tekander' and the product title is 'PIP Studio Lily & Lotus Tekande', confirming the product type as jug/teapot."
+      ]
+    },
+    {
+      "fact_id": "e20:4",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Kapacitet 1,6 L' in the specifications, confirming 1.6 L = 1600 ml."
+      ]
+    },
+    {
+      "fact_id": "e19:8",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Tekander' and the product title is 'PIP Studio Blushing Bird Tekande', confirming the product type as jug/teapot."
+      ]
+    },
+    {
+      "fact_id": "e19:5",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Tekander' and the product title is 'PIP Studio Flower Festival Tekande', confirming the product type as jug/teapot."
+      ]
+    },
+    {
+      "fact_id": "e20:0",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Tekander' and the product title is 'PIP Studio Blushing Bird Tekande', confirming the product type as jug/teapot."
+      ]
+    },
+    {
+      "fact_id": "e19:12",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Materiale Porcelæn' in the specifications, confirming the material is porcelain."
+      ]
+    },
+    {
+      "fact_id": "e19:6",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Materiale Porcelæn' in the specifications, confirming the material is porcelain."
+      ]
+    },
+    {
+      "fact_id": "e20:3",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Tekander' and the product title is 'PIP Studio Lily & Lotus Tekande', confirming the product type as jug/teapot."
+      ]
+    },
+    {
+      "fact_id": "e19:2",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Tekander' in the specifications, and the product title is 'PIP Studio Berry Blues Tekande'. 'Tekande' means teapot/jug, confirming the product type as jug."
+      ]
+    },
+    {
+      "fact_id": "e19:11",
+      "approved": true,
+      "reasons": [
+        "The text explicitly lists 'Underkategori Tekander' and the product title is 'PIP Studio Blushing Bird Tekande', confirming the product type as jug/teapot."
+      ]
+    },
+    {
+      "fact_id": "e20:7",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Kapacitet 1,6 L' in the specifications, confirming 1.6 L = 1600 ml."
+      ]
+    },
+    {
+      "fact_id": "e19:3",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Materiale Porcelæn' in the specifications, confirming the material is porcelain."
+      ]
+    },
+    {
+      "fact_id": "e19:10",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Kapacitet 1,6 L' in the specifications, confirming 1.6 L = 1600 ml."
+      ]
+    },
+    {
+      "fact_id": "e20:5",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Materiale Porcelæn' in the specifications, confirming the material is porcelain."
+      ]
+    },
+    {
+      "fact_id": "e20:2",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Materiale Porcelæn' in the specifications, confirming the material is porcelain."
+      ]
+    },
+    {
+      "fact_id": "e19:9",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Materiale Porcelæn' in the specifications, confirming the material is porcelain."
+      ]
+    },
+    {
+      "fact_id": "e20:8",
+      "approved": true,
+      "reasons": [
+        "The text explicitly states 'Materiale Porcelæn' in the specifications, confirming the material is porcelain."
+      ]
+    }
+  ]
+}

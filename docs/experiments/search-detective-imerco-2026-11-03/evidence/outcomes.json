@@ -1,0 +1,120 @@
+{
+  "Scanpan": {
+    "query": "Scanpan",
+    "status": "ok",
+    "results": [
+      {
+        "rank": 1,
+        "title": "Scanpan StaySharp Strygestål",
+        "price": "99,95 kr",
+        "snippet": null,
+        "url": "https://www.imerco.dk/scanpan-staysharp-strygestaal-l-39-5-cm-keramik-plastik-sort?id=100451321",
+        "sponsored": false
+      },
+      {
+        "rank": 2,
+        "title": "Scanpan CS+ Rec. Stegepande",
+        "price": "499,95 kr",
+        "snippet": null,
+        "url": "https://www.imerco.dk/scanpan-cs-rec-stegepande-oe-26-cm-genanvendt-rustfrit-staal-non-stick-belaegning?id=100455457",
+        "sponsored": false
+      },
+      {
+        "rank": 3,
+        "title": "Scanpan Fusion 5 Stegepande",
+        "price": "499,95 kr",
+        "snippet": null,
+        "url": "https://www.imerco.dk/scanpan-fusion-5-stegepande-oe-28-cm-staal?id=100414744",
+        "sponsored": false
+      },
+      {
+        "rank": 4,
+        "title": "Scanpan Impact Wok m. glaslåg",
+        "price": "499,95 kr",
+        "snippet": null,
+        "url": "https://www.imerco.dk/scanpan-impact-wok-m-glaslaag-oe-32-cm-rustfrit-staal?id=100392619",
+        "sponsored": false
+      },
+      {
+        "rank": 5,
+        "title": "Scanpan StaySharp Slibestensæt  /  6 dele",
+        "price": "249,95 kr",
+        "snippet": null,
+        "url": "https://www.imerco.dk/scanpan-staysharp-slibestensaet-6-dele-korund-plastik-graa?id=100449424",
+        "sponsored": false
+      }
+    ],
+    "final_url": "https://www.imerco.dk/search?query=Scanpan",
+    "http_status": 200,
+    "page_title": "Search",
+    "total_hits": 214,
+    "strategy": "site-specific",
+    "attempts": 1,
+    "evidence": "[evidence: reports/imerco_dk/extraction_check_20261103/evidence/scanpan-3641f697_a1.html.gz]"
+  },
+  "krus hvid": {
+    "query": "krus hvid",
+    "status": "ok",
+    "results": [
+      {
+        "rank": 1,
+        "title": "FDB Møbler Hvidpot Krus",
+        "price": "DKK 129.95",
+        "snippet": null,
+        "url": "https://www.imerco.dk/fdb-moebler-hvidpot-krus-20-cl-porcelaen-hvid?id=100462547",
+        "sponsored": false
+      },
+      {
+        "rank": 2,
+        "title": "Royal Copenhagen Hvid Riflet Krus  /  2 stk.",
+        "price": "269,95 kr",
+        "snippet": null,
+        "url": "https://www.imerco.dk/royal-copenhagen-hvid-riflet-krus-2-stk-36-cl-porcelaen-hvid?id=100081719",
+        "sponsored": false
+      },
+      {
+        "rank": 3,
+        "title": "Royal Copenhagen Hvid Riflet Krus  /  2 stk.",
+        "price": "322,46 kr",
+        "snippet": null,
+        "url": "https://www.imerco.dk/royal-copenhagen-hvid-riflet-krus-2-stk-38-cl-porcelaen-hvid?id=100329319",
+        "sponsored": false
+      },
+      {
+        "rank": 4,
+        "title": "Royal Copenhagen Hvid Riflet Krus  /  2 stk.",
+        "price": "299,96 kr",
+        "snippet": null,
+        "url": "https://www.imerco.dk/royal-copenhagen-hvid-riflet-krus-2-stk-28-cl-porcelaen-hvid?id=100395013",
+        "sponsored": false
+      },
+      {
+        "rank": 5,
+        "title": "Royal Copenhagen Hvid Halvblonde Krus  /  2 stk.",
+        "price": "374,96 kr",
+        "snippet": null,
+        "url": "https://www.imerco.dk/royal-copenhagen-hvid-halvblonde-krus-2-stk-37-cl-porcelaen-hvid?id=100401390",
+        "sponsored": false
+      }
+    ],
+    "final_url": "https://www.imerco.dk/search?query=krus+hvid",
+    "http_status": 200,
+    "page_title": "Search",
+    "total_hits": 238,
+    "strategy": "site-specific",
+    "attempts": 1,
+    "evidence": "[evidence: reports/imerco_dk/extraction_check_20261103/evidence/krus-hvid-c226d26d_a1.html.gz]"
+  },
+  "zzqxvnotaproduct92841": {
+    "query": "zzqxvnotaproduct92841",
+    "status": "zero_confirmed",
+    "results": [],
+    "final_url": "https://www.imerco.dk/search?query=zzqxvnotaproduct92841",
+    "http_status": 200,
+    "page_title": "Search",
+    "total_hits": 0,
+    "strategy": "marker",
+    "attempts": 1,
+    "evidence": "page says: '0 resultater' [evidence: reports/imerco_dk/extraction_check_20261103/evidence/zzqxvnotaproduct92841-22145041_a1.html.gz]"
+  }
+}

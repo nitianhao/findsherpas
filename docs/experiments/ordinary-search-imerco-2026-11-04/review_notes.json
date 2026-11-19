@@ -1,0 +1,48 @@
+{
+  "created_at": "2026-11-04T20:02:15.032907+00:00",
+  "notes": [
+    {
+      "query": "karaffel",
+      "rows": [
+        1,
+        8
+      ],
+      "issue": "Frozen goal added water/juice intent absent from the literal query. Wine carafes are legitimate for karaffel. Do not count these substitute labels as failures.",
+      "disposition": "excluded_from_failure_claims"
+    },
+    {
+      "query": "rustfri stegepande",
+      "rows": [
+        1
+      ],
+      "issue": "Ten-piece cookware bundle includes two steel frying pans (verified PDP). The query does not specify single-item packaging. Treat top-one demotion as a debatable merchandising preference, not a confirmed relevance failure.",
+      "disposition": "excluded_from_failure_claims"
+    },
+    {
+      "query": "termokrus",
+      "issue": "Five stoneware thermal-cup labels rejected by reviewer; remain unknown. Do not infer thermal function from material alone.",
+      "disposition": "unknown"
+    },
+    {
+      "query": "vandglas",
+      "rows": [
+        5,
+        7,
+        8,
+        9,
+        10
+      ],
+      "issue": "Model omitted labels for five products. They remain unknown; missing output is an evaluator problem, not a store failure.",
+      "disposition": "unknown"
+    },
+    {
+      "query": "krystalglas vandglas",
+      "rows": [
+        4
+      ],
+      "issue": "Insufficient unambiguous material evidence.",
+      "disposition": "unknown"
+    }
+  ],
+  "note": "Separate researcher adjudication; automated outputs and frozen queries retained unchanged. Top-one relevance aggregate is withheld because of hidden-goal and bundle ambiguity."
+}

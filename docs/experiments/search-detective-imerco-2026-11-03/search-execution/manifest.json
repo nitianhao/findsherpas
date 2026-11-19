@@ -1,0 +1,11 @@
+{
+  "started_at": "2026-11-03T20:29:39.364377+00:00",
+  "suites_sha256": "0ff3121a1c21012560479d29162d31e76effc3ab60e6a436b2a3f1a77f01e645",
+  "candidate_report_sha256": "130d49689b0224d06ac6f10bb1c0bdf0f201a07a7dd643193d026d2c12cc298f",
+  "query_entries": 19,
+  "unique_queries": 18,
+  "search_url_template": "https://www.imerco.dk/search?query={}",
+  "top_k": 10,
+  "llm_calls": 0,
+  "note": "Read-only execution and source refresh; no relevance or search-quality judgments."
+}

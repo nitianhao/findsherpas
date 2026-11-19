@@ -1,0 +1,12 @@
+{
+  "offline_suite": {
+    "tests": 342,
+    "passed": true
+  },
+  "simulation_invariants": {
+    "same_product_multisets": true,
+    "same_reviewed_relevance_sequence": true,
+    "named_orders_unchanged": 10
+  },
+  "note": "Simulation consumes relevance judgments; invariants do not establish production relevance accuracy or conversion benefit."
+}

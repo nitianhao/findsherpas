@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-11-04T19:25:29.232948+00:00",
+  "source_suite_sha256": "0ff3121a1c21012560479d29162d31e76effc3ab60e6a436b2a3f1a77f01e645",
+  "target_ml": "1600",
+  "anchor_id": "100396731",
+  "queries": 18,
+  "scope": "Read-only storefront queries; no private settings fetched and no store changes."
+}

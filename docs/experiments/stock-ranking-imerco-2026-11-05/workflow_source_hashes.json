@@ -1,0 +1,6 @@
+{
+  "src/candidates/stock_experiment.py": "1e2ee4187d04bb21d330a0e93fec9ddc1767d65a412114b83d6c4c60d1f4a8fb",
+  "tests/test_stock_experiment.py": "3387773ca60ba0911e7a585710d403ef0712b5eb0605f173243933b88307470a",
+  "src/candidates/ordinary_search.py": "dcfcc1d7cd3327147e30984fb5e01e6728c569eae1b1a7b35c71d2eaf3ecd764",
+  "src/candidates/runner.py": "6837a0cc3b441fe10f786a44ded8683c2ab470273a4a2e9746822b6b6ae89bfd"
+}

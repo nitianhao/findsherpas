@@ -1,0 +1,18 @@
+{
+  "hash_algorithm": "sha256",
+  "recorded_date": "2026-11-03",
+  "files": {
+    "evidence/borde.json": "a2d778667814900ad666016f3d1777e5f84d30b455eb0d28e4a78039aeb9cda5",
+    "evidence/browser_results.json": "f833cd4a854191e0ccebe7aaf5aa6138ac417329ad76d16be0ab6fc6d7159560",
+    "evidence/krus-og-kopper-uden-hank.json": "ef9f4b968e56e4d7a4529528f790fb0ea7c7ff0b6b87139326f9752a6b590145",
+    "evidence/outcomes.json": "dc08730cdd1144d32e42feaf77b8d461ace8a478958e54addc5f55c6311dfb86",
+    "evidence/products.json": "b7f1caacbddf3b9731fc29d656fd11eb043768874acc365cc3b10c4c155d013b",
+    "evidence/serverings-og-salatskaale.json": "3e08ab1f48e1e026bd2fd24470d22a0027b78b57af3481dd7dd9c91e58ddf6e0",
+    "evidence/serveringskander.json": "fa4da85a26ab0dcdcb6ec8e76d4c76117e1c91b49d858c5619a6fca344d91c64",
+    "evidence/stegepander.json": "eb793b19b2b7a066e0dd1fe0cb5fd172ade8147dc09d8cf5d4e3abeec152106f",
+    "evidence/vandglas.json": "ec60e80f238895694f6c536823bf9d28e228617ae4266079c9f688e5f2415a50",
+    "evidence/vaser.json": "0c610c3c63579b7df8b3fe26e00fc1dbdcb99f3fe498d481d78682efb7066085",
+    "evidence/verified_candidates.json": "74becb234cd339c475c81ca477284ab395e72cc9c76e9ef6542b4eeb068ec4ca",
+    "evidence/verified_candidates.md": "016546f206bb0d6957ba2f17e975a383fce3d8986e164c292aafbde47375037a"
+  }
+}

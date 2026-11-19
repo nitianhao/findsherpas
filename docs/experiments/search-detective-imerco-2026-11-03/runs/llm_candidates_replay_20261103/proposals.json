@@ -1,0 +1,278 @@
+{
+  "proposed": [
+    {
+      "mode": "negation",
+      "positive_ids": [
+        "100347058"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:0",
+        "0:1"
+      ],
+      "rationale": "Cup 100347058 is explicitly categorised as 'Krus og kopper uden hank' (cups without handle), directly evidencing handle=none."
+    },
+    {
+      "mode": "either_or",
+      "positive_ids": [
+        "100353730",
+        "100408047"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:7",
+        "0:8",
+        "0:13",
+        "0:14"
+      ],
+      "rationale": "Bowl 100353730 is porcelain and bowl 100408047 is glass, providing one verified product in each branch of the glass-or-porcelain serving bowl query."
+    },
+    {
+      "mode": "unit_conversion",
+      "positive_ids": [
+        "100437750"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:20",
+        "0:22"
+      ],
+      "rationale": "Jug 100437750 has explicit capacity of 1.5 L (fact 0:22), enabling unit conversion to ml (1500 ml) or cl (150 cl)."
+    },
+    {
+      "mode": "dimension",
+      "positive_ids": [
+        "100465402"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:26",
+        "0:28",
+        "0:29"
+      ],
+      "rationale": "Vase 100465402 has explicit height 200 mm and distinct diameter 155 mm, satisfying the two-axis dimension requirement."
+    },
+    {
+      "mode": "pack_capacity",
+      "positive_ids": [
+        "100404522"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:0",
+        "1:1",
+        "1:2"
+      ],
+      "rationale": "Drinking glass 100404522 has explicit pack count of 6 and explicit capacity of 25 cl per glass."
+    },
+    {
+      "mode": "solid_material",
+      "positive_ids": [
+        "100455702"
+      ],
+      "contrast_ids": [
+        "100478281"
+      ],
+      "fact_ids": [
+        "1:11",
+        "1:12",
+        "1:16",
+        "1:17"
+      ],
+      "rationale": "Table 100455702 is explicitly 'massivt træ' (solid oak) while contrast table 100478281 is explicitly oak veneer/MDF, satisfying the solid-oak vs oak-veneer requirement."
+    },
+    {
+      "mode": "compatibility",
+      "positive_ids": [
+        "100456331"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:21",
+        "1:24"
+      ],
+      "rationale": "Pan 100456331 is explicitly stated to be compatible with all hob types including induction ('også induktion')."
+    },
+    {
+      "mode": "combined_exclusions",
+      "positive_ids": [
+        "100456331"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:21",
+        "1:22",
+        "1:23"
+      ],
+      "rationale": "Pan 100456331 is explicitly stainless steel/aluminium and explicitly has no coating (fact 1:23 quotes 'Rustfrit stål Jævn varmefordeling'), satisfying both exclusion criteria."
+    },
+    {
+      "mode": "specificity",
+      "positive_ids": [
+        "100437750"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:20",
+        "0:21",
+        "0:22"
+      ],
+      "rationale": "Jug 100437750 has both explicit capacity (1.5 L) and explicit material (ABS plastic), enabling one-attribute-at-a-time specificity refinement."
+    },
+    {
+      "mode": "conditional_price",
+      "positive_ids": [
+        "100414744"
+      ],
+      "contrast_ids": [
+        "100456331"
+      ],
+      "fact_ids": [
+        "2:0",
+        "2:4",
+        "2:5",
+        "1:21",
+        "1:27"
+      ],
+      "rationale": "Pan 100414744 has member price 499.95 DKK (<500) but non-member price 969.95 DKK (>=500), satisfying the conditional-price pan requirement. Contrast pan 100456331 has an unconditional public price of 249.95 DKK (<500 DKK)."
+    }
+  ],
+  "valid": [
+    {
+      "mode": "negation",
+      "positive_ids": [
+        "100347058"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:0",
+        "0:1"
+      ],
+      "rationale": "Cup 100347058 is explicitly categorised as 'Krus og kopper uden hank' (cups without handle), directly evidencing handle=none."
+    },
+    {
+      "mode": "either_or",
+      "positive_ids": [
+        "100353730",
+        "100408047"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:7",
+        "0:8",
+        "0:13",
+        "0:14"
+      ],
+      "rationale": "Bowl 100353730 is porcelain and bowl 100408047 is glass, providing one verified product in each branch of the glass-or-porcelain serving bowl query."
+    },
+    {
+      "mode": "unit_conversion",
+      "positive_ids": [
+        "100437750"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:20",
+        "0:22"
+      ],
+      "rationale": "Jug 100437750 has explicit capacity of 1.5 L (fact 0:22), enabling unit conversion to ml (1500 ml) or cl (150 cl)."
+    },
+    {
+      "mode": "dimension",
+      "positive_ids": [
+        "100465402"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:26",
+        "0:28",
+        "0:29"
+      ],
+      "rationale": "Vase 100465402 has explicit height 200 mm and distinct diameter 155 mm, satisfying the two-axis dimension requirement."
+    },
+    {
+      "mode": "pack_capacity",
+      "positive_ids": [
+        "100404522"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:0",
+        "1:1",
+        "1:2"
+      ],
+      "rationale": "Drinking glass 100404522 has explicit pack count of 6 and explicit capacity of 25 cl per glass."
+    },
+    {
+      "mode": "solid_material",
+      "positive_ids": [
+        "100455702"
+      ],
+      "contrast_ids": [
+        "100478281"
+      ],
+      "fact_ids": [
+        "1:11",
+        "1:12",
+        "1:16",
+        "1:17"
+      ],
+      "rationale": "Table 100455702 is explicitly 'massivt træ' (solid oak) while contrast table 100478281 is explicitly oak veneer/MDF, satisfying the solid-oak vs oak-veneer requirement."
+    },
+    {
+      "mode": "compatibility",
+      "positive_ids": [
+        "100456331"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:21",
+        "1:24"
+      ],
+      "rationale": "Pan 100456331 is explicitly stated to be compatible with all hob types including induction ('også induktion')."
+    },
+    {
+      "mode": "combined_exclusions",
+      "positive_ids": [
+        "100456331"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:21",
+        "1:22",
+        "1:23"
+      ],
+      "rationale": "Pan 100456331 is explicitly stainless steel/aluminium and explicitly has no coating (fact 1:23 quotes 'Rustfrit stål Jævn varmefordeling'), satisfying both exclusion criteria."
+    },
+    {
+      "mode": "specificity",
+      "positive_ids": [
+        "100437750"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:20",
+        "0:21",
+        "0:22"
+      ],
+      "rationale": "Jug 100437750 has both explicit capacity (1.5 L) and explicit material (ABS plastic), enabling one-attribute-at-a-time specificity refinement."
+    },
+    {
+      "mode": "conditional_price",
+      "positive_ids": [
+        "100414744"
+      ],
+      "contrast_ids": [
+        "100456331"
+      ],
+      "fact_ids": [
+        "2:0",
+        "2:4",
+        "2:5",
+        "1:21",
+        "1:27"
+      ],
+      "rationale": "Pan 100414744 has member price 499.95 DKK (<500) but non-member price 969.95 DKK (>=500), satisfying the conditional-price pan requirement. Contrast pan 100456331 has an unconditional public price of 249.95 DKK (<500 DKK)."
+    }
+  ]
+}

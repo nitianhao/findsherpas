@@ -1,0 +1,587 @@
+{
+  "created_at": "2026-11-04T19:48:57.257543+00:00",
+  "cases": [
+    {
+      "id": "pans_category",
+      "category": "pans",
+      "shape": "category",
+      "query": "stegepande",
+      "goal": "Find en stegepande til hverdagsbrug",
+      "anchor_ids": [
+        "100439699",
+        "100414740",
+        "100454201",
+        "100414744",
+        "100468229"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "pans_synonym",
+      "category": "pans",
+      "shape": "synonym",
+      "query": "pande til stegning",
+      "goal": "Find en pande egnet til stegning",
+      "anchor_ids": [
+        "100439699",
+        "100454201",
+        "100414740",
+        "100468229",
+        "100452302"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "pans_subtype",
+      "category": "pans",
+      "shape": "subtype",
+      "query": "rustfri stegepande",
+      "goal": "Find en stegepande lavet af rustfrit stål som materiale",
+      "anchor_ids": [
+        "100439699",
+        "100468230",
+        "100453812",
+        "100468229",
+        "100466778"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "pans_brand",
+      "category": "pans",
+      "shape": "brand",
+      "query": "Scanpan stegepande",
+      "goal": "Find en stegepande fra Scanpan",
+      "anchor_ids": [
+        "100455457",
+        "100414744",
+        "100414740"
+      ],
+      "required_brand": "Scanpan",
+      "required_family": ""
+    },
+    {
+      "id": "pans_family",
+      "category": "pans",
+      "shape": "family",
+      "query": "Eva Trio Multi Mosaic stegepande",
+      "goal": "Find en stegepande fra Eva Trios Multi Mosaic serie",
+      "anchor_ids": [
+        "100466778",
+        "100453812"
+      ],
+      "required_brand": "Eva Trio",
+      "required_family": "Multi Mosaic"
+    },
+    {
+      "id": "pans_named_product",
+      "category": "pans",
+      "shape": "named_product",
+      "query": "Scanpan Fusion 5 stegepande",
+      "goal": "Find Scanpan Fusion 5 stegepanden",
+      "anchor_ids": [
+        "100414744"
+      ],
+      "required_brand": "Scanpan",
+      "required_family": "Fusion 5"
+    },
+    {
+      "id": "cups_category",
+      "category": "cups",
+      "shape": "category",
+      "query": "krus",
+      "goal": "Find et krus til varm drik",
+      "anchor_ids": [
+        "100081624",
+        "100081719",
+        "100422284",
+        "100353910",
+        "100470572"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "cups_synonym",
+      "category": "cups",
+      "shape": "synonym",
+      "query": "kaffekop",
+      "goal": "Find en kop eller et krus egnet til kaffe",
+      "anchor_ids": [
+        "100081624",
+        "100081719",
+        "100461453",
+        "100353731",
+        "100422904"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "cups_subtype",
+      "category": "cups",
+      "shape": "subtype",
+      "query": "termokrus",
+      "goal": "Find et krus med termofunktion der holder drikken varm",
+      "anchor_ids": [
+        "100422904",
+        "100449899"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "cups_brand",
+      "category": "cups",
+      "shape": "brand",
+      "query": "Kähler krus",
+      "goal": "Find et krus fra Kähler",
+      "anchor_ids": [
+        "100470237",
+        "100470232",
+        "100422284"
+      ],
+      "required_brand": "Kähler",
+      "required_family": ""
+    },
+    {
+      "id": "cups_family",
+      "category": "cups",
+      "shape": "family",
+      "query": "Kähler Hammershøi krus",
+      "goal": "Find et krus fra Kählers Hammershøi serie",
+      "anchor_ids": [
+        "100470237",
+        "100470232",
+        "100422284"
+      ],
+      "required_brand": "Kähler",
+      "required_family": "Hammershøi"
+    },
+    {
+      "id": "cups_named_product",
+      "category": "cups",
+      "shape": "named_product",
+      "query": "Royal Copenhagen Blå Mega Riflet Krus",
+      "goal": "Find Royal Copenhagens Blå Mega Riflet Krus",
+      "anchor_ids": [
+        "100081624"
+      ],
+      "required_brand": "Royal Copenhagen",
+      "required_family": "Blå Mega Riflet"
+    },
+    {
+      "id": "glasses_category",
+      "category": "glasses",
+      "shape": "category",
+      "query": "vandglas",
+      "goal": "Find drikkeglas til vand",
+      "anchor_ids": [
+        "100353708",
+        "100353706",
+        "100431241",
+        "100409458",
+        "100109876"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "glasses_synonym",
+      "category": "glasses",
+      "shape": "synonym",
+      "query": "drikkeglas",
+      "goal": "Find almindelige glas til servering af drikkevarer",
+      "anchor_ids": [
+        "100353708",
+        "100156985",
+        "100425564",
+        "100416214",
+        "100430598"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "glasses_subtype",
+      "category": "glasses",
+      "shape": "subtype",
+      "query": "krystalglas vandglas",
+      "goal": "Find vandglas fremstillet af krystalglas",
+      "anchor_ids": [
+        "100409458",
+        "100430598"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "glasses_brand",
+      "category": "glasses",
+      "shape": "brand",
+      "query": "Holmegaard vandglas",
+      "goal": "Find vandglas fra Holmegaard",
+      "anchor_ids": [
+        "100109876",
+        "100109877"
+      ],
+      "required_brand": "Holmegaard",
+      "required_family": ""
+    },
+    {
+      "id": "glasses_family",
+      "category": "glasses",
+      "shape": "family",
+      "query": "Rosendahl Grand Cru glas",
+      "goal": "Find glas fra Rosendahls Grand Cru serie",
+      "anchor_ids": [
+        "100156984",
+        "100156985"
+      ],
+      "required_brand": "Rosendahl",
+      "required_family": "Grand Cru"
+    },
+    {
+      "id": "glasses_named_product",
+      "category": "glasses",
+      "shape": "named_product",
+      "query": "Eva Trio Legio Nova vandglas",
+      "goal": "Find Eva Trios Legio Nova vandglas",
+      "anchor_ids": [
+        "100430598"
+      ],
+      "required_brand": "Eva Trio",
+      "required_family": "Legio Nova"
+    },
+    {
+      "id": "jugs_category",
+      "category": "jugs",
+      "shape": "category",
+      "query": "kande",
+      "goal": "Find en serveringskande til bordet",
+      "anchor_ids": [
+        "100408286",
+        "100449039",
+        "100390465",
+        "100448547",
+        "100463435"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "jugs_synonym",
+      "category": "jugs",
+      "shape": "synonym",
+      "query": "karaffel",
+      "goal": "Find en kande eller karaffel til servering af vand eller saft",
+      "anchor_ids": [
+        "100420992",
+        "100463435",
+        "100408584",
+        "100408286",
+        "100449039"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "jugs_subtype",
+      "category": "jugs",
+      "shape": "subtype",
+      "query": "vandfilterkande",
+      "goal": "Find en kande med indbygget vandfilter",
+      "anchor_ids": [
+        "100470759",
+        "100474717"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "jugs_brand",
+      "category": "jugs",
+      "shape": "brand",
+      "query": "Royal Copenhagen kande",
+      "goal": "Find en kande fra Royal Copenhagen",
+      "anchor_ids": [
+        "100390465",
+        "100417744",
+        "100078141"
+      ],
+      "required_brand": "Royal Copenhagen",
+      "required_family": ""
+    },
+    {
+      "id": "jugs_family",
+      "category": "jugs",
+      "shape": "family",
+      "query": "Eva Trio Legio Nova kande",
+      "goal": "Find en kande fra Eva Trios Legio Nova serie",
+      "anchor_ids": [
+        "100408286",
+        "100449039"
+      ],
+      "required_brand": "Eva Trio",
+      "required_family": "Legio Nova"
+    },
+    {
+      "id": "jugs_named_product",
+      "category": "jugs",
+      "shape": "named_product",
+      "query": "Georg Jensen Bernadotte Kande",
+      "goal": "Find Georg Jensens Bernadotte Kande",
+      "anchor_ids": [
+        "100448547"
+      ],
+      "required_brand": "Georg Jensen",
+      "required_family": "Bernadotte"
+    },
+    {
+      "id": "vases_category",
+      "category": "vases",
+      "shape": "category",
+      "query": "vase",
+      "goal": "Find en vase til blomster eller dekoration",
+      "anchor_ids": [
+        "100346354",
+        "100386969",
+        "100465383",
+        "100465690",
+        "100470874"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "vases_synonym",
+      "category": "vases",
+      "shape": "synonym",
+      "query": "blomstervase",
+      "goal": "Find en vase beregnet til at stille blomster i",
+      "anchor_ids": [
+        "100346354",
+        "100445100",
+        "100403985",
+        "100452675",
+        "100397997"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "vases_subtype",
+      "category": "vases",
+      "shape": "subtype",
+      "query": "keramikvase",
+      "goal": "Find en vase fremstillet af keramik eller fajance",
+      "anchor_ids": [
+        "100386969",
+        "100470874",
+        "100405135",
+        "100467269"
+      ],
+      "required_brand": "",
+      "required_family": ""
+    },
+    {
+      "id": "vases_brand",
+      "category": "vases",
+      "shape": "brand",
+      "query": "Kähler vase",
+      "goal": "Find en vase fra Kähler",
+      "anchor_ids": [
+        "100346354",
+        "100445100",
+        "100403985",
+        "100452675",
+        "100405135"
+      ],
+      "required_brand": "Kähler",
+      "required_family": ""
+    },
+    {
+      "id": "vases_family",
+      "category": "vases",
+      "shape": "family",
+      "query": "Kähler Omaggio vase",
+      "goal": "Find en vase fra Kählers Omaggio serie",
+      "anchor_ids": [
+        "100405135"
+      ],
+      "required_brand": "Kähler",
+      "required_family": "Omaggio Nuovo"
+    },
+    {
+      "id": "vases_named_product",
+      "category": "vases",
+      "shape": "named_product",
+      "query": "Kähler Hammershøi Sommer Vase",
+      "goal": "Find Kählers Hammershøi Sommer Vase",
+      "anchor_ids": [
+        "100445100"
+      ],
+      "required_brand": "Kähler",
+      "required_family": "Hammershøi Sommer"
+    }
+  ],
+  "review": {
+    "decisions": [
+      {
+        "case_id": "pans_category",
+        "reason": "Query 'stegepande' is a direct category search. Anchor IDs include Eva Trio Stainless Steel Stegepande (100439699), Scanpan Impact (100414740), Jamie Oliver Cook Smart (100454201), Scanpan Fusion 5 (100414744), and Eva Trio Multi 5-ply (100468229), all of which are stegepander in inventory. Six shapes are represented across the pans category. All anchors are relevant, in stock, and grounded in catalog data. No invented products or requirements.",
+        "approved": true
+      },
+      {
+        "case_id": "pans_synonym",
+        "reason": "Query 'pande til stegning' is a natural Danish synonym for stegepande. Anchors 100439699, 100454201, 100414740, 100468229, 100452302 are all stegepander directly suited for stegning. The synonym mapping is straightforward and all products are confirmed in inventory. No hidden requirements or invented evidence.",
+        "approved": true
+      },
+      {
+        "case_id": "pans_subtype",
+        "reason": "Query 'rustfri stegepande' targets stainless steel frying pans. Anchors 100439699 (Stainless Steel, genanvendt rustfrit stål), 100468230 (Stainless Steel Honeycomb, genanvendt rustfrit stål), 100453812 (Multi Mosaic, genanvendt aluminium/rustfrit stål), 100468229 (Multi 5-ply, genanvendt rustfrit stål), 100466778 (Multi Mosaic, genanvendt rustfrit stål/aluminium) all explicitly list rustfrit stål as material in catalog text. Subtype is well-grounded.",
+        "approved": true
+      },
+      {
+        "case_id": "pans_brand",
+        "reason": "Query 'Scanpan stegepande' requires brand Scanpan. Anchors 100455457 (CS+ Rec.), 100414744 (Fusion 5), 100414740 (Impact) are all Scanpan stegepander confirmed in inventory. Three products is appropriate for a brand search where only three Scanpan pans appear in the catalog. No invented products.",
+        "approved": true
+      },
+      {
+        "case_id": "pans_family",
+        "reason": "Query 'Eva Trio Multi Mosaic stegepande' requires brand Eva Trio and family Multi Mosaic. Anchors 100466778 (Multi Mosaic Stegepande) and 100453812 (Multi Mosaic Stegepandesæt) are both explicitly named Multi Mosaic in catalog. Both are in stock. Two results is correct given only two Multi Mosaic pans appear in inventory.",
+        "approved": true
+      },
+      {
+        "case_id": "pans_named_product",
+        "reason": "Query 'Scanpan Fusion 5 stegepande' is a named product search. Anchor 100414744 (Scanpan Fusion 5 Stegepande) is exactly matched by brand Scanpan and family Fusion 5 in catalog. Single result is appropriate for a named product. In stock online and in store.",
+        "approved": true
+      },
+      {
+        "case_id": "cups_category",
+        "reason": "Query 'krus' is a broad category search. Anchors include Royal Copenhagen Blå Mega Riflet Krus (100081624), Hvid Riflet Krus (100081719), Kähler Hammershøi Sommer Krus (100422284), Bjørn Wiinblad Guirlande Krus (100353910), and Moomin Arabia Vinternats Glød Krus (100470572), all explicitly named krus in catalog. Seasonal mugs are valid mugs per instructions. All grounded in inventory.",
+        "approved": true
+      },
+      {
+        "case_id": "cups_synonym",
+        "reason": "Query 'kaffekop' maps to cups/mugs suitable for coffee. Anchors include Royal Copenhagen Blå Mega Riflet Krus (100081624), Hvid Riflet Krus (100081719), Alfabet Kollektion Højhankskop/Mor (100461453), Eva Trio Legio Nova Kop (100353731), and Sort Riflet Blonde Termokop (100422904). Per instructions, generic kopper can include ambiguous cup uses and the query does not explicitly restrict to a single drink type. Højhankskop and kop are natural synonyms for kaffekop. All products are in catalog.",
+        "approved": true
+      },
+      {
+        "case_id": "cups_subtype",
+        "reason": "Query 'termokrus' targets cups with thermal/insulating function. Anchor 100422904 (Royal Copenhagen Sort Riflet Blonde Termokop) is explicitly named Termokop in catalog. Anchor 100449899 (Stanley The Quencher H2.0 Flowstate Tumbler) is a double-wall insulated tumbler in rustfrit stål, a recognized thermal drinkware product. Both are grounded in inventory. Two results is appropriate given only these two thermal-function items appear in the cups catalog.",
+        "approved": true
+      },
+      {
+        "case_id": "cups_brand",
+        "reason": "Query 'Kähler krus' requires brand Kähler. Anchors 100470237 (Hammershøi Jul Krus 2026), 100470232 (Hammershøi Jul Krus 2018 & 2025), and 100422284 (Hammershøi Sommer Krus) are all Kähler krus in catalog. Seasonal mugs are valid. Three results matches the Kähler krus inventory available.",
+        "approved": true
+      },
+      {
+        "case_id": "cups_family",
+        "reason": "Query 'Kähler Hammershøi krus' requires brand Kähler and family Hammershøi. Anchors 100470237, 100470232, and 100422284 are all explicitly Kähler Hammershøi krus in catalog. All in stock. Family match is exact.",
+        "approved": true
+      },
+      {
+        "case_id": "cups_named_product",
+        "reason": "Query 'Royal Copenhagen Blå Mega Riflet Krus' is a named product search. Anchor 100081624 is exactly 'Royal Copenhagen Blå Mega Riflet Krus / 2 stk.' in catalog, matching brand Royal Copenhagen and family Blå Mega Riflet. In stock online and in store. Named product search accepts unspecified variants (2 stk. pack is a variant).",
+        "approved": true
+      },
+      {
+        "case_id": "glasses_category",
+        "reason": "Query 'vandglas' is a direct category search. Anchors 100353708 (Eva Solo Facet Vandglas 4 stk.), 100353706 (Eva Solo Facet Vandglas 6 stk.), 100431241 (Lyngby Glas Melodia Vandglas), 100409458 (Lyngby Glas Zero Vandglas), 100109876 (Holmegaard Future Vandglas) are all explicitly named vandglas in catalog. All grounded in inventory.",
+        "approved": true
+      },
+      {
+        "case_id": "glasses_synonym",
+        "reason": "Query 'drikkeglas' is a natural synonym for general drinking glasses. Anchors 100353708 (Eva Solo Facet Vandglas), 100156985 (Rosendahl Grand Cru Caféglas), 100425564 (CASA Living Daisy Vandglas), 100416214 (Kähler Hammershøi Vandglas), 100430598 (Eva Trio Legio Nova Vandglas) are all drinking glasses in catalog. Caféglas is a natural drikkeglas variant. All grounded.",
+        "approved": true
+      },
+      {
+        "case_id": "glasses_subtype",
+        "reason": "Query 'krystalglas vandglas' targets water glasses made of crystal glass. Anchor 100409458 (Lyngby Glas Zero Vandglas, 42 cl, Krystalglas) and 100430598 (Eva Trio Legio Nova Vandglas, 40 cl, Krystalglas) both explicitly list Krystalglas as material in catalog. Two results matches the available krystalglas vandglas in inventory.",
+        "approved": true
+      },
+      {
+        "case_id": "glasses_brand",
+        "reason": "Query 'Holmegaard vandglas' requires brand Holmegaard. Anchors 100109876 (Future Vandglas 6 stk.) and 100109877 (Future Vandglas 4 stk.) are both Holmegaard vandglas in catalog. Two results matches available Holmegaard vandglas inventory.",
+        "approved": true
+      },
+      {
+        "case_id": "glasses_family",
+        "reason": "Query 'Rosendahl Grand Cru glas' requires brand Rosendahl and family Grand Cru. Anchors 100156984 (Grand Cru Vandglas 6 stk.) and 100156985 (Grand Cru Caféglas 4 stk.) are both Rosendahl Grand Cru glas in catalog. Caféglas is a glass product within the Grand Cru family. Both in stock.",
+        "approved": true
+      },
+      {
+        "case_id": "glasses_named_product",
+        "reason": "Query 'Eva Trio Legio Nova vandglas' is a named product search. Anchor 100430598 (Eva Trio Legio Nova Vandglas / 6 stk.) exactly matches brand Eva Trio and family Legio Nova in catalog. In stock online and in store. Named product search accepts unspecified variants.",
+        "approved": true
+      },
+      {
+        "case_id": "jugs_category",
+        "reason": "Query 'kande' is a broad category search. Anchors 100408286 (Eva Trio Legio Nova Kande), 100449039 (Eva Trio Legio Nova Kande m. hank), 100390465 (Royal Copenhagen Hvid Riflet Kande), 100448547 (Georg Jensen Bernadotte Kande), 100463435 (CASA Living Kande) are all kander in catalog. All in stock. Grounded in inventory.",
+        "approved": true
+      },
+      {
+        "case_id": "jugs_synonym",
+        "reason": "Query 'karaffel' maps to carafes and pitchers for serving water or juice. Anchors 100420992 (Lyngby Glas Zero Kandesæt, krystalglas), 100463435 (CASA Living Kande, borosilikatglas), 100408584 (Sistema Klip It Plus Kande, plastik), 100408286 (Eva Trio Legio Nova Kande, porcelæn), 100449039 (Eva Trio Legio Nova Kande m. hank) are all serving jugs/carafes. Glass and clear plastic kander are natural karaffel synonyms in Danish retail. All grounded in catalog.",
+        "approved": true
+      },
+      {
+        "case_id": "jugs_subtype",
+        "reason": "Query 'vandfilterkande' targets jugs with built-in water filters. Anchors 100470759 (Brita Essential Vandfilterkande) and 100474717 (BWT Vida Vandfilterkande) are both explicitly named vandfilterkande in catalog with filter functionality described. Two results matches available inventory for this subtype.",
+        "approved": true
+      },
+      {
+        "case_id": "jugs_brand",
+        "reason": "Query 'Royal Copenhagen kande' requires brand Royal Copenhagen. Anchors 100390465 (Hvid Riflet Kande), 100417744 (Sort Mega Riflet Kande), 100078141 (Blå Mega Riflet Kande) are all Royal Copenhagen kander in catalog. All in stock or available. Three results matches Royal Copenhagen kande inventory.",
+        "approved": true
+      },
+      {
+        "case_id": "jugs_family",
+        "reason": "Query 'Eva Trio Legio Nova kande' requires brand Eva Trio and family Legio Nova. Anchors 100408286 (Legio Nova Kande 70 cl) and 100449039 (Legio Nova Kande m. hank 1 liter) are both explicitly Eva Trio Legio Nova kander in catalog. Two results matches available inventory for this family.",
+        "approved": true
+      },
+      {
+        "case_id": "jugs_named_product",
+        "reason": "Query 'Georg Jensen Bernadotte Kande' is a named product search. Anchor 100448547 (Georg Jensen Bernadotte Kande, 1,2 liter, Porcelæn, Hvid) exactly matches brand Georg Jensen and family Bernadotte in catalog. In stock online and in store. Single result is appropriate for a named product.",
+        "approved": true
+      },
+      {
+        "case_id": "vases_category",
+        "reason": "Query 'vase' is a broad category search. Anchors 100346354 (Kähler Hammershøi Vase), 100386969 (Knabstrup Keramik Vase), 100465383 (CASA Living Vase), 100465690 (Casa Christmas Vase), 100470874 (Knabstrup Keramik Solum Vase) are all vaser in catalog. Seasonal and Christmas vases are valid vases. All grounded in inventory.",
+        "approved": true
+      },
+      {
+        "case_id": "vases_synonym",
+        "reason": "Query 'blomstervase' maps to vases intended for flowers. Anchors 100346354 (Kähler Hammershøi Vase), 100445100 (Kähler Hammershøi Sommer Vase), 100403985 (Kähler Hammershøi Poppy Vase), 100452675 (Kähler Hammershøi Jul Vase), 100397997 (Georg Jensen Bloom Botanica Vase) are all flower vases in catalog. Bloom Botanica and Poppy names reinforce floral use. All grounded.",
+        "approved": true
+      },
+      {
+        "case_id": "vases_subtype",
+        "reason": "Query 'keramikvase' targets vases made of keramik or fajance. Anchors 100386969 (Knabstrup Keramik Vase, Keramik), 100470874 (Knabstrup Keramik Solum Vase, Stentøj), 100405135 (Kähler Omaggio Nuovo Vase, Fajance), 100467269 (erik bagger a/s Eslau Lilje Vase, Fajance) all explicitly list keramik, stentøj, or fajance as material in catalog. Fajance and stentøj are ceramic-family materials, a natural subtype of keramikvase in Danish retail context. All grounded.",
+        "approved": true
+      },
+      {
+        "case_id": "vases_brand",
+        "reason": "Query 'Kähler vase' requires brand Kähler. Anchors 100346354 (Hammershøi Vase), 100445100 (Hammershøi Sommer Vase), 100403985 (Hammershøi Poppy Vase), 100452675 (Hammershøi Jul Vase), 100405135 (Omaggio Nuovo Vase) are all Kähler vaser in catalog. Five results matches available Kähler vase inventory. All in stock.",
+        "approved": true
+      },
+      {
+        "case_id": "vases_family",
+        "reason": "Query 'Kähler Omaggio vase' requires brand Kähler and family Omaggio Nuovo. Anchor 100405135 (Kähler Omaggio Nuovo Vase, H 30 cm, Fajance, Blå) is the only Omaggio-family vase in catalog. The query uses 'Omaggio' which matches 'Omaggio Nuovo' as the family name — named product searches accept unspecified variants per instructions. Single result is appropriate given inventory.",
+        "approved": true
+      },
+      {
+        "case_id": "vases_named_product",
+        "reason": "Query 'Kähler Hammershøi Sommer Vase' is a named product search. Anchor 100445100 (Kähler Hammershøi Sommer Vase, Ø 17 x H 21 cm, Porcelæn, Wild Flowers) exactly matches brand Kähler and family Hammershøi Sommer in catalog. In stock online and in store. Named product search accepts unspecified variants.",
+        "approved": true
+      }
+    ]
+  },
+  "inventory_hash": "bdbe3c805a4c0126a585925db05352317d4d58c25f8d3025ce55ccb77be0b4aa",
+  "note": "Frozen before running searches. Plausible ordinary intent, not frequency estimates."
+}

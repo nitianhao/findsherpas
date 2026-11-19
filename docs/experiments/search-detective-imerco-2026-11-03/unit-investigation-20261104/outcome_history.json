@@ -1,0 +1,1583 @@
+{
+  "kande 1,6 L": [
+    {
+      "observed_at": "2026-11-04T19:25:33.280831+00:00",
+      "outcome": {
+        "query": "kande 1,6 L",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "302,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Georg Jensen Bernadotte Serveringskande",
+            "price": "999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-bernadotte-serveringskande-1-6-liter-krombelagt-staal?id=100401235",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Georg Jensen Sky Kande",
+            "price": "669,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-sky-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100423451",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas?id=100030058",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Royal Copenhagen Blå Mega Riflet Kande",
+            "price": "974,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-blaa-mega-riflet-kande-1-6-liter-porcelaen-koboltblaa-hvid?id=100357957",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Royal Copenhagen Hvid Riflet Kande",
+            "price": "539,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-hvid-riflet-kande-1-6-liter-porcelaen-hvid?id=100349959",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Georg Jensen Koppel Kande",
+            "price": "1999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-koppel-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100455248",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas-sort?id=100030047",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "319,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-pink?id=100441781",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "329,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-yellow?id=100441783",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1%2C6+L",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 28,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1-6-l-479e0c46_a1.html.gz]"
+      }
+    },
+    {
+      "observed_at": "2026-11-04T19:26:40.914249+00:00",
+      "outcome": {
+        "query": "kande 1,6 L",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "302,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Georg Jensen Bernadotte Serveringskande",
+            "price": "999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-bernadotte-serveringskande-1-6-liter-krombelagt-staal?id=100401235",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Georg Jensen Sky Kande",
+            "price": "669,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-sky-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100423451",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas?id=100030058",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Royal Copenhagen Blå Mega Riflet Kande",
+            "price": "974,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-blaa-mega-riflet-kande-1-6-liter-porcelaen-koboltblaa-hvid?id=100357957",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Royal Copenhagen Hvid Riflet Kande",
+            "price": "539,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-hvid-riflet-kande-1-6-liter-porcelaen-hvid?id=100349959",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Georg Jensen Koppel Kande",
+            "price": "1999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-koppel-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100455248",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas-sort?id=100030047",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "319,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-pink?id=100441781",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "329,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-yellow?id=100441783",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1%2C6+L",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 28,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/recheck/kande-1-6-l-479e0c46_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 1.6 L": [
+    {
+      "observed_at": "2026-11-04T19:25:37.877768+00:00",
+      "outcome": {
+        "query": "kande 1.6 L",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "302,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Georg Jensen Bernadotte Serveringskande",
+            "price": "999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-bernadotte-serveringskande-1-6-liter-krombelagt-staal?id=100401235",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Georg Jensen Sky Kande",
+            "price": "669,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-sky-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100423451",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas?id=100030058",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Royal Copenhagen Blå Mega Riflet Kande",
+            "price": "974,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-blaa-mega-riflet-kande-1-6-liter-porcelaen-koboltblaa-hvid?id=100357957",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Royal Copenhagen Hvid Riflet Kande",
+            "price": "539,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-hvid-riflet-kande-1-6-liter-porcelaen-hvid?id=100349959",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Georg Jensen Koppel Kande",
+            "price": "1999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-koppel-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100455248",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas-sort?id=100030047",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "319,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-pink?id=100441781",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "329,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-yellow?id=100441783",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1.6+L",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 28,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1-6-l-b47ebb64_a1.html.gz]"
+      }
+    },
+    {
+      "observed_at": "2026-11-04T19:27:03.626063+00:00",
+      "outcome": {
+        "query": "kande 1.6 L",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "302,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Georg Jensen Bernadotte Serveringskande",
+            "price": "999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-bernadotte-serveringskande-1-6-liter-krombelagt-staal?id=100401235",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Georg Jensen Sky Kande",
+            "price": "669,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-sky-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100423451",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas?id=100030058",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Royal Copenhagen Blå Mega Riflet Kande",
+            "price": "974,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-blaa-mega-riflet-kande-1-6-liter-porcelaen-koboltblaa-hvid?id=100357957",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Royal Copenhagen Hvid Riflet Kande",
+            "price": "539,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-hvid-riflet-kande-1-6-liter-porcelaen-hvid?id=100349959",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Georg Jensen Koppel Kande",
+            "price": "1999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-koppel-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100455248",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas-sort?id=100030047",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "319,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-pink?id=100441781",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "329,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-yellow?id=100441783",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1.6+L",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 28,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/recheck/kande-1-6-l-b47ebb64_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 1,6 liter": [
+    {
+      "observed_at": "2026-11-04T19:25:42.612704+00:00",
+      "outcome": {
+        "query": "kande 1,6 liter",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "302,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Georg Jensen Bernadotte Serveringskande",
+            "price": "999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-bernadotte-serveringskande-1-6-liter-krombelagt-staal?id=100401235",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Georg Jensen Sky Kande",
+            "price": "669,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-sky-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100423451",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas?id=100030058",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Royal Copenhagen Blå Mega Riflet Kande",
+            "price": "974,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-blaa-mega-riflet-kande-1-6-liter-porcelaen-koboltblaa-hvid?id=100357957",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Royal Copenhagen Hvid Riflet Kande",
+            "price": "539,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-hvid-riflet-kande-1-6-liter-porcelaen-hvid?id=100349959",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Georg Jensen Koppel Kande",
+            "price": "1999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-koppel-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100455248",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas-sort?id=100030047",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "319,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-pink?id=100441781",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "329,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-yellow?id=100441783",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1%2C6+liter",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 27,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1-6-liter-a4262b8e_a1.html.gz]"
+      }
+    },
+    {
+      "observed_at": "2026-11-04T19:26:59.079361+00:00",
+      "outcome": {
+        "query": "kande 1,6 liter",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "302,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Georg Jensen Bernadotte Serveringskande",
+            "price": "999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-bernadotte-serveringskande-1-6-liter-krombelagt-staal?id=100401235",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Georg Jensen Sky Kande",
+            "price": "669,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-sky-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100423451",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas?id=100030058",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Royal Copenhagen Blå Mega Riflet Kande",
+            "price": "974,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-blaa-mega-riflet-kande-1-6-liter-porcelaen-koboltblaa-hvid?id=100357957",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Royal Copenhagen Hvid Riflet Kande",
+            "price": "539,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-hvid-riflet-kande-1-6-liter-porcelaen-hvid?id=100349959",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Georg Jensen Koppel Kande",
+            "price": "1999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-koppel-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100455248",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas-sort?id=100030047",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "319,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-pink?id=100441781",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "329,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-yellow?id=100441783",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1%2C6+liter",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 27,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/recheck/kande-1-6-liter-a4262b8e_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 1.6 liter": [
+    {
+      "observed_at": "2026-11-04T19:25:47.891832+00:00",
+      "outcome": {
+        "query": "kande 1.6 liter",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "302,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Georg Jensen Bernadotte Serveringskande",
+            "price": "999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-bernadotte-serveringskande-1-6-liter-krombelagt-staal?id=100401235",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Georg Jensen Sky Kande",
+            "price": "669,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-sky-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100423451",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas?id=100030058",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Royal Copenhagen Blå Mega Riflet Kande",
+            "price": "974,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-blaa-mega-riflet-kande-1-6-liter-porcelaen-koboltblaa-hvid?id=100357957",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Royal Copenhagen Hvid Riflet Kande",
+            "price": "539,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-hvid-riflet-kande-1-6-liter-porcelaen-hvid?id=100349959",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Georg Jensen Koppel Kande",
+            "price": "1999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-koppel-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100455248",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas-sort?id=100030047",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "319,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-pink?id=100441781",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "329,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-yellow?id=100441783",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1.6+liter",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 27,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1-6-liter-f6d31bf7_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 1,6L": [
+    {
+      "observed_at": "2026-11-04T19:25:50.769707+00:00",
+      "outcome": {
+        "query": "kande 1,6L",
+        "status": "zero_confirmed",
+        "results": [],
+        "final_url": "https://www.imerco.dk/search?query=kande+1%2C6L",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 0,
+        "strategy": "marker",
+        "attempts": 1,
+        "evidence": "page says: '0 resultater' [evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1-6l-64c4ad24_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 160 cl": [
+    {
+      "observed_at": "2026-11-04T19:25:53.691679+00:00",
+      "outcome": {
+        "query": "kande 160 cl",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Hübsch Orbit Kande",
+            "price": "309,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/hubsch-orbit-kande-160-cl-glas-klar-gul?id=100473538",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+160+cl",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 1,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-160-cl-b64a3523_a1.html.gz]"
+      }
+    },
+    {
+      "observed_at": "2026-11-04T19:26:55.255536+00:00",
+      "outcome": {
+        "query": "kande 160 cl",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Hübsch Orbit Kande",
+            "price": "309,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/hubsch-orbit-kande-160-cl-glas-klar-gul?id=100473538",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+160+cl",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 1,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/recheck/kande-160-cl-b64a3523_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 1600 ml": [
+    {
+      "observed_at": "2026-11-04T19:25:56.967353+00:00",
+      "outcome": {
+        "query": "kande 1600 ml",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Witt Classic Nutri Kande m. låg",
+            "price": "129,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/witt-classic-nutri-kande-m-laag-600-ml-plastik-sort-klar?id=100403125",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "CASA Living Toscana Karafel",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/casa-living-toscana-karafel-1800-ml-glas-klar?id=100463696",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "CASA Living Daisy Karafel",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/casa-living-daisy-karafel-1800-ml-glas-klar?id=100463695",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Gefu T-Prep Tekande",
+            "price": "849,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/gefu-t-prep-tekande-1500-ml-borosilikatglas-rustfrit-staal-plastik-soelvfarvet?id=100443865",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Gefu T-Prep Tekande",
+            "price": "1099,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/gefu-t-prep-tekande-1500-ml-borosilikatglas-rustfrit-staal-plastik-soelvfarvet?id=100443866",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1600+ml",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 5,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1600-ml-d20f5389_a1.html.gz]"
+      }
+    },
+    {
+      "observed_at": "2026-11-04T19:26:52.604894+00:00",
+      "outcome": {
+        "query": "kande 1600 ml",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Witt Classic Nutri Kande m. låg",
+            "price": "129,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/witt-classic-nutri-kande-m-laag-600-ml-plastik-sort-klar?id=100403125",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "CASA Living Toscana Karafel",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/casa-living-toscana-karafel-1800-ml-glas-klar?id=100463696",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "CASA Living Daisy Karafel",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/casa-living-daisy-karafel-1800-ml-glas-klar?id=100463695",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Gefu T-Prep Tekande",
+            "price": "849,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/gefu-t-prep-tekande-1500-ml-borosilikatglas-rustfrit-staal-plastik-soelvfarvet?id=100443865",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Gefu T-Prep Tekande",
+            "price": "1099,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/gefu-t-prep-tekande-1500-ml-borosilikatglas-rustfrit-staal-plastik-soelvfarvet?id=100443866",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1600+ml",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 5,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/recheck/kande-1600-ml-d20f5389_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 1600ml": [
+    {
+      "observed_at": "2026-11-04T19:25:59.458906+00:00",
+      "outcome": {
+        "query": "kande 1600ml",
+        "status": "zero_confirmed",
+        "results": [],
+        "final_url": "https://www.imerco.dk/search?query=kande+1600ml",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 0,
+        "strategy": "marker",
+        "attempts": 1,
+        "evidence": "page says: '0 resultater' [evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1600ml-dfb83fc6_a1.html.gz]"
+      }
+    },
+    {
+      "observed_at": "2026-11-04T19:26:49.423918+00:00",
+      "outcome": {
+        "query": "kande 1600ml",
+        "status": "zero_confirmed",
+        "results": [],
+        "final_url": "https://www.imerco.dk/search?query=kande+1600ml",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 0,
+        "strategy": "marker",
+        "attempts": 1,
+        "evidence": "page says: '0 resultater' [evidence: reports/imerco_dk/unit_investigation_20261104/evidence/recheck/kande-1600ml-dfb83fc6_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 1600 milliliter": [
+    {
+      "observed_at": "2026-11-04T19:26:01.903724+00:00",
+      "outcome": {
+        "query": "kande 1600 milliliter",
+        "status": "zero_confirmed",
+        "results": [],
+        "final_url": "https://www.imerco.dk/search?query=kande+1600+milliliter",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 0,
+        "strategy": "marker",
+        "attempts": 1,
+        "evidence": "page says: '0 resultater' [evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1600-milliliter-80135b9d_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 16 dl": [
+    {
+      "observed_at": "2026-11-04T19:26:04.517702+00:00",
+      "outcome": {
+        "query": "kande 16 dl",
+        "status": "zero_confirmed",
+        "results": [],
+        "final_url": "https://www.imerco.dk/search?query=kande+16+dl",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 0,
+        "strategy": "marker",
+        "attempts": 1,
+        "evidence": "page says: '0 resultater' [evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-16-dl-f7752b29_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 1600": [
+    {
+      "observed_at": "2026-11-04T19:26:08.007610+00:00",
+      "outcome": {
+        "query": "kande 1600",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Georg Jensen Koppel Kande",
+            "price": "1799,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-koppel-kande-75-cl-blankpoleret-rustfrit-staal?id=100308052",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Nachtmann Noblesse kande og glas sæt",
+            "price": "499,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/nachtmann-noblesse-kande-og-glas-saet-100-35-cl-krystalglas-klar?id=100461143",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Hübsch Orbit Kande",
+            "price": "309,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/hubsch-orbit-kande-160-cl-glas-klar-gul?id=100473538",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Bloomingville Shellie Kande",
+            "price": "419,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/bloomingville-shellie-kande-100-cl-stentoej-hvid?id=100464350",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Poster&Frame Vilhelm Lundstrøm Plakat  /  Opstilling med hvid kande",
+            "price": "699,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/poster-frame-vilhelm-lundstroem-plakat-opstilling-med-hvid-kande-b-70-x-l-100-cm-papir-multifarvet?id=100410203",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Witt Classic Nutri Kande m. låg",
+            "price": "129,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/witt-classic-nutri-kande-m-laag-600-ml-plastik-sort-klar?id=100403125",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Poster&Frame Vilhelm Lundstrøm Plakat  /  Opstilling med kander",
+            "price": "699,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/poster-frame-vilhelm-lundstroem-plakat-opstilling-med-kander-b-70-x-l-100-cm-papir-multifarvet?id=100410205",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "CASA Living Toscana Karafel",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/casa-living-toscana-karafel-1800-ml-glas-klar?id=100463696",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "CASA Living Daisy Karafel",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/casa-living-daisy-karafel-1800-ml-glas-klar?id=100463695",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "La Rochère Abeille Karaffel",
+            "price": "749,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/la-rochere-abeille-karaffel-100-cl-glas-klar?id=100452278",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1600",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 14,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1600-661c33f7_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 1,6": [
+    {
+      "observed_at": "2026-11-04T19:26:12.653825+00:00",
+      "outcome": {
+        "query": "kande 1,6",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "302,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Georg Jensen Bernadotte Serveringskande",
+            "price": "999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-bernadotte-serveringskande-1-6-liter-krombelagt-staal?id=100401235",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Georg Jensen Sky Kande",
+            "price": "669,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-sky-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100423451",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas?id=100030058",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Royal Copenhagen Blå Mega Riflet Kande",
+            "price": "974,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-blaa-mega-riflet-kande-1-6-liter-porcelaen-koboltblaa-hvid?id=100357957",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Royal Copenhagen Hvid Riflet Kande",
+            "price": "539,96 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/royal-copenhagen-hvid-riflet-kande-1-6-liter-porcelaen-hvid?id=100349959",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Georg Jensen Koppel Kande",
+            "price": "1999,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-koppel-kande-1-6-liter-blankpoleret-rustfrit-staal?id=100455248",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "Melitta Glaskande",
+            "price": "184,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/melitta-glaskande-1-6-liter-glas-sort?id=100030047",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "319,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-pink?id=100441781",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "PIP Studio Pip Chique Kande",
+            "price": "329,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-pip-chique-kande-1-6-liter-glas-yellow?id=100441783",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1%2C6",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 39,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1-6-7c425ac8_a1.html.gz]"
+      }
+    }
+  ],
+  "kande ml": [
+    {
+      "observed_at": "2026-11-04T19:26:18.323424+00:00",
+      "outcome": {
+        "query": "kande ml",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Georg Jensen Bernadotte Saucekande",
+            "price": "699,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-bernadotte-saucekande-330-ml-spejlpoleret-rustfrit-staal?id=100469257",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Witt Classic Nutri Kande m. låg",
+            "price": "129,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/witt-classic-nutri-kande-m-laag-600-ml-plastik-sort-klar?id=100403125",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Georg Jensen Bernadotte Saucekande",
+            "price": "599,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-bernadotte-saucekande-140-ml-spejlpoleret-rustfrit-staal?id=100469258",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "PIP Studio Blooming Tales Kande",
+            "price": "169,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-blooming-tales-kande-250-ml-porcelaen-blaa?id=100466233",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "KitchenCraft Oliekande",
+            "price": "189,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/kitchencraft-oliekande-500-ml-rustfrit-staal-soelvfarvet?id=100473792",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Cilio Olio Olivenolie Kande",
+            "price": "269,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/cilio-olio-olivenolie-kande-h-21-5-cm-500-ml-soelvfarvet?id=100439567",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Urban Nature Culture Serveringskande",
+            "price": "699,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/urban-nature-culture-serveringskande-742-ml-kobber-mangotrae-natur?id=100469981",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "PIP Studio La Majorelle Kande",
+            "price": "109,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/pip-studio-la-majorelle-kande-250-ml-porcelaen-pink?id=100447059",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "Robert Welch Drift Kande",
+            "price": "649,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/robert-welch-drift-kande-150-ml-rustfrit-staal-blank?id=100468570",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "Robert Welch Drift Kande",
+            "price": "799,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/robert-welch-drift-kande-300-ml-rustfrit-staal-blank?id=100468571",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+ml",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 59,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-ml-e2666651_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 1500 ml": [
+    {
+      "observed_at": "2026-11-04T19:26:21.512344+00:00",
+      "outcome": {
+        "query": "kande 1500 ml",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Robert Welch Drift Kande",
+            "price": "649,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/robert-welch-drift-kande-150-ml-rustfrit-staal-blank?id=100468570",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Gefu T-Prep Tekande",
+            "price": "849,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/gefu-t-prep-tekande-1500-ml-borosilikatglas-rustfrit-staal-plastik-soelvfarvet?id=100443865",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Gefu T-Prep Tekande",
+            "price": "1099,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/gefu-t-prep-tekande-1500-ml-borosilikatglas-rustfrit-staal-plastik-soelvfarvet?id=100443866",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "KitchenCraft Oliekande",
+            "price": "189,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/kitchencraft-oliekande-500-ml-rustfrit-staal-soelvfarvet?id=100473792",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Cilio Olio Olivenolie Kande",
+            "price": "269,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/cilio-olio-olivenolie-kande-h-21-5-cm-500-ml-soelvfarvet?id=100439567",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Cilio Tavola Mælkedispenser",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/cilio-tavola-maelkedispenser-150-ml-rustfrit-staal-glas-soelvfarvet?id=100439602",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "CASA Living Toscana Karafel",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/casa-living-toscana-karafel-1800-ml-glas-klar?id=100463696",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "CASA Living Daisy Karafel",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/casa-living-daisy-karafel-1800-ml-glas-klar?id=100463695",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "Küchenprofi Sovsekande",
+            "price": "399,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/kuchenprofi-sovsekande-500-ml-rustfrit-staal-soelvfarvet?id=100454103",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "Aida Passion Sauceskål",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/aida-passion-sauceskaal-500-ml-porcelaen-creme-hvid?id=100363418",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1500+ml",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 14,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1500-ml-2c97383d_a1.html.gz]"
+      }
+    }
+  ],
+  "kande 1,5 L": [
+    {
+      "observed_at": "2026-11-04T19:26:25.734748+00:00",
+      "outcome": {
+        "query": "kande 1,5 L",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Stelton EM77 Kande m. låg",
+            "price": "207,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/stelton-em77-kande-m-laag-1-5-liter-abs-plastik-smoke?id=100437750",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Stelton EM Juicekande m. låg",
+            "price": "207,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/stelton-em-juicekande-m-laag-1-5-liter-plastik-blaa?id=100161059",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Georg Jensen Sky Kande",
+            "price": "649,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-sky-kande-1-5-liter-glas-rustfrit-staal-klar?id=100385194",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Georg Jensen Koppel Kande",
+            "price": "1199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/georg-jensen-koppel-kande-1-5-liter-rustfrit-staal-soelvfarvet?id=100436070",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Stelton EM77 Kande m. låg",
+            "price": "207,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/stelton-em77-kande-m-laag-1-5-liter-abs-plastik-dusty-green?id=100437723",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Alfi Hotello Kande",
+            "price": "1099,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/alfi-hotello-kande-1-5-liter-rustfrit-staal?id=100311759",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Ankarsrum Assistent Original Blenderkande m. tamper",
+            "price": "749,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/ankarsrum-assistent-original-blenderkande-m-tamper-1-5-liter-bpa-fri-plastik-passer-til-alle-n24-n30-assistenter?id=100412625",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "Jamie Oliver Big Love Serveringskande",
+            "price": "339,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/jamie-oliver-big-love-serveringskande-1-5-liter-stentoej-gul?id=100456669",
+            "sponsored": false
+          },
+          {
+            "rank": 9,
+            "title": "Stelton EM77 Kande m. låg",
+            "price": "349,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/stelton-em77-kande-m-laag-1-5-liter-abs-plastik-saffron?id=100437724",
+            "sponsored": false
+          },
+          {
+            "rank": 10,
+            "title": "Creative Collection Florist Kande",
+            "price": "399,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/creative-collection-florist-kande-1-5-liter-stentoej-multifarvet?id=100444271",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=kande+1%2C5+L",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 30,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/kande-1-5-l-59adb446_a1.html.gz]"
+      }
+    }
+  ],
+  "Eva Trio Legio Nova Kande": [
+    {
+      "observed_at": "2026-11-04T19:26:28.756641+00:00",
+      "outcome": {
+        "query": "Eva Trio Legio Nova Kande",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "229,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-70-cl-porcelaen-hvid?id=100408286",
+            "sponsored": false
+          },
+          {
+            "rank": 2,
+            "title": "Eva Trio Legio Nova Kande m. hank",
+            "price": "230,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-m-hank-1-liter-porcelaen-hvid?id=100449039",
+            "sponsored": false
+          },
+          {
+            "rank": 3,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "302,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+            "sponsored": false
+          },
+          {
+            "rank": 4,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "159,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-15-cl-porcelaen-hvid?id=100358209",
+            "sponsored": false
+          },
+          {
+            "rank": 5,
+            "title": "Eva Trio Legio Nova Kande m. hank",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-m-hank-33-cl-porcelaen-hvid?id=100449038",
+            "sponsored": false
+          },
+          {
+            "rank": 6,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "188,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-liter-porcelaen-hvid?id=100347062",
+            "sponsored": false
+          },
+          {
+            "rank": 7,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "199,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-50-cl-porcelaen-hvid?id=100347061",
+            "sponsored": false
+          },
+          {
+            "rank": 8,
+            "title": "Eva Trio Legio Nova Sovsekande",
+            "price": "249,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-sovsekande-450-ml-porcelaen-hvid?id=100362413",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=Eva+Trio+Legio+Nova+Kande",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 8,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/eva-trio-legio-nova-kande-90b501a5_a1.html.gz]"
+      }
+    }
+  ],
+  "Eva Trio Legio Nova Kande 1,6 L": [
+    {
+      "observed_at": "2026-11-04T19:26:32.227323+00:00",
+      "outcome": {
+        "query": "Eva Trio Legio Nova Kande 1,6 L",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "302,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=Eva+Trio+Legio+Nova+Kande+1%2C6+L",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 1,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/eva-trio-legio-nova-kande-1-6-l-aa4357c2_a1.html.gz]"
+      }
+    },
+    {
+      "observed_at": "2026-11-04T19:26:46.470008+00:00",
+      "outcome": {
+        "query": "Eva Trio Legio Nova Kande 1,6 L",
+        "status": "ok",
+        "results": [
+          {
+            "rank": 1,
+            "title": "Eva Trio Legio Nova Kande",
+            "price": "302,95 kr",
+            "snippet": null,
+            "url": "https://www.imerco.dk/eva-trio-legio-nova-kande-1-6-liter-porcelaen-hvid?id=100396731",
+            "sponsored": false
+          }
+        ],
+        "final_url": "https://www.imerco.dk/search?query=Eva+Trio+Legio+Nova+Kande+1%2C6+L",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 1,
+        "strategy": "site-specific",
+        "attempts": 1,
+        "evidence": "[evidence: reports/imerco_dk/unit_investigation_20261104/evidence/recheck/eva-trio-legio-nova-kande-1-6-l-aa4357c2_a1.html.gz]"
+      }
+    }
+  ],
+  "Eva Trio Legio Nova Kande 1600 ml": [
+    {
+      "observed_at": "2026-11-04T19:26:37.380269+00:00",
+      "outcome": {
+        "query": "Eva Trio Legio Nova Kande 1600 ml",
+        "status": "zero_confirmed",
+        "results": [],
+        "final_url": "https://www.imerco.dk/search?query=Eva+Trio+Legio+Nova+Kande+1600+ml",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 0,
+        "strategy": "marker",
+        "attempts": 1,
+        "evidence": "page says: '0 resultater' [evidence: reports/imerco_dk/unit_investigation_20261104/evidence/first/eva-trio-legio-nova-kande-1600-ml-e659e0be_a1.html.gz]"
+      }
+    },
+    {
+      "observed_at": "2026-11-04T19:26:43.746727+00:00",
+      "outcome": {
+        "query": "Eva Trio Legio Nova Kande 1600 ml",
+        "status": "zero_confirmed",
+        "results": [],
+        "final_url": "https://www.imerco.dk/search?query=Eva+Trio+Legio+Nova+Kande+1600+ml",
+        "http_status": 200,
+        "page_title": "Search",
+        "total_hits": 0,
+        "strategy": "marker",
+        "attempts": 1,
+        "evidence": "page says: '0 resultater' [evidence: reports/imerco_dk/unit_investigation_20261104/evidence/recheck/eva-trio-legio-nova-kande-1600-ml-e659e0be_a1.html.gz]"
+      }
+    }
+  ]
+}

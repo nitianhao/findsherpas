@@ -1,0 +1,342 @@
+{
+  "plan": {
+    "cases": [
+      {
+        "id": "cups_category",
+        "category": "cups",
+        "shape": "category",
+        "query": "porcelæn krus",
+        "goal": "porcelæn krus",
+        "anchor_ids": [
+          "100081624",
+          "100081658",
+          "100081719",
+          "100470237",
+          "100422284"
+        ],
+        "required_brand": "",
+        "required_family": ""
+      },
+      {
+        "id": "cups_subtype",
+        "category": "cups",
+        "shape": "subtype",
+        "query": "termokop",
+        "goal": "termokop",
+        "anchor_ids": [
+          "100422904"
+        ],
+        "required_brand": "",
+        "required_family": ""
+      },
+      {
+        "id": "cups_brand",
+        "category": "cups",
+        "shape": "brand",
+        "query": "Kähler krus",
+        "goal": "Kähler krus",
+        "anchor_ids": [
+          "100470232",
+          "100470237",
+          "100422284"
+        ],
+        "required_brand": "Kähler",
+        "required_family": ""
+      },
+      {
+        "id": "cups_family",
+        "category": "cups",
+        "shape": "family",
+        "query": "Kähler Hammershøi jul krus",
+        "goal": "Kähler Hammershøi jul krus",
+        "anchor_ids": [
+          "100470232",
+          "100470237"
+        ],
+        "required_brand": "Kähler",
+        "required_family": "Hammershøi"
+      },
+      {
+        "id": "cups_named_product",
+        "category": "cups",
+        "shape": "named_product",
+        "query": "Royal Copenhagen Alfabet Kollektion Højhankskop",
+        "goal": "Royal Copenhagen Alfabet Kollektion Højhankskop",
+        "anchor_ids": [
+          "100461453",
+          "100400862"
+        ],
+        "required_brand": "Royal Copenhagen",
+        "required_family": "Alfabet Kollektion"
+      },
+      {
+        "id": "glasses_category",
+        "category": "glasses",
+        "shape": "category",
+        "query": "vandglas krystalglas",
+        "goal": "vandglas krystalglas",
+        "anchor_ids": [
+          "100409458",
+          "100430598",
+          "100420992"
+        ],
+        "required_brand": "",
+        "required_family": ""
+      },
+      {
+        "id": "glasses_subtype",
+        "category": "glasses",
+        "shape": "subtype",
+        "query": "caféglas",
+        "goal": "caféglas",
+        "anchor_ids": [
+          "100156985"
+        ],
+        "required_brand": "",
+        "required_family": ""
+      },
+      {
+        "id": "glasses_brand",
+        "category": "glasses",
+        "shape": "brand",
+        "query": "Lyngby Glas vandglas",
+        "goal": "Lyngby Glas vandglas",
+        "anchor_ids": [
+          "100431241",
+          "100409458"
+        ],
+        "required_brand": "Lyngby Glas",
+        "required_family": ""
+      },
+      {
+        "id": "glasses_family",
+        "category": "glasses",
+        "shape": "family",
+        "query": "Rosendahl Grand Cru glas",
+        "goal": "Rosendahl Grand Cru glas",
+        "anchor_ids": [
+          "100156984",
+          "100156985"
+        ],
+        "required_brand": "Rosendahl",
+        "required_family": "Grand Cru"
+      },
+      {
+        "id": "glasses_named_product",
+        "category": "glasses",
+        "shape": "named_product",
+        "query": "Georg Jensen Bernadotte Glas",
+        "goal": "Georg Jensen Bernadotte Glas",
+        "anchor_ids": [
+          "100404523"
+        ],
+        "required_brand": "Georg Jensen",
+        "required_family": "Bernadotte"
+      },
+      {
+        "id": "jugs_category",
+        "category": "jugs",
+        "shape": "category",
+        "query": "serveringskande porcelæn",
+        "goal": "serveringskande porcelæn",
+        "anchor_ids": [
+          "100408286",
+          "100390465",
+          "100448547",
+          "100075388"
+        ],
+        "required_brand": "",
+        "required_family": ""
+      },
+      {
+        "id": "jugs_subtype",
+        "category": "jugs",
+        "shape": "subtype",
+        "query": "vandfilterkande",
+        "goal": "vandfilterkande",
+        "anchor_ids": [
+          "100308983",
+          "100470759",
+          "100474717"
+        ],
+        "required_brand": "",
+        "required_family": ""
+      },
+      {
+        "id": "jugs_brand",
+        "category": "jugs",
+        "shape": "brand",
+        "query": "Royal Copenhagen kande",
+        "goal": "Royal Copenhagen kande",
+        "anchor_ids": [
+          "100390465",
+          "100417744",
+          "100075388"
+        ],
+        "required_brand": "Royal Copenhagen",
+        "required_family": ""
+      },
+      {
+        "id": "jugs_family",
+        "category": "jugs",
+        "shape": "family",
+        "query": "Eva Trio Legio Nova Kande",
+        "goal": "Eva Trio Legio Nova Kande",
+        "anchor_ids": [
+          "100408286",
+          "100449039"
+        ],
+        "required_brand": "Eva Trio",
+        "required_family": "Legio Nova"
+      },
+      {
+        "id": "jugs_named_product",
+        "category": "jugs",
+        "shape": "named_product",
+        "query": "Stelton EM77 Vandfilterkande",
+        "goal": "Stelton EM77 Vandfilterkande",
+        "anchor_ids": [
+          "100308983"
+        ],
+        "required_brand": "Stelton",
+        "required_family": "EM77"
+      },
+      {
+        "id": "pans_category",
+        "category": "pans",
+        "shape": "category",
+        "query": "stegepande non-stick",
+        "goal": "stegepande non-stick",
+        "anchor_ids": [
+          "100455457",
+          "100454201",
+          "100410806"
+        ],
+        "required_brand": "",
+        "required_family": ""
+      },
+      {
+        "id": "pans_subtype",
+        "category": "pans",
+        "shape": "subtype",
+        "query": "stegepandesæt",
+        "goal": "stegepandesæt",
+        "anchor_ids": [
+          "100468230",
+          "100453812",
+          "100461801"
+        ],
+        "required_brand": "",
+        "required_family": ""
+      },
+      {
+        "id": "pans_brand",
+        "category": "pans",
+        "shape": "brand",
+        "query": "Scanpan stegepande",
+        "goal": "Scanpan stegepande",
+        "anchor_ids": [
+          "100455457",
+          "100414744"
+        ],
+        "required_brand": "Scanpan",
+        "required_family": ""
+      },
+      {
+        "id": "pans_family",
+        "category": "pans",
+        "shape": "family",
+        "query": "Eva Trio Stainless Steel stegepande",
+        "goal": "Eva Trio Stainless Steel stegepande",
+        "anchor_ids": [
+          "100439699",
+          "100468230"
+        ],
+        "required_brand": "Eva Trio",
+        "required_family": "Stainless Steel"
+      },
+      {
+        "id": "pans_named_product",
+        "category": "pans",
+        "shape": "named_product",
+        "query": "Greenpan Barcelona Pro Stegepande",
+        "goal": "Greenpan Barcelona Pro Stegepande",
+        "anchor_ids": [
+          "100410806"
+        ],
+        "required_brand": "Greenpan",
+        "required_family": "Barcelona Pro"
+      },
+      {
+        "id": "vases_category",
+        "category": "vases",
+        "shape": "category",
+        "query": "vase stentøj",
+        "goal": "vase stentøj",
+        "anchor_ids": [
+          "100452837",
+          "100411645",
+          "100465690",
+          "100470874"
+        ],
+        "required_brand": "",
+        "required_family": ""
+      },
+      {
+        "id": "vases_subtype",
+        "category": "vases",
+        "shape": "subtype",
+        "query": "gulvvase porcelæn",
+        "goal": "gulvvase porcelæn",
+        "anchor_ids": [
+          "100435519",
+          "100079045"
+        ],
+        "required_brand": "",
+        "required_family": ""
+      },
+      {
+        "id": "vases_brand",
+        "category": "vases",
+        "shape": "brand",
+        "query": "Kähler vase",
+        "goal": "Kähler vase",
+        "anchor_ids": [
+          "100445100",
+          "100411644",
+          "100411645"
+        ],
+        "required_brand": "Kähler",
+        "required_family": ""
+      },
+      {
+        "id": "vases_family",
+        "category": "vases",
+        "shape": "family",
+        "query": "Kähler Signature Vase",
+        "goal": "Kähler Signature Vase",
+        "anchor_ids": [
+          "100411645"
+        ],
+        "required_brand": "Kähler",
+        "required_family": "Signature"
+      },
+      {
+        "id": "vases_named_product",
+        "category": "vases",
+        "shape": "named_product",
+        "query": "Royal Copenhagen Art of Giving Flowers Hortensia Vase",
+        "goal": "Royal Copenhagen Art of Giving Flowers Hortensia Vase",
+        "anchor_ids": [
+          "100079045"
+        ],
+        "required_brand": "Royal Copenhagen",
+        "required_family": "Art of Giving Flowers"
+      }
+    ]
+  },
+  "errors": [
+    "Ungrounded glasses_category",
+    "vases_subtype: [\"Query 'gulvvase porcelæn' is a natural subtype search. However, neither anchor 100435519 (Royal Copenhagen Sort Mega Riflet Vase, H 19 cm, porcelæn) nor 100079045 (Royal Copenhagen Art of Giving Flowers Hortensia Vase, H 10 cm, porcelæn) is described as a gulvvase in the inventory data. H 19 cm and H 10 cm are tabletop/decorative vase sizes, not floor vases (gulvvaser are typically 50+ cm tall). The inventory text contains no product explicitly named or described as 'gulvvase'. The plan invents a subtype (gulvvase) not evidenced in the catalog, and the anchors do not support this subtype claim. This is an invented product characteristic not grounded in inventory evidence.\"]"
+  ]
+}

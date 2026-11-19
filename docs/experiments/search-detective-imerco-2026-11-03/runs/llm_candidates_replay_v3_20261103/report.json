@@ -1,0 +1,964 @@
+{
+  "status": "complete",
+  "products": 12,
+  "facts": [
+    {
+      "id": "0:0",
+      "product_id": "100347058",
+      "attribute": "product_type",
+      "value": "cup",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "0:1",
+      "product_id": "100347058",
+      "attribute": "handle",
+      "value": "none",
+      "unit": "",
+      "quote": "Underkategori Krus og kopper uden hank",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "0:2",
+      "product_id": "100347058",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "0:3",
+      "product_id": "100347058",
+      "attribute": "capacity",
+      "value": "25",
+      "unit": "cl",
+      "quote": "Kapacitet 25 cl",
+      "normalized_value": "250",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "0:4",
+      "product_id": "100347058",
+      "attribute": "pack_count",
+      "value": "1",
+      "unit": "items",
+      "quote": "Antal 1",
+      "normalized_value": "1",
+      "normalized_unit": "items"
+    },
+    {
+      "id": "0:5",
+      "product_id": "100347058",
+      "attribute": "price_public",
+      "value": "159,95",
+      "unit": "DKK",
+      "quote": "159,95 JulePris Prisen gælder til 31.12.2026",
+      "normalized_value": "159.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "0:6",
+      "product_id": "100347058",
+      "attribute": "price_regular",
+      "value": "199,95",
+      "unit": "DKK",
+      "quote": "199,95 Pris",
+      "normalized_value": "199.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "0:7",
+      "product_id": "100353730",
+      "attribute": "product_type",
+      "value": "bowl",
+      "unit": "",
+      "quote": "Kategori Serverings- og salatskåle",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "0:8",
+      "product_id": "100353730",
+      "attribute": "material",
+      "value": "porcelain",
+      "unit": "",
+      "quote": "Materiale Porcelæn",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "0:9",
+      "product_id": "100353730",
+      "attribute": "pack_count",
+      "value": "4",
+      "unit": "items",
+      "quote": "Antal 4",
+      "normalized_value": "4",
+      "normalized_unit": "items"
+    },
+    {
+      "id": "0:10",
+      "product_id": "100353730",
+      "attribute": "price_public",
+      "value": "299,95",
+      "unit": "DKK",
+      "quote": "299,95 JulePris Prisen gælder til 31.12.2026",
+      "normalized_value": "299.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "0:11",
+      "product_id": "100353730",
+      "attribute": "price_regular",
+      "value": "679,95",
+      "unit": "DKK",
+      "quote": "679,95 Pris",
+      "normalized_value": "679.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "0:12",
+      "product_id": "100353730",
+      "attribute": "diameter",
+      "value": "13",
+      "unit": "cm",
+      "quote": "Diameter 13 cm",
+      "normalized_value": "130",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "0:13",
+      "product_id": "100353730",
+      "attribute": "width",
+      "value": "13",
+      "unit": "cm",
+      "quote": "Bredde 13 cm",
+      "normalized_value": "130",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "0:14",
+      "product_id": "100408047",
+      "attribute": "product_type",
+      "value": "bowl",
+      "unit": "",
+      "quote": "Kategori Serverings- og salatskåle",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "0:15",
+      "product_id": "100408047",
+      "attribute": "material",
+      "value": "glass",
+      "unit": "",
+      "quote": "Materiale Glas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "0:16",
+      "product_id": "100408047",
+      "attribute": "pack_count",
+      "value": "4",
+      "unit": "items",
+      "quote": "Antal 4",
+      "normalized_value": "4",
+      "normalized_unit": "items"
+    },
+    {
+      "id": "0:17",
+      "product_id": "100408047",
+      "attribute": "price_public",
+      "value": "199,95",
+      "unit": "DKK",
+      "quote": "199,95 JulePris Prisen gælder til 31.12.2026",
+      "normalized_value": "199.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "0:18",
+      "product_id": "100408047",
+      "attribute": "price_regular",
+      "value": "399,95",
+      "unit": "DKK",
+      "quote": "399,95 Pris",
+      "normalized_value": "399.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "0:19",
+      "product_id": "100408047",
+      "attribute": "diameter",
+      "value": "10,5",
+      "unit": "cm",
+      "quote": "Diameter 10,5 cm",
+      "normalized_value": "105",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "0:20",
+      "product_id": "100408047",
+      "attribute": "height",
+      "value": "8",
+      "unit": "cm",
+      "quote": "Ø 10,5 x H 8 cm",
+      "normalized_value": "80",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "0:21",
+      "product_id": "100437750",
+      "attribute": "product_type",
+      "value": "jug",
+      "unit": "",
+      "quote": "Underkategori Serveringskander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "0:22",
+      "product_id": "100437750",
+      "attribute": "material",
+      "value": "abs_plastic",
+      "unit": "",
+      "quote": "Materiale ABS-plastik",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "0:23",
+      "product_id": "100437750",
+      "attribute": "capacity",
+      "value": "1,5",
+      "unit": "L",
+      "quote": "Kapacitet 1,5 L",
+      "normalized_value": "1500",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "0:24",
+      "product_id": "100437750",
+      "attribute": "pack_count",
+      "value": "1",
+      "unit": "items",
+      "quote": "Antal 1",
+      "normalized_value": "1",
+      "normalized_unit": "items"
+    },
+    {
+      "id": "0:25",
+      "product_id": "100437750",
+      "attribute": "price_public",
+      "value": "207,95",
+      "unit": "DKK",
+      "quote": "207,95 SuperPris",
+      "normalized_value": "207.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "0:26",
+      "product_id": "100437750",
+      "attribute": "height",
+      "value": "23,3",
+      "unit": "cm",
+      "quote": "Højde 23,3 cm",
+      "normalized_value": "233",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "0:27",
+      "product_id": "100437750",
+      "attribute": "width",
+      "value": "17",
+      "unit": "cm",
+      "quote": "Bredde 17 cm",
+      "normalized_value": "170",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "0:28",
+      "product_id": "100465402",
+      "attribute": "product_type",
+      "value": "vase",
+      "unit": "",
+      "quote": "Underkategori Vaser",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "0:29",
+      "product_id": "100465402",
+      "attribute": "material",
+      "value": "glass",
+      "unit": "",
+      "quote": "Materiale Glas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "0:30",
+      "product_id": "100465402",
+      "attribute": "height",
+      "value": "20",
+      "unit": "cm",
+      "quote": "Højde 20 cm",
+      "normalized_value": "200",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "0:31",
+      "product_id": "100465402",
+      "attribute": "diameter",
+      "value": "15,5",
+      "unit": "cm",
+      "quote": "Diameter 15,5 cm",
+      "normalized_value": "155",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "0:32",
+      "product_id": "100465402",
+      "attribute": "price_public",
+      "value": "199,95",
+      "unit": "DKK",
+      "quote": "199,95 Pris",
+      "normalized_value": "199.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "0:33",
+      "product_id": "100465402",
+      "attribute": "pack_count",
+      "value": "1",
+      "unit": "items",
+      "quote": "Antal 1",
+      "normalized_value": "1",
+      "normalized_unit": "items"
+    },
+    {
+      "id": "1:0",
+      "product_id": "100404522",
+      "attribute": "product_type",
+      "value": "glass",
+      "unit": "",
+      "quote": "Underkategori Vandglas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "1:1",
+      "product_id": "100404522",
+      "attribute": "pack_count",
+      "value": "6",
+      "unit": "items",
+      "quote": "Antal 6",
+      "normalized_value": "6",
+      "normalized_unit": "items"
+    },
+    {
+      "id": "1:2",
+      "product_id": "100404522",
+      "attribute": "capacity",
+      "value": "25",
+      "unit": "cl",
+      "quote": "Kapacitet 25 cl",
+      "normalized_value": "250",
+      "normalized_unit": "ml"
+    },
+    {
+      "id": "1:3",
+      "product_id": "100404522",
+      "attribute": "material",
+      "value": "glass",
+      "unit": "",
+      "quote": "Materiale Blyfrit krystalglas",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "1:4",
+      "product_id": "100404522",
+      "attribute": "price_public",
+      "value": "349,95",
+      "unit": "DKK",
+      "quote": "349,95 SuperPris",
+      "normalized_value": "349.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "1:5",
+      "product_id": "100434157",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Underkategori Sideborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "1:6",
+      "product_id": "100434157",
+      "attribute": "material",
+      "value": "oak_unspecified",
+      "unit": "",
+      "quote": "Materiale Egetræ",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "1:7",
+      "product_id": "100434157",
+      "attribute": "price_regular",
+      "value": "1299,95",
+      "unit": "DKK",
+      "quote": "1299,95 Ikke medlem",
+      "normalized_value": "1299.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "1:8",
+      "product_id": "100434157",
+      "attribute": "price_member",
+      "value": "799,95",
+      "unit": "DKK",
+      "quote": "799,95 Medlemspris",
+      "normalized_value": "799.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "1:9",
+      "product_id": "100434157",
+      "attribute": "height",
+      "value": "46",
+      "unit": "cm",
+      "quote": "H 46 x B 56 x L 38 cm",
+      "normalized_value": "460",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "1:10",
+      "product_id": "100434157",
+      "attribute": "width",
+      "value": "56",
+      "unit": "cm",
+      "quote": "H 46 x B 56 x L 38 cm",
+      "normalized_value": "560",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "1:11",
+      "product_id": "100455702",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "1:12",
+      "product_id": "100455702",
+      "attribute": "material",
+      "value": "solid_oak",
+      "unit": "",
+      "quote": "Massivt egetræ",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "1:13",
+      "product_id": "100455702",
+      "attribute": "price_public",
+      "value": "2309,95",
+      "unit": "DKK",
+      "quote": "2309,95 SuperPris",
+      "normalized_value": "2309.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "1:14",
+      "product_id": "100455702",
+      "attribute": "diameter",
+      "value": "55",
+      "unit": "cm",
+      "quote": "Diameter 55 cm",
+      "normalized_value": "550",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "1:15",
+      "product_id": "100455702",
+      "attribute": "height",
+      "value": "37",
+      "unit": "cm",
+      "quote": "Højde 37 cm",
+      "normalized_value": "370",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "1:16",
+      "product_id": "100478281",
+      "attribute": "product_type",
+      "value": "table",
+      "unit": "",
+      "quote": "Underkategori Sofaborde",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "1:17",
+      "product_id": "100478281",
+      "attribute": "material",
+      "value": "oak_veneer",
+      "unit": "",
+      "quote": "Materiale Egetræ,  Finér,  MDF",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "1:18",
+      "product_id": "100478281",
+      "attribute": "price_public",
+      "value": "2349,95",
+      "unit": "DKK",
+      "quote": "2349,95 Pris",
+      "normalized_value": "2349.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "1:19",
+      "product_id": "100478281",
+      "attribute": "height",
+      "value": "40",
+      "unit": "cm",
+      "quote": "Højde 40 cm",
+      "normalized_value": "400",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "1:20",
+      "product_id": "100478281",
+      "attribute": "width",
+      "value": "82",
+      "unit": "cm",
+      "quote": "Bredde 82 cm",
+      "normalized_value": "820",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "1:21",
+      "product_id": "100456331",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Underkategori Stegepander",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "1:22",
+      "product_id": "100456331",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "1:23",
+      "product_id": "100456331",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Panden kan bruges på alle typer komfurer – også induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "1:25",
+      "product_id": "100456331",
+      "attribute": "price_public",
+      "value": "249,95",
+      "unit": "DKK",
+      "quote": "249,95 SuperPris",
+      "normalized_value": "249.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "1:26",
+      "product_id": "100456331",
+      "attribute": "diameter",
+      "value": "24",
+      "unit": "cm",
+      "quote": "Diameter 24 cm",
+      "normalized_value": "240",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "2:0",
+      "product_id": "100414744",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Scanpan Fusion 5 Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "2:1",
+      "product_id": "100414744",
+      "attribute": "material",
+      "value": "stainless_steel",
+      "unit": "",
+      "quote": "Materiale Stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "2:3",
+      "product_id": "100414744",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "2:4",
+      "product_id": "100414744",
+      "attribute": "price_regular",
+      "value": "969,95",
+      "unit": "DKK",
+      "quote": "969,95 Ikke medlem",
+      "normalized_value": "969.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "2:5",
+      "product_id": "100414744",
+      "attribute": "price_member",
+      "value": "499,95",
+      "unit": "DKK",
+      "quote": "499,95 Medlemspris",
+      "normalized_value": "499.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "2:6",
+      "product_id": "100414744",
+      "attribute": "diameter",
+      "value": "28",
+      "unit": "cm",
+      "quote": "Diameter 28 cm",
+      "normalized_value": "280",
+      "normalized_unit": "mm"
+    },
+    {
+      "id": "2:7",
+      "product_id": "100468229",
+      "attribute": "product_type",
+      "value": "pan",
+      "unit": "",
+      "quote": "Eva Trio Multi 5-ply Stegepande",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "2:8",
+      "product_id": "100468229",
+      "attribute": "material",
+      "value": "stainless_steel_aluminium",
+      "unit": "",
+      "quote": "Materiale Aluminium,  Rustfrit stål",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "2:9",
+      "product_id": "100468229",
+      "attribute": "coating",
+      "value": "none",
+      "unit": "",
+      "quote": "Stegepanden har ingen belægning",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "2:10",
+      "product_id": "100468229",
+      "attribute": "induction",
+      "value": "true",
+      "unit": "",
+      "quote": "Varmekilder Alle varmekilder, Induktion",
+      "normalized_value": "",
+      "normalized_unit": ""
+    },
+    {
+      "id": "2:11",
+      "product_id": "100468229",
+      "attribute": "price_regular",
+      "value": "999,95",
+      "unit": "DKK",
+      "quote": "999,95 Pris",
+      "normalized_value": "999.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "2:12",
+      "product_id": "100468229",
+      "attribute": "price_public",
+      "value": "499,95",
+      "unit": "DKK",
+      "quote": "499,95 JulePris Prisen gælder til 31.12.2026",
+      "normalized_value": "499.95",
+      "normalized_unit": "DKK"
+    },
+    {
+      "id": "2:13",
+      "product_id": "100468229",
+      "attribute": "diameter",
+      "value": "28",
+      "unit": "cm",
+      "quote": "Diameter 28 cm",
+      "normalized_value": "280",
+      "normalized_unit": "mm"
+    }
+  ],
+  "rejected_facts": [
+    {
+      "fact": {
+        "id": "1:24",
+        "product_id": "100456331",
+        "attribute": "coating",
+        "value": "none",
+        "unit": "",
+        "quote": "Rustfrit stål Jævn varmefordeling Til alle komfurer",
+        "normalized_value": "",
+        "normalized_unit": ""
+      },
+      "reason": "no-coating claim needs an explicit absence statement in the quote"
+    },
+    {
+      "fact": {
+        "id": "2:2",
+        "product_id": "100414744",
+        "attribute": "coating",
+        "value": "none",
+        "unit": "",
+        "quote": "Dette produkt er PFAS-frit",
+        "normalized_value": "",
+        "normalized_unit": ""
+      },
+      "reason": "no-coating claim needs an explicit absence statement in the quote"
+    }
+  ],
+  "candidates": [
+    {
+      "mode": "negation",
+      "positive_ids": [
+        "100347058"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:0",
+        "0:1"
+      ],
+      "rationale": "Cup 100347058 explicitly has handle=none, satisfying the negation mode for a cup without a handle."
+    },
+    {
+      "mode": "either_or",
+      "positive_ids": [
+        "100353730",
+        "100408047"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:7",
+        "0:8",
+        "0:14",
+        "0:15"
+      ],
+      "rationale": "Bowl 100353730 is porcelain and bowl 100408047 is glass, providing both branches of the either/or for serving bowls."
+    },
+    {
+      "mode": "unit_conversion",
+      "positive_ids": [
+        "100437750"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:21",
+        "0:23"
+      ],
+      "rationale": "Jug 100437750 has explicit capacity of 1.5 L, enabling unit conversion to ml (1500 ml) or cl (150 cl)."
+    },
+    {
+      "mode": "dimension",
+      "positive_ids": [
+        "100465402"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:28",
+        "0:30",
+        "0:31"
+      ],
+      "rationale": "Vase 100465402 has explicit height (200 mm) and distinct diameter (155 mm), satisfying the dimension mode with two distinct axes."
+    },
+    {
+      "mode": "pack_capacity",
+      "positive_ids": [
+        "100404522"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:0",
+        "1:1",
+        "1:2"
+      ],
+      "rationale": "Drinking glass 100404522 has explicit pack count of 6 and capacity of 25 cl (250 ml) per glass."
+    },
+    {
+      "mode": "solid_material",
+      "positive_ids": [
+        "100455702"
+      ],
+      "contrast_ids": [
+        "100478281"
+      ],
+      "fact_ids": [
+        "1:11",
+        "1:12",
+        "1:16",
+        "1:17"
+      ],
+      "rationale": "Table 100455702 is explicitly solid_oak and table 100478281 is explicitly oak_veneer, satisfying the solid_material mode contrast."
+    },
+    {
+      "mode": "compatibility",
+      "positive_ids": [
+        "100456331",
+        "100414744",
+        "100468229"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:21",
+        "1:23",
+        "2:0",
+        "2:3",
+        "2:7",
+        "2:10"
+      ],
+      "rationale": "Pans 100456331, 100414744, and 100468229 all have explicit induction=true, satisfying the compatibility mode."
+    },
+    {
+      "mode": "combined_exclusions",
+      "positive_ids": [
+        "100468229"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "2:7",
+        "2:8",
+        "2:9",
+        "2:10"
+      ],
+      "rationale": "Pan 100468229 is explicitly stainless_steel_aluminium AND explicitly has coating=none, satisfying both exclusion criteria."
+    },
+    {
+      "mode": "specificity",
+      "positive_ids": [
+        "100437750"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:21",
+        "0:22",
+        "0:23"
+      ],
+      "rationale": "Jug 100437750 has both explicit capacity (1500 ml) and explicit material (abs_plastic), enabling one-attribute-at-a-time specificity refinement."
+    },
+    {
+      "mode": "conditional_price",
+      "positive_ids": [
+        "100414744"
+      ],
+      "contrast_ids": [
+        "100456331"
+      ],
+      "fact_ids": [
+        "2:0",
+        "2:4",
+        "2:5",
+        "1:21",
+        "1:25"
+      ],
+      "rationale": "Pan 100414744 has member price 499.95 DKK (<500) but regular price 969.95 DKK (>=500), satisfying conditional price. Pan 100456331 has public price 249.95 DKK (<500 unconditionally) as contrast."
+    }
+  ],
+  "coverage": {
+    "negation": {
+      "status": "verified_candidate",
+      "reason": "The source text for product 100347058 explicitly lists 'Underkategori Krus og kopper uden hank', meaning cups and mugs without a handle. This directly and explicitly confirms handle=none, not inferred from silence."
+    },
+    "either_or": {
+      "status": "verified_candidate",
+      "reason": "Product 100353730 source confirms 'Materiale Porcelæn' and 'Kategori Serverings- og salatskåle', and product 100408047 source confirms 'Materiale Glas' and 'Kategori Serverings- og salatskåle'. Both branches (porcelain and glass serving bowls) are verified from source text."
+    },
+    "unit_conversion": {
+      "status": "verified_candidate",
+      "reason": "Product 100437750 source explicitly states 'Kapacitet 1,5 L', which correctly normalizes to 1500 ml. The product is categorized under 'Serveringskander' (serving jugs). All facts are correctly interpreted."
+    },
+    "dimension": {
+      "status": "verified_candidate",
+      "reason": "Product 100465402 source explicitly states 'Højde 20 cm' and 'Diameter 15,5 cm', confirmed in both the summary line 'Ø 15,5 x H 20 cm' and the specifications section. Height (200 mm) and diameter (155 mm) are two distinct axes, correctly extracted and normalized."
+    },
+    "pack_capacity": {
+      "status": "verified_candidate",
+      "reason": "All three facts are correctly grounded: 1:0 confirms product type as drinking glass (Vandglas), 1:1 confirms pack count of 6 (Antal 6), and 1:2 confirms capacity of 25 cl per glass (Kapacitet 25 cl). The source text for product 100404522 explicitly states these values in the specifications section. Capacity is per individual glass as the product is sold in a pack of 6 identical glasses."
+    },
+    "solid_material": {
+      "status": "verified_candidate",
+      "reason": "Fact 1:12 for product 100455702 is correctly grounded: the source text explicitly states 'Massivt egetræ' in both the description bullet points and the product description body, confirming solid oak. Fact 1:17 for product 100478281 is correctly grounded: the source text lists 'Materiale Egetræ, Finér, MDF' and the product header states 'MDF/egetræsfiner', confirming oak veneer construction. The contrast between solid oak and oak veneer is valid and well-supported."
+    },
+    "compatibility": {
+      "status": "verified_candidate",
+      "reason": "All three pans explicitly state induction compatibility: 100456331 ('Panden kan bruges på alle typer komfurer – også induktion'), 100414744 ('Varmekilder Alle varmekilder, Induktion'), and 100468229 ('Varmekilder Alle varmekilder, Induktion'). Facts 1:21, 1:23, 2:0, 2:3, 2:7, 2:10 are correctly interpreted."
+    },
+    "combined_exclusions": {
+      "status": "verified_candidate",
+      "reason": "Pan 100468229 source confirms material 'Aluminium, Rustfrit stål' (stainless steel + aluminium) and explicitly states 'Stegepanden har ingen belægning' (no coating). Facts 2:7, 2:8, 2:9, 2:10 are correctly interpreted and both exclusion criteria are satisfied."
+    },
+    "specificity": {
+      "status": "verified_candidate",
+      "reason": "Jug 100437750 source confirms material 'ABS-plastik' and capacity '1,5 L' (normalized 1500 ml). Facts 0:21, 0:22, 0:23 are correctly interpreted, enabling one-attribute-at-a-time specificity refinement."
+    },
+    "conditional_price": {
+      "status": "verified_candidate",
+      "reason": "Pan 100414744 source shows '969,95 Ikke medlem' (regular/non-member price >=500 DKK) and '499,95 Medlemspris' (member price <500 DKK), satisfying the conditional price requirement. Pan 100456331 shows '249,95 SuperPris' which is a publicly available offer (no membership required), price <500 DKK, serving as valid contrast. Facts 2:0, 2:4, 2:5, 1:21, 1:25 are correctly interpreted."
+    }
+  },
+  "cost": {
+    "requests": 7,
+    "estimated_usd": 0.172344,
+    "reserved_usd": 1.158435,
+    "input_rate_per_million": 3,
+    "output_rate_per_million": 15,
+    "pricing_source": "https://platform.claude.com/docs/en/models/sonnet-4-6/overview",
+    "pricing_checked": "2026-11-03",
+    "currency": "USD",
+    "note": "Token-based estimate, not invoice; failed/pending requests charged their full reserve."
+  },
+  "completed_at": "2026-11-03T20:01:20.914649+00:00",
+  "covered_modes": 10
+}

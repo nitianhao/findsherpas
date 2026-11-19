@@ -1,0 +1,62 @@
+{
+  "Royal Copenhagen Alfabet Kollektion Højhankskop": {
+    "query": "Royal Copenhagen Alfabet Kollektion Højhankskop",
+    "observed_at": "2026-11-05T19:33:54.469045+00:00",
+    "status": "ok",
+    "in_frozen_cohort": true,
+    "top1_stock": "available_online",
+    "same_status": true,
+    "same_total_hits": true,
+    "same_first_ten_urls": true
+  },
+  "Georg Jensen Bernadotte Glas": {
+    "query": "Georg Jensen Bernadotte Glas",
+    "observed_at": "2026-11-05T19:33:58.992152+00:00",
+    "status": "ok",
+    "in_frozen_cohort": true,
+    "top1_stock": "available_online",
+    "same_status": true,
+    "same_total_hits": true,
+    "same_first_ten_urls": true
+  },
+  "Stelton EM77 Vandfilterkande": {
+    "query": "Stelton EM77 Vandfilterkande",
+    "observed_at": "2026-11-05T19:34:01.855010+00:00",
+    "status": "ok",
+    "in_frozen_cohort": true,
+    "top1_stock": "available_online",
+    "same_status": true,
+    "same_total_hits": true,
+    "same_first_ten_urls": true
+  },
+  "vandglas": {
+    "query": "vandglas",
+    "observed_at": "2026-11-05T19:34:07.595255+00:00",
+    "status": "ok",
+    "in_frozen_cohort": true,
+    "top1_stock": "available_online",
+    "same_status": true,
+    "same_total_hits": false,
+    "same_first_ten_urls": true
+  },
+  "drikkeglas": {
+    "query": "drikkeglas",
+    "observed_at": "2026-11-05T19:34:14.087617+00:00",
+    "status": "ok",
+    "in_frozen_cohort": false,
+    "top1_stock": "available_online",
+    "same_status": null,
+    "same_total_hits": null,
+    "same_first_ten_urls": null
+  },
+  "vase": {
+    "query": "vase",
+    "observed_at": "2026-11-05T19:34:22.202752+00:00",
+    "status": "ok",
+    "in_frozen_cohort": false,
+    "top1_stock": "not_available_online",
+    "same_status": null,
+    "same_total_hits": null,
+    "same_first_ten_urls": null
+  }
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "run": "llm_candidates_replay_20261103",
+    "products": 12,
+    "covered_modes": 9,
+    "cost": {
+      "requests": 6,
+      "estimated_usd": 0.168414,
+      "reserved_usd": 1.028584,
+      "input_rate_per_million": 3,
+      "output_rate_per_million": 15,
+      "pricing_source": "https://platform.claude.com/docs/en/models/sonnet-4-6/overview",
+      "pricing_checked": "2026-11-03",
+      "currency": "USD",
+      "note": "Token-based estimate, not invoice; failed/pending requests charged their full reserve."
+    }
+  },
+  {
+    "run": "llm_candidates_replay_v2_20261103",
+    "products": 12,
+    "covered_modes": 8,
+    "cost": {
+      "requests": 7,
+      "estimated_usd": 0.176226,
+      "reserved_usd": 1.165703,
+      "input_rate_per_million": 3,
+      "output_rate_per_million": 15,
+      "pricing_source": "https://platform.claude.com/docs/en/models/sonnet-4-6/overview",
+      "pricing_checked": "2026-11-03",
+      "currency": "USD",
+      "note": "Token-based estimate, not invoice; failed/pending requests charged their full reserve."
+    }
+  },
+  {
+    "run": "llm_candidates_replay_v3_20261103",
+    "products": 12,
+    "covered_modes": 10,
+    "cost": {
+      "requests": 7,
+      "estimated_usd": 0.172344,
+      "reserved_usd": 1.158435,
+      "input_rate_per_million": 3,
+      "output_rate_per_million": 15,
+      "pricing_source": "https://platform.claude.com/docs/en/models/sonnet-4-6/overview",
+      "pricing_checked": "2026-11-03",
+      "currency": "USD",
+      "note": "Token-based estimate, not invoice; failed/pending requests charged their full reserve."
+    }
+  },
+  {
+    "run": "llm_candidates_live_20261103",
+    "products": 30,
+    "covered_modes": 7,
+    "cost": {
+      "requests": 19,
+      "estimated_usd": 0.518523,
+      "reserved_usd": 2.754885,
+      "input_rate_per_million": 3,
+      "output_rate_per_million": 15,
+      "pricing_source": "https://platform.claude.com/docs/en/models/sonnet-4-6/overview",
+      "pricing_checked": "2026-11-03",
+      "currency": "USD",
+      "note": "Token-based estimate, not invoice; failed/pending requests charged their full reserve."
+    }
+  },
+  {
+    "run": "llm_candidates_live_v2_20261103",
+    "products": 35,
+    "covered_modes": 8,
+    "cost": {
+      "requests": 18,
+      "estimated_usd": 0.538173,
+      "reserved_usd": 2.573243,
+      "input_rate_per_million": 3,
+      "output_rate_per_million": 15,
+      "pricing_source": "https://platform.claude.com/docs/en/models/sonnet-4-6/overview",
+      "pricing_checked": "2026-11-03",
+      "currency": "USD",
+      "note": "Token-based estimate, not invoice; failed/pending requests charged their full reserve."
+    }
+  },
+  {
+    "run": "llm_candidates_live_evidence_v3_20261103",
+    "products": 35,
+    "covered_modes": 9,
+    "cost": {
+      "requests": 15,
+      "estimated_usd": 0.414438,
+      "reserved_usd": 2.630558,
+      "input_rate_per_million": 3,
+      "output_rate_per_million": 15,
+      "pricing_source": "https://platform.claude.com/docs/en/models/sonnet-4-6/overview",
+      "pricing_checked": "2026-11-03",
+      "currency": "USD",
+      "note": "Token-based estimate, not invoice; failed/pending requests charged their full reserve."
+    }
+  }
+]

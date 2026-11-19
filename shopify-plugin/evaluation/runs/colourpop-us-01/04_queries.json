@@ -1,0 +1,327 @@
+[
+  {
+    "category": "DIRECT_MATCH",
+    "query": "A Very Mickey Christmas Eyeshadow Palette",
+    "rationale": "Exact product title from the featured items list tests whether the engine returns this specific palette as the top result."
+  },
+  {
+    "category": "DIRECT_MATCH",
+    "query": "Cloud Whip Blurring Lip Liner",
+    "rationale": "Exact product title from the featured items list tests precise catalogue lookup for this lip product."
+  },
+  {
+    "category": "DIRECT_MATCH",
+    "query": "Glitter Face Freckle Tattoos",
+    "rationale": "Exact product title from the featured items list tests whether the engine surfaces this novelty beauty item correctly."
+  },
+  {
+    "category": "SYNONYM",
+    "query": "eye makeup palette",
+    "rationale": "Uses a natural alternative for eyeshadow while retaining the real palette product type."
+  },
+  {
+    "category": "SYNONYM",
+    "query": "shiny lip color",
+    "rationale": "Uses a shopper's phrase for glossy lip products rather than the site's exact product type."
+  },
+  {
+    "category": "SYNONYM",
+    "query": "cheek tint",
+    "rationale": "Tests whether the engine maps 'cheek tint' to the Cloud Whip Lip & Cheek Pudding and related face products in the Face category."
+  },
+  {
+    "category": "TYPO",
+    "query": "Fallen Eyeshdow Palette",
+    "rationale": "Introduces a missing letter in 'Eyeshadow' from the real product 'Fallen Eyeshadow Palette' to test the engine's typo-tolerance and fuzzy matching."
+  },
+  {
+    "category": "TYPO",
+    "query": "ColourPop Paletes",
+    "rationale": "Transposes/removes a letter in 'Palettes' from the real navigation category to test whether the engine corrects common misspellings."
+  },
+  {
+    "category": "TYPO",
+    "query": "Cloud Whip Lip Liner Blurign",
+    "rationale": "Introduces a transposition in 'Blurring' from the real product 'Cloud Whip Blurring Lip Liner' to test fuzzy matching on product descriptors."
+  },
+  {
+    "category": "SPECIAL_CHARACTER",
+    "query": "lip & ch*eek pudding",
+    "rationale": "Injects a special character inside the real product term 'cheek' to test normalization."
+  },
+  {
+    "category": "SPECIAL_CHARACTER",
+    "query": "cr*ème gel liner",
+    "rationale": "Injects a special character inside the real product term 'crème' to test normalization."
+  },
+  {
+    "category": "SPECIAL_CHARACTER",
+    "query": "eye*shadow palette",
+    "rationale": "Injects a special character inside the real product term 'eyeshadow' to test normalization."
+  },
+  {
+    "category": "MERGED_WORDS",
+    "query": "eyeshadowpalette",
+    "rationale": "Merges 'eyeshadow' and 'palette' from the site's real product category to test whether the engine can tokenize compound search strings."
+  },
+  {
+    "category": "MERGED_WORDS",
+    "query": "lipliner",
+    "rationale": "Merges 'lip' and 'liner' referencing the Cloud Whip Blurring Lip Liner to test token-splitting on a common beauty compound word."
+  },
+  {
+    "category": "MERGED_WORDS",
+    "query": "colourpoppalettes",
+    "rationale": "Merges the brand name 'ColourPop' with 'palettes' from the navigation to test whether the engine can split brand and category tokens."
+  },
+  {
+    "category": "BRAND_SEARCH",
+    "query": "ColourPop",
+    "rationale": "Searches by brand name alone to test whether the engine prioritizes ColourPop's own catalogue results prominently."
+  },
+  {
+    "category": "BRAND_SEARCH",
+    "query": "ColourPop eyeshadow",
+    "rationale": "Combines the real brand name with a real product category to test brand-filtered category results for ColourPop's eye products."
+  },
+  {
+    "category": "BRAND_SEARCH",
+    "query": "ColourPop lip liner",
+    "rationale": "Combines the real brand name with a real product type to test whether the engine surfaces ColourPop lip liner products like the Cloud Whip Blurring Lip Liner."
+  },
+  {
+    "category": "SPLIT_WORD",
+    "query": "colo urpop",
+    "rationale": "Splits the single brand word ColourPop at an arbitrary internal position, away from its natural Colour/Pop boundary."
+  },
+  {
+    "category": "SPLIT_WORD",
+    "query": "eyesh adow",
+    "rationale": "Splits the single product word 'eyeshadow' at an arbitrary internal position."
+  },
+  {
+    "category": "SPLIT_WORD",
+    "query": "li ner",
+    "rationale": "Splits the single product word 'liner' at an arbitrary internal position."
+  },
+  {
+    "category": "NATURAL_LANGUAGE",
+    "query": "what eyeshadow palettes does colourpop have for the holidays",
+    "rationale": "Conversational query referencing ColourPop's real holiday palette offerings like A Very Mickey Christmas Eyeshadow Palette to test intent understanding."
+  },
+  {
+    "category": "NATURAL_LANGUAGE",
+    "query": "something shimmery for my eyes that comes in a set",
+    "rationale": "Describes intent for eye makeup sets referencing ColourPop's Eyes and Palettes categories to test semantic intent parsing."
+  },
+  {
+    "category": "NATURAL_LANGUAGE",
+    "query": "i need a lip product that works as blush too",
+    "rationale": "Describes the dual-purpose nature of the Cloud Whip Lip & Cheek Pudding to test whether the engine understands multi-use product intent."
+  },
+  {
+    "category": "PRICE_ANCHORED",
+    "query": "eyeshadow palette under $20",
+    "rationale": "Combines the real Palettes category with a price constraint to test whether the engine can parse and apply price filters from free text."
+  },
+  {
+    "category": "PRICE_ANCHORED",
+    "query": "colourpop lip products under $10",
+    "rationale": "References ColourPop's real Lips category with a budget constraint to test price-filter extraction from a natural query."
+  },
+  {
+    "category": "NEGATIVE_INTENT",
+    "query": "lip liner not glitter",
+    "rationale": "References the real Lips category with an exclusion to test whether the engine handles negation and filters out glittery lip liner products."
+  },
+  {
+    "category": "NEGATIVE_INTENT",
+    "query": "eyeshadow palette not collab",
+    "rationale": "References the real Palettes category with an exclusion of collaboration products to test negation handling against the Collabs navigation category."
+  },
+  {
+    "category": "UNIT_VARIATION",
+    "query": "15 pan eyeshadow palette",
+    "rationale": "Tests whether a shopper's spaced pan-count format finds the verified 15-pan Fallen Eyeshadow Palette."
+  },
+  {
+    "category": "UNIT_VARIATION",
+    "query": "24-pan eyeshadow palette",
+    "rationale": "Tests a hyphenated pan-count format against the verified Angel & Villain 24 Pan Eyeshadow Palette."
+  },
+  {
+    "category": "PLURAL_SINGULAR",
+    "query": "eyeshadow palettes",
+    "rationale": "Uses the plural form of 'palette' referencing the real Palettes navigation category to test whether the engine treats plural and singular equivalently."
+  },
+  {
+    "category": "PLURAL_SINGULAR",
+    "query": "lip liners",
+    "rationale": "Uses the plural form referencing the Cloud Whip Blurring Lip Liner and the broader Lips category to test plural-to-singular matching."
+  },
+  {
+    "category": "ABBREVIATION",
+    "query": "CP eyeshadow",
+    "rationale": "Uses 'CP' as a common abbreviation for ColourPop to test whether the engine expands the abbreviation and surfaces relevant eye products."
+  },
+  {
+    "category": "ABBREVIATION",
+    "query": "BFF liner kit",
+    "rationale": "Uses 'BFF' as it appears in the real product 'Dear Santa BFF Crème Gel Liner Kit' to test whether the engine matches on acronym tokens."
+  },
+  {
+    "category": "LOCALE_VARIATION",
+    "query": "colourful eyeshadow",
+    "rationale": "Tests the British spelling 'colourful' on this US-English store."
+  },
+  {
+    "category": "LOCALE_VARIATION",
+    "query": "colourpop blusher",
+    "rationale": "Uses the British term 'blusher' instead of 'blush' referencing ColourPop's Face category to test regional terminology normalization."
+  },
+  {
+    "category": "SKU_MODEL_NUMBER",
+    "query": "EyePalette-Fallen",
+    "rationale": "Exact SKU published in structured product data on the Fallen Eyeshadow Palette product page."
+  },
+  {
+    "category": "SKU_MODEL_NUMBER",
+    "query": "CloudWhipLipLiner-TrueAutumn",
+    "rationale": "Exact SKU published in structured product data on the True Autumn Cloud Whip Lip Liner product page."
+  },
+  {
+    "category": "SUBJECTIVE_ATTRIBUTE",
+    "query": "glam eyeshadow palette",
+    "rationale": "Applies the subjective qualifier 'glam' to the real Palettes category to test whether the engine understands qualitative descriptors for eye products."
+  },
+  {
+    "category": "SUBJECTIVE_ATTRIBUTE",
+    "query": "budget friendly colourpop lip set",
+    "rationale": "Applies the subjective qualifier 'budget friendly' to ColourPop's real Lips and Value Sets categories to test qualitative intent matching."
+  },
+  {
+    "category": "OCCASION",
+    "query": "gift for makeup lover",
+    "rationale": "Describes a gifting occasion relevant to ColourPop's Value Sets and Collabs categories to test whether the engine infers appropriate products from context."
+  },
+  {
+    "category": "OCCASION",
+    "query": "stocking stuffer beauty set",
+    "rationale": "Describes a holiday gifting occasion referencing ColourPop's Value Sets and seasonal products to test occasion-based product inference."
+  },
+  {
+    "category": "SEASONAL_OCCASION",
+    "query": "christmas makeup collection",
+    "rationale": "References the seasonal context of the real product 'A Very Mickey Christmas Eyeshadow Palette' to test seasonal relevance surfacing."
+  },
+  {
+    "category": "SEASONAL_OCCASION",
+    "query": "holiday value sets colourpop",
+    "rationale": "References ColourPop's real Value Sets category in a holiday seasonal context to test whether the engine surfaces seasonally relevant results."
+  },
+  {
+    "category": "MULTI_ATTRIBUTE",
+    "query": "glitter eyeshadow palette",
+    "rationale": "Combines the real Palettes category with a single attribute 'glitter' referencing the Glitter Face Freckle Tattoos context to test compound constraint handling."
+  },
+  {
+    "category": "MULTI_ATTRIBUTE",
+    "query": "pink lip liner",
+    "rationale": "Uses one product type and one color constraint; omits the redundant house-brand term."
+  },
+  {
+    "category": "STOP_WORD_HEAVY",
+    "query": "what is the best eyeshadow palette to get from colourpop",
+    "rationale": "Pads the real Palettes category and brand name with stop words to test whether the engine extracts meaningful terms despite noise."
+  },
+  {
+    "category": "STOP_WORD_HEAVY",
+    "query": "i am looking for a good lip and cheek product from colourpop",
+    "rationale": "Pads the real product type 'Lip & Cheek' referencing the Cloud Whip Lip & Cheek Pudding with stop words to test stop-word filtering."
+  },
+  {
+    "category": "PARTIAL_QUERY",
+    "query": "fallen eye",
+    "rationale": "Truncates the real product name 'Fallen Eyeshadow Palette' to test prefix matching and autocomplete-like behaviour."
+  },
+  {
+    "category": "PARTIAL_QUERY",
+    "query": "cloud wh",
+    "rationale": "Truncates the real product name 'Cloud Whip Blurring Lip Liner' to test partial prefix matching on product names."
+  },
+  {
+    "category": "LONG_VERBOSE_QUERY",
+    "query": "i am trying to find a really nice eyeshadow palette from colourpop that would be perfect as a christmas gift for someone who loves sparkly and festive holiday makeup looks",
+    "rationale": "Over-specified query referencing ColourPop's real Palettes category and holiday products like A Very Mickey Christmas Eyeshadow Palette to test core intent extraction."
+  },
+  {
+    "category": "LONG_VERBOSE_QUERY",
+    "query": "looking for a colourpop lip product that can also be used on the cheeks as a blush or tint and comes in a creamy pudding or balm formula that is not too expensive",
+    "rationale": "Verbose query describing the real product 'Cloud Whip Lip & Cheek Pudding' with extra qualifiers to test whether the engine extracts the core product intent."
+  },
+  {
+    "category": "SEMANTIC_MEANING",
+    "query": "something to make my eyes pop for a night out",
+    "rationale": "Describes a conceptual outcome referencing ColourPop's Eyes and Palettes categories to test semantic search beyond keyword matching."
+  },
+  {
+    "category": "SEMANTIC_MEANING",
+    "query": "products to add a fun sparkle to my face",
+    "rationale": "Describes a conceptual desire referencing the real 'Glitter Face Freckle Tattoos' and glitter products in the Face category to test meaning-based retrieval."
+  },
+  {
+    "category": "CATEGORY_MAPPING",
+    "query": "makeup brushes",
+    "rationale": "Uses the colloquial term 'makeup brushes' to map to the site's real navigation category 'Brushes & Tools' to test taxonomy mapping."
+  },
+  {
+    "category": "CATEGORY_MAPPING",
+    "query": "face makeup",
+    "rationale": "Uses the colloquial term 'face makeup' to map to the site's real 'Face' navigation category to test whether the engine maps user language to internal taxonomy."
+  },
+  {
+    "category": "FACET_EXTRACTION",
+    "query": "red lip liner",
+    "rationale": "Combines the colour facet 'red' with the real product type lip liner from ColourPop's Lips category to test whether the engine parses colour as a filter."
+  },
+  {
+    "category": "FACET_EXTRACTION",
+    "query": "matte eyeshadow palette",
+    "rationale": "Combines the finish facet 'matte' with the real Palettes category to test whether the engine extracts finish type as a filterable attribute."
+  },
+  {
+    "category": "GIBBERISH",
+    "query": "xkvbnmqwertzasdfg",
+    "rationale": "Pure keyboard mash with no product term; the expected behavior is zero results."
+  },
+  {
+    "category": "GIBBERISH",
+    "query": "zzzqqqxxxyyy",
+    "rationale": "Pure repeated-letter mash with no product term; the expected behavior is zero results."
+  },
+  {
+    "category": "DIRECT_MATCH",
+    "query": "Fallen Eyeshadow Palette",
+    "rationale": "Verbatim title observed on ColourPop's live homepage; tests exact product discovery."
+  },
+  {
+    "category": "DIRECT_MATCH",
+    "query": "Cloud Whip Lip & Cheek Pudding",
+    "rationale": "Verbatim title observed on ColourPop's live homepage; tests exact product discovery."
+  },
+  {
+    "category": "DIRECT_MATCH",
+    "query": "Dear Santa BFF Crème Gel Liner Kit",
+    "rationale": "Verbatim title observed on ColourPop's live homepage; tests exact product discovery."
+  },
+  {
+    "category": "GIBBERISH",
+    "query": "qwertyuiop",
+    "rationale": "Pure keyboard-row mash; the expected behavior is zero results."
+  },
+  {
+    "category": "GIBBERISH",
+    "query": "sfjhdshdssjhdfdsshsdhgsddgshdghshdksghskgdhgshkhkghkskhksdnsidssi",
+    "rationale": "Long pure keyboard mash; the expected behavior is zero results."
+  }
+]

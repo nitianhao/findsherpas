@@ -1,0 +1,72 @@
+[
+  {
+    "mode": "Negation",
+    "product_id": "100347058",
+    "name": "Eva Trio Legio Nova thermal cup, 25 cl",
+    "url": "https://www.imerco.dk/eva-trio-legio-nova-termokrus-25-cl-porcelaen-hvid?id=100347058",
+    "evidence": "Product specifications explicitly classify it as a cup without a handle."
+  },
+  {
+    "mode": "Either/or materials",
+    "product_id": "100353730",
+    "name": "Eva Trio Legio Nova bowls, 4 × 13 cm",
+    "url": "https://www.imerco.dk/eva-trio-legio-nova-skaal-4-stk-oe-13-cm-porcelaen-hvid?id=100353730",
+    "evidence": "Porcelain; glass alternative: Bjørn Wiinblad Guirlande bowls, ID 100408047."
+  },
+  {
+    "mode": "Unit conversion",
+    "product_id": "100437750",
+    "name": "Stelton EM77 jug, 1.5 litres",
+    "url": "https://www.imerco.dk/stelton-em77-kande-m-laag-1-5-liter-abs-plastik-smoke?id=100437750",
+    "evidence": "Verified capacity 1.5 L = 150 cl = 1500 ml. Reverse the original example: listing uses litres, test equivalent units."
+  },
+  {
+    "mode": "Dimension distinction",
+    "product_id": "100465402",
+    "name": "CASA Living glass vase",
+    "url": "https://www.imerco.dk/casa-living-vase-oe-15-5-x-h-20-cm-glas-lysegraa?id=100465402",
+    "evidence": "Height 20 cm; diameter 15.5 cm."
+  },
+  {
+    "mode": "Pack versus capacity",
+    "product_id": "100404522",
+    "name": "Georg Jensen Bernadotte glasses",
+    "url": "https://www.imerco.dk/georg-jensen-bernadotte-glas-6-stk-lave?id=100404522",
+    "evidence": "Quantity six; capacity 25 cl (250 ml) per glass."
+  },
+  {
+    "mode": "Solid wood versus veneer",
+    "product_id": "100455702",
+    "name": "FDB Møbler D102 coffee table, 55 cm",
+    "url": "https://www.imerco.dk/fdb-moebler-d102-sofabord-oe-55-cm-egetrae-natur?id=100455702",
+    "evidence": "Description explicitly says solid oak. Contrasting veneer table: Hübsch Skak ID 100478281."
+  },
+  {
+    "mode": "Induction compatibility",
+    "product_id": "100456331",
+    "name": "Eva Trio Stainless Steel frying pan, 24 cm",
+    "url": "https://www.imerco.dk/eva-trio-stainless-steel-stegepande-oe-24-cm-aluminium-rustfrit-staal?id=100456331",
+    "evidence": "Description explicitly states induction compatibility."
+  },
+  {
+    "mode": "Combined exclusions",
+    "product_id": "100468229",
+    "name": "Eva Trio Multi 5-ply frying pan, 28 cm",
+    "url": "https://www.imerco.dk/eva-trio-multi-5-ply-stegepande-oe-28-cm-genanvendt-rustfrit-staal?id=100468229",
+    "evidence": "Description explicitly states no coating; stainless-steel surface and induction compatibility."
+  },
+  {
+    "mode": "Adding correct detail",
+    "product_id": "100437750",
+    "name": "Stelton EM77 jug, Smoke",
+    "url": "https://www.imerco.dk/stelton-em77-kande-m-laag-1-5-liter-abs-plastik-smoke?id=100437750",
+    "evidence": "Verified ABS plastic and capacity 1.5 L; can add these attributes to a broader query."
+  },
+  {
+    "mode": "Conditional price",
+    "product_id": "100414744",
+    "name": "Scanpan Fusion 5 frying pan, 28 cm",
+    "url": "https://www.imerco.dk/scanpan-fusion-5-stegepande-oe-28-cm-staal?id=100414744",
+    "evidence": "499.95 DKK for members; 969.95 DKK for nonmembers at capture. Negative example for an under-500-DKK nonmember budget; positive unconditional alternative: Eva Trio Multi 5-ply ID 100468229 at 499.95 DKK."
+  }
+]

@@ -1,0 +1,322 @@
+{
+  "proposed": [
+    {
+      "mode": "negation",
+      "positive_ids": [
+        "100481065",
+        "100422904",
+        "100309088",
+        "100382748",
+        "100388154"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:0",
+        "0:1",
+        "0:7",
+        "0:8",
+        "0:14",
+        "0:15",
+        "0:21",
+        "0:22",
+        "0:27",
+        "0:28"
+      ],
+      "rationale": "All five cups explicitly state handle=none, satisfying the negation mode requirement for cups without a handle."
+    },
+    {
+      "mode": "either_or",
+      "positive_ids": [
+        "100408047",
+        "100413383"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:0",
+        "1:1",
+        "1:6",
+        "1:7"
+      ],
+      "rationale": "Product 100408047 is a bowl made of glass and product 100413383 is a bowl made of porcelain, providing one verified anchor in each branch of the either/or."
+    },
+    {
+      "mode": "unit_conversion",
+      "positive_ids": [
+        "100408286"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "2:0",
+        "2:1",
+        "2:2"
+      ],
+      "rationale": "Jug 100408286 has capacity expressed in L (0.70 L), enabling unit conversion to ml (700 ml) or cl (70 cl)."
+    },
+    {
+      "mode": "dimension",
+      "positive_ids": [
+        "100465402"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "3:0",
+        "3:1",
+        "3:2",
+        "3:3"
+      ],
+      "rationale": "Vase 100465402 has explicit height (200 mm) and distinct diameter (155 mm), satisfying the dimension mode with both axes retained."
+    },
+    {
+      "mode": "pack_capacity",
+      "positive_ids": [
+        "100109877",
+        "100353708"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "4:0",
+        "4:1",
+        "4:2",
+        "4:3",
+        "4:12",
+        "4:13",
+        "4:14",
+        "4:15"
+      ],
+      "rationale": "Drinking glasses 100109877 (4-pack, 370 ml each) and 100353708 (4-pack, 430 ml each) both have explicit pack count and capacity per glass."
+    },
+    {
+      "mode": "compatibility",
+      "positive_ids": [
+        "100468230",
+        "100414744",
+        "100456332",
+        "100468229",
+        "100467757"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "5:0",
+        "5:2",
+        "5:8",
+        "5:10",
+        "5:15",
+        "5:17",
+        "5:21",
+        "5:23",
+        "5:28",
+        "5:30"
+      ],
+      "rationale": "All five pans explicitly state induction=true, confirming compatibility with induction cooktops."
+    },
+    {
+      "mode": "combined_exclusions",
+      "positive_ids": [
+        "100468229",
+        "100467757"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "5:21",
+        "5:22",
+        "5:23",
+        "5:24",
+        "5:28",
+        "5:29",
+        "5:30",
+        "5:31"
+      ],
+      "rationale": "Pans 100468229 and 100467757 are both explicitly stainless steel (or stainless_steel_aluminium) AND explicitly have coating=none, satisfying both exclusion criteria."
+    },
+    {
+      "mode": "specificity",
+      "positive_ids": [
+        "100408286"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "2:0",
+        "2:1",
+        "2:2"
+      ],
+      "rationale": "Jug 100408286 has both explicit capacity (700 ml) and explicit material (porcelain), enabling specificity testing by adding one correct attribute at a time."
+    },
+    {
+      "mode": "conditional_price",
+      "positive_ids": [
+        "100468230"
+      ],
+      "contrast_ids": [
+        "100456332"
+      ],
+      "fact_ids": [
+        "5:0",
+        "5:6",
+        "5:7",
+        "5:15",
+        "5:20"
+      ],
+      "rationale": "Pan 100468230 has member price 499.95 DKK (<500) but regular price 1499.95 DKK (>=500), satisfying the conditional-price positive. Pan 100456332 has a public price of 299.95 DKK (<500 DKK) unconditionally, serving as the contrast."
+    }
+  ],
+  "valid": [
+    {
+      "mode": "negation",
+      "positive_ids": [
+        "100481065",
+        "100422904",
+        "100309088",
+        "100382748",
+        "100388154"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:0",
+        "0:1",
+        "0:7",
+        "0:8",
+        "0:14",
+        "0:15",
+        "0:21",
+        "0:22",
+        "0:27",
+        "0:28"
+      ],
+      "rationale": "All five cups explicitly state handle=none, satisfying the negation mode requirement for cups without a handle."
+    },
+    {
+      "mode": "either_or",
+      "positive_ids": [
+        "100408047",
+        "100413383"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:0",
+        "1:1",
+        "1:6",
+        "1:7"
+      ],
+      "rationale": "Product 100408047 is a bowl made of glass and product 100413383 is a bowl made of porcelain, providing one verified anchor in each branch of the either/or."
+    },
+    {
+      "mode": "unit_conversion",
+      "positive_ids": [
+        "100408286"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "2:0",
+        "2:1",
+        "2:2"
+      ],
+      "rationale": "Jug 100408286 has capacity expressed in L (0.70 L), enabling unit conversion to ml (700 ml) or cl (70 cl)."
+    },
+    {
+      "mode": "dimension",
+      "positive_ids": [
+        "100465402"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "3:0",
+        "3:1",
+        "3:2",
+        "3:3"
+      ],
+      "rationale": "Vase 100465402 has explicit height (200 mm) and distinct diameter (155 mm), satisfying the dimension mode with both axes retained."
+    },
+    {
+      "mode": "pack_capacity",
+      "positive_ids": [
+        "100109877",
+        "100353708"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "4:0",
+        "4:1",
+        "4:2",
+        "4:3",
+        "4:12",
+        "4:13",
+        "4:14",
+        "4:15"
+      ],
+      "rationale": "Drinking glasses 100109877 (4-pack, 370 ml each) and 100353708 (4-pack, 430 ml each) both have explicit pack count and capacity per glass."
+    },
+    {
+      "mode": "compatibility",
+      "positive_ids": [
+        "100468230",
+        "100414744",
+        "100456332",
+        "100468229",
+        "100467757"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "5:0",
+        "5:2",
+        "5:8",
+        "5:10",
+        "5:15",
+        "5:17",
+        "5:21",
+        "5:23",
+        "5:28",
+        "5:30"
+      ],
+      "rationale": "All five pans explicitly state induction=true, confirming compatibility with induction cooktops."
+    },
+    {
+      "mode": "combined_exclusions",
+      "positive_ids": [
+        "100468229",
+        "100467757"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "5:21",
+        "5:22",
+        "5:23",
+        "5:24",
+        "5:28",
+        "5:29",
+        "5:30",
+        "5:31"
+      ],
+      "rationale": "Pans 100468229 and 100467757 are both explicitly stainless steel (or stainless_steel_aluminium) AND explicitly have coating=none, satisfying both exclusion criteria."
+    },
+    {
+      "mode": "specificity",
+      "positive_ids": [
+        "100408286"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "2:0",
+        "2:1",
+        "2:2"
+      ],
+      "rationale": "Jug 100408286 has both explicit capacity (700 ml) and explicit material (porcelain), enabling specificity testing by adding one correct attribute at a time."
+    },
+    {
+      "mode": "conditional_price",
+      "positive_ids": [
+        "100468230"
+      ],
+      "contrast_ids": [
+        "100456332"
+      ],
+      "fact_ids": [
+        "5:0",
+        "5:6",
+        "5:7",
+        "5:15",
+        "5:20"
+      ],
+      "rationale": "Pan 100468230 has member price 499.95 DKK (<500) but regular price 1499.95 DKK (>=500), satisfying the conditional-price positive. Pan 100456332 has a public price of 299.95 DKK (<500 DKK) unconditionally, serving as the contrast."
+    }
+  ]
+}

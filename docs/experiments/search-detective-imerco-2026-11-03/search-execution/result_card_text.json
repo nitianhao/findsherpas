@@ -1,0 +1,618 @@
+{
+  "kopper": [
+    {
+      "rank": 1,
+      "product_id": "100457437",
+      "card_text": "Vælg Sammenlign Lékué Airfryer Minikopper  /  4 stk. H 10 x B 11 x L 10 cm  /  Glas  /  Klar Pris 129,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100464477",
+      "card_text": "Vælg Sammenlign Bloomingville Nini Kopper  /  4 stk. 110 ml  /  Keramik  /  Multifarvet Pris 429,95 På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100419246",
+      "card_text": "Vælg Sammenlign Rig-Tig PICNIC Termoflaske m. 4 kopper 1 litter  /  Rustfrit stål/PP plastik  /  Blossom Pris 349,95 På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100470237",
+      "card_text": "Ønskefavorit Vælg Sammenlign Kähler Hammershøi Jul Krus 2026 33 cl  /  Porcelæn  /  Hvid Pris 229,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100081624",
+      "card_text": "Ønskefavorit Spar 39% Vælg Sammenlign Royal Copenhagen Blå Mega Riflet Krus  /  2 stk. 36 cl  /  Porcelæn  /  Koboltblå/hvid JulePris 549,95 Pris 899,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 6,
+      "product_id": "100470232",
+      "card_text": "Spar 46% Vælg Sammenlign Kähler Hammershøi Jul Krus 2018 & 2025  /  2 stk. 33 cl  /  Porcelæn  /  Hvid JulePris 249,95 Pris 459,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 7,
+      "product_id": "100081658",
+      "card_text": "SuperPris Vælg Sammenlign Royal Copenhagen Stjerne Riflet Jul Krus  /  2 stk. 36 cl  /  Benporcelæn  /  Hvid/grøn/rød SuperPris 399,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 8,
+      "product_id": "100422904",
+      "card_text": "Restparti Spar 70% Vælg Sammenlign Royal Copenhagen Sort Riflet Blonde Termokop 26 cl  /  Porcelæn  /  Sort/hvid Tilbud 169,95 Pris 559,95 Udgået online På lager i butik"
+    },
+    {
+      "rank": 9,
+      "product_id": "100081719",
+      "card_text": "Medlemstilbud Vælg Sammenlign Royal Copenhagen Hvid Riflet Krus  /  2 stk. 36 cl  /  Porcelæn  /  Hvid flere varianter Medlemspris 269,95 Ikke medlem 429,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 10,
+      "product_id": "100470637",
+      "card_text": "Spar 15% Vælg Sammenlign Kähler Hammershøi Jul Krus 2026 25 cl  /  Porcelæn  /  Hvid JulePris 169,95 Pris 199,95 På lager online På lager i butik"
+    }
+  ],
+  "kopper uden hank": [
+    {
+      "rank": 1,
+      "product_id": "100422904",
+      "card_text": "Restparti Spar 70% Vælg Sammenlign Royal Copenhagen Sort Riflet Blonde Termokop 26 cl  /  Porcelæn  /  Sort/hvid Tilbud 169,95 Pris 559,95 Udgået online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100441446",
+      "card_text": "Spar 26% Vælg Sammenlign Royal Copenhagen Riflet Contrast Marble Krus 35 cl  /  Porcelæn/silikone  /  Morning Sky flere varianter + 1 JulePris 199,95 Pris 269,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100455134",
+      "card_text": "Spar 26% Vælg Sammenlign Royal Copenhagen Riflet Contrast Marble Krus 35 cl  /  Porcelæn  /  Green Grass flere varianter + 1 JulePris 199,95 Pris 269,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100441447",
+      "card_text": "Spar 26% Vælg Sammenlign Royal Copenhagen Riflet Contrast Marble Krus 35 cl  /  Porcelæn/silikone  /  Ocean Mist flere varianter + 1 JulePris 199,95 Pris 269,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100442405",
+      "card_text": "Spar 27% Vælg Sammenlign Moomin Arabia Krus  /  Haru 26 cl  /  Vitroporcelæn  /  Hvid JulePris 109,95 Pris 149,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 6,
+      "product_id": "100388154",
+      "card_text": "SuperPris Vælg Sammenlign Pillivuyt Plissé Termokrus  /  2 stk. 25 cl  /  Porcelæn  /  Hvid flere varianter + 1 SuperPris 199,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 7,
+      "product_id": "100380329",
+      "card_text": "Spar 26% Vælg Sammenlign Royal Copenhagen Riflet Contrast Krus 35 cl  /  Porcelæn/silikone  /  Dahlia flere varianter + 1 JulePris 199,95 Pris 269,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 8,
+      "product_id": "100075010",
+      "card_text": "Køb 2 - Spar 25% Vælg Sammenlign Royal Copenhagen Blå Mega Riflet Termokop #1 26 cl  /  Porcelæn  /  Koboltblå/hvid flere varianter Medlemspris* 487,46 Pris 649,95 *Medlemspris ved køb af 2 valgfrie Royal Copenhagen varer På lager online På lager i butik"
+    },
+    {
+      "rank": 9,
+      "product_id": "100404520",
+      "card_text": "Spar 41% Vælg Sammenlign Georg Jensen Bernadotte Termokop  /  2 stk. 26 cl  /  Porcelæn  /  Hvid JulePris 229,95 Pris 389,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 10,
+      "product_id": "100081711",
+      "card_text": "Spar 26% Vælg Sammenlign Royal Copenhagen Riflet Contrast Krus 35 cl  /  Porcelæn/silikone  /  Mega Blue flere varianter + 1 JulePris 199,95 Pris 269,95 På lager online På lager i butik"
+    }
+  ],
+  "kande 1,6 L": [
+    {
+      "rank": 1,
+      "product_id": "100396731",
+      "card_text": "SuperPris Vælg Sammenlign Eva Trio Legio Nova Kande 1,6 liter  /  Porcelæn  /  Hvid flere varianter SuperPris 302,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100401235",
+      "card_text": "Vælg Sammenlign Georg Jensen Bernadotte Serveringskande 1,6 liter  /  Krombelagt stål Pris 999,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100423451",
+      "card_text": "Restparti Medlemstilbud Vælg Sammenlign Georg Jensen Sky Kande 1,6 liter  /  Blankpoleret rustfrit stål Medlemspris 669,95 Ikke medlem 1349,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100030058",
+      "card_text": "Vælg Sammenlign Melitta Glaskande 1,6 liter  /  Glas flere varianter Pris 184,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100357957",
+      "card_text": "Køb 2 - Spar 25% Vælg Sammenlign Royal Copenhagen Blå Mega Riflet Kande 1,6 liter   /  Porcelæn  /  Koboltblå/hvid flere varianter Medlemspris* 974,96 Pris 1299,95 *Medlemspris ved køb af 2 valgfrie Royal Copenhagen varer På lager online På lager i butik"
+    },
+    {
+      "rank": 6,
+      "product_id": "100349959",
+      "card_text": "Køb 2 - Spar 25% Vælg Sammenlign Royal Copenhagen Hvid Riflet Kande 1,6 liter   /  Porcelæn  /  Hvid flere varianter Medlemspris* 539,96 Pris 719,95 *Medlemspris ved køb af 2 valgfrie Royal Copenhagen varer Kommer online - få besked På lager i butik"
+    },
+    {
+      "rank": 7,
+      "product_id": "100455248",
+      "card_text": "Vælg Sammenlign Georg Jensen Koppel Kande 1,6 liter  /  Blankpoleret rustfrit stål flere varianter Pris 1999,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 8,
+      "product_id": "100030047",
+      "card_text": "Vælg Sammenlign Melitta Glaskande 1,6 liter  /  Glas  /  Sort flere varianter Pris 184,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 9,
+      "product_id": "100441781",
+      "card_text": "Vælg Sammenlign PIP Studio Pip Chique Kande 1,6 liter  /  Glas  /  Pink flere varianter + 1 Pris 319,95 På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 10,
+      "product_id": "100441780",
+      "card_text": "Vælg Sammenlign PIP Studio Pip Chique Kande 1,6 liter  /  Glas  /  Green flere varianter + 1 Pris 319,95 På lager online Kan leveres til butik"
+    }
+  ],
+  "kande 1600 ml": [
+    {
+      "rank": 1,
+      "product_id": "100403125",
+      "card_text": "Vælg Sammenlign Witt Classic Nutri Kande m. låg 600 ml  /  Plastik  /  Sort/klar Pris 129,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100463696",
+      "card_text": "Kun hos Imerco Spar 33% Vælg Sammenlign CASA Living Toscana Karafel 1800 ml  /  Glas  /  Klar JulePris 199,95 Pris 299,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100463695",
+      "card_text": "Kun hos Imerco Spar 33% Vælg Sammenlign CASA Living Daisy Karafel 1800 ml  /  Glas  /  Klar JulePris 199,95 Pris 299,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100443865",
+      "card_text": "Vælg Sammenlign Gefu T-Prep Tekande 1500 ml  /  Borosilikatglas/Rustfrit stål/plastik  /  Sølvfarvet flere varianter Pris 849,95 Fri fragt Kun få på lager online Kan leveres til butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100443866",
+      "card_text": "Vælg Sammenlign Gefu T-Prep Tekande 1500 ml  /  Borosilikatglas/Rustfrit stål/plastik  /  Sølvfarvet Pris 1099,95 Fri fragt Kun få på lager online Kan leveres til butik"
+    }
+  ],
+  "vase": [
+    {
+      "rank": 1,
+      "product_id": "100465690",
+      "card_text": "Kun hos Imerco Spar 23% Vælg Sammenlign Casa Christmas Vase H 19,5 cm  /  Stentøj JulePris 99,95 Pris 129,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100465383",
+      "card_text": "Kun hos Imerco Spar 28% Vælg Sammenlign CASA Living Vase H 19,5 cm  /  Porcelæn  /  Hvid JulePris 129,95 Pris 179,95 Kommer online - få besked På lager i butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100465402",
+      "card_text": "Kun hos Imerco Vælg Sammenlign CASA Living Vase Ø 15,5 x H 20 cm  /  Glas  /  Lysegrå flere varianter Pris 199,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100386969",
+      "card_text": "Medlemstilbud Vælg Sammenlign Knabstrup Keramik Vase H 20 cm  /  Keramik  /  Hvid flere varianter Medlemspris 269,95 Ikke medlem 399,95 På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100450238",
+      "card_text": "Kun hos Imerco Restparti Spar 50% Vælg Sammenlign CASA Living Vase H 30,5 cm  /  Glas  /  Mørkegrøn flere varianter Tilbud 149,95 Pris 299,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 6,
+      "product_id": "100422363",
+      "card_text": "Restparti Spar 64% Vælg Sammenlign Lyngby Porcelæn Vase H 20,5 cm  /  Porcelæn  /  Aqua flere varianter + 1 Tilbud 249,95 Pris 699,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 7,
+      "product_id": "100470274",
+      "card_text": "Vælg Sammenlign Lyngby Porcelæn Vase H 20,5 cm  /  Metal flere varianter Pris 599,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 8,
+      "product_id": "100386970",
+      "card_text": "Medlemstilbud Vælg Sammenlign Knabstrup Keramik Vase H 12,5 cm  /  Keramik  /  Hvid flere varianter Medlemspris 149,95 Ikke medlem 249,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 9,
+      "product_id": "100465377",
+      "card_text": "Kun hos Imerco Vælg Sammenlign CASA Living Vase H 33,5 cm  /  Glas  /  Smoke flere varianter Pris 199,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 10,
+      "product_id": "100450131",
+      "card_text": "Vælg Sammenlign RAW by Aida Vase H 23,5 cm  /  Stentøj  /  Northern Green flere varianter Pris 249,95 På lager online Kan leveres til butik"
+    }
+  ],
+  "vase højde 21 cm": [],
+  "glas sæt 6 stk": [],
+  "glas sæt 6 stk 38 cl": [],
+  "sofabord": [
+    {
+      "rank": 1,
+      "product_id": "100448350",
+      "card_text": "Kun hos Imerco SuperPris Vælg Sammenlign CASA Living Sofabord Ø 70 x H 37 cm  /  Abaca/Teaktræ SuperPris 1999,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100455704",
+      "card_text": "SuperPris Vælg Sammenlign FDB Møbler D102 Sofabord Ø 85 cm  /  Egetræ  /  Natur flere varianter SuperPris 3359,95 På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100455702",
+      "card_text": "SuperPris Vælg Sammenlign FDB Møbler D102 Sofabord Ø 55 cm  /  Egetræ  /  Natur flere varianter SuperPris 2309,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100461817",
+      "card_text": "Vælg Sammenlign CASA Living Seaford Sofabord H 40 x B 50 x L 100 cm  /  Egetræ/stål  /  Grå flere varianter + 1 Pris 699,95 På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100451197",
+      "card_text": "Vælg Sammenlign CASA Living Barossa Sofabord H 45 x B 110 x L 55 cm  /  Melamin/metal  /  Hvid flere varianter + 1 Pris 949,95 På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 6,
+      "product_id": "100478281",
+      "card_text": "Vælg Sammenlign Hübsch Skak Sofabord H 40 x B 82 x L 82 cm  /  MDF/egetræsfiner Pris 2349,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 7,
+      "product_id": "100451187",
+      "card_text": "Vælg Sammenlign CASA Living Vega Sofabord Ø 90 x H 42 cm  /  Marmor  /  Mat Latte flere varianter Pris 5469,95 På lager online"
+    },
+    {
+      "rank": 8,
+      "product_id": "100451201",
+      "card_text": "Vælg Sammenlign CASA Living Dice Sofabordssæt  /  2 stk H 40 x B 58 x L 58 cm  /  MDF/papir  /  Mørkebrun flere varianter + 1 Pris 2099,95 På lager online"
+    },
+    {
+      "rank": 9,
+      "product_id": "100434685",
+      "card_text": "Vælg Sammenlign CASA Living Barossa Sofabord H 45 x B 40 x L 40 cm  /  Metal/papir  /  Hvid flere varianter + 1 Pris 549,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 10,
+      "product_id": "100434298",
+      "card_text": "Vælg Sammenlign CASA Living Vega Rectangular Sofabord H 42 x B 140 x L 70 cm  /  Marmor  /  Latte flere varianter Pris 4799,95 På lager online"
+    }
+  ],
+  "sofabord massivt egetræ": [],
+  "stegepande": [
+    {
+      "rank": 1,
+      "product_id": "100451441",
+      "card_text": "Kun hos Imerco Spar 50% Vælg Sammenlign Cook & Baker Stegepande Ø 28 cm  /  Genanvendt aluminium  /  Plasma belægning flere varianter JulePris 249,95 Pris 499,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100354387",
+      "card_text": "Vælg Sammenlign Holm Stegepande Ø 26  /  Støbejern Pris 299,95 På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100429693",
+      "card_text": "SuperPris Vælg Sammenlign Lodge Cast Iron Stegepande Ø 26 cm  /  Støbejern  /  Sort flere varianter SuperPris 549,95 Fri fragt Kun få på lager online Kan leveres til butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100433830",
+      "card_text": "Restparti Spar 30% Vælg Sammenlign Kockums Jernverk Stegepande Ø 24 cm  /  Stål  /  Sort flere varianter Tilbud 349,95 Pris 499,95 Kun få på lager online Kan leveres til butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100429691",
+      "card_text": "Vælg Sammenlign Lodge Cast Iron Stegepande Ø 16,5 cm  /  Støbejern  /  Sort flere varianter Pris 279,95 På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 6,
+      "product_id": "100429694",
+      "card_text": "Vælg Sammenlign Lodge Cast Iron Stegepande Ø 30 cm  /  Støbejern  /  Sort flere varianter Pris 799,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 7,
+      "product_id": "100386485",
+      "card_text": "Medlemstilbud Vælg Sammenlign Skeppshult Stegepande Ø 28 cm  /  Støbejern/valnød flere varianter Medlemspris 999,95 Ikke medlem 1499,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 8,
+      "product_id": "100451440",
+      "card_text": "Kun hos Imerco Spar 56% Vælg Sammenlign Cook & Baker Stegepande Ø 24 cm  /  Genanvendt aluminium  /  Plasma belægning flere varianter JulePris 199,95 Pris 449,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 9,
+      "product_id": "100447502",
+      "card_text": "Vælg Sammenlign Victoria Stegepande Ø 12 cm  /  Støbejern  /  Sort Pris 149,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 10,
+      "product_id": "100451309",
+      "card_text": "Vælg Sammenlign Orrefors Jernverk Stegepande Ø 27 cm  /  Støbejern/akacietræ  /  Sort flere varianter + 1 Pris 599,95 Fri fragt På lager online Kan leveres til butik"
+    }
+  ],
+  "stegepande induktion": [
+    {
+      "rank": 1,
+      "product_id": "100467488",
+      "card_text": "Restparti Medlemstilbud Vælg Sammenlign Scanpan Classic Induction Stegepande Ø 28 cm  /  Stratanium LEAP-belægning  /  Sort Medlemspris 399,95 Ikke medlem 999,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100439699",
+      "card_text": "Spar 63% Vælg Sammenlign Eva Trio Stainless Steel Stegepande Ø 28 cm  /  Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning flere varianter JulePris 299,95 Pris 799,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100468230",
+      "card_text": "Medlemstilbud Vælg Sammenlign Eva Trio Stainless Steel Honeycomb Stegepandesæt  /  2 stk. Ø 24/28 cm  /  Genanvendt rustfrit stål Medlemspris 499,95 Ikke medlem 1499,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100439700",
+      "card_text": "Spar 67% Vælg Sammenlign Eva Trio Stainless Steel Stegepande Ø 20 cm  /  Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning flere varianter JulePris 199,95 Pris 599,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100453812",
+      "card_text": "Spar 63% Vælg Sammenlign Eva Trio Multi Mosaic Stegepandesæt  /  2 dele Ø 24/28 cm  /  Genanvendt aluminium/rustfrit stål  /  Blank stål flere varianter JulePris 699,95 Pris 1899,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 6,
+      "product_id": "100442546",
+      "card_text": "Medlemstilbud Vælg Sammenlign Eva Trio Stainless Steel Stegepande Ø 24 cm  /  Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning flere varianter Medlemspris 279,95 Ikke medlem 699,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 7,
+      "product_id": "100414744",
+      "card_text": "Medlemstilbud Vælg Sammenlign Scanpan Fusion 5 Stegepande Ø 28 cm  /  Stål flere varianter Medlemspris 499,95 Ikke medlem 969,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 8,
+      "product_id": "100468229",
+      "card_text": "Spar 50% Vælg Sammenlign Eva Trio Multi 5-ply Stegepande Ø 28 cm  /  Genanvendt rustfrit stål flere varianter JulePris 499,95 Pris 999,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 9,
+      "product_id": "100467757",
+      "card_text": "Spar 60% Vælg Sammenlign Tefal Emotion Plus Stegepande Ø 28 cm  /  Rustfrit stål flere varianter JulePris 249,95 Pris 629,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 10,
+      "product_id": "100443063",
+      "card_text": "SuperPris Vælg Sammenlign Jamie Oliver by Tefal Cook Smart Stegepande Ø 28 cm  /  Rustfrit stål  /  Uden belægning flere varianter SuperPris 299,95 På lager online På lager i butik"
+    }
+  ],
+  "stegepande rustfrit stål": [
+    {
+      "rank": 1,
+      "product_id": "100439699",
+      "card_text": "Spar 63% Vælg Sammenlign Eva Trio Stainless Steel Stegepande Ø 28 cm  /  Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning flere varianter JulePris 299,95 Pris 799,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100468230",
+      "card_text": "Medlemstilbud Vælg Sammenlign Eva Trio Stainless Steel Honeycomb Stegepandesæt  /  2 stk. Ø 24/28 cm  /  Genanvendt rustfrit stål Medlemspris 499,95 Ikke medlem 1499,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100456332",
+      "card_text": "SuperPris Vælg Sammenlign Eva Trio Stainless Steel Stegepande Ø 28 cm  /  Aluminium/rustfrit stål flere varianter SuperPris 299,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100439700",
+      "card_text": "Spar 67% Vælg Sammenlign Eva Trio Stainless Steel Stegepande Ø 20 cm  /  Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning flere varianter JulePris 199,95 Pris 599,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100453812",
+      "card_text": "Spar 63% Vælg Sammenlign Eva Trio Multi Mosaic Stegepandesæt  /  2 dele Ø 24/28 cm  /  Genanvendt aluminium/rustfrit stål  /  Blank stål flere varianter JulePris 699,95 Pris 1899,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 6,
+      "product_id": "100442546",
+      "card_text": "Medlemstilbud Vælg Sammenlign Eva Trio Stainless Steel Stegepande Ø 24 cm  /  Genanvendt rustfrit stål/aluminium  /  Keramisk Slip-Let® belægning flere varianter Medlemspris 279,95 Ikke medlem 699,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 7,
+      "product_id": "100455457",
+      "card_text": "Restparti Spar 57% Vælg Sammenlign Scanpan CS+ Rec. Stegepande Ø 26 cm  /  Genanvendt rustfrit stål  /  Non-stick belægning flere varianter Tilbud 499,95 Pris 1149,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 8,
+      "product_id": "100456331",
+      "card_text": "SuperPris Vælg Sammenlign Eva Trio Stainless Steel Stegepande Ø 24 cm  /  Aluminium/rustfrit stål flere varianter SuperPris 249,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 9,
+      "product_id": "100466776",
+      "card_text": "Medlemstilbud Vælg Sammenlign Eva Trio Multi Mosaic Stegepandesæt  /  2 dele Ø 24/28 cm  /  Genanvendt rustfrit stål/aluminium  /  Mat stål Medlemspris 699,95 Ikke medlem 1899,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 10,
+      "product_id": "100456330",
+      "card_text": "SuperPris Vælg Sammenlign Eva Trio Stainless Steel Stegepande Ø 20 cm  /  Aluminium/rustfrit stål flere varianter SuperPris 199,95 På lager online På lager i butik"
+    }
+  ],
+  "stegepande rustfrit stål uden belægning": [
+    {
+      "rank": 1,
+      "product_id": "100443063",
+      "card_text": "SuperPris Vælg Sammenlign Jamie Oliver by Tefal Cook Smart Stegepande Ø 28 cm  /  Rustfrit stål  /  Uden belægning flere varianter SuperPris 299,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100443062",
+      "card_text": "SuperPris Vælg Sammenlign Jamie Oliver by Tefal Cook Smart Stegepande Ø 24 cm  /  Rustfrit stål  /  Uden belægning flere varianter SuperPris 249,95 På lager online På lager i butik"
+    }
+  ],
+  "kande": [
+    {
+      "rank": 1,
+      "product_id": "100463435",
+      "card_text": "Kun hos Imerco Vælg Sammenlign CASA Living Kande 1,8 liter  /  Borosilikatglas/stål  /  Klar Pris 99,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100451351",
+      "card_text": "Vælg Sammenlign Smash Kande 2 liter  /  Låsbar flip-top-indsats  /  Klar/blå Pris 79,95 På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100420539",
+      "card_text": "Kun hos Imerco Restparti Spar 30% Vælg Sammenlign Timm Vladimir Kitchen Kande 2 liter  /  Stentøj  /  Sort Tilbud 349,95 Pris 499,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100446498",
+      "card_text": "Kun hos Imerco Restparti Spar 50% Vælg Sammenlign CASA Living Kande H 16 cm  /  Dolomit  /  Peach Tilbud 99,95 Pris 199,95 Udgået online På lager i butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100408286",
+      "card_text": "Spar 18% Vælg Sammenlign Eva Trio Legio Nova Kande 70 cl  /  Porcelæn  /  Hvid flere varianter JulePris 229,95 Pris 279,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 6,
+      "product_id": "100469257",
+      "card_text": "Spar 30% Vælg Sammenlign Georg Jensen Bernadotte Saucekande 330 ml  /  Spejlpoleret rustfrit stål flere varianter JulePris 699,95 Pris 999,95 Fri fragt På lager online På lager i butik"
+    },
+    {
+      "rank": 7,
+      "product_id": "100455071",
+      "card_text": "Spar 18% Vælg Sammenlign Kähler Hammershøi Jul Saucekande 66 cl  /  Porcelæn  /  Hvid JulePris 329,95 Pris 399,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 8,
+      "product_id": "100449039",
+      "card_text": "SuperPris Vælg Sammenlign Eva Trio Legio Nova Kande m. hank 1 liter  /  Porcelæn  /  Hvid flere varianter SuperPris 230,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 9,
+      "product_id": "100408584",
+      "card_text": "SuperPris Vælg Sammenlign Sistema Klip It Plus Kande 2 liter  /  Plastik  /  Klar SuperPris 94,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 10,
+      "product_id": "100420992",
+      "card_text": "Restparti Spar 66% Vælg Sammenlign Lyngby Glas Zero Kandesæt  /  5 dele 1,1 liter  /  Krystalglas  /  Klar Tilbud 199,95 Pris 579,95 På lager online På lager i butik"
+    }
+  ],
+  "kande porcelæn": [
+    {
+      "rank": 1,
+      "product_id": "100393453",
+      "card_text": "SuperPris Vælg Sammenlign Lyngby Porcelæn Rhombe Saucekande 67 cl  /  Porcelæn  /  Hvid flere varianter SuperPris 399,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100422295",
+      "card_text": "SuperPris Vælg Sammenlign Lyngby Porcelæn Rhombe Color Saucekande 67 cl  /  Keramik  /  Blå flere varianter SuperPris 599,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100404730",
+      "card_text": "SuperPris Vælg Sammenlign Lyngby Porcelæn Tura Kandevase H 27,5 cm  /  Porcelæn  /  Hvid SuperPris 1019,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100408286",
+      "card_text": "Spar 18% Vælg Sammenlign Eva Trio Legio Nova Kande 70 cl  /  Porcelæn  /  Hvid flere varianter JulePris 229,95 Pris 279,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100455071",
+      "card_text": "Spar 18% Vælg Sammenlign Kähler Hammershøi Jul Saucekande 66 cl  /  Porcelæn  /  Hvid JulePris 329,95 Pris 399,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 6,
+      "product_id": "100449039",
+      "card_text": "SuperPris Vælg Sammenlign Eva Trio Legio Nova Kande m. hank 1 liter  /  Porcelæn  /  Hvid flere varianter SuperPris 230,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 7,
+      "product_id": "100396731",
+      "card_text": "SuperPris Vælg Sammenlign Eva Trio Legio Nova Kande 1,6 liter  /  Porcelæn  /  Hvid flere varianter SuperPris 302,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 8,
+      "product_id": "100448547",
+      "card_text": "Medlemstilbud Vælg Sammenlign Georg Jensen Bernadotte Kande 1,2 liter  /  Porcelæn  /  Hvid Medlemspris 349,95 Ikke medlem 699,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 9,
+      "product_id": "100449038",
+      "card_text": "Vælg Sammenlign Eva Trio Legio Nova Kande m. hank 33 cl  /  Porcelæn  /  Hvid flere varianter Pris 199,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 10,
+      "product_id": "100078141",
+      "card_text": "Køb 2 - Spar 25% Vælg Sammenlign Royal Copenhagen Blå Mega Riflet Kande 38 cl  /  Porcelæn  /  Koboltblå/hvid flere varianter Medlemspris* 509,96 Pris 679,95 *Medlemspris ved køb af 2 valgfrie Royal Copenhagen varer På lager online På lager i butik"
+    }
+  ],
+  "kande porcelæn 1,6 L": [
+    {
+      "rank": 1,
+      "product_id": "100396731",
+      "card_text": "SuperPris Vælg Sammenlign Eva Trio Legio Nova Kande 1,6 liter  /  Porcelæn  /  Hvid flere varianter SuperPris 302,95 På lager online På lager i butik"
+    },
+    {
+      "rank": 2,
+      "product_id": "100357957",
+      "card_text": "Køb 2 - Spar 25% Vælg Sammenlign Royal Copenhagen Blå Mega Riflet Kande 1,6 liter   /  Porcelæn  /  Koboltblå/hvid flere varianter Medlemspris* 974,96 Pris 1299,95 *Medlemspris ved køb af 2 valgfrie Royal Copenhagen varer På lager online På lager i butik"
+    },
+    {
+      "rank": 3,
+      "product_id": "100349959",
+      "card_text": "Køb 2 - Spar 25% Vælg Sammenlign Royal Copenhagen Hvid Riflet Kande 1,6 liter   /  Porcelæn  /  Hvid flere varianter Medlemspris* 539,96 Pris 719,95 *Medlemspris ved køb af 2 valgfrie Royal Copenhagen varer Kommer online - få besked På lager i butik"
+    },
+    {
+      "rank": 4,
+      "product_id": "100441591",
+      "card_text": "Vælg Sammenlign PIP Studio Berry Blues Tekande 1,6 Liter  /  Porcelæn  /  Blå Pris 719,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 5,
+      "product_id": "100441643",
+      "card_text": "Vælg Sammenlign PIP Studio Flower Festival Tekande 1,6 liter  /  Porcelæn  /  Pink flere varianter Pris 719,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 6,
+      "product_id": "100400915",
+      "card_text": "Vælg Sammenlign PIP Studio Blushing Bird Tekande 1,6 liter  /  Porcelæn  /  Blå flere varianter + 1 Pris 719,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 7,
+      "product_id": "100400914",
+      "card_text": "Vælg Sammenlign PIP Studio Blushing Bird Tekande 1,6 liter  /  Porcelæn  /  Hvid flere varianter + 1 Pris 719,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 8,
+      "product_id": "100416826",
+      "card_text": "Vælg Sammenlign PIP Studio Blushing Bird Tekande 1,6 liter  /  Porcelæn  /  Khaki flere varianter + 1 Pris 719,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 9,
+      "product_id": "100441653",
+      "card_text": "Vælg Sammenlign PIP Studio Lily & Lotus Tekande 1,6 liter  /  Porcelæn  /  Lilac flere varianter Pris 629,95 Fri fragt På lager online Kan leveres til butik"
+    },
+    {
+      "rank": 10,
+      "product_id": "100466313",
+      "card_text": "Vælg Sammenlign PIP Studio Lily & Lotus Tekande 1,6 liter  /  Porcelæn  /  Gul flere varianter Pris 629,95 Fri fragt På lager online Kan leveres til butik"
+    }
+  ],
+  "stegepande under 500 kr": []
+}

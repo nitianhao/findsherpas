@@ -1,0 +1,282 @@
+{
+  "proposed": [
+    {
+      "mode": "negation",
+      "positive_ids": [
+        "100347058"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:0",
+        "0:1"
+      ],
+      "rationale": "Cup 100347058 explicitly has handle=none, satisfying the negation mode for a cup without a handle."
+    },
+    {
+      "mode": "either_or",
+      "positive_ids": [
+        "100353730",
+        "100408047"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:7",
+        "0:8",
+        "0:14",
+        "0:15"
+      ],
+      "rationale": "Bowl 100353730 is porcelain and bowl 100408047 is glass, providing both branches of the either/or for serving bowls in glass OR porcelain."
+    },
+    {
+      "mode": "unit_conversion",
+      "positive_ids": [
+        "100437750"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:21",
+        "0:23"
+      ],
+      "rationale": "Jug 100437750 has capacity expressed in L (1,5 L = 1500 ml), enabling unit conversion between L, cl, and ml."
+    },
+    {
+      "mode": "dimension",
+      "positive_ids": [
+        "100465402"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:27",
+        "0:29",
+        "0:30"
+      ],
+      "rationale": "Vase 100465402 has explicit height (200 mm) and distinct diameter (155 mm), satisfying the dimension mode with two distinct axes."
+    },
+    {
+      "mode": "pack_capacity",
+      "positive_ids": [
+        "100404522"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:0",
+        "1:1",
+        "1:2",
+        "1:3"
+      ],
+      "rationale": "Drinking glass 100404522 has explicit pack count of 6 and capacity of 25 cl per glass, satisfying pack_capacity mode."
+    },
+    {
+      "mode": "solid_material",
+      "positive_ids": [
+        "100455702"
+      ],
+      "contrast_ids": [
+        "100478281"
+      ],
+      "fact_ids": [
+        "1:11",
+        "1:12",
+        "1:16",
+        "1:17"
+      ],
+      "rationale": "Table 100455702 is explicitly solid_oak and table 100478281 is explicitly oak_veneer, providing the required solid-oak positive and oak-veneer contrast."
+    },
+    {
+      "mode": "compatibility",
+      "positive_ids": [
+        "100456331"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:21",
+        "1:24"
+      ],
+      "rationale": "Pan 100456331 is explicitly induction-compatible (induction=true), satisfying the compatibility mode."
+    },
+    {
+      "mode": "combined_exclusions",
+      "positive_ids": [
+        "100468229"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "2:7",
+        "2:8",
+        "2:9",
+        "2:10"
+      ],
+      "rationale": "Pan 100468229 is explicitly stainless_steel_aluminium AND explicitly has coating=none, satisfying both exclusion criteria for combined_exclusions."
+    },
+    {
+      "mode": "specificity",
+      "positive_ids": [
+        "100437750"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:21",
+        "0:23",
+        "0:22"
+      ],
+      "rationale": "Jug 100437750 has both explicit capacity (1500 ml) and explicit material (abs_plastic), enabling specificity mode to add one correct attribute at a time."
+    },
+    {
+      "mode": "conditional_price",
+      "positive_ids": [
+        "100414744"
+      ],
+      "contrast_ids": [
+        "100456331"
+      ],
+      "fact_ids": [
+        "2:0",
+        "2:4",
+        "2:5",
+        "1:21",
+        "1:27"
+      ],
+      "rationale": "Pan 100414744 has member price 499.95 DKK (<500) but regular price 969.95 DKK (>=500), satisfying conditional_price. Pan 100456331 has public price 249.95 DKK (<500 DKK unconditionally) as the contrast."
+    }
+  ],
+  "valid": [
+    {
+      "mode": "negation",
+      "positive_ids": [
+        "100347058"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:0",
+        "0:1"
+      ],
+      "rationale": "Cup 100347058 explicitly has handle=none, satisfying the negation mode for a cup without a handle."
+    },
+    {
+      "mode": "either_or",
+      "positive_ids": [
+        "100353730",
+        "100408047"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:7",
+        "0:8",
+        "0:14",
+        "0:15"
+      ],
+      "rationale": "Bowl 100353730 is porcelain and bowl 100408047 is glass, providing both branches of the either/or for serving bowls in glass OR porcelain."
+    },
+    {
+      "mode": "unit_conversion",
+      "positive_ids": [
+        "100437750"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:21",
+        "0:23"
+      ],
+      "rationale": "Jug 100437750 has capacity expressed in L (1,5 L = 1500 ml), enabling unit conversion between L, cl, and ml."
+    },
+    {
+      "mode": "dimension",
+      "positive_ids": [
+        "100465402"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:27",
+        "0:29",
+        "0:30"
+      ],
+      "rationale": "Vase 100465402 has explicit height (200 mm) and distinct diameter (155 mm), satisfying the dimension mode with two distinct axes."
+    },
+    {
+      "mode": "pack_capacity",
+      "positive_ids": [
+        "100404522"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:0",
+        "1:1",
+        "1:2",
+        "1:3"
+      ],
+      "rationale": "Drinking glass 100404522 has explicit pack count of 6 and capacity of 25 cl per glass, satisfying pack_capacity mode."
+    },
+    {
+      "mode": "solid_material",
+      "positive_ids": [
+        "100455702"
+      ],
+      "contrast_ids": [
+        "100478281"
+      ],
+      "fact_ids": [
+        "1:11",
+        "1:12",
+        "1:16",
+        "1:17"
+      ],
+      "rationale": "Table 100455702 is explicitly solid_oak and table 100478281 is explicitly oak_veneer, providing the required solid-oak positive and oak-veneer contrast."
+    },
+    {
+      "mode": "compatibility",
+      "positive_ids": [
+        "100456331"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "1:21",
+        "1:24"
+      ],
+      "rationale": "Pan 100456331 is explicitly induction-compatible (induction=true), satisfying the compatibility mode."
+    },
+    {
+      "mode": "combined_exclusions",
+      "positive_ids": [
+        "100468229"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "2:7",
+        "2:8",
+        "2:9",
+        "2:10"
+      ],
+      "rationale": "Pan 100468229 is explicitly stainless_steel_aluminium AND explicitly has coating=none, satisfying both exclusion criteria for combined_exclusions."
+    },
+    {
+      "mode": "specificity",
+      "positive_ids": [
+        "100437750"
+      ],
+      "contrast_ids": [],
+      "fact_ids": [
+        "0:21",
+        "0:23",
+        "0:22"
+      ],
+      "rationale": "Jug 100437750 has both explicit capacity (1500 ml) and explicit material (abs_plastic), enabling specificity mode to add one correct attribute at a time."
+    },
+    {
+      "mode": "conditional_price",
+      "positive_ids": [
+        "100414744"
+      ],
+      "contrast_ids": [
+        "100456331"
+      ],
+      "fact_ids": [
+        "2:0",
+        "2:4",
+        "2:5",
+        "1:21",
+        "1:27"
+      ],
+      "rationale": "Pan 100414744 has member price 499.95 DKK (<500) but regular price 969.95 DKK (>=500), satisfying conditional_price. Pan 100456331 has public price 249.95 DKK (<500 DKK unconditionally) as the contrast."
+    }
+  ]
+}

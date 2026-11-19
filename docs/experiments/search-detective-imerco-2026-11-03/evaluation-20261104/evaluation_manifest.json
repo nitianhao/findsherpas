@@ -1,0 +1,18 @@
+{
+  "created_at": "2026-11-04T19:13:36.382929+00:00",
+  "config": {
+    "inputs": {
+      "suites": "0ff3121a1c21012560479d29162d31e76effc3ab60e6a436b2a3f1a77f01e645",
+      "outcomes": "f30371265ce20e4f0f70f687bd6182e7a8d8c31a3dced276028779a82c3238c3",
+      "anchors": "da01c8cf15cbf32ed7eb7e8c618a2fd3dc3da6cd8a9bcdb2aac99a55d3dd5133",
+      "source_facts": "130d49689b0224d06ac6f10bb1c0bdf0f201a07a7dd643193d026d2c12cc298f",
+      "product_sources": "6742c290fac072513c8d9756a42d13e399fff6394b153ed6bb8d9c3def280d17"
+    },
+    "code": "d36c52f3f2d9c1e7307b883a715a40d75e1a7d091a60d463b049aa79c0b6ae01",
+    "model": "claude-sonnet-4-6",
+    "max_calls": 50,
+    "max_usd": 5
+  },
+  "previous_manifest": "evaluation_manifest_ee6bdc8600925413c0a8f6b3b0cd7787cac0be4a72192291058a7f7efa7e4f0a.json",
+  "scope": "Explicit code revalidation; immutable source inputs and cached matching API calls."
+}

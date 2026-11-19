@@ -1,0 +1,497 @@
+{
+  "stegepande": {
+    "observed_at": "2026-11-04T20:01:01.642943+00:00",
+    "outcome": {
+      "query": "stegepande",
+      "status": "ok",
+      "results": [
+        {
+          "rank": 1,
+          "title": "Cook & Baker Stegepande",
+          "price": "249,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/cook-baker-stegepande-oe-28-cm-genanvendt-aluminium-plasma-belaegning?id=100451441",
+          "sponsored": false
+        },
+        {
+          "rank": 2,
+          "title": "Lodge Cast Iron Stegepande",
+          "price": "549,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lodge-stegepande-oe-26-cm-stoebejern-sort?id=100429693",
+          "sponsored": false
+        },
+        {
+          "rank": 3,
+          "title": "Kockums Jernverk Stegepande",
+          "price": "349,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/kockums-jernverk-stegepande-oe-24-cm-staal-sort?id=100433830",
+          "sponsored": false
+        },
+        {
+          "rank": 4,
+          "title": "Kockums Jernverk Stegepande",
+          "price": "389,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/kockums-jernverk-stegepande-oe-28-cm-staal-sort?id=100433831",
+          "sponsored": false
+        },
+        {
+          "rank": 5,
+          "title": "Lodge Cast Iron Stegepande",
+          "price": "279,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lodge-stegepande-oe-16-5-cm-stoebejern-sort?id=100429691",
+          "sponsored": false
+        },
+        {
+          "rank": 6,
+          "title": "Holm Stegepande",
+          "price": "299,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/holm-stegepande-oe-26-stoebejern?id=100354387",
+          "sponsored": false
+        },
+        {
+          "rank": 7,
+          "title": "Lodge Cast Iron Stegepande",
+          "price": "799,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lodge-stegepande-oe-30-cm-stoebejern-sort?id=100429694",
+          "sponsored": false
+        },
+        {
+          "rank": 8,
+          "title": "Cook & Baker Stegepande",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/cook-baker-stegepande-oe-24-cm-genanvendt-aluminium-plasma-belaegning?id=100451440",
+          "sponsored": false
+        },
+        {
+          "rank": 9,
+          "title": "Skeppshult Stegepande",
+          "price": "999,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/skeppshult-stegepande-oe-28-cm-stoebejern-valnoed?id=100386485",
+          "sponsored": false
+        },
+        {
+          "rank": 10,
+          "title": "Orrefors Jernverk Stegepande",
+          "price": "599,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/orrefors-jernverk-stegepande-oe-27-cm-stoebejern-akacietrae-sort?id=100451309",
+          "sponsored": false
+        }
+      ],
+      "final_url": "https://www.imerco.dk/search?query=stegepande",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 1220,
+      "strategy": "site-specific",
+      "attempts": 1,
+      "evidence": "[evidence: reports/imerco_dk/ordinary_20261104/evidence/recheck/stegepande-6a7f5509_a1.html.gz]"
+    }
+  },
+  "pande til stegning": {
+    "observed_at": "2026-11-04T20:01:04.299758+00:00",
+    "outcome": {
+      "query": "pande til stegning",
+      "status": "zero_confirmed",
+      "results": [],
+      "final_url": "https://www.imerco.dk/search?query=pande+til+stegning",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 0,
+      "strategy": "marker",
+      "attempts": 1,
+      "evidence": "page says: '0 resultater' [evidence: reports/imerco_dk/ordinary_20261104/evidence/recheck/pande-til-stegning-805a02dd_a1.html.gz]"
+    }
+  },
+  "vandglas": {
+    "observed_at": "2026-11-04T20:01:09.747685+00:00",
+    "outcome": {
+      "query": "vandglas",
+      "status": "ok",
+      "results": [
+        {
+          "rank": 1,
+          "title": "Eva Solo Facet Vandglas  /  4 stk.",
+          "price": "98,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-4-stk-43-cl-glas-klar?id=100353708",
+          "sponsored": false
+        },
+        {
+          "rank": 2,
+          "title": "Eva Solo Facet Vandglas  /  6 stk.",
+          "price": "127,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-6-stk-27-cl-glas-klar?id=100353706",
+          "sponsored": false
+        },
+        {
+          "rank": 3,
+          "title": "Lyngby Glas Melodia Vandglas  /  6 stk.",
+          "price": "249,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-glas-melodia-vandglas-6-stk-23-cl-glas-klar?id=100431241",
+          "sponsored": false
+        },
+        {
+          "rank": 4,
+          "title": "Lyngby Glas Zero Vandglas  /  6 stk.",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-glas-zero-vandglas-6-stk-42-cl-krystalglas-klar?id=100409458",
+          "sponsored": false
+        },
+        {
+          "rank": 5,
+          "title": "Eva Solo Facet Vandglas  /  4 stk.",
+          "price": "98,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-4-stk-34-cl-glas-klar?id=100353707",
+          "sponsored": false
+        },
+        {
+          "rank": 6,
+          "title": "Holmegaard Future Vandglas  /  6 stk.",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/holmegaard-future-vandglas-6-stk-25-cl-glas-klar?id=100109876",
+          "sponsored": false
+        },
+        {
+          "rank": 7,
+          "title": "Holmegaard Future Vandglas  /  4 stk.",
+          "price": "169,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/holmegaard-future-vandglas-4-stk-37-cl-glas-klar?id=100109877",
+          "sponsored": false
+        },
+        {
+          "rank": 8,
+          "title": "CASA Living Daisy Vandglas  /  4 stk.",
+          "price": "149,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/daisy-vandglas-casa-living-4-stk?id=100425564",
+          "sponsored": false
+        },
+        {
+          "rank": 9,
+          "title": "Kähler Hammershøi Vandglas  /  4 stk. -",
+          "price": "169,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/kahler-hammershoei-vandglas-4-stk-37-cl-glas-klar?id=100416214",
+          "sponsored": false
+        },
+        {
+          "rank": 10,
+          "title": "Eva Trio Legio Nova Vandglas  /  6 stk.",
+          "price": "399,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-trio-legio-nova-vandglas-6-stk-40-cl-krystalglas-klar?id=100430598",
+          "sponsored": false
+        }
+      ],
+      "final_url": "https://www.imerco.dk/search?query=vandglas",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 897,
+      "strategy": "site-specific",
+      "attempts": 1,
+      "evidence": "[evidence: reports/imerco_dk/ordinary_20261104/evidence/recheck/vandglas-27862c25_a1.html.gz]"
+    }
+  },
+  "drikkeglas": {
+    "observed_at": "2026-11-04T20:01:14.394715+00:00",
+    "outcome": {
+      "query": "drikkeglas",
+      "status": "ok",
+      "results": [
+        {
+          "rank": 1,
+          "title": "Eva Solo Facet Vandglas  /  4 stk.",
+          "price": "98,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-4-stk-43-cl-glas-klar?id=100353708",
+          "sponsored": false
+        },
+        {
+          "rank": 2,
+          "title": "Eva Solo Facet Vandglas  /  6 stk.",
+          "price": "127,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-6-stk-27-cl-glas-klar?id=100353706",
+          "sponsored": false
+        },
+        {
+          "rank": 3,
+          "title": "Lyngby Glas Melodia Vandglas  /  6 stk.",
+          "price": "249,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-glas-melodia-vandglas-6-stk-23-cl-glas-klar?id=100431241",
+          "sponsored": false
+        },
+        {
+          "rank": 4,
+          "title": "Lyngby Glas Zero Vandglas  /  6 stk.",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-glas-zero-vandglas-6-stk-42-cl-krystalglas-klar?id=100409458",
+          "sponsored": false
+        },
+        {
+          "rank": 5,
+          "title": "Eva Solo Facet Vandglas  /  4 stk.",
+          "price": "98,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-solo-facet-vandglas-4-stk-34-cl-glas-klar?id=100353707",
+          "sponsored": false
+        },
+        {
+          "rank": 6,
+          "title": "Holmegaard Future Vandglas  /  6 stk.",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/holmegaard-future-vandglas-6-stk-25-cl-glas-klar?id=100109876",
+          "sponsored": false
+        },
+        {
+          "rank": 7,
+          "title": "Holmegaard Future Vandglas  /  4 stk.",
+          "price": "169,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/holmegaard-future-vandglas-4-stk-37-cl-glas-klar?id=100109877",
+          "sponsored": false
+        },
+        {
+          "rank": 8,
+          "title": "CASA Living Daisy Vandglas  /  4 stk.",
+          "price": "149,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/daisy-vandglas-casa-living-4-stk?id=100425564",
+          "sponsored": false
+        },
+        {
+          "rank": 9,
+          "title": "Kähler Hammershøi Vandglas  /  4 stk. -",
+          "price": "169,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/kahler-hammershoei-vandglas-4-stk-37-cl-glas-klar?id=100416214",
+          "sponsored": false
+        },
+        {
+          "rank": 10,
+          "title": "Eva Trio Legio Nova Vandglas  /  6 stk.",
+          "price": "399,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/eva-trio-legio-nova-vandglas-6-stk-40-cl-krystalglas-klar?id=100430598",
+          "sponsored": false
+        }
+      ],
+      "final_url": "https://www.imerco.dk/search?query=drikkeglas",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 868,
+      "strategy": "site-specific",
+      "attempts": 1,
+      "evidence": "[evidence: reports/imerco_dk/ordinary_20261104/evidence/recheck/drikkeglas-157181ee_a1.html.gz]"
+    }
+  },
+  "vase": {
+    "observed_at": "2026-11-04T20:01:20.087807+00:00",
+    "outcome": {
+      "query": "vase",
+      "status": "ok",
+      "results": [
+        {
+          "rank": 1,
+          "title": "CASA Living Vase",
+          "price": "129,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/casa-living-vase-h-19-5-cm-porcelaen-hvid?id=100465383",
+          "sponsored": false
+        },
+        {
+          "rank": 2,
+          "title": "Knabstrup Keramik Vase",
+          "price": "269,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/knabstrup-keramik-vase-h-20-cm-keramik-hvid?id=100386969",
+          "sponsored": false
+        },
+        {
+          "rank": 3,
+          "title": "Casa Christmas Vase",
+          "price": "99,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/casa-christmas-vase-h-19-5-cm-stentoej?id=100465690",
+          "sponsored": false
+        },
+        {
+          "rank": 4,
+          "title": "CASA Living Vase",
+          "price": "199,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/casa-living-vase-oe-15-5-x-h-20-cm-glas-lysegraa?id=100465402",
+          "sponsored": false
+        },
+        {
+          "rank": 5,
+          "title": "CASA Living Vase",
+          "price": "149,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/casa-living-vase-h-30-5-cm-glas-moerkegroen?id=100450238",
+          "sponsored": false
+        },
+        {
+          "rank": 6,
+          "title": "Lyngby Porcelæn Vase",
+          "price": "249,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-porcelaen-vase-h-20-5-cm-porcelaen-aqua?id=100422363",
+          "sponsored": false
+        },
+        {
+          "rank": 7,
+          "title": "Lyngby Porcelæn Vase",
+          "price": "248,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-porcelaen-vase-h-10-5-cm-porcelaen-hvid?id=100369095",
+          "sponsored": false
+        },
+        {
+          "rank": 8,
+          "title": "Knabstrup Keramik Vase",
+          "price": "149,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/knabstrup-keramik-vase-h-12-5-cm-keramik-hvid?id=100386970",
+          "sponsored": false
+        },
+        {
+          "rank": 9,
+          "title": "Lyngby Porcelæn Vase",
+          "price": "599,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/lyngby-porcelaen-vase-h-20-5-cm-metal?id=100470274",
+          "sponsored": false
+        },
+        {
+          "rank": 10,
+          "title": "RAW by Aida Vase",
+          "price": "249,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/raw-by-aida-vase-h-23-5-cm-stentoej-northern-green?id=100450131",
+          "sponsored": false
+        }
+      ],
+      "final_url": "https://www.imerco.dk/search?query=vase",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 3780,
+      "strategy": "site-specific",
+      "attempts": 1,
+      "evidence": "[evidence: reports/imerco_dk/ordinary_20261104/evidence/recheck/vase-28e4e605_a1.html.gz]"
+    }
+  },
+  "kaffekop": {
+    "observed_at": "2026-11-04T20:01:25.881300+00:00",
+    "outcome": {
+      "query": "kaffekop",
+      "status": "ok",
+      "results": [
+        {
+          "rank": 1,
+          "title": "RAW by Aida Kaffekop",
+          "price": "64,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/raw-by-aida-kaffekop-20-cl-stentoej-ler-beige?id=100448774",
+          "sponsored": false
+        },
+        {
+          "rank": 2,
+          "title": "RAW by Aida Kaffekop",
+          "price": "64,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/raw-by-aida-kaffekop-20-cl-stentoej-northern-green?id=100418575",
+          "sponsored": false
+        },
+        {
+          "rank": 3,
+          "title": "RAW by Aida Kaffekop",
+          "price": "299,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/raw-by-aida-kaffekop-20-cl-stentoej-nordic-nude?id=100446697",
+          "sponsored": false
+        },
+        {
+          "rank": 4,
+          "title": "RAW by Aida Kaffekop",
+          "price": "64,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/raw-by-aida-kaffekop-20-cl-stentoej-titanium-black?id=100418556",
+          "sponsored": false
+        },
+        {
+          "rank": 5,
+          "title": "RAW by Aida Kaffekop",
+          "price": "129,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/raw-by-aida-kaffekop-20-cl-stentoej-arctic-white?id=100418563",
+          "sponsored": false
+        },
+        {
+          "rank": 6,
+          "title": "RAW by Aida Kaffekop",
+          "price": "64,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/raw-by-aida-kaffekop-20-cl-stentoej-metallic-brown?id=100418570",
+          "sponsored": false
+        },
+        {
+          "rank": 7,
+          "title": "RAW by Aida Kaffekop",
+          "price": "299,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/raw-by-aida-kaffekop-20-cl-stentoej-forrest-brown?id=100418577",
+          "sponsored": false
+        },
+        {
+          "rank": 8,
+          "title": "Iittala Kaffekop",
+          "price": "99,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/iittala-kaffekop-33-cl-sort?id=100185140",
+          "sponsored": false
+        },
+        {
+          "rank": 9,
+          "title": "Pillivuyt Plissé Kaffekop",
+          "price": "149,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/pillivuyt-plisse-kaffekop-18-cl-porcelaen-hvid?id=100009176",
+          "sponsored": false
+        },
+        {
+          "rank": 10,
+          "title": "Urban Nature Culture Good Morning Kaffekop",
+          "price": "79,95 kr",
+          "snippet": null,
+          "url": "https://www.imerco.dk/urban-nature-culture-good-morning-kaffekop-17-cl-stentoej-lyseroed?id=100454805",
+          "sponsored": false
+        }
+      ],
+      "final_url": "https://www.imerco.dk/search?query=kaffekop",
+      "http_status": 200,
+      "page_title": "Search",
+      "total_hits": 191,
+      "strategy": "site-specific",
+      "attempts": 1,
+      "evidence": "[evidence: reports/imerco_dk/ordinary_20261104/evidence/recheck/kaffekop-6d2394a7_a1.html.gz]"
+    }
+  }
+}

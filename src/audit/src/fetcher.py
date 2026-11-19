@@ -728,7 +728,16 @@ def page_state(html_or_soup, url: str = "", visible_text: Optional[str] = None, 
         return re.sub(re.escape(q), " ", text, flags=re.I) if len(q) >= 2 else text
 
     hits, strong, max_strong = None, False, 0
-    if profile and profile.hits_regex:
+    # Imerco renders many facet subtotals before the actual result count.
+    # The scoped results header is authoritative; "Alle tilbud ... 3 varer" is not.
+    if (urlparse(url).hostname or "").lower() in {"imerco.dk", "www.imerco.dk"}:
+        header = soup.select_one('[class*="HitsHeader_count"]')
+        if header is not None and not _is_hidden_tag(header):
+            m = re.fullmatch(r"\s*([\d.,\s]+)\s+(?:varer|resultater)\s*", header.get_text(" ", strip=True), re.I)
+            if m:
+                hits = _parse_count(m.group(1))
+                strong, max_strong = hits is not None, hits or 0
+    if hits is None and profile and profile.hits_regex:
         m = re.search(profile.hits_regex, _blank_query(haystack), re.I)
         if m:
             hits, strong = _parse_count(m.group(1)), True

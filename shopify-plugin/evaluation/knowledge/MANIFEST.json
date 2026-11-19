@@ -1,0 +1,155 @@
+{
+  "snapshot_date": "2026-10-19",
+  "files": [
+    {
+      "copy": "playbooks/CATEGORIES_PLAYBOOK.md",
+      "source": "src/audit/docs/CATEGORIES_PLAYBOOK.md",
+      "sha256": "69603a900b1d5256913030b09364de10ebd52e52209266ca317a349b60663c48"
+    },
+    {
+      "copy": "playbooks/DISCOVERY_PLAYBOOK.md",
+      "source": "src/audit/docs/DISCOVERY_PLAYBOOK.md",
+      "sha256": "e9750df04d4fdd6740898d973faf8e2a729ce69937105934cbdcd2dae78f94e5"
+    },
+    {
+      "copy": "playbooks/FETCHER_PLAYBOOK.md",
+      "source": "src/audit/docs/FETCHER_PLAYBOOK.md",
+      "sha256": "3da85509e3990cbba6f1ff22f23c26c201c3cef952db6729fd698608e9f6dec7"
+    },
+    {
+      "copy": "playbooks/JUDGE_PLAYBOOK.md",
+      "source": "src/audit/docs/JUDGE_PLAYBOOK.md",
+      "sha256": "24521aea47f9ab2f48f3c6b558098ad6d8fbed38a9a14fe326ef76f033c6e080"
+    },
+    {
+      "copy": "playbooks/QUERIES_PLAYBOOK.md",
+      "source": "src/audit/docs/QUERIES_PLAYBOOK.md",
+      "sha256": "6d85d465fb2edeeb9f19118633785d3106d0b2ecc57de6711cec111d3d091b4d"
+    },
+    {
+      "copy": "playbooks/SCORING_PLAYBOOK.md",
+      "source": "src/audit/docs/SCORING_PLAYBOOK.md",
+      "sha256": "7daf4659986e7142c8853eb6aed7b71438eda130fa85069d6b7e86d288f3e5f8"
+    },
+    {
+      "copy": "calibration/de.jsonl",
+      "source": "src/audit/kb/de.jsonl",
+      "sha256": "a686a6c43cf52c9ca2440e8d244469820f80fd3b5a38e289ba765271b266b7ec"
+    },
+    {
+      "copy": "calibration/swedish.jsonl",
+      "source": "src/audit/kb/swedish.jsonl",
+      "sha256": "ea3fa075fef64e1fb841f1b5a58d1243cfc86a61422051fee4802955aadb6d42"
+    },
+    {
+      "copy": "archive/raw/ahlens_se_20260616_174603_data.json",
+      "source": "src/audit/reports/ahlens_se/ahlens_se_20260616_174603_data.json",
+      "sha256": "af2d507e816363247f59611ac8269c880949606dbae7c4703e30c202a5e1a095"
+    },
+    {
+      "copy": "archive/raw/avoca_com_20260619_102158_data.json",
+      "source": "src/audit/reports/avoca_com/avoca_com_20260619_102158_data.json",
+      "sha256": "f7db1ae0ae475ccc76a7a71935d95af790f03748fc8380407836caf6615d23d7"
+    },
+    {
+      "copy": "archive/raw/baechli_bergsport_ch_20260626_123909_data.json",
+      "source": "src/audit/reports/baechli_bergsport_ch/baechli_bergsport_ch_20260626_123909_data.json",
+      "sha256": "f0a0ee3cc4a310b9c889836626e90d1411a9e38a4ee62fb1ea9b5a8e2d0d1608"
+    },
+    {
+      "copy": "archive/raw/bergzeit_de_20260626_181842_data.json",
+      "source": "src/audit/reports/bergzeit_de/bergzeit_de_20260626_181842_data.json",
+      "sha256": "981899052ae9fa7fc71d27ff937fdfc0309ff4f445927ef99e1725e67d285589"
+    },
+    {
+      "copy": "archive/raw/cotswoldoutdoor_com_20260630_211423_data.json",
+      "source": "src/audit/reports/cotswoldoutdoor_com/cotswoldoutdoor_com_20260630_211423_data.json",
+      "sha256": "3606068d222a77801007ed161265aea8304701e386b7ed9e5be3a439423a7d28"
+    },
+    {
+      "copy": "archive/raw/huckberry_com_20260622_154614_data.json",
+      "source": "src/audit/reports/huckberry_com/huckberry_com_20260622_154614_data.json",
+      "sha256": "7f334ae047cf00fbfbbd6e41d6f02360beda33b643af97f2cc6baa91c5a6cf38"
+    },
+    {
+      "copy": "archive/raw/imerco_dk_20260626_103007_data.json",
+      "source": "src/audit/reports/imerco_dk/imerco_dk_20260626_103007_data.json",
+      "sha256": "a30041c78542af3431a760527390f72cf3f0333a8f286cb7be3f95c80cded311"
+    },
+    {
+      "copy": "archive/raw/manufactum_de_20260623_122233_data.json",
+      "source": "src/audit/reports/manufactum_de/manufactum_de_20260623_122233_data.json",
+      "sha256": "6ef19276254ec118502fb71849bb7ec515e0520a9ac5f1646742bc0317b043d7"
+    },
+    {
+      "copy": "archive/html/ahlens-7678.html",
+      "source": "public/report/ahlens-7678/index.html",
+      "sha256": "65cd4f5c5ab82a7d72ba0a6bdf2705c700a2ecd8af635df09efd1d3c9b3d15db"
+    },
+    {
+      "copy": "archive/html/avoca-8338.html",
+      "source": "public/report/avoca-8338/index.html",
+      "sha256": "42df4ea8577239a3961e51adcb117a82b65c5ac43f8466f6bb5be1268445e944"
+    },
+    {
+      "copy": "archive/html/baechli_bergsport-6248.html",
+      "source": "public/report/baechli_bergsport-6248/index.html",
+      "sha256": "0e683b633bdec43963f61684f5e5d01c0c0845bd9ba2d4b721f3a9c59ddd2f9b"
+    },
+    {
+      "copy": "archive/html/bergzeit-3913.html",
+      "source": "public/report/bergzeit-3913/index.html",
+      "sha256": "e578c45ec1739c511a7cbfd664aa6b14cc72cdc544299239955cdf4033834e7d"
+    },
+    {
+      "copy": "archive/html/cotswoldoutdoor-7526.html",
+      "source": "public/report/cotswoldoutdoor-7526/index.html",
+      "sha256": "b5cdb0749f4e9dab2bd62967d086fcea066b99eaa62ab0aeb2b2bc3e37863e3d"
+    },
+    {
+      "copy": "archive/html/huckberry-8361.html",
+      "source": "public/report/huckberry-8361/index.html",
+      "sha256": "652811ae9bbe8e39dc6a064881ee64cc0dcb982a357dfcc5adef87adff421501"
+    },
+    {
+      "copy": "archive/html/imerco-2362.html",
+      "source": "public/report/imerco-2362/index.html",
+      "sha256": "f2e2dcdeb969f4352e5656d9b47c2c6422ec519de0856680ee3bb22aac0f095b"
+    },
+    {
+      "copy": "archive/html/lyko-6587.html",
+      "source": "public/report/lyko-6587/index.html",
+      "sha256": "ddf438cdd59cb63426a48fe51376d933992790afbc4cc6806de5a7ad067cc715"
+    },
+    {
+      "copy": "archive/html/manufactum-9825.html",
+      "source": "public/report/manufactum-9825/index.html",
+      "sha256": "911be453811b604fedfc74844b12ac60ec68e6ea0b68623bfae5bf34f5fe358d"
+    },
+    {
+      "copy": "archive/html/miinto-6814.html",
+      "source": "public/report/miinto-6814/index.html",
+      "sha256": "757beb6154edce6fef339cfb439d293c042ca54c9dc7b999ff4469d8c901012c"
+    },
+    {
+      "copy": "archive/html/nordicnest-2943.html",
+      "source": "public/report/nordicnest-2943/index.html",
+      "sha256": "2e23f7ffad6d30053e2b7dd3d493f5e43558bc1f94bb57f804253cda998fba66"
+    },
+    {
+      "copy": "archive/html/sportamore-1513.html",
+      "source": "public/report/sportamore-1513/index.html",
+      "sha256": "d06d0acc1b66018eb7c0d51dff9d3d0eb5700a99aa91f8c4a12bca81fc2dd70e"
+    },
+    {
+      "copy": "archive/html/thereformation-6997.html",
+      "source": "public/report/thereformation-6997/index.html",
+      "sha256": "ad389d83388a17cd07bce1b0e876eb307f7a57299dc55b5009b2e218c903dbaf"
+    },
+    {
+      "copy": "archive/html/woodies-4532.html",
+      "source": "public/report/woodies-4532/index.html",
+      "sha256": "fb00f0fade4baac2ce18305d51b4234b0e5b3dede00cc58452ab968ded327314"
+    }
+  ]
+}

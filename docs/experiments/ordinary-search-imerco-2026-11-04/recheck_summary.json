@@ -1,0 +1,68 @@
+[
+  {
+    "query": "stegepande",
+    "observed_at": "2026-11-04T20:01:01.642943+00:00",
+    "status": "ok",
+    "total_hits": 1220,
+    "same_status": true,
+    "same_total_hits": true,
+    "same_first_ten_ids": true,
+    "top1_stock": "available_online",
+    "max_same_family_slots": 3
+  },
+  {
+    "query": "pande til stegning",
+    "observed_at": "2026-11-04T20:01:04.299758+00:00",
+    "status": "zero_confirmed",
+    "total_hits": 0,
+    "same_status": true,
+    "same_total_hits": true,
+    "same_first_ten_ids": true,
+    "top1_stock": null,
+    "max_same_family_slots": 0
+  },
+  {
+    "query": "vandglas",
+    "observed_at": "2026-11-04T20:01:09.747685+00:00",
+    "status": "ok",
+    "total_hits": 897,
+    "same_status": true,
+    "same_total_hits": true,
+    "same_first_ten_ids": true,
+    "top1_stock": "not_available_online",
+    "max_same_family_slots": 3
+  },
+  {
+    "query": "drikkeglas",
+    "observed_at": "2026-11-04T20:01:14.394715+00:00",
+    "status": "ok",
+    "total_hits": 868,
+    "same_status": true,
+    "same_total_hits": true,
+    "same_first_ten_ids": true,
+    "top1_stock": "not_available_online",
+    "max_same_family_slots": 3
+  },
+  {
+    "query": "vase",
+    "observed_at": "2026-11-04T20:01:20.087807+00:00",
+    "status": "ok",
+    "total_hits": 3780,
+    "same_status": true,
+    "same_total_hits": true,
+    "same_first_ten_ids": true,
+    "top1_stock": "not_available_online",
+    "max_same_family_slots": 2
+  },
+  {
+    "query": "kaffekop",
+    "observed_at": "2026-11-04T20:01:25.881300+00:00",
+    "status": "ok",
+    "total_hits": 191,
+    "same_status": true,
+    "same_total_hits": true,
+    "same_first_ten_ids": true,
+    "top1_stock": "available_online",
+    "max_same_family_slots": 6
+  }
+]

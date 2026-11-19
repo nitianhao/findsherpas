@@ -1,0 +1,17 @@
+{
+  "query": "vase højde 21 cm",
+  "captured_at": "2026-11-03T20:31:30.276515+00:00",
+  "url": "https://www.imerco.dk/search?query=vase+h%C3%B8jde+21+cm",
+  "visible_zero_marker": true,
+  "product_cards": 0,
+  "page_state": {
+    "title": "Search",
+    "no_results_marker": "0 resultater",
+    "total_hits": 0,
+    "hits_strong": false,
+    "max_strong_hits": 0,
+    "auto_applied": false,
+    "suggestion": false
+  },
+  "transport": "installed Google Chrome, headless"
+}

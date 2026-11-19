@@ -1,0 +1,92 @@
+[
+  {
+    "id": "comma_symbol",
+    "query": "kande 1,6 L",
+    "family": "equivalent_volume"
+  },
+  {
+    "id": "dot_symbol",
+    "query": "kande 1.6 L",
+    "family": "equivalent_volume"
+  },
+  {
+    "id": "comma_word",
+    "query": "kande 1,6 liter",
+    "family": "equivalent_volume"
+  },
+  {
+    "id": "dot_word",
+    "query": "kande 1.6 liter",
+    "family": "equivalent_volume"
+  },
+  {
+    "id": "compact_liter",
+    "query": "kande 1,6L",
+    "family": "equivalent_volume"
+  },
+  {
+    "id": "centiliters",
+    "query": "kande 160 cl",
+    "family": "equivalent_volume"
+  },
+  {
+    "id": "milliliters",
+    "query": "kande 1600 ml",
+    "family": "equivalent_volume"
+  },
+  {
+    "id": "compact_ml",
+    "query": "kande 1600ml",
+    "family": "equivalent_volume"
+  },
+  {
+    "id": "milliliter_word",
+    "query": "kande 1600 milliliter",
+    "family": "equivalent_volume"
+  },
+  {
+    "id": "deciliters",
+    "query": "kande 16 dl",
+    "family": "equivalent_volume"
+  },
+  {
+    "id": "integer_only",
+    "query": "kande 1600",
+    "family": "token_ablation"
+  },
+  {
+    "id": "decimal_only",
+    "query": "kande 1,6",
+    "family": "token_ablation"
+  },
+  {
+    "id": "unit_only",
+    "query": "kande ml",
+    "family": "token_ablation"
+  },
+  {
+    "id": "nearby_ml",
+    "query": "kande 1500 ml",
+    "family": "nearby_volume_control"
+  },
+  {
+    "id": "nearby_l",
+    "query": "kande 1,5 L",
+    "family": "nearby_volume_control"
+  },
+  {
+    "id": "brand_only",
+    "query": "Eva Trio Legio Nova Kande",
+    "family": "brand_control"
+  },
+  {
+    "id": "brand_l",
+    "query": "Eva Trio Legio Nova Kande 1,6 L",
+    "family": "brand_control"
+  },
+  {
+    "id": "brand_ml",
+    "query": "Eva Trio Legio Nova Kande 1600 ml",
+    "family": "brand_control"
+  }
+]

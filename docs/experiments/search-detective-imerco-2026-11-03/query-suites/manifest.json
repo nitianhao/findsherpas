@@ -1,0 +1,14 @@
+{
+  "config": {
+    "inputs": {
+      "report.json": "130d49689b0224d06ac6f10bb1c0bdf0f201a07a7dd643193d026d2c12cc298f",
+      "products.json": "170f744a2b6de5573370d65327a96a81069e89cf36d63e10e37391b67c9e2244"
+    },
+    "code_sha256": "2a8b26156279fc5f18bb171e7f5bbe05bfa90b55b6db10c58162c10f49121d98",
+    "model": "claude-sonnet-4-6",
+    "max_calls": 12,
+    "max_usd": 2
+  },
+  "source_run": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas/docs/experiments/search-detective-imerco-2026-11-03/runs/llm_candidates_live_evidence_v3_20261103",
+  "created_at": "2026-11-03T20:23:40.990090+00:00"
+}
