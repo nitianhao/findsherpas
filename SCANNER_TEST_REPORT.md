@@ -1,6 +1,6 @@
 # Scanner test report — 2026-11-19
 
-Completed on macOS with Python 3.12 and headed Playwright Chromium. All three stores were reachable; no genuine bot-protection block remained after fixing false CAPTCHA detection. No InstantDB writes, emails or git pushes were performed. The sibling repository was only accessed to read its authorized dotenv file.
+Completed on macOS with Python 3.12 and headed Playwright Chromium. All three stores were reachable; no genuine bot-protection block remained after fixing false CAPTCHA detection. No InstantDB writes, emails or git pushes were performed. No sibling working files were modified; the authorized dotenv file was read. Creating the requested local commit also required Git to update this worktree’s shared metadata under the sibling `.git/worktrees/` directory.
 
 ## Fixes
 
