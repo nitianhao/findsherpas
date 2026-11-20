@@ -53,7 +53,7 @@ class TestScoreProbeResult:
         result = score_probe_result(probe)
         assert result.score == ProbeScore.PASS
 
-    def test_control_query_with_zero_results_fails(self):
+    def test_control_query_with_zero_results_is_inconclusive(self):
         probe = ProbeResult(
             probe_type=ProbeType.CONTROL_QUERY,
             query="shoes",
@@ -61,7 +61,7 @@ class TestScoreProbeResult:
             result_count=0,
         )
         result = score_probe_result(probe)
-        assert result.score == ProbeScore.FAIL
+        assert result.score == ProbeScore.ERROR
 
     def test_typo_with_good_ratio_passes(self):
         probe = ProbeResult(
@@ -109,7 +109,7 @@ class TestScoreProbeResult:
         result = score_probe_result(probe)
         assert result.score == ProbeScore.PASS
 
-    def test_zero_result_check_with_results_fails(self):
+    def test_zero_result_check_with_results_needs_fallback_review(self):
         probe = ProbeResult(
             probe_type=ProbeType.ZERO_RESULT_CHECK,
             query="xyzqwk12345nonsense",
@@ -117,7 +117,7 @@ class TestScoreProbeResult:
             result_count=10,
         )
         result = score_probe_result(probe)
-        assert result.score == ProbeScore.FAIL
+        assert result.score == ProbeScore.PARTIAL
 
     def test_exact_product_name_with_matching_results_passes(self):
         from scanner.models import SearchResult

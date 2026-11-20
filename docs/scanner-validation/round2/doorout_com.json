@@ -1,0 +1,76 @@
+{
+  "site": {
+    "domain": "doorout.com",
+    "site_name": "",
+    "search_url_template": "",
+    "primary_language": "English",
+    "vertical": "outdoor",
+    "country": "DE"
+  },
+  "scanned_at": "2026-11-19T21:19:12.295839+00:00",
+  "probes": [],
+  "capabilities": [
+    {
+      "capability": "basic_retrieval",
+      "score": "error",
+      "probes": [],
+      "summary": "Not reached: discovery/control failed"
+    },
+    {
+      "capability": "typo_tolerance",
+      "score": "error",
+      "probes": [],
+      "summary": "Not reached: discovery/control failed"
+    },
+    {
+      "capability": "language_understanding",
+      "score": "error",
+      "probes": [],
+      "summary": "Not reached: discovery/control failed"
+    },
+    {
+      "capability": "locale_handling",
+      "score": "error",
+      "probes": [],
+      "summary": "Not reached: discovery/control failed"
+    },
+    {
+      "capability": "compound_handling",
+      "score": "error",
+      "probes": [],
+      "summary": "Not reached: discovery/control failed"
+    },
+    {
+      "capability": "constraint_handling",
+      "score": "error",
+      "probes": [],
+      "summary": "Not reached: discovery/control failed"
+    },
+    {
+      "capability": "brand_model_search",
+      "score": "error",
+      "probes": [],
+      "summary": "Not reached: discovery/control failed"
+    },
+    {
+      "capability": "coverage_ranking",
+      "score": "error",
+      "probes": [],
+      "summary": "Not reached: discovery/control failed"
+    },
+    {
+      "capability": "zero_result_handling",
+      "score": "error",
+      "probes": [],
+      "summary": "Not reached: discovery/control failed"
+    }
+  ],
+  "overall_score": "error",
+  "blocked": false,
+  "llm_cost_usd": 0.0,
+  "execution_time_ms": 32155,
+  "error_message": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.doorout.com/\", waiting until \"domcontentloaded\"\n",
+  "discovery_attempts": [],
+  "inapplicable": {},
+  "platform": "unknown"
+}

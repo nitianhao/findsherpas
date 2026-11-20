@@ -55,6 +55,8 @@ class ProbeType(str, Enum):
     # F018/F022: Explicit requirements / combined constraints
     CONSTRAINT_QUERY = "constraint_query"
     
+    NATURAL_LANGUAGE = "natural_language"
+
     # F019: Price limits
     PRICE_CONSTRAINT = "price_constraint"
     
@@ -91,6 +93,7 @@ PROBE_FAILURE_MODES = {
     ProbeType.MERGED_WORDS: ["F013"],
     ProbeType.CONSTRAINT_QUERY: ["F018", "F022"],
     ProbeType.PRICE_CONSTRAINT: ["F019"],
+    ProbeType.NATURAL_LANGUAGE: ["F021"],
     ProbeType.BRAND_SEARCH: ["F025"],
     ProbeType.SKU_SEARCH: ["F042"],
     ProbeType.COVERAGE_CHECK: ["F043"],
@@ -118,6 +121,7 @@ class SearchResult(BaseModel):
     """A single search result from a probe."""
     rank: int = Field(description="1-indexed position")
     title: str = Field(description="Product/item title")
+    brand: Optional[str] = None
     price: Optional[str] = Field(default=None, description="Price string if found")
     url: Optional[str] = Field(default=None, description="Result URL")
 
@@ -135,10 +139,22 @@ class ProbeResult(BaseModel):
     error_message: Optional[str] = Field(default=None)
     execution_time_ms: int = Field(default=0)
     rationale: str = Field(default="", description="Why this probe was run")
+    control_results: list[SearchResult] = Field(default_factory=list)
+    control_screenshot_path: Optional[str] = None
+    expected_title: Optional[str] = None
+    expected_url: Optional[str] = None
+    constraints: dict[str, str] = Field(default_factory=dict)
+    catalog_evidence: str = ""
+    grounded: bool = False
+    repeated: bool = False
+    result_count_exact: bool = False
+    control_count_exact: bool = False
+
 
 
 class ProbeScore(str, Enum):
     """Deterministic score for a probe result."""
+    INAPPLICABLE = "inapplicable"
     PASS = "pass"
     PARTIAL = "partial"
     FAIL = "fail"
@@ -151,6 +167,20 @@ class ScoredProbe(BaseModel):
     probe: ProbeResult
     score: ProbeScore
     score_reason: str = Field(description="Why this score was assigned")
+    severity: str = "none"
+    confidence: str = "low"
+    verified: bool = False
+    review_note: str = ""
+
+    @property
+    def proof_eligible(self) -> bool:
+        return (self.score == ProbeScore.FAIL and self.confidence == "high"
+                and self.verified and self.probe.repeated
+                and bool(self.probe.control_query) and bool(self.probe.control_count)
+                and self.probe.control_count > 0 and bool(self.probe.screenshot_path)
+                and bool(self.probe.control_screenshot_path)
+                and self.probe.screenshot_path != self.probe.control_screenshot_path)
+
 
 
 class CapabilityScore(BaseModel):
@@ -182,6 +212,9 @@ class ScanResult(BaseModel):
     llm_cost_usd: float = Field(default=0.0, description="Cost of LLM calls for this scan")
     execution_time_ms: int = Field(default=0)
     error_message: Optional[str] = Field(default=None)
+    discovery_attempts: list[ProbeResult] = Field(default_factory=list)
+    inapplicable: dict[str, str] = Field(default_factory=dict)
+    platform: str = "unknown"
 
 
 class BatchStatus(BaseModel):

@@ -37,7 +37,7 @@ from .models import ProbeType, SiteInfo
 
 logger = logging.getLogger(__name__)
 
-_HAIKU_MODEL = os.environ.get("AUDIT_MODEL_FETCHER", "claude-haiku-4-5-20251001")
+_HAIKU_MODEL = "claude-haiku-4-5-20251001"
 
 
 # Common typo patterns that can be applied to any word
@@ -48,6 +48,7 @@ TYPO_PATTERNS = [
     ("ee", "e"),   # feet -> fet
     ("ll", "l"),   # small -> smal
     ("ss", "s"),   # dress -> dres
+    ("pp", "p"),   # Craghoppers -> Craghopers
 ]
 
 
@@ -138,7 +139,7 @@ class ProbeGenerator:
             return self.featured_items[0]
         return ""
     
-    def _llm_pick_terms(self, prompt: str, count: int = 1) -> list[str]:
+    def _llm_pick_terms(self, prompt: str, count: int = 1, max_tokens: int = 200) -> list[str]:
         """Use LLM to pick relevant terms from site context."""
         if not os.environ.get("ANTHROPIC_API_KEY"):
             return []
@@ -153,7 +154,7 @@ Brands: {', '.join(self.brands[:10])}"""
             
             response = client.messages.create(
                 model=_HAIKU_MODEL,
-                max_tokens=200,
+                max_tokens=max_tokens,
                 messages=[{
                     "role": "user",
                     "content": f"""{context}
@@ -169,8 +170,9 @@ Return ONLY the term(s), one per line, no explanations. Return exactly {count} t
             output_tokens = response.usage.output_tokens
             self.llm_cost_usd += (input_tokens * 1.0 + output_tokens * 5.0) / 1_000_000
             
+            logger.info("Query generation: model=%s input_tokens=%d output_tokens=%d cumulative_cost_usd=%.6f", _HAIKU_MODEL, input_tokens, output_tokens, self.llm_cost_usd)
             text = "\n".join(b.text for b in response.content if getattr(b, "type", "") == "text").strip()
-            lines = [l.strip() for l in text.split('\n') if l.strip()]
+            lines = [text] if prompt.startswith('Generate up to') else [l.strip() for l in text.split('\n') if l.strip()]
             return lines[:count]
             
         except Exception as e:

@@ -83,3 +83,6 @@ src/scanner/.venv/
 scanner_output/
 src/scanner_output/
 .pytest_cache/
+
+# Versioned scanner validation cohort
+!docs/scanner-validation/stores-round2.csv

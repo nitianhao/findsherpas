@@ -32,7 +32,7 @@ CAPABILITY_PROBES = {
     "language_understanding": [ProbeType.SYNONYM, ProbeType.PLURAL_SINGULAR, ProbeType.ABBREVIATION],
     "locale_handling": [ProbeType.DIACRITICS, ProbeType.FORMAT_VARIANT],
     "compound_handling": [ProbeType.COMPOUND_SPLIT, ProbeType.MERGED_WORDS],
-    "constraint_handling": [ProbeType.CONSTRAINT_QUERY, ProbeType.PRICE_CONSTRAINT],
+    "constraint_handling": [ProbeType.CONSTRAINT_QUERY, ProbeType.PRICE_CONSTRAINT, ProbeType.NATURAL_LANGUAGE],
     "brand_model_search": [ProbeType.BRAND_SEARCH, ProbeType.SKU_SEARCH],
     "coverage_ranking": [ProbeType.COVERAGE_CHECK, ProbeType.RANKING_CHECK],
     "zero_result_handling": [ProbeType.ZERO_RESULT_CHECK],
@@ -86,6 +86,10 @@ def score_probe_result(probe: ProbeResult) -> ScoredProbe:
     if probe.control_query and not probe.control_count:
         return ScoredProbe(probe=probe, score=ProbeScore.ERROR,
                            score_reason="No positive control; comparison is inconclusive")
+
+    if probe.control_results and probe.probe_type not in (ProbeType.ZERO_RESULT_CHECK, ProbeType.CONTROL_QUERY):
+        from .evidence import score_evidence
+        return score_evidence(probe)
 
     # Score based on probe type
     scorer = PROBE_SCORERS.get(probe.probe_type, _score_generic)
@@ -343,8 +347,8 @@ def _score_zero_result(probe: ProbeResult) -> ScoredProbe:
     else:
         return ScoredProbe(
             probe=probe,
-            score=ProbeScore.FAIL,
-            score_reason=f"Returned {probe.result_count} results for gibberish - suggests over-matching"
+            score=ProbeScore.PARTIAL,
+            score_reason=f"Nonzero items for gibberish ({probe.result_count}); verify fallback labeling before judging relevance"
         )
 
 
@@ -407,8 +411,8 @@ def _score_control(probe: ProbeResult) -> ScoredProbe:
     else:
         return ScoredProbe(
             probe=probe,
-            score=ProbeScore.FAIL,
-            score_reason="Control query returned no results - site may be broken"
+            score=ProbeScore.ERROR,
+            score_reason="No positive control; catalog seed/search discovery needs verification"
         )
 
 
@@ -464,10 +468,10 @@ def score_capability(capability: str, probes: list[ScoredProbe]) -> CapabilitySc
     
     if ProbeScore.BLOCKED in scores:
         overall = ProbeScore.BLOCKED
-    elif ProbeScore.ERROR in scores:
-        overall = ProbeScore.ERROR
     elif ProbeScore.FAIL in scores:
         overall = ProbeScore.FAIL
+    elif ProbeScore.ERROR in scores:
+        overall = ProbeScore.ERROR
     elif ProbeScore.PARTIAL in scores:
         overall = ProbeScore.PARTIAL
     else:
@@ -483,6 +487,8 @@ def score_capability(capability: str, probes: list[ScoredProbe]) -> CapabilitySc
         summary += f", {fail_count} failed"
     if partial_count:
         summary += f", {partial_count} partial"
+    if ProbeScore.ERROR in scores:
+        summary += f", {scores.count(ProbeScore.ERROR)} technical errors"
     
     return CapabilityScore(
         capability=capability,
@@ -508,6 +514,13 @@ def score_scan(scan_result: ScanResult) -> ScanResult:
     for cap, probes in capability_probes.items():
         if probes:
             capabilities.append(score_capability(cap, probes))
+        else:
+            kinds = CAPABILITY_PROBES[cap]
+            reasons = [scan_result.inapplicable[k.value] for k in kinds if k.value in scan_result.inapplicable]
+            capabilities.append(CapabilityScore(capability=cap, probes=[],
+                score=ProbeScore.INAPPLICABLE if reasons else ProbeScore.ERROR,
+                summary="Inapplicable to sampled catalog: " + "; ".join(sorted(set(reasons))) if reasons
+                        else "Not reached: discovery/control failed"))
     
     scan_result.capabilities = capabilities
     
@@ -521,10 +534,10 @@ def score_scan(scan_result: ScanResult) -> ScanResult:
         if ProbeScore.BLOCKED in cap_scores:
             scan_result.overall_score = ProbeScore.BLOCKED
             scan_result.blocked = True
-        elif ProbeScore.ERROR in cap_scores:
-            scan_result.overall_score = ProbeScore.ERROR
         elif ProbeScore.FAIL in cap_scores:
             scan_result.overall_score = ProbeScore.FAIL
+        elif ProbeScore.ERROR in cap_scores:
+            scan_result.overall_score = ProbeScore.ERROR
         elif ProbeScore.PARTIAL in cap_scores:
             scan_result.overall_score = ProbeScore.PARTIAL
         else:
@@ -540,6 +553,7 @@ class ScanScore:
     def to_numeric(score: ProbeScore) -> float:
         """Convert score to numeric value (0-100)."""
         return {
+            ProbeScore.INAPPLICABLE: -1.0,
             ProbeScore.PASS: 100.0,
             ProbeScore.PARTIAL: 50.0,
             ProbeScore.FAIL: 0.0,
@@ -550,5 +564,5 @@ class ScanScore:
     @staticmethod
     def aggregate_scores(scores: list[ProbeScore]) -> float:
         """Calculate average numeric score, ignoring errors/blocked."""
-        valid = [ScanScore.to_numeric(s) for s in scores if s not in (ProbeScore.BLOCKED, ProbeScore.ERROR)]
+        valid = [ScanScore.to_numeric(s) for s in scores if s not in (ProbeScore.BLOCKED, ProbeScore.ERROR, ProbeScore.INAPPLICABLE)]
         return sum(valid) / len(valid) if valid else 0.0

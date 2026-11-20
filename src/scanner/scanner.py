@@ -13,6 +13,7 @@ import logging
 import re
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 from urllib.parse import quote_plus, urlparse
@@ -68,7 +69,8 @@ class Scanner:
         output_dir: str = "scanner_output",
         take_screenshots: bool = True,
         headed: bool = True,
-        max_results_per_query: int = 10,
+        max_results_per_query: int = 5,
+        viewport_height: int = 900,
     ):
         self._output_root = Path(output_dir)
         self.output_dir = self._output_root
@@ -76,9 +78,12 @@ class Scanner:
         self.take_screenshots = take_screenshots
         self.headed = headed
         self.max_results = max_results_per_query
+        self.viewport_height = viewport_height
         self._playwright = None
         self._browser = None
         self._query_cache = {}
+        self._count_exact = {}
+        self._retrying = set()
     
     def _get_browser(self):
         """Lazy-initialize Playwright browser."""
@@ -124,7 +129,7 @@ class Scanner:
         import gzip
         from src import fetcher
         browser = self._get_browser()
-        context = browser.new_context(viewport={"width": 1280, "height": 900}, user_agent=_USER_AGENT)
+        context = browser.new_context(viewport={"width": 1280, "height": self.viewport_height}, user_agent=_USER_AGENT)
         page = context.new_page()
         page.set_default_timeout(3000)
         captured = []
@@ -133,9 +138,17 @@ class Scanner:
         try:
             response = page.goto(url, wait_until="domcontentloaded", timeout=30000)
             page.wait_for_timeout(3000)
+            if "just a moment" in page.title().lower():
+                fetcher._wait_for_cloudflare_clear(page, timeout_ms=15000)
             fetcher._dismiss_consent_banners(page)
             ready = fetcher._wait_for_host_ready(page, url) if "?" in url else None
             page.wait_for_timeout(1500)
+            if "passenger-clothing.com" in urlparse(url).netloc and "?" in url:
+                try:
+                    page.wait_for_function("""() => document.querySelector('#ProductGridContainer product-card') ||
+                        /no results|no products found/i.test(document.querySelector('main')?.innerText || '')""", timeout=12000)
+                except Exception:
+                    pass
             if "bergzeit.de" in urlparse(url).netloc:
                 decline = page.get_by_role("button", name="Nicht einverstanden", exact=True)
                 if decline.count() and decline.first.is_visible():
@@ -148,8 +161,69 @@ class Scanner:
                         button.click(timeout=2000)
                         page.wait_for_timeout(300)
                         break
+            if "watery.dk" in urlparse(url).netloc:
+                decline = page.get_by_role("button", name="Afvis alle", exact=True)
+                if decline.count() and decline.first.is_visible():
+                    decline.first.click(timeout=2000)
+                    page.wait_for_timeout(500)
+            if "finisterre.com" in urlparse(url).netloc:
+                for frame in page.frames:
+                    for button in frame.locator("button.close-btn, [aria-label='Close'], [title='Close'], .om-popup-close").all():
+                        if button.is_visible():
+                            try:
+                                button.click(timeout=1500)
+                            except Exception:
+                                logger.debug("Overlay close did not settle; retained screenshot evidence")
+                            break
+            for consent_label in ("Ablehnen", "Einverstanden", "Alle Cookies zulassen"):
+                button = page.get_by_role('button',name=consent_label,exact=True)
+                if button.count() and button.first.is_visible():
+                    try:
+                        button.first.click(timeout=1500)
+                        page.wait_for_timeout(300)
+                    except Exception:
+                        logger.debug("Consent dismissal did not settle")
+                    break
+            if "connox.de" in urlparse(url).netloc:
+                close = page.locator('autodetect-root').get_by_role('button',name='Close',exact=True)
+                if close.count() and close.first.is_visible():
+                    try:
+                        close.first.click(timeout=1500)
+                        page.wait_for_timeout(300)
+                    except Exception:
+                        logger.debug("Country modal close did not settle")
+            if "connox.de" in urlparse(url).netloc:
+                for frame in page.frames:
+                    minimize = frame.get_by_text('Fenster minimieren',exact=True)
+                    if minimize.count() and minimize.first.is_visible():
+                        try:
+                            minimize.first.click(timeout=1500)
+                            page.wait_for_timeout(700)
+                        except Exception:
+                            logger.debug("Promotional panel minimization did not settle")
             html = page.content()
-            safe_name = re.sub(r"[^\w.-]+", "_", name)[:100]
+            analysis_html = html
+            if name not in ("homepage", "search_discovery"):
+                # CSS-hidden empty-state templates are not rendered zero evidence.
+                page.evaluate("""() => {
+                    for (const el of document.querySelectorAll('*')) {
+                        if (['SCRIPT','STYLE','LINK','META'].includes(el.tagName)) continue;
+                        const style = getComputedStyle(el);
+                        if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0' || el.hidden)
+                            el.setAttribute('data-scanner-hidden', 'true');
+                    }
+                }""")
+                from bs4 import BeautifulSoup
+                rendered = BeautifulSoup(page.content(), "html.parser")
+                for hidden in rendered.select('[data-scanner-hidden]'):
+                    hidden.decompose()
+                analysis_html = str(rendered)
+            shadows = page.evaluate("""() => [...document.querySelectorAll('br-product-card')]
+                .map(el => el.shadowRoot ? el.shadowRoot.innerHTML : '').join('')""")
+            if shadows:
+                analysis_html += '<section data-scanner-shadow-evidence>' + shadows + '</section>'
+            import hashlib
+            safe_name = re.sub(r"[^\w.-]+", "_", name)[:80] + "_" + hashlib.sha256(name.encode()).hexdigest()[:10]
             path = self.output_dir / safe_name
             with gzip.open(str(path) + ".html.gz", "wt") as evidence:
                 evidence.write(html)
@@ -157,10 +231,29 @@ class Scanner:
             if self.take_screenshots:
                 shot = str(path) + ".png"
                 page.screenshot(path=shot, full_page=False)
-            return dict(html=html, final_url=page.url,
+            if analysis_html != html:
+                with gzip.open(str(path) + ".rendered.html.gz", "wt") as evidence:
+                    evidence.write(analysis_html)
+            api_evidence = fetcher._read_captured_search_api(captured)
+            from urllib.parse import parse_qs
+            params = parse_qs(urlparse(url).query)
+            query = next((params[k][0] for k in ('q','search','keywords') if params.get(k)), '')
+            summary = fetcher._search_api_summary(api_evidence, query) if query else None
+            from dataclasses import asdict
+            from bs4 import BeautifulSoup
+            text_soup = BeautifulSoup(analysis_html, 'html.parser')
+            for noise in text_soup.select('script, style'):
+                noise.decompose()
+            rendered_text = text_soup.get_text(' ', strip=True)
+            metadata = {"captured_at":datetime.now(timezone.utc).isoformat(), "requested_url":url, "final_url":page.url,
+                        "http_status":response.status if response else None,
+                        "visible_text":rendered_text,
+                        "search_api_summary":asdict(summary) if summary else None}
+            Path(str(path) + '.page.json').write_text(json.dumps(metadata,ensure_ascii=False,indent=2))
+            return dict(html=analysis_html, final_url=page.url,
                         http_status=response.status if response else None,
-                        visible_text=page.locator("body").inner_text(timeout=5000), ready=ready,
-                        search_api=fetcher._read_captured_search_api(captured)), shot
+                        visible_text=rendered_text, ready=ready,
+                        search_api=api_evidence), shot
         finally:
             context.close()
 
@@ -169,6 +262,10 @@ class Scanner:
         from src import discovery
         page, _ = self._load_page(url, "homepage")
         soup = BeautifulSoup(page["html"], "html.parser")
+        from src import fetcher
+        blocked = fetcher._detect_block(page['html'], page.get('http_status'), page['final_url'])
+        if blocked and blocked != "tiny_page":
+            raise RuntimeError(f"Bot protection during discovery: {blocked}")
         template = ""
         if "?" in url:
             try:
@@ -176,6 +273,13 @@ class Scanner:
             except ValueError:
                 pass
         template = template or discovery._extract_search_url_template(soup, page["final_url"])
+        # JS forms without action otherwise become homepage?q=... and
+        # homepage recommendation cards masquerade as search results.
+        query_links = [a.get('href') for a in soup.select('a[href]')
+                       if '/search?' in str(a.get('href', '')) and 'q=' in str(a.get('href', ''))]
+        if query_links:
+            from urllib.parse import urljoin
+            template, _ = discovery.parse_search_url(urljoin(page['final_url'], query_links[0]))
         if not template:
             link = soup.select_one('a[href$="/search"]')
             if link:
@@ -185,15 +289,51 @@ class Scanner:
         info = SiteInfo(domain=urlparse(url).netloc.removeprefix("www."),
                         site_name=discovery._extract_site_name(soup, url),
                         search_url_template=template,
-                        primary_language="German" if soup.html and str(soup.html.get("lang", "")).startswith("de") else "English")
+                        primary_language={"de":"German", "cs":"Czech", "sk":"Slovak", "pl":"Polish", "da":"Danish", "sv":"Swedish", "no":"Norwegian"}.get(str(soup.html.get("lang", "en"))[:2] if soup.html else "en", "English"))
+        self._platform = "Shopify" if "cdn.shopify.com" in page["html"] or "Shopify.shop" in page["html"] else "unknown"
         categories = discovery._extract_nav_categories(soup)
-        excluded = discovery._NON_SEED_NAV | {"b2b", "image link", "advice & inspiration", "shopping cart", "black friday", "men", "women", "herren", "damen", "services", "stores", "login", "holiday sale", "mens holiday sale", "bestsellers", "leather alternatives"}
-        categories = [c for c in categories if c.lower() not in excluded][:15]
+        # Headless menu components often lack semantic <nav>; collection and
+        # query links still expose literal catalog vocabulary.
+        from urllib.parse import parse_qs
+        for anchor in soup.select('a[href]'):
+            href = str(anchor.get('href', ''))
+            label = anchor.get_text(' ', strip=True)
+            if '/collections/' in href or parse_qs(urlparse(href).query).get('q'):
+                if label and 3 <= len(label) <= 55 and label not in categories:
+                    categories.append(label)
+
+        excluded = discovery._NON_SEED_NAV | discovery._GENERIC_NAV_ITEMS | {"b2b", "image link", "advice & inspiration", "shopping cart", "black friday", "men", "women", "herren", "damen", "services", "stores", "login", "holiday sale", "mens holiday sale", "bestsellers", "leather alternatives"}
+        from .catalog import catalog_categories
+        categories = catalog_categories(soup, page["final_url"], categories)
+        categories = [c for c in categories if c.lower() not in excluded and not re.search(r"%|offers|continue shopping|featured|last chance|gifting|view |shop |sale|up to", c, re.I)][:30]
         return info, categories, discovery._extract_featured_items(soup), discovery._extract_brands(soup)
 
-    def _discover_search_url(self, base_url: str) -> Optional[str]:
-        # Never accept an arbitrary HTTP 200 as proof that a search endpoint works.
-        return None
+    def _discover_search_url(self, base_url: str, seed: str = "") -> Optional[str]:
+        """Submit an observed JS search input; never guess endpoints from HTTP 200."""
+        if not seed:
+            return None
+        from src import discovery, fetcher
+        context = self._get_browser().new_context(viewport={"width":1280,"height":900},user_agent=_USER_AGENT)
+        page = context.new_page()
+        try:
+            page.goto(base_url,wait_until="domcontentloaded",timeout=30000)
+            page.wait_for_timeout(2500)
+            fetcher._dismiss_consent_banners(page)
+            inputs = page.locator('input[type="search"], input[name="keywords"], input[name="q"]')
+            for field in inputs.all():
+                if field.is_visible():
+                    field.fill(seed)
+                    field.press('Enter')
+                    page.wait_for_timeout(2500)
+                    template, observed = discovery.parse_search_url(page.url)
+                    if observed.casefold() == seed.casefold():
+                        return template
+            return None
+        except Exception as exc:
+            logger.info("Interactive search discovery inconclusive: %s", type(exc).__name__)
+            return None
+        finally:
+            context.close()
 
     def _fetch_search_results(self, search_url: str, query: str, screenshot_name: Optional[str] = None):
         from src import fetcher
@@ -206,6 +346,17 @@ class Scanner:
             page, shot = self._load_page(url, screenshot_name or query)
             outcome = fetcher._analyse_page(url=url, query=query, max_results=self.max_results,
                                             allow_llm=False, **page)
+            from .storefronts import scoped_products, scoped_count, scoped_brands
+            scoped = scoped_products(page['html'], page['final_url'], self.max_results)
+            visible_count = scoped_count(page['html'], page['final_url'])
+            if visible_count == 0 and not scoped:
+                outcome = outcome.model_copy(update={"status":FetchStatus.ZERO_CONFIRMED,
+                    "results":[],"total_hits":0,"evidence":"Visible scoped product count is zero"})
+            if scoped and outcome.status != FetchStatus.ZERO_CONFIRMED:
+                from src.models import FetchStatus as FS
+                outcome = outcome.model_copy(update={"status": FS.OK, "results": scoped,
+                    "total_hits": scoped_count(page["html"], page["final_url"]) or outcome.total_hits,
+                    "evidence": "Products read from verified store search-result container"})
             status = {
                 FetchStatus.OK: ProbeStatus.SUCCESS,
                 FetchStatus.ZERO_CONFIRMED: ProbeStatus.SUCCESS,
@@ -216,13 +367,23 @@ class Scanner:
                 FetchStatus.TIMEOUT: ProbeStatus.TIMEOUT,
                 FetchStatus.ERROR: ProbeStatus.ERROR,
             }[FetchStatus(outcome.status)]
+            self._count_exact[key] = outcome.total_hits is not None
             count = outcome.total_hits if outcome.total_hits is not None else len(outcome.results)
-            results = [SearchResult(rank=r.rank, title=r.title, price=r.price, url=r.url) for r in outcome.results]
+            observed_brands = scoped_brands(page["html"], page["final_url"])
+            results = [SearchResult(rank=r.rank, title=r.title, price=r.price, url=r.url, brand=observed_brands.get(r.url)) for r in outcome.results]
             value = (results, count, status, outcome.evidence or None, shot)
             logger.info("%r -> %s: %s hits (%s)", query, status.value, count, outcome.evidence)
             self._query_cache[key] = value
             return value
         except Exception as exc:
+            if key not in self._retrying and any(token in str(exc) for token in ('ERR_CONNECTION_REFUSED','Timeout','timeout')):
+                self._retrying.add(key)
+                try:
+                    logger.info("Retrying one transient browser failure for %r",query)
+                    time.sleep(1)
+                    return self._fetch_search_results(search_url,query,screenshot_name)
+                finally:
+                    self._retrying.discard(key)
             logger.exception("Search fetch failed for %r", query)
             return [], 0, ProbeStatus.ERROR, str(exc), None
 
@@ -245,6 +406,7 @@ class Scanner:
         """
         start_time = time.time()
         self._query_cache.clear()
+        self._count_exact.clear()
         self.output_dir = self._output_root / urlparse(url).netloc
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
@@ -254,25 +416,27 @@ class Scanner:
             site_info, nav_categories, featured_items, brands = self._discover_site(url)
         except Exception as exc:
             logger.error("Discovery failed: %s", exc)
-            return ScanResult(site=SiteInfo(domain=urlparse(url).netloc.removeprefix("www."),
+            return score_scan(ScanResult(site=SiteInfo(domain=urlparse(url).netloc.removeprefix("www."),
                               vertical=vertical, country=country), error_message=str(exc),
-                              execution_time_ms=int((time.time() - start_time) * 1000))
+                              blocked="Bot protection" in str(exc),
+                              overall_score=ProbeScore.BLOCKED if "Bot protection" in str(exc) else ProbeScore.ERROR,
+                              execution_time_ms=int((time.time() - start_time) * 1000)))
         site_info.vertical = vertical
         site_info.country = country
         
         # Set up result
-        result = ScanResult(site=site_info)
+        result = ScanResult(site=site_info, platform=getattr(self, "_platform", "unknown"))
         
         # Find search URL if not discovered
         if not site_info.search_url_template:
-            search_template = self._discover_search_url(url)
+            search_template = self._discover_search_url(url, (nav_categories + featured_items + [site_info.site_name])[0])
             if search_template:
                 site_info.search_url_template = search_template
             else:
                 result.error_message = "Could not discover search URL"
                 result.overall_score = ProbeScore.ERROR
                 result.execution_time_ms = int((time.time() - start_time) * 1000)
-                return result
+                return score_scan(result)
         
         # Initialize probe generator
         generator = ProbeGenerator(
@@ -285,194 +449,68 @@ class Scanner:
         # Run probes
         probes: list[ScoredProbe] = []
         
-        # 1. Control query (must pass for other probes to be meaningful)
-        control_query, control_rationale = generator.generate_control_query()
-        if not control_query:
-            result.error_message = "No catalog category available for a positive control"
+        # Try several real catalog seeds; a promotional nav label is not a
+        # trustworthy positive control. Keep attempts as technical evidence.
+        probe = None
+        for control_query in (nav_categories + featured_items)[:6]:
+            candidate = self._run_probe(ProbeType.CONTROL_QUERY,
+                site_info.search_url_template, control_query, rationale="Catalog seed control")
+            if candidate.status in (ProbeStatus.SUCCESS, ProbeStatus.REDIRECT) and candidate.results:
+                probe = candidate
+                probes.append(score_probe_result(candidate))
+                break
+            result.discovery_attempts.append(candidate)
+            if candidate.status == ProbeStatus.BLOCKED:
+                break
+        if probe is None:
+            result.probes = [score_probe_result(p) for p in result.discovery_attempts]
+            result.blocked = any(p.status == ProbeStatus.BLOCKED for p in result.discovery_attempts)
+            result.error_message = "No readable positive catalog control" if result.discovery_attempts else "No catalog categories/products discovered"
             result.execution_time_ms = int((time.time() - start_time) * 1000)
-            return result
-        if control_query:
-            probe = self._run_probe(
-                ProbeType.CONTROL_QUERY,
-                site_info.search_url_template,
-                control_query,
-                rationale=control_rationale,
-            )
-            scored = score_probe_result(probe)
+            return score_scan(result)
+        catalog_sample = list(probe.results)
+        for seed in [c for c in nav_categories[:3] if c != control_query]:
+            sampled = self._fetch_search_results(site_info.search_url_template, seed)
+            if sampled[2] in (ProbeStatus.SUCCESS, ProbeStatus.REDIRECT):
+                catalog_sample.extend(sampled[0])
+        catalog_sample = list({(r.url or r.title):r for r in catalog_sample}.values())
+        generator.featured_items = [r.title for r in catalog_sample]
+        result.inapplicable = {}
+        from .battery import build_battery
+        pairs = build_battery(generator, catalog_sample)
+        tested = {ProbeType.CONTROL_QUERY}
+        for pair in pairs:
+            control = self._fetch_search_results(site_info.search_url_template, pair.control)
+            observation = self._run_probe(pair.kind, site_info.search_url_template,
+                pair.query, control_query=pair.control, control_count=control[1],
+                rationale=f"Catalog-grounded {pair.kind.value}: {pair.evidence or pair.control}")
+            observation.control_results = control[0]
+            observation.control_screenshot_path = control[4]
+            observation.expected_title = pair.expected_title or None
+            observation.expected_url = pair.expected_url or None
+            observation.constraints = pair.constraints
+            observation.catalog_evidence = pair.evidence
+            observation.grounded = pair.grounded
+            scored = score_probe_result(observation)
+            # Repeat prospective failures in a fresh browser context, preserving first evidence.
+            if scored.score == ProbeScore.FAIL:
+                self._query_cache.pop((site_info.search_url_template, pair.query), None)
+                repeated = self._fetch_search_results(site_info.search_url_template, pair.query,
+                    f"repeat_{pair.kind.value}_{len(probes)}")
+                observation.repeated = (repeated[1] == observation.result_count and
+                    repeated[2] == observation.status and
+                    [r.title for r in repeated[0]] == [r.title for r in observation.results])
+                scored = score_probe_result(observation)
             probes.append(scored)
-            
-            if scored.score != ProbeScore.PASS:
-                result.blocked = scored.score == ProbeScore.BLOCKED
-                result.error_message = probe.error_message
-                result.probes = probes
-                result.execution_time_ms = int((time.time() - start_time) * 1000)
-                result.llm_cost_usd = generator.llm_cost_usd
-                return score_scan(result)
-        
-        if control_query and probe.results:
-            generator.featured_items = [r.title for r in probe.results]
-
-        # 2. Exact product name
-        product_query, product_rationale = generator.generate_exact_product_name()
-        if product_query:
-            probe = self._run_probe(
-                ProbeType.EXACT_PRODUCT_NAME,
-                site_info.search_url_template,
-                product_query,
-                rationale=product_rationale,
-            )
-            probes.append(score_probe_result(probe))
-        
-        # 3. Category term
-        category_query, category_rationale = generator.generate_category_term()
-        if category_query:
-            probe = self._run_probe(
-                ProbeType.CATEGORY_TERM,
-                site_info.search_url_template,
-                category_query,
-                rationale=category_rationale,
-            )
-            probes.append(score_probe_result(probe))
-            
-            # Use category for other probes
-            base_query = category_query
-        else:
-            base_query = control_query
-        
-        # 4. Typo tolerance (F002)
-        typo_query, typo_control, typo_rationale = generator.generate_typo_query(base_query)
-        if typo_query and typo_query != typo_control:
-            # Get control count
-            _, control_count, _, _, _ = self._fetch_search_results(
-                site_info.search_url_template, typo_control
-            )
-            probe = self._run_probe(
-                ProbeType.TYPO,
-                site_info.search_url_template,
-                typo_query,
-                control_query=typo_control,
-                control_count=control_count,
-                rationale=typo_rationale,
-            )
-            probes.append(score_probe_result(probe))
-        
-        # 5. Synonym
-        syn_query, syn_control, syn_rationale = generator.generate_synonym_query()
-        if syn_query and syn_control:
-            _, control_count, _, _, _ = self._fetch_search_results(
-                site_info.search_url_template, syn_control
-            )
-            probe = self._run_probe(
-                ProbeType.SYNONYM,
-                site_info.search_url_template,
-                syn_query,
-                control_query=syn_control,
-                control_count=control_count,
-                rationale=syn_rationale,
-            )
-            probes.append(score_probe_result(probe))
-        
-        # 6. Plural/singular
-        ps_query, ps_control, ps_rationale = generator.generate_plural_singular(base_query)
-        if ps_query and ps_query != ps_control:
-            _, control_count, _, _, _ = self._fetch_search_results(
-                site_info.search_url_template, ps_control
-            )
-            probe = self._run_probe(
-                ProbeType.PLURAL_SINGULAR,
-                site_info.search_url_template,
-                ps_query,
-                control_query=ps_control,
-                control_count=control_count,
-                rationale=ps_rationale,
-            )
-            probes.append(score_probe_result(probe))
-        
-        # 7. Diacritics
-        dia_query, dia_control, dia_rationale = generator.generate_diacritics_query()
-        if dia_query and dia_control and dia_query != dia_control:
-            _, control_count, _, _, _ = self._fetch_search_results(
-                site_info.search_url_template, dia_control
-            )
-            probe = self._run_probe(
-                ProbeType.DIACRITICS,
-                site_info.search_url_template,
-                dia_query,
-                control_query=dia_control,
-                control_count=control_count,
-                rationale=dia_rationale,
-            )
-            probes.append(score_probe_result(probe))
-        
-        # 8. Compound split
-        split_query, split_control, split_rationale = generator.generate_compound_split()
-        if split_query and split_control:
-            _, control_count, _, _, _ = self._fetch_search_results(
-                site_info.search_url_template, split_control
-            )
-            probe = self._run_probe(
-                ProbeType.COMPOUND_SPLIT,
-                site_info.search_url_template,
-                split_query,
-                control_query=split_control,
-                control_count=control_count,
-                rationale=split_rationale,
-            )
-            probes.append(score_probe_result(probe))
-        
-        # 9. Merged words
-        merged_query, merged_control, merged_rationale = generator.generate_merged_words(base_query)
-        if merged_query and merged_control and merged_query != merged_control:
-            _, control_count, _, _, _ = self._fetch_search_results(
-                site_info.search_url_template, merged_control
-            )
-            probe = self._run_probe(
-                ProbeType.MERGED_WORDS,
-                site_info.search_url_template,
-                merged_query,
-                control_query=merged_control,
-                control_count=control_count,
-                rationale=merged_rationale,
-            )
-            probes.append(score_probe_result(probe))
-        
-        # 10. Constraint query
-        const_query, const_base, const_rationale = generator.generate_constraint_query()
-        if const_query:
-            _, control_count, _, _, _ = self._fetch_search_results(
-                site_info.search_url_template, const_base
-            )
-            probe = self._run_probe(
-                ProbeType.CONSTRAINT_QUERY,
-                site_info.search_url_template,
-                const_query,
-                control_query=const_base,
-                control_count=control_count,
-                rationale=const_rationale,
-            )
-            probes.append(score_probe_result(probe))
-        
-        # 11. SKU search
-        sku_query, sku_rationale = generator.generate_sku_search()
-        if sku_query:
-            probe = self._run_probe(
-                ProbeType.SKU_SEARCH,
-                site_info.search_url_template,
-                sku_query,
-                rationale=sku_rationale,
-            )
-            probes.append(score_probe_result(probe))
-        
-        # 12. Zero-result check
-        zero_query, zero_rationale = generator.generate_zero_result_check()
-        probe = self._run_probe(
-            ProbeType.ZERO_RESULT_CHECK,
-            site_info.search_url_template,
-            zero_query,
-            rationale=zero_rationale,
-        )
-        probes.append(score_probe_result(probe))
-        
+            tested.add(pair.kind)
+        zero_query, rationale = generator.generate_zero_result_check()
+        zero = self._run_probe(ProbeType.ZERO_RESULT_CHECK, site_info.search_url_template,
+            zero_query, control_query=control_query, control_count=probe.result_count,
+            rationale=rationale)
+        probes.append(score_probe_result(zero))
+        tested.add(ProbeType.ZERO_RESULT_CHECK)
+        result.inapplicable = {kind.value: "No qualifying catalog-grounded pair in sampled navigation/products"
+                               for kind in ProbeType if kind not in tested}
         # Compile results
         result.probes = probes
         result.execution_time_ms = int((time.time() - start_time) * 1000)
@@ -492,7 +530,7 @@ class Scanner:
         """Run a single probe and return the result."""
         start = time.time()
         
-        screenshot_name = f"{probe_type.value}_{query[:20].replace(' ', '_')}"
+        screenshot_name = f"{probe_type.value}_{query}"
         results, count, status, error, screenshot = self._fetch_search_results(
             search_url_template, query, screenshot_name
         )
@@ -515,6 +553,8 @@ class Scanner:
             error_message=error,
             execution_time_ms=int((time.time() - start) * 1000),
             rationale=rationale,
+            result_count_exact=self._count_exact.get((search_url_template, query), False),
+            control_count_exact=self._count_exact.get((search_url_template, control_query), False),
         )
     
     def save_result(self, result: ScanResult, filename: Optional[str] = None) -> str:

@@ -95,7 +95,7 @@ class InstantDBClient:
         proof_cards = []
         for scored_probe in result.probes:
             probe = scored_probe.probe
-            if scored_probe.score == ProbeScore.FAIL and probe.control_count and probe.control_count > 0:
+            if scored_probe.proof_eligible and probe.control_count and probe.control_count > 0:
                 proof_cards.append({
                     "probe_type": probe.probe_type.value,
                     "query": probe.query,
@@ -103,6 +103,9 @@ class InstantDBClient:
                     "control_query": probe.control_query,
                     "control_count": probe.control_count,
                     "score_reason": scored_probe.score_reason,
+                    "severity": scored_probe.severity,
+                    "confidence": scored_probe.confidence,
+                    "verified": scored_probe.verified,
                 })
         
         # Create the benchmark scan record

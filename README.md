@@ -160,3 +160,31 @@ Uses Resend if `RESEND_API_KEY` is set; otherwise it logs submissions in dev.
   - **Decision**: Next.js App Router + Tailwind + shadcn/ui, MDX content in-repo, Stripe Checkout for one-time tier purchases.
   - **Alternatives considered**: CMS for content; subscriptions; embedded Stripe Elements.
   - **Consequences**: Simple MVP, easy GitHub/Vercel deploy; can migrate content to CMS later if needed.
+
+### Discriminating local scanner validation
+
+The paired battery uses literal navigation/product evidence and one Haiku call per
+readable store to suggest linguistic variants. It checks product overlap, exact
+rank within the top three, observed model codes, formatting/units, brand typos,
+and title/price constraints. Count ratios alone do not establish relevance.
+Missing attributes remain inconclusive. Capabilities without a qualifying sampled
+pair have an explicit applicability reason; discovery errors remain technical errors.
+
+```bash
+python3 scripts/validate-scanner-round2.py \
+  --stores docs/scanner-validation/stores-round2.csv \
+  --output "$PWD/scanner_output/round2" --workers 3 \
+  --env-file /path/to/authorized/.env
+```
+
+This runner opens headed Chromium in isolated processes and resumes completed
+non-error scans. It does not call the database worker or send email. Captures
+include raw/rendered HTML, uniquely named screenshots, sanitized API count
+summaries and rendered text. Runtime artifacts remain ignored by Git.
+
+Each finding carries `severity`, `confidence`, `verified`, and `review_note`.
+A proof card requires a repeated high-confidence failure, a positive paired
+control, two distinct screenshot files, and explicit visual review. Both local
+benchmark export and the database payload builder enforce that gate; running a
+scan never invokes either database write path. See `SCANNER_ROUND2_REPORT.md` for
+the reviewed cohort, limitations, rejected candidates, costs and evidence.

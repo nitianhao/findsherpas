@@ -1,0 +1,3649 @@
+{
+  "site": {
+    "domain": "naturzeit.com",
+    "site_name": "naturzeit",
+    "search_url_template": "https://www.naturzeit.com/search?search={}",
+    "primary_language": "German",
+    "vertical": "outdoor",
+    "country": "DE"
+  },
+  "scanned_at": "2026-11-19T21:19:24.744065+00:00",
+  "probes": [
+    {
+      "probe": {
+        "probe_type": "control_query",
+        "query": "Outdoorbekleidung",
+        "control_query": null,
+        "status": "success",
+        "result_count": 3200,
+        "results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 3,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          },
+          {
+            "rank": 4,
+            "title": "Hochalm UV50 Women",
+            "brand": null,
+            "price": "ab 59,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Sierra Canyon Shirt Women",
+            "brand": null,
+            "price": "ab 47,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10600,
+        "rationale": "Catalog seed control",
+        "control_results": [],
+        "control_screenshot_path": null,
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Control query returned 3200 results",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "outdorbekleidung",
+        "control_query": "Outdoorbekleidung",
+        "status": "success",
+        "result_count": 29,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Stain Scrub 125ml",
+            "brand": null,
+            "price": "8,63 € (69,04 € / 1 Liter) UVP*\n                                11,35 €",
+            "url": "https://www.naturzeit.com/nikwax-stain-scrub-125ml/2023227"
+          },
+          {
+            "rank": 2,
+            "title": "TX.Direct Spray-On 500ml",
+            "brand": null,
+            "price": "15,17 € (30,34 € / 1 Liter) UVP*\n                                19,95 €",
+            "url": "https://www.naturzeit.com/nikwax-tx.direct-spray-on-500ml/2022555"
+          },
+          {
+            "rank": 3,
+            "title": "Wool Wash 250ml",
+            "brand": null,
+            "price": "9,72 € (38,88 € / 1 Liter) UVP*\n                                12,95 €",
+            "url": "https://www.naturzeit.com/toko-wool-wash-250ml/2022033"
+          },
+          {
+            "rank": 4,
+            "title": "Water-Guard Imprägnierspray 380ml",
+            "brand": null,
+            "price": "21,46 € (56,47 € / 1 Liter) UVP*\n                                24,95 €",
+            "url": "https://www.naturzeit.com/atsko-water-guard-impraegnierspray-380ml/2022028"
+          },
+          {
+            "rank": 5,
+            "title": "Sport-Wash 532ml",
+            "brand": null,
+            "price": "23,18 € (43,57 € / 1 Liter) UVP*\n                                26,95 €",
+            "url": "https://www.naturzeit.com/atsko-sport-wash-532ml/2022027"
+          }
+        ],
+        "control_count": 3200,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/typo_outdorbekleidung_b8bf3a096a.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9118,
+        "rationale": "Catalog-grounded typo: Outdoorbekleidung",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 3,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          },
+          {
+            "rank": 4,
+            "title": "Hochalm UV50 Women",
+            "brand": null,
+            "price": "ab 59,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Sierra Canyon Shirt Women",
+            "brand": null,
+            "price": "ab 47,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "outdorjacken",
+        "control_query": "Outdoorjacken",
+        "status": "success",
+        "result_count": 11,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Padded Blouson Men",
+            "brand": null,
+            "price": "99,94 € UVP*\n                            139,90 €",
+            "url": "https://www.naturzeit.com/mazine-padded-blouson-men-s-gruen-light-bottle/2023900-S-gruen"
+          },
+          {
+            "rank": 2,
+            "title": "Nydala Classic 2L Jacket Men",
+            "brand": null,
+            "price": "169,94 € UVP*\n                            219,95 €",
+            "url": "https://www.naturzeit.com/pinewood-nydala-classic-2l-jacket-men-l-beige-d.sandstone/2023805-L-beige"
+          },
+          {
+            "rank": 3,
+            "title": "Skien Valley Hooded LS Men",
+            "brand": null,
+            "price": "64,94 € UVP*\n                            99,95 €",
+            "url": "https://www.naturzeit.com/columbia-skien-valley-hooded-ls-men-m-beige-ancient-fossil/2020553-M-beige"
+          },
+          {
+            "rank": 4,
+            "title": "Fabric Blocking Jacket Women",
+            "brand": null,
+            "price": "89,94 € UVP*\n                            139,90 €",
+            "url": "https://www.naturzeit.com/mazine-fabric-blocking-jacket-women-s-beige-farbe-oat-natural/2021705-S-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Pamir Jacket Men",
+            "brand": null,
+            "price": "119,94 € UVP*\n                            189,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-pamir-jacket-men-s-schwarz-black/2021785-schwarz-S"
+          }
+        ],
+        "control_count": 58,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/typo_outdorjacken_da070f44ad.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 7465,
+        "rationale": "Catalog-grounded typo: Outdoorjacken",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Argo Decke",
+            "brand": null,
+            "price": "117,98 € UVP*\n                            119,95 €",
+            "url": "https://www.naturzeit.com/therm-a-rest-argo-decke-groesse-198-x-182-cm-farbe-outer-space-blue/1160573"
+          },
+          {
+            "rank": 2,
+            "title": "Picnic Blanket Größe 160 x 120 cm Farbe midnight blue",
+            "brand": null,
+            "price": "24,26 € UVP*\n                                29,95 €",
+            "url": "https://www.naturzeit.com/cocoon-picnic-blanket-groesse-160-x-120-cm-farbe-midnight-blue/1121857"
+          },
+          {
+            "rank": 3,
+            "title": "Picnic Blanket",
+            "brand": null,
+            "price": "28,31 € UVP*\n                                34,95 €",
+            "url": "https://www.naturzeit.com/cocoon-picnic-blanket/1127365"
+          },
+          {
+            "rank": 4,
+            "title": "Helium Quilt Maße: 203 x 150 cm Farbe: majolica blue",
+            "brand": null,
+            "price": "191,32 € UVP*\n                                219,90 €",
+            "url": "https://www.naturzeit.com/mountain-equipment-helium-quilt-masse-203-x-150-cm-farbe-majolica-blue/1144500"
+          },
+          {
+            "rank": 5,
+            "title": "COOLMAX-Decke Maße: 180 x 140 cm Farbe: navy",
+            "brand": null,
+            "price": "32,36 € UVP*\n                                39,95 €",
+            "url": "https://www.naturzeit.com/cocoon-coolmax-decke-masse-180-x-140-cm-farbe-navy/2023017"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/Outdoorjacken_1947968473.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "hardsheljacken und regenjacken",
+        "control_query": "Hardshelljacken und Regenjacken",
+        "status": "success",
+        "result_count": 128,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Jacket Style Cascata Women",
+            "brand": null,
+            "price": "219,94 € UVP*\n                            299,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-jacket-style-cascata-women-36-gelb-astro/2023400-36-gelb"
+          },
+          {
+            "rank": 2,
+            "title": "Escape Light Jacket Women",
+            "brand": null,
+            "price": "ab 79,64 € UVP*\n                            119,95 €",
+            "url": "https://www.naturzeit.com/vaude-escape-light-jacket-women-36-braun-peanut-butter/2023115-36-braun"
+          },
+          {
+            "rank": 3,
+            "title": "Escape Light Jacket Men",
+            "brand": null,
+            "price": "ab 79,64 € UVP*\n                            119,95 €",
+            "url": "https://www.naturzeit.com/vaude-escape-light-jacket-men-m-blau1-dark-sea-uni/2023116-M-blau1"
+          },
+          {
+            "rank": 4,
+            "title": "Metor Men",
+            "brand": null,
+            "price": "105,94 € UVP*\n                            179,95 €",
+            "url": "https://www.naturzeit.com/maier-sports-metor-men-28-blau-nightsky-nightsky/2022977-blau-28"
+          },
+          {
+            "rank": 5,
+            "title": "Metor Women",
+            "brand": null,
+            "price": "99,94 € UVP*\n                            179,95 €",
+            "url": "https://www.naturzeit.com/maier-sports-metor-women-19-rot-sun-dried-tomato/2022978-rot-19"
+          }
+        ],
+        "control_count": 260,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/typo_hardsheljacken_und_regenjacken_cc4afcfb94.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9474,
+        "rationale": "Catalog-grounded typo: Hardshelljacken und Regenjacken",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Escape Light Jacket Women",
+            "brand": null,
+            "price": "ab 79,64 € UVP*\n                            119,95 €",
+            "url": "https://www.naturzeit.com/vaude-escape-light-jacket-women-36-braun-peanut-butter/2023115-36-braun"
+          },
+          {
+            "rank": 2,
+            "title": "Escape Light Jacket Men",
+            "brand": null,
+            "price": "ab 79,64 € UVP*\n                            119,95 €",
+            "url": "https://www.naturzeit.com/vaude-escape-light-jacket-men-m-blau1-dark-sea-uni/2023116-M-blau1"
+          },
+          {
+            "rank": 3,
+            "title": "Metor Men",
+            "brand": null,
+            "price": "105,94 € UVP*\n                            179,95 €",
+            "url": "https://www.naturzeit.com/maier-sports-metor-men-28-blau-nightsky-nightsky/2022977-blau-28"
+          },
+          {
+            "rank": 4,
+            "title": "Metor Women",
+            "brand": null,
+            "price": "99,94 € UVP*\n                            179,95 €",
+            "url": "https://www.naturzeit.com/maier-sports-metor-women-19-rot-sun-dried-tomato/2022978-rot-19"
+          },
+          {
+            "rank": 5,
+            "title": "Prelight 2.5L LT Jacket Men",
+            "brand": null,
+            "price": "109,94 € UVP*\n                            169,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-prelight-2.5l-lt-jacket-men-xl-blau-blue-orchid/2022639-blau-XL"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/Hardshelljacken_und_Regenjacken_02a820b49b.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "4 products shared with positive control",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "HardshelljackenundRegenjacken",
+        "control_query": "Hardshelljacken und Regenjacken",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 260,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-e5727bda17-query.png",
+        "error_message": "page says: 'keine Ergebnisse'",
+        "execution_time_ms": 7083,
+        "rationale": "Independent headed proof verification",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Escape Light Jacket Women",
+            "brand": null,
+            "price": "ab 79,64 € UVP*\n                            119,95 €",
+            "url": "https://www.naturzeit.com/vaude-escape-light-jacket-women-36-braun-peanut-butter/2023115-36-braun"
+          },
+          {
+            "rank": 2,
+            "title": "Escape Light Jacket Men",
+            "brand": null,
+            "price": "ab 79,64 € UVP*\n                            119,95 €",
+            "url": "https://www.naturzeit.com/vaude-escape-light-jacket-men-m-blau1-dark-sea-uni/2023116-M-blau1"
+          },
+          {
+            "rank": 3,
+            "title": "Metor Men",
+            "brand": null,
+            "price": "105,94 € UVP*\n                            179,95 €",
+            "url": "https://www.naturzeit.com/maier-sports-metor-men-28-blau-nightsky-nightsky/2022977-blau-28"
+          },
+          {
+            "rank": 4,
+            "title": "Metor Women",
+            "brand": null,
+            "price": "99,94 € UVP*\n                            179,95 €",
+            "url": "https://www.naturzeit.com/maier-sports-metor-women-19-rot-sun-dried-tomato/2022978-rot-19"
+          },
+          {
+            "rank": 5,
+            "title": "Prelight 2.5L LT Jacket Men",
+            "brand": null,
+            "price": "109,94 € UVP*\n                            169,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-prelight-2.5l-lt-jacket-men-xl-blau-blue-orchid/2022639-blau-XL"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-a16d6bc627-control.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "fail",
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "verified": true,
+      "review_note": "Clear no-results page versus 260 products; consent dismissed on independent recheck."
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "FahrradjackenundFahrradwesten",
+        "control_query": "Fahrradjacken und Fahrradwesten",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 17,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-8920402f22-query.png",
+        "error_message": "page says: 'keine Ergebnisse'",
+        "execution_time_ms": 7279,
+        "rationale": "Independent headed proof verification",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Jessy Women",
+            "brand": null,
+            "price": "75,94 € UVP*\n                            99,95 €",
+            "url": "https://www.naturzeit.com/pro-x-elements-jessy-women-38-blau-rauchblau/2022603-blau-38"
+          },
+          {
+            "rank": 2,
+            "title": "Regenjacke PACKable Men",
+            "brand": null,
+            "price": "ab 37,98 € UVP*\n                            49,95 €",
+            "url": "https://www.naturzeit.com/pro-x-elements-regenjacke-packable-men-s-grau-anthrazit/2020458-S-grau"
+          },
+          {
+            "rank": 3,
+            "title": "Clarissa Women",
+            "brand": null,
+            "price": "99,94 € UVP*\n                            119,95 €",
+            "url": "https://www.naturzeit.com/pro-x-elements-clarissa-women-36-blau-rauchblau/2022533-blau-36"
+          },
+          {
+            "rank": 4,
+            "title": "Emma Women",
+            "brand": null,
+            "price": "40,94 € UVP*\n                            69,95 €",
+            "url": "https://www.naturzeit.com/pro-x-elements-emma-women-40-grau-stone/2022530-grau-40"
+          },
+          {
+            "rank": 5,
+            "title": "P-Space Age Men",
+            "brand": null,
+            "price": "144,94 € UVP*\n                            189,95 €",
+            "url": "https://www.naturzeit.com/protective-p-space-age-men-s-schwarz-farbe-black/2021369-schwarz-S"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-06809679a3-control.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "fail",
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "verified": true,
+      "review_note": "Clear no-results page versus 17 products."
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "WanderhosenundTrekkinghosen",
+        "control_query": "Wanderhosen und Trekkinghosen",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 119,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-cf74cbd64d-query.png",
+        "error_message": "page says: 'keine Ergebnisse'",
+        "execution_time_ms": 9382,
+        "rationale": "Independent headed proof verification",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Pro Trousers III Men",
+            "brand": null,
+            "price": "ab 77,97 € UVP*\n                            119,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-pro-trousers-iii-men-52-schwarz-black-pepper-36/2018376-52-schwarz"
+          },
+          {
+            "rank": 2,
+            "title": "Abisko Hybrid Trail Trousers Men",
+            "brand": null,
+            "price": "149,94 € UVP*\n                            219,95 €",
+            "url": "https://www.naturzeit.com/fjaellraeven-abisko-hybrid-trail-trousers-men-50-blau-farbe-navy/2020631-50-blau"
+          },
+          {
+            "rank": 3,
+            "title": "Firewall Guide Pants Men",
+            "brand": null,
+            "price": "213,16 € UVP*\n                            259,95 €",
+            "url": "https://www.naturzeit.com/rab-firewall-guide-pants-men-m-schwarz-black/2023789-M-schwarz"
+          },
+          {
+            "rank": 4,
+            "title": "Wallis 2XT Men",
+            "brand": null,
+            "price": "101,96 € UVP*\n                            119,95 €",
+            "url": "https://www.naturzeit.com/maul-wallis-2xt-men-48-schwarz-black/2023772-48-schwarz"
+          },
+          {
+            "rank": 5,
+            "title": "Pico Trail Pants Men",
+            "brand": null,
+            "price": "ab 58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-pico-trail-pants-men-46-grau1-phantom/2020694-46-grau1"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-feec37d8dc-control.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "fail",
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "verified": true,
+      "review_note": "Clear no-results page versus 119 products."
+    },
+    {
+      "probe": {
+        "probe_type": "exact_product_name",
+        "query": "NosiLife Alma Long Sleeved Shirt Women",
+        "control_query": "Outdoorbekleidung",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          }
+        ],
+        "control_count": 3200,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_NosiLife_Alma_Long_Sleeved_Shirt_Women_fcd9ef463b.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 6894,
+        "rationale": "Catalog-grounded exact_product_name: Outdoorbekleidung",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 3,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          },
+          {
+            "rank": 4,
+            "title": "Hochalm UV50 Women",
+            "brand": null,
+            "price": "ab 59,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Sierra Canyon Shirt Women",
+            "brand": null,
+            "price": "ab 47,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+        "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+        "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "ranking_check",
+        "query": "NosiLife Alma Long Sleeved Shirt Women",
+        "control_query": "Outdoorbekleidung",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          }
+        ],
+        "control_count": 3200,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_NosiLife_Alma_Long_Sleeved_Shirt_Women_fcd9ef463b.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded ranking_check: Outdoorbekleidung",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 3,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          },
+          {
+            "rank": 4,
+            "title": "Hochalm UV50 Women",
+            "brand": null,
+            "price": "ab 59,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Sierra Canyon Shirt Women",
+            "brand": null,
+            "price": "ab 47,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+        "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+        "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Exact catalog product at rank 1",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "coverage_check",
+        "query": "NosiLife Alma Long Sleeved Shirt Women",
+        "control_query": "Outdoorbekleidung",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          }
+        ],
+        "control_count": 3200,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_NosiLife_Alma_Long_Sleeved_Shirt_Women_fcd9ef463b.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded coverage_check: Outdoorbekleidung",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 3,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          },
+          {
+            "rank": 4,
+            "title": "Hochalm UV50 Women",
+            "brand": null,
+            "price": "ab 59,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Sierra Canyon Shirt Women",
+            "brand": null,
+            "price": "ab 47,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+        "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+        "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "exact_product_name",
+        "query": "Sajilo Dress Women",
+        "control_query": "Outdoorbekleidung",
+        "status": "success",
+        "result_count": 2,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Travel Dress",
+            "brand": null,
+            "price": "ab 75,94 € UVP*\n                            109,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-travel-dress-xs-gruen-farbe-hydra/2019713-gruen-XS"
+          }
+        ],
+        "control_count": 3200,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_Sajilo_Dress_Women_03417bc300.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 6884,
+        "rationale": "Catalog-grounded exact_product_name: Outdoorbekleidung",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 3,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          },
+          {
+            "rank": 4,
+            "title": "Hochalm UV50 Women",
+            "brand": null,
+            "price": "ab 59,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Sierra Canyon Shirt Women",
+            "brand": null,
+            "price": "ab 47,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+        "expected_title": "Sajilo Dress Women",
+        "expected_url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "ranking_check",
+        "query": "Sajilo Dress Women",
+        "control_query": "Outdoorbekleidung",
+        "status": "success",
+        "result_count": 2,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Travel Dress",
+            "brand": null,
+            "price": "ab 75,94 € UVP*\n                            109,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-travel-dress-xs-gruen-farbe-hydra/2019713-gruen-XS"
+          }
+        ],
+        "control_count": 3200,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_Sajilo_Dress_Women_03417bc300.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded ranking_check: Outdoorbekleidung",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 3,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          },
+          {
+            "rank": 4,
+            "title": "Hochalm UV50 Women",
+            "brand": null,
+            "price": "ab 59,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Sierra Canyon Shirt Women",
+            "brand": null,
+            "price": "ab 47,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+        "expected_title": "Sajilo Dress Women",
+        "expected_url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Exact catalog product at rank 1",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "coverage_check",
+        "query": "Sajilo Dress Women",
+        "control_query": "Outdoorbekleidung",
+        "status": "success",
+        "result_count": 2,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Travel Dress",
+            "brand": null,
+            "price": "ab 75,94 € UVP*\n                            109,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-travel-dress-xs-gruen-farbe-hydra/2019713-gruen-XS"
+          }
+        ],
+        "control_count": 3200,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_Sajilo_Dress_Women_03417bc300.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded coverage_check: Outdoorbekleidung",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 3,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          },
+          {
+            "rank": 4,
+            "title": "Hochalm UV50 Women",
+            "brand": null,
+            "price": "ab 59,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Sierra Canyon Shirt Women",
+            "brand": null,
+            "price": "ab 47,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+        "expected_title": "Sajilo Dress Women",
+        "expected_url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "exact_product_name",
+        "query": "CIRC Blouse Style Dalfoss Women",
+        "control_query": "Outdoorbekleidung",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          }
+        ],
+        "control_count": 3200,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_CIRC_Blouse_Style_Dalfoss_Women_6aa203134b.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 6753,
+        "rationale": "Catalog-grounded exact_product_name: Outdoorbekleidung",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 3,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          },
+          {
+            "rank": 4,
+            "title": "Hochalm UV50 Women",
+            "brand": null,
+            "price": "ab 59,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Sierra Canyon Shirt Women",
+            "brand": null,
+            "price": "ab 47,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+        "expected_title": "CIRC Blouse Style Dalfoss Women",
+        "expected_url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "ranking_check",
+        "query": "CIRC Blouse Style Dalfoss Women",
+        "control_query": "Outdoorbekleidung",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          }
+        ],
+        "control_count": 3200,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_CIRC_Blouse_Style_Dalfoss_Women_6aa203134b.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded ranking_check: Outdoorbekleidung",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 3,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          },
+          {
+            "rank": 4,
+            "title": "Hochalm UV50 Women",
+            "brand": null,
+            "price": "ab 59,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Sierra Canyon Shirt Women",
+            "brand": null,
+            "price": "ab 47,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+        "expected_title": "CIRC Blouse Style Dalfoss Women",
+        "expected_url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Exact catalog product at rank 1",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "coverage_check",
+        "query": "CIRC Blouse Style Dalfoss Women",
+        "control_query": "Outdoorbekleidung",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          }
+        ],
+        "control_count": 3200,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_CIRC_Blouse_Style_Dalfoss_Women_6aa203134b.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded coverage_check: Outdoorbekleidung",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 3,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          },
+          {
+            "rank": 4,
+            "title": "Hochalm UV50 Women",
+            "brand": null,
+            "price": "ab 59,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+          },
+          {
+            "rank": 5,
+            "title": "Sierra Canyon Shirt Women",
+            "brand": null,
+            "price": "ab 47,94 € UVP*\n                            79,95 €",
+            "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+        "expected_title": "CIRC Blouse Style Dalfoss Women",
+        "expected_url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "natural_language",
+        "query": "Damen Outdoor Hemd langarm für Wanderungen",
+        "control_query": "NosiLife Alma Long Sleeved Shirt Women",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 1,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/natural_language_Damen_Outdoor_Hemd_langarm_für_Wanderungen_625ba03597.png",
+        "error_message": "page says: 'keine Ergebnisse'",
+        "execution_time_ms": 6672,
+        "rationale": "Catalog-grounded natural_language: NosiLife Alma Long Sleeved Shirt Women",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_NosiLife_Alma_Long_Sleeved_Shirt_Women_fcd9ef463b.png",
+        "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+        "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+        "constraints": {},
+        "catalog_evidence": "NosiLife Alma Long Sleeved Shirt Women",
+        "grounded": false,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": false
+      },
+      "score": "partial",
+      "score_reason": "Zero results; semantic equivalence needs manual catalog verification",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "synonym",
+        "query": "Outdoor Bluse Damen",
+        "control_query": "CIRC Blouse Style Dalfoss Women",
+        "status": "success",
+        "result_count": 190,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Women`s Aspire 3L Jacket",
+            "brand": null,
+            "price": "169,94 € UVP*\n                            279,95 €",
+            "url": "https://www.naturzeit.com/outdoor-research-women-s-aspire-3l-jacket-xs-rosa-cherry-blossom/2022793-rosa-XS"
+          },
+          {
+            "rank": 2,
+            "title": "Sula Sweater Women",
+            "brand": null,
+            "price": "261,94 € UVP*\n                            349,90 €",
+            "url": "https://www.naturzeit.com/dale-of-norway-sula-sweater-women-m-braun-mountainstone-pine-green-ice-blue/2020007-M-braun"
+          },
+          {
+            "rank": 3,
+            "title": "Vest Bygstad Lady",
+            "brand": null,
+            "price": "54,89 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-vest-bygstad-lady-groesse-42-farbe-dress-blues/1142993"
+          },
+          {
+            "rank": 4,
+            "title": "Losna Fem Sweater Women",
+            "brand": null,
+            "price": "254,15 € UVP*\n                            299,00 €",
+            "url": "https://www.naturzeit.com/dale-of-norway-losna-fem-sweater-women-m-blau-mid-blue-melange/2024033-M-blau"
+          },
+          {
+            "rank": 5,
+            "title": "Albertville Fem. Sweater Women",
+            "brand": null,
+            "price": "339,15 € UVP*\n                            399,00 €",
+            "url": "https://www.naturzeit.com/dale-of-norway-albertville-fem.-sweater-women-s-blau-offwhite-blue-shadow/2023943-S-blau"
+          }
+        ],
+        "control_count": 1,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/synonym_Outdoor_Bluse_Damen_a9981af364.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8748,
+        "rationale": "Catalog-grounded synonym: CIRC Blouse Style Dalfoss Women",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "CIRC Blouse Style Dalfoss Women",
+            "brand": null,
+            "price": "ab 35,94 € UVP*\n                            59,95 €",
+            "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_CIRC_Blouse_Style_Dalfoss_Women_6aa203134b.png",
+        "expected_title": "CIRC Blouse Style Dalfoss Women",
+        "expected_url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun",
+        "constraints": {},
+        "catalog_evidence": "CIRC Blouse Style Dalfoss Women",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": false
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "plural_singular",
+        "query": "Outdoorbekleidung Damen",
+        "control_query": "NosiLife Alma Long Sleeved Shirt Women",
+        "status": "success",
+        "result_count": 1766,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Waxenstein II Lady",
+            "brand": null,
+            "price": "231,96 € UVP*\n                            289,95 €",
+            "url": "https://www.naturzeit.com/hanwag-waxenstein-ii-lady-uk-6-braun-chestnut-black/2023862-UK-6-braun"
+          },
+          {
+            "rank": 2,
+            "title": "Winter Hiker Lady GTX",
+            "brand": null,
+            "price": "ab 193,12 € UVP*\n                            229,90 €",
+            "url": "https://www.naturzeit.com/meindl-winter-hiker-lady-gtx-uk-6-grau-grau-tuerkis/2023525-UK-6-grau"
+          },
+          {
+            "rank": 3,
+            "title": "Civetta Lady 2 GTX",
+            "brand": null,
+            "price": "ab 209,92 € UVP*\n                            249,90 €",
+            "url": "https://www.naturzeit.com/meindl-civetta-lady-2-gtx-uk-5-beige-beige/2023523-UK-5-beige"
+          },
+          {
+            "rank": 4,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          },
+          {
+            "rank": 5,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          }
+        ],
+        "control_count": 1,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/plural_singular_Outdoorbekleidung_Damen_720aeedde2.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10122,
+        "rationale": "Catalog-grounded plural_singular: NosiLife Alma Long Sleeved Shirt Women",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_NosiLife_Alma_Long_Sleeved_Shirt_Women_fcd9ef463b.png",
+        "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+        "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+        "constraints": {},
+        "catalog_evidence": "NosiLife Alma Long Sleeved Shirt Women",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "natural_language",
+        "query": "Leichte Sommerkleidung zum Wandern Damen",
+        "control_query": "Sajilo Dress Women",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 2,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/natural_language_Leichte_Sommerkleidung_zum_Wandern_Damen_31a0d75612.png",
+        "error_message": "page says: 'keine Ergebnisse'",
+        "execution_time_ms": 7025,
+        "rationale": "Catalog-grounded natural_language: Sajilo Dress Women",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Sajilo Dress Women",
+            "brand": null,
+            "price": "52,94 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+          },
+          {
+            "rank": 2,
+            "title": "Sajilo Travel Dress",
+            "brand": null,
+            "price": "ab 75,94 € UVP*\n                            109,95 €",
+            "url": "https://www.naturzeit.com/sherpa-sajilo-travel-dress-xs-gruen-farbe-hydra/2019713-gruen-XS"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_Sajilo_Dress_Women_03417bc300.png",
+        "expected_title": "Sajilo Dress Women",
+        "expected_url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062",
+        "constraints": {},
+        "catalog_evidence": "Sajilo Dress Women",
+        "grounded": false,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "partial",
+      "score_reason": "Zero results; semantic equivalence needs manual catalog verification",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "price_constraint",
+        "query": "NosiLife Alma Long Sleeved Shirt Women unter 71",
+        "control_query": "NosiLife Alma Long Sleeved Shirt Women",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 1,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-64096667ac-query.png",
+        "error_message": "page says: 'keine Ergebnisse'",
+        "execution_time_ms": 7864,
+        "rationale": "Independent headed proof verification",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": null,
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-1c906823ab-control.png",
+        "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+        "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+        "constraints": {
+          "price_max": "71"
+        },
+        "catalog_evidence": "NosiLife Alma Long Sleeved Shirt Women: 58,47 € UVP*\n                            89,95 €",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "fail",
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "verified": true,
+      "review_note": "Control shows qualifying Craghoppers shirt at €58.47; adding unter 71 returns 0."
+    },
+    {
+      "probe": {
+        "probe_type": "zero_result_check",
+        "query": "xyzqwk12345nonsense",
+        "control_query": "Outdoorbekleidung",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 3200,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/zero_result_check_xyzqwk12345nonsense_456f3f5f3e.png",
+        "error_message": "page says: 'keine Ergebnisse'",
+        "execution_time_ms": 6804,
+        "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results",
+        "control_results": [],
+        "control_screenshot_path": null,
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Correctly returned zero results for gibberish query",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "Craghopers NosiLife Alma Long Sleeved Shirt Women",
+        "control_query": "NosiLife Alma Long Sleeved Shirt Women",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": "Craghoppers",
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          }
+        ],
+        "control_count": 1,
+        "screenshot_path": "../scanner_output/round2-extras/www.naturzeit.com/typo_Craghopers_NosiLife_Alma_Long_Sleeved_Shirt_Women_28270209e3.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 7314,
+        "rationale": "Supplemental catalog-grounded capability verification",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": "Craghoppers",
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-extras/www.naturzeit.com/control_NosiLife_Alma_Long_Sleeved_Shirt_Women_617404c282.png",
+        "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "brand_search",
+        "query": "Craghoppers NosiLife Alma Long Sleeved Shirt Women",
+        "control_query": "NosiLife Alma Long Sleeved Shirt Women",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": "Craghoppers",
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          }
+        ],
+        "control_count": 1,
+        "screenshot_path": "../scanner_output/round2-brand/www.naturzeit.com/brand_search_Craghoppers_NosiLife_Alma_Long_Sleeved_Shirt_Women_38bb3738e0.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8294,
+        "rationale": "Store/observed brand plus exact catalog product. Zero would require brand-identity review.",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "NosiLife Alma Long Sleeved Shirt Women",
+            "brand": "Craghoppers",
+            "price": "58,47 € UVP*\n                            89,95 €",
+            "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-brand/www.naturzeit.com/control_NosiLife_Alma_Long_Sleeved_Shirt_Women_617404c282.png",
+        "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "diacritics",
+        "query": "Outdoor Regenhosen und Uberhosen",
+        "control_query": "Outdoor Regenhosen und Überhosen",
+        "status": "success",
+        "result_count": 10,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Logon Women UG Überhose",
+            "brand": "PRO-X elements",
+            "price": "60,16 € UVP*\n                            69,95 €",
+            "url": "https://www.naturzeit.com/pro-x-elements-logon-women-ug-ueberhose-schwarz-18/21401-schwarz-18"
+          },
+          {
+            "rank": 2,
+            "title": "Raindrop Men",
+            "brand": "Maier Sports",
+            "price": "84,94 € UVP*\n                            129,95 €",
+            "url": "https://www.naturzeit.com/maier-sports-raindrop-men-48-schwarz-black/2022139-schwarz-48"
+          },
+          {
+            "rank": 3,
+            "title": "Raindrop Lady",
+            "brand": "Maier Sports",
+            "price": "84,94 € UVP*\n                            129,95 €",
+            "url": "https://www.naturzeit.com/maier-sports-raindrop-lady-38-schwarz-black/2022140-38"
+          },
+          {
+            "rank": 4,
+            "title": "Zeno FZ Mens Pant",
+            "brand": "Mountain Equipment",
+            "price": "ab 84,44 € UVP*\n                            129,90 €",
+            "url": "https://www.naturzeit.com/mountain-equipment-zeno-fz-mens-pant-m-short-schwarz-farbe-black/2022222-schwarz-M-Short"
+          },
+          {
+            "rank": 5,
+            "title": "Zeno FZ Pant Men",
+            "brand": "Mountain Equipment",
+            "price": "88,94 € UVP*\n                            129,90 €",
+            "url": "https://www.naturzeit.com/mountain-equipment-zeno-fz-pant-men-black-l-short/23833-L-short-black"
+          }
+        ],
+        "control_count": 10,
+        "screenshot_path": "../scanner_output/round2-locale/www.naturzeit.com/diacritics_Outdoor_Regenhosen_und_Uberhosen_afc7699ba9.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8145,
+        "rationale": "Literal navigation diacritics or observed unit-format equivalence",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Logon Women UG Überhose",
+            "brand": "PRO-X elements",
+            "price": "60,16 € UVP*\n                            69,95 €",
+            "url": "https://www.naturzeit.com/pro-x-elements-logon-women-ug-ueberhose-schwarz-18/21401-schwarz-18"
+          },
+          {
+            "rank": 2,
+            "title": "Raindrop Men",
+            "brand": "Maier Sports",
+            "price": "84,94 € UVP*\n                            129,95 €",
+            "url": "https://www.naturzeit.com/maier-sports-raindrop-men-48-schwarz-black/2022139-schwarz-48"
+          },
+          {
+            "rank": 3,
+            "title": "Raindrop Lady",
+            "brand": "Maier Sports",
+            "price": "84,94 € UVP*\n                            129,95 €",
+            "url": "https://www.naturzeit.com/maier-sports-raindrop-lady-38-schwarz-black/2022140-38"
+          },
+          {
+            "rank": 4,
+            "title": "Zeno FZ Mens Pant",
+            "brand": "Mountain Equipment",
+            "price": "ab 84,44 € UVP*\n                            129,90 €",
+            "url": "https://www.naturzeit.com/mountain-equipment-zeno-fz-mens-pant-m-short-schwarz-farbe-black/2022222-schwarz-M-Short"
+          },
+          {
+            "rank": 5,
+            "title": "Zeno FZ Pant Men",
+            "brand": "Mountain Equipment",
+            "price": "88,94 € UVP*\n                            129,90 €",
+            "url": "https://www.naturzeit.com/mountain-equipment-zeno-fz-pant-men-black-l-short/23833-L-short-black"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-locale/www.naturzeit.com/control_Outdoor_Regenhosen_und_Überhosen_c68cfee5b3.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "5 products shared with positive control",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    }
+  ],
+  "capabilities": [
+    {
+      "capability": "basic_retrieval",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "control_query",
+            "query": "Outdoorbekleidung",
+            "control_query": null,
+            "status": "success",
+            "result_count": 3200,
+            "results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 3,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              },
+              {
+                "rank": 4,
+                "title": "Hochalm UV50 Women",
+                "brand": null,
+                "price": "ab 59,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Sierra Canyon Shirt Women",
+                "brand": null,
+                "price": "ab 47,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10600,
+            "rationale": "Catalog seed control",
+            "control_results": [],
+            "control_screenshot_path": null,
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Control query returned 3200 results",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "exact_product_name",
+            "query": "NosiLife Alma Long Sleeved Shirt Women",
+            "control_query": "Outdoorbekleidung",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              }
+            ],
+            "control_count": 3200,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_NosiLife_Alma_Long_Sleeved_Shirt_Women_fcd9ef463b.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 6894,
+            "rationale": "Catalog-grounded exact_product_name: Outdoorbekleidung",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 3,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              },
+              {
+                "rank": 4,
+                "title": "Hochalm UV50 Women",
+                "brand": null,
+                "price": "ab 59,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Sierra Canyon Shirt Women",
+                "brand": null,
+                "price": "ab 47,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+            "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+            "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "exact_product_name",
+            "query": "Sajilo Dress Women",
+            "control_query": "Outdoorbekleidung",
+            "status": "success",
+            "result_count": 2,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Travel Dress",
+                "brand": null,
+                "price": "ab 75,94 € UVP*\n                            109,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-travel-dress-xs-gruen-farbe-hydra/2019713-gruen-XS"
+              }
+            ],
+            "control_count": 3200,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_Sajilo_Dress_Women_03417bc300.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 6884,
+            "rationale": "Catalog-grounded exact_product_name: Outdoorbekleidung",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 3,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              },
+              {
+                "rank": 4,
+                "title": "Hochalm UV50 Women",
+                "brand": null,
+                "price": "ab 59,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Sierra Canyon Shirt Women",
+                "brand": null,
+                "price": "ab 47,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+            "expected_title": "Sajilo Dress Women",
+            "expected_url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "exact_product_name",
+            "query": "CIRC Blouse Style Dalfoss Women",
+            "control_query": "Outdoorbekleidung",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              }
+            ],
+            "control_count": 3200,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_CIRC_Blouse_Style_Dalfoss_Women_6aa203134b.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 6753,
+            "rationale": "Catalog-grounded exact_product_name: Outdoorbekleidung",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 3,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              },
+              {
+                "rank": 4,
+                "title": "Hochalm UV50 Women",
+                "brand": null,
+                "price": "ab 59,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Sierra Canyon Shirt Women",
+                "brand": null,
+                "price": "ab 47,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+            "expected_title": "CIRC Blouse Style Dalfoss Women",
+            "expected_url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "4/4 passed"
+    },
+    {
+      "capability": "typo_tolerance",
+      "score": "partial",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "outdorbekleidung",
+            "control_query": "Outdoorbekleidung",
+            "status": "success",
+            "result_count": 29,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Stain Scrub 125ml",
+                "brand": null,
+                "price": "8,63 € (69,04 € / 1 Liter) UVP*\n                                11,35 €",
+                "url": "https://www.naturzeit.com/nikwax-stain-scrub-125ml/2023227"
+              },
+              {
+                "rank": 2,
+                "title": "TX.Direct Spray-On 500ml",
+                "brand": null,
+                "price": "15,17 € (30,34 € / 1 Liter) UVP*\n                                19,95 €",
+                "url": "https://www.naturzeit.com/nikwax-tx.direct-spray-on-500ml/2022555"
+              },
+              {
+                "rank": 3,
+                "title": "Wool Wash 250ml",
+                "brand": null,
+                "price": "9,72 € (38,88 € / 1 Liter) UVP*\n                                12,95 €",
+                "url": "https://www.naturzeit.com/toko-wool-wash-250ml/2022033"
+              },
+              {
+                "rank": 4,
+                "title": "Water-Guard Imprägnierspray 380ml",
+                "brand": null,
+                "price": "21,46 € (56,47 € / 1 Liter) UVP*\n                                24,95 €",
+                "url": "https://www.naturzeit.com/atsko-water-guard-impraegnierspray-380ml/2022028"
+              },
+              {
+                "rank": 5,
+                "title": "Sport-Wash 532ml",
+                "brand": null,
+                "price": "23,18 € (43,57 € / 1 Liter) UVP*\n                                26,95 €",
+                "url": "https://www.naturzeit.com/atsko-sport-wash-532ml/2022027"
+              }
+            ],
+            "control_count": 3200,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/typo_outdorbekleidung_b8bf3a096a.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9118,
+            "rationale": "Catalog-grounded typo: Outdoorbekleidung",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 3,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              },
+              {
+                "rank": 4,
+                "title": "Hochalm UV50 Women",
+                "brand": null,
+                "price": "ab 59,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Sierra Canyon Shirt Women",
+                "brand": null,
+                "price": "ab 47,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "outdorjacken",
+            "control_query": "Outdoorjacken",
+            "status": "success",
+            "result_count": 11,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Padded Blouson Men",
+                "brand": null,
+                "price": "99,94 € UVP*\n                            139,90 €",
+                "url": "https://www.naturzeit.com/mazine-padded-blouson-men-s-gruen-light-bottle/2023900-S-gruen"
+              },
+              {
+                "rank": 2,
+                "title": "Nydala Classic 2L Jacket Men",
+                "brand": null,
+                "price": "169,94 € UVP*\n                            219,95 €",
+                "url": "https://www.naturzeit.com/pinewood-nydala-classic-2l-jacket-men-l-beige-d.sandstone/2023805-L-beige"
+              },
+              {
+                "rank": 3,
+                "title": "Skien Valley Hooded LS Men",
+                "brand": null,
+                "price": "64,94 € UVP*\n                            99,95 €",
+                "url": "https://www.naturzeit.com/columbia-skien-valley-hooded-ls-men-m-beige-ancient-fossil/2020553-M-beige"
+              },
+              {
+                "rank": 4,
+                "title": "Fabric Blocking Jacket Women",
+                "brand": null,
+                "price": "89,94 € UVP*\n                            139,90 €",
+                "url": "https://www.naturzeit.com/mazine-fabric-blocking-jacket-women-s-beige-farbe-oat-natural/2021705-S-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Pamir Jacket Men",
+                "brand": null,
+                "price": "119,94 € UVP*\n                            189,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-pamir-jacket-men-s-schwarz-black/2021785-schwarz-S"
+              }
+            ],
+            "control_count": 58,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/typo_outdorjacken_da070f44ad.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 7465,
+            "rationale": "Catalog-grounded typo: Outdoorjacken",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Argo Decke",
+                "brand": null,
+                "price": "117,98 € UVP*\n                            119,95 €",
+                "url": "https://www.naturzeit.com/therm-a-rest-argo-decke-groesse-198-x-182-cm-farbe-outer-space-blue/1160573"
+              },
+              {
+                "rank": 2,
+                "title": "Picnic Blanket Größe 160 x 120 cm Farbe midnight blue",
+                "brand": null,
+                "price": "24,26 € UVP*\n                                29,95 €",
+                "url": "https://www.naturzeit.com/cocoon-picnic-blanket-groesse-160-x-120-cm-farbe-midnight-blue/1121857"
+              },
+              {
+                "rank": 3,
+                "title": "Picnic Blanket",
+                "brand": null,
+                "price": "28,31 € UVP*\n                                34,95 €",
+                "url": "https://www.naturzeit.com/cocoon-picnic-blanket/1127365"
+              },
+              {
+                "rank": 4,
+                "title": "Helium Quilt Maße: 203 x 150 cm Farbe: majolica blue",
+                "brand": null,
+                "price": "191,32 € UVP*\n                                219,90 €",
+                "url": "https://www.naturzeit.com/mountain-equipment-helium-quilt-masse-203-x-150-cm-farbe-majolica-blue/1144500"
+              },
+              {
+                "rank": 5,
+                "title": "COOLMAX-Decke Maße: 180 x 140 cm Farbe: navy",
+                "brand": null,
+                "price": "32,36 € UVP*\n                                39,95 €",
+                "url": "https://www.naturzeit.com/cocoon-coolmax-decke-masse-180-x-140-cm-farbe-navy/2023017"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/Outdoorjacken_1947968473.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "hardsheljacken und regenjacken",
+            "control_query": "Hardshelljacken und Regenjacken",
+            "status": "success",
+            "result_count": 128,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Jacket Style Cascata Women",
+                "brand": null,
+                "price": "219,94 € UVP*\n                            299,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-jacket-style-cascata-women-36-gelb-astro/2023400-36-gelb"
+              },
+              {
+                "rank": 2,
+                "title": "Escape Light Jacket Women",
+                "brand": null,
+                "price": "ab 79,64 € UVP*\n                            119,95 €",
+                "url": "https://www.naturzeit.com/vaude-escape-light-jacket-women-36-braun-peanut-butter/2023115-36-braun"
+              },
+              {
+                "rank": 3,
+                "title": "Escape Light Jacket Men",
+                "brand": null,
+                "price": "ab 79,64 € UVP*\n                            119,95 €",
+                "url": "https://www.naturzeit.com/vaude-escape-light-jacket-men-m-blau1-dark-sea-uni/2023116-M-blau1"
+              },
+              {
+                "rank": 4,
+                "title": "Metor Men",
+                "brand": null,
+                "price": "105,94 € UVP*\n                            179,95 €",
+                "url": "https://www.naturzeit.com/maier-sports-metor-men-28-blau-nightsky-nightsky/2022977-blau-28"
+              },
+              {
+                "rank": 5,
+                "title": "Metor Women",
+                "brand": null,
+                "price": "99,94 € UVP*\n                            179,95 €",
+                "url": "https://www.naturzeit.com/maier-sports-metor-women-19-rot-sun-dried-tomato/2022978-rot-19"
+              }
+            ],
+            "control_count": 260,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/typo_hardsheljacken_und_regenjacken_cc4afcfb94.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9474,
+            "rationale": "Catalog-grounded typo: Hardshelljacken und Regenjacken",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Escape Light Jacket Women",
+                "brand": null,
+                "price": "ab 79,64 € UVP*\n                            119,95 €",
+                "url": "https://www.naturzeit.com/vaude-escape-light-jacket-women-36-braun-peanut-butter/2023115-36-braun"
+              },
+              {
+                "rank": 2,
+                "title": "Escape Light Jacket Men",
+                "brand": null,
+                "price": "ab 79,64 € UVP*\n                            119,95 €",
+                "url": "https://www.naturzeit.com/vaude-escape-light-jacket-men-m-blau1-dark-sea-uni/2023116-M-blau1"
+              },
+              {
+                "rank": 3,
+                "title": "Metor Men",
+                "brand": null,
+                "price": "105,94 € UVP*\n                            179,95 €",
+                "url": "https://www.naturzeit.com/maier-sports-metor-men-28-blau-nightsky-nightsky/2022977-blau-28"
+              },
+              {
+                "rank": 4,
+                "title": "Metor Women",
+                "brand": null,
+                "price": "99,94 € UVP*\n                            179,95 €",
+                "url": "https://www.naturzeit.com/maier-sports-metor-women-19-rot-sun-dried-tomato/2022978-rot-19"
+              },
+              {
+                "rank": 5,
+                "title": "Prelight 2.5L LT Jacket Men",
+                "brand": null,
+                "price": "109,94 € UVP*\n                            169,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-prelight-2.5l-lt-jacket-men-xl-blau-blue-orchid/2022639-blau-XL"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/Hardshelljacken_und_Regenjacken_02a820b49b.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "4 products shared with positive control",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "Craghopers NosiLife Alma Long Sleeved Shirt Women",
+            "control_query": "NosiLife Alma Long Sleeved Shirt Women",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": "Craghoppers",
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              }
+            ],
+            "control_count": 1,
+            "screenshot_path": "../scanner_output/round2-extras/www.naturzeit.com/typo_Craghopers_NosiLife_Alma_Long_Sleeved_Shirt_Women_28270209e3.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 7314,
+            "rationale": "Supplemental catalog-grounded capability verification",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": "Craghoppers",
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-extras/www.naturzeit.com/control_NosiLife_Alma_Long_Sleeved_Shirt_Women_617404c282.png",
+            "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "2/4 passed, 2 partial"
+    },
+    {
+      "capability": "language_understanding",
+      "score": "partial",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "synonym",
+            "query": "Outdoor Bluse Damen",
+            "control_query": "CIRC Blouse Style Dalfoss Women",
+            "status": "success",
+            "result_count": 190,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Women`s Aspire 3L Jacket",
+                "brand": null,
+                "price": "169,94 € UVP*\n                            279,95 €",
+                "url": "https://www.naturzeit.com/outdoor-research-women-s-aspire-3l-jacket-xs-rosa-cherry-blossom/2022793-rosa-XS"
+              },
+              {
+                "rank": 2,
+                "title": "Sula Sweater Women",
+                "brand": null,
+                "price": "261,94 € UVP*\n                            349,90 €",
+                "url": "https://www.naturzeit.com/dale-of-norway-sula-sweater-women-m-braun-mountainstone-pine-green-ice-blue/2020007-M-braun"
+              },
+              {
+                "rank": 3,
+                "title": "Vest Bygstad Lady",
+                "brand": null,
+                "price": "54,89 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-vest-bygstad-lady-groesse-42-farbe-dress-blues/1142993"
+              },
+              {
+                "rank": 4,
+                "title": "Losna Fem Sweater Women",
+                "brand": null,
+                "price": "254,15 € UVP*\n                            299,00 €",
+                "url": "https://www.naturzeit.com/dale-of-norway-losna-fem-sweater-women-m-blau-mid-blue-melange/2024033-M-blau"
+              },
+              {
+                "rank": 5,
+                "title": "Albertville Fem. Sweater Women",
+                "brand": null,
+                "price": "339,15 € UVP*\n                            399,00 €",
+                "url": "https://www.naturzeit.com/dale-of-norway-albertville-fem.-sweater-women-s-blau-offwhite-blue-shadow/2023943-S-blau"
+              }
+            ],
+            "control_count": 1,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/synonym_Outdoor_Bluse_Damen_a9981af364.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8748,
+            "rationale": "Catalog-grounded synonym: CIRC Blouse Style Dalfoss Women",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_CIRC_Blouse_Style_Dalfoss_Women_6aa203134b.png",
+            "expected_title": "CIRC Blouse Style Dalfoss Women",
+            "expected_url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun",
+            "constraints": {},
+            "catalog_evidence": "CIRC Blouse Style Dalfoss Women",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": false
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "plural_singular",
+            "query": "Outdoorbekleidung Damen",
+            "control_query": "NosiLife Alma Long Sleeved Shirt Women",
+            "status": "success",
+            "result_count": 1766,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Waxenstein II Lady",
+                "brand": null,
+                "price": "231,96 € UVP*\n                            289,95 €",
+                "url": "https://www.naturzeit.com/hanwag-waxenstein-ii-lady-uk-6-braun-chestnut-black/2023862-UK-6-braun"
+              },
+              {
+                "rank": 2,
+                "title": "Winter Hiker Lady GTX",
+                "brand": null,
+                "price": "ab 193,12 € UVP*\n                            229,90 €",
+                "url": "https://www.naturzeit.com/meindl-winter-hiker-lady-gtx-uk-6-grau-grau-tuerkis/2023525-UK-6-grau"
+              },
+              {
+                "rank": 3,
+                "title": "Civetta Lady 2 GTX",
+                "brand": null,
+                "price": "ab 209,92 € UVP*\n                            249,90 €",
+                "url": "https://www.naturzeit.com/meindl-civetta-lady-2-gtx-uk-5-beige-beige/2023523-UK-5-beige"
+              },
+              {
+                "rank": 4,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 5,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              }
+            ],
+            "control_count": 1,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/plural_singular_Outdoorbekleidung_Damen_720aeedde2.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10122,
+            "rationale": "Catalog-grounded plural_singular: NosiLife Alma Long Sleeved Shirt Women",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_NosiLife_Alma_Long_Sleeved_Shirt_Women_fcd9ef463b.png",
+            "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+            "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+            "constraints": {},
+            "catalog_evidence": "NosiLife Alma Long Sleeved Shirt Women",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "1/2 passed, 1 partial"
+    },
+    {
+      "capability": "locale_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "diacritics",
+            "query": "Outdoor Regenhosen und Uberhosen",
+            "control_query": "Outdoor Regenhosen und Überhosen",
+            "status": "success",
+            "result_count": 10,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Logon Women UG Überhose",
+                "brand": "PRO-X elements",
+                "price": "60,16 € UVP*\n                            69,95 €",
+                "url": "https://www.naturzeit.com/pro-x-elements-logon-women-ug-ueberhose-schwarz-18/21401-schwarz-18"
+              },
+              {
+                "rank": 2,
+                "title": "Raindrop Men",
+                "brand": "Maier Sports",
+                "price": "84,94 € UVP*\n                            129,95 €",
+                "url": "https://www.naturzeit.com/maier-sports-raindrop-men-48-schwarz-black/2022139-schwarz-48"
+              },
+              {
+                "rank": 3,
+                "title": "Raindrop Lady",
+                "brand": "Maier Sports",
+                "price": "84,94 € UVP*\n                            129,95 €",
+                "url": "https://www.naturzeit.com/maier-sports-raindrop-lady-38-schwarz-black/2022140-38"
+              },
+              {
+                "rank": 4,
+                "title": "Zeno FZ Mens Pant",
+                "brand": "Mountain Equipment",
+                "price": "ab 84,44 € UVP*\n                            129,90 €",
+                "url": "https://www.naturzeit.com/mountain-equipment-zeno-fz-mens-pant-m-short-schwarz-farbe-black/2022222-schwarz-M-Short"
+              },
+              {
+                "rank": 5,
+                "title": "Zeno FZ Pant Men",
+                "brand": "Mountain Equipment",
+                "price": "88,94 € UVP*\n                            129,90 €",
+                "url": "https://www.naturzeit.com/mountain-equipment-zeno-fz-pant-men-black-l-short/23833-L-short-black"
+              }
+            ],
+            "control_count": 10,
+            "screenshot_path": "../scanner_output/round2-locale/www.naturzeit.com/diacritics_Outdoor_Regenhosen_und_Uberhosen_afc7699ba9.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8145,
+            "rationale": "Literal navigation diacritics or observed unit-format equivalence",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Logon Women UG Überhose",
+                "brand": "PRO-X elements",
+                "price": "60,16 € UVP*\n                            69,95 €",
+                "url": "https://www.naturzeit.com/pro-x-elements-logon-women-ug-ueberhose-schwarz-18/21401-schwarz-18"
+              },
+              {
+                "rank": 2,
+                "title": "Raindrop Men",
+                "brand": "Maier Sports",
+                "price": "84,94 € UVP*\n                            129,95 €",
+                "url": "https://www.naturzeit.com/maier-sports-raindrop-men-48-schwarz-black/2022139-schwarz-48"
+              },
+              {
+                "rank": 3,
+                "title": "Raindrop Lady",
+                "brand": "Maier Sports",
+                "price": "84,94 € UVP*\n                            129,95 €",
+                "url": "https://www.naturzeit.com/maier-sports-raindrop-lady-38-schwarz-black/2022140-38"
+              },
+              {
+                "rank": 4,
+                "title": "Zeno FZ Mens Pant",
+                "brand": "Mountain Equipment",
+                "price": "ab 84,44 € UVP*\n                            129,90 €",
+                "url": "https://www.naturzeit.com/mountain-equipment-zeno-fz-mens-pant-m-short-schwarz-farbe-black/2022222-schwarz-M-Short"
+              },
+              {
+                "rank": 5,
+                "title": "Zeno FZ Pant Men",
+                "brand": "Mountain Equipment",
+                "price": "88,94 € UVP*\n                            129,90 €",
+                "url": "https://www.naturzeit.com/mountain-equipment-zeno-fz-pant-men-black-l-short/23833-L-short-black"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-locale/www.naturzeit.com/control_Outdoor_Regenhosen_und_Überhosen_c68cfee5b3.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "5 products shared with positive control",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "1/1 passed"
+    },
+    {
+      "capability": "compound_handling",
+      "score": "fail",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "HardshelljackenundRegenjacken",
+            "control_query": "Hardshelljacken und Regenjacken",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 260,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-e5727bda17-query.png",
+            "error_message": "page says: 'keine Ergebnisse'",
+            "execution_time_ms": 7083,
+            "rationale": "Independent headed proof verification",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Escape Light Jacket Women",
+                "brand": null,
+                "price": "ab 79,64 € UVP*\n                            119,95 €",
+                "url": "https://www.naturzeit.com/vaude-escape-light-jacket-women-36-braun-peanut-butter/2023115-36-braun"
+              },
+              {
+                "rank": 2,
+                "title": "Escape Light Jacket Men",
+                "brand": null,
+                "price": "ab 79,64 € UVP*\n                            119,95 €",
+                "url": "https://www.naturzeit.com/vaude-escape-light-jacket-men-m-blau1-dark-sea-uni/2023116-M-blau1"
+              },
+              {
+                "rank": 3,
+                "title": "Metor Men",
+                "brand": null,
+                "price": "105,94 € UVP*\n                            179,95 €",
+                "url": "https://www.naturzeit.com/maier-sports-metor-men-28-blau-nightsky-nightsky/2022977-blau-28"
+              },
+              {
+                "rank": 4,
+                "title": "Metor Women",
+                "brand": null,
+                "price": "99,94 € UVP*\n                            179,95 €",
+                "url": "https://www.naturzeit.com/maier-sports-metor-women-19-rot-sun-dried-tomato/2022978-rot-19"
+              },
+              {
+                "rank": 5,
+                "title": "Prelight 2.5L LT Jacket Men",
+                "brand": null,
+                "price": "109,94 € UVP*\n                            169,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-prelight-2.5l-lt-jacket-men-xl-blau-blue-orchid/2022639-blau-XL"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-a16d6bc627-control.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "fail",
+          "score_reason": "Confirmed zero versus positive paired control",
+          "severity": "high",
+          "confidence": "high",
+          "verified": true,
+          "review_note": "Clear no-results page versus 260 products; consent dismissed on independent recheck."
+        },
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "FahrradjackenundFahrradwesten",
+            "control_query": "Fahrradjacken und Fahrradwesten",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 17,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-8920402f22-query.png",
+            "error_message": "page says: 'keine Ergebnisse'",
+            "execution_time_ms": 7279,
+            "rationale": "Independent headed proof verification",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Jessy Women",
+                "brand": null,
+                "price": "75,94 € UVP*\n                            99,95 €",
+                "url": "https://www.naturzeit.com/pro-x-elements-jessy-women-38-blau-rauchblau/2022603-blau-38"
+              },
+              {
+                "rank": 2,
+                "title": "Regenjacke PACKable Men",
+                "brand": null,
+                "price": "ab 37,98 € UVP*\n                            49,95 €",
+                "url": "https://www.naturzeit.com/pro-x-elements-regenjacke-packable-men-s-grau-anthrazit/2020458-S-grau"
+              },
+              {
+                "rank": 3,
+                "title": "Clarissa Women",
+                "brand": null,
+                "price": "99,94 € UVP*\n                            119,95 €",
+                "url": "https://www.naturzeit.com/pro-x-elements-clarissa-women-36-blau-rauchblau/2022533-blau-36"
+              },
+              {
+                "rank": 4,
+                "title": "Emma Women",
+                "brand": null,
+                "price": "40,94 € UVP*\n                            69,95 €",
+                "url": "https://www.naturzeit.com/pro-x-elements-emma-women-40-grau-stone/2022530-grau-40"
+              },
+              {
+                "rank": 5,
+                "title": "P-Space Age Men",
+                "brand": null,
+                "price": "144,94 € UVP*\n                            189,95 €",
+                "url": "https://www.naturzeit.com/protective-p-space-age-men-s-schwarz-farbe-black/2021369-schwarz-S"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-06809679a3-control.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "fail",
+          "score_reason": "Confirmed zero versus positive paired control",
+          "severity": "high",
+          "confidence": "high",
+          "verified": true,
+          "review_note": "Clear no-results page versus 17 products."
+        },
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "WanderhosenundTrekkinghosen",
+            "control_query": "Wanderhosen und Trekkinghosen",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 119,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-cf74cbd64d-query.png",
+            "error_message": "page says: 'keine Ergebnisse'",
+            "execution_time_ms": 9382,
+            "rationale": "Independent headed proof verification",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Pro Trousers III Men",
+                "brand": null,
+                "price": "ab 77,97 € UVP*\n                            119,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-pro-trousers-iii-men-52-schwarz-black-pepper-36/2018376-52-schwarz"
+              },
+              {
+                "rank": 2,
+                "title": "Abisko Hybrid Trail Trousers Men",
+                "brand": null,
+                "price": "149,94 € UVP*\n                            219,95 €",
+                "url": "https://www.naturzeit.com/fjaellraeven-abisko-hybrid-trail-trousers-men-50-blau-farbe-navy/2020631-50-blau"
+              },
+              {
+                "rank": 3,
+                "title": "Firewall Guide Pants Men",
+                "brand": null,
+                "price": "213,16 € UVP*\n                            259,95 €",
+                "url": "https://www.naturzeit.com/rab-firewall-guide-pants-men-m-schwarz-black/2023789-M-schwarz"
+              },
+              {
+                "rank": 4,
+                "title": "Wallis 2XT Men",
+                "brand": null,
+                "price": "101,96 € UVP*\n                            119,95 €",
+                "url": "https://www.naturzeit.com/maul-wallis-2xt-men-48-schwarz-black/2023772-48-schwarz"
+              },
+              {
+                "rank": 5,
+                "title": "Pico Trail Pants Men",
+                "brand": null,
+                "price": "ab 58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-pico-trail-pants-men-46-grau1-phantom/2020694-46-grau1"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-feec37d8dc-control.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "fail",
+          "score_reason": "Confirmed zero versus positive paired control",
+          "severity": "high",
+          "confidence": "high",
+          "verified": true,
+          "review_note": "Clear no-results page versus 119 products."
+        }
+      ],
+      "summary": "0/3 passed, 3 failed"
+    },
+    {
+      "capability": "constraint_handling",
+      "score": "fail",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "natural_language",
+            "query": "Damen Outdoor Hemd langarm für Wanderungen",
+            "control_query": "NosiLife Alma Long Sleeved Shirt Women",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 1,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/natural_language_Damen_Outdoor_Hemd_langarm_für_Wanderungen_625ba03597.png",
+            "error_message": "page says: 'keine Ergebnisse'",
+            "execution_time_ms": 6672,
+            "rationale": "Catalog-grounded natural_language: NosiLife Alma Long Sleeved Shirt Women",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_NosiLife_Alma_Long_Sleeved_Shirt_Women_fcd9ef463b.png",
+            "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+            "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+            "constraints": {},
+            "catalog_evidence": "NosiLife Alma Long Sleeved Shirt Women",
+            "grounded": false,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": false
+          },
+          "score": "partial",
+          "score_reason": "Zero results; semantic equivalence needs manual catalog verification",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "natural_language",
+            "query": "Leichte Sommerkleidung zum Wandern Damen",
+            "control_query": "Sajilo Dress Women",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 2,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/natural_language_Leichte_Sommerkleidung_zum_Wandern_Damen_31a0d75612.png",
+            "error_message": "page says: 'keine Ergebnisse'",
+            "execution_time_ms": 7025,
+            "rationale": "Catalog-grounded natural_language: Sajilo Dress Women",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Travel Dress",
+                "brand": null,
+                "price": "ab 75,94 € UVP*\n                            109,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-travel-dress-xs-gruen-farbe-hydra/2019713-gruen-XS"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_Sajilo_Dress_Women_03417bc300.png",
+            "expected_title": "Sajilo Dress Women",
+            "expected_url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062",
+            "constraints": {},
+            "catalog_evidence": "Sajilo Dress Women",
+            "grounded": false,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "partial",
+          "score_reason": "Zero results; semantic equivalence needs manual catalog verification",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "price_constraint",
+            "query": "NosiLife Alma Long Sleeved Shirt Women unter 71",
+            "control_query": "NosiLife Alma Long Sleeved Shirt Women",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 1,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-64096667ac-query.png",
+            "error_message": "page says: 'keine Ergebnisse'",
+            "execution_time_ms": 7864,
+            "rationale": "Independent headed proof verification",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-1c906823ab-control.png",
+            "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+            "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+            "constraints": {
+              "price_max": "71"
+            },
+            "catalog_evidence": "NosiLife Alma Long Sleeved Shirt Women: 58,47 € UVP*\n                            89,95 €",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "fail",
+          "score_reason": "Confirmed zero versus positive paired control",
+          "severity": "high",
+          "confidence": "high",
+          "verified": true,
+          "review_note": "Control shows qualifying Craghoppers shirt at €58.47; adding unter 71 returns 0."
+        }
+      ],
+      "summary": "0/3 passed, 1 failed, 2 partial"
+    },
+    {
+      "capability": "brand_model_search",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "brand_search",
+            "query": "Craghoppers NosiLife Alma Long Sleeved Shirt Women",
+            "control_query": "NosiLife Alma Long Sleeved Shirt Women",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": "Craghoppers",
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              }
+            ],
+            "control_count": 1,
+            "screenshot_path": "../scanner_output/round2-brand/www.naturzeit.com/brand_search_Craghoppers_NosiLife_Alma_Long_Sleeved_Shirt_Women_38bb3738e0.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8294,
+            "rationale": "Store/observed brand plus exact catalog product. Zero would require brand-identity review.",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": "Craghoppers",
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-brand/www.naturzeit.com/control_NosiLife_Alma_Long_Sleeved_Shirt_Women_617404c282.png",
+            "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "1/1 passed"
+    },
+    {
+      "capability": "coverage_ranking",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "ranking_check",
+            "query": "NosiLife Alma Long Sleeved Shirt Women",
+            "control_query": "Outdoorbekleidung",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              }
+            ],
+            "control_count": 3200,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_NosiLife_Alma_Long_Sleeved_Shirt_Women_fcd9ef463b.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded ranking_check: Outdoorbekleidung",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 3,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              },
+              {
+                "rank": 4,
+                "title": "Hochalm UV50 Women",
+                "brand": null,
+                "price": "ab 59,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Sierra Canyon Shirt Women",
+                "brand": null,
+                "price": "ab 47,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+            "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+            "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Exact catalog product at rank 1",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "coverage_check",
+            "query": "NosiLife Alma Long Sleeved Shirt Women",
+            "control_query": "Outdoorbekleidung",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              }
+            ],
+            "control_count": 3200,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_NosiLife_Alma_Long_Sleeved_Shirt_Women_fcd9ef463b.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded coverage_check: Outdoorbekleidung",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 3,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              },
+              {
+                "rank": 4,
+                "title": "Hochalm UV50 Women",
+                "brand": null,
+                "price": "ab 59,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Sierra Canyon Shirt Women",
+                "brand": null,
+                "price": "ab 47,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+            "expected_title": "NosiLife Alma Long Sleeved Shirt Women",
+            "expected_url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "ranking_check",
+            "query": "Sajilo Dress Women",
+            "control_query": "Outdoorbekleidung",
+            "status": "success",
+            "result_count": 2,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Travel Dress",
+                "brand": null,
+                "price": "ab 75,94 € UVP*\n                            109,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-travel-dress-xs-gruen-farbe-hydra/2019713-gruen-XS"
+              }
+            ],
+            "control_count": 3200,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_Sajilo_Dress_Women_03417bc300.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded ranking_check: Outdoorbekleidung",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 3,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              },
+              {
+                "rank": 4,
+                "title": "Hochalm UV50 Women",
+                "brand": null,
+                "price": "ab 59,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Sierra Canyon Shirt Women",
+                "brand": null,
+                "price": "ab 47,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+            "expected_title": "Sajilo Dress Women",
+            "expected_url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Exact catalog product at rank 1",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "coverage_check",
+            "query": "Sajilo Dress Women",
+            "control_query": "Outdoorbekleidung",
+            "status": "success",
+            "result_count": 2,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Travel Dress",
+                "brand": null,
+                "price": "ab 75,94 € UVP*\n                            109,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-travel-dress-xs-gruen-farbe-hydra/2019713-gruen-XS"
+              }
+            ],
+            "control_count": 3200,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_Sajilo_Dress_Women_03417bc300.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded coverage_check: Outdoorbekleidung",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 3,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              },
+              {
+                "rank": 4,
+                "title": "Hochalm UV50 Women",
+                "brand": null,
+                "price": "ab 59,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Sierra Canyon Shirt Women",
+                "brand": null,
+                "price": "ab 47,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+            "expected_title": "Sajilo Dress Women",
+            "expected_url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "ranking_check",
+            "query": "CIRC Blouse Style Dalfoss Women",
+            "control_query": "Outdoorbekleidung",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              }
+            ],
+            "control_count": 3200,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_CIRC_Blouse_Style_Dalfoss_Women_6aa203134b.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded ranking_check: Outdoorbekleidung",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 3,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              },
+              {
+                "rank": 4,
+                "title": "Hochalm UV50 Women",
+                "brand": null,
+                "price": "ab 59,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Sierra Canyon Shirt Women",
+                "brand": null,
+                "price": "ab 47,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+            "expected_title": "CIRC Blouse Style Dalfoss Women",
+            "expected_url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Exact catalog product at rank 1",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "coverage_check",
+            "query": "CIRC Blouse Style Dalfoss Women",
+            "control_query": "Outdoorbekleidung",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              }
+            ],
+            "control_count": 3200,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/exact_product_name_CIRC_Blouse_Style_Dalfoss_Women_6aa203134b.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded coverage_check: Outdoorbekleidung",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "NosiLife Alma Long Sleeved Shirt Women",
+                "brand": null,
+                "price": "58,47 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/craghoppers-nosilife-alma-long-sleeved-shirt-women-18-44-gruen-vert/2023008-gruen-18-44"
+              },
+              {
+                "rank": 2,
+                "title": "Sajilo Dress Women",
+                "brand": null,
+                "price": "52,94 € UVP*\n                            89,95 €",
+                "url": "https://www.naturzeit.com/sherpa-sajilo-dress-women-groesse-xs-farbe-black/1161062"
+              },
+              {
+                "rank": 3,
+                "title": "CIRC Blouse Style Dalfoss Women",
+                "brand": null,
+                "price": "ab 35,94 € UVP*\n                            59,95 €",
+                "url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun"
+              },
+              {
+                "rank": 4,
+                "title": "Hochalm UV50 Women",
+                "brand": null,
+                "price": "ab 59,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/maul-hochalm-uv50-women-38-beige/2023033-38-beige"
+              },
+              {
+                "rank": 5,
+                "title": "Sierra Canyon Shirt Women",
+                "brand": null,
+                "price": "ab 47,94 € UVP*\n                            79,95 €",
+                "url": "https://www.naturzeit.com/jack-wolfskin-sierra-canyon-shirt-women-s-gruen-green-zinnia/2023060-S-gruen"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/control_query_Outdoorbekleidung_06400b0e5b.png",
+            "expected_title": "CIRC Blouse Style Dalfoss Women",
+            "expected_url": "https://www.naturzeit.com/schoeffel-circ-blouse-style-dalfoss-women-36-braun-twilight-mauve/2020671-36-braun",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "6/6 passed"
+    },
+    {
+      "capability": "zero_result_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "zero_result_check",
+            "query": "xyzqwk12345nonsense",
+            "control_query": "Outdoorbekleidung",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 3200,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.naturzeit.com/zero_result_check_xyzqwk12345nonsense_456f3f5f3e.png",
+            "error_message": "page says: 'keine Ergebnisse'",
+            "execution_time_ms": 6804,
+            "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results",
+            "control_results": [],
+            "control_screenshot_path": null,
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Correctly returned zero results for gibberish query",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "1/1 passed"
+    }
+  ],
+  "overall_score": "fail",
+  "blocked": false,
+  "llm_cost_usd": 0.00315,
+  "execution_time_ms": 220571,
+  "error_message": null,
+  "discovery_attempts": [],
+  "inapplicable": {
+    "category_term": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "diacritics": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "format_variant": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "abbreviation": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "compound_split": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "constraint_query": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "brand_search": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "sku_search": "No qualifying catalog-grounded pair in sampled navigation/products"
+  },
+  "platform": "unknown"
+}

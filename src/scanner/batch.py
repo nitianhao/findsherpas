@@ -20,7 +20,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-from .models import ScanResult, ProbeScore, BatchStatus
+from .models import ScanResult, ProbeScore, BatchStatus, ScoredProbe
 from .scanner import Scanner
 
 logger = logging.getLogger(__name__)
@@ -303,7 +303,7 @@ def export_for_benchmark(
             probe = scored_probe['probe']
             score = scored_probe['score']
             
-            if score == 'fail' and probe.get('control_count') and probe['control_count'] > 0:
+            if ScoredProbe.model_validate(scored_probe).proof_eligible:
                 benchmark_data['proof_cards'].append({
                     'vertical': vertical,
                     'country': country,
@@ -313,6 +313,10 @@ def export_for_benchmark(
                     'control_query': probe.get('control_query'),
                     'control_count': probe.get('control_count'),
                     'score_reason': scored_probe['score_reason'],
+                    'severity': scored_probe['severity'],
+                    'confidence': scored_probe['confidence'],
+                    'screenshot_path': probe['screenshot_path'],
+                    'control_screenshot_path': probe['control_screenshot_path'],
                 })
     
     benchmark_data['capability_distribution'] = capability_scores
