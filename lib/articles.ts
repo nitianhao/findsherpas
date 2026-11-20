@@ -32,6 +32,9 @@ export function normalizeSlug(value: string) {
 }
 
 export async function listArticles(): Promise<Article[]> {
+  if (!process.env.INSTANT_APP_ADMIN_TOKEN) {
+    return [];
+  }
   const data = await adminDb.query({ articles: {} });
   return [...data.articles].sort((a, b) => b.updated_at.localeCompare(a.updated_at)) as Article[];
 }
@@ -42,6 +45,9 @@ export async function getArticle(id: string): Promise<Article | null> {
 }
 
 export async function getPublishedArticleBySlug(slug: string): Promise<Article | null> {
+  if (!process.env.INSTANT_APP_ADMIN_TOKEN) {
+    return null;
+  }
   const data = await adminDb.query({ articles: { $: { where: { slug } } } });
   const article = data.articles[0] as Article | undefined;
   return article?.published_at ? article : null;
