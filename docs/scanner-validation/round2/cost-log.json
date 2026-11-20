@@ -1,0 +1,176 @@
+{
+  "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "input_usd_per_million": 1,
+  "output_usd_per_million": 5,
+  "logged_calls": 20,
+  "logged_cost_usd": 0.104039,
+  "unrecorded_usage_calls": [
+    {
+      "log": "/tmp/scanner-round2-final.log",
+      "calls": 1
+    }
+  ],
+  "events": [
+    {
+      "log": "scanner_output/round2-validation/www.passenger-clothing.com.log",
+      "timestamp": "2026-11-19 22:03:32,911",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 490,
+      "output_tokens": 720,
+      "cost_usd": 0.00409
+    },
+    {
+      "log": "scanner_output/round2-validation/www.naturzeit.com.log",
+      "timestamp": "2026-11-19 22:04:49,243",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 653,
+      "output_tokens": 823,
+      "cost_usd": 0.004768
+    },
+    {
+      "log": "scanner_output/round2-validation/finisterre.com.log",
+      "timestamp": "2026-11-19 22:03:37,519",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 640,
+      "output_tokens": 970,
+      "cost_usd": 0.00549
+    },
+    {
+      "log": "scanner_output/round2-evidence/www.naturzeit.com.log",
+      "timestamp": "2026-11-19 22:06:37,746",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 653,
+      "output_tokens": 823,
+      "cost_usd": 0.004768
+    },
+    {
+      "log": "scanner_output/round2-evidence/designtorget.se.log",
+      "timestamp": "2026-11-19 22:08:13,317",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 1032,
+      "output_tokens": 1418,
+      "cost_usd": 0.008122
+    },
+    {
+      "log": "scanner_output/round2-evidence/www.rockpoint.cz.log",
+      "timestamp": "2026-11-19 22:06:28,975",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 630,
+      "output_tokens": 97,
+      "cost_usd": 0.001115
+    },
+    {
+      "log": "scanner_output/round2-clean/www.passenger-clothing.com.log",
+      "timestamp": "2026-11-19 22:31:05,557",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 575,
+      "output_tokens": 1135,
+      "cost_usd": 0.00625
+    },
+    {
+      "log": "scanner_output/round2-clean/dedoles.sk.log",
+      "timestamp": "2026-11-19 22:25:48,679",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 790,
+      "output_tokens": 1163,
+      "cost_usd": 0.006605
+    },
+    {
+      "log": "scanner_output/round2-clean/watery.dk.log",
+      "timestamp": "2026-11-19 22:25:23,536",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 796,
+      "output_tokens": 1057,
+      "cost_usd": 0.006081
+    },
+    {
+      "log": "scanner_output/round2-run/www.passenger-clothing.com.log",
+      "timestamp": "2026-11-19 22:12:50,667",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 546,
+      "output_tokens": 79,
+      "cost_usd": 0.000941
+    },
+    {
+      "log": "scanner_output/round2-run/www.naturzeit.com.log",
+      "timestamp": "2026-11-19 22:19:39,756",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 745,
+      "output_tokens": 481,
+      "cost_usd": 0.00315
+    },
+    {
+      "log": "scanner_output/round2-run/dedoles.sk.log",
+      "timestamp": "2026-11-19 22:15:59,077",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 1174,
+      "output_tokens": 1804,
+      "cost_usd": 0.010194
+    },
+    {
+      "log": "scanner_output/round2-run/designtorget.se.log",
+      "timestamp": "2026-11-19 22:23:25,248",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 936,
+      "output_tokens": 983,
+      "cost_usd": 0.005851
+    },
+    {
+      "log": "scanner_output/round2-run/watery.dk.log",
+      "timestamp": "2026-11-19 22:12:23,807",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 796,
+      "output_tokens": 1014,
+      "cost_usd": 0.005866
+    },
+    {
+      "log": "scanner_output/round2-run/www.rockpoint.cz.log",
+      "timestamp": "2026-11-19 22:17:23,665",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 611,
+      "output_tokens": 864,
+      "cost_usd": 0.004931
+    },
+    {
+      "log": "scanner_output/round2-run/www.connox.de.log",
+      "timestamp": "2026-11-19 22:21:46,234",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 698,
+      "output_tokens": 860,
+      "cost_usd": 0.004998
+    },
+    {
+      "log": "scanner_output/round2-run/finisterre.com.log",
+      "timestamp": "2026-11-19 22:12:19,861",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 642,
+      "output_tokens": 957,
+      "cost_usd": 0.005427
+    },
+    {
+      "log": "/tmp/round2-passenger-final.log",
+      "timestamp": "2026-11-19 22:42:09,522",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 788,
+      "output_tokens": 853,
+      "cost_usd": 0.005053
+    },
+    {
+      "log": "/tmp/round2-confirmed-fin.log",
+      "timestamp": "2026-11-19 22:31:57,534",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 642,
+      "output_tokens": 917,
+      "cost_usd": 0.005227
+    },
+    {
+      "log": "/tmp/round2-finisterre.log",
+      "timestamp": "2026-11-19 22:12:20,394",
+      "model": "claude-haiku-4-5-20251001",
+      "input_tokens": 642,
+      "output_tokens": 894,
+      "cost_usd": 0.005112
+    }
+  ],
+  "notes": "Token-priced estimates, not a provider invoice. One interrupted early call predates usage logging; its input usage is unknown and its configured output cap was 1700 tokens (output cost at most $0.0085)."
+}

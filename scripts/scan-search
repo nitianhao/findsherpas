@@ -1,0 +1,6 @@
+#!/bin/zsh
+set -eu
+repo_dir="${0:A:h:h}"
+cd "$repo_dir/src"
+export PYTHONPATH="$PWD:$PWD/audit${PYTHONPATH:+:$PYTHONPATH}"
+exec scanner/.venv/bin/python -m scanner.cli "$@"

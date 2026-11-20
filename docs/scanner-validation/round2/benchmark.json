@@ -1,0 +1,493 @@
+{
+  "generated_at": "2026-11-19T22:05:24.722849",
+  "total_stores": 12,
+  "capability_distribution": {
+    "basic_retrieval": {
+      "pass": 7,
+      "partial": 0,
+      "fail": 0
+    },
+    "typo_tolerance": {
+      "pass": 2,
+      "partial": 3,
+      "fail": 2
+    },
+    "language_understanding": {
+      "pass": 3,
+      "partial": 3,
+      "fail": 0,
+      "error": 1
+    },
+    "locale_handling": {
+      "pass": 7,
+      "partial": 0,
+      "fail": 0
+    },
+    "compound_handling": {
+      "pass": 2,
+      "partial": 1,
+      "fail": 4
+    },
+    "constraint_handling": {
+      "pass": 0,
+      "partial": 2,
+      "fail": 4,
+      "error": 1
+    },
+    "brand_model_search": {
+      "pass": 4,
+      "partial": 2,
+      "fail": 0,
+      "error": 1
+    },
+    "coverage_ranking": {
+      "pass": 7,
+      "partial": 0,
+      "fail": 0
+    },
+    "zero_result_handling": {
+      "pass": 6,
+      "partial": 1,
+      "fail": 0
+    }
+  },
+  "proof_cards": [
+    {
+      "vertical": "outdoor",
+      "country": "CZ",
+      "probe_type": "typo",
+      "query": "Oblee\u010dn\u00ed",
+      "result_count": 0,
+      "control_query": "Oble\u010den\u00ed",
+      "control_count": 10000,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-3e6a6f2864-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-8861ba26df-control.png"
+    },
+    {
+      "vertical": "outdoor",
+      "country": "CZ",
+      "probe_type": "merged_words",
+      "query": "Kalhotyakra\u0165asy",
+      "result_count": 0,
+      "control_query": "Kalhoty a kra\u0165asy",
+      "control_count": 1602,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-059011182a-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-09caf078d5-control.png"
+    },
+    {
+      "vertical": "outdoor",
+      "country": "CZ",
+      "probe_type": "typo",
+      "query": "Bundy, kabt\u00e1y a vesty",
+      "result_count": 0,
+      "control_query": "Bundy, kab\u00e1ty a vesty",
+      "control_count": 1289,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-77acc1aa44-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-945e70598d-control.png"
+    },
+    {
+      "vertical": "outdoor",
+      "country": "CZ",
+      "probe_type": "merged_words",
+      "query": "Kalhotyaleg\u00edny",
+      "result_count": 0,
+      "control_query": "Kalhoty a leg\u00edny",
+      "control_count": 1096,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-c3930208ff-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-fb641e608c-control.png"
+    },
+    {
+      "vertical": "outdoor",
+      "country": "DE",
+      "probe_type": "merged_words",
+      "query": "HardshelljackenundRegenjacken",
+      "result_count": 0,
+      "control_query": "Hardshelljacken und Regenjacken",
+      "control_count": 260,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-e5727bda17-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-a16d6bc627-control.png"
+    },
+    {
+      "vertical": "outdoor",
+      "country": "DE",
+      "probe_type": "merged_words",
+      "query": "WanderhosenundTrekkinghosen",
+      "result_count": 0,
+      "control_query": "Wanderhosen und Trekkinghosen",
+      "control_count": 119,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-cf74cbd64d-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-feec37d8dc-control.png"
+    },
+    {
+      "vertical": "outdoor clothing",
+      "country": "GB",
+      "probe_type": "typo",
+      "query": "Jacekts",
+      "result_count": 0,
+      "control_query": "Jackets",
+      "control_count": 56,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-f488dc965f-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-bfdc4ddef9-control.png"
+    },
+    {
+      "vertical": "outdoor clothing",
+      "country": "GB",
+      "probe_type": "merged_words",
+      "query": "InsulatedJackets",
+      "result_count": 0,
+      "control_query": "Insulated Jackets",
+      "control_count": 56,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-47236f8d18-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-0298b6bc37-control.png"
+    },
+    {
+      "vertical": "outdoor clothing",
+      "country": "GB",
+      "probe_type": "merged_words",
+      "query": "WaterproofJackets",
+      "result_count": 0,
+      "control_query": "Waterproof Jackets",
+      "control_count": 56,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-99151227cf-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-614b4b26b1-control.png"
+    },
+    {
+      "vertical": "outdoor",
+      "country": "DE",
+      "probe_type": "merged_words",
+      "query": "FahrradjackenundFahrradwesten",
+      "result_count": 0,
+      "control_query": "Fahrradjacken und Fahrradwesten",
+      "control_count": 17,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-8920402f22-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-06809679a3-control.png"
+    },
+    {
+      "vertical": "swimming",
+      "country": "DK",
+      "probe_type": "price_constraint",
+      "query": "Watery vandt\u00e6t bum bag - Talia - Orange under 96",
+      "result_count": 5,
+      "control_query": "Watery vandt\u00e6t bum bag - Talia - Orange",
+      "control_count": 13,
+      "score_reason": "Top-three result contradicts a verified attribute or price requirement",
+      "severity": "medium",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/watery_dk-c199853179-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/watery_dk-2420d80a1a-control.png"
+    },
+    {
+      "vertical": "outdoor clothing",
+      "country": "GB",
+      "probe_type": "merged_words",
+      "query": "OtherAccessories",
+      "result_count": 0,
+      "control_query": "Other Accessories",
+      "control_count": 5,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/finisterre_com-1a5482407a-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/finisterre_com-a8480f2fac-control.png"
+    },
+    {
+      "vertical": "outdoor",
+      "country": "CZ",
+      "probe_type": "price_constraint",
+      "query": "RAFIKI LEDGE do 2989",
+      "result_count": 0,
+      "control_query": "RAFIKI LEDGE",
+      "control_count": 4,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-0e3e892458-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-a75c4977e5-control.png"
+    },
+    {
+      "vertical": "outdoor",
+      "country": "DE",
+      "probe_type": "price_constraint",
+      "query": "NosiLife Alma Long Sleeved Shirt Women unter 71",
+      "result_count": 0,
+      "control_query": "NosiLife Alma Long Sleeved Shirt Women",
+      "control_count": 1,
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-64096667ac-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-1c906823ab-control.png"
+    },
+    {
+      "vertical": "home design",
+      "country": "DE",
+      "probe_type": "price_constraint",
+      "query": "Kave Home Onix TV-M\u00f6bel unter 1143",
+      "result_count": 3455,
+      "control_query": "Kave Home Onix TV-M\u00f6bel",
+      "control_count": 23,
+      "score_reason": "Top-three result contradicts a verified attribute or price requirement",
+      "severity": "medium",
+      "confidence": "high",
+      "screenshot_path": "docs/scanner-validation/round2/evidence/connox_de-76cd7994ff-query.png",
+      "control_screenshot_path": "docs/scanner-validation/round2/evidence/connox_de-d29af52b72-control.png"
+    }
+  ],
+  "by_vertical": {
+    "outdoor clothing": {
+      "count": 2,
+      "capabilities": {
+        "basic_retrieval": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        },
+        "typo_tolerance": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 1
+        },
+        "language_understanding": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "error": 1
+        },
+        "locale_handling": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        },
+        "compound_handling": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 2
+        },
+        "constraint_handling": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "error": 1
+        },
+        "brand_model_search": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0,
+          "error": 1
+        },
+        "coverage_ranking": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        },
+        "zero_result_handling": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        }
+      }
+    },
+    "swimming": {
+      "count": 1,
+      "capabilities": {
+        "basic_retrieval": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0
+        },
+        "typo_tolerance": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0
+        },
+        "language_understanding": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0
+        },
+        "locale_handling": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0
+        },
+        "compound_handling": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0
+        },
+        "constraint_handling": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1
+        },
+        "brand_model_search": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0
+        },
+        "coverage_ranking": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0
+        },
+        "zero_result_handling": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0
+        }
+      }
+    },
+    "outdoor": {
+      "count": 2,
+      "capabilities": {
+        "basic_retrieval": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        },
+        "typo_tolerance": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 1
+        },
+        "language_understanding": {
+          "pass": 0,
+          "partial": 2,
+          "fail": 0
+        },
+        "locale_handling": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        },
+        "compound_handling": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 2
+        },
+        "constraint_handling": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 2
+        },
+        "brand_model_search": {
+          "pass": 1,
+          "partial": 1,
+          "fail": 0
+        },
+        "coverage_ranking": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        },
+        "zero_result_handling": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        }
+      }
+    },
+    "home design": {
+      "count": 2,
+      "capabilities": {
+        "basic_retrieval": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        },
+        "typo_tolerance": {
+          "pass": 1,
+          "partial": 1,
+          "fail": 0
+        },
+        "language_understanding": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        },
+        "locale_handling": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        },
+        "compound_handling": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        },
+        "constraint_handling": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 1
+        },
+        "brand_model_search": {
+          "pass": 1,
+          "partial": 1,
+          "fail": 0
+        },
+        "coverage_ranking": {
+          "pass": 2,
+          "partial": 0,
+          "fail": 0
+        },
+        "zero_result_handling": {
+          "pass": 1,
+          "partial": 1,
+          "fail": 0
+        }
+      }
+    }
+  },
+  "by_country": {
+    "GB": {
+      "count": 2,
+      "capabilities": {}
+    },
+    "DK": {
+      "count": 1,
+      "capabilities": {}
+    },
+    "CZ": {
+      "count": 1,
+      "capabilities": {}
+    },
+    "DE": {
+      "count": 2,
+      "capabilities": {}
+    },
+    "SE": {
+      "count": 1,
+      "capabilities": {}
+    }
+  }
+}

@@ -1,0 +1,4609 @@
+{
+  "site": {
+    "domain": "finisterre.com",
+    "site_name": "Finisterre",
+    "search_url_template": "https://finisterre.com/search?q={}",
+    "primary_language": "English",
+    "vertical": "outdoor clothing",
+    "country": "GB"
+  },
+  "scanned_at": "2026-11-19T21:11:53.087517+00:00",
+  "probes": [
+    {
+      "probe": {
+        "probe_type": "control_query",
+        "query": "Accessories",
+        "control_query": null,
+        "status": "success",
+        "result_count": 190,
+        "results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 3,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          },
+          {
+            "rank": 4,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          },
+          {
+            "rank": 5,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9724,
+        "rationale": "Catalog seed control",
+        "control_results": [],
+        "control_screenshot_path": null,
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Control query returned 190 results",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "accessoreis",
+        "control_query": "Accessories",
+        "status": "success",
+        "result_count": 190,
+        "results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 3,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          },
+          {
+            "rank": 4,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          },
+          {
+            "rank": 5,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          }
+        ],
+        "control_count": 190,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/typo_accessoreis_a43511e8b4.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9409,
+        "rationale": "Catalog-grounded typo: Accessories",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 3,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          },
+          {
+            "rank": 4,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          },
+          {
+            "rank": 5,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "4 products shared with positive control",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "Jacekts",
+        "control_query": "Jackets",
+        "status": "success",
+        "result_count": 168,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Women's Stormbird Waterproof Jacket",
+            "brand": null,
+            "price": "€340,00",
+            "url": "https://finisterre.com/products/womens-recycled-stormbird-jacket-deep-sea"
+          },
+          {
+            "rank": 2,
+            "title": "Men's Longline Stormbird Waterproof Jacket",
+            "brand": null,
+            "price": "€400,00",
+            "url": "https://finisterre.com/products/mens-recycled-longline-stormbird-waterproof-jacket-seal-brown"
+          },
+          {
+            "rank": 3,
+            "title": "Women's Longline Stormbird Waterproof Jacket",
+            "brand": null,
+            "price": "€400,00",
+            "url": "https://finisterre.com/products/womens-recycled-longline-stormbird-waterproof-jacket-black"
+          },
+          {
+            "rank": 4,
+            "title": "Women's Gannel Jacket",
+            "brand": null,
+            "price": "€325,00",
+            "url": "https://finisterre.com/products/womens-organic-cotton-gannel-jacket-coffee-brown"
+          },
+          {
+            "rank": 5,
+            "title": "Women's Gannel Jacket",
+            "brand": null,
+            "price": "€325,00",
+            "url": "https://finisterre.com/products/womens-organic-cotton-gannel-jacket-olive"
+          }
+        ],
+        "control_count": 170,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/typo_Jacekts_a78ecade09.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10825,
+        "rationale": "Catalog-grounded typo: Jackets",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Women's Stormbird Waterproof Jacket",
+            "brand": null,
+            "price": "€340,00",
+            "url": "https://finisterre.com/products/womens-recycled-stormbird-jacket-deep-sea"
+          },
+          {
+            "rank": 2,
+            "title": "Men's Longline Stormbird Waterproof Jacket",
+            "brand": null,
+            "price": "€400,00",
+            "url": "https://finisterre.com/products/mens-recycled-longline-stormbird-waterproof-jacket-seal-brown"
+          },
+          {
+            "rank": 3,
+            "title": "Women's Longline Stormbird Waterproof Jacket",
+            "brand": null,
+            "price": "€400,00",
+            "url": "https://finisterre.com/products/womens-recycled-longline-stormbird-waterproof-jacket-black"
+          },
+          {
+            "rank": 4,
+            "title": "Women's Gannel Jacket",
+            "brand": null,
+            "price": "€325,00",
+            "url": "https://finisterre.com/products/womens-organic-cotton-gannel-jacket-coffee-brown"
+          },
+          {
+            "rank": 5,
+            "title": "Women's Gannel Jacket",
+            "brand": null,
+            "price": "€325,00",
+            "url": "https://finisterre.com/products/womens-organic-cotton-gannel-jacket-olive"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/Jackets_e9a258e08f.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "4 products shared with positive control",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "Tops & nKitwear",
+        "control_query": "Tops & Knitwear",
+        "status": "success",
+        "result_count": 87,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Men's Finisterre Barents Jumper",
+            "brand": null,
+            "price": "€160,00",
+            "url": "https://finisterre.com/products/mens-barents-jumper-wool-copper"
+          },
+          {
+            "rank": 2,
+            "title": "Women's Kerrow Vest",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/womens-recycled-cotton-kerrow-vest-navy"
+          },
+          {
+            "rank": 3,
+            "title": "Men's Finisterre Mora Knit Jumper",
+            "brand": null,
+            "price": "€170,00",
+            "url": "https://finisterre.com/products/mens-wool-mora-jumper-navy"
+          },
+          {
+            "rank": 4,
+            "title": "Women's Trevaunance Textured Jumper",
+            "brand": null,
+            "price": "€300,00",
+            "url": "https://finisterre.com/products/womens-wool-trevaunance-textured-jumper-brown-oatmeal-navy"
+          },
+          {
+            "rank": 5,
+            "title": "Women's Amy Powney + Finisterre Aran Knit Jumper",
+            "brand": null,
+            "price": "€260,00",
+            "url": "https://finisterre.com/products/womens-wool-amy-powney-finisterre-aran-knit-jumper-cherrywood"
+          }
+        ],
+        "control_count": 87,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/typo_Tops_nKitwear_92bba3f5d1.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10075,
+        "rationale": "Catalog-grounded typo: Tops & Knitwear",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Men's Finisterre Barents Jumper",
+            "brand": null,
+            "price": "€160,00",
+            "url": "https://finisterre.com/products/mens-barents-jumper-wool-copper"
+          },
+          {
+            "rank": 2,
+            "title": "Women's Lerryn Fair Isle Cardigan",
+            "brand": null,
+            "price": "€260,00",
+            "url": "https://finisterre.com/products/womens-wool-lerryn-fair-isle-cardigan-oatmeal-brown-blue"
+          },
+          {
+            "rank": 3,
+            "title": "Women's Finisterre Mora Crew Neck Cardigan",
+            "brand": null,
+            "price": "€180,00",
+            "url": "https://finisterre.com/products/womens-wool-mora-crew-neck-cardi-mahogany-brown"
+          },
+          {
+            "rank": 4,
+            "title": "Women's Amy Powney + Finisterre Fisherman Rib Cardigan",
+            "brand": null,
+            "price": "€205,00",
+            "url": "https://finisterre.com/products/womens-wool-amy-powney-finisterre-fisherman-rib-cardigan-raven"
+          },
+          {
+            "rank": 5,
+            "title": "Women's Finisterre Mora Crew Neck Cardigan",
+            "brand": null,
+            "price": "€180,00",
+            "url": "https://finisterre.com/products/womens-wool-mora-crew-neck-cardi-evergreen"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/Tops_Knitwear_5f10bfb927.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "1 products shared with positive control",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "Tops&Knitwear",
+        "control_query": "Tops & Knitwear",
+        "status": "success",
+        "result_count": 85,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Men's Finisterre Barents Jumper",
+            "brand": null,
+            "price": "€160,00",
+            "url": "https://finisterre.com/products/mens-barents-jumper-wool-copper"
+          },
+          {
+            "rank": 2,
+            "title": "Men's Finisterre Mora Knit Jumper",
+            "brand": null,
+            "price": "€170,00",
+            "url": "https://finisterre.com/products/mens-wool-mora-jumper-navy"
+          },
+          {
+            "rank": 3,
+            "title": "Women's Kerrow Vest",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/womens-recycled-cotton-kerrow-vest-navy"
+          },
+          {
+            "rank": 4,
+            "title": "Women's Trevaunance Textured Jumper",
+            "brand": null,
+            "price": "€300,00",
+            "url": "https://finisterre.com/products/womens-wool-trevaunance-textured-jumper-brown-oatmeal-navy"
+          },
+          {
+            "rank": 5,
+            "title": "Women's Amy Powney + Finisterre Aran Knit Jumper",
+            "brand": null,
+            "price": "€260,00",
+            "url": "https://finisterre.com/products/womens-wool-amy-powney-finisterre-aran-knit-jumper-cherrywood"
+          }
+        ],
+        "control_count": 87,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/merged_words_Tops_Knitwear_fc3247f9ca.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9793,
+        "rationale": "Catalog-grounded merged_words: Tops & Knitwear",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Men's Finisterre Barents Jumper",
+            "brand": null,
+            "price": "€160,00",
+            "url": "https://finisterre.com/products/mens-barents-jumper-wool-copper"
+          },
+          {
+            "rank": 2,
+            "title": "Women's Lerryn Fair Isle Cardigan",
+            "brand": null,
+            "price": "€260,00",
+            "url": "https://finisterre.com/products/womens-wool-lerryn-fair-isle-cardigan-oatmeal-brown-blue"
+          },
+          {
+            "rank": 3,
+            "title": "Women's Finisterre Mora Crew Neck Cardigan",
+            "brand": null,
+            "price": "€180,00",
+            "url": "https://finisterre.com/products/womens-wool-mora-crew-neck-cardi-mahogany-brown"
+          },
+          {
+            "rank": 4,
+            "title": "Women's Amy Powney + Finisterre Fisherman Rib Cardigan",
+            "brand": null,
+            "price": "€205,00",
+            "url": "https://finisterre.com/products/womens-wool-amy-powney-finisterre-fisherman-rib-cardigan-raven"
+          },
+          {
+            "rank": 5,
+            "title": "Women's Finisterre Mora Crew Neck Cardigan",
+            "brand": null,
+            "price": "€180,00",
+            "url": "https://finisterre.com/products/womens-wool-mora-crew-neck-cardi-evergreen"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/Tops_Knitwear_5f10bfb927.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "1 products shared with positive control",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "Swimwear&Wetsuits",
+        "control_query": "Swimwear & Wetsuits",
+        "status": "success",
+        "result_count": 53,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Women's Nieuwland 2mm Yulex® Long Sleeve Top",
+            "brand": null,
+            "price": "€150,00",
+            "url": "https://finisterre.com/products/womens-natural-rubber-nieuwland-2e-yulex-ls-top-black"
+          },
+          {
+            "rank": 2,
+            "title": "Women's Nieuwland 2mm Yulex® Long Sleeve Swimsuit",
+            "brand": null,
+            "price": "€200,00",
+            "url": "https://finisterre.com/products/womens-natural-rubber-nieuwland-2e-yulex-ls-swimsuit-black"
+          },
+          {
+            "rank": 3,
+            "title": "Women's Nieuwland 2mm Yulex® Swimsuit",
+            "brand": null,
+            "price": "€175,00",
+            "url": "https://finisterre.com/products/womens-natural-rubber-nieuwland-2e-yulex-swimsuit-black"
+          },
+          {
+            "rank": 4,
+            "title": "Men's Nieuwland 2mm Yulex® Back Zip Long Sleeve Shorty Wetsuit",
+            "brand": null,
+            "price": "€225,00",
+            "url": "https://finisterre.com/products/mens-natural-rubber-nieuwland-2e-yulex-long-sleeve-wetsuit-black"
+          },
+          {
+            "rank": 5,
+            "title": "Men's Nieuwland 2mm Yulex® Back Zip Long Sleeve Shorty Wetsuit",
+            "brand": null,
+            "price": "€225,00",
+            "url": "https://finisterre.com/products/mens-natural-rubber-nieuwland-2e-yulex-long-sleeve-wetsuit-dark-ozone"
+          }
+        ],
+        "control_count": 59,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/merged_words_Swimwear_Wetsuits.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10562,
+        "rationale": "Catalog-grounded merged_words: Swimwear & Wetsuits",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Women's Shearwater 5/4mm U-Zip Hooded Wetsuit",
+            "brand": null,
+            "price": "€600,00",
+            "url": "https://finisterre.com/products/womens-ocena-shearwater-5-4-u-zip-hooded-wetsuit-black"
+          },
+          {
+            "rank": 2,
+            "title": "Women's Shearwater 4/3mm U-Zip Hooded Wetsuit",
+            "brand": null,
+            "price": "€565,00",
+            "url": "https://finisterre.com/products/womens-ocena-shearwater-4-3-u-zip-hooded-wetsuit-black"
+          },
+          {
+            "rank": 3,
+            "title": "Women's Shearwater 4/3mm U-Zip Wetsuit",
+            "brand": null,
+            "price": "€525,00",
+            "url": "https://finisterre.com/products/womens-ocena-shearwater-4-3-u-zip-wetsuit-black"
+          },
+          {
+            "rank": 4,
+            "title": "Men's Shearwater 5/4mm U-Zip Hooded Wetsuit",
+            "brand": null,
+            "price": "€600,00",
+            "url": "https://finisterre.com/products/mens-ocena-shearwater-5-4-u-zip-hooded-wetsuit-black"
+          },
+          {
+            "rank": 5,
+            "title": "Men's Shearwater 4/3mm U-Zip Hooded Wetsuit",
+            "brand": null,
+            "price": "€565,00",
+            "url": "https://finisterre.com/products/mens-ocena-shearwater-4-3-u-zip-hooded-wetsuit-black"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Swimwear_Wetsuits.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "OtherAccessories",
+        "control_query": "Other Accessories",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 5,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/finisterre_com-1a5482407a-query.png",
+        "error_message": "page says: 'no results'",
+        "execution_time_ms": 9825,
+        "rationale": "Headed independent evidence recheck",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 3,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          },
+          {
+            "rank": 4,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          },
+          {
+            "rank": 5,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/finisterre_com-a8480f2fac-control.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": false
+      },
+      "score": "fail",
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "verified": true,
+      "review_note": "Explicit no-results page, with Most Loved Gear clearly labeled recommendations. Positive control sample contains at least five actual products; full API-derived total is not claimed from the screenshot."
+    },
+    {
+      "probe": {
+        "probe_type": "exact_product_name",
+        "query": "MiiR 12oz Flip Traveller",
+        "control_query": "Accessories",
+        "status": "success",
+        "result_count": 2,
+        "results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_count": 190,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10774,
+        "rationale": "Catalog-grounded exact_product_name: Accessories",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 3,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          },
+          {
+            "rank": 4,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          },
+          {
+            "rank": 5,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/control_query_Accessories.png",
+        "expected_title": "MiiR 12oz Flip Traveller",
+        "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "ranking_check",
+        "query": "MiiR 12oz Flip Traveller",
+        "control_query": "Accessories",
+        "status": "success",
+        "result_count": 2,
+        "results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_count": 190,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded ranking_check: Accessories",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 3,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          },
+          {
+            "rank": 4,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          },
+          {
+            "rank": 5,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/control_query_Accessories.png",
+        "expected_title": "MiiR 12oz Flip Traveller",
+        "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Exact catalog product at rank 1",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "coverage_check",
+        "query": "MiiR 12oz Flip Traveller",
+        "control_query": "Accessories",
+        "status": "success",
+        "result_count": 2,
+        "results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_count": 190,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/coverage_check_MiiR_12oz_Flip_Traveller_6749d4804e.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10511,
+        "rationale": "Catalog-grounded coverage_check: Accessories",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 3,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          },
+          {
+            "rank": 4,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          },
+          {
+            "rank": 5,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+        "expected_title": "MiiR 12oz Flip Traveller",
+        "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "sku_search",
+        "query": "12oz",
+        "control_query": "MiiR 12oz Flip Traveller",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          },
+          {
+            "rank": 3,
+            "title": "Miir 12oz Camp Cup",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-12oz-camp-cup-seaglass"
+          },
+          {
+            "rank": 4,
+            "title": "Miir 360 Traveller 12oz",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-360-12oz-traveller-feather-grey"
+          },
+          {
+            "rank": 5,
+            "title": "Miir Grounded Camp Cup 12oz",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-grounded-camp-cup-12oz-blue-speckle"
+          }
+        ],
+        "control_count": 2,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/sku_search_12oz.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9435,
+        "rationale": "Catalog-grounded sku_search: MiiR 12oz Flip Traveller",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+        "expected_title": "MiiR 12oz Flip Traveller",
+        "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "partial",
+      "score_reason": "Rejected unit token mistaken for model code",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "exact_product_name",
+        "query": "Rowan Towelling Robe",
+        "control_query": "Accessories",
+        "status": "success",
+        "result_count": 3,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          }
+        ],
+        "control_count": 190,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/exact_product_name_Rowan_Towelling_Robe_dab539bef3.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10169,
+        "rationale": "Catalog-grounded exact_product_name: Accessories",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 3,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          },
+          {
+            "rank": 4,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          },
+          {
+            "rank": 5,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+        "expected_title": "Rowan Towelling Robe",
+        "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "ranking_check",
+        "query": "Rowan Towelling Robe",
+        "control_query": "Accessories",
+        "status": "success",
+        "result_count": 3,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          }
+        ],
+        "control_count": 190,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/exact_product_name_Rowan_Towelling_Robe_dab539bef3.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded ranking_check: Accessories",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 3,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          },
+          {
+            "rank": 4,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          },
+          {
+            "rank": 5,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+        "expected_title": "Rowan Towelling Robe",
+        "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Exact catalog product at rank 1",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "coverage_check",
+        "query": "Rowan Towelling Robe",
+        "control_query": "Accessories",
+        "status": "success",
+        "result_count": 3,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          }
+        ],
+        "control_count": 190,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/exact_product_name_Rowan_Towelling_Robe_dab539bef3.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded coverage_check: Accessories",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 3,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          },
+          {
+            "rank": 4,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          },
+          {
+            "rank": 5,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+        "expected_title": "Rowan Towelling Robe",
+        "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "compound_split",
+        "query": "Yulex gloves 2mm",
+        "control_query": "Nieuwland 2mm Yulex® Gloves",
+        "status": "error",
+        "result_count": 0,
+        "results": [],
+        "control_count": 1,
+        "screenshot_path": null,
+        "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Yulex+gloves+2mm\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Yulex+gloves+2mm\", waiting until \"domcontentloaded\"\n",
+        "execution_time_ms": 506,
+        "rationale": "Catalog-grounded compound_split: Nieuwland 2mm Yulex® Gloves",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Nieuwland_2mm_Yulex_Gloves.png",
+        "expected_title": "Nieuwland 2mm Yulex® Gloves",
+        "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+        "constraints": {
+          "material": "Yulex®",
+          "size": "2mm"
+        },
+        "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": true
+      },
+      "score": "error",
+      "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Yulex+gloves+2mm\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Yulex+gloves+2mm\", waiting until \"domcontentloaded\"\n",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "plural_singular",
+        "query": "Nieuwland Yulex swim sock",
+        "control_query": "Nieuwland 3mm Yulex® Swim Sock",
+        "status": "error",
+        "result_count": 0,
+        "results": [],
+        "control_count": 0,
+        "screenshot_path": null,
+        "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Nieuwland+Yulex+swim+sock\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Nieuwland+Yulex+swim+sock\", waiting until \"domcontentloaded\"\n",
+        "execution_time_ms": 315,
+        "rationale": "Catalog-grounded plural_singular: Nieuwland 3mm Yulex® Swim Sock",
+        "control_results": [],
+        "control_screenshot_path": null,
+        "expected_title": "Nieuwland 3mm Yulex® Swim Sock",
+        "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock",
+        "constraints": {},
+        "catalog_evidence": "Nieuwland 3mm Yulex® Swim Sock",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "error",
+      "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Nieuwland+Yulex+swim+sock\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Nieuwland+Yulex+swim+sock\", waiting until \"domcontentloaded\"\n",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "natural_language",
+        "query": "warm water swimming gloves",
+        "control_query": "Nieuwland 2mm Yulex® Gloves",
+        "status": "error",
+        "result_count": 0,
+        "results": [],
+        "control_count": 1,
+        "screenshot_path": null,
+        "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=warm+water+swimming+gloves\nCall log:\n  - navigating to \"https://finisterre.com/search?q=warm+water+swimming+gloves\", waiting until \"domcontentloaded\"\n",
+        "execution_time_ms": 603,
+        "rationale": "Catalog-grounded natural_language: Nieuwland 2mm Yulex® Gloves",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Nieuwland_2mm_Yulex_Gloves.png",
+        "expected_title": "Nieuwland 2mm Yulex® Gloves",
+        "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+        "constraints": {},
+        "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": true
+      },
+      "score": "error",
+      "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=warm+water+swimming+gloves\nCall log:\n  - navigating to \"https://finisterre.com/search?q=warm+water+swimming+gloves\", waiting until \"domcontentloaded\"\n",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "constraint_query",
+        "query": "3mm neoprene sock",
+        "control_query": "Nieuwland 3mm Yulex® Swim Sock",
+        "status": "error",
+        "result_count": 0,
+        "results": [],
+        "control_count": 0,
+        "screenshot_path": null,
+        "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=3mm+neoprene+sock\nCall log:\n  - navigating to \"https://finisterre.com/search?q=3mm+neoprene+sock\", waiting until \"domcontentloaded\"\n",
+        "execution_time_ms": 227,
+        "rationale": "Catalog-grounded constraint_query: Nieuwland 3mm Yulex® Swim Sock",
+        "control_results": [],
+        "control_screenshot_path": null,
+        "expected_title": "Nieuwland 3mm Yulex® Swim Sock",
+        "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock",
+        "constraints": {
+          "size": "3mm"
+        },
+        "catalog_evidence": "Nieuwland 3mm Yulex® Swim Sock",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "error",
+      "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=3mm+neoprene+sock\nCall log:\n  - navigating to \"https://finisterre.com/search?q=3mm+neoprene+sock\", waiting until \"domcontentloaded\"\n",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "brand_search",
+        "query": "MiiR Flip Traveller",
+        "control_query": "MiiR 12oz Flip Traveller",
+        "status": "error",
+        "result_count": 0,
+        "results": [],
+        "control_count": 2,
+        "screenshot_path": null,
+        "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=MiiR+Flip+Traveller\nCall log:\n  - navigating to \"https://finisterre.com/search?q=MiiR+Flip+Traveller\", waiting until \"domcontentloaded\"\n",
+        "execution_time_ms": 429,
+        "rationale": "Catalog-grounded brand_search: MiiR 12oz Flip Traveller",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+        "expected_title": "MiiR 12oz Flip Traveller",
+        "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+        "constraints": {},
+        "catalog_evidence": "MiiR 12oz Flip Traveller",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": true
+      },
+      "score": "error",
+      "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=MiiR+Flip+Traveller\nCall log:\n  - navigating to \"https://finisterre.com/search?q=MiiR+Flip+Traveller\", waiting until \"domcontentloaded\"\n",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "natural_language",
+        "query": "towelling robe for swimmers",
+        "control_query": "Rowan Towelling Robe",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 3,
+            "title": "Tego Long Sleeve Robe",
+            "brand": null,
+            "price": "€195,00",
+            "url": "https://finisterre.com/products/recycled-tego-ls-robe-olive-black"
+          },
+          {
+            "rank": 4,
+            "title": "Tego Long Sleeve Robe",
+            "brand": null,
+            "price": "€195,00",
+            "url": "https://finisterre.com/products/recycled-tego-ls-robe-navy-flame"
+          }
+        ],
+        "control_count": 0,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/natural_language_towelling_robe_for_s.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10224,
+        "rationale": "Catalog-grounded natural_language: Rowan Towelling Robe",
+        "control_results": [],
+        "control_screenshot_path": null,
+        "expected_title": "Rowan Towelling Robe",
+        "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+        "constraints": {},
+        "catalog_evidence": "Rowan Towelling Robe",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": false
+      },
+      "score": "error",
+      "score_reason": "No positive control; comparison is inconclusive",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "compound_split",
+        "query": "Rowan towel robe",
+        "control_query": "Rowan Towelling Robe",
+        "status": "error",
+        "result_count": 0,
+        "results": [],
+        "control_count": 3,
+        "screenshot_path": null,
+        "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Rowan+towel+robe\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Rowan+towel+robe\", waiting until \"domcontentloaded\"\n",
+        "execution_time_ms": 451,
+        "rationale": "Catalog-grounded compound_split: Rowan Towelling Robe",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Rowan_Towelling_Robe.png",
+        "expected_title": "Rowan Towelling Robe",
+        "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+        "constraints": {
+          "material": "Towelling"
+        },
+        "catalog_evidence": "Rowan Towelling Robe",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": true
+      },
+      "score": "error",
+      "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Rowan+towel+robe\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Rowan+towel+robe\", waiting until \"domcontentloaded\"\n",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "natural_language",
+        "query": "insulated travel bottle",
+        "control_query": "MiiR 12oz Flip Traveller",
+        "status": "success",
+        "result_count": 7,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Mako Bottle Bag",
+            "brand": null,
+            "price": "€55,00",
+            "url": "https://finisterre.com/products/recycled-mako-bottle-bag-woodsmoke-deep-sea-sierra"
+          },
+          {
+            "rank": 2,
+            "title": "Mako Bottle Bag",
+            "brand": null,
+            "price": "€55,00",
+            "url": "https://finisterre.com/products/recycled-mako-bottle-bag-reed-green-coffee-brown"
+          },
+          {
+            "rank": 3,
+            "title": "Nalgene Sustain 1L Wide Mouth Bottle",
+            "brand": null,
+            "price": "€35,00",
+            "url": "https://finisterre.com/products/nalgene-sustain-1l-wide-mouth-bottle-slate-blue"
+          },
+          {
+            "rank": 4,
+            "title": "Nalgene Sustain 0.5L Narrow Mouth Bottle",
+            "brand": null,
+            "price": "€28,00",
+            "url": "https://finisterre.com/products/nalgene-sustain-0-5l-narrow-mouth-bottle-jade"
+          },
+          {
+            "rank": 5,
+            "title": "Miir 360 Traveller 12oz",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-360-12oz-traveller-feather-grey"
+          }
+        ],
+        "control_count": 2,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/natural_language_insulated_travel_bot.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9151,
+        "rationale": "Catalog-grounded natural_language: MiiR 12oz Flip Traveller",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+        "expected_title": "MiiR 12oz Flip Traveller",
+        "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+        "constraints": {},
+        "catalog_evidence": "MiiR 12oz Flip Traveller",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "synonym",
+        "query": "water gloves neoprene",
+        "control_query": "Nieuwland 2mm Yulex® Gloves",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          }
+        ],
+        "control_count": 1,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/synonym_water_gloves_neopren.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8720,
+        "rationale": "Catalog-grounded synonym: Nieuwland 2mm Yulex® Gloves",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Nieuwland_2mm_Yulex_Gloves.png",
+        "expected_title": "Nieuwland 2mm Yulex® Gloves",
+        "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+        "constraints": {},
+        "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "constraint_query",
+        "query": "2mm protective gloves water sports",
+        "control_query": "Nieuwland 2mm Yulex® Gloves",
+        "status": "success",
+        "result_count": 97,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          },
+          {
+            "rank": 2,
+            "title": "Shearwater 5mm Wetsuit Boot",
+            "brand": null,
+            "price": "€100,00",
+            "url": "https://finisterre.com/products/yulex-shearwater-5mm-wetsuit-boot-black"
+          },
+          {
+            "rank": 3,
+            "title": "Men's Nieuwland 2mm Yulex® Back Zip Long Sleeve Shorty Wetsuit",
+            "brand": null,
+            "price": "€225,00",
+            "url": "https://finisterre.com/products/mens-natural-rubber-nieuwland-2e-yulex-long-sleeve-wetsuit-black"
+          },
+          {
+            "rank": 4,
+            "title": "Men's Nieuwland 2mm Yulex® Back Zip Long Sleeve Shorty Wetsuit",
+            "brand": null,
+            "price": "€225,00",
+            "url": "https://finisterre.com/products/mens-natural-rubber-nieuwland-2e-yulex-long-sleeve-wetsuit-dark-ozone"
+          },
+          {
+            "rank": 5,
+            "title": "Men's Nieuwland 2mm Yulex® Long Sleeve Top",
+            "brand": null,
+            "price": "€150,00",
+            "url": "https://finisterre.com/products/mens-natural-rubber-nieuwland-2e-yulex-long-sleeve-top-black"
+          }
+        ],
+        "control_count": 1,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/constraint_query_2mm_protective_glove.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9056,
+        "rationale": "Catalog-grounded constraint_query: Nieuwland 2mm Yulex® Gloves",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Nieuwland_2mm_Yulex_Gloves.png",
+        "expected_title": "Nieuwland 2mm Yulex® Gloves",
+        "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+        "constraints": {
+          "size": "2mm"
+        },
+        "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "partial",
+      "score_reason": "Returned product attributes unknown; counts do not prove compliance",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "natural_language",
+        "query": "post swim changing robe",
+        "control_query": "Rowan Towelling Robe",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Tego Long Sleeve Robe",
+            "brand": null,
+            "price": "€195,00",
+            "url": "https://finisterre.com/products/recycled-tego-ls-robe-olive-black"
+          },
+          {
+            "rank": 2,
+            "title": "Tego Long Sleeve Robe",
+            "brand": null,
+            "price": "€195,00",
+            "url": "https://finisterre.com/products/recycled-tego-ls-robe-navy-flame"
+          },
+          {
+            "rank": 3,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 4,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          }
+        ],
+        "control_count": 3,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/natural_language_post_swim_changing_r.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8644,
+        "rationale": "Catalog-grounded natural_language: Rowan Towelling Robe",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+          },
+          {
+            "rank": 2,
+            "title": "Rowan Towelling Robe",
+            "brand": null,
+            "price": "€90,00",
+            "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Rowan_Towelling_Robe.png",
+        "expected_title": "Rowan Towelling Robe",
+        "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+        "constraints": {},
+        "catalog_evidence": "Rowan Towelling Robe",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "plural_singular",
+        "query": "Nieuwland Yulex glove 2mm",
+        "control_query": "Nieuwland 2mm Yulex® Gloves",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          }
+        ],
+        "control_count": 1,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/plural_singular_Nieuwland_Yulex_glov.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8252,
+        "rationale": "Catalog-grounded plural_singular: Nieuwland 2mm Yulex® Gloves",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Nieuwland_2mm_Yulex_Gloves.png",
+        "expected_title": "Nieuwland 2mm Yulex® Gloves",
+        "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+        "constraints": {
+          "size": "2mm",
+          "material": "Yulex®"
+        },
+        "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "All requested attributes verified in top-three result evidence",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "price_constraint",
+        "query": "MiiR 12oz Flip Traveller under 58",
+        "control_query": "MiiR 12oz Flip Traveller",
+        "status": "success",
+        "result_count": 2,
+        "results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_count": 2,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/price_constraint_MiiR_12oz_Flip_Trave.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 7789,
+        "rationale": "Catalog-grounded price_constraint: MiiR 12oz Flip Traveller: €48,00",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+        "expected_title": "MiiR 12oz Flip Traveller",
+        "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+        "constraints": {
+          "price_max": "58"
+        },
+        "catalog_evidence": "MiiR 12oz Flip Traveller: €48,00",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "All requested attributes verified in top-three result evidence",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "zero_result_check",
+        "query": "xyzqwk12345nonsense",
+        "control_query": "Accessories",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 190,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/zero_result_check_xyzqwk12345nonsense.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 7856,
+        "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results",
+        "control_results": [],
+        "control_screenshot_path": null,
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Correctly returned zero results for gibberish query",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "synonym",
+        "query": "neoprene gloves",
+        "control_query": "Nieuwland 2mm Yulex® Gloves",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          }
+        ],
+        "control_count": 1,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/synonym_neoprene_gloves_e184ec7d0d.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9980,
+        "rationale": "Catalog-grounded synonym: Nieuwland 2mm Yulex® Gloves",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 2mm Yulex® Gloves",
+            "brand": null,
+            "price": "€80,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/Nieuwland_2mm_Yulex_Gloves_e383f69765.png",
+        "expected_title": "Nieuwland 2mm Yulex® Gloves",
+        "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+        "constraints": {},
+        "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "plural_singular",
+        "query": "swim sock",
+        "control_query": "Nieuwland 3mm Yulex® Swim Sock",
+        "status": "success",
+        "result_count": 4,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          },
+          {
+            "rank": 2,
+            "title": "Kelson Sock",
+            "brand": null,
+            "price": "€28,00",
+            "url": "https://finisterre.com/products/wool-blend-kelson-sock-navy-marl"
+          },
+          {
+            "rank": 3,
+            "title": "RNLI Bosun Sock",
+            "brand": null,
+            "price": "€30,00",
+            "url": "https://finisterre.com/products/wool-blend-rnli-bosun-sock-flame-navy"
+          },
+          {
+            "rank": 4,
+            "title": "Kelson Sock",
+            "brand": null,
+            "price": "€28,00",
+            "url": "https://finisterre.com/products/wool-blend-kelson-sock-dark-flame-marl"
+          }
+        ],
+        "control_count": 1,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/plural_singular_swim_sock_0bbf10b907.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 12746,
+        "rationale": "Catalog-grounded plural_singular: Nieuwland 3mm Yulex® Swim Sock",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Nieuwland 3mm Yulex® Swim Sock",
+            "brand": null,
+            "price": "€68,00",
+            "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/Nieuwland_3mm_Yulex_Swim_Sock_748a4a3b44.png",
+        "expected_title": "Nieuwland 3mm Yulex® Swim Sock",
+        "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock",
+        "constraints": {},
+        "catalog_evidence": "Nieuwland 3mm Yulex® Swim Sock",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "natural_language",
+        "query": "reusable water bottle for travel",
+        "control_query": "MiiR 12oz Flip Traveller",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Miir 360 Traveller 12oz",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-360-12oz-traveller-feather-grey"
+          }
+        ],
+        "control_count": 2,
+        "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/natural_language_reusable_water_bottle_for_travel_48b7f2a395.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9827,
+        "rationale": "Catalog-grounded natural_language: MiiR 12oz Flip Traveller",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/coverage_check_MiiR_12oz_Flip_Traveller_6749d4804e.png",
+        "expected_title": "MiiR 12oz Flip Traveller",
+        "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+        "constraints": {},
+        "catalog_evidence": "MiiR 12oz Flip Traveller",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "format_variant",
+        "query": "MiiR 12 oz Flip Traveller",
+        "control_query": "MiiR 12oz Flip Traveller",
+        "status": "success",
+        "result_count": 2,
+        "results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_count": 2,
+        "screenshot_path": "../scanner_output/round2-locale/finisterre.com/format_variant_MiiR_12_oz_Flip_Traveller_34d856736d.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10578,
+        "rationale": "Literal navigation diacritics or observed unit-format equivalence",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-locale/finisterre.com/control_MiiR_12oz_Flip_Traveller_f43f577dc1.png",
+        "expected_title": "MiiR 12oz Flip Traveller",
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "abbreviation",
+        "query": "MiiR 12 ounce Flip Traveller",
+        "control_query": "MiiR 12oz Flip Traveller",
+        "status": "success",
+        "result_count": 307,
+        "results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          },
+          {
+            "rank": 3,
+            "title": "Miir 360 Traveller 12oz",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-360-12oz-traveller-feather-grey"
+          },
+          {
+            "rank": 4,
+            "title": "Miir 12oz Camp Cup",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-12oz-camp-cup-seaglass"
+          },
+          {
+            "rank": 5,
+            "title": "Miir Grounded Camp Cup 12oz",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-grounded-camp-cup-12oz-blue-speckle"
+          }
+        ],
+        "control_count": 2,
+        "screenshot_path": "../scanner_output/round2-locale/finisterre.com/abbreviation_MiiR_12_ounce_Flip_Traveller_9d3845a7ee.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9487,
+        "rationale": "Literal navigation diacritics or observed unit-format equivalence",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€48,00",
+            "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+          },
+          {
+            "rank": 2,
+            "title": "MiiR 12oz Flip Traveller",
+            "brand": null,
+            "price": "€45,00",
+            "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-locale/finisterre.com/control_MiiR_12oz_Flip_Traveller_f43f577dc1.png",
+        "expected_title": "MiiR 12oz Flip Traveller",
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    }
+  ],
+  "capabilities": [
+    {
+      "capability": "basic_retrieval",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "control_query",
+            "query": "Accessories",
+            "control_query": null,
+            "status": "success",
+            "result_count": 190,
+            "results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 3,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              },
+              {
+                "rank": 4,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              },
+              {
+                "rank": 5,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9724,
+            "rationale": "Catalog seed control",
+            "control_results": [],
+            "control_screenshot_path": null,
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Control query returned 190 results",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "exact_product_name",
+            "query": "MiiR 12oz Flip Traveller",
+            "control_query": "Accessories",
+            "status": "success",
+            "result_count": 2,
+            "results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_count": 190,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10774,
+            "rationale": "Catalog-grounded exact_product_name: Accessories",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 3,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              },
+              {
+                "rank": 4,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              },
+              {
+                "rank": 5,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/control_query_Accessories.png",
+            "expected_title": "MiiR 12oz Flip Traveller",
+            "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "exact_product_name",
+            "query": "Rowan Towelling Robe",
+            "control_query": "Accessories",
+            "status": "success",
+            "result_count": 3,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              }
+            ],
+            "control_count": 190,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/exact_product_name_Rowan_Towelling_Robe_dab539bef3.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10169,
+            "rationale": "Catalog-grounded exact_product_name: Accessories",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 3,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              },
+              {
+                "rank": 4,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              },
+              {
+                "rank": 5,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+            "expected_title": "Rowan Towelling Robe",
+            "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "3/3 passed"
+    },
+    {
+      "capability": "typo_tolerance",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "accessoreis",
+            "control_query": "Accessories",
+            "status": "success",
+            "result_count": 190,
+            "results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 3,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              },
+              {
+                "rank": 4,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              },
+              {
+                "rank": 5,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              }
+            ],
+            "control_count": 190,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/typo_accessoreis_a43511e8b4.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9409,
+            "rationale": "Catalog-grounded typo: Accessories",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 3,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              },
+              {
+                "rank": 4,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              },
+              {
+                "rank": 5,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "4 products shared with positive control",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "Jacekts",
+            "control_query": "Jackets",
+            "status": "success",
+            "result_count": 168,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Women's Stormbird Waterproof Jacket",
+                "brand": null,
+                "price": "€340,00",
+                "url": "https://finisterre.com/products/womens-recycled-stormbird-jacket-deep-sea"
+              },
+              {
+                "rank": 2,
+                "title": "Men's Longline Stormbird Waterproof Jacket",
+                "brand": null,
+                "price": "€400,00",
+                "url": "https://finisterre.com/products/mens-recycled-longline-stormbird-waterproof-jacket-seal-brown"
+              },
+              {
+                "rank": 3,
+                "title": "Women's Longline Stormbird Waterproof Jacket",
+                "brand": null,
+                "price": "€400,00",
+                "url": "https://finisterre.com/products/womens-recycled-longline-stormbird-waterproof-jacket-black"
+              },
+              {
+                "rank": 4,
+                "title": "Women's Gannel Jacket",
+                "brand": null,
+                "price": "€325,00",
+                "url": "https://finisterre.com/products/womens-organic-cotton-gannel-jacket-coffee-brown"
+              },
+              {
+                "rank": 5,
+                "title": "Women's Gannel Jacket",
+                "brand": null,
+                "price": "€325,00",
+                "url": "https://finisterre.com/products/womens-organic-cotton-gannel-jacket-olive"
+              }
+            ],
+            "control_count": 170,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/typo_Jacekts_a78ecade09.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10825,
+            "rationale": "Catalog-grounded typo: Jackets",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Women's Stormbird Waterproof Jacket",
+                "brand": null,
+                "price": "€340,00",
+                "url": "https://finisterre.com/products/womens-recycled-stormbird-jacket-deep-sea"
+              },
+              {
+                "rank": 2,
+                "title": "Men's Longline Stormbird Waterproof Jacket",
+                "brand": null,
+                "price": "€400,00",
+                "url": "https://finisterre.com/products/mens-recycled-longline-stormbird-waterproof-jacket-seal-brown"
+              },
+              {
+                "rank": 3,
+                "title": "Women's Longline Stormbird Waterproof Jacket",
+                "brand": null,
+                "price": "€400,00",
+                "url": "https://finisterre.com/products/womens-recycled-longline-stormbird-waterproof-jacket-black"
+              },
+              {
+                "rank": 4,
+                "title": "Women's Gannel Jacket",
+                "brand": null,
+                "price": "€325,00",
+                "url": "https://finisterre.com/products/womens-organic-cotton-gannel-jacket-coffee-brown"
+              },
+              {
+                "rank": 5,
+                "title": "Women's Gannel Jacket",
+                "brand": null,
+                "price": "€325,00",
+                "url": "https://finisterre.com/products/womens-organic-cotton-gannel-jacket-olive"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/Jackets_e9a258e08f.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "4 products shared with positive control",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "Tops & nKitwear",
+            "control_query": "Tops & Knitwear",
+            "status": "success",
+            "result_count": 87,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Men's Finisterre Barents Jumper",
+                "brand": null,
+                "price": "€160,00",
+                "url": "https://finisterre.com/products/mens-barents-jumper-wool-copper"
+              },
+              {
+                "rank": 2,
+                "title": "Women's Kerrow Vest",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/womens-recycled-cotton-kerrow-vest-navy"
+              },
+              {
+                "rank": 3,
+                "title": "Men's Finisterre Mora Knit Jumper",
+                "brand": null,
+                "price": "€170,00",
+                "url": "https://finisterre.com/products/mens-wool-mora-jumper-navy"
+              },
+              {
+                "rank": 4,
+                "title": "Women's Trevaunance Textured Jumper",
+                "brand": null,
+                "price": "€300,00",
+                "url": "https://finisterre.com/products/womens-wool-trevaunance-textured-jumper-brown-oatmeal-navy"
+              },
+              {
+                "rank": 5,
+                "title": "Women's Amy Powney + Finisterre Aran Knit Jumper",
+                "brand": null,
+                "price": "€260,00",
+                "url": "https://finisterre.com/products/womens-wool-amy-powney-finisterre-aran-knit-jumper-cherrywood"
+              }
+            ],
+            "control_count": 87,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/typo_Tops_nKitwear_92bba3f5d1.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10075,
+            "rationale": "Catalog-grounded typo: Tops & Knitwear",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Men's Finisterre Barents Jumper",
+                "brand": null,
+                "price": "€160,00",
+                "url": "https://finisterre.com/products/mens-barents-jumper-wool-copper"
+              },
+              {
+                "rank": 2,
+                "title": "Women's Lerryn Fair Isle Cardigan",
+                "brand": null,
+                "price": "€260,00",
+                "url": "https://finisterre.com/products/womens-wool-lerryn-fair-isle-cardigan-oatmeal-brown-blue"
+              },
+              {
+                "rank": 3,
+                "title": "Women's Finisterre Mora Crew Neck Cardigan",
+                "brand": null,
+                "price": "€180,00",
+                "url": "https://finisterre.com/products/womens-wool-mora-crew-neck-cardi-mahogany-brown"
+              },
+              {
+                "rank": 4,
+                "title": "Women's Amy Powney + Finisterre Fisherman Rib Cardigan",
+                "brand": null,
+                "price": "€205,00",
+                "url": "https://finisterre.com/products/womens-wool-amy-powney-finisterre-fisherman-rib-cardigan-raven"
+              },
+              {
+                "rank": 5,
+                "title": "Women's Finisterre Mora Crew Neck Cardigan",
+                "brand": null,
+                "price": "€180,00",
+                "url": "https://finisterre.com/products/womens-wool-mora-crew-neck-cardi-evergreen"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/Tops_Knitwear_5f10bfb927.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "1 products shared with positive control",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "3/3 passed"
+    },
+    {
+      "capability": "language_understanding",
+      "score": "error",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "plural_singular",
+            "query": "Nieuwland Yulex swim sock",
+            "control_query": "Nieuwland 3mm Yulex® Swim Sock",
+            "status": "error",
+            "result_count": 0,
+            "results": [],
+            "control_count": 0,
+            "screenshot_path": null,
+            "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Nieuwland+Yulex+swim+sock\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Nieuwland+Yulex+swim+sock\", waiting until \"domcontentloaded\"\n",
+            "execution_time_ms": 315,
+            "rationale": "Catalog-grounded plural_singular: Nieuwland 3mm Yulex® Swim Sock",
+            "control_results": [],
+            "control_screenshot_path": null,
+            "expected_title": "Nieuwland 3mm Yulex® Swim Sock",
+            "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock",
+            "constraints": {},
+            "catalog_evidence": "Nieuwland 3mm Yulex® Swim Sock",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "error",
+          "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Nieuwland+Yulex+swim+sock\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Nieuwland+Yulex+swim+sock\", waiting until \"domcontentloaded\"\n",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "synonym",
+            "query": "water gloves neoprene",
+            "control_query": "Nieuwland 2mm Yulex® Gloves",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              }
+            ],
+            "control_count": 1,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/synonym_water_gloves_neopren.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8720,
+            "rationale": "Catalog-grounded synonym: Nieuwland 2mm Yulex® Gloves",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Nieuwland_2mm_Yulex_Gloves.png",
+            "expected_title": "Nieuwland 2mm Yulex® Gloves",
+            "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+            "constraints": {},
+            "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "plural_singular",
+            "query": "Nieuwland Yulex glove 2mm",
+            "control_query": "Nieuwland 2mm Yulex® Gloves",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              }
+            ],
+            "control_count": 1,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/plural_singular_Nieuwland_Yulex_glov.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8252,
+            "rationale": "Catalog-grounded plural_singular: Nieuwland 2mm Yulex® Gloves",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Nieuwland_2mm_Yulex_Gloves.png",
+            "expected_title": "Nieuwland 2mm Yulex® Gloves",
+            "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+            "constraints": {
+              "size": "2mm",
+              "material": "Yulex®"
+            },
+            "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "All requested attributes verified in top-three result evidence",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "synonym",
+            "query": "neoprene gloves",
+            "control_query": "Nieuwland 2mm Yulex® Gloves",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              }
+            ],
+            "control_count": 1,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/synonym_neoprene_gloves_e184ec7d0d.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9980,
+            "rationale": "Catalog-grounded synonym: Nieuwland 2mm Yulex® Gloves",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/Nieuwland_2mm_Yulex_Gloves_e383f69765.png",
+            "expected_title": "Nieuwland 2mm Yulex® Gloves",
+            "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+            "constraints": {},
+            "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "plural_singular",
+            "query": "swim sock",
+            "control_query": "Nieuwland 3mm Yulex® Swim Sock",
+            "status": "success",
+            "result_count": 4,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              },
+              {
+                "rank": 2,
+                "title": "Kelson Sock",
+                "brand": null,
+                "price": "€28,00",
+                "url": "https://finisterre.com/products/wool-blend-kelson-sock-navy-marl"
+              },
+              {
+                "rank": 3,
+                "title": "RNLI Bosun Sock",
+                "brand": null,
+                "price": "€30,00",
+                "url": "https://finisterre.com/products/wool-blend-rnli-bosun-sock-flame-navy"
+              },
+              {
+                "rank": 4,
+                "title": "Kelson Sock",
+                "brand": null,
+                "price": "€28,00",
+                "url": "https://finisterre.com/products/wool-blend-kelson-sock-dark-flame-marl"
+              }
+            ],
+            "control_count": 1,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/plural_singular_swim_sock_0bbf10b907.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 12746,
+            "rationale": "Catalog-grounded plural_singular: Nieuwland 3mm Yulex® Swim Sock",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/Nieuwland_3mm_Yulex_Swim_Sock_748a4a3b44.png",
+            "expected_title": "Nieuwland 3mm Yulex® Swim Sock",
+            "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock",
+            "constraints": {},
+            "catalog_evidence": "Nieuwland 3mm Yulex® Swim Sock",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "abbreviation",
+            "query": "MiiR 12 ounce Flip Traveller",
+            "control_query": "MiiR 12oz Flip Traveller",
+            "status": "success",
+            "result_count": 307,
+            "results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              },
+              {
+                "rank": 3,
+                "title": "Miir 360 Traveller 12oz",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-360-12oz-traveller-feather-grey"
+              },
+              {
+                "rank": 4,
+                "title": "Miir 12oz Camp Cup",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-12oz-camp-cup-seaglass"
+              },
+              {
+                "rank": 5,
+                "title": "Miir Grounded Camp Cup 12oz",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-grounded-camp-cup-12oz-blue-speckle"
+              }
+            ],
+            "control_count": 2,
+            "screenshot_path": "../scanner_output/round2-locale/finisterre.com/abbreviation_MiiR_12_ounce_Flip_Traveller_9d3845a7ee.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9487,
+            "rationale": "Literal navigation diacritics or observed unit-format equivalence",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-locale/finisterre.com/control_MiiR_12oz_Flip_Traveller_f43f577dc1.png",
+            "expected_title": "MiiR 12oz Flip Traveller",
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "5/6 passed, 1 technical errors"
+    },
+    {
+      "capability": "locale_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "format_variant",
+            "query": "MiiR 12 oz Flip Traveller",
+            "control_query": "MiiR 12oz Flip Traveller",
+            "status": "success",
+            "result_count": 2,
+            "results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_count": 2,
+            "screenshot_path": "../scanner_output/round2-locale/finisterre.com/format_variant_MiiR_12_oz_Flip_Traveller_34d856736d.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10578,
+            "rationale": "Literal navigation diacritics or observed unit-format equivalence",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-locale/finisterre.com/control_MiiR_12oz_Flip_Traveller_f43f577dc1.png",
+            "expected_title": "MiiR 12oz Flip Traveller",
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "1/1 passed"
+    },
+    {
+      "capability": "compound_handling",
+      "score": "fail",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "Tops&Knitwear",
+            "control_query": "Tops & Knitwear",
+            "status": "success",
+            "result_count": 85,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Men's Finisterre Barents Jumper",
+                "brand": null,
+                "price": "€160,00",
+                "url": "https://finisterre.com/products/mens-barents-jumper-wool-copper"
+              },
+              {
+                "rank": 2,
+                "title": "Men's Finisterre Mora Knit Jumper",
+                "brand": null,
+                "price": "€170,00",
+                "url": "https://finisterre.com/products/mens-wool-mora-jumper-navy"
+              },
+              {
+                "rank": 3,
+                "title": "Women's Kerrow Vest",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/womens-recycled-cotton-kerrow-vest-navy"
+              },
+              {
+                "rank": 4,
+                "title": "Women's Trevaunance Textured Jumper",
+                "brand": null,
+                "price": "€300,00",
+                "url": "https://finisterre.com/products/womens-wool-trevaunance-textured-jumper-brown-oatmeal-navy"
+              },
+              {
+                "rank": 5,
+                "title": "Women's Amy Powney + Finisterre Aran Knit Jumper",
+                "brand": null,
+                "price": "€260,00",
+                "url": "https://finisterre.com/products/womens-wool-amy-powney-finisterre-aran-knit-jumper-cherrywood"
+              }
+            ],
+            "control_count": 87,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/merged_words_Tops_Knitwear_fc3247f9ca.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9793,
+            "rationale": "Catalog-grounded merged_words: Tops & Knitwear",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Men's Finisterre Barents Jumper",
+                "brand": null,
+                "price": "€160,00",
+                "url": "https://finisterre.com/products/mens-barents-jumper-wool-copper"
+              },
+              {
+                "rank": 2,
+                "title": "Women's Lerryn Fair Isle Cardigan",
+                "brand": null,
+                "price": "€260,00",
+                "url": "https://finisterre.com/products/womens-wool-lerryn-fair-isle-cardigan-oatmeal-brown-blue"
+              },
+              {
+                "rank": 3,
+                "title": "Women's Finisterre Mora Crew Neck Cardigan",
+                "brand": null,
+                "price": "€180,00",
+                "url": "https://finisterre.com/products/womens-wool-mora-crew-neck-cardi-mahogany-brown"
+              },
+              {
+                "rank": 4,
+                "title": "Women's Amy Powney + Finisterre Fisherman Rib Cardigan",
+                "brand": null,
+                "price": "€205,00",
+                "url": "https://finisterre.com/products/womens-wool-amy-powney-finisterre-fisherman-rib-cardigan-raven"
+              },
+              {
+                "rank": 5,
+                "title": "Women's Finisterre Mora Crew Neck Cardigan",
+                "brand": null,
+                "price": "€180,00",
+                "url": "https://finisterre.com/products/womens-wool-mora-crew-neck-cardi-evergreen"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/Tops_Knitwear_5f10bfb927.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "1 products shared with positive control",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "Swimwear&Wetsuits",
+            "control_query": "Swimwear & Wetsuits",
+            "status": "success",
+            "result_count": 53,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Women's Nieuwland 2mm Yulex® Long Sleeve Top",
+                "brand": null,
+                "price": "€150,00",
+                "url": "https://finisterre.com/products/womens-natural-rubber-nieuwland-2e-yulex-ls-top-black"
+              },
+              {
+                "rank": 2,
+                "title": "Women's Nieuwland 2mm Yulex® Long Sleeve Swimsuit",
+                "brand": null,
+                "price": "€200,00",
+                "url": "https://finisterre.com/products/womens-natural-rubber-nieuwland-2e-yulex-ls-swimsuit-black"
+              },
+              {
+                "rank": 3,
+                "title": "Women's Nieuwland 2mm Yulex® Swimsuit",
+                "brand": null,
+                "price": "€175,00",
+                "url": "https://finisterre.com/products/womens-natural-rubber-nieuwland-2e-yulex-swimsuit-black"
+              },
+              {
+                "rank": 4,
+                "title": "Men's Nieuwland 2mm Yulex® Back Zip Long Sleeve Shorty Wetsuit",
+                "brand": null,
+                "price": "€225,00",
+                "url": "https://finisterre.com/products/mens-natural-rubber-nieuwland-2e-yulex-long-sleeve-wetsuit-black"
+              },
+              {
+                "rank": 5,
+                "title": "Men's Nieuwland 2mm Yulex® Back Zip Long Sleeve Shorty Wetsuit",
+                "brand": null,
+                "price": "€225,00",
+                "url": "https://finisterre.com/products/mens-natural-rubber-nieuwland-2e-yulex-long-sleeve-wetsuit-dark-ozone"
+              }
+            ],
+            "control_count": 59,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/merged_words_Swimwear_Wetsuits.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10562,
+            "rationale": "Catalog-grounded merged_words: Swimwear & Wetsuits",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Women's Shearwater 5/4mm U-Zip Hooded Wetsuit",
+                "brand": null,
+                "price": "€600,00",
+                "url": "https://finisterre.com/products/womens-ocena-shearwater-5-4-u-zip-hooded-wetsuit-black"
+              },
+              {
+                "rank": 2,
+                "title": "Women's Shearwater 4/3mm U-Zip Hooded Wetsuit",
+                "brand": null,
+                "price": "€565,00",
+                "url": "https://finisterre.com/products/womens-ocena-shearwater-4-3-u-zip-hooded-wetsuit-black"
+              },
+              {
+                "rank": 3,
+                "title": "Women's Shearwater 4/3mm U-Zip Wetsuit",
+                "brand": null,
+                "price": "€525,00",
+                "url": "https://finisterre.com/products/womens-ocena-shearwater-4-3-u-zip-wetsuit-black"
+              },
+              {
+                "rank": 4,
+                "title": "Men's Shearwater 5/4mm U-Zip Hooded Wetsuit",
+                "brand": null,
+                "price": "€600,00",
+                "url": "https://finisterre.com/products/mens-ocena-shearwater-5-4-u-zip-hooded-wetsuit-black"
+              },
+              {
+                "rank": 5,
+                "title": "Men's Shearwater 4/3mm U-Zip Hooded Wetsuit",
+                "brand": null,
+                "price": "€565,00",
+                "url": "https://finisterre.com/products/mens-ocena-shearwater-4-3-u-zip-hooded-wetsuit-black"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Swimwear_Wetsuits.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "OtherAccessories",
+            "control_query": "Other Accessories",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 5,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/finisterre_com-1a5482407a-query.png",
+            "error_message": "page says: 'no results'",
+            "execution_time_ms": 9825,
+            "rationale": "Headed independent evidence recheck",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 3,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              },
+              {
+                "rank": 4,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              },
+              {
+                "rank": 5,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/finisterre_com-a8480f2fac-control.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": false
+          },
+          "score": "fail",
+          "score_reason": "Confirmed zero versus positive paired control",
+          "severity": "high",
+          "confidence": "high",
+          "verified": true,
+          "review_note": "Explicit no-results page, with Most Loved Gear clearly labeled recommendations. Positive control sample contains at least five actual products; full API-derived total is not claimed from the screenshot."
+        },
+        {
+          "probe": {
+            "probe_type": "compound_split",
+            "query": "Yulex gloves 2mm",
+            "control_query": "Nieuwland 2mm Yulex® Gloves",
+            "status": "error",
+            "result_count": 0,
+            "results": [],
+            "control_count": 1,
+            "screenshot_path": null,
+            "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Yulex+gloves+2mm\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Yulex+gloves+2mm\", waiting until \"domcontentloaded\"\n",
+            "execution_time_ms": 506,
+            "rationale": "Catalog-grounded compound_split: Nieuwland 2mm Yulex® Gloves",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Nieuwland_2mm_Yulex_Gloves.png",
+            "expected_title": "Nieuwland 2mm Yulex® Gloves",
+            "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+            "constraints": {
+              "material": "Yulex®",
+              "size": "2mm"
+            },
+            "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": true
+          },
+          "score": "error",
+          "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Yulex+gloves+2mm\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Yulex+gloves+2mm\", waiting until \"domcontentloaded\"\n",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "compound_split",
+            "query": "Rowan towel robe",
+            "control_query": "Rowan Towelling Robe",
+            "status": "error",
+            "result_count": 0,
+            "results": [],
+            "control_count": 3,
+            "screenshot_path": null,
+            "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Rowan+towel+robe\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Rowan+towel+robe\", waiting until \"domcontentloaded\"\n",
+            "execution_time_ms": 451,
+            "rationale": "Catalog-grounded compound_split: Rowan Towelling Robe",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Rowan_Towelling_Robe.png",
+            "expected_title": "Rowan Towelling Robe",
+            "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+            "constraints": {
+              "material": "Towelling"
+            },
+            "catalog_evidence": "Rowan Towelling Robe",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": true
+          },
+          "score": "error",
+          "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=Rowan+towel+robe\nCall log:\n  - navigating to \"https://finisterre.com/search?q=Rowan+towel+robe\", waiting until \"domcontentloaded\"\n",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "1/5 passed, 1 failed, 1 partial, 2 technical errors"
+    },
+    {
+      "capability": "constraint_handling",
+      "score": "error",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "natural_language",
+            "query": "warm water swimming gloves",
+            "control_query": "Nieuwland 2mm Yulex® Gloves",
+            "status": "error",
+            "result_count": 0,
+            "results": [],
+            "control_count": 1,
+            "screenshot_path": null,
+            "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=warm+water+swimming+gloves\nCall log:\n  - navigating to \"https://finisterre.com/search?q=warm+water+swimming+gloves\", waiting until \"domcontentloaded\"\n",
+            "execution_time_ms": 603,
+            "rationale": "Catalog-grounded natural_language: Nieuwland 2mm Yulex® Gloves",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Nieuwland_2mm_Yulex_Gloves.png",
+            "expected_title": "Nieuwland 2mm Yulex® Gloves",
+            "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+            "constraints": {},
+            "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": true
+          },
+          "score": "error",
+          "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=warm+water+swimming+gloves\nCall log:\n  - navigating to \"https://finisterre.com/search?q=warm+water+swimming+gloves\", waiting until \"domcontentloaded\"\n",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "constraint_query",
+            "query": "3mm neoprene sock",
+            "control_query": "Nieuwland 3mm Yulex® Swim Sock",
+            "status": "error",
+            "result_count": 0,
+            "results": [],
+            "control_count": 0,
+            "screenshot_path": null,
+            "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=3mm+neoprene+sock\nCall log:\n  - navigating to \"https://finisterre.com/search?q=3mm+neoprene+sock\", waiting until \"domcontentloaded\"\n",
+            "execution_time_ms": 227,
+            "rationale": "Catalog-grounded constraint_query: Nieuwland 3mm Yulex® Swim Sock",
+            "control_results": [],
+            "control_screenshot_path": null,
+            "expected_title": "Nieuwland 3mm Yulex® Swim Sock",
+            "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock",
+            "constraints": {
+              "size": "3mm"
+            },
+            "catalog_evidence": "Nieuwland 3mm Yulex® Swim Sock",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "error",
+          "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=3mm+neoprene+sock\nCall log:\n  - navigating to \"https://finisterre.com/search?q=3mm+neoprene+sock\", waiting until \"domcontentloaded\"\n",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "natural_language",
+            "query": "towelling robe for swimmers",
+            "control_query": "Rowan Towelling Robe",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 3,
+                "title": "Tego Long Sleeve Robe",
+                "brand": null,
+                "price": "€195,00",
+                "url": "https://finisterre.com/products/recycled-tego-ls-robe-olive-black"
+              },
+              {
+                "rank": 4,
+                "title": "Tego Long Sleeve Robe",
+                "brand": null,
+                "price": "€195,00",
+                "url": "https://finisterre.com/products/recycled-tego-ls-robe-navy-flame"
+              }
+            ],
+            "control_count": 0,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/natural_language_towelling_robe_for_s.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10224,
+            "rationale": "Catalog-grounded natural_language: Rowan Towelling Robe",
+            "control_results": [],
+            "control_screenshot_path": null,
+            "expected_title": "Rowan Towelling Robe",
+            "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+            "constraints": {},
+            "catalog_evidence": "Rowan Towelling Robe",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": false
+          },
+          "score": "error",
+          "score_reason": "No positive control; comparison is inconclusive",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "natural_language",
+            "query": "insulated travel bottle",
+            "control_query": "MiiR 12oz Flip Traveller",
+            "status": "success",
+            "result_count": 7,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Mako Bottle Bag",
+                "brand": null,
+                "price": "€55,00",
+                "url": "https://finisterre.com/products/recycled-mako-bottle-bag-woodsmoke-deep-sea-sierra"
+              },
+              {
+                "rank": 2,
+                "title": "Mako Bottle Bag",
+                "brand": null,
+                "price": "€55,00",
+                "url": "https://finisterre.com/products/recycled-mako-bottle-bag-reed-green-coffee-brown"
+              },
+              {
+                "rank": 3,
+                "title": "Nalgene Sustain 1L Wide Mouth Bottle",
+                "brand": null,
+                "price": "€35,00",
+                "url": "https://finisterre.com/products/nalgene-sustain-1l-wide-mouth-bottle-slate-blue"
+              },
+              {
+                "rank": 4,
+                "title": "Nalgene Sustain 0.5L Narrow Mouth Bottle",
+                "brand": null,
+                "price": "€28,00",
+                "url": "https://finisterre.com/products/nalgene-sustain-0-5l-narrow-mouth-bottle-jade"
+              },
+              {
+                "rank": 5,
+                "title": "Miir 360 Traveller 12oz",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-360-12oz-traveller-feather-grey"
+              }
+            ],
+            "control_count": 2,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/natural_language_insulated_travel_bot.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9151,
+            "rationale": "Catalog-grounded natural_language: MiiR 12oz Flip Traveller",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+            "expected_title": "MiiR 12oz Flip Traveller",
+            "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+            "constraints": {},
+            "catalog_evidence": "MiiR 12oz Flip Traveller",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "constraint_query",
+            "query": "2mm protective gloves water sports",
+            "control_query": "Nieuwland 2mm Yulex® Gloves",
+            "status": "success",
+            "result_count": 97,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              },
+              {
+                "rank": 2,
+                "title": "Shearwater 5mm Wetsuit Boot",
+                "brand": null,
+                "price": "€100,00",
+                "url": "https://finisterre.com/products/yulex-shearwater-5mm-wetsuit-boot-black"
+              },
+              {
+                "rank": 3,
+                "title": "Men's Nieuwland 2mm Yulex® Back Zip Long Sleeve Shorty Wetsuit",
+                "brand": null,
+                "price": "€225,00",
+                "url": "https://finisterre.com/products/mens-natural-rubber-nieuwland-2e-yulex-long-sleeve-wetsuit-black"
+              },
+              {
+                "rank": 4,
+                "title": "Men's Nieuwland 2mm Yulex® Back Zip Long Sleeve Shorty Wetsuit",
+                "brand": null,
+                "price": "€225,00",
+                "url": "https://finisterre.com/products/mens-natural-rubber-nieuwland-2e-yulex-long-sleeve-wetsuit-dark-ozone"
+              },
+              {
+                "rank": 5,
+                "title": "Men's Nieuwland 2mm Yulex® Long Sleeve Top",
+                "brand": null,
+                "price": "€150,00",
+                "url": "https://finisterre.com/products/mens-natural-rubber-nieuwland-2e-yulex-long-sleeve-top-black"
+              }
+            ],
+            "control_count": 1,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/constraint_query_2mm_protective_glove.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9056,
+            "rationale": "Catalog-grounded constraint_query: Nieuwland 2mm Yulex® Gloves",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Nieuwland_2mm_Yulex_Gloves.png",
+            "expected_title": "Nieuwland 2mm Yulex® Gloves",
+            "expected_url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves",
+            "constraints": {
+              "size": "2mm"
+            },
+            "catalog_evidence": "Nieuwland 2mm Yulex® Gloves",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "partial",
+          "score_reason": "Returned product attributes unknown; counts do not prove compliance",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "natural_language",
+            "query": "post swim changing robe",
+            "control_query": "Rowan Towelling Robe",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Tego Long Sleeve Robe",
+                "brand": null,
+                "price": "€195,00",
+                "url": "https://finisterre.com/products/recycled-tego-ls-robe-olive-black"
+              },
+              {
+                "rank": 2,
+                "title": "Tego Long Sleeve Robe",
+                "brand": null,
+                "price": "€195,00",
+                "url": "https://finisterre.com/products/recycled-tego-ls-robe-navy-flame"
+              },
+              {
+                "rank": 3,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 4,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              }
+            ],
+            "control_count": 3,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/natural_language_post_swim_changing_r.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8644,
+            "rationale": "Catalog-grounded natural_language: Rowan Towelling Robe",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/Rowan_Towelling_Robe.png",
+            "expected_title": "Rowan Towelling Robe",
+            "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+            "constraints": {},
+            "catalog_evidence": "Rowan Towelling Robe",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "price_constraint",
+            "query": "MiiR 12oz Flip Traveller under 58",
+            "control_query": "MiiR 12oz Flip Traveller",
+            "status": "success",
+            "result_count": 2,
+            "results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_count": 2,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/price_constraint_MiiR_12oz_Flip_Trave.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 7789,
+            "rationale": "Catalog-grounded price_constraint: MiiR 12oz Flip Traveller: €48,00",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+            "expected_title": "MiiR 12oz Flip Traveller",
+            "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+            "constraints": {
+              "price_max": "58"
+            },
+            "catalog_evidence": "MiiR 12oz Flip Traveller: €48,00",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "All requested attributes verified in top-three result evidence",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "natural_language",
+            "query": "reusable water bottle for travel",
+            "control_query": "MiiR 12oz Flip Traveller",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Miir 360 Traveller 12oz",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-360-12oz-traveller-feather-grey"
+              }
+            ],
+            "control_count": 2,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/natural_language_reusable_water_bottle_for_travel_48b7f2a395.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9827,
+            "rationale": "Catalog-grounded natural_language: MiiR 12oz Flip Traveller",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/coverage_check_MiiR_12oz_Flip_Traveller_6749d4804e.png",
+            "expected_title": "MiiR 12oz Flip Traveller",
+            "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+            "constraints": {},
+            "catalog_evidence": "MiiR 12oz Flip Traveller",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "2/8 passed, 3 partial, 3 technical errors"
+    },
+    {
+      "capability": "brand_model_search",
+      "score": "error",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "sku_search",
+            "query": "12oz",
+            "control_query": "MiiR 12oz Flip Traveller",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              },
+              {
+                "rank": 3,
+                "title": "Miir 12oz Camp Cup",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-12oz-camp-cup-seaglass"
+              },
+              {
+                "rank": 4,
+                "title": "Miir 360 Traveller 12oz",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-360-12oz-traveller-feather-grey"
+              },
+              {
+                "rank": 5,
+                "title": "Miir Grounded Camp Cup 12oz",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-grounded-camp-cup-12oz-blue-speckle"
+              }
+            ],
+            "control_count": 2,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/sku_search_12oz.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9435,
+            "rationale": "Catalog-grounded sku_search: MiiR 12oz Flip Traveller",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+            "expected_title": "MiiR 12oz Flip Traveller",
+            "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "partial",
+          "score_reason": "Rejected unit token mistaken for model code",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "brand_search",
+            "query": "MiiR Flip Traveller",
+            "control_query": "MiiR 12oz Flip Traveller",
+            "status": "error",
+            "result_count": 0,
+            "results": [],
+            "control_count": 2,
+            "screenshot_path": null,
+            "error_message": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=MiiR+Flip+Traveller\nCall log:\n  - navigating to \"https://finisterre.com/search?q=MiiR+Flip+Traveller\", waiting until \"domcontentloaded\"\n",
+            "execution_time_ms": 429,
+            "rationale": "Catalog-grounded brand_search: MiiR 12oz Flip Traveller",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+            "expected_title": "MiiR 12oz Flip Traveller",
+            "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+            "constraints": {},
+            "catalog_evidence": "MiiR 12oz Flip Traveller",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": true
+          },
+          "score": "error",
+          "score_reason": "Page.goto: net::ERR_CONNECTION_REFUSED at https://finisterre.com/search?q=MiiR+Flip+Traveller\nCall log:\n  - navigating to \"https://finisterre.com/search?q=MiiR+Flip+Traveller\", waiting until \"domcontentloaded\"\n",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "0/2 passed, 1 partial, 1 technical errors"
+    },
+    {
+      "capability": "coverage_ranking",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "ranking_check",
+            "query": "MiiR 12oz Flip Traveller",
+            "control_query": "Accessories",
+            "status": "success",
+            "result_count": 2,
+            "results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_count": 190,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/exact_product_name_MiiR_12oz_Flip_Trave.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded ranking_check: Accessories",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 3,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              },
+              {
+                "rank": 4,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              },
+              {
+                "rank": 5,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/control_query_Accessories.png",
+            "expected_title": "MiiR 12oz Flip Traveller",
+            "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Exact catalog product at rank 1",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "coverage_check",
+            "query": "MiiR 12oz Flip Traveller",
+            "control_query": "Accessories",
+            "status": "success",
+            "result_count": 2,
+            "results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€45,00",
+                "url": "https://finisterre.com/products/miir-120z-flip-traveller-rock-salt"
+              }
+            ],
+            "control_count": 190,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/coverage_check_MiiR_12oz_Flip_Traveller_6749d4804e.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10511,
+            "rationale": "Catalog-grounded coverage_check: Accessories",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 3,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              },
+              {
+                "rank": 4,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              },
+              {
+                "rank": 5,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+            "expected_title": "MiiR 12oz Flip Traveller",
+            "expected_url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "ranking_check",
+            "query": "Rowan Towelling Robe",
+            "control_query": "Accessories",
+            "status": "success",
+            "result_count": 3,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              }
+            ],
+            "control_count": 190,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/exact_product_name_Rowan_Towelling_Robe_dab539bef3.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded ranking_check: Accessories",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 3,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              },
+              {
+                "rank": 4,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              },
+              {
+                "rank": 5,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+            "expected_title": "Rowan Towelling Robe",
+            "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Exact catalog product at rank 1",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "coverage_check",
+            "query": "Rowan Towelling Robe",
+            "control_query": "Accessories",
+            "status": "success",
+            "result_count": 3,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              }
+            ],
+            "control_count": 190,
+            "screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/exact_product_name_Rowan_Towelling_Robe_dab539bef3.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded coverage_check: Accessories",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "MiiR 12oz Flip Traveller",
+                "brand": null,
+                "price": "€48,00",
+                "url": "https://finisterre.com/products/miir-12oz-flip-traveller-tidal-blue"
+              },
+              {
+                "rank": 2,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka"
+              },
+              {
+                "rank": 3,
+                "title": "Rowan Towelling Robe",
+                "brand": null,
+                "price": "€90,00",
+                "url": "https://finisterre.com/products/organic-rowan-towelling-robe-rock-salt"
+              },
+              {
+                "rank": 4,
+                "title": "Nieuwland 2mm Yulex® Gloves",
+                "brand": null,
+                "price": "€80,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-2e-yulex-gloves"
+              },
+              {
+                "rank": 5,
+                "title": "Nieuwland 3mm Yulex® Swim Sock",
+                "brand": null,
+                "price": "€68,00",
+                "url": "https://finisterre.com/products/natural-rubber-nieuwland-3s-yulex-sock"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-confirmed/finisterre.com/control_query_Accessories_174b15b548.png",
+            "expected_title": "Rowan Towelling Robe",
+            "expected_url": "https://finisterre.com/products/organic-rowan-towelling-robe-manuka",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "4/4 passed"
+    },
+    {
+      "capability": "zero_result_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "zero_result_check",
+            "query": "xyzqwk12345nonsense",
+            "control_query": "Accessories",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 190,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/finisterre.com/zero_result_check_xyzqwk12345nonsense.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 7856,
+            "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results",
+            "control_results": [],
+            "control_screenshot_path": null,
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "Correctly returned zero results for gibberish query",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "1/1 passed"
+    }
+  ],
+  "overall_score": "fail",
+  "blocked": false,
+  "llm_cost_usd": 0.010654,
+  "execution_time_ms": 486233,
+  "error_message": null,
+  "discovery_attempts": [],
+  "inapplicable": {
+    "category_term": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "diacritics": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "format_variant": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "abbreviation": "No qualifying catalog-grounded pair in sampled navigation/products"
+  },
+  "platform": "Shopify"
+}

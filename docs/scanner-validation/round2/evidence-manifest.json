@@ -1,0 +1,142 @@
+[
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-3e6a6f2864-query.png",
+    "sha256": "3aebc20e3d3fddaa24738983ba01ea368a5d779d1216f1f31a8691ef1d9a5717"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/watery_dk-c199853179-query.png",
+    "sha256": "e4639a956db520518b4c78ec649cce6dfff182522c3caa67097b2e05e70acdd8"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-0298b6bc37-control.png",
+    "sha256": "83148f82ef47cd71c739d212182ae0c8e0652a4cca8102d09a45bf6bc392e505"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/naturzeit_com-a16d6bc627-control.png",
+    "sha256": "af3c16e32463a1388eff4f9ec5654a2410de7aa16236d195ec73fc823f912f5b"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/8a_pl-blocked.png",
+    "sha256": "9102c7fc16891031c477d02240909b1aa0a3d14c2b3c8102e0a8ef32c66bdfa8"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-059011182a-query.png",
+    "sha256": "2d9a6ad59d5905b9ae27c196a97809a290c92238cee87ac6e3b1e52f6bb4f64d"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-614b4b26b1-control.png",
+    "sha256": "caf157e2d2423a285a21d5b4b2242a0ff959a764b913cd1b9399bb25cdb1d6c7"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-60451e0b81-rejected-control.png",
+    "sha256": "475a6099fdbe940906df332447799eefb56bea74b5753c25397a0e6fb0be6289"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/connox_de-d29af52b72-control.png",
+    "sha256": "79762abd9ab2e6985ffe1919a8cc926854c0eef468ae3cf5dc5171299a904436"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/naturzeit_com-cf74cbd64d-query.png",
+    "sha256": "0c50003184fe98b7877b8fe0846117d54f957de3a513c582dface391c6c0cc67"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-bfdc4ddef9-control.png",
+    "sha256": "5ca3c42677761c07f6b30432740a92c8160e65db079512fd156dc978fcd2b467"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-f488dc965f-query.png",
+    "sha256": "b73458e9c92d327f44be02504d0be81703c08ee810d3ec5234d420c3087e7441"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/finisterre_com-1a5482407a-query.png",
+    "sha256": "8c60bb727b6e5b0bb35c5859edda1ae798a25bd22096401b00d2dc098e7a2846"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-0e3e892458-query.png",
+    "sha256": "153fd0e150b636c5fe8c6ced1ca54101dc18f356e99b07991d89b08144eaa060"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-c3930208ff-query.png",
+    "sha256": "ceb421da0528a6126c8760a3c5ff0fe0a752bbea70134cb421ce40280eb6d61c"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-8861ba26df-control.png",
+    "sha256": "dfa08c29c34e67dc776a7cb599341f1800226e67c17f6b200f38353aad44551e"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/naturzeit_com-1c906823ab-control.png",
+    "sha256": "184e574187a9928eb66b36aafebb5e4d8eb31e2b1e1eca69e23794ab57d22a3c"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/connox_de-76cd7994ff-query.png",
+    "sha256": "59f984427f6777f6c7d82b6fc5cf7cbe025be5e745f57cc042adc1b2cef7bc23"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/naturzeit_com-06809679a3-control.png",
+    "sha256": "78508d132b13fc55adc746b4671b0a8a2fa5cb01c599ad25bedca658eb76c126"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/naturzeit_com-e5727bda17-query.png",
+    "sha256": "d71b208d4e4ce36aabd7e95c0bb7501f9dc7aa5abc9a70ec09512d020ee610a2"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-47236f8d18-query.png",
+    "sha256": "70eb94ed2bb223274f935a0c93f8c036f50f338674f1e685582a086c3196c503"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/finisterre_com-a8480f2fac-control.png",
+    "sha256": "59f9777e382fa99dfe395db8753c725aba1d894bfc235d21f59bc7b325071fb3"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/naturzeit_com-64096667ac-query.png",
+    "sha256": "65fb2f01f220db26b65598512bbeb6794dd68ea798d82d878a07f8b014a95569"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-99151227cf-query.png",
+    "sha256": "60b50d4731a90f25b2f63dae9de1194f40c9197557cee4b85d9eea7c08e69f2d"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-e920496859-rejected-query.png",
+    "sha256": "36a68ea3b06e304e8d515feff3cdb51a2a78d43e1bff5ba271fd6ed13856955c"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-945e70598d-control.png",
+    "sha256": "ce6cc70607a378a0a7fb20dcebb49d8d66940debf157198949c288cd0f736a97"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-77acc1aa44-query.png",
+    "sha256": "f80a057d224fa2a679f4dea3abd693234b02f3ba2143f0e08980fa28ec6983d8"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-09caf078d5-control.png",
+    "sha256": "d8c4af1453d14e95b65ce4dbdd54af4b3f71be5c6f2cf884d42dcc885773c95a"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-1308ad96b5-rejected-control.png",
+    "sha256": "d2638d469caa8eb2fd506c4f3465cdf6024644fa96ac0ddbe9903a104980c0e1"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-e33d0cdef9-rejected-query.png",
+    "sha256": "d9c731d440bf7ee832e1bfe2f8cf1f7ac35677d6b90bb05b9d84c06113a60256"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/watery_dk-2420d80a1a-control.png",
+    "sha256": "6438a6dbe1b9a40ca8e2010684fe49a9bd29ab82eea62b0d3bb883b3899684fb"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-a75c4977e5-control.png",
+    "sha256": "efa02c8334f44473741d0296be72b9369a84b3b034c0dc12be23c97502b472f9"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/naturzeit_com-8920402f22-query.png",
+    "sha256": "4f85149bb89a86b61b6fe2d9ec44a948ff6de4699dbdab053897ef905d6d85da"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/naturzeit_com-feec37d8dc-control.png",
+    "sha256": "e70e45f029addd8562895d35ecb8ce038406bb055d40cabd12a0e8f36a3132af"
+  },
+  {
+    "path": "docs/scanner-validation/round2/evidence/rockpoint_cz-fb641e608c-control.png",
+    "sha256": "6edcb2f12c944ca2eb4382b20b927a3083371f5cc5f63056b948d93daac1e453"
+  }
+]

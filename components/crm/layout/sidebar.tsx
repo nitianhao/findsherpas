@@ -15,12 +15,14 @@ import {
   FlaskConical,
   Settings,
   LogOut,
+  ClipboardList,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 const navigation = [
   { name: "Dashboard", href: "/crm/dashboard", icon: LayoutDashboard },
+  { name: "Teardown Requests", href: "/crm/audit-requests", icon: ClipboardList },
   { name: "Companies", href: "/crm/companies", icon: Building2 },
   { name: "Reports", href: "/crm/reports", icon: FileText },
   { name: "Articles", href: "/crm/articles", icon: FileText },

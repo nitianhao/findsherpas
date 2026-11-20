@@ -1,0 +1,202 @@
+[
+  {
+    "domain": "finisterre.com",
+    "query": "OtherAccessories",
+    "status": "accepted",
+    "note": "Explicit no-results page, with Most Loved Gear clearly labeled recommendations. Positive control sample contains at least five actual products; full API-derived total is not claimed from the screenshot.",
+    "result_count": 0,
+    "control_count": 5,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/finisterre_com-1a5482407a-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/finisterre_com-a8480f2fac-control.png"
+  },
+  {
+    "domain": "passenger-clothing.com",
+    "query": "Jacekts",
+    "status": "accepted",
+    "note": "Distinct screenshots show an explicit no-results page for the transposition, versus Showing 56 items for Jackets. Popups do not obscure the query, result message or total.",
+    "result_count": 0,
+    "control_count": 56,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-f488dc965f-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-bfdc4ddef9-control.png"
+  },
+  {
+    "domain": "passenger-clothing.com",
+    "query": "InsulatedJackets",
+    "status": "accepted",
+    "note": "Explicit no-results page versus Showing 56 items for Insulated Jackets; catalog category and insulated product tiles are visible.",
+    "result_count": 0,
+    "control_count": 56,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-47236f8d18-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-0298b6bc37-control.png"
+  },
+  {
+    "domain": "passenger-clothing.com",
+    "query": "WaterproofJackets",
+    "status": "accepted",
+    "note": "Explicit no-results page versus Showing 56 items for Waterproof Jackets, with waterproof product cards visible.",
+    "result_count": 0,
+    "control_count": 56,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-99151227cf-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/passenger-clothing_com-614b4b26b1-control.png"
+  },
+  {
+    "domain": "watery.dk",
+    "query": "Watery vandtæt bum bag - Talia - Orange under 96",
+    "status": "accepted",
+    "note": "Query and count visible with prices: rank-three black Talia is 99.95 DKK, above 96; orange control product is 79.96 DKK.",
+    "result_count": 5,
+    "control_count": 13,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/watery_dk-c199853179-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/watery_dk-2420d80a1a-control.png"
+  },
+  {
+    "domain": "rockpoint.cz",
+    "query": "Obleeční",
+    "status": "accepted",
+    "note": "Visible product total 10000; transposition returns 0 products.",
+    "result_count": 0,
+    "control_count": 10000,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-3e6a6f2864-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-8861ba26df-control.png"
+  },
+  {
+    "domain": "rockpoint.cz",
+    "query": "Bundy, kabtáy a vesty",
+    "status": "accepted",
+    "note": "Valid catalog phrase; typo is incorrectly corrected and still returns 0 products.",
+    "result_count": 0,
+    "control_count": 1289,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-77acc1aa44-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-945e70598d-control.png"
+  },
+  {
+    "domain": "rockpoint.cz",
+    "query": "Kalhotyakraťasy",
+    "status": "accepted",
+    "note": "0 product results; category suggestions exist separately and are not counted as products.",
+    "result_count": 0,
+    "control_count": 1602,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-059011182a-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-09caf078d5-control.png"
+  },
+  {
+    "domain": "rockpoint.cz",
+    "query": "Kalhotyalegíny",
+    "status": "accepted",
+    "note": "0 product results; 7 category matches do not recover product results.",
+    "result_count": 0,
+    "control_count": 1096,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-c3930208ff-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-fb641e608c-control.png"
+  },
+  {
+    "domain": "rockpoint.cz",
+    "query": "RAFIKI LEDGE bunda",
+    "status": "rejected",
+    "note": "False positive: LEDGE is explicitly Pánské kalhoty (trousers), not a jacket; query invented bunda.",
+    "result_count": 0,
+    "control_count": 4,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-e33d0cdef9-rejected-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-1308ad96b5-rejected-control.png"
+  },
+  {
+    "domain": "rockpoint.cz",
+    "query": "RAFIKI CRIMP alpinistická bunda",
+    "status": "rejected",
+    "note": "False positive: CRIMP is explicitly Pánské kalhoty (trousers), not an alpine jacket.",
+    "result_count": 0,
+    "control_count": 1,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-e920496859-rejected-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-60451e0b81-rejected-control.png"
+  },
+  {
+    "domain": "rockpoint.cz",
+    "query": "RAFIKI LEDGE do 2989",
+    "status": "accepted",
+    "note": "Control shows four in-stock trouser variants at 2490 Kč, below 2989; search rewrites 2989 to 289 and returns 0.",
+    "result_count": 0,
+    "control_count": 4,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-0e3e892458-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-a75c4977e5-control.png"
+  },
+  {
+    "domain": "naturzeit.com",
+    "query": "HardshelljackenundRegenjacken",
+    "status": "accepted",
+    "note": "Clear no-results page versus 260 products; consent dismissed on independent recheck.",
+    "result_count": 0,
+    "control_count": 260,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-e5727bda17-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-a16d6bc627-control.png"
+  },
+  {
+    "domain": "naturzeit.com",
+    "query": "FahrradjackenundFahrradwesten",
+    "status": "accepted",
+    "note": "Clear no-results page versus 17 products.",
+    "result_count": 0,
+    "control_count": 17,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-8920402f22-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-06809679a3-control.png"
+  },
+  {
+    "domain": "naturzeit.com",
+    "query": "WanderhosenundTrekkinghosen",
+    "status": "accepted",
+    "note": "Clear no-results page versus 119 products.",
+    "result_count": 0,
+    "control_count": 119,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-cf74cbd64d-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-feec37d8dc-control.png"
+  },
+  {
+    "domain": "naturzeit.com",
+    "query": "NosiLife Alma Long Sleeved Shirt Women unter 71",
+    "status": "accepted",
+    "note": "Control shows qualifying Craghoppers shirt at €58.47; adding unter 71 returns 0.",
+    "result_count": 0,
+    "control_count": 1,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-64096667ac-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/naturzeit_com-1c906823ab-control.png"
+  },
+  {
+    "domain": "connox.de",
+    "query": "Kave Home Onix TV-Möbel unter 1143",
+    "status": "accepted",
+    "note": "Control shows qualifying Onix TV unit at €952. Budget query widens to 3455 items and includes an Onix cabinet at €1343 in the first three. Supplementary control screenshot exposes the qualifying price.",
+    "result_count": 3455,
+    "control_count": 23,
+    "screenshot_path": "docs/scanner-validation/round2/evidence/connox_de-76cd7994ff-query.png",
+    "control_screenshot_path": "docs/scanner-validation/round2/evidence/connox_de-d29af52b72-control.png"
+  },
+  {
+    "domain": "passenger-clothing.com",
+    "query": "Womne's",
+    "status": "unverifiable",
+    "note": "Diagnostic query/control screenshots collided; withheld and replaced by the final headed battery, not counted as a true finding."
+  },
+  {
+    "domain": "passenger-clothing.com",
+    "query": "Seacrh",
+    "status": "rejected",
+    "note": "Invalid catalog probe: utility/call-to-action label rather than product vocabulary. Diagnostic screenshot files were also overwritten; source filter now excludes these labels."
+  },
+  {
+    "domain": "passenger-clothing.com",
+    "query": "ExploreWomen's",
+    "status": "rejected",
+    "note": "Invalid catalog probe: utility/call-to-action label rather than product vocabulary. Diagnostic screenshot files were also overwritten; source filter now excludes these labels."
+  },
+  {
+    "domain": "passenger-clothing.com",
+    "query": "ExploreMen's",
+    "status": "rejected",
+    "note": "Invalid catalog probe: utility/call-to-action label rather than product vocabulary. Diagnostic screenshot files were also overwritten; source filter now excludes these labels."
+  },
+  {
+    "domain": "passenger-clothing.com",
+    "query": "Slower Rhythms Women's Cotton T-Shirt - Faded Black under 21",
+    "status": "unverifiable",
+    "note": "Diagnostic query/control screenshots collided; withheld and replaced by the final headed battery, not counted as a true finding."
+  }
+]

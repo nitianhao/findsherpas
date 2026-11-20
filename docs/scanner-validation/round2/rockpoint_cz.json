@@ -1,0 +1,4995 @@
+{
+  "site": {
+    "domain": "rockpoint.cz",
+    "site_name": "Rockpoint",
+    "search_url_template": "https://www.rockpoint.cz/vyhledavani/?search={}",
+    "primary_language": "Czech",
+    "vertical": "outdoor",
+    "country": "CZ"
+  },
+  "scanned_at": "2026-11-19T21:17:05.622552+00:00",
+  "probes": [
+    {
+      "probe": {
+        "probe_type": "control_query",
+        "query": "Oblečení",
+        "control_query": null,
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10195,
+        "rationale": "Catalog seed control",
+        "control_results": [],
+        "control_screenshot_path": null,
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Control query returned 5 results",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "Obleeční",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 10000,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-3e6a6f2864-query.png",
+        "error_message": "page says: 'žádné výsledky'",
+        "execution_time_ms": 7677,
+        "rationale": "Catalog-grounded typo: Oblečení",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-8861ba26df-control.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "fail",
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "verified": true,
+      "review_note": "Visible product total 10000; transposition returns 0 products."
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "Bundy, kabtáy a vesty",
+        "control_query": "Bundy, kabáty a vesty",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 1289,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-77acc1aa44-query.png",
+        "error_message": "page says: 'žádné výsledky'",
+        "execution_time_ms": 7538,
+        "rationale": "Catalog-grounded typo: Bundy, kabáty a vesty",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "HANNAH GEMA",
+            "brand": null,
+            "price": "-50 % 1 945 Kč 3 890 Kč",
+            "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z10023/"
+          },
+          {
+            "rank": 2,
+            "title": "HANNAH GAIA",
+            "brand": null,
+            "price": "-38 % 2 990 Kč 4 790 Kč",
+            "url": "https://www.rockpoint.cz/damsky-perovy-kabat-hannah-gaia_z145773/"
+          },
+          {
+            "rank": 3,
+            "title": "HANNAH GEMA",
+            "brand": null,
+            "price": "-50 % 1 945 Kč 3 890 Kč",
+            "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z10024/"
+          },
+          {
+            "rank": 4,
+            "title": "HANNAH GEMA",
+            "brand": null,
+            "price": "-50 % 1 945 Kč 3 890 Kč",
+            "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z107039/"
+          },
+          {
+            "rank": 5,
+            "title": "HANNAH GAIA",
+            "brand": null,
+            "price": "-20 % 3 832 Kč 4 790 Kč",
+            "url": "https://www.rockpoint.cz/damsky-perovy-kabat-hannah-gaia_z158429/"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-945e70598d-control.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "fail",
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "verified": true,
+      "review_note": "Valid catalog phrase; typo is incorrectly corrected and still returns 0 products."
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "Budny",
+        "control_query": "Bundy",
+        "status": "success",
+        "result_count": 3,
+        "results": [
+          {
+            "rank": 1,
+            "title": "SINGING ROCK BUDDY SET",
+            "brand": null,
+            "price": "729 Kč",
+            "url": "https://www.rockpoint.cz/brzda-singing-rock-buddy-set_z14410/"
+          },
+          {
+            "rank": 2,
+            "title": "SINGING ROCK BUDDY COLOR MIX",
+            "brand": null,
+            "price": "399 Kč",
+            "url": "https://www.rockpoint.cz/brzda-singing-rock-buddy-color-mix_z8070/"
+          },
+          {
+            "rank": 3,
+            "title": "SINGING ROCK BUDDY MAT ČERNÁ",
+            "brand": null,
+            "price": "399 Kč",
+            "url": "https://www.rockpoint.cz/brzda-singing-rock-buddy-mat-cerna_z8071/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/typo_Budny_d2d5594358.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 7798,
+        "rationale": "Catalog-grounded typo: Bundy",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "HANNAH NORTHPOLE",
+            "brand": null,
+            "price": "4 790 Kč",
+            "url": "https://www.rockpoint.cz/panska-bunda-hannah-northpole_z10099/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI DARCY",
+            "brand": null,
+            "price": "3 990 Kč",
+            "url": "https://www.rockpoint.cz/damska-zateplovaci-bunda-rafiki-darcy_z6480/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI DARCY",
+            "brand": null,
+            "price": "3 990 Kč",
+            "url": "https://www.rockpoint.cz/damska-zateplovaci-bunda-rafiki-darcy_z6481/"
+          },
+          {
+            "rank": 4,
+            "title": "HANNAH PEPPER",
+            "brand": null,
+            "price": "-30 % 2 233 Kč 3 190 Kč",
+            "url": "https://www.rockpoint.cz/damska-bunda-hannah-pepper_z107044/"
+          },
+          {
+            "rank": 5,
+            "title": "HANNAH PEPPER",
+            "brand": null,
+            "price": "-30 % 2 233 Kč 3 190 Kč",
+            "url": "https://www.rockpoint.cz/damska-bunda-hannah-pepper_z144407/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Bundy_a829ffce6a.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "Kalhotyakraťasy",
+        "control_query": "Kalhoty a kraťasy",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 1602,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-059011182a-query.png",
+        "error_message": "page says: 'žádné výsledky'",
+        "execution_time_ms": 7742,
+        "rationale": "Catalog-grounded merged_words: Kalhoty a kraťasy",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "HANNAH REDUX W",
+            "brand": null,
+            "price": "-50 % 1 195 Kč 2 390 Kč",
+            "url": "https://www.rockpoint.cz/damske-kratasy-hannah-redux-w_z10115/"
+          },
+          {
+            "rank": 2,
+            "title": "HANNAH REDUX",
+            "brand": null,
+            "price": "-50 % 1 195 Kč 2 390 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-hannah-redux_z10116/"
+          },
+          {
+            "rank": 3,
+            "title": "HANNAH ILIA",
+            "brand": null,
+            "price": "-50 % 1 095 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-hannah-ilia_z10033/"
+          },
+          {
+            "rank": 4,
+            "title": "HANNAH ILIA",
+            "brand": null,
+            "price": "-25 % 1 643 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-hannah-ilia_z10032/"
+          },
+          {
+            "rank": 5,
+            "title": "HANNAH TAGI",
+            "brand": null,
+            "price": "-40 % 1 434 Kč 2 390 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-hannah-tagi_z151201/"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-09caf078d5-control.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "fail",
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "verified": true,
+      "review_note": "0 product results; category suggestions exist separately and are not counted as products."
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "Kalhotyalegíny",
+        "control_query": "Kalhoty a legíny",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 1096,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-c3930208ff-query.png",
+        "error_message": "page says: 'žádné výsledky'",
+        "execution_time_ms": 7080,
+        "rationale": "Catalog-grounded merged_words: Kalhoty a legíny",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CEILLAC CTN",
+            "brand": null,
+            "price": "-30 % 969 Kč 1 390 Kč",
+            "url": "https://www.rockpoint.cz/damske-leginy-rafiki-ceillac-ctn_z117657/"
+          },
+          {
+            "rank": 2,
+            "title": "DYNAFIT WINTER RUNNING W TIGHTS Lady",
+            "brand": null,
+            "price": "-40 % 1 849 Kč 3 100 Kč",
+            "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-w-tights-lady_z4899/"
+          },
+          {
+            "rank": 3,
+            "title": "DYNAFIT WINTER RUNNING TIGHTS W Lady",
+            "brand": null,
+            "price": "-33 % 2 179 Kč 3 250 Kč",
+            "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-w-lady_z159441/"
+          },
+          {
+            "rank": 4,
+            "title": "SALEWA LAVAREDO HEMP W TIGHTS Lady",
+            "brand": null,
+            "price": "-50 % 1 249 Kč 2 499 Kč",
+            "url": "https://www.rockpoint.cz/leginy-salewa-lavaredo-hemp-w-tights-lady_z21337/"
+          },
+          {
+            "rank": 5,
+            "title": "DYNAFIT WINTER RUNNING TIGHTS M Man",
+            "brand": null,
+            "price": "-33 % 2 179 Kč 3 250 Kč",
+            "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-m-man_z159439/"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-fb641e608c-control.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "fail",
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "verified": true,
+      "review_note": "0 product results; 7 category matches do not recover product results."
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "3/4kalhoty",
+        "control_query": "3/4 kalhoty",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CHAIN CAPRI",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-rafiki-chain-capri_z8102/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI TARRAGONA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-rafiki-tarragona_z117788/"
+          },
+          {
+            "rank": 3,
+            "title": "HANNAH ROW",
+            "brand": null,
+            "price": "-50 % 995 Kč 1 990 Kč",
+            "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-hannah-row_z7737/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI MOONSTONE",
+            "brand": null,
+            "price": "-24 % 1 290 Kč 1 690 Kč",
+            "url": "https://www.rockpoint.cz/panske-3-4-kalhoty-rafiki-moonstone_z32088/"
+          },
+          {
+            "rank": 5,
+            "title": "CRAFT KALHOTY CRAFT ADV ESSENCE 3/4 Lady",
+            "brand": null,
+            "price": "-20 % 1 079 Kč 1 350 Kč",
+            "url": "https://www.rockpoint.cz/3-4-kalhoty-craft-kalhoty-craft-adv-essence-3-4-lady_z7552/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/merged_words_3_4kalhoty_b58f36c341.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9330,
+        "rationale": "Catalog-grounded merged_words: 3/4 kalhoty",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CHAIN CAPRI",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-rafiki-chain-capri_z8102/"
+          },
+          {
+            "rank": 2,
+            "title": "CRAFT KALHOTY CRAFT ADV ESSENCE 3/4 Lady",
+            "brand": null,
+            "price": "-20 % 1 079 Kč 1 350 Kč",
+            "url": "https://www.rockpoint.cz/3-4-kalhoty-craft-kalhoty-craft-adv-essence-3-4-lady_z7552/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI TARRAGONA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-rafiki-tarragona_z117788/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI MOONSTONE",
+            "brand": null,
+            "price": "-24 % 1 290 Kč 1 690 Kč",
+            "url": "https://www.rockpoint.cz/panske-3-4-kalhoty-rafiki-moonstone_z32088/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI TARRAGONA",
+            "brand": null,
+            "price": "-33 % 1 069 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-rafiki-tarragona_z32193/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/3_4_kalhoty_b3d4c8747b.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "4 products shared with positive control",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "exact_product_name",
+        "query": "RAFIKI LEDGE",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 4,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144577/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144578/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z174620/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_LEDGE_ebbbe82950.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9265,
+        "rationale": "Catalog-grounded exact_product_name: Oblečení",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+        "expected_title": "RAFIKI LEDGE",
+        "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "ranking_check",
+        "query": "RAFIKI LEDGE",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 4,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144577/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144578/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z174620/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_LEDGE_ebbbe82950.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded ranking_check: Oblečení",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+        "expected_title": "RAFIKI LEDGE",
+        "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Exact catalog product at rank 1",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "coverage_check",
+        "query": "RAFIKI LEDGE",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 4,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144577/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144578/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z174620/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_LEDGE_ebbbe82950.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded coverage_check: Oblečení",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+        "expected_title": "RAFIKI LEDGE",
+        "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "exact_product_name",
+        "query": "RAFIKI CERRO",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CERRO_b0ee360e6a.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8307,
+        "rationale": "Catalog-grounded exact_product_name: Oblečení",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+        "expected_title": "RAFIKI CERRO",
+        "expected_url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "ranking_check",
+        "query": "RAFIKI CERRO",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CERRO_b0ee360e6a.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded ranking_check: Oblečení",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+        "expected_title": "RAFIKI CERRO",
+        "expected_url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Exact catalog product at rank 1",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "coverage_check",
+        "query": "RAFIKI CERRO",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CERRO_b0ee360e6a.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded coverage_check: Oblečení",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+        "expected_title": "RAFIKI CERRO",
+        "expected_url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "exact_product_name",
+        "query": "RAFIKI CRIMP",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CRIMP_68a700dd03.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9080,
+        "rationale": "Catalog-grounded exact_product_name: Oblečení",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+        "expected_title": "RAFIKI CRIMP",
+        "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "ranking_check",
+        "query": "RAFIKI CRIMP",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CRIMP_68a700dd03.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded ranking_check: Oblečení",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+        "expected_title": "RAFIKI CRIMP",
+        "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Exact catalog product at rank 1",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "coverage_check",
+        "query": "RAFIKI CRIMP",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CRIMP_68a700dd03.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 0,
+        "rationale": "Catalog-grounded coverage_check: Oblečení",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+        "expected_title": "RAFIKI CRIMP",
+        "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/",
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Verified catalog product retrieved",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "natural_language",
+        "query": "pánské sportovní bundy na horolezení",
+        "control_query": "Bundy",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/natural_language_pánské_sportovní_bundy_na_horolezení_4c50a273cf.png",
+        "error_message": "page says: 'žádné výsledky'",
+        "execution_time_ms": 8084,
+        "rationale": "Catalog-grounded natural_language: Bundy",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "HANNAH NORTHPOLE",
+            "brand": null,
+            "price": "4 790 Kč",
+            "url": "https://www.rockpoint.cz/panska-bunda-hannah-northpole_z10099/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI DARCY",
+            "brand": null,
+            "price": "3 990 Kč",
+            "url": "https://www.rockpoint.cz/damska-zateplovaci-bunda-rafiki-darcy_z6480/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI DARCY",
+            "brand": null,
+            "price": "3 990 Kč",
+            "url": "https://www.rockpoint.cz/damska-zateplovaci-bunda-rafiki-darcy_z6481/"
+          },
+          {
+            "rank": 4,
+            "title": "HANNAH PEPPER",
+            "brand": null,
+            "price": "-30 % 2 233 Kč 3 190 Kč",
+            "url": "https://www.rockpoint.cz/damska-bunda-hannah-pepper_z107044/"
+          },
+          {
+            "rank": 5,
+            "title": "HANNAH PEPPER",
+            "brand": null,
+            "price": "-30 % 2 233 Kč 3 190 Kč",
+            "url": "https://www.rockpoint.cz/damska-bunda-hannah-pepper_z144407/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Bundy_a829ffce6a.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "Bundy",
+        "grounded": false,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": false
+      },
+      "score": "partial",
+      "score_reason": "Zero results; semantic equivalence needs manual catalog verification",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "compound_split",
+        "query": "mikina svetr",
+        "control_query": "Mikiny a svetry",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "KAMA MERINO SVETR 4053 Man",
+            "brand": null,
+            "price": "-25 % 3 690 Kč 4 950 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-man_z32104/"
+          },
+          {
+            "rank": 2,
+            "title": "KAMA MERINO SVETR 4053 Uni",
+            "brand": null,
+            "price": "-44 % 2 790 Kč 4 950 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-uni_z112933/"
+          },
+          {
+            "rank": 3,
+            "title": "KAMA MERINO SVETR 4053 Man",
+            "brand": null,
+            "price": "4 950 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-man_z31663/"
+          },
+          {
+            "rank": 4,
+            "title": "KAMA MERINO SVETR 5059 Lady",
+            "brand": null,
+            "price": "-25 % 4 099 Kč 5 490 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-5059-lady_z164504/"
+          },
+          {
+            "rank": 5,
+            "title": "KAMA MERINO SVETR 3096 Uni",
+            "brand": null,
+            "price": "-10 % 8 699 Kč 9 690 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-3096-uni_z30203/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/compound_split_mikina_svetr_e728247e05.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8589,
+        "rationale": "Catalog-grounded compound_split: Mikiny a svetry",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "KAMA MERINO SVETR 4053 Man",
+            "brand": null,
+            "price": "-25 % 3 690 Kč 4 950 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-man_z32104/"
+          },
+          {
+            "rank": 2,
+            "title": "KAMA MERINO SVETR 4053 Uni",
+            "brand": null,
+            "price": "-44 % 2 790 Kč 4 950 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-uni_z112933/"
+          },
+          {
+            "rank": 3,
+            "title": "KAMA MERINO SVETR 4053 Man",
+            "brand": null,
+            "price": "4 950 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-man_z31663/"
+          },
+          {
+            "rank": 4,
+            "title": "KAMA MERINO SVETR 5059 Lady",
+            "brand": null,
+            "price": "-25 % 4 099 Kč 5 490 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-5059-lady_z164504/"
+          },
+          {
+            "rank": 5,
+            "title": "KAMA MERINO SVETR 3096 Uni",
+            "brand": null,
+            "price": "-10 % 8 699 Kč 9 690 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-3096-uni_z30203/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Mikiny_a_svetry_bc007b946f.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "Mikiny a svetry",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "4 products shared with positive control",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "synonym",
+        "query": "oblečení venkovní",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "CRAFT CORE DRY GLOVE LINER Uni",
+            "brand": null,
+            "price": "-25 % 369 Kč 490 Kč",
+            "url": "https://www.rockpoint.cz/rukavice-craft-core-dry-glove-liner-uni_z148181/"
+          },
+          {
+            "rank": 2,
+            "title": "DEVOLD EXPEDITION MERINO 235 LONGS W Lady",
+            "brand": null,
+            "price": "-22 % 2 099 Kč 2 699 Kč",
+            "url": "https://www.rockpoint.cz/spodky-devold-expedition-merino-235-longs-w-lady_z115044/"
+          },
+          {
+            "rank": 3,
+            "title": "BLACK DIAMOND MIDWEIGHT SOFTSHELL Uni",
+            "brand": null,
+            "price": "-22 % 849 Kč 1 089 Kč",
+            "url": "https://www.rockpoint.cz/rukavice-black-diamond-midweight-softshell-uni_z13636/"
+          },
+          {
+            "rank": 4,
+            "title": "DYNAFIT BLACKLIGHT HYBRID THERM JKT W Lady",
+            "brand": null,
+            "price": "4 500 Kč",
+            "url": "https://www.rockpoint.cz/bunda-dynafit-blacklight-hybrid-therm-jkt-w-lady_z159503/"
+          },
+          {
+            "rank": 5,
+            "title": "MATT SCARF CAT.ESTRADA+PTEC. Uni",
+            "brand": null,
+            "price": "-46 % 399 Kč 739 Kč",
+            "url": "https://www.rockpoint.cz/satek-matt-scarf-cat-estrada-ptec-uni_z29491/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/synonym_oblečení_venkovní_f478ec1f2d.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9149,
+        "rationale": "Catalog-grounded synonym: Oblečení",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "Oblečení",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "plural_singular",
+        "query": "kalhota legína",
+        "control_query": "Kalhoty a legíny",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CEILLAC CTN",
+            "brand": null,
+            "price": "-30 % 969 Kč 1 390 Kč",
+            "url": "https://www.rockpoint.cz/damske-leginy-rafiki-ceillac-ctn_z117657/"
+          },
+          {
+            "rank": 2,
+            "title": "DYNAFIT WINTER RUNNING W TIGHTS Lady",
+            "brand": null,
+            "price": "-40 % 1 849 Kč 3 100 Kč",
+            "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-w-tights-lady_z4899/"
+          },
+          {
+            "rank": 3,
+            "title": "DYNAFIT WINTER RUNNING TIGHTS W Lady",
+            "brand": null,
+            "price": "-33 % 2 179 Kč 3 250 Kč",
+            "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-w-lady_z159441/"
+          },
+          {
+            "rank": 4,
+            "title": "SALEWA LAVAREDO HEMP W TIGHTS Lady",
+            "brand": null,
+            "price": "-50 % 1 249 Kč 2 499 Kč",
+            "url": "https://www.rockpoint.cz/leginy-salewa-lavaredo-hemp-w-tights-lady_z21337/"
+          },
+          {
+            "rank": 5,
+            "title": "DYNAFIT WINTER RUNNING TIGHTS M Man",
+            "brand": null,
+            "price": "-33 % 2 179 Kč 3 250 Kč",
+            "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-m-man_z159439/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/plural_singular_kalhota_legína_7424832f5b.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9436,
+        "rationale": "Catalog-grounded plural_singular: Kalhoty a legíny",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CEILLAC CTN",
+            "brand": null,
+            "price": "-30 % 969 Kč 1 390 Kč",
+            "url": "https://www.rockpoint.cz/damske-leginy-rafiki-ceillac-ctn_z117657/"
+          },
+          {
+            "rank": 2,
+            "title": "DYNAFIT WINTER RUNNING W TIGHTS Lady",
+            "brand": null,
+            "price": "-40 % 1 849 Kč 3 100 Kč",
+            "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-w-tights-lady_z4899/"
+          },
+          {
+            "rank": 3,
+            "title": "DYNAFIT WINTER RUNNING TIGHTS W Lady",
+            "brand": null,
+            "price": "-33 % 2 179 Kč 3 250 Kč",
+            "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-w-lady_z159441/"
+          },
+          {
+            "rank": 4,
+            "title": "SALEWA LAVAREDO HEMP W TIGHTS Lady",
+            "brand": null,
+            "price": "-50 % 1 249 Kč 2 499 Kč",
+            "url": "https://www.rockpoint.cz/leginy-salewa-lavaredo-hemp-w-tights-lady_z21337/"
+          },
+          {
+            "rank": 5,
+            "title": "DYNAFIT WINTER RUNNING TIGHTS M Man",
+            "brand": null,
+            "price": "-33 % 2 179 Kč 3 250 Kč",
+            "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-m-man_z159439/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Kalhoty_a_legíny_36ceb2cea8.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "Kalhoty a legíny",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "5 products shared with positive control",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "brand_search",
+        "query": "RAFIKI LEDGE bunda",
+        "control_query": "RAFIKI LEDGE",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 4,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-e33d0cdef9-rejected-query.png",
+        "error_message": "page says: 'žádné výsledky'",
+        "execution_time_ms": 7809,
+        "rationale": "Catalog-grounded brand_search: RAFIKI LEDGE",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144577/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144578/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z174620/"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-1308ad96b5-rejected-control.png",
+        "expected_title": "RAFIKI LEDGE",
+        "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/",
+        "constraints": {},
+        "catalog_evidence": "RAFIKI LEDGE",
+        "grounded": false,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": false
+      },
+      "score": "partial",
+      "score_reason": "False positive: LEDGE is explicitly Pánské kalhoty (trousers), not a jacket; query invented bunda.",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": "False positive: LEDGE is explicitly Pánské kalhoty (trousers), not a jacket; query invented bunda."
+    },
+    {
+      "probe": {
+        "probe_type": "natural_language",
+        "query": "teplé bundy a kabáty na zimu",
+        "control_query": "Kabáty",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "DYNAFIT RIDGE ULTRALIGHT DOWN JKT M Man",
+            "brand": null,
+            "price": "-30 % 6 055 Kč 8 650 Kč",
+            "url": "https://www.rockpoint.cz/bunda-dynafit-ridge-ultralight-down-jkt-m-man_z148827/"
+          },
+          {
+            "rank": 2,
+            "title": "HANNAH ZAZU",
+            "brand": null,
+            "price": "3 790 Kč",
+            "url": "https://www.rockpoint.cz/panska-bunda-hannah-zazu_z10177/"
+          },
+          {
+            "rank": 3,
+            "title": "HANNAH PEPPER",
+            "brand": null,
+            "price": "-30 % 2 233 Kč 3 190 Kč",
+            "url": "https://www.rockpoint.cz/damska-bunda-hannah-pepper_z107044/"
+          },
+          {
+            "rank": 4,
+            "title": "CRAZY JKT NEXT MAN Man",
+            "brand": null,
+            "price": "-30 % 4 326 Kč 6 180 Kč",
+            "url": "https://www.rockpoint.cz/bunda-crazy-jkt-next-man-man_z149062/"
+          },
+          {
+            "rank": 5,
+            "title": "HANNAH ZAZU",
+            "brand": null,
+            "price": "3 790 Kč",
+            "url": "https://www.rockpoint.cz/panska-perova-bunda-hannah-zazu_z174624/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/natural_language_teplé_bundy_a_kabáty_na_zimu_20eefa075b.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 10558,
+        "rationale": "Catalog-grounded natural_language: Kabáty",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "HANNAH GEMA",
+            "brand": null,
+            "price": "-50 % 1 945 Kč 3 890 Kč",
+            "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z10023/"
+          },
+          {
+            "rank": 2,
+            "title": "HANNAH GAIA",
+            "brand": null,
+            "price": "4 790 Kč",
+            "url": "https://www.rockpoint.cz/damsky-perovy-kabat-hannah-gaia_z10017/"
+          },
+          {
+            "rank": 3,
+            "title": "HANNAH GEMA",
+            "brand": null,
+            "price": "-50 % 1 945 Kč 3 890 Kč",
+            "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z10024/"
+          },
+          {
+            "rank": 4,
+            "title": "HANNAH GAIA",
+            "brand": null,
+            "price": "-38 % 2 990 Kč 4 790 Kč",
+            "url": "https://www.rockpoint.cz/damsky-perovy-kabat-hannah-gaia_z145773/"
+          },
+          {
+            "rank": 5,
+            "title": "HANNAH GEMA",
+            "brand": null,
+            "price": "-50 % 1 945 Kč 3 890 Kč",
+            "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z107039/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Kabáty_cf30543716.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "Kabáty",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "compound_split",
+        "query": "krátké kalhoty",
+        "control_query": "Kraťasy",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "DYNAFIT ULTRA SHORT TIGHTS M",
+            "brand": null,
+            "price": "-20 % 1 999 Kč 2 499 Kč",
+            "url": "https://www.rockpoint.cz/panske-bezecke-kratke-leginy-dynafit-ultra-short-tights-m_z171152/"
+          },
+          {
+            "rank": 2,
+            "title": "ON PACE TIGHTS SHORT W Lady",
+            "brand": null,
+            "price": "-20 % 1 669 Kč 2 090 Kč",
+            "url": "https://www.rockpoint.cz/kratke-leginy-on-pace-tights-short-w-lady_z164054/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI ORCO LT",
+            "brand": null,
+            "price": "-11 % 1 599 Kč 1 790 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-orco-lt_z151135/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI MARGA LT",
+            "brand": null,
+            "price": "-11 % 1 599 Kč 1 790 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-marga-lt_z169423/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI MARGA LT",
+            "brand": null,
+            "price": "-16 % 1 499 Kč 1 790 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-marga-lt_z151681/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/compound_split_krátké_kalhoty_a522deb66c.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8832,
+        "rationale": "Catalog-grounded compound_split: Kraťasy",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI FALAISES",
+            "brand": null,
+            "price": "-14 % 1 199 Kč 1 390 Kč",
+            "url": "https://www.rockpoint.cz/damske-kratasy-rafiki-falaises_z32049/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI NOIA",
+            "brand": null,
+            "price": "-14 % 1 199 Kč 1 390 Kč",
+            "url": "https://www.rockpoint.cz/damske-kratasy-rafiki-noia_z117763/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI MURIEL",
+            "brand": null,
+            "price": "-10 % 1 249 Kč 1 390 Kč",
+            "url": "https://www.rockpoint.cz/damske-kratasy-rafiki-muriel_z117757/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI VELLA",
+            "brand": null,
+            "price": "-16 % 999 Kč 1 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kratasy-rafiki-vella_z117795/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Kraťasy_424383a805.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "Kraťasy",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "synonym",
+        "query": "svetr bez rukávů",
+        "control_query": "Vesty",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "KAMA MERINO SVETR 5049 Lady",
+            "brand": null,
+            "price": "4 990 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-5049-lady_z164506/"
+          },
+          {
+            "rank": 2,
+            "title": "KAMA MERINO SVETR 4107 Man",
+            "brand": null,
+            "price": "-22 % 3 760 Kč 4 790 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4107-man_z8060/"
+          },
+          {
+            "rank": 3,
+            "title": "KAMA MERINO SVETR 4107 Man",
+            "brand": null,
+            "price": "-24 % 3 650 Kč 4 790 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4107-man_z112934/"
+          },
+          {
+            "rank": 4,
+            "title": "KAMA MERINO SVETR 5045 Lady",
+            "brand": null,
+            "price": "-38 % 2 349 Kč 3 790 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-5045-lady_z112937/"
+          },
+          {
+            "rank": 5,
+            "title": "KAMA MERINO SVETR 5044 Lady",
+            "brand": null,
+            "price": "-36 % 2 700 Kč 4 190 Kč",
+            "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-5044-lady_z112936/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/synonym_svetr_bez_rukávů_8f27f8a9ee.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8489,
+        "rationale": "Catalog-grounded synonym: Vesty",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "HANNAH BETLIS VEST",
+            "brand": null,
+            "price": "-32 % 1 693 Kč 2 490 Kč",
+            "url": "https://www.rockpoint.cz/damska-vesta-hannah-betlis-vest_z107027/"
+          },
+          {
+            "rank": 2,
+            "title": "PATAGONIA M NANO PUFF VEST",
+            "brand": null,
+            "price": "-10 % 3 599 Kč 3 999 Kč",
+            "url": "https://www.rockpoint.cz/panska-vesta-patagonia-m-nano-puff-vest_z114931/"
+          },
+          {
+            "rank": 3,
+            "title": "HANNAH CEED VEST",
+            "brand": null,
+            "price": "-50 % 1 245 Kč 2 490 Kč",
+            "url": "https://www.rockpoint.cz/panska-vesta-hannah-ceed-vest_z106904/"
+          },
+          {
+            "rank": 4,
+            "title": "HANNAH NAVA VEST",
+            "brand": null,
+            "price": "-40 % 2 154 Kč 3 590 Kč",
+            "url": "https://www.rockpoint.cz/damska-vesta-hannah-nava-vest_z106995/"
+          },
+          {
+            "rank": 5,
+            "title": "HANNAH MIRRA VEST",
+            "brand": null,
+            "price": "-50 % 1 245 Kč 2 490 Kč",
+            "url": "https://www.rockpoint.cz/damska-vesta-hannah-mirra-vest_z107023/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Vesty_fe2afca039.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "Vesty",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "natural_language",
+        "query": "dámská lezecká trička",
+        "control_query": "Trička a košile",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CHULILLA",
+            "brand": null,
+            "price": "-32 % 579 Kč 850 Kč",
+            "url": "https://www.rockpoint.cz/damske-tricko-rafiki-chulilla_z117701/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CHULILLA",
+            "brand": null,
+            "price": "-35 % 549 Kč 850 Kč",
+            "url": "https://www.rockpoint.cz/damske-tricko-rafiki-chulilla_z117703/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CHULILLA",
+            "brand": null,
+            "price": "-30 % 599 Kč 850 Kč",
+            "url": "https://www.rockpoint.cz/damske-tricko-rafiki-chulilla_z117702/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI JAY",
+            "brand": null,
+            "price": "-28 % 569 Kč 790 Kč",
+            "url": "https://www.rockpoint.cz/damske-tricko-rafiki-jay_z117710/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI JAY",
+            "brand": null,
+            "price": "-37 % 499 Kč 790 Kč",
+            "url": "https://www.rockpoint.cz/damske-tricko-rafiki-jay_z117707/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/natural_language_dámská_lezecká_trička_1bd3e0e436.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8548,
+        "rationale": "Catalog-grounded natural_language: Trička a košile",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "HANNAH ELARA",
+            "brand": null,
+            "price": "-50 % 395 Kč 790 Kč",
+            "url": "https://www.rockpoint.cz/damske-tricko-hannah-elara_z30813/"
+          },
+          {
+            "rank": 2,
+            "title": "HANNAH BENDON",
+            "brand": null,
+            "price": "-20 % 1 432 Kč 1 790 Kč",
+            "url": "https://www.rockpoint.cz/panska-kosile-hannah-bendon_z144225/"
+          },
+          {
+            "rank": 3,
+            "title": "HANNAH BENDON",
+            "brand": null,
+            "price": "-20 % 1 432 Kč 1 790 Kč",
+            "url": "https://www.rockpoint.cz/panska-kosile-hannah-bendon_z144224/"
+          },
+          {
+            "rank": 4,
+            "title": "HANNAH ALSEK",
+            "brand": null,
+            "price": "-48 % 390 Kč 750 Kč",
+            "url": "https://www.rockpoint.cz/panske-tricko-hannah-alsek_z9974/"
+          },
+          {
+            "rank": 5,
+            "title": "HANNAH BEA",
+            "brand": null,
+            "price": "-30 % 1 253 Kč 1 790 Kč",
+            "url": "https://www.rockpoint.cz/damska-kosile-hannah-bea_z144306/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Trička_a_košile_1001dfcab9.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "Trička a košile",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "partial",
+      "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "plural_singular",
+        "query": "rolák pánský",
+        "control_query": "Roláky",
+        "status": "success",
+        "result_count": 5,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Progress TX NRZ",
+            "brand": null,
+            "price": "949 Kč",
+            "url": "https://www.rockpoint.cz/pansky-funkcni-rolak-kratky-zip-progress-tx-nrz_z165623/"
+          },
+          {
+            "rank": 2,
+            "title": "MONTURA VERTIGO OCTA HIGH NECK MAGLIA Man",
+            "brand": null,
+            "price": "-30 % 1 609 Kč 2 299 Kč",
+            "url": "https://www.rockpoint.cz/pansky-rolak-montura-vertigo-octa-high-neck-maglia-man_z167257/"
+          },
+          {
+            "rank": 3,
+            "title": "Progress MT TRZ 250",
+            "brand": null,
+            "price": "2 699 Kč",
+            "url": "https://www.rockpoint.cz/pansky-merino-rolak-kratky-zip-progress-mt-trz-250_z165604/"
+          },
+          {
+            "rank": 4,
+            "title": "DEVOLD DUO ACTIVE MERINO 205 Z.NECK M Man",
+            "brand": null,
+            "price": "-23 % 1 799 Kč 2 349 Kč",
+            "url": "https://www.rockpoint.cz/triko-devold-duo-active-merino-205-z-neck-m-man_z148334/"
+          },
+          {
+            "rank": 5,
+            "title": "DEVOLD EXPEDITION MERINO 235 Z.NECK M Man",
+            "brand": null,
+            "price": "-19 % 2 499 Kč 3 099 Kč",
+            "url": "https://www.rockpoint.cz/triko-devold-expedition-merino-235-z-neck-m-man_z115052/"
+          }
+        ],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/plural_singular_rolák_pánský_5bc692c466.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 8240,
+        "rationale": "Catalog-grounded plural_singular: Roláky",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "Progress TX NRZ",
+            "brand": null,
+            "price": "949 Kč",
+            "url": "https://www.rockpoint.cz/pansky-funkcni-rolak-kratky-zip-progress-tx-nrz_z165623/"
+          },
+          {
+            "rank": 2,
+            "title": "MONTURA VERTIGO OCTA HIGH NECK MAGLIA Man",
+            "brand": null,
+            "price": "-30 % 1 609 Kč 2 299 Kč",
+            "url": "https://www.rockpoint.cz/pansky-rolak-montura-vertigo-octa-high-neck-maglia-man_z167257/"
+          },
+          {
+            "rank": 3,
+            "title": "Progress MT TRZ 250",
+            "brand": null,
+            "price": "2 699 Kč",
+            "url": "https://www.rockpoint.cz/pansky-merino-rolak-kratky-zip-progress-mt-trz-250_z165604/"
+          },
+          {
+            "rank": 4,
+            "title": "DEVOLD DUO ACTIVE MERINO 205 Z.NECK W Lady",
+            "brand": null,
+            "price": "-23 % 1 799 Kč 2 349 Kč",
+            "url": "https://www.rockpoint.cz/triko-devold-duo-active-merino-205-z-neck-w-lady_z148298/"
+          },
+          {
+            "rank": 5,
+            "title": "DEVOLD DUO ACTIVE MERINO 205 Z.NECK M Man",
+            "brand": null,
+            "price": "-23 % 1 799 Kč 2 349 Kč",
+            "url": "https://www.rockpoint.cz/triko-devold-duo-active-merino-205-z-neck-m-man_z148334/"
+          }
+        ],
+        "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Roláky_7d41aef17d.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "Roláky",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": false,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "4 products shared with positive control",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "brand_search",
+        "query": "RAFIKI CRIMP alpinistická bunda",
+        "control_query": "RAFIKI CRIMP",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 1,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-e920496859-rejected-query.png",
+        "error_message": "page says: 'žádné výsledky'",
+        "execution_time_ms": 7369,
+        "rationale": "Catalog-grounded brand_search: RAFIKI CRIMP",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-60451e0b81-rejected-control.png",
+        "expected_title": "RAFIKI CRIMP",
+        "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/",
+        "constraints": {},
+        "catalog_evidence": "RAFIKI CRIMP",
+        "grounded": false,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": false
+      },
+      "score": "partial",
+      "score_reason": "False positive: CRIMP is explicitly Pánské kalhoty (trousers), not an alpine jacket.",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": "False positive: CRIMP is explicitly Pánské kalhoty (trousers), not an alpine jacket."
+    },
+    {
+      "probe": {
+        "probe_type": "price_constraint",
+        "query": "RAFIKI LEDGE do 2989",
+        "control_query": "RAFIKI LEDGE",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 4,
+        "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-0e3e892458-query.png",
+        "error_message": "page says: 'žádné výsledky'",
+        "execution_time_ms": 7084,
+        "rationale": "Independent headed proof verification",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144577/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144578/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z174620/"
+          }
+        ],
+        "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-a75c4977e5-control.png",
+        "expected_title": "RAFIKI LEDGE",
+        "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/",
+        "constraints": {
+          "price_max": "2989"
+        },
+        "catalog_evidence": "RAFIKI LEDGE: 2 490 Kč",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "fail",
+      "score_reason": "Confirmed zero versus positive paired control",
+      "severity": "high",
+      "confidence": "high",
+      "verified": true,
+      "review_note": "Control shows four in-stock trouser variants at 2490 Kč, below 2989; search rewrites 2989 to 289 and returns 0."
+    },
+    {
+      "probe": {
+        "probe_type": "zero_result_check",
+        "query": "xyzqwk12345nonsense",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": 5,
+        "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/zero_result_check_xyzqwk12345nonsense_456f3f5f3e.png",
+        "error_message": "page says: 'žádné výsledky'",
+        "execution_time_ms": 7468,
+        "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results",
+        "control_results": [],
+        "control_screenshot_path": null,
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": false,
+        "repeated": false,
+        "result_count_exact": true,
+        "control_count_exact": false
+      },
+      "score": "pass",
+      "score_reason": "Correctly returned zero results for gibberish query",
+      "severity": "none",
+      "confidence": "low",
+      "verified": false,
+      "review_note": ""
+    },
+    {
+      "probe": {
+        "probe_type": "diacritics",
+        "query": "Obleceni",
+        "control_query": "Oblečení",
+        "status": "success",
+        "result_count": 10000,
+        "results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_count": 10000,
+        "screenshot_path": "../scanner_output/round2-locale/www.rockpoint.cz/diacritics_Obleceni_529091d106.png",
+        "error_message": "Products read from verified store search-result container",
+        "execution_time_ms": 9509,
+        "rationale": "Literal navigation diacritics or observed unit-format equivalence",
+        "control_results": [
+          {
+            "rank": 1,
+            "title": "RAFIKI LEDGE",
+            "brand": null,
+            "price": "2 490 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+          },
+          {
+            "rank": 2,
+            "title": "RAFIKI CERRO",
+            "brand": null,
+            "price": "2 190 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+          },
+          {
+            "rank": 3,
+            "title": "RAFIKI CRIMP",
+            "brand": null,
+            "price": "-13 % 1 899 Kč 2 190 Kč",
+            "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+          },
+          {
+            "rank": 4,
+            "title": "RAFIKI CHAIN",
+            "brand": null,
+            "price": "1 890 Kč",
+            "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+          },
+          {
+            "rank": 5,
+            "title": "RAFIKI BETA",
+            "brand": null,
+            "price": "-12 % 1 399 Kč 1 590 Kč",
+            "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+          }
+        ],
+        "control_screenshot_path": "../scanner_output/round2-locale/www.rockpoint.cz/control_Oblečení_b9c9ae8303.png",
+        "expected_title": null,
+        "expected_url": null,
+        "constraints": {},
+        "catalog_evidence": "",
+        "grounded": true,
+        "repeated": true,
+        "result_count_exact": true,
+        "control_count_exact": true
+      },
+      "score": "pass",
+      "score_reason": "5 products shared with positive control",
+      "severity": "none",
+      "confidence": "medium",
+      "verified": false,
+      "review_note": ""
+    }
+  ],
+  "capabilities": [
+    {
+      "capability": "basic_retrieval",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "control_query",
+            "query": "Oblečení",
+            "control_query": null,
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10195,
+            "rationale": "Catalog seed control",
+            "control_results": [],
+            "control_screenshot_path": null,
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Control query returned 5 results",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "exact_product_name",
+            "query": "RAFIKI LEDGE",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 4,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144577/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144578/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z174620/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_LEDGE_ebbbe82950.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9265,
+            "rationale": "Catalog-grounded exact_product_name: Oblečení",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+            "expected_title": "RAFIKI LEDGE",
+            "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "exact_product_name",
+            "query": "RAFIKI CERRO",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CERRO_b0ee360e6a.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8307,
+            "rationale": "Catalog-grounded exact_product_name: Oblečení",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+            "expected_title": "RAFIKI CERRO",
+            "expected_url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "exact_product_name",
+            "query": "RAFIKI CRIMP",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CRIMP_68a700dd03.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9080,
+            "rationale": "Catalog-grounded exact_product_name: Oblečení",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+            "expected_title": "RAFIKI CRIMP",
+            "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "4/4 passed"
+    },
+    {
+      "capability": "typo_tolerance",
+      "score": "fail",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "Obleeční",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 10000,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-3e6a6f2864-query.png",
+            "error_message": "page says: 'žádné výsledky'",
+            "execution_time_ms": 7677,
+            "rationale": "Catalog-grounded typo: Oblečení",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-8861ba26df-control.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "fail",
+          "score_reason": "Confirmed zero versus positive paired control",
+          "severity": "high",
+          "confidence": "high",
+          "verified": true,
+          "review_note": "Visible product total 10000; transposition returns 0 products."
+        },
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "Bundy, kabtáy a vesty",
+            "control_query": "Bundy, kabáty a vesty",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 1289,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-77acc1aa44-query.png",
+            "error_message": "page says: 'žádné výsledky'",
+            "execution_time_ms": 7538,
+            "rationale": "Catalog-grounded typo: Bundy, kabáty a vesty",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "HANNAH GEMA",
+                "brand": null,
+                "price": "-50 % 1 945 Kč 3 890 Kč",
+                "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z10023/"
+              },
+              {
+                "rank": 2,
+                "title": "HANNAH GAIA",
+                "brand": null,
+                "price": "-38 % 2 990 Kč 4 790 Kč",
+                "url": "https://www.rockpoint.cz/damsky-perovy-kabat-hannah-gaia_z145773/"
+              },
+              {
+                "rank": 3,
+                "title": "HANNAH GEMA",
+                "brand": null,
+                "price": "-50 % 1 945 Kč 3 890 Kč",
+                "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z10024/"
+              },
+              {
+                "rank": 4,
+                "title": "HANNAH GEMA",
+                "brand": null,
+                "price": "-50 % 1 945 Kč 3 890 Kč",
+                "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z107039/"
+              },
+              {
+                "rank": 5,
+                "title": "HANNAH GAIA",
+                "brand": null,
+                "price": "-20 % 3 832 Kč 4 790 Kč",
+                "url": "https://www.rockpoint.cz/damsky-perovy-kabat-hannah-gaia_z158429/"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-945e70598d-control.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "fail",
+          "score_reason": "Confirmed zero versus positive paired control",
+          "severity": "high",
+          "confidence": "high",
+          "verified": true,
+          "review_note": "Valid catalog phrase; typo is incorrectly corrected and still returns 0 products."
+        },
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "Budny",
+            "control_query": "Bundy",
+            "status": "success",
+            "result_count": 3,
+            "results": [
+              {
+                "rank": 1,
+                "title": "SINGING ROCK BUDDY SET",
+                "brand": null,
+                "price": "729 Kč",
+                "url": "https://www.rockpoint.cz/brzda-singing-rock-buddy-set_z14410/"
+              },
+              {
+                "rank": 2,
+                "title": "SINGING ROCK BUDDY COLOR MIX",
+                "brand": null,
+                "price": "399 Kč",
+                "url": "https://www.rockpoint.cz/brzda-singing-rock-buddy-color-mix_z8070/"
+              },
+              {
+                "rank": 3,
+                "title": "SINGING ROCK BUDDY MAT ČERNÁ",
+                "brand": null,
+                "price": "399 Kč",
+                "url": "https://www.rockpoint.cz/brzda-singing-rock-buddy-mat-cerna_z8071/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/typo_Budny_d2d5594358.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 7798,
+            "rationale": "Catalog-grounded typo: Bundy",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "HANNAH NORTHPOLE",
+                "brand": null,
+                "price": "4 790 Kč",
+                "url": "https://www.rockpoint.cz/panska-bunda-hannah-northpole_z10099/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI DARCY",
+                "brand": null,
+                "price": "3 990 Kč",
+                "url": "https://www.rockpoint.cz/damska-zateplovaci-bunda-rafiki-darcy_z6480/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI DARCY",
+                "brand": null,
+                "price": "3 990 Kč",
+                "url": "https://www.rockpoint.cz/damska-zateplovaci-bunda-rafiki-darcy_z6481/"
+              },
+              {
+                "rank": 4,
+                "title": "HANNAH PEPPER",
+                "brand": null,
+                "price": "-30 % 2 233 Kč 3 190 Kč",
+                "url": "https://www.rockpoint.cz/damska-bunda-hannah-pepper_z107044/"
+              },
+              {
+                "rank": 5,
+                "title": "HANNAH PEPPER",
+                "brand": null,
+                "price": "-30 % 2 233 Kč 3 190 Kč",
+                "url": "https://www.rockpoint.cz/damska-bunda-hannah-pepper_z144407/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Bundy_a829ffce6a.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "0/3 passed, 2 failed, 1 partial"
+    },
+    {
+      "capability": "language_understanding",
+      "score": "partial",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "synonym",
+            "query": "oblečení venkovní",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "CRAFT CORE DRY GLOVE LINER Uni",
+                "brand": null,
+                "price": "-25 % 369 Kč 490 Kč",
+                "url": "https://www.rockpoint.cz/rukavice-craft-core-dry-glove-liner-uni_z148181/"
+              },
+              {
+                "rank": 2,
+                "title": "DEVOLD EXPEDITION MERINO 235 LONGS W Lady",
+                "brand": null,
+                "price": "-22 % 2 099 Kč 2 699 Kč",
+                "url": "https://www.rockpoint.cz/spodky-devold-expedition-merino-235-longs-w-lady_z115044/"
+              },
+              {
+                "rank": 3,
+                "title": "BLACK DIAMOND MIDWEIGHT SOFTSHELL Uni",
+                "brand": null,
+                "price": "-22 % 849 Kč 1 089 Kč",
+                "url": "https://www.rockpoint.cz/rukavice-black-diamond-midweight-softshell-uni_z13636/"
+              },
+              {
+                "rank": 4,
+                "title": "DYNAFIT BLACKLIGHT HYBRID THERM JKT W Lady",
+                "brand": null,
+                "price": "4 500 Kč",
+                "url": "https://www.rockpoint.cz/bunda-dynafit-blacklight-hybrid-therm-jkt-w-lady_z159503/"
+              },
+              {
+                "rank": 5,
+                "title": "MATT SCARF CAT.ESTRADA+PTEC. Uni",
+                "brand": null,
+                "price": "-46 % 399 Kč 739 Kč",
+                "url": "https://www.rockpoint.cz/satek-matt-scarf-cat-estrada-ptec-uni_z29491/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/synonym_oblečení_venkovní_f478ec1f2d.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9149,
+            "rationale": "Catalog-grounded synonym: Oblečení",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "Oblečení",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "plural_singular",
+            "query": "kalhota legína",
+            "control_query": "Kalhoty a legíny",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CEILLAC CTN",
+                "brand": null,
+                "price": "-30 % 969 Kč 1 390 Kč",
+                "url": "https://www.rockpoint.cz/damske-leginy-rafiki-ceillac-ctn_z117657/"
+              },
+              {
+                "rank": 2,
+                "title": "DYNAFIT WINTER RUNNING W TIGHTS Lady",
+                "brand": null,
+                "price": "-40 % 1 849 Kč 3 100 Kč",
+                "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-w-tights-lady_z4899/"
+              },
+              {
+                "rank": 3,
+                "title": "DYNAFIT WINTER RUNNING TIGHTS W Lady",
+                "brand": null,
+                "price": "-33 % 2 179 Kč 3 250 Kč",
+                "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-w-lady_z159441/"
+              },
+              {
+                "rank": 4,
+                "title": "SALEWA LAVAREDO HEMP W TIGHTS Lady",
+                "brand": null,
+                "price": "-50 % 1 249 Kč 2 499 Kč",
+                "url": "https://www.rockpoint.cz/leginy-salewa-lavaredo-hemp-w-tights-lady_z21337/"
+              },
+              {
+                "rank": 5,
+                "title": "DYNAFIT WINTER RUNNING TIGHTS M Man",
+                "brand": null,
+                "price": "-33 % 2 179 Kč 3 250 Kč",
+                "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-m-man_z159439/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/plural_singular_kalhota_legína_7424832f5b.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9436,
+            "rationale": "Catalog-grounded plural_singular: Kalhoty a legíny",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CEILLAC CTN",
+                "brand": null,
+                "price": "-30 % 969 Kč 1 390 Kč",
+                "url": "https://www.rockpoint.cz/damske-leginy-rafiki-ceillac-ctn_z117657/"
+              },
+              {
+                "rank": 2,
+                "title": "DYNAFIT WINTER RUNNING W TIGHTS Lady",
+                "brand": null,
+                "price": "-40 % 1 849 Kč 3 100 Kč",
+                "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-w-tights-lady_z4899/"
+              },
+              {
+                "rank": 3,
+                "title": "DYNAFIT WINTER RUNNING TIGHTS W Lady",
+                "brand": null,
+                "price": "-33 % 2 179 Kč 3 250 Kč",
+                "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-w-lady_z159441/"
+              },
+              {
+                "rank": 4,
+                "title": "SALEWA LAVAREDO HEMP W TIGHTS Lady",
+                "brand": null,
+                "price": "-50 % 1 249 Kč 2 499 Kč",
+                "url": "https://www.rockpoint.cz/leginy-salewa-lavaredo-hemp-w-tights-lady_z21337/"
+              },
+              {
+                "rank": 5,
+                "title": "DYNAFIT WINTER RUNNING TIGHTS M Man",
+                "brand": null,
+                "price": "-33 % 2 179 Kč 3 250 Kč",
+                "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-m-man_z159439/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Kalhoty_a_legíny_36ceb2cea8.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "Kalhoty a legíny",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "5 products shared with positive control",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "synonym",
+            "query": "svetr bez rukávů",
+            "control_query": "Vesty",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "KAMA MERINO SVETR 5049 Lady",
+                "brand": null,
+                "price": "4 990 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-5049-lady_z164506/"
+              },
+              {
+                "rank": 2,
+                "title": "KAMA MERINO SVETR 4107 Man",
+                "brand": null,
+                "price": "-22 % 3 760 Kč 4 790 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4107-man_z8060/"
+              },
+              {
+                "rank": 3,
+                "title": "KAMA MERINO SVETR 4107 Man",
+                "brand": null,
+                "price": "-24 % 3 650 Kč 4 790 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4107-man_z112934/"
+              },
+              {
+                "rank": 4,
+                "title": "KAMA MERINO SVETR 5045 Lady",
+                "brand": null,
+                "price": "-38 % 2 349 Kč 3 790 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-5045-lady_z112937/"
+              },
+              {
+                "rank": 5,
+                "title": "KAMA MERINO SVETR 5044 Lady",
+                "brand": null,
+                "price": "-36 % 2 700 Kč 4 190 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-5044-lady_z112936/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/synonym_svetr_bez_rukávů_8f27f8a9ee.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8489,
+            "rationale": "Catalog-grounded synonym: Vesty",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "HANNAH BETLIS VEST",
+                "brand": null,
+                "price": "-32 % 1 693 Kč 2 490 Kč",
+                "url": "https://www.rockpoint.cz/damska-vesta-hannah-betlis-vest_z107027/"
+              },
+              {
+                "rank": 2,
+                "title": "PATAGONIA M NANO PUFF VEST",
+                "brand": null,
+                "price": "-10 % 3 599 Kč 3 999 Kč",
+                "url": "https://www.rockpoint.cz/panska-vesta-patagonia-m-nano-puff-vest_z114931/"
+              },
+              {
+                "rank": 3,
+                "title": "HANNAH CEED VEST",
+                "brand": null,
+                "price": "-50 % 1 245 Kč 2 490 Kč",
+                "url": "https://www.rockpoint.cz/panska-vesta-hannah-ceed-vest_z106904/"
+              },
+              {
+                "rank": 4,
+                "title": "HANNAH NAVA VEST",
+                "brand": null,
+                "price": "-40 % 2 154 Kč 3 590 Kč",
+                "url": "https://www.rockpoint.cz/damska-vesta-hannah-nava-vest_z106995/"
+              },
+              {
+                "rank": 5,
+                "title": "HANNAH MIRRA VEST",
+                "brand": null,
+                "price": "-50 % 1 245 Kč 2 490 Kč",
+                "url": "https://www.rockpoint.cz/damska-vesta-hannah-mirra-vest_z107023/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Vesty_fe2afca039.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "Vesty",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "plural_singular",
+            "query": "rolák pánský",
+            "control_query": "Roláky",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Progress TX NRZ",
+                "brand": null,
+                "price": "949 Kč",
+                "url": "https://www.rockpoint.cz/pansky-funkcni-rolak-kratky-zip-progress-tx-nrz_z165623/"
+              },
+              {
+                "rank": 2,
+                "title": "MONTURA VERTIGO OCTA HIGH NECK MAGLIA Man",
+                "brand": null,
+                "price": "-30 % 1 609 Kč 2 299 Kč",
+                "url": "https://www.rockpoint.cz/pansky-rolak-montura-vertigo-octa-high-neck-maglia-man_z167257/"
+              },
+              {
+                "rank": 3,
+                "title": "Progress MT TRZ 250",
+                "brand": null,
+                "price": "2 699 Kč",
+                "url": "https://www.rockpoint.cz/pansky-merino-rolak-kratky-zip-progress-mt-trz-250_z165604/"
+              },
+              {
+                "rank": 4,
+                "title": "DEVOLD DUO ACTIVE MERINO 205 Z.NECK M Man",
+                "brand": null,
+                "price": "-23 % 1 799 Kč 2 349 Kč",
+                "url": "https://www.rockpoint.cz/triko-devold-duo-active-merino-205-z-neck-m-man_z148334/"
+              },
+              {
+                "rank": 5,
+                "title": "DEVOLD EXPEDITION MERINO 235 Z.NECK M Man",
+                "brand": null,
+                "price": "-19 % 2 499 Kč 3 099 Kč",
+                "url": "https://www.rockpoint.cz/triko-devold-expedition-merino-235-z-neck-m-man_z115052/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/plural_singular_rolák_pánský_5bc692c466.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8240,
+            "rationale": "Catalog-grounded plural_singular: Roláky",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "Progress TX NRZ",
+                "brand": null,
+                "price": "949 Kč",
+                "url": "https://www.rockpoint.cz/pansky-funkcni-rolak-kratky-zip-progress-tx-nrz_z165623/"
+              },
+              {
+                "rank": 2,
+                "title": "MONTURA VERTIGO OCTA HIGH NECK MAGLIA Man",
+                "brand": null,
+                "price": "-30 % 1 609 Kč 2 299 Kč",
+                "url": "https://www.rockpoint.cz/pansky-rolak-montura-vertigo-octa-high-neck-maglia-man_z167257/"
+              },
+              {
+                "rank": 3,
+                "title": "Progress MT TRZ 250",
+                "brand": null,
+                "price": "2 699 Kč",
+                "url": "https://www.rockpoint.cz/pansky-merino-rolak-kratky-zip-progress-mt-trz-250_z165604/"
+              },
+              {
+                "rank": 4,
+                "title": "DEVOLD DUO ACTIVE MERINO 205 Z.NECK W Lady",
+                "brand": null,
+                "price": "-23 % 1 799 Kč 2 349 Kč",
+                "url": "https://www.rockpoint.cz/triko-devold-duo-active-merino-205-z-neck-w-lady_z148298/"
+              },
+              {
+                "rank": 5,
+                "title": "DEVOLD DUO ACTIVE MERINO 205 Z.NECK M Man",
+                "brand": null,
+                "price": "-23 % 1 799 Kč 2 349 Kč",
+                "url": "https://www.rockpoint.cz/triko-devold-duo-active-merino-205-z-neck-m-man_z148334/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Roláky_7d41aef17d.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "Roláky",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "4 products shared with positive control",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "2/4 passed, 2 partial"
+    },
+    {
+      "capability": "locale_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "diacritics",
+            "query": "Obleceni",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 10000,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_count": 10000,
+            "screenshot_path": "../scanner_output/round2-locale/www.rockpoint.cz/diacritics_Obleceni_529091d106.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9509,
+            "rationale": "Literal navigation diacritics or observed unit-format equivalence",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "../scanner_output/round2-locale/www.rockpoint.cz/control_Oblečení_b9c9ae8303.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "pass",
+          "score_reason": "5 products shared with positive control",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "1/1 passed"
+    },
+    {
+      "capability": "compound_handling",
+      "score": "fail",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "Kalhotyakraťasy",
+            "control_query": "Kalhoty a kraťasy",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 1602,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-059011182a-query.png",
+            "error_message": "page says: 'žádné výsledky'",
+            "execution_time_ms": 7742,
+            "rationale": "Catalog-grounded merged_words: Kalhoty a kraťasy",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "HANNAH REDUX W",
+                "brand": null,
+                "price": "-50 % 1 195 Kč 2 390 Kč",
+                "url": "https://www.rockpoint.cz/damske-kratasy-hannah-redux-w_z10115/"
+              },
+              {
+                "rank": 2,
+                "title": "HANNAH REDUX",
+                "brand": null,
+                "price": "-50 % 1 195 Kč 2 390 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-hannah-redux_z10116/"
+              },
+              {
+                "rank": 3,
+                "title": "HANNAH ILIA",
+                "brand": null,
+                "price": "-50 % 1 095 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-hannah-ilia_z10033/"
+              },
+              {
+                "rank": 4,
+                "title": "HANNAH ILIA",
+                "brand": null,
+                "price": "-25 % 1 643 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-hannah-ilia_z10032/"
+              },
+              {
+                "rank": 5,
+                "title": "HANNAH TAGI",
+                "brand": null,
+                "price": "-40 % 1 434 Kč 2 390 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-hannah-tagi_z151201/"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-09caf078d5-control.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "fail",
+          "score_reason": "Confirmed zero versus positive paired control",
+          "severity": "high",
+          "confidence": "high",
+          "verified": true,
+          "review_note": "0 product results; category suggestions exist separately and are not counted as products."
+        },
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "Kalhotyalegíny",
+            "control_query": "Kalhoty a legíny",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 1096,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-c3930208ff-query.png",
+            "error_message": "page says: 'žádné výsledky'",
+            "execution_time_ms": 7080,
+            "rationale": "Catalog-grounded merged_words: Kalhoty a legíny",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CEILLAC CTN",
+                "brand": null,
+                "price": "-30 % 969 Kč 1 390 Kč",
+                "url": "https://www.rockpoint.cz/damske-leginy-rafiki-ceillac-ctn_z117657/"
+              },
+              {
+                "rank": 2,
+                "title": "DYNAFIT WINTER RUNNING W TIGHTS Lady",
+                "brand": null,
+                "price": "-40 % 1 849 Kč 3 100 Kč",
+                "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-w-tights-lady_z4899/"
+              },
+              {
+                "rank": 3,
+                "title": "DYNAFIT WINTER RUNNING TIGHTS W Lady",
+                "brand": null,
+                "price": "-33 % 2 179 Kč 3 250 Kč",
+                "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-w-lady_z159441/"
+              },
+              {
+                "rank": 4,
+                "title": "SALEWA LAVAREDO HEMP W TIGHTS Lady",
+                "brand": null,
+                "price": "-50 % 1 249 Kč 2 499 Kč",
+                "url": "https://www.rockpoint.cz/leginy-salewa-lavaredo-hemp-w-tights-lady_z21337/"
+              },
+              {
+                "rank": 5,
+                "title": "DYNAFIT WINTER RUNNING TIGHTS M Man",
+                "brand": null,
+                "price": "-33 % 2 179 Kč 3 250 Kč",
+                "url": "https://www.rockpoint.cz/leginy-dynafit-winter-running-tights-m-man_z159439/"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-fb641e608c-control.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "fail",
+          "score_reason": "Confirmed zero versus positive paired control",
+          "severity": "high",
+          "confidence": "high",
+          "verified": true,
+          "review_note": "0 product results; 7 category matches do not recover product results."
+        },
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "3/4kalhoty",
+            "control_query": "3/4 kalhoty",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CHAIN CAPRI",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-rafiki-chain-capri_z8102/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI TARRAGONA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-rafiki-tarragona_z117788/"
+              },
+              {
+                "rank": 3,
+                "title": "HANNAH ROW",
+                "brand": null,
+                "price": "-50 % 995 Kč 1 990 Kč",
+                "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-hannah-row_z7737/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI MOONSTONE",
+                "brand": null,
+                "price": "-24 % 1 290 Kč 1 690 Kč",
+                "url": "https://www.rockpoint.cz/panske-3-4-kalhoty-rafiki-moonstone_z32088/"
+              },
+              {
+                "rank": 5,
+                "title": "CRAFT KALHOTY CRAFT ADV ESSENCE 3/4 Lady",
+                "brand": null,
+                "price": "-20 % 1 079 Kč 1 350 Kč",
+                "url": "https://www.rockpoint.cz/3-4-kalhoty-craft-kalhoty-craft-adv-essence-3-4-lady_z7552/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/merged_words_3_4kalhoty_b58f36c341.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 9330,
+            "rationale": "Catalog-grounded merged_words: 3/4 kalhoty",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CHAIN CAPRI",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-rafiki-chain-capri_z8102/"
+              },
+              {
+                "rank": 2,
+                "title": "CRAFT KALHOTY CRAFT ADV ESSENCE 3/4 Lady",
+                "brand": null,
+                "price": "-20 % 1 079 Kč 1 350 Kč",
+                "url": "https://www.rockpoint.cz/3-4-kalhoty-craft-kalhoty-craft-adv-essence-3-4-lady_z7552/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI TARRAGONA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-rafiki-tarragona_z117788/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI MOONSTONE",
+                "brand": null,
+                "price": "-24 % 1 290 Kč 1 690 Kč",
+                "url": "https://www.rockpoint.cz/panske-3-4-kalhoty-rafiki-moonstone_z32088/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI TARRAGONA",
+                "brand": null,
+                "price": "-33 % 1 069 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/damske-3-4-kalhoty-rafiki-tarragona_z32193/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/3_4_kalhoty_b3d4c8747b.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "4 products shared with positive control",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "compound_split",
+            "query": "mikina svetr",
+            "control_query": "Mikiny a svetry",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "KAMA MERINO SVETR 4053 Man",
+                "brand": null,
+                "price": "-25 % 3 690 Kč 4 950 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-man_z32104/"
+              },
+              {
+                "rank": 2,
+                "title": "KAMA MERINO SVETR 4053 Uni",
+                "brand": null,
+                "price": "-44 % 2 790 Kč 4 950 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-uni_z112933/"
+              },
+              {
+                "rank": 3,
+                "title": "KAMA MERINO SVETR 4053 Man",
+                "brand": null,
+                "price": "4 950 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-man_z31663/"
+              },
+              {
+                "rank": 4,
+                "title": "KAMA MERINO SVETR 5059 Lady",
+                "brand": null,
+                "price": "-25 % 4 099 Kč 5 490 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-5059-lady_z164504/"
+              },
+              {
+                "rank": 5,
+                "title": "KAMA MERINO SVETR 3096 Uni",
+                "brand": null,
+                "price": "-10 % 8 699 Kč 9 690 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-3096-uni_z30203/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/compound_split_mikina_svetr_e728247e05.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8589,
+            "rationale": "Catalog-grounded compound_split: Mikiny a svetry",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "KAMA MERINO SVETR 4053 Man",
+                "brand": null,
+                "price": "-25 % 3 690 Kč 4 950 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-man_z32104/"
+              },
+              {
+                "rank": 2,
+                "title": "KAMA MERINO SVETR 4053 Uni",
+                "brand": null,
+                "price": "-44 % 2 790 Kč 4 950 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-uni_z112933/"
+              },
+              {
+                "rank": 3,
+                "title": "KAMA MERINO SVETR 4053 Man",
+                "brand": null,
+                "price": "4 950 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-4053-man_z31663/"
+              },
+              {
+                "rank": 4,
+                "title": "KAMA MERINO SVETR 5059 Lady",
+                "brand": null,
+                "price": "-25 % 4 099 Kč 5 490 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-5059-lady_z164504/"
+              },
+              {
+                "rank": 5,
+                "title": "KAMA MERINO SVETR 3096 Uni",
+                "brand": null,
+                "price": "-10 % 8 699 Kč 9 690 Kč",
+                "url": "https://www.rockpoint.cz/svetr-kama-merino-svetr-3096-uni_z30203/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Mikiny_a_svetry_bc007b946f.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "Mikiny a svetry",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "4 products shared with positive control",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "compound_split",
+            "query": "krátké kalhoty",
+            "control_query": "Kraťasy",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "DYNAFIT ULTRA SHORT TIGHTS M",
+                "brand": null,
+                "price": "-20 % 1 999 Kč 2 499 Kč",
+                "url": "https://www.rockpoint.cz/panske-bezecke-kratke-leginy-dynafit-ultra-short-tights-m_z171152/"
+              },
+              {
+                "rank": 2,
+                "title": "ON PACE TIGHTS SHORT W Lady",
+                "brand": null,
+                "price": "-20 % 1 669 Kč 2 090 Kč",
+                "url": "https://www.rockpoint.cz/kratke-leginy-on-pace-tights-short-w-lady_z164054/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI ORCO LT",
+                "brand": null,
+                "price": "-11 % 1 599 Kč 1 790 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-orco-lt_z151135/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI MARGA LT",
+                "brand": null,
+                "price": "-11 % 1 599 Kč 1 790 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-marga-lt_z169423/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI MARGA LT",
+                "brand": null,
+                "price": "-16 % 1 499 Kč 1 790 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-marga-lt_z151681/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/compound_split_krátké_kalhoty_a522deb66c.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8832,
+            "rationale": "Catalog-grounded compound_split: Kraťasy",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI FALAISES",
+                "brand": null,
+                "price": "-14 % 1 199 Kč 1 390 Kč",
+                "url": "https://www.rockpoint.cz/damske-kratasy-rafiki-falaises_z32049/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI NOIA",
+                "brand": null,
+                "price": "-14 % 1 199 Kč 1 390 Kč",
+                "url": "https://www.rockpoint.cz/damske-kratasy-rafiki-noia_z117763/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI MURIEL",
+                "brand": null,
+                "price": "-10 % 1 249 Kč 1 390 Kč",
+                "url": "https://www.rockpoint.cz/damske-kratasy-rafiki-muriel_z117757/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI VELLA",
+                "brand": null,
+                "price": "-16 % 999 Kč 1 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kratasy-rafiki-vella_z117795/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Kraťasy_424383a805.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "Kraťasy",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "2/5 passed, 2 failed, 1 partial"
+    },
+    {
+      "capability": "constraint_handling",
+      "score": "fail",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "natural_language",
+            "query": "pánské sportovní bundy na horolezení",
+            "control_query": "Bundy",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/natural_language_pánské_sportovní_bundy_na_horolezení_4c50a273cf.png",
+            "error_message": "page says: 'žádné výsledky'",
+            "execution_time_ms": 8084,
+            "rationale": "Catalog-grounded natural_language: Bundy",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "HANNAH NORTHPOLE",
+                "brand": null,
+                "price": "4 790 Kč",
+                "url": "https://www.rockpoint.cz/panska-bunda-hannah-northpole_z10099/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI DARCY",
+                "brand": null,
+                "price": "3 990 Kč",
+                "url": "https://www.rockpoint.cz/damska-zateplovaci-bunda-rafiki-darcy_z6480/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI DARCY",
+                "brand": null,
+                "price": "3 990 Kč",
+                "url": "https://www.rockpoint.cz/damska-zateplovaci-bunda-rafiki-darcy_z6481/"
+              },
+              {
+                "rank": 4,
+                "title": "HANNAH PEPPER",
+                "brand": null,
+                "price": "-30 % 2 233 Kč 3 190 Kč",
+                "url": "https://www.rockpoint.cz/damska-bunda-hannah-pepper_z107044/"
+              },
+              {
+                "rank": 5,
+                "title": "HANNAH PEPPER",
+                "brand": null,
+                "price": "-30 % 2 233 Kč 3 190 Kč",
+                "url": "https://www.rockpoint.cz/damska-bunda-hannah-pepper_z144407/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Bundy_a829ffce6a.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "Bundy",
+            "grounded": false,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": false
+          },
+          "score": "partial",
+          "score_reason": "Zero results; semantic equivalence needs manual catalog verification",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "natural_language",
+            "query": "teplé bundy a kabáty na zimu",
+            "control_query": "Kabáty",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "DYNAFIT RIDGE ULTRALIGHT DOWN JKT M Man",
+                "brand": null,
+                "price": "-30 % 6 055 Kč 8 650 Kč",
+                "url": "https://www.rockpoint.cz/bunda-dynafit-ridge-ultralight-down-jkt-m-man_z148827/"
+              },
+              {
+                "rank": 2,
+                "title": "HANNAH ZAZU",
+                "brand": null,
+                "price": "3 790 Kč",
+                "url": "https://www.rockpoint.cz/panska-bunda-hannah-zazu_z10177/"
+              },
+              {
+                "rank": 3,
+                "title": "HANNAH PEPPER",
+                "brand": null,
+                "price": "-30 % 2 233 Kč 3 190 Kč",
+                "url": "https://www.rockpoint.cz/damska-bunda-hannah-pepper_z107044/"
+              },
+              {
+                "rank": 4,
+                "title": "CRAZY JKT NEXT MAN Man",
+                "brand": null,
+                "price": "-30 % 4 326 Kč 6 180 Kč",
+                "url": "https://www.rockpoint.cz/bunda-crazy-jkt-next-man-man_z149062/"
+              },
+              {
+                "rank": 5,
+                "title": "HANNAH ZAZU",
+                "brand": null,
+                "price": "3 790 Kč",
+                "url": "https://www.rockpoint.cz/panska-perova-bunda-hannah-zazu_z174624/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/natural_language_teplé_bundy_a_kabáty_na_zimu_20eefa075b.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 10558,
+            "rationale": "Catalog-grounded natural_language: Kabáty",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "HANNAH GEMA",
+                "brand": null,
+                "price": "-50 % 1 945 Kč 3 890 Kč",
+                "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z10023/"
+              },
+              {
+                "rank": 2,
+                "title": "HANNAH GAIA",
+                "brand": null,
+                "price": "4 790 Kč",
+                "url": "https://www.rockpoint.cz/damsky-perovy-kabat-hannah-gaia_z10017/"
+              },
+              {
+                "rank": 3,
+                "title": "HANNAH GEMA",
+                "brand": null,
+                "price": "-50 % 1 945 Kč 3 890 Kč",
+                "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z10024/"
+              },
+              {
+                "rank": 4,
+                "title": "HANNAH GAIA",
+                "brand": null,
+                "price": "-38 % 2 990 Kč 4 790 Kč",
+                "url": "https://www.rockpoint.cz/damsky-perovy-kabat-hannah-gaia_z145773/"
+              },
+              {
+                "rank": 5,
+                "title": "HANNAH GEMA",
+                "brand": null,
+                "price": "-50 % 1 945 Kč 3 890 Kč",
+                "url": "https://www.rockpoint.cz/damsky-kabat-hannah-gema_z107039/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Kabáty_cf30543716.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "Kabáty",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "natural_language",
+            "query": "dámská lezecká trička",
+            "control_query": "Trička a košile",
+            "status": "success",
+            "result_count": 5,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CHULILLA",
+                "brand": null,
+                "price": "-32 % 579 Kč 850 Kč",
+                "url": "https://www.rockpoint.cz/damske-tricko-rafiki-chulilla_z117701/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CHULILLA",
+                "brand": null,
+                "price": "-35 % 549 Kč 850 Kč",
+                "url": "https://www.rockpoint.cz/damske-tricko-rafiki-chulilla_z117703/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CHULILLA",
+                "brand": null,
+                "price": "-30 % 599 Kč 850 Kč",
+                "url": "https://www.rockpoint.cz/damske-tricko-rafiki-chulilla_z117702/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI JAY",
+                "brand": null,
+                "price": "-28 % 569 Kč 790 Kč",
+                "url": "https://www.rockpoint.cz/damske-tricko-rafiki-jay_z117710/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI JAY",
+                "brand": null,
+                "price": "-37 % 499 Kč 790 Kč",
+                "url": "https://www.rockpoint.cz/damske-tricko-rafiki-jay_z117707/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/natural_language_dámská_lezecká_trička_1bd3e0e436.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 8548,
+            "rationale": "Catalog-grounded natural_language: Trička a košile",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "HANNAH ELARA",
+                "brand": null,
+                "price": "-50 % 395 Kč 790 Kč",
+                "url": "https://www.rockpoint.cz/damske-tricko-hannah-elara_z30813/"
+              },
+              {
+                "rank": 2,
+                "title": "HANNAH BENDON",
+                "brand": null,
+                "price": "-20 % 1 432 Kč 1 790 Kč",
+                "url": "https://www.rockpoint.cz/panska-kosile-hannah-bendon_z144225/"
+              },
+              {
+                "rank": 3,
+                "title": "HANNAH BENDON",
+                "brand": null,
+                "price": "-20 % 1 432 Kč 1 790 Kč",
+                "url": "https://www.rockpoint.cz/panska-kosile-hannah-bendon_z144224/"
+              },
+              {
+                "rank": 4,
+                "title": "HANNAH ALSEK",
+                "brand": null,
+                "price": "-48 % 390 Kč 750 Kč",
+                "url": "https://www.rockpoint.cz/panske-tricko-hannah-alsek_z9974/"
+              },
+              {
+                "rank": 5,
+                "title": "HANNAH BEA",
+                "brand": null,
+                "price": "-30 % 1 253 Kč 1 790 Kč",
+                "url": "https://www.rockpoint.cz/damska-kosile-hannah-bea_z144306/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/Trička_a_košile_1001dfcab9.png",
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "Trička a košile",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "partial",
+          "score_reason": "Nonzero results without verified product overlap; manual relevance review required",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "price_constraint",
+            "query": "RAFIKI LEDGE do 2989",
+            "control_query": "RAFIKI LEDGE",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 4,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-0e3e892458-query.png",
+            "error_message": "page says: 'žádné výsledky'",
+            "execution_time_ms": 7084,
+            "rationale": "Independent headed proof verification",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144577/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144578/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z174620/"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-a75c4977e5-control.png",
+            "expected_title": "RAFIKI LEDGE",
+            "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/",
+            "constraints": {
+              "price_max": "2989"
+            },
+            "catalog_evidence": "RAFIKI LEDGE: 2 490 Kč",
+            "grounded": true,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": true
+          },
+          "score": "fail",
+          "score_reason": "Confirmed zero versus positive paired control",
+          "severity": "high",
+          "confidence": "high",
+          "verified": true,
+          "review_note": "Control shows four in-stock trouser variants at 2490 Kč, below 2989; search rewrites 2989 to 289 and returns 0."
+        }
+      ],
+      "summary": "0/4 passed, 1 failed, 3 partial"
+    },
+    {
+      "capability": "brand_model_search",
+      "score": "partial",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "brand_search",
+            "query": "RAFIKI LEDGE bunda",
+            "control_query": "RAFIKI LEDGE",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 4,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-e33d0cdef9-rejected-query.png",
+            "error_message": "page says: 'žádné výsledky'",
+            "execution_time_ms": 7809,
+            "rationale": "Catalog-grounded brand_search: RAFIKI LEDGE",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144577/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144578/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z174620/"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-1308ad96b5-rejected-control.png",
+            "expected_title": "RAFIKI LEDGE",
+            "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/",
+            "constraints": {},
+            "catalog_evidence": "RAFIKI LEDGE",
+            "grounded": false,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": false
+          },
+          "score": "partial",
+          "score_reason": "False positive: LEDGE is explicitly Pánské kalhoty (trousers), not a jacket; query invented bunda.",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": "False positive: LEDGE is explicitly Pánské kalhoty (trousers), not a jacket; query invented bunda."
+        },
+        {
+          "probe": {
+            "probe_type": "brand_search",
+            "query": "RAFIKI CRIMP alpinistická bunda",
+            "control_query": "RAFIKI CRIMP",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 1,
+            "screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-e920496859-rejected-query.png",
+            "error_message": "page says: 'žádné výsledky'",
+            "execution_time_ms": 7369,
+            "rationale": "Catalog-grounded brand_search: RAFIKI CRIMP",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              }
+            ],
+            "control_screenshot_path": "docs/scanner-validation/round2/evidence/rockpoint_cz-60451e0b81-rejected-control.png",
+            "expected_title": "RAFIKI CRIMP",
+            "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/",
+            "constraints": {},
+            "catalog_evidence": "RAFIKI CRIMP",
+            "grounded": false,
+            "repeated": true,
+            "result_count_exact": true,
+            "control_count_exact": false
+          },
+          "score": "partial",
+          "score_reason": "False positive: CRIMP is explicitly Pánské kalhoty (trousers), not an alpine jacket.",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": "False positive: CRIMP is explicitly Pánské kalhoty (trousers), not an alpine jacket."
+        }
+      ],
+      "summary": "0/2 passed, 2 partial"
+    },
+    {
+      "capability": "coverage_ranking",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "ranking_check",
+            "query": "RAFIKI LEDGE",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 4,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144577/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144578/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z174620/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_LEDGE_ebbbe82950.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded ranking_check: Oblečení",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+            "expected_title": "RAFIKI LEDGE",
+            "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Exact catalog product at rank 1",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "coverage_check",
+            "query": "RAFIKI LEDGE",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 4,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144577/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z144578/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z174620/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_LEDGE_ebbbe82950.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded coverage_check: Oblečení",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+            "expected_title": "RAFIKI LEDGE",
+            "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "ranking_check",
+            "query": "RAFIKI CERRO",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CERRO_b0ee360e6a.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded ranking_check: Oblečení",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+            "expected_title": "RAFIKI CERRO",
+            "expected_url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Exact catalog product at rank 1",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "coverage_check",
+            "query": "RAFIKI CERRO",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CERRO_b0ee360e6a.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded coverage_check: Oblečení",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+            "expected_title": "RAFIKI CERRO",
+            "expected_url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "ranking_check",
+            "query": "RAFIKI CRIMP",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CRIMP_68a700dd03.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded ranking_check: Oblečení",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+            "expected_title": "RAFIKI CRIMP",
+            "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Exact catalog product at rank 1",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        },
+        {
+          "probe": {
+            "probe_type": "coverage_check",
+            "query": "RAFIKI CRIMP",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              }
+            ],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/exact_product_name_RAFIKI_CRIMP_68a700dd03.png",
+            "error_message": "Products read from verified store search-result container",
+            "execution_time_ms": 0,
+            "rationale": "Catalog-grounded coverage_check: Oblečení",
+            "control_results": [
+              {
+                "rank": 1,
+                "title": "RAFIKI LEDGE",
+                "brand": null,
+                "price": "2 490 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-ledge_z6842/"
+              },
+              {
+                "rank": 2,
+                "title": "RAFIKI CERRO",
+                "brand": null,
+                "price": "2 190 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-cerro_z10250/"
+              },
+              {
+                "rank": 3,
+                "title": "RAFIKI CRIMP",
+                "brand": null,
+                "price": "-13 % 1 899 Kč 2 190 Kč",
+                "url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/"
+              },
+              {
+                "rank": 4,
+                "title": "RAFIKI CHAIN",
+                "brand": null,
+                "price": "1 890 Kč",
+                "url": "https://www.rockpoint.cz/damske-kalhoty-rafiki-chain_z30769/"
+              },
+              {
+                "rank": 5,
+                "title": "RAFIKI BETA",
+                "brand": null,
+                "price": "-12 % 1 399 Kč 1 590 Kč",
+                "url": "https://www.rockpoint.cz/panske-kratasy-rafiki-beta_z31383/"
+              }
+            ],
+            "control_screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/control_query_Oblečení_8422566a21.png",
+            "expected_title": "RAFIKI CRIMP",
+            "expected_url": "https://www.rockpoint.cz/panske-kalhoty-rafiki-crimp_z8091/",
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": true,
+            "repeated": false,
+            "result_count_exact": false,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Verified catalog product retrieved",
+          "severity": "none",
+          "confidence": "medium",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "6/6 passed"
+    },
+    {
+      "capability": "zero_result_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "zero_result_check",
+            "query": "xyzqwk12345nonsense",
+            "control_query": "Oblečení",
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": 5,
+            "screenshot_path": "/Users/michalpekarcik/Cursor/FInd Sherpas/find-sherpas-leadgen/scanner_output/round2-run/www.rockpoint.cz/zero_result_check_xyzqwk12345nonsense_456f3f5f3e.png",
+            "error_message": "page says: 'žádné výsledky'",
+            "execution_time_ms": 7468,
+            "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results",
+            "control_results": [],
+            "control_screenshot_path": null,
+            "expected_title": null,
+            "expected_url": null,
+            "constraints": {},
+            "catalog_evidence": "",
+            "grounded": false,
+            "repeated": false,
+            "result_count_exact": true,
+            "control_count_exact": false
+          },
+          "score": "pass",
+          "score_reason": "Correctly returned zero results for gibberish query",
+          "severity": "none",
+          "confidence": "low",
+          "verified": false,
+          "review_note": ""
+        }
+      ],
+      "summary": "1/1 passed"
+    }
+  ],
+  "overall_score": "fail",
+  "blocked": false,
+  "llm_cost_usd": 0.004931,
+  "execution_time_ms": 368449,
+  "error_message": null,
+  "discovery_attempts": [],
+  "inapplicable": {
+    "category_term": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "diacritics": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "format_variant": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "abbreviation": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "constraint_query": "No qualifying catalog-grounded pair in sampled navigation/products",
+    "sku_search": "No qualifying catalog-grounded pair in sampled navigation/products"
+  },
+  "platform": "unknown"
+}

@@ -57,6 +57,84 @@ The audit pipeline is a self-contained project under `src/audit/`. Its documenta
 - Report publishing, CRM writeback, and report presentation rules: `src/audit/docs/REPORT-PUBLISHING-AND-CRM-NOTES.md`
 - Pipeline run instructions and architecture: see `src/audit/` (skill: `synthetic-search-audit`)
 
+## Lead-gen: Search Scanner & Teardown Flow
+
+The lead-gen system lives under `src/scanner/` (Python) and several new Next.js routes/components.
+
+### Components
+
+1. **Scanner** (`src/scanner/`) — Python module with deterministic search probes
+2. **Benchmark page** (`/benchmark`) — anonymized capability stats across stores
+3. **Teardown request** (`/teardown`) — public form to request a free search teardown
+4. **CRM queue** (`/crm/audit-requests`) — approve/reject teardown requests, trigger emails
+5. **Teardown report** (`/teardown-report/[slug]`) — private noindexed report page
+
+### Scanner Setup (Mac local)
+
+```bash
+cd src
+python3 -m venv scanner/.venv
+scanner/.venv/bin/pip install -r scanner/requirements.txt -r audit/requirements.txt
+scanner/.venv/bin/playwright install chromium
+cd ..
+```
+
+Run from the repository root (headed Chromium is the default):
+
+```bash
+./scripts/scan-search https://example-store.com --vertical fashion --country DK --headed
+./scripts/scan-search --batch domains.csv --output-dir ../scanner_output --headed
+```
+
+CSV format: `domain,vertical,country`. Relative output paths resolve from `src/`.
+Batch runs resume from `batch_results.json`. Results, rendered HTML and screenshots
+are local files. The CLI never writes to InstantDB or sends email.
+
+Optional API keys for query generation can be read with `--env-file /path/to/.env`.
+Without an API key, LLM-generated probes are omitted. Never commit dotenv files.
+
+Equivalent module invocation from `src/`:
+
+```bash
+PYTHONPATH="$PWD:$PWD/audit" scanner/.venv/bin/python -m scanner.cli https://example-store.com --headed
+```
+
+### Teardown Worker
+
+Polls InstantDB for new teardown requests and runs scans:
+
+```bash
+python -m scanner.worker --interval 60 --headed --output-dir ./output
+```
+
+Flags:
+- `--once` — process pending requests and exit
+- `--dry-run` — don't push results to InstantDB
+- `--headless` — run browser headless (default: headed)
+
+### Teardown Flow
+
+1. User submits form at `/teardown` with store URL and email
+2. Rate limiting checks (2 per domain/week, 5 per email domain/day)
+3. Request saved to InstantDB (`auditRequests`) with status `new`
+4. CRM shows request at `/crm/audit-requests`
+5. Worker picks up request, runs scanner, pushes results, sets status `ready_for_review`
+6. CRM reviewer can approve (sends email via Resend) or reject
+7. Approved requests link to private report at `/teardown-report/[slug]`
+
+### Tests
+
+**Python scanner tests:**
+```bash
+cd src
+PYTHONPATH="$PWD:$PWD/audit" scanner/.venv/bin/python -m pytest scanner -v
+```
+
+**TypeScript API tests:**
+```bash
+npm test -- lib/teardown-route.test.ts
+```
+
 ## Stripe (Checkout)
 - API route: `app/api/stripe/checkout/route.ts`
 - Success page: `app/stripe/success`
@@ -82,3 +160,31 @@ Uses Resend if `RESEND_API_KEY` is set; otherwise it logs submissions in dev.
   - **Decision**: Next.js App Router + Tailwind + shadcn/ui, MDX content in-repo, Stripe Checkout for one-time tier purchases.
   - **Alternatives considered**: CMS for content; subscriptions; embedded Stripe Elements.
   - **Consequences**: Simple MVP, easy GitHub/Vercel deploy; can migrate content to CMS later if needed.
+
+### Discriminating local scanner validation
+
+The paired battery uses literal navigation/product evidence and one Haiku call per
+readable store to suggest linguistic variants. It checks product overlap, exact
+rank within the top three, observed model codes, formatting/units, brand typos,
+and title/price constraints. Count ratios alone do not establish relevance.
+Missing attributes remain inconclusive. Capabilities without a qualifying sampled
+pair have an explicit applicability reason; discovery errors remain technical errors.
+
+```bash
+python3 scripts/validate-scanner-round2.py \
+  --stores docs/scanner-validation/stores-round2.csv \
+  --output "$PWD/scanner_output/round2" --workers 3 \
+  --env-file /path/to/authorized/.env
+```
+
+This runner opens headed Chromium in isolated processes and resumes completed
+non-error scans. It does not call the database worker or send email. Captures
+include raw/rendered HTML, uniquely named screenshots, sanitized API count
+summaries and rendered text. Runtime artifacts remain ignored by Git.
+
+Each finding carries `severity`, `confidence`, `verified`, and `review_note`.
+A proof card requires a repeated high-confidence failure, a positive paired
+control, two distinct screenshot files, and explicit visual review. Both local
+benchmark export and the database payload builder enforce that gate; running a
+scan never invokes either database write path. See `SCANNER_ROUND2_REPORT.md` for
+the reviewed cohort, limitations, rejected candidates, costs and evidence.

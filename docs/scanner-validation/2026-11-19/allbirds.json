@@ -1,0 +1,1500 @@
+{
+  "site": {
+    "domain": "allbirds.com",
+    "site_name": "Allbirds",
+    "search_url_template": "https://www.allbirds.com/search?q={}",
+    "primary_language": "English",
+    "vertical": "footwear",
+    "country": "US"
+  },
+  "scanned_at": "2026-11-19T20:20:56.016239+00:00",
+  "probes": [
+    {
+      "probe": {
+        "probe_type": "control_query",
+        "query": "Men's Shoes",
+        "control_query": null,
+        "status": "success",
+        "result_count": 71,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Men's Cruiser",
+            "price": "$105",
+            "url": "https://www.allbirds.com/products/mens-cruiser-medium-grey?_pos=1&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 2,
+            "title": "Men's Tree Runner",
+            "price": "$70",
+            "url": "https://www.allbirds.com/products/mens-tree-runners-navy-night?_pos=2&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 3,
+            "title": "Men's Wool Runner NZ",
+            "price": "$110",
+            "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=3&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 4,
+            "title": "Men's Dasher NZ",
+            "price": "$140",
+            "url": "https://www.allbirds.com/products/mens-dasher-nz-medium-grey?_pos=4&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 5,
+            "title": "Men's Trail Runners",
+            "price": "$145",
+            "url": "https://www.allbirds.com/products/mens-trail-runners-swt-natural-black-rugged-khaki?_pos=6&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 6,
+            "title": "Men's Strider",
+            "price": "$130",
+            "url": "https://www.allbirds.com/products/mens-strider-medium-grey?_pos=8&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 7,
+            "title": "Men's Wool Runner",
+            "price": "$77",
+            "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=9&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 8,
+            "title": "Men's Varsity",
+            "price": "$72",
+            "url": "https://www.allbirds.com/products/mens-varsity-natural-black?_pos=10&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 9,
+            "title": "Men's Canvas Cruiser",
+            "price": "$45",
+            "url": "https://www.allbirds.com/products/mens-cruiser-canvas-warm-white?_pos=11&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 10,
+            "title": "Men's Tree Runner NZ",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=12&_sid=1a4648cf9&_ss=r"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/final/www.allbirds.com/control_query_Men_s_Shoes.png",
+        "error_message": null,
+        "execution_time_ms": 14698,
+        "rationale": "Control query: 'Men's Shoes' should return results"
+      },
+      "score": "pass",
+      "score_reason": "Control query returned 71 results"
+    },
+    {
+      "probe": {
+        "probe_type": "exact_product_name",
+        "query": "Men's Cruiser",
+        "control_query": null,
+        "status": "success",
+        "result_count": 65,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Men's Cruiser",
+            "price": "$105",
+            "url": "https://www.allbirds.com/products/mens-cruiser-natural-black-blizzard?_pos=1&_sid=0e0d4afa1&_ss=r"
+          },
+          {
+            "rank": 2,
+            "title": "Men's Canvas Cruiser",
+            "price": "$45",
+            "url": "https://www.allbirds.com/products/mens-cruiser-canvas-port?_pos=3&_sid=0e0d4afa1&_ss=r"
+          },
+          {
+            "rank": 3,
+            "title": "Men's Cruiser Slip On",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-cruiser-slip-on?_pos=4&_sid=0e0d4afa1&_ss=r"
+          },
+          {
+            "rank": 4,
+            "title": "Men's Wool Cruiser",
+            "price": "$73.50",
+            "url": "https://www.allbirds.com/products/mens-wool-cruiser-natural-black-white?_pos=5&_sid=0e0d4afa1&_ss=r"
+          },
+          {
+            "rank": 5,
+            "title": "Men's Cruiser Terralux",
+            "price": "$81",
+            "url": "https://www.allbirds.com/products/mens-cruiser-terralux?_pos=10&_sid=0e0d4afa1&_ss=r"
+          },
+          {
+            "rank": 6,
+            "title": "Men's Wool Cruiser Slip On",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-wool-cruiser-slip-on-natural-black-blizzard?_pos=11&_sid=0e0d4afa1&_ss=r"
+          },
+          {
+            "rank": 7,
+            "title": "Men's Canvas Cruiser Slip On",
+            "price": "$75",
+            "url": "https://www.allbirds.com/products/mens-cruiser-slip-on-canvas-deep-navy-stripes?_pos=12&_sid=0e0d4afa1&_ss=r"
+          },
+          {
+            "rank": 8,
+            "title": "Men's Varsity Cruiser",
+            "price": "$115",
+            "url": "https://www.allbirds.com/products/mens-varsity-cruiser-mushroom?_pos=17&_sid=0e0d4afa1&_ss=r"
+          },
+          {
+            "rank": 9,
+            "title": "Men's Cruiser Jersey",
+            "price": "$80.50",
+            "url": "https://www.allbirds.com/products/mens-cruiser-jersey?_pos=38&_sid=0e0d4afa1&_ss=r"
+          },
+          {
+            "rank": 10,
+            "title": "Men's Wool Cruiser Waterproof",
+            "price": "$140",
+            "url": "https://www.allbirds.com/products/mens-wool-cruiser-waterproof-dark-grey?_pos=43&_sid=0e0d4afa1&_ss=r"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/final/www.allbirds.com/exact_product_name_Men_s_Cruiser.png",
+        "error_message": null,
+        "execution_time_ms": 13032,
+        "rationale": "Testing exact match for product: Men's Cruiser"
+      },
+      "score": "pass",
+      "score_reason": "Top result matches query (2/2 words)"
+    },
+    {
+      "probe": {
+        "probe_type": "category_term",
+        "query": "Men's Shoes",
+        "control_query": null,
+        "status": "success",
+        "result_count": 71,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Men's Cruiser",
+            "price": "$105",
+            "url": "https://www.allbirds.com/products/mens-cruiser-medium-grey?_pos=1&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 2,
+            "title": "Men's Tree Runner",
+            "price": "$70",
+            "url": "https://www.allbirds.com/products/mens-tree-runners-navy-night?_pos=2&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 3,
+            "title": "Men's Wool Runner NZ",
+            "price": "$110",
+            "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=3&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 4,
+            "title": "Men's Dasher NZ",
+            "price": "$140",
+            "url": "https://www.allbirds.com/products/mens-dasher-nz-medium-grey?_pos=4&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 5,
+            "title": "Men's Trail Runners",
+            "price": "$145",
+            "url": "https://www.allbirds.com/products/mens-trail-runners-swt-natural-black-rugged-khaki?_pos=6&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 6,
+            "title": "Men's Strider",
+            "price": "$130",
+            "url": "https://www.allbirds.com/products/mens-strider-medium-grey?_pos=8&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 7,
+            "title": "Men's Wool Runner",
+            "price": "$77",
+            "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=9&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 8,
+            "title": "Men's Varsity",
+            "price": "$72",
+            "url": "https://www.allbirds.com/products/mens-varsity-natural-black?_pos=10&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 9,
+            "title": "Men's Canvas Cruiser",
+            "price": "$45",
+            "url": "https://www.allbirds.com/products/mens-cruiser-canvas-warm-white?_pos=11&_sid=1a4648cf9&_ss=r"
+          },
+          {
+            "rank": 10,
+            "title": "Men's Tree Runner NZ",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=12&_sid=1a4648cf9&_ss=r"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/final/www.allbirds.com/control_query_Men_s_Shoes.png",
+        "error_message": null,
+        "execution_time_ms": 0,
+        "rationale": "Testing category search for: Men's Shoes"
+      },
+      "score": "pass",
+      "score_reason": "Good result count (71) for category search"
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "Men'sS hoes",
+        "control_query": "Men's Shoes",
+        "status": "success",
+        "result_count": 73,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Men's Golf Dasher",
+            "price": "$90",
+            "url": "https://www.allbirds.com/products/mens-golf-dashers?_pos=1&_sid=59bbb5616&_ss=r"
+          },
+          {
+            "rank": 2,
+            "title": "Men's Cruiser",
+            "price": "$105",
+            "url": "https://www.allbirds.com/products/mens-cruiser-medium-grey?_pos=2&_sid=59bbb5616&_ss=r"
+          },
+          {
+            "rank": 3,
+            "title": "Men's Wool Runner NZ",
+            "price": "$110",
+            "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=3&_sid=59bbb5616&_ss=r"
+          },
+          {
+            "rank": 4,
+            "title": "Men's Strider",
+            "price": "$130",
+            "url": "https://www.allbirds.com/products/mens-strider-medium-grey?_pos=4&_sid=59bbb5616&_ss=r"
+          },
+          {
+            "rank": 5,
+            "title": "Men's Dasher NZ",
+            "price": "$140",
+            "url": "https://www.allbirds.com/products/mens-dasher-nz-natural-black?_pos=5&_sid=59bbb5616&_ss=r"
+          },
+          {
+            "rank": 6,
+            "title": "Men's Tree Runner NZ",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-tree-runner-nz?_pos=7&_sid=59bbb5616&_ss=r"
+          },
+          {
+            "rank": 7,
+            "title": "Men's Wool Cruiser Slip On",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-wool-cruiser-slip-on?_pos=8&_sid=59bbb5616&_ss=r"
+          },
+          {
+            "rank": 8,
+            "title": "Men's Tree Topper",
+            "price": "$69",
+            "url": "https://www.allbirds.com/products/mens-tree-toppers-natural-black-blizzard?_pos=13&_sid=59bbb5616&_ss=r"
+          },
+          {
+            "rank": 9,
+            "title": "Men's Wool Runner",
+            "price": "$77",
+            "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=14&_sid=59bbb5616&_ss=r"
+          },
+          {
+            "rank": 10,
+            "title": "Men's Canvas Cruiser",
+            "price": "$45",
+            "url": "https://www.allbirds.com/products/mens-cruiser-canvas-warm-white?_pos=17&_sid=59bbb5616&_ss=r"
+          }
+        ],
+        "control_count": 71,
+        "screenshot_path": "../scanner_output/final/www.allbirds.com/typo_Men_sS_hoes.png",
+        "error_message": null,
+        "execution_time_ms": 18187,
+        "rationale": "Typo tolerance: 'Men'sS hoes' (should match 'Men's Shoes')"
+      },
+      "score": "pass",
+      "score_reason": "Good typo tolerance: 73 vs 71 results"
+    },
+    {
+      "probe": {
+        "probe_type": "synonym",
+        "query": "trainers",
+        "control_query": "sneakers",
+        "status": "success",
+        "result_count": 67,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Men's Tree Runner",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-tree-runners-mist?_pos=1&_sid=9d6079734&_ss=r"
+          },
+          {
+            "rank": 2,
+            "title": "Women's Tree Runner NZ",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/womens-tree-runner-nz?_pos=3&_sid=9d6079734&_ss=r"
+          },
+          {
+            "rank": 3,
+            "title": "Women's Tree Runner",
+            "price": "$50",
+            "url": "https://www.allbirds.com/products/womens-tree-runners-jet-black-white?_pos=4&_sid=9d6079734&_ss=r"
+          },
+          {
+            "rank": 4,
+            "title": "Men's Trail Runners",
+            "price": "$145",
+            "url": "https://www.allbirds.com/products/mens-trail-runners-swt-natural-black-rugged-khaki?_pos=7&_sid=9d6079734&_ss=r"
+          },
+          {
+            "rank": 5,
+            "title": "Men's Wool Runner",
+            "price": "$77",
+            "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=9&_sid=9d6079734&_ss=r"
+          },
+          {
+            "rank": 6,
+            "title": "Women's Tree Glider",
+            "price": "$84",
+            "url": "https://www.allbirds.com/products/womens-tree-gliders-blizzard?_pos=13&_sid=9d6079734&_ss=r"
+          },
+          {
+            "rank": 7,
+            "title": "Men's Tree Runner NZ",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=15&_sid=9d6079734&_ss=r"
+          },
+          {
+            "rank": 8,
+            "title": "Men's Wool Runner NZ",
+            "price": "$110",
+            "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=20&_sid=9d6079734&_ss=r"
+          },
+          {
+            "rank": 9,
+            "title": "Women's Strider",
+            "price": "$78",
+            "url": "https://www.allbirds.com/products/womens-strider-natural-black-blizzard?_pos=21&_sid=9d6079734&_ss=r"
+          },
+          {
+            "rank": 10,
+            "title": "Women's Wool Runner NZ",
+            "price": "$77",
+            "url": "https://www.allbirds.com/products/womens-wool-runner-nz-natural-white?_pos=25&_sid=9d6079734&_ss=r"
+          }
+        ],
+        "control_count": 67,
+        "screenshot_path": "../scanner_output/final/www.allbirds.com/synonym_trainers.png",
+        "error_message": null,
+        "execution_time_ms": 12909,
+        "rationale": "Synonym test: 'trainers' should match like 'sneakers'"
+      },
+      "score": "pass",
+      "score_reason": "Good synonym handling: 67 vs 67"
+    },
+    {
+      "probe": {
+        "probe_type": "plural_singular",
+        "query": "Men's Shoe",
+        "control_query": "Men's Shoes",
+        "status": "success",
+        "result_count": 71,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Men's Tree Runner",
+            "price": "$70",
+            "url": "https://www.allbirds.com/products/mens-tree-runners-navy-night?_pos=1&_sid=4e16b8055&_ss=r"
+          },
+          {
+            "rank": 2,
+            "title": "Men's Cruiser",
+            "price": "$105",
+            "url": "https://www.allbirds.com/products/mens-cruiser-medium-grey?_pos=2&_sid=4e16b8055&_ss=r"
+          },
+          {
+            "rank": 3,
+            "title": "Men's Wool Runner NZ",
+            "price": "$110",
+            "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=3&_sid=4e16b8055&_ss=r"
+          },
+          {
+            "rank": 4,
+            "title": "Men's Tree Runner NZ",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=4&_sid=4e16b8055&_ss=r"
+          },
+          {
+            "rank": 5,
+            "title": "Men's Trail Runners",
+            "price": "$145",
+            "url": "https://www.allbirds.com/products/mens-trail-runners-swt-natural-black-rugged-khaki?_pos=5&_sid=4e16b8055&_ss=r"
+          },
+          {
+            "rank": 6,
+            "title": "Men's Dasher NZ",
+            "price": "$140",
+            "url": "https://www.allbirds.com/products/mens-dasher-nz-medium-grey?_pos=6&_sid=4e16b8055&_ss=r"
+          },
+          {
+            "rank": 7,
+            "title": "Men's Canvas Cruiser",
+            "price": "$45",
+            "url": "https://www.allbirds.com/products/mens-cruiser-canvas-warm-white?_pos=7&_sid=4e16b8055&_ss=r"
+          },
+          {
+            "rank": 8,
+            "title": "Men's Wool Runner",
+            "price": "$77",
+            "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=8&_sid=4e16b8055&_ss=r"
+          },
+          {
+            "rank": 9,
+            "title": "Men's Varsity",
+            "price": "$72",
+            "url": "https://www.allbirds.com/products/mens-varsity-natural-black?_pos=10&_sid=4e16b8055&_ss=r"
+          },
+          {
+            "rank": 10,
+            "title": "Men's Strider",
+            "price": "$130",
+            "url": "https://www.allbirds.com/products/mens-strider-medium-grey?_pos=12&_sid=4e16b8055&_ss=r"
+          }
+        ],
+        "control_count": 71,
+        "screenshot_path": "../scanner_output/final/www.allbirds.com/plural_singular_Men_s_Shoe.png",
+        "error_message": null,
+        "execution_time_ms": 11893,
+        "rationale": "Plural/singular: 'Men's Shoe' (singular of 'Men's Shoes')"
+      },
+      "score": "pass",
+      "score_reason": "Good plural/singular handling: 71 vs 71"
+    },
+    {
+      "probe": {
+        "probe_type": "compound_split",
+        "query": "All birds",
+        "control_query": "Allbirds",
+        "status": "success",
+        "result_count": 75,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Women's Tree Glider",
+            "price": "$70",
+            "url": "https://www.allbirds.com/products/womens-tree-gliders?_pos=1&_sid=1ca512c25&_ss=r"
+          },
+          {
+            "rank": 2,
+            "title": "Allbirds Slipper",
+            "price": "$15.60",
+            "url": "https://www.allbirds.com/products/allbirds-slipper?_pos=2&_sid=1ca512c25&_ss=r"
+          },
+          {
+            "rank": 3,
+            "title": "Women's Tree Runner",
+            "price": "$50",
+            "url": "https://www.allbirds.com/products/womens-tree-runners-jet-black-white?_pos=3&_sid=1ca512c25&_ss=r"
+          },
+          {
+            "rank": 4,
+            "title": "Women's Kiwi Clog",
+            "price": "$77",
+            "url": "https://www.allbirds.com/products/womens-kiwi-clog-medium-grey?_pos=5&_sid=1ca512c25&_ss=r"
+          },
+          {
+            "rank": 5,
+            "title": "Women's Tree Breezer",
+            "price": "$31.50",
+            "url": "https://www.allbirds.com/products/womens-tree-breezers-jet-black?_pos=8&_sid=1ca512c25&_ss=r"
+          },
+          {
+            "rank": 6,
+            "title": "Men's Wool Runner",
+            "price": "$77",
+            "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=9&_sid=1ca512c25&_ss=r"
+          },
+          {
+            "rank": 7,
+            "title": "Women's Allbirds Slide Terry",
+            "price": "$18",
+            "url": "https://www.allbirds.com/products/womens-allbirds-slide-terry?_pos=12&_sid=1ca512c25&_ss=r"
+          },
+          {
+            "rank": 8,
+            "title": "Women's Wool Cruiser",
+            "price": "$105",
+            "url": "https://www.allbirds.com/products/womens-wool-cruiser-natural-grey?_pos=13&_sid=1ca512c25&_ss=r"
+          },
+          {
+            "rank": 9,
+            "title": "Men's Canvas Cruiser",
+            "price": "$45",
+            "url": "https://www.allbirds.com/products/mens-cruiser-canvas-blizzard?_pos=14&_sid=1ca512c25&_ss=r"
+          },
+          {
+            "rank": 10,
+            "title": "Women's Cruiser",
+            "price": "$63",
+            "url": "https://www.allbirds.com/products/womens-cruiser-medium-grey?_pos=15&_sid=1ca512c25&_ss=r"
+          }
+        ],
+        "control_count": 79,
+        "screenshot_path": "../scanner_output/final/www.allbirds.com/compound_split_All_birds.png",
+        "error_message": null,
+        "execution_time_ms": 11147,
+        "rationale": "Compound split: 'All birds' should match 'Allbirds'"
+      },
+      "score": "pass",
+      "score_reason": "Good compound split handling: 75 vs 79"
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "Men'sShoes",
+        "control_query": "Men's Shoes",
+        "status": "success",
+        "result_count": 70,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Men's Cruiser",
+            "price": "$105",
+            "url": "https://www.allbirds.com/products/mens-cruiser-medium-grey?_pos=1&_sid=13c3fe801&_ss=r"
+          },
+          {
+            "rank": 2,
+            "title": "Men's Golf Dasher",
+            "price": "$90",
+            "url": "https://www.allbirds.com/products/mens-golf-dashers?_pos=2&_sid=13c3fe801&_ss=r"
+          },
+          {
+            "rank": 3,
+            "title": "Men's Strider",
+            "price": "$130",
+            "url": "https://www.allbirds.com/products/mens-strider-medium-grey?_pos=3&_sid=13c3fe801&_ss=r"
+          },
+          {
+            "rank": 4,
+            "title": "Men's Wool Runner NZ",
+            "price": "$110",
+            "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=6&_sid=13c3fe801&_ss=r"
+          },
+          {
+            "rank": 5,
+            "title": "Men's Dasher NZ",
+            "price": "$140",
+            "url": "https://www.allbirds.com/products/mens-dasher-nz-medium-grey?_pos=7&_sid=13c3fe801&_ss=r"
+          },
+          {
+            "rank": 6,
+            "title": "Men's Wool Runner",
+            "price": "$77",
+            "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=9&_sid=13c3fe801&_ss=r"
+          },
+          {
+            "rank": 7,
+            "title": "Men's Wool Cruiser Slip On",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-wool-cruiser-slip-on-natural-black-blizzard?_pos=10&_sid=13c3fe801&_ss=r"
+          },
+          {
+            "rank": 8,
+            "title": "Men's Tree Topper",
+            "price": "$69",
+            "url": "https://www.allbirds.com/products/mens-tree-toppers-natural-black-blizzard?_pos=11&_sid=13c3fe801&_ss=r"
+          },
+          {
+            "rank": 9,
+            "title": "Men's Trail Runners",
+            "price": "$145",
+            "url": "https://www.allbirds.com/products/mens-trail-runners-swt-natural-black-rugged-khaki?_pos=12&_sid=13c3fe801&_ss=r"
+          },
+          {
+            "rank": 10,
+            "title": "Men's Tree Runner NZ",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=14&_sid=13c3fe801&_ss=r"
+          }
+        ],
+        "control_count": 71,
+        "screenshot_path": "../scanner_output/final/www.allbirds.com/merged_words_Men_sShoes.png",
+        "error_message": null,
+        "execution_time_ms": 12494,
+        "rationale": "Merged words: 'Men'sShoes' should match 'Men's Shoes'"
+      },
+      "score": "pass",
+      "score_reason": "Good merged words handling: 70 vs 71"
+    },
+    {
+      "probe": {
+        "probe_type": "constraint_query",
+        "query": "black Men's Shoes under 50",
+        "control_query": "Men's Shoes",
+        "status": "success",
+        "result_count": 61,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Men's Varsity",
+            "price": "$72",
+            "url": "https://www.allbirds.com/products/mens-varsity-natural-black?_pos=1&_sid=3b2ed7198&_ss=r"
+          },
+          {
+            "rank": 2,
+            "title": "Men's Cruiser",
+            "price": "$105",
+            "url": "https://www.allbirds.com/products/mens-cruiser-natural-black-blizzard?_pos=2&_sid=3b2ed7198&_ss=r"
+          },
+          {
+            "rank": 3,
+            "title": "Men's Tree Runner",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-tree-runners-jet-black?_pos=3&_sid=3b2ed7198&_ss=r"
+          },
+          {
+            "rank": 4,
+            "title": "Men's Dasher NZ",
+            "price": "$140",
+            "url": "https://www.allbirds.com/products/mens-dasher-nz-natural-black?_pos=4&_sid=3b2ed7198&_ss=r"
+          },
+          {
+            "rank": 5,
+            "title": "Men's Cruiser Slip On",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-cruiser-slip-on-natural-black?_pos=6&_sid=3b2ed7198&_ss=r"
+          },
+          {
+            "rank": 6,
+            "title": "Men's Tree Runner NZ",
+            "price": "$100",
+            "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=7&_sid=3b2ed7198&_ss=r"
+          },
+          {
+            "rank": 7,
+            "title": "Men's Varsity Cruiser",
+            "price": "$115",
+            "url": "https://www.allbirds.com/products/mens-varsity-cruiser-natural-black?_pos=8&_sid=3b2ed7198&_ss=r"
+          },
+          {
+            "rank": 8,
+            "title": "Men's Wool Cruiser",
+            "price": "$105",
+            "url": "https://www.allbirds.com/products/mens-wool-cruiser-natural-black?_pos=9&_sid=3b2ed7198&_ss=r"
+          },
+          {
+            "rank": 9,
+            "title": "Men's Tree Topper",
+            "price": "$69",
+            "url": "https://www.allbirds.com/products/mens-tree-toppers-natural-black-blizzard?_pos=10&_sid=3b2ed7198&_ss=r"
+          },
+          {
+            "rank": 10,
+            "title": "Men's Golf Dasher",
+            "price": "$90",
+            "url": "https://www.allbirds.com/products/mens-golf-dashers?_pos=11&_sid=3b2ed7198&_ss=r"
+          }
+        ],
+        "control_count": 71,
+        "screenshot_path": "../scanner_output/final/www.allbirds.com/constraint_query_black_Men_s_Shoes_un.png",
+        "error_message": null,
+        "execution_time_ms": 10492,
+        "rationale": "Constraint query: 'black Men's Shoes under 50' should return relevant Men's Shoes"
+      },
+      "score": "partial",
+      "score_reason": "Results found (61) but could not verify constraint applied"
+    },
+    {
+      "probe": {
+        "probe_type": "zero_result_check",
+        "query": "xyzqwk12345nonsense",
+        "control_query": null,
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/final/www.allbirds.com/zero_result_check_xyzqwk12345nonsense.png",
+        "error_message": "page says: 'Sorry, we couldn't find any '",
+        "execution_time_ms": 7433,
+        "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results"
+      },
+      "score": "pass",
+      "score_reason": "Correctly returned zero results for gibberish query"
+    }
+  ],
+  "capabilities": [
+    {
+      "capability": "basic_retrieval",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "control_query",
+            "query": "Men's Shoes",
+            "control_query": null,
+            "status": "success",
+            "result_count": 71,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Men's Cruiser",
+                "price": "$105",
+                "url": "https://www.allbirds.com/products/mens-cruiser-medium-grey?_pos=1&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 2,
+                "title": "Men's Tree Runner",
+                "price": "$70",
+                "url": "https://www.allbirds.com/products/mens-tree-runners-navy-night?_pos=2&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 3,
+                "title": "Men's Wool Runner NZ",
+                "price": "$110",
+                "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=3&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 4,
+                "title": "Men's Dasher NZ",
+                "price": "$140",
+                "url": "https://www.allbirds.com/products/mens-dasher-nz-medium-grey?_pos=4&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 5,
+                "title": "Men's Trail Runners",
+                "price": "$145",
+                "url": "https://www.allbirds.com/products/mens-trail-runners-swt-natural-black-rugged-khaki?_pos=6&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 6,
+                "title": "Men's Strider",
+                "price": "$130",
+                "url": "https://www.allbirds.com/products/mens-strider-medium-grey?_pos=8&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 7,
+                "title": "Men's Wool Runner",
+                "price": "$77",
+                "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=9&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 8,
+                "title": "Men's Varsity",
+                "price": "$72",
+                "url": "https://www.allbirds.com/products/mens-varsity-natural-black?_pos=10&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 9,
+                "title": "Men's Canvas Cruiser",
+                "price": "$45",
+                "url": "https://www.allbirds.com/products/mens-cruiser-canvas-warm-white?_pos=11&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 10,
+                "title": "Men's Tree Runner NZ",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=12&_sid=1a4648cf9&_ss=r"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/final/www.allbirds.com/control_query_Men_s_Shoes.png",
+            "error_message": null,
+            "execution_time_ms": 14698,
+            "rationale": "Control query: 'Men's Shoes' should return results"
+          },
+          "score": "pass",
+          "score_reason": "Control query returned 71 results"
+        },
+        {
+          "probe": {
+            "probe_type": "exact_product_name",
+            "query": "Men's Cruiser",
+            "control_query": null,
+            "status": "success",
+            "result_count": 65,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Men's Cruiser",
+                "price": "$105",
+                "url": "https://www.allbirds.com/products/mens-cruiser-natural-black-blizzard?_pos=1&_sid=0e0d4afa1&_ss=r"
+              },
+              {
+                "rank": 2,
+                "title": "Men's Canvas Cruiser",
+                "price": "$45",
+                "url": "https://www.allbirds.com/products/mens-cruiser-canvas-port?_pos=3&_sid=0e0d4afa1&_ss=r"
+              },
+              {
+                "rank": 3,
+                "title": "Men's Cruiser Slip On",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-cruiser-slip-on?_pos=4&_sid=0e0d4afa1&_ss=r"
+              },
+              {
+                "rank": 4,
+                "title": "Men's Wool Cruiser",
+                "price": "$73.50",
+                "url": "https://www.allbirds.com/products/mens-wool-cruiser-natural-black-white?_pos=5&_sid=0e0d4afa1&_ss=r"
+              },
+              {
+                "rank": 5,
+                "title": "Men's Cruiser Terralux",
+                "price": "$81",
+                "url": "https://www.allbirds.com/products/mens-cruiser-terralux?_pos=10&_sid=0e0d4afa1&_ss=r"
+              },
+              {
+                "rank": 6,
+                "title": "Men's Wool Cruiser Slip On",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-wool-cruiser-slip-on-natural-black-blizzard?_pos=11&_sid=0e0d4afa1&_ss=r"
+              },
+              {
+                "rank": 7,
+                "title": "Men's Canvas Cruiser Slip On",
+                "price": "$75",
+                "url": "https://www.allbirds.com/products/mens-cruiser-slip-on-canvas-deep-navy-stripes?_pos=12&_sid=0e0d4afa1&_ss=r"
+              },
+              {
+                "rank": 8,
+                "title": "Men's Varsity Cruiser",
+                "price": "$115",
+                "url": "https://www.allbirds.com/products/mens-varsity-cruiser-mushroom?_pos=17&_sid=0e0d4afa1&_ss=r"
+              },
+              {
+                "rank": 9,
+                "title": "Men's Cruiser Jersey",
+                "price": "$80.50",
+                "url": "https://www.allbirds.com/products/mens-cruiser-jersey?_pos=38&_sid=0e0d4afa1&_ss=r"
+              },
+              {
+                "rank": 10,
+                "title": "Men's Wool Cruiser Waterproof",
+                "price": "$140",
+                "url": "https://www.allbirds.com/products/mens-wool-cruiser-waterproof-dark-grey?_pos=43&_sid=0e0d4afa1&_ss=r"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/final/www.allbirds.com/exact_product_name_Men_s_Cruiser.png",
+            "error_message": null,
+            "execution_time_ms": 13032,
+            "rationale": "Testing exact match for product: Men's Cruiser"
+          },
+          "score": "pass",
+          "score_reason": "Top result matches query (2/2 words)"
+        },
+        {
+          "probe": {
+            "probe_type": "category_term",
+            "query": "Men's Shoes",
+            "control_query": null,
+            "status": "success",
+            "result_count": 71,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Men's Cruiser",
+                "price": "$105",
+                "url": "https://www.allbirds.com/products/mens-cruiser-medium-grey?_pos=1&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 2,
+                "title": "Men's Tree Runner",
+                "price": "$70",
+                "url": "https://www.allbirds.com/products/mens-tree-runners-navy-night?_pos=2&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 3,
+                "title": "Men's Wool Runner NZ",
+                "price": "$110",
+                "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=3&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 4,
+                "title": "Men's Dasher NZ",
+                "price": "$140",
+                "url": "https://www.allbirds.com/products/mens-dasher-nz-medium-grey?_pos=4&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 5,
+                "title": "Men's Trail Runners",
+                "price": "$145",
+                "url": "https://www.allbirds.com/products/mens-trail-runners-swt-natural-black-rugged-khaki?_pos=6&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 6,
+                "title": "Men's Strider",
+                "price": "$130",
+                "url": "https://www.allbirds.com/products/mens-strider-medium-grey?_pos=8&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 7,
+                "title": "Men's Wool Runner",
+                "price": "$77",
+                "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=9&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 8,
+                "title": "Men's Varsity",
+                "price": "$72",
+                "url": "https://www.allbirds.com/products/mens-varsity-natural-black?_pos=10&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 9,
+                "title": "Men's Canvas Cruiser",
+                "price": "$45",
+                "url": "https://www.allbirds.com/products/mens-cruiser-canvas-warm-white?_pos=11&_sid=1a4648cf9&_ss=r"
+              },
+              {
+                "rank": 10,
+                "title": "Men's Tree Runner NZ",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=12&_sid=1a4648cf9&_ss=r"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/final/www.allbirds.com/control_query_Men_s_Shoes.png",
+            "error_message": null,
+            "execution_time_ms": 0,
+            "rationale": "Testing category search for: Men's Shoes"
+          },
+          "score": "pass",
+          "score_reason": "Good result count (71) for category search"
+        }
+      ],
+      "summary": "3/3 passed"
+    },
+    {
+      "capability": "typo_tolerance",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "Men'sS hoes",
+            "control_query": "Men's Shoes",
+            "status": "success",
+            "result_count": 73,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Men's Golf Dasher",
+                "price": "$90",
+                "url": "https://www.allbirds.com/products/mens-golf-dashers?_pos=1&_sid=59bbb5616&_ss=r"
+              },
+              {
+                "rank": 2,
+                "title": "Men's Cruiser",
+                "price": "$105",
+                "url": "https://www.allbirds.com/products/mens-cruiser-medium-grey?_pos=2&_sid=59bbb5616&_ss=r"
+              },
+              {
+                "rank": 3,
+                "title": "Men's Wool Runner NZ",
+                "price": "$110",
+                "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=3&_sid=59bbb5616&_ss=r"
+              },
+              {
+                "rank": 4,
+                "title": "Men's Strider",
+                "price": "$130",
+                "url": "https://www.allbirds.com/products/mens-strider-medium-grey?_pos=4&_sid=59bbb5616&_ss=r"
+              },
+              {
+                "rank": 5,
+                "title": "Men's Dasher NZ",
+                "price": "$140",
+                "url": "https://www.allbirds.com/products/mens-dasher-nz-natural-black?_pos=5&_sid=59bbb5616&_ss=r"
+              },
+              {
+                "rank": 6,
+                "title": "Men's Tree Runner NZ",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-tree-runner-nz?_pos=7&_sid=59bbb5616&_ss=r"
+              },
+              {
+                "rank": 7,
+                "title": "Men's Wool Cruiser Slip On",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-wool-cruiser-slip-on?_pos=8&_sid=59bbb5616&_ss=r"
+              },
+              {
+                "rank": 8,
+                "title": "Men's Tree Topper",
+                "price": "$69",
+                "url": "https://www.allbirds.com/products/mens-tree-toppers-natural-black-blizzard?_pos=13&_sid=59bbb5616&_ss=r"
+              },
+              {
+                "rank": 9,
+                "title": "Men's Wool Runner",
+                "price": "$77",
+                "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=14&_sid=59bbb5616&_ss=r"
+              },
+              {
+                "rank": 10,
+                "title": "Men's Canvas Cruiser",
+                "price": "$45",
+                "url": "https://www.allbirds.com/products/mens-cruiser-canvas-warm-white?_pos=17&_sid=59bbb5616&_ss=r"
+              }
+            ],
+            "control_count": 71,
+            "screenshot_path": "../scanner_output/final/www.allbirds.com/typo_Men_sS_hoes.png",
+            "error_message": null,
+            "execution_time_ms": 18187,
+            "rationale": "Typo tolerance: 'Men'sS hoes' (should match 'Men's Shoes')"
+          },
+          "score": "pass",
+          "score_reason": "Good typo tolerance: 73 vs 71 results"
+        }
+      ],
+      "summary": "1/1 passed"
+    },
+    {
+      "capability": "language_understanding",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "synonym",
+            "query": "trainers",
+            "control_query": "sneakers",
+            "status": "success",
+            "result_count": 67,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Men's Tree Runner",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-tree-runners-mist?_pos=1&_sid=9d6079734&_ss=r"
+              },
+              {
+                "rank": 2,
+                "title": "Women's Tree Runner NZ",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/womens-tree-runner-nz?_pos=3&_sid=9d6079734&_ss=r"
+              },
+              {
+                "rank": 3,
+                "title": "Women's Tree Runner",
+                "price": "$50",
+                "url": "https://www.allbirds.com/products/womens-tree-runners-jet-black-white?_pos=4&_sid=9d6079734&_ss=r"
+              },
+              {
+                "rank": 4,
+                "title": "Men's Trail Runners",
+                "price": "$145",
+                "url": "https://www.allbirds.com/products/mens-trail-runners-swt-natural-black-rugged-khaki?_pos=7&_sid=9d6079734&_ss=r"
+              },
+              {
+                "rank": 5,
+                "title": "Men's Wool Runner",
+                "price": "$77",
+                "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=9&_sid=9d6079734&_ss=r"
+              },
+              {
+                "rank": 6,
+                "title": "Women's Tree Glider",
+                "price": "$84",
+                "url": "https://www.allbirds.com/products/womens-tree-gliders-blizzard?_pos=13&_sid=9d6079734&_ss=r"
+              },
+              {
+                "rank": 7,
+                "title": "Men's Tree Runner NZ",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=15&_sid=9d6079734&_ss=r"
+              },
+              {
+                "rank": 8,
+                "title": "Men's Wool Runner NZ",
+                "price": "$110",
+                "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=20&_sid=9d6079734&_ss=r"
+              },
+              {
+                "rank": 9,
+                "title": "Women's Strider",
+                "price": "$78",
+                "url": "https://www.allbirds.com/products/womens-strider-natural-black-blizzard?_pos=21&_sid=9d6079734&_ss=r"
+              },
+              {
+                "rank": 10,
+                "title": "Women's Wool Runner NZ",
+                "price": "$77",
+                "url": "https://www.allbirds.com/products/womens-wool-runner-nz-natural-white?_pos=25&_sid=9d6079734&_ss=r"
+              }
+            ],
+            "control_count": 67,
+            "screenshot_path": "../scanner_output/final/www.allbirds.com/synonym_trainers.png",
+            "error_message": null,
+            "execution_time_ms": 12909,
+            "rationale": "Synonym test: 'trainers' should match like 'sneakers'"
+          },
+          "score": "pass",
+          "score_reason": "Good synonym handling: 67 vs 67"
+        },
+        {
+          "probe": {
+            "probe_type": "plural_singular",
+            "query": "Men's Shoe",
+            "control_query": "Men's Shoes",
+            "status": "success",
+            "result_count": 71,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Men's Tree Runner",
+                "price": "$70",
+                "url": "https://www.allbirds.com/products/mens-tree-runners-navy-night?_pos=1&_sid=4e16b8055&_ss=r"
+              },
+              {
+                "rank": 2,
+                "title": "Men's Cruiser",
+                "price": "$105",
+                "url": "https://www.allbirds.com/products/mens-cruiser-medium-grey?_pos=2&_sid=4e16b8055&_ss=r"
+              },
+              {
+                "rank": 3,
+                "title": "Men's Wool Runner NZ",
+                "price": "$110",
+                "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=3&_sid=4e16b8055&_ss=r"
+              },
+              {
+                "rank": 4,
+                "title": "Men's Tree Runner NZ",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=4&_sid=4e16b8055&_ss=r"
+              },
+              {
+                "rank": 5,
+                "title": "Men's Trail Runners",
+                "price": "$145",
+                "url": "https://www.allbirds.com/products/mens-trail-runners-swt-natural-black-rugged-khaki?_pos=5&_sid=4e16b8055&_ss=r"
+              },
+              {
+                "rank": 6,
+                "title": "Men's Dasher NZ",
+                "price": "$140",
+                "url": "https://www.allbirds.com/products/mens-dasher-nz-medium-grey?_pos=6&_sid=4e16b8055&_ss=r"
+              },
+              {
+                "rank": 7,
+                "title": "Men's Canvas Cruiser",
+                "price": "$45",
+                "url": "https://www.allbirds.com/products/mens-cruiser-canvas-warm-white?_pos=7&_sid=4e16b8055&_ss=r"
+              },
+              {
+                "rank": 8,
+                "title": "Men's Wool Runner",
+                "price": "$77",
+                "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=8&_sid=4e16b8055&_ss=r"
+              },
+              {
+                "rank": 9,
+                "title": "Men's Varsity",
+                "price": "$72",
+                "url": "https://www.allbirds.com/products/mens-varsity-natural-black?_pos=10&_sid=4e16b8055&_ss=r"
+              },
+              {
+                "rank": 10,
+                "title": "Men's Strider",
+                "price": "$130",
+                "url": "https://www.allbirds.com/products/mens-strider-medium-grey?_pos=12&_sid=4e16b8055&_ss=r"
+              }
+            ],
+            "control_count": 71,
+            "screenshot_path": "../scanner_output/final/www.allbirds.com/plural_singular_Men_s_Shoe.png",
+            "error_message": null,
+            "execution_time_ms": 11893,
+            "rationale": "Plural/singular: 'Men's Shoe' (singular of 'Men's Shoes')"
+          },
+          "score": "pass",
+          "score_reason": "Good plural/singular handling: 71 vs 71"
+        }
+      ],
+      "summary": "2/2 passed"
+    },
+    {
+      "capability": "compound_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "compound_split",
+            "query": "All birds",
+            "control_query": "Allbirds",
+            "status": "success",
+            "result_count": 75,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Women's Tree Glider",
+                "price": "$70",
+                "url": "https://www.allbirds.com/products/womens-tree-gliders?_pos=1&_sid=1ca512c25&_ss=r"
+              },
+              {
+                "rank": 2,
+                "title": "Allbirds Slipper",
+                "price": "$15.60",
+                "url": "https://www.allbirds.com/products/allbirds-slipper?_pos=2&_sid=1ca512c25&_ss=r"
+              },
+              {
+                "rank": 3,
+                "title": "Women's Tree Runner",
+                "price": "$50",
+                "url": "https://www.allbirds.com/products/womens-tree-runners-jet-black-white?_pos=3&_sid=1ca512c25&_ss=r"
+              },
+              {
+                "rank": 4,
+                "title": "Women's Kiwi Clog",
+                "price": "$77",
+                "url": "https://www.allbirds.com/products/womens-kiwi-clog-medium-grey?_pos=5&_sid=1ca512c25&_ss=r"
+              },
+              {
+                "rank": 5,
+                "title": "Women's Tree Breezer",
+                "price": "$31.50",
+                "url": "https://www.allbirds.com/products/womens-tree-breezers-jet-black?_pos=8&_sid=1ca512c25&_ss=r"
+              },
+              {
+                "rank": 6,
+                "title": "Men's Wool Runner",
+                "price": "$77",
+                "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=9&_sid=1ca512c25&_ss=r"
+              },
+              {
+                "rank": 7,
+                "title": "Women's Allbirds Slide Terry",
+                "price": "$18",
+                "url": "https://www.allbirds.com/products/womens-allbirds-slide-terry?_pos=12&_sid=1ca512c25&_ss=r"
+              },
+              {
+                "rank": 8,
+                "title": "Women's Wool Cruiser",
+                "price": "$105",
+                "url": "https://www.allbirds.com/products/womens-wool-cruiser-natural-grey?_pos=13&_sid=1ca512c25&_ss=r"
+              },
+              {
+                "rank": 9,
+                "title": "Men's Canvas Cruiser",
+                "price": "$45",
+                "url": "https://www.allbirds.com/products/mens-cruiser-canvas-blizzard?_pos=14&_sid=1ca512c25&_ss=r"
+              },
+              {
+                "rank": 10,
+                "title": "Women's Cruiser",
+                "price": "$63",
+                "url": "https://www.allbirds.com/products/womens-cruiser-medium-grey?_pos=15&_sid=1ca512c25&_ss=r"
+              }
+            ],
+            "control_count": 79,
+            "screenshot_path": "../scanner_output/final/www.allbirds.com/compound_split_All_birds.png",
+            "error_message": null,
+            "execution_time_ms": 11147,
+            "rationale": "Compound split: 'All birds' should match 'Allbirds'"
+          },
+          "score": "pass",
+          "score_reason": "Good compound split handling: 75 vs 79"
+        },
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "Men'sShoes",
+            "control_query": "Men's Shoes",
+            "status": "success",
+            "result_count": 70,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Men's Cruiser",
+                "price": "$105",
+                "url": "https://www.allbirds.com/products/mens-cruiser-medium-grey?_pos=1&_sid=13c3fe801&_ss=r"
+              },
+              {
+                "rank": 2,
+                "title": "Men's Golf Dasher",
+                "price": "$90",
+                "url": "https://www.allbirds.com/products/mens-golf-dashers?_pos=2&_sid=13c3fe801&_ss=r"
+              },
+              {
+                "rank": 3,
+                "title": "Men's Strider",
+                "price": "$130",
+                "url": "https://www.allbirds.com/products/mens-strider-medium-grey?_pos=3&_sid=13c3fe801&_ss=r"
+              },
+              {
+                "rank": 4,
+                "title": "Men's Wool Runner NZ",
+                "price": "$110",
+                "url": "https://www.allbirds.com/products/mens-wool-runner-nz?_pos=6&_sid=13c3fe801&_ss=r"
+              },
+              {
+                "rank": 5,
+                "title": "Men's Dasher NZ",
+                "price": "$140",
+                "url": "https://www.allbirds.com/products/mens-dasher-nz-medium-grey?_pos=7&_sid=13c3fe801&_ss=r"
+              },
+              {
+                "rank": 6,
+                "title": "Men's Wool Runner",
+                "price": "$77",
+                "url": "https://www.allbirds.com/products/mens-wool-runners?_pos=9&_sid=13c3fe801&_ss=r"
+              },
+              {
+                "rank": 7,
+                "title": "Men's Wool Cruiser Slip On",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-wool-cruiser-slip-on-natural-black-blizzard?_pos=10&_sid=13c3fe801&_ss=r"
+              },
+              {
+                "rank": 8,
+                "title": "Men's Tree Topper",
+                "price": "$69",
+                "url": "https://www.allbirds.com/products/mens-tree-toppers-natural-black-blizzard?_pos=11&_sid=13c3fe801&_ss=r"
+              },
+              {
+                "rank": 9,
+                "title": "Men's Trail Runners",
+                "price": "$145",
+                "url": "https://www.allbirds.com/products/mens-trail-runners-swt-natural-black-rugged-khaki?_pos=12&_sid=13c3fe801&_ss=r"
+              },
+              {
+                "rank": 10,
+                "title": "Men's Tree Runner NZ",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=14&_sid=13c3fe801&_ss=r"
+              }
+            ],
+            "control_count": 71,
+            "screenshot_path": "../scanner_output/final/www.allbirds.com/merged_words_Men_sShoes.png",
+            "error_message": null,
+            "execution_time_ms": 12494,
+            "rationale": "Merged words: 'Men'sShoes' should match 'Men's Shoes'"
+          },
+          "score": "pass",
+          "score_reason": "Good merged words handling: 70 vs 71"
+        }
+      ],
+      "summary": "2/2 passed"
+    },
+    {
+      "capability": "constraint_handling",
+      "score": "partial",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "constraint_query",
+            "query": "black Men's Shoes under 50",
+            "control_query": "Men's Shoes",
+            "status": "success",
+            "result_count": 61,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Men's Varsity",
+                "price": "$72",
+                "url": "https://www.allbirds.com/products/mens-varsity-natural-black?_pos=1&_sid=3b2ed7198&_ss=r"
+              },
+              {
+                "rank": 2,
+                "title": "Men's Cruiser",
+                "price": "$105",
+                "url": "https://www.allbirds.com/products/mens-cruiser-natural-black-blizzard?_pos=2&_sid=3b2ed7198&_ss=r"
+              },
+              {
+                "rank": 3,
+                "title": "Men's Tree Runner",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-tree-runners-jet-black?_pos=3&_sid=3b2ed7198&_ss=r"
+              },
+              {
+                "rank": 4,
+                "title": "Men's Dasher NZ",
+                "price": "$140",
+                "url": "https://www.allbirds.com/products/mens-dasher-nz-natural-black?_pos=4&_sid=3b2ed7198&_ss=r"
+              },
+              {
+                "rank": 5,
+                "title": "Men's Cruiser Slip On",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-cruiser-slip-on-natural-black?_pos=6&_sid=3b2ed7198&_ss=r"
+              },
+              {
+                "rank": 6,
+                "title": "Men's Tree Runner NZ",
+                "price": "$100",
+                "url": "https://www.allbirds.com/products/mens-tree-runner-nz-natural-black?_pos=7&_sid=3b2ed7198&_ss=r"
+              },
+              {
+                "rank": 7,
+                "title": "Men's Varsity Cruiser",
+                "price": "$115",
+                "url": "https://www.allbirds.com/products/mens-varsity-cruiser-natural-black?_pos=8&_sid=3b2ed7198&_ss=r"
+              },
+              {
+                "rank": 8,
+                "title": "Men's Wool Cruiser",
+                "price": "$105",
+                "url": "https://www.allbirds.com/products/mens-wool-cruiser-natural-black?_pos=9&_sid=3b2ed7198&_ss=r"
+              },
+              {
+                "rank": 9,
+                "title": "Men's Tree Topper",
+                "price": "$69",
+                "url": "https://www.allbirds.com/products/mens-tree-toppers-natural-black-blizzard?_pos=10&_sid=3b2ed7198&_ss=r"
+              },
+              {
+                "rank": 10,
+                "title": "Men's Golf Dasher",
+                "price": "$90",
+                "url": "https://www.allbirds.com/products/mens-golf-dashers?_pos=11&_sid=3b2ed7198&_ss=r"
+              }
+            ],
+            "control_count": 71,
+            "screenshot_path": "../scanner_output/final/www.allbirds.com/constraint_query_black_Men_s_Shoes_un.png",
+            "error_message": null,
+            "execution_time_ms": 10492,
+            "rationale": "Constraint query: 'black Men's Shoes under 50' should return relevant Men's Shoes"
+          },
+          "score": "partial",
+          "score_reason": "Results found (61) but could not verify constraint applied"
+        }
+      ],
+      "summary": "0/1 passed, 1 partial"
+    },
+    {
+      "capability": "zero_result_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "zero_result_check",
+            "query": "xyzqwk12345nonsense",
+            "control_query": null,
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/final/www.allbirds.com/zero_result_check_xyzqwk12345nonsense.png",
+            "error_message": "page says: 'Sorry, we couldn't find any '",
+            "execution_time_ms": 7433,
+            "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results"
+          },
+          "score": "pass",
+          "score_reason": "Correctly returned zero results for gibberish query"
+        }
+      ],
+      "summary": "1/1 passed"
+    }
+  ],
+  "overall_score": "partial",
+  "blocked": false,
+  "llm_cost_usd": 0.001226,
+  "execution_time_ms": 160516,
+  "error_message": null
+}

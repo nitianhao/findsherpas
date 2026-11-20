@@ -1,0 +1,1315 @@
+{
+  "site": {
+    "domain": "bergzeit.de",
+    "site_name": "Bergzeit",
+    "search_url_template": "https://www.bergzeit.de/search/?q={}",
+    "primary_language": "German",
+    "vertical": "outdoor",
+    "country": "DE"
+  },
+  "scanned_at": "2026-11-19T20:25:07.088424+00:00",
+  "probes": [
+    {
+      "probe": {
+        "probe_type": "control_query",
+        "query": "Bekleidung",
+        "control_query": null,
+        "status": "redirect",
+        "result_count": 21945,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Salewa Herren Brenta Jacke",
+            "price": "201,30 €",
+            "url": "https://www.bergzeit.de/p/salewa-herren-brenta-jacke/1080071/"
+          },
+          {
+            "rank": 2,
+            "title": "CMP Kinder Skihose",
+            "price": "40,64 €",
+            "url": "https://www.bergzeit.de/p/cmp-kinder-skihose/1024853/"
+          },
+          {
+            "rank": 3,
+            "title": "Salewa Damen Brenta Jacke",
+            "price": "182,70 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-brenta-jacke/1080072/"
+          },
+          {
+            "rank": 4,
+            "title": "Dynafit Herren Radical Rds Down Hoodie Jacke",
+            "price": "276,80 €",
+            "url": "https://www.bergzeit.de/p/dynafit-herren-radical-rds-down-hoodie-jacke/1152791/"
+          },
+          {
+            "rank": 5,
+            "title": "Bergzeit Basics Damen Meru Calais Hoodie",
+            "price": "33,97 €",
+            "url": "https://www.bergzeit.de/p/bergzeit-basics-damen-meru-calais-hoodie/1130298/"
+          },
+          {
+            "rank": 6,
+            "title": "Salewa Damen Pedroc 2 Dst Light Hose",
+            "price": "61,40 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-pedroc-2-dst-light-hose/1114824/"
+          },
+          {
+            "rank": 7,
+            "title": "Dynafit Damen Radical Rds Down Hoodie Jacke",
+            "price": "274,50 €",
+            "url": "https://www.bergzeit.de/p/dynafit-damen-radical-rds-down-hoodie-jacke/1152792/"
+          },
+          {
+            "rank": 8,
+            "title": "Grüezi Bag Damen Senseful DownWool Jacke",
+            "price": "188,20 €",
+            "url": "https://www.bergzeit.de/p/grueezi-bag-damen-senseful-downwool-jacke/1130322/"
+          },
+          {
+            "rank": 9,
+            "title": "CMP Damen Collective (of) Moving People Zip Hoodie Jacke",
+            "price": "159,80 €",
+            "url": "https://www.bergzeit.de/p/cmp-damen-collective-of-moving-people-zip-hoodie-jacke/1153004/"
+          },
+          {
+            "rank": 10,
+            "title": "Didriksons Damen Alicia L 3 Parka",
+            "price": "223,30 €",
+            "url": "https://www.bergzeit.de/p/didriksons-damen-alicia-l-3-parka/1157557/"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/control_query_Bekleidung.png",
+        "error_message": "search redirected to https://www.bergzeit.de/bekleidung/?bzsearch=Bekleidung",
+        "execution_time_ms": 8762,
+        "rationale": "Control query: 'Bekleidung' should return results"
+      },
+      "score": "pass",
+      "score_reason": "Control query returned 21945 results"
+    },
+    {
+      "probe": {
+        "probe_type": "exact_product_name",
+        "query": "Salewa Herren Brenta Jacke",
+        "control_query": null,
+        "status": "success",
+        "result_count": 1,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Salewa Herren Brenta Jacke",
+            "price": "201,30 €",
+            "url": "https://www.bergzeit.de/p/salewa-herren-brenta-jacke/1080071/"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/exact_product_name_Salewa_Herren_Brenta.png",
+        "error_message": null,
+        "execution_time_ms": 7001,
+        "rationale": "Testing exact match for product: Salewa Herren Brenta Jacke"
+      },
+      "score": "pass",
+      "score_reason": "Top result matches query (4/4 words)"
+    },
+    {
+      "probe": {
+        "probe_type": "category_term",
+        "query": "Bekleidung",
+        "control_query": null,
+        "status": "redirect",
+        "result_count": 21945,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Salewa Herren Brenta Jacke",
+            "price": "201,30 €",
+            "url": "https://www.bergzeit.de/p/salewa-herren-brenta-jacke/1080071/"
+          },
+          {
+            "rank": 2,
+            "title": "CMP Kinder Skihose",
+            "price": "40,64 €",
+            "url": "https://www.bergzeit.de/p/cmp-kinder-skihose/1024853/"
+          },
+          {
+            "rank": 3,
+            "title": "Salewa Damen Brenta Jacke",
+            "price": "182,70 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-brenta-jacke/1080072/"
+          },
+          {
+            "rank": 4,
+            "title": "Dynafit Herren Radical Rds Down Hoodie Jacke",
+            "price": "276,80 €",
+            "url": "https://www.bergzeit.de/p/dynafit-herren-radical-rds-down-hoodie-jacke/1152791/"
+          },
+          {
+            "rank": 5,
+            "title": "Bergzeit Basics Damen Meru Calais Hoodie",
+            "price": "33,97 €",
+            "url": "https://www.bergzeit.de/p/bergzeit-basics-damen-meru-calais-hoodie/1130298/"
+          },
+          {
+            "rank": 6,
+            "title": "Salewa Damen Pedroc 2 Dst Light Hose",
+            "price": "61,40 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-pedroc-2-dst-light-hose/1114824/"
+          },
+          {
+            "rank": 7,
+            "title": "Dynafit Damen Radical Rds Down Hoodie Jacke",
+            "price": "274,50 €",
+            "url": "https://www.bergzeit.de/p/dynafit-damen-radical-rds-down-hoodie-jacke/1152792/"
+          },
+          {
+            "rank": 8,
+            "title": "Grüezi Bag Damen Senseful DownWool Jacke",
+            "price": "188,20 €",
+            "url": "https://www.bergzeit.de/p/grueezi-bag-damen-senseful-downwool-jacke/1130322/"
+          },
+          {
+            "rank": 9,
+            "title": "CMP Damen Collective (of) Moving People Zip Hoodie Jacke",
+            "price": "159,80 €",
+            "url": "https://www.bergzeit.de/p/cmp-damen-collective-of-moving-people-zip-hoodie-jacke/1153004/"
+          },
+          {
+            "rank": 10,
+            "title": "Didriksons Damen Alicia L 3 Parka",
+            "price": "223,30 €",
+            "url": "https://www.bergzeit.de/p/didriksons-damen-alicia-l-3-parka/1157557/"
+          }
+        ],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/control_query_Bekleidung.png",
+        "error_message": "search redirected to https://www.bergzeit.de/bekleidung/?bzsearch=Bekleidung",
+        "execution_time_ms": 0,
+        "rationale": "Testing category search for: Bekleidung"
+      },
+      "score": "pass",
+      "score_reason": "Good result count (21945) for category search"
+    },
+    {
+      "probe": {
+        "probe_type": "typo",
+        "query": "Beklediung",
+        "control_query": "Bekleidung",
+        "status": "success",
+        "result_count": 22019,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Dynafit Damen Speed Sport BH",
+            "price": "59,95 €",
+            "url": "https://www.bergzeit.de/p/dynafit-damen-speed-sport-bh/1074244/"
+          },
+          {
+            "rank": 2,
+            "title": "Dynafit Damen TLT Touring Dynastretch Hose",
+            "price": "104,30 €",
+            "url": "https://www.bergzeit.de/p/dynafit-damen-tlt-touring-dynastretch-hose/1081808/"
+          },
+          {
+            "rank": 3,
+            "title": "Super.Natural Herren Bergzeit 140 Longsleeve",
+            "price": "49,95 €",
+            "url": "https://www.bergzeit.de/p/supernatural-herren-bergzeit-140-longsleeve/1085547/"
+          },
+          {
+            "rank": 4,
+            "title": "Super.Natural Damen Bergzeit 140 Longsleeve",
+            "price": "49,95 €",
+            "url": "https://www.bergzeit.de/p/supernatural-damen-bergzeit-140-longsleeve/1085551/"
+          },
+          {
+            "rank": 5,
+            "title": "Salewa Damen Lavaredo Hemp Hoodie Jacke",
+            "price": "74,80 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-lavaredo-hemp-hoodie-jacke/1100852/"
+          },
+          {
+            "rank": 6,
+            "title": "Vaude Comyou Poncho",
+            "price": "74,70 €",
+            "url": "https://www.bergzeit.de/p/vaude-comyou-poncho/1104742/"
+          },
+          {
+            "rank": 7,
+            "title": "Dynafit Herren Speed Softshell Jacke",
+            "price": "161,95 €",
+            "url": "https://www.bergzeit.de/p/dynafit-herren-speed-softshell-jacke/1106092/"
+          },
+          {
+            "rank": 8,
+            "title": "Ortovox Damen Fleece Light Zip Neck Longsleeve",
+            "price": "110,50 €",
+            "url": "https://www.bergzeit.de/p/ortovox-damen-fleece-light-zip-neck-longsleeve/1108558/"
+          },
+          {
+            "rank": 9,
+            "title": "Salewa Damen Pedroc Dst Light Weste",
+            "price": "68,20 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-pedroc-dst-light-weste/1114813/"
+          },
+          {
+            "rank": 10,
+            "title": "Salewa Damen Pedroc 4 Dst Hose",
+            "price": "84,20 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-pedroc-4-dst-hose/1114823/"
+          }
+        ],
+        "control_count": 21945,
+        "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/typo_Beklediung.png",
+        "error_message": null,
+        "execution_time_ms": 18218,
+        "rationale": "Typo tolerance: 'Beklediung' (should match 'Bekleidung')"
+      },
+      "score": "pass",
+      "score_reason": "Good typo tolerance: 22019 vs 21945 results"
+    },
+    {
+      "probe": {
+        "probe_type": "synonym",
+        "query": "Kapuzenpullover",
+        "control_query": "Hoodie",
+        "status": "success",
+        "result_count": 569,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Witeblaze Damen Maya Fleece Pullover",
+            "price": "33,47 €",
+            "url": "https://www.bergzeit.de/p/witeblaze-damen-maya-fleece-pullover/1141508/"
+          },
+          {
+            "rank": 2,
+            "title": "Dynafit Damen Traverse Thermal 1/2 Zip Pullover",
+            "price": "71,95 €",
+            "url": "https://www.bergzeit.de/p/dynafit-damen-traverse-thermal-12-zip-pullover/1145891/"
+          },
+          {
+            "rank": 3,
+            "title": "Dynafit Herren Traverse Thermal 1/2 Zip Pullover",
+            "price": "119,80 €",
+            "url": "https://www.bergzeit.de/p/dynafit-herren-traverse-thermal-12-zip-pullover/1145890/"
+          },
+          {
+            "rank": 4,
+            "title": "Rab Herren Microlighter Pullover Hoody Jacke",
+            "price": "168,50 €",
+            "url": "https://www.bergzeit.de/p/rab-herren-microlighter-pullover-hoody-jacke/1154140/"
+          },
+          {
+            "rank": 5,
+            "title": "Rab Damen Microlighter Pullover Hoody Jacke",
+            "price": "181,95 €",
+            "url": "https://www.bergzeit.de/p/rab-damen-microlighter-pullover-hoody-jacke/1154141/"
+          },
+          {
+            "rank": 6,
+            "title": "Fox Herren Ranger Wind Pullover Jacke",
+            "price": "95,80 €",
+            "url": "https://www.bergzeit.de/p/fox-herren-ranger-wind-pullover-jacke/1135518/"
+          },
+          {
+            "rank": 7,
+            "title": "Oakley Herren Relax 2.0 Pullover Hoodie",
+            "price": "59,95 €",
+            "url": "https://www.bergzeit.de/p/oakley-herren-relax-20-pullover-hoodie/1156009/"
+          },
+          {
+            "rank": 8,
+            "title": "Vaude Damen Cyclist All Year Pullover",
+            "price": "66,80 €",
+            "url": "https://www.bergzeit.de/p/vaude-damen-cyclist-all-year-pullover/1138289/"
+          },
+          {
+            "rank": 9,
+            "title": "Patagonia Herren Airshed Pro Pullover",
+            "price": "139,95 €",
+            "url": "https://www.bergzeit.de/p/patagonia-herren-airshed-pro-pullover/1123355/"
+          },
+          {
+            "rank": 10,
+            "title": "Patagonia Damen Pro Airshed Pullover",
+            "price": "139,95 €",
+            "url": "https://www.bergzeit.de/p/patagonia-damen-pro-airshed-pullover/1123354/"
+          }
+        ],
+        "control_count": 571,
+        "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/synonym_Kapuzenpullover.png",
+        "error_message": null,
+        "execution_time_ms": 8086,
+        "rationale": "Synonym test: 'Kapuzenpullover' should match like 'Hoodie'"
+      },
+      "score": "pass",
+      "score_reason": "Good synonym handling: 569 vs 571"
+    },
+    {
+      "probe": {
+        "probe_type": "diacritics",
+        "query": "Gruezi Bag Damen Senseful DownWool Jacke",
+        "control_query": "Grüezi Bag Damen Senseful DownWool Jacke",
+        "status": "success",
+        "result_count": 3,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Grüezi Bag Damen Senseful DownWool Jacke",
+            "price": "188,20 €",
+            "url": "https://www.bergzeit.de/p/grueezi-bag-damen-senseful-downwool-jacke/1130322/"
+          },
+          {
+            "rank": 2,
+            "title": "Grüezi Bag Senseful DownWool Jacke",
+            "price": "210,80 €",
+            "url": "https://www.bergzeit.de/p/grueezi-bag-senseful-downwool-jacke/1130323/"
+          },
+          {
+            "rank": 3,
+            "title": "Grüezi Bag Damen Senseful DownWool 2.0 Jacke",
+            "price": "259,95 €",
+            "url": "https://www.bergzeit.de/p/grueezi-bag-damen-senseful-downwool-20-jacke/1160726/"
+          }
+        ],
+        "control_count": 3,
+        "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/diacritics_Gruezi_Bag_Damen_Sen.png",
+        "error_message": null,
+        "execution_time_ms": 7916,
+        "rationale": "Diacritics: 'Gruezi Bag Damen Senseful DownWool Jacke' should match 'Grüezi Bag Damen Senseful DownWool Jacke'"
+      },
+      "score": "pass",
+      "score_reason": "Good diacritics handling: 3 vs 3"
+    },
+    {
+      "probe": {
+        "probe_type": "compound_split",
+        "query": "Wander Schuhe",
+        "control_query": "Wanderschuhe",
+        "status": "redirect",
+        "result_count": 1165,
+        "results": [
+          {
+            "rank": 1,
+            "title": "CMP Kinder Rigel MID WP Schuhe",
+            "price": "58,20 €",
+            "url": "https://www.bergzeit.de/p/cmp-kinder-rigel-mid-wp-schuhe/3006726/"
+          },
+          {
+            "rank": 2,
+            "title": "CMP Damen Rigel MID WP Schuhe",
+            "price": "78,60 €",
+            "url": "https://www.bergzeit.de/p/cmp-damen-rigel-mid-wp-schuhe/3006725/"
+          },
+          {
+            "rank": 3,
+            "title": "Lowa Damen Renegade Evo GTX Mid Schuhe",
+            "price": "192,50 €",
+            "url": "https://www.bergzeit.de/p/lowa-damen-renegade-evo-gtx-mid-schuhe/3012701/"
+          },
+          {
+            "rank": 4,
+            "title": "Lowa Herren Renegade Evo GTX Mid Schuhe",
+            "price": "187,40 €",
+            "url": "https://www.bergzeit.de/p/lowa-herren-renegade-evo-gtx-mid-schuhe/3012696/"
+          },
+          {
+            "rank": 5,
+            "title": "adidas Terrex Herren Skychaser AX5 GTX Schuhe",
+            "price": "83,40 €",
+            "url": "https://www.bergzeit.de/p/adidas-terrex-herren-skychaser-ax5-gtx-schuhe/3014506/"
+          },
+          {
+            "rank": 6,
+            "title": "Salewa Damen Puez 2 Mid PTX Schuhe",
+            "price": "155,40 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-puez-2-mid-ptx-schuhe/3014427/"
+          },
+          {
+            "rank": 7,
+            "title": "Salomon Damen X Ultra 360 GTX Schuhe",
+            "price": "121,95 €",
+            "url": "https://www.bergzeit.de/p/salomon-damen-x-ultra-360-gtx-schuhe/3013224/"
+          },
+          {
+            "rank": 8,
+            "title": "On Damen Cloudrock Low WP Schuhe",
+            "price": "154,20 €",
+            "url": "https://www.bergzeit.de/p/on-damen-cloudrock-low-wp-schuhe/3014091/"
+          },
+          {
+            "rank": 9,
+            "title": "Salewa Damen Pedroc 2 Max Schuhe",
+            "price": "118,60 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-pedroc-2-max-schuhe/3015359/"
+          },
+          {
+            "rank": 10,
+            "title": "Salewa Herren Wildfire 2 GTX Schuhe",
+            "price": "145,70 €",
+            "url": "https://www.bergzeit.de/p/salewa-herren-wildfire-2-gtx-schuhe/3011002/"
+          }
+        ],
+        "control_count": 1165,
+        "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/compound_split_Wander_Schuhe.png",
+        "error_message": "search redirected to https://www.bergzeit.de/schuhe/wanderschuhe-trekkingschuhe/?bzsearch=Wander%20Schuhe",
+        "execution_time_ms": 7129,
+        "rationale": "Compound split: 'Wander Schuhe' should match 'Wanderschuhe'"
+      },
+      "score": "pass",
+      "score_reason": "Good compound split handling: 1165 vs 1165"
+    },
+    {
+      "probe": {
+        "probe_type": "merged_words",
+        "query": "Wanderschuhe&Trekkingschuhe",
+        "control_query": "Wanderschuhe & Trekkingschuhe",
+        "status": "success",
+        "result_count": 1301,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Salewa Damen MTN Trainer Mid GTX Schuhe",
+            "price": "202,70 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-mtn-trainer-mid-gtx-schuhe/3003651/"
+          },
+          {
+            "rank": 2,
+            "title": "Meindl Damen Tahoma Mid GTX Schuhe",
+            "price": "167,40 €",
+            "url": "https://www.bergzeit.de/p/meindl-damen-tahoma-mid-gtx-schuhe/3015613/"
+          },
+          {
+            "rank": 3,
+            "title": "Meindl Damen Antelao GTX Schuhe",
+            "price": "248,80 €",
+            "url": "https://www.bergzeit.de/p/meindl-damen-antelao-gtx-schuhe/3003040/"
+          },
+          {
+            "rank": 4,
+            "title": "Meindl Damen Trento GTX Schuhe",
+            "price": "238,60 €",
+            "url": "https://www.bergzeit.de/p/meindl-damen-trento-gtx-schuhe/3015628/"
+          },
+          {
+            "rank": 5,
+            "title": "Meindl Herren Antelao GTX Schuhe",
+            "price": "241,50 €",
+            "url": "https://www.bergzeit.de/p/meindl-herren-antelao-gtx-schuhe/3003041/"
+          },
+          {
+            "rank": 6,
+            "title": "Salewa Herren Alp Trainer 2 Mid GTX Schuhe",
+            "price": "191,80 €",
+            "url": "https://www.bergzeit.de/p/salewa-herren-alp-trainer-2-mid-gtx-schuhe/3008994/"
+          },
+          {
+            "rank": 7,
+            "title": "Salewa Damen Alp Trainer 2 Mid GTX Schuhe",
+            "price": "201,40 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-alp-trainer-2-mid-gtx-schuhe/3008995/"
+          },
+          {
+            "rank": 8,
+            "title": "Salewa Damen MTN Trainer 2 Mid GTX Schuhe",
+            "price": "243,50 €",
+            "url": "https://www.bergzeit.de/p/salewa-damen-mtn-trainer-2-mid-gtx-schuhe/3010104/"
+          },
+          {
+            "rank": 9,
+            "title": "Lowa Herren Renegade Evo GTX Mid Schuhe",
+            "price": "187,40 €",
+            "url": "https://www.bergzeit.de/p/lowa-herren-renegade-evo-gtx-mid-schuhe/3012696/"
+          },
+          {
+            "rank": 10,
+            "title": "Meindl Damen Baltimore GTX Schuhe",
+            "price": "191,40 €",
+            "url": "https://www.bergzeit.de/p/meindl-damen-baltimore-gtx-schuhe/3010418/"
+          }
+        ],
+        "control_count": 1301,
+        "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/merged_words_Wanderschuhe_Trekkin.png",
+        "error_message": null,
+        "execution_time_ms": 10421,
+        "rationale": "Merged words: 'Wanderschuhe&Trekkingschuhe' should match 'Wanderschuhe & Trekkingschuhe'"
+      },
+      "score": "pass",
+      "score_reason": "Good merged words handling: 1301 vs 1301"
+    },
+    {
+      "probe": {
+        "probe_type": "constraint_query",
+        "query": "schwarz Bekleidung unter 50 euro",
+        "control_query": "Bekleidung",
+        "status": "success",
+        "result_count": 734,
+        "results": [
+          {
+            "rank": 1,
+            "title": "Vaude Herren Kuro II Bib kurz",
+            "price": "136,70 €",
+            "url": "https://www.bergzeit.de/p/vaude-herren-kuro-ii-bib-kurz/1122859/"
+          },
+          {
+            "rank": 2,
+            "title": "Vaude Damen Kuro II Radtrikot",
+            "price": "54,95 €",
+            "url": "https://www.bergzeit.de/p/vaude-damen-kuro-ii-radtrikot/1122827/"
+          },
+          {
+            "rank": 3,
+            "title": "Vaude Damen Kuro II Radhose kurz",
+            "price": "43,76 €",
+            "url": "https://www.bergzeit.de/p/vaude-damen-kuro-ii-radhose-kurz/1122828/"
+          },
+          {
+            "rank": 4,
+            "title": "Vaude Damen Kuro II Radhose kurz",
+            "price": "90,70 €",
+            "url": "https://www.bergzeit.de/p/vaude-damen-kuro-ii-radhose-kurz/1122846/"
+          },
+          {
+            "rank": 5,
+            "title": "Vaude Herren Kuro FZ II Radtrikot",
+            "price": "54,95 €",
+            "url": "https://www.bergzeit.de/p/vaude-herren-kuro-fz-ii-radtrikot/1122852/"
+          },
+          {
+            "rank": 6,
+            "title": "Vaude Herren Kuro Hz Trikot",
+            "price": "54,95 €",
+            "url": "https://www.bergzeit.de/p/vaude-herren-kuro-hz-trikot/1144985/"
+          },
+          {
+            "rank": 7,
+            "title": "Vaude Herren Kuro Essential Warm Radhose lang",
+            "price": "117,60 €",
+            "url": "https://www.bergzeit.de/p/vaude-herren-kuro-essential-warm-radhose-lang/1127096/"
+          },
+          {
+            "rank": 8,
+            "title": "Vaude Damen Kuro Pro Rain Jacke",
+            "price": "140,95 €",
+            "url": "https://www.bergzeit.de/p/vaude-damen-kuro-pro-rain-jacke/1144963/"
+          },
+          {
+            "rank": 9,
+            "title": "Vaude Herren Kuro Pro Rain Hose",
+            "price": "118,80 €",
+            "url": "https://www.bergzeit.de/p/vaude-herren-kuro-pro-rain-hose/1144995/"
+          },
+          {
+            "rank": 10,
+            "title": "Vaude Damen Kuro Half Zip Radtrikot",
+            "price": "66,95 €",
+            "url": "https://www.bergzeit.de/p/vaude-damen-kuro-half-zip-radtrikot/1127051/"
+          }
+        ],
+        "control_count": 21945,
+        "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/constraint_query_schwarz_Bekleidung_u.png",
+        "error_message": null,
+        "execution_time_ms": 14957,
+        "rationale": "Constraint query: 'schwarz Bekleidung unter 50 euro' should return relevant Bekleidung"
+      },
+      "score": "partial",
+      "score_reason": "Results found (734) but could not verify constraint applied"
+    },
+    {
+      "probe": {
+        "probe_type": "zero_result_check",
+        "query": "xyzqwk12345nonsense",
+        "control_query": null,
+        "status": "success",
+        "result_count": 0,
+        "results": [],
+        "control_count": null,
+        "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/zero_result_check_xyzqwk12345nonsense.png",
+        "error_message": "page says: 'ergab leider keine Treffer'",
+        "execution_time_ms": 5800,
+        "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results"
+      },
+      "score": "pass",
+      "score_reason": "Correctly returned zero results for gibberish query"
+    }
+  ],
+  "capabilities": [
+    {
+      "capability": "basic_retrieval",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "control_query",
+            "query": "Bekleidung",
+            "control_query": null,
+            "status": "redirect",
+            "result_count": 21945,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Salewa Herren Brenta Jacke",
+                "price": "201,30 €",
+                "url": "https://www.bergzeit.de/p/salewa-herren-brenta-jacke/1080071/"
+              },
+              {
+                "rank": 2,
+                "title": "CMP Kinder Skihose",
+                "price": "40,64 €",
+                "url": "https://www.bergzeit.de/p/cmp-kinder-skihose/1024853/"
+              },
+              {
+                "rank": 3,
+                "title": "Salewa Damen Brenta Jacke",
+                "price": "182,70 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-brenta-jacke/1080072/"
+              },
+              {
+                "rank": 4,
+                "title": "Dynafit Herren Radical Rds Down Hoodie Jacke",
+                "price": "276,80 €",
+                "url": "https://www.bergzeit.de/p/dynafit-herren-radical-rds-down-hoodie-jacke/1152791/"
+              },
+              {
+                "rank": 5,
+                "title": "Bergzeit Basics Damen Meru Calais Hoodie",
+                "price": "33,97 €",
+                "url": "https://www.bergzeit.de/p/bergzeit-basics-damen-meru-calais-hoodie/1130298/"
+              },
+              {
+                "rank": 6,
+                "title": "Salewa Damen Pedroc 2 Dst Light Hose",
+                "price": "61,40 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-pedroc-2-dst-light-hose/1114824/"
+              },
+              {
+                "rank": 7,
+                "title": "Dynafit Damen Radical Rds Down Hoodie Jacke",
+                "price": "274,50 €",
+                "url": "https://www.bergzeit.de/p/dynafit-damen-radical-rds-down-hoodie-jacke/1152792/"
+              },
+              {
+                "rank": 8,
+                "title": "Grüezi Bag Damen Senseful DownWool Jacke",
+                "price": "188,20 €",
+                "url": "https://www.bergzeit.de/p/grueezi-bag-damen-senseful-downwool-jacke/1130322/"
+              },
+              {
+                "rank": 9,
+                "title": "CMP Damen Collective (of) Moving People Zip Hoodie Jacke",
+                "price": "159,80 €",
+                "url": "https://www.bergzeit.de/p/cmp-damen-collective-of-moving-people-zip-hoodie-jacke/1153004/"
+              },
+              {
+                "rank": 10,
+                "title": "Didriksons Damen Alicia L 3 Parka",
+                "price": "223,30 €",
+                "url": "https://www.bergzeit.de/p/didriksons-damen-alicia-l-3-parka/1157557/"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/control_query_Bekleidung.png",
+            "error_message": "search redirected to https://www.bergzeit.de/bekleidung/?bzsearch=Bekleidung",
+            "execution_time_ms": 8762,
+            "rationale": "Control query: 'Bekleidung' should return results"
+          },
+          "score": "pass",
+          "score_reason": "Control query returned 21945 results"
+        },
+        {
+          "probe": {
+            "probe_type": "exact_product_name",
+            "query": "Salewa Herren Brenta Jacke",
+            "control_query": null,
+            "status": "success",
+            "result_count": 1,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Salewa Herren Brenta Jacke",
+                "price": "201,30 €",
+                "url": "https://www.bergzeit.de/p/salewa-herren-brenta-jacke/1080071/"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/exact_product_name_Salewa_Herren_Brenta.png",
+            "error_message": null,
+            "execution_time_ms": 7001,
+            "rationale": "Testing exact match for product: Salewa Herren Brenta Jacke"
+          },
+          "score": "pass",
+          "score_reason": "Top result matches query (4/4 words)"
+        },
+        {
+          "probe": {
+            "probe_type": "category_term",
+            "query": "Bekleidung",
+            "control_query": null,
+            "status": "redirect",
+            "result_count": 21945,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Salewa Herren Brenta Jacke",
+                "price": "201,30 €",
+                "url": "https://www.bergzeit.de/p/salewa-herren-brenta-jacke/1080071/"
+              },
+              {
+                "rank": 2,
+                "title": "CMP Kinder Skihose",
+                "price": "40,64 €",
+                "url": "https://www.bergzeit.de/p/cmp-kinder-skihose/1024853/"
+              },
+              {
+                "rank": 3,
+                "title": "Salewa Damen Brenta Jacke",
+                "price": "182,70 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-brenta-jacke/1080072/"
+              },
+              {
+                "rank": 4,
+                "title": "Dynafit Herren Radical Rds Down Hoodie Jacke",
+                "price": "276,80 €",
+                "url": "https://www.bergzeit.de/p/dynafit-herren-radical-rds-down-hoodie-jacke/1152791/"
+              },
+              {
+                "rank": 5,
+                "title": "Bergzeit Basics Damen Meru Calais Hoodie",
+                "price": "33,97 €",
+                "url": "https://www.bergzeit.de/p/bergzeit-basics-damen-meru-calais-hoodie/1130298/"
+              },
+              {
+                "rank": 6,
+                "title": "Salewa Damen Pedroc 2 Dst Light Hose",
+                "price": "61,40 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-pedroc-2-dst-light-hose/1114824/"
+              },
+              {
+                "rank": 7,
+                "title": "Dynafit Damen Radical Rds Down Hoodie Jacke",
+                "price": "274,50 €",
+                "url": "https://www.bergzeit.de/p/dynafit-damen-radical-rds-down-hoodie-jacke/1152792/"
+              },
+              {
+                "rank": 8,
+                "title": "Grüezi Bag Damen Senseful DownWool Jacke",
+                "price": "188,20 €",
+                "url": "https://www.bergzeit.de/p/grueezi-bag-damen-senseful-downwool-jacke/1130322/"
+              },
+              {
+                "rank": 9,
+                "title": "CMP Damen Collective (of) Moving People Zip Hoodie Jacke",
+                "price": "159,80 €",
+                "url": "https://www.bergzeit.de/p/cmp-damen-collective-of-moving-people-zip-hoodie-jacke/1153004/"
+              },
+              {
+                "rank": 10,
+                "title": "Didriksons Damen Alicia L 3 Parka",
+                "price": "223,30 €",
+                "url": "https://www.bergzeit.de/p/didriksons-damen-alicia-l-3-parka/1157557/"
+              }
+            ],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/control_query_Bekleidung.png",
+            "error_message": "search redirected to https://www.bergzeit.de/bekleidung/?bzsearch=Bekleidung",
+            "execution_time_ms": 0,
+            "rationale": "Testing category search for: Bekleidung"
+          },
+          "score": "pass",
+          "score_reason": "Good result count (21945) for category search"
+        }
+      ],
+      "summary": "3/3 passed"
+    },
+    {
+      "capability": "typo_tolerance",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "typo",
+            "query": "Beklediung",
+            "control_query": "Bekleidung",
+            "status": "success",
+            "result_count": 22019,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Dynafit Damen Speed Sport BH",
+                "price": "59,95 €",
+                "url": "https://www.bergzeit.de/p/dynafit-damen-speed-sport-bh/1074244/"
+              },
+              {
+                "rank": 2,
+                "title": "Dynafit Damen TLT Touring Dynastretch Hose",
+                "price": "104,30 €",
+                "url": "https://www.bergzeit.de/p/dynafit-damen-tlt-touring-dynastretch-hose/1081808/"
+              },
+              {
+                "rank": 3,
+                "title": "Super.Natural Herren Bergzeit 140 Longsleeve",
+                "price": "49,95 €",
+                "url": "https://www.bergzeit.de/p/supernatural-herren-bergzeit-140-longsleeve/1085547/"
+              },
+              {
+                "rank": 4,
+                "title": "Super.Natural Damen Bergzeit 140 Longsleeve",
+                "price": "49,95 €",
+                "url": "https://www.bergzeit.de/p/supernatural-damen-bergzeit-140-longsleeve/1085551/"
+              },
+              {
+                "rank": 5,
+                "title": "Salewa Damen Lavaredo Hemp Hoodie Jacke",
+                "price": "74,80 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-lavaredo-hemp-hoodie-jacke/1100852/"
+              },
+              {
+                "rank": 6,
+                "title": "Vaude Comyou Poncho",
+                "price": "74,70 €",
+                "url": "https://www.bergzeit.de/p/vaude-comyou-poncho/1104742/"
+              },
+              {
+                "rank": 7,
+                "title": "Dynafit Herren Speed Softshell Jacke",
+                "price": "161,95 €",
+                "url": "https://www.bergzeit.de/p/dynafit-herren-speed-softshell-jacke/1106092/"
+              },
+              {
+                "rank": 8,
+                "title": "Ortovox Damen Fleece Light Zip Neck Longsleeve",
+                "price": "110,50 €",
+                "url": "https://www.bergzeit.de/p/ortovox-damen-fleece-light-zip-neck-longsleeve/1108558/"
+              },
+              {
+                "rank": 9,
+                "title": "Salewa Damen Pedroc Dst Light Weste",
+                "price": "68,20 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-pedroc-dst-light-weste/1114813/"
+              },
+              {
+                "rank": 10,
+                "title": "Salewa Damen Pedroc 4 Dst Hose",
+                "price": "84,20 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-pedroc-4-dst-hose/1114823/"
+              }
+            ],
+            "control_count": 21945,
+            "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/typo_Beklediung.png",
+            "error_message": null,
+            "execution_time_ms": 18218,
+            "rationale": "Typo tolerance: 'Beklediung' (should match 'Bekleidung')"
+          },
+          "score": "pass",
+          "score_reason": "Good typo tolerance: 22019 vs 21945 results"
+        }
+      ],
+      "summary": "1/1 passed"
+    },
+    {
+      "capability": "language_understanding",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "synonym",
+            "query": "Kapuzenpullover",
+            "control_query": "Hoodie",
+            "status": "success",
+            "result_count": 569,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Witeblaze Damen Maya Fleece Pullover",
+                "price": "33,47 €",
+                "url": "https://www.bergzeit.de/p/witeblaze-damen-maya-fleece-pullover/1141508/"
+              },
+              {
+                "rank": 2,
+                "title": "Dynafit Damen Traverse Thermal 1/2 Zip Pullover",
+                "price": "71,95 €",
+                "url": "https://www.bergzeit.de/p/dynafit-damen-traverse-thermal-12-zip-pullover/1145891/"
+              },
+              {
+                "rank": 3,
+                "title": "Dynafit Herren Traverse Thermal 1/2 Zip Pullover",
+                "price": "119,80 €",
+                "url": "https://www.bergzeit.de/p/dynafit-herren-traverse-thermal-12-zip-pullover/1145890/"
+              },
+              {
+                "rank": 4,
+                "title": "Rab Herren Microlighter Pullover Hoody Jacke",
+                "price": "168,50 €",
+                "url": "https://www.bergzeit.de/p/rab-herren-microlighter-pullover-hoody-jacke/1154140/"
+              },
+              {
+                "rank": 5,
+                "title": "Rab Damen Microlighter Pullover Hoody Jacke",
+                "price": "181,95 €",
+                "url": "https://www.bergzeit.de/p/rab-damen-microlighter-pullover-hoody-jacke/1154141/"
+              },
+              {
+                "rank": 6,
+                "title": "Fox Herren Ranger Wind Pullover Jacke",
+                "price": "95,80 €",
+                "url": "https://www.bergzeit.de/p/fox-herren-ranger-wind-pullover-jacke/1135518/"
+              },
+              {
+                "rank": 7,
+                "title": "Oakley Herren Relax 2.0 Pullover Hoodie",
+                "price": "59,95 €",
+                "url": "https://www.bergzeit.de/p/oakley-herren-relax-20-pullover-hoodie/1156009/"
+              },
+              {
+                "rank": 8,
+                "title": "Vaude Damen Cyclist All Year Pullover",
+                "price": "66,80 €",
+                "url": "https://www.bergzeit.de/p/vaude-damen-cyclist-all-year-pullover/1138289/"
+              },
+              {
+                "rank": 9,
+                "title": "Patagonia Herren Airshed Pro Pullover",
+                "price": "139,95 €",
+                "url": "https://www.bergzeit.de/p/patagonia-herren-airshed-pro-pullover/1123355/"
+              },
+              {
+                "rank": 10,
+                "title": "Patagonia Damen Pro Airshed Pullover",
+                "price": "139,95 €",
+                "url": "https://www.bergzeit.de/p/patagonia-damen-pro-airshed-pullover/1123354/"
+              }
+            ],
+            "control_count": 571,
+            "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/synonym_Kapuzenpullover.png",
+            "error_message": null,
+            "execution_time_ms": 8086,
+            "rationale": "Synonym test: 'Kapuzenpullover' should match like 'Hoodie'"
+          },
+          "score": "pass",
+          "score_reason": "Good synonym handling: 569 vs 571"
+        }
+      ],
+      "summary": "1/1 passed"
+    },
+    {
+      "capability": "locale_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "diacritics",
+            "query": "Gruezi Bag Damen Senseful DownWool Jacke",
+            "control_query": "Grüezi Bag Damen Senseful DownWool Jacke",
+            "status": "success",
+            "result_count": 3,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Grüezi Bag Damen Senseful DownWool Jacke",
+                "price": "188,20 €",
+                "url": "https://www.bergzeit.de/p/grueezi-bag-damen-senseful-downwool-jacke/1130322/"
+              },
+              {
+                "rank": 2,
+                "title": "Grüezi Bag Senseful DownWool Jacke",
+                "price": "210,80 €",
+                "url": "https://www.bergzeit.de/p/grueezi-bag-senseful-downwool-jacke/1130323/"
+              },
+              {
+                "rank": 3,
+                "title": "Grüezi Bag Damen Senseful DownWool 2.0 Jacke",
+                "price": "259,95 €",
+                "url": "https://www.bergzeit.de/p/grueezi-bag-damen-senseful-downwool-20-jacke/1160726/"
+              }
+            ],
+            "control_count": 3,
+            "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/diacritics_Gruezi_Bag_Damen_Sen.png",
+            "error_message": null,
+            "execution_time_ms": 7916,
+            "rationale": "Diacritics: 'Gruezi Bag Damen Senseful DownWool Jacke' should match 'Grüezi Bag Damen Senseful DownWool Jacke'"
+          },
+          "score": "pass",
+          "score_reason": "Good diacritics handling: 3 vs 3"
+        }
+      ],
+      "summary": "1/1 passed"
+    },
+    {
+      "capability": "compound_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "compound_split",
+            "query": "Wander Schuhe",
+            "control_query": "Wanderschuhe",
+            "status": "redirect",
+            "result_count": 1165,
+            "results": [
+              {
+                "rank": 1,
+                "title": "CMP Kinder Rigel MID WP Schuhe",
+                "price": "58,20 €",
+                "url": "https://www.bergzeit.de/p/cmp-kinder-rigel-mid-wp-schuhe/3006726/"
+              },
+              {
+                "rank": 2,
+                "title": "CMP Damen Rigel MID WP Schuhe",
+                "price": "78,60 €",
+                "url": "https://www.bergzeit.de/p/cmp-damen-rigel-mid-wp-schuhe/3006725/"
+              },
+              {
+                "rank": 3,
+                "title": "Lowa Damen Renegade Evo GTX Mid Schuhe",
+                "price": "192,50 €",
+                "url": "https://www.bergzeit.de/p/lowa-damen-renegade-evo-gtx-mid-schuhe/3012701/"
+              },
+              {
+                "rank": 4,
+                "title": "Lowa Herren Renegade Evo GTX Mid Schuhe",
+                "price": "187,40 €",
+                "url": "https://www.bergzeit.de/p/lowa-herren-renegade-evo-gtx-mid-schuhe/3012696/"
+              },
+              {
+                "rank": 5,
+                "title": "adidas Terrex Herren Skychaser AX5 GTX Schuhe",
+                "price": "83,40 €",
+                "url": "https://www.bergzeit.de/p/adidas-terrex-herren-skychaser-ax5-gtx-schuhe/3014506/"
+              },
+              {
+                "rank": 6,
+                "title": "Salewa Damen Puez 2 Mid PTX Schuhe",
+                "price": "155,40 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-puez-2-mid-ptx-schuhe/3014427/"
+              },
+              {
+                "rank": 7,
+                "title": "Salomon Damen X Ultra 360 GTX Schuhe",
+                "price": "121,95 €",
+                "url": "https://www.bergzeit.de/p/salomon-damen-x-ultra-360-gtx-schuhe/3013224/"
+              },
+              {
+                "rank": 8,
+                "title": "On Damen Cloudrock Low WP Schuhe",
+                "price": "154,20 €",
+                "url": "https://www.bergzeit.de/p/on-damen-cloudrock-low-wp-schuhe/3014091/"
+              },
+              {
+                "rank": 9,
+                "title": "Salewa Damen Pedroc 2 Max Schuhe",
+                "price": "118,60 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-pedroc-2-max-schuhe/3015359/"
+              },
+              {
+                "rank": 10,
+                "title": "Salewa Herren Wildfire 2 GTX Schuhe",
+                "price": "145,70 €",
+                "url": "https://www.bergzeit.de/p/salewa-herren-wildfire-2-gtx-schuhe/3011002/"
+              }
+            ],
+            "control_count": 1165,
+            "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/compound_split_Wander_Schuhe.png",
+            "error_message": "search redirected to https://www.bergzeit.de/schuhe/wanderschuhe-trekkingschuhe/?bzsearch=Wander%20Schuhe",
+            "execution_time_ms": 7129,
+            "rationale": "Compound split: 'Wander Schuhe' should match 'Wanderschuhe'"
+          },
+          "score": "pass",
+          "score_reason": "Good compound split handling: 1165 vs 1165"
+        },
+        {
+          "probe": {
+            "probe_type": "merged_words",
+            "query": "Wanderschuhe&Trekkingschuhe",
+            "control_query": "Wanderschuhe & Trekkingschuhe",
+            "status": "success",
+            "result_count": 1301,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Salewa Damen MTN Trainer Mid GTX Schuhe",
+                "price": "202,70 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-mtn-trainer-mid-gtx-schuhe/3003651/"
+              },
+              {
+                "rank": 2,
+                "title": "Meindl Damen Tahoma Mid GTX Schuhe",
+                "price": "167,40 €",
+                "url": "https://www.bergzeit.de/p/meindl-damen-tahoma-mid-gtx-schuhe/3015613/"
+              },
+              {
+                "rank": 3,
+                "title": "Meindl Damen Antelao GTX Schuhe",
+                "price": "248,80 €",
+                "url": "https://www.bergzeit.de/p/meindl-damen-antelao-gtx-schuhe/3003040/"
+              },
+              {
+                "rank": 4,
+                "title": "Meindl Damen Trento GTX Schuhe",
+                "price": "238,60 €",
+                "url": "https://www.bergzeit.de/p/meindl-damen-trento-gtx-schuhe/3015628/"
+              },
+              {
+                "rank": 5,
+                "title": "Meindl Herren Antelao GTX Schuhe",
+                "price": "241,50 €",
+                "url": "https://www.bergzeit.de/p/meindl-herren-antelao-gtx-schuhe/3003041/"
+              },
+              {
+                "rank": 6,
+                "title": "Salewa Herren Alp Trainer 2 Mid GTX Schuhe",
+                "price": "191,80 €",
+                "url": "https://www.bergzeit.de/p/salewa-herren-alp-trainer-2-mid-gtx-schuhe/3008994/"
+              },
+              {
+                "rank": 7,
+                "title": "Salewa Damen Alp Trainer 2 Mid GTX Schuhe",
+                "price": "201,40 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-alp-trainer-2-mid-gtx-schuhe/3008995/"
+              },
+              {
+                "rank": 8,
+                "title": "Salewa Damen MTN Trainer 2 Mid GTX Schuhe",
+                "price": "243,50 €",
+                "url": "https://www.bergzeit.de/p/salewa-damen-mtn-trainer-2-mid-gtx-schuhe/3010104/"
+              },
+              {
+                "rank": 9,
+                "title": "Lowa Herren Renegade Evo GTX Mid Schuhe",
+                "price": "187,40 €",
+                "url": "https://www.bergzeit.de/p/lowa-herren-renegade-evo-gtx-mid-schuhe/3012696/"
+              },
+              {
+                "rank": 10,
+                "title": "Meindl Damen Baltimore GTX Schuhe",
+                "price": "191,40 €",
+                "url": "https://www.bergzeit.de/p/meindl-damen-baltimore-gtx-schuhe/3010418/"
+              }
+            ],
+            "control_count": 1301,
+            "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/merged_words_Wanderschuhe_Trekkin.png",
+            "error_message": null,
+            "execution_time_ms": 10421,
+            "rationale": "Merged words: 'Wanderschuhe&Trekkingschuhe' should match 'Wanderschuhe & Trekkingschuhe'"
+          },
+          "score": "pass",
+          "score_reason": "Good merged words handling: 1301 vs 1301"
+        }
+      ],
+      "summary": "2/2 passed"
+    },
+    {
+      "capability": "constraint_handling",
+      "score": "partial",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "constraint_query",
+            "query": "schwarz Bekleidung unter 50 euro",
+            "control_query": "Bekleidung",
+            "status": "success",
+            "result_count": 734,
+            "results": [
+              {
+                "rank": 1,
+                "title": "Vaude Herren Kuro II Bib kurz",
+                "price": "136,70 €",
+                "url": "https://www.bergzeit.de/p/vaude-herren-kuro-ii-bib-kurz/1122859/"
+              },
+              {
+                "rank": 2,
+                "title": "Vaude Damen Kuro II Radtrikot",
+                "price": "54,95 €",
+                "url": "https://www.bergzeit.de/p/vaude-damen-kuro-ii-radtrikot/1122827/"
+              },
+              {
+                "rank": 3,
+                "title": "Vaude Damen Kuro II Radhose kurz",
+                "price": "43,76 €",
+                "url": "https://www.bergzeit.de/p/vaude-damen-kuro-ii-radhose-kurz/1122828/"
+              },
+              {
+                "rank": 4,
+                "title": "Vaude Damen Kuro II Radhose kurz",
+                "price": "90,70 €",
+                "url": "https://www.bergzeit.de/p/vaude-damen-kuro-ii-radhose-kurz/1122846/"
+              },
+              {
+                "rank": 5,
+                "title": "Vaude Herren Kuro FZ II Radtrikot",
+                "price": "54,95 €",
+                "url": "https://www.bergzeit.de/p/vaude-herren-kuro-fz-ii-radtrikot/1122852/"
+              },
+              {
+                "rank": 6,
+                "title": "Vaude Herren Kuro Hz Trikot",
+                "price": "54,95 €",
+                "url": "https://www.bergzeit.de/p/vaude-herren-kuro-hz-trikot/1144985/"
+              },
+              {
+                "rank": 7,
+                "title": "Vaude Herren Kuro Essential Warm Radhose lang",
+                "price": "117,60 €",
+                "url": "https://www.bergzeit.de/p/vaude-herren-kuro-essential-warm-radhose-lang/1127096/"
+              },
+              {
+                "rank": 8,
+                "title": "Vaude Damen Kuro Pro Rain Jacke",
+                "price": "140,95 €",
+                "url": "https://www.bergzeit.de/p/vaude-damen-kuro-pro-rain-jacke/1144963/"
+              },
+              {
+                "rank": 9,
+                "title": "Vaude Herren Kuro Pro Rain Hose",
+                "price": "118,80 €",
+                "url": "https://www.bergzeit.de/p/vaude-herren-kuro-pro-rain-hose/1144995/"
+              },
+              {
+                "rank": 10,
+                "title": "Vaude Damen Kuro Half Zip Radtrikot",
+                "price": "66,95 €",
+                "url": "https://www.bergzeit.de/p/vaude-damen-kuro-half-zip-radtrikot/1127051/"
+              }
+            ],
+            "control_count": 21945,
+            "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/constraint_query_schwarz_Bekleidung_u.png",
+            "error_message": null,
+            "execution_time_ms": 14957,
+            "rationale": "Constraint query: 'schwarz Bekleidung unter 50 euro' should return relevant Bekleidung"
+          },
+          "score": "partial",
+          "score_reason": "Results found (734) but could not verify constraint applied"
+        }
+      ],
+      "summary": "0/1 passed, 1 partial"
+    },
+    {
+      "capability": "zero_result_handling",
+      "score": "pass",
+      "probes": [
+        {
+          "probe": {
+            "probe_type": "zero_result_check",
+            "query": "xyzqwk12345nonsense",
+            "control_query": null,
+            "status": "success",
+            "result_count": 0,
+            "results": [],
+            "control_count": null,
+            "screenshot_path": "../scanner_output/bergzeit-clean/www.bergzeit.de/zero_result_check_xyzqwk12345nonsense.png",
+            "error_message": "page says: 'ergab leider keine Treffer'",
+            "execution_time_ms": 5800,
+            "rationale": "Zero-result check: 'xyzqwk12345nonsense' should return 0 results"
+          },
+          "score": "pass",
+          "score_reason": "Correctly returned zero results for gibberish query"
+        }
+      ],
+      "summary": "1/1 passed"
+    }
+  ],
+  "overall_score": "partial",
+  "blocked": false,
+  "llm_cost_usd": 0.001646,
+  "execution_time_ms": 132005,
+  "error_message": null
+}
